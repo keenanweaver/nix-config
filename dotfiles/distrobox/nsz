@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# distrobox_binary
+# name: bazzite-arch-gaming
+if [ -z "${CONTAINER_ID}" ]; then
+	exec "/run/current-system/sw/bin/distrobox-enter"  -n bazzite-arch-gaming -- /usr/sbin/nsz  "$@"
+elif [ -n "${CONTAINER_ID}" ] && [ "${CONTAINER_ID}" != "bazzite-arch-gaming" ]; then
+	exec distrobox-host-exec /home/keenan/.local/share/distrobox/exports/bin/nsz  "$@"
+else
+	exec /usr/bin/nsz "$@"
+fi

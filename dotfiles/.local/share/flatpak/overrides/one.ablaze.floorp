@@ -1,0 +1,3 @@
+[Environment]
+MOZ_ENABLE_WAYLAND=1
+GTK_THEME=Catppuccin-Mocha-Standard-Sky-Dark

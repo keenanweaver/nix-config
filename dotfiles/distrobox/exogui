@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# distrobox_binary
+# name: bazzite-arch-gaming
+if [ -z "${CONTAINER_ID}" ]; then
+	exec "/run/current-system/sw/bin/distrobox-enter"  -n bazzite-arch-exodos -- gamemoderun obs-gamecapture mangohud /mnt/crusader/eXo/eXoDOS/exogui/exogui "$@"
+elif [ -n "${CONTAINER_ID}" ] && [ "${CONTAINER_ID}" != "bazzite-arch-exodos" ]; then
+	exec distrobox-host-exec /home/keenan/.local/share/distrobox/exports/bin/exogui  "$@"
+else
+	exec /mnt/crusader/eXo/eXoDOS/exogui/exogui "$@"
+fi

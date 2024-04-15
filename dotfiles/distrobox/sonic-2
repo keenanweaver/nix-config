@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# distrobox_binary
+# name: bazzite-arch-gaming
+cd /home/keenan/.config/distrobox/bazzite-arch-gaming/.config/SonicTheHedgehog2 || exit
+if [ -z "${CONTAINER_ID}" ]; then
+	exec "/run/current-system/sw/bin/distrobox-enter"  -n bazzite-arch-gaming -- gamemoderun obs-gamecapture mangohud 	 	/usr/bin/RSDKv4  "$@"
+elif [ -n "${CONTAINER_ID}" ] && [ "${CONTAINER_ID}" != "bazzite-arch-gaming" ]; then
+	exec distrobox-host-exec /home/keenan/.local/share/distrobox/exports/bin/sonic-2  "$@"
+else
+	exec /usr/bin/sonic-2 "$@"
+fi

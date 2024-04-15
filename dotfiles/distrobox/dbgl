@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# distrobox_binary
+# name: bazzite-arch-exodos
+if [ -z "${CONTAINER_ID}" ]; then
+        exec "/run/current-system/sw/bin/distrobox-enter"  -n bazzite-arch-exodos  -- obs-gamecapture mangohud /usr/sbin/dbgl  "$@"
+elif [ -n "${CONTAINER_ID}" ] && [ "${CONTAINER_ID}" != "bazzite-arch-exodos" ]; then
+        exec distrobox-host-exec /home/keenan/.local/share/distrobox/exports/bin/dbgl  "$@"
+else
+        exec /usr/sbin/dbgl "$@"
+fi

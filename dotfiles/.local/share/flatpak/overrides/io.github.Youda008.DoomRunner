@@ -1,0 +1,5 @@
+[Context]
+filesystems=/home/keenan/.var/app/org.zdoom.GZDoom;/home/keenan/.config/distrobox/bazzite-arch-gaming/.config/gzdoom/;/home/keenan/.config/distrobox/bazzite-arch-gaming/.prboom-plus/;/home/keenan/.config/distrobox/bazzite-arch-gaming/.dsda-doom;/home/keenan/.local/bin;/home/keenan/Games/doom
+
+[Environment]
+DOOMWADDIR=/home/keenan/Games/doom

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# distrobox_binary
+# name: bazzite-arch-sys
+if [ -z "${CONTAINER_ID}" ]; then
+	exec /run/current-system/sw/bin/distrobox-enter  -n bazzite-arch-sys -- 		 /usr/sbin/nccm  "$@"
+else
+	exec /usr/sbin/nccm "$@"
+fi

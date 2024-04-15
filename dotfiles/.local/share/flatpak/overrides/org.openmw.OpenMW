@@ -1,0 +1,5 @@
+[Context]
+filesystems=/home/keenan/Games/morrowind
+
+[Environment]
+OSG_VERTEX_BUFFER_HINT=VERTEX_BUFFER_OBJECT

@@ -1,0 +1,7 @@
+{
+  imports = [
+    ./hyprland
+    ./kde
+    ./theming
+  ];
+}

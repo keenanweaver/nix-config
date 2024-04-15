@@ -1,0 +1,33 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Control Panel\Colors]
+"ActiveBorder"=-
+"ActiveTitle"=-
+"AppWorkSpace"=-
+"Background"=-
+"ButtonAlternativeFace"=-
+"ButtonDkShadow"=-
+"ButtonFace"=-
+"ButtonHilight"=-
+"ButtonLight"=-
+"ButtonShadow"=-
+"ButtonText"=-
+"GradientActiveTitle"=-
+"GradientInactiveTitle"=-
+"GrayText"=-
+"Hilight"=-
+"HilightText"=-
+"InactiveBorder"=-
+"InactiveTitle"=-
+"InactiveTitleText"=-
+"InfoText"=-
+"InfoWindow"=-
+"Menu"=-
+"MenuBar"=-
+"MenuHilight"=-
+"MenuText"=-
+"Scrollbar"=-
+"TitleText"=-
+"Window"=-
+"WindowFrame"=-
+"WindowText"=-

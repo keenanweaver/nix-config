@@ -1,0 +1,2 @@
+[Context]
+filesystems=~/.var/app/com.valvesoftware.Steam;~/.var/app/com.usebottles.bottles;~/Games;/mnt/crusader/Games/Saves;!home
