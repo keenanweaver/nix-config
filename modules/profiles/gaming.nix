@@ -204,6 +204,7 @@ in
         #chocolate-doom
         crispy-doom
         #doom64ex-plus
+        (callPackage ../../nix/pkgs/doom64ex-plus.nix {})
         doomrunner
         doomseeker
         dsda-doom
