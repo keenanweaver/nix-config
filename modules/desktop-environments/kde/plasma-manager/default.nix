@@ -52,6 +52,7 @@
           "KFileDialog Settings"."Sort reversed".value = false;
           "KFileDialog Settings"."Speedbar Width".value = 133;
           "KFileDialog Settings"."View Style".value = "DetailTree";
+          "KScreen"."XwaylandClientsScale".value = false; # Steam workaround
         };
         kwinrc = {
           "Effect-blur"."BlurStrength".value = 12;
@@ -106,7 +107,34 @@
           "Window Move Center" = [ "Meta+C" "Meta+." ];
         };
       };
-
+      hotkeys = {
+        commands = {
+          "alacritty" = {
+            name = "Launch Alacritty";
+            key = "Ctrl+Alt+T";
+            command = "alacritty";
+          };
+          "Spectacle-region-clipboard" = {
+            name = "Launch Spectacle with region capture";
+            key = "Meta+Shift+Print";
+            command = "spectacle -bcr";
+          };
+          "wezterm" = {
+            name = "Launch wezterm";
+            key = "F12";
+            command = "wezterm";
+          };
+        };
+      };
+      spectacle.shortcuts = {
+        captureActiveWindow = "Meta+Print";
+        captureCurrentMonitor = "Print";
+        captureEntireDesktop = "Shift+Print";
+        captureRectangularRegion = "Meta+Shift+S";
+        captureWindowUnderCursor = "Meta+Ctrl+Print";
+        launch = "Meta+S";
+        launchWithoutCapturing = "Meta+Alt+S";
+      };
       workspace = {
         clickItemTo = "select";
       };
