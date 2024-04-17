@@ -14,6 +14,7 @@ in
   };
   config = mkIf cfg.enable {
     # Custom modules
+    base.enable = true;
     catppuccinTheming.enable = true;
     hyprland.enable = false;
     kde.enable = true;
