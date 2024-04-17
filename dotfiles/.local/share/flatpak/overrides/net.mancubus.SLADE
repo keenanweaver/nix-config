@@ -1,2 +1,2 @@
 [Context]
-filesystems=/home/keenan/Games/doom;!home
+filesystems=~/.slade3;~/.slade;/home/keenan/Games/doom;!home
