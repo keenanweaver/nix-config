@@ -62,9 +62,17 @@
     # KDE
     /*     kde-plasmoid-configurable-button = { url = "github:doncsugar/plasmoid-button/plasma6"; flake = false; };
     kde-plasmoid-wunderground = { url = "github:k-donn/plasmoid-wunderground/plasma6-release"; flake = false; }; */
-
+    /*     kde-plasmoid-tiled-menu = {
+      url = "github:Zren/plasma-applet-tiledmenu";
+      flake = false;
+    }; */
+    kwin-effects-forceblur = {
+      url = "github:taj-ny/kwin-effects-forceblur";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+    homeConfigurations = { };
     nixosConfigurations =
       let
         fullname = "Keenan Weaver";
@@ -96,7 +104,6 @@
               _module.args.disks = [ "/dev/nvme0n1" ];
             }
             inputs.lanzaboote.nixosModules.lanzaboote
-            inputs.nh.nixosModules.default
             inputs.nur.nixosModules.nur
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
@@ -110,8 +117,6 @@
                 useUserPackages = true;
                 users.${username} = {
                   home = {
-                    username = username;
-                    homeDirectory = "/home/${username}";
                     # do not change this value
                     stateVersion = "23.11";
                   };
@@ -153,7 +158,6 @@
               _module.args.disks = [ "/dev/nvme0n1" ];
             }
             inputs.lanzaboote.nixosModules.lanzaboote
-            inputs.nh.nixosModules.default
             inputs.nur.nixosModules.nur
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
@@ -167,8 +171,6 @@
                 useUserPackages = true;
                 users.${username} = {
                   home = {
-                    username = username;
-                    homeDirectory = "/home/${username}";
                     # do not change this value
                     stateVersion = "23.11";
                   };
