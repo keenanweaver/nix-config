@@ -32,6 +32,7 @@ in
     micro.enable = true;
     mullvad.enable = true;
     navi.enable = true;
+    nh.enable = true;
     nix-ld.enable = true;
     nix-index.enable = true;
     nnn.enable = true;
@@ -69,9 +70,6 @@ in
     environment = {
       homeBinInPath = true;
       localBinInPath = true;
-      sessionVariables = {
-        FLAKE = "/mnt/crusader/Projects/GitHub/nix-config"; # NH nix helper
-      };
       shells = with pkgs; [ bashInteractive zsh ];
       systemPackages = with pkgs; [
         appimage-run
@@ -108,8 +106,6 @@ in
         };
       };
 
-    nh.enable = true;
-
     services = {
       earlyoom.enable = true;
       fstrim.enable = true;
@@ -119,26 +115,30 @@ in
     time.timeZone = "America/Chicago";
 
     home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
-      home.file = {
-        script-7z-to-zip = {
-          enable = true;
-          recursive = false;
-          text = ''
-            #!/usr/bin/env bash
-            TMPDIR=tempdir_$$
-            for x in *.7z; do
-              mkdir $TMPDIR
-              cd $TMPDIR || return
-              cp "../$x" .
-              7z x "$x"
-              zip -r -9 "../$\\{x%.7z\\}.zip" ./* --exclude ./*.7z
-              cd ..
-              rm -rf $TMPDIR
-            done
-          '';
-          target = ".local/bin/7z-to-zip.sh";
-          executable = true;
+      home = {
+        file = {
+          script-7z-to-zip = {
+            enable = true;
+            recursive = false;
+            text = ''
+              #!/usr/bin/env bash
+              TMPDIR=tempdir_$$
+              for x in *.7z; do
+                mkdir $TMPDIR
+                cd $TMPDIR || return
+                cp "../$x" .
+                7z x "$x"
+                zip -r -9 "../$\\{x%.7z\\}.zip" ./* --exclude ./*.7z
+                cd ..
+                rm -rf $TMPDIR
+              done
+            '';
+            target = ".local/bin/7z-to-zip.sh";
+            executable = true;
+          };
         };
+        username = username;
+        homeDirectory = lib.mkDefault "/home/${username}";
       };
     };
   };
