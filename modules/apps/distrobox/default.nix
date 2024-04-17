@@ -211,8 +211,8 @@ in
               #unzip '/home/${username}/Games/Super Mario 64 (USA).zip' -j 'Super Mario 64 (USA).z64' -d ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.cache/paru/clone/sm64ex-nightly-git
               #mv '${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.cache/paru/clone/sm64ex-nightly-git/Super Mario 64 (USA).z64' ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.cache/paru/clone/sm64ex-nightly-git/baserom.us.z64
               ### Install game stuff
-              paru -S --needed --noconfirm aaru bstone lab3d-sdl openxcom-extended rsdkv4-bin xash3d-fwgs-git
-              #chocolate-doom crispy-doom doomseeker dsda-doom ecwolf-git gzdoom ironwail nsz python-kivy prboom-plus quake3e-git ryusak sm64ex-nightly-git soh soh-otr-n64_pal_11 trenchbroom-git zandronum 
+              paru -S --needed --noconfirm aaru lab3d-sdl openxcom-extended rsdkv4-bin xash3d-fwgs-git
+              #bstone chocolate-doom crispy-doom doomseeker dsda-doom ecwolf-git gzdoom ironwail nsz python-kivy prboom-plus quake3e-git ryusak sm64ex-nightly-git soh soh-otr-n64_pal_11 trenchbroom-git zandronum
               paru -Scc --noconfirm
               ### Post-install stuff
               grep ${username} /etc/passwd | sudo sed -i 's/\/usr\/sbin\/zsh/\/usr\/bin\/bash/g' /etc/passwd
