@@ -10,7 +10,6 @@
   ];
 
   # Custom modules
-  base.enable = true;
   desktop.enable = true;
   gaming.enable = true;
 
