@@ -36,8 +36,8 @@ in
             directory = [
               "/mnt/crusader/Projects/Codeberg/nix-config"
               "/mnt/crusader/Projects/GitHub/keenanweaver.github.io"
-              "/mnt/crusader/Projects/Gitlab/moka-pics"
               "/mnt/crusader/Projects/GitHub/nix-config"
+              "/mnt/crusader/Projects/Gitlab/moka-pics"
             ];
           };
         };
