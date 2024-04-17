@@ -307,6 +307,12 @@ in
         source = config.lib.file.mkOutOfStoreSymlink "${inputs.kde-plasmoid-wunderground}/plasmoid";
         target = "${config.xdg.dataHome}/plasma/plasmoids/com.github.k-donn.plasmoid-wunderground";
           }; */
+          kde-plasmoid-tiled-menu = {
+            enable = false;
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.kde-plasmoid-tiled-menu}/package";
+            target = "${config.xdg.dataHome}/plasma/plasmoids/com.github.zren.tiledmenu";
+          };
           wallpapers = {
             enable = true;
             recursive = true;

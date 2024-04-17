@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    ./plasma-manager
+    ./plasma-manager/desktop.nix
   ];
 
   options = {
@@ -28,6 +28,7 @@ in
         kdialog
         kio-extras
         kirigami-addons
+        inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
         packagekit-qt # Discover store
         plasma-browser-integration
         qtimageformats
