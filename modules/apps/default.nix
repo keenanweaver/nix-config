@@ -28,6 +28,7 @@
     ./micro
     ./mullvad
     ./navi
+    ./nh
     ./nix-index
     ./nix-ld
     ./nnn
