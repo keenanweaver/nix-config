@@ -13,7 +13,6 @@
   desktop.enable = true;
   gaming.enable = false;
 
-  #nixosConfiguration = {
   boot = {
     initrd.availableKernelModules = lib.mkDefault [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
     kernelModules = lib.mkDefault [ "tcp_bbr" "kvm-amd" ]; #"v4l2loopback"
@@ -96,6 +95,7 @@
       };
     };
     home.packages = with pkgs; [
+      bottles
       #xmousepasteblock
       ## Graphics
       clinfo
