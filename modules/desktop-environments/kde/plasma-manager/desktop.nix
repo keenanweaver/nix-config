@@ -28,7 +28,23 @@ let
         };
       }
       "org.kde.plasma.panelspacer"
-      "org.kde.plasma.systemtray"
+      #"org.kde.plasma.systemtray"
+      {
+        name = "org.kde.plasma.systemtray";
+        config = {
+          General = {
+            showVirtualDevices = "true";
+          };
+        };
+      }
+      /*       {
+        name = "org.kde.plasma.volume";
+        config = {
+          General = {
+            showVirtualDevices = "true";
+          };
+        };
+      } */
       "org.kde.plasma.digitalclock"
       "org.kde.plasma.showdesktop"
     ];
@@ -58,10 +74,7 @@ let
         };
       }
       "org.kde.plasma.panelspacer"
-      {
-        name = "org.kde.plasma.pager";
-      }
-
+      "org.kde.plasma.pager"
       {
         name = "com.github.k-donn.plasmoid-wunderground";
         config = {
