@@ -233,8 +233,16 @@ in
         ecwolf
         lzwolf
         ## Other
+        alephone
+        alephone-marathon
+        alephone-durandal
+        alephone-infinity
+        arx-libertatis
         inputs.nix-citizen.packages.${system}.star-citizen
         inputs.nix-citizen.packages.${system}.star-citizen-helper
+        openjk
+        openloco
+        openxray
         ## Input
         joystickwake
         makima
