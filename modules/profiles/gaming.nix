@@ -25,6 +25,9 @@ in
     timidity.enable = true;
 
     environment = {
+      sessionVariables = {
+        OBS_VKCAPTURE_QUIET = "1";
+      };
       systemPackages = with pkgs; [
         logitech-udev-rules
       ];
@@ -204,7 +207,7 @@ in
         #chocolate-doom
         crispy-doom
         #doom64ex-plus
-        (callPackage ../../nix/pkgs/doom64ex-plus.nix {})
+        (callPackage ../../nix/pkgs/doom64ex-plus.nix { })
         doomrunner
         doomseeker
         dsda-doom
@@ -277,7 +280,7 @@ in
             vgmplay-libvgm
             vgmstream
             vgmtools 
-        */
+          */
       ];
       # Move config files out of home
       programs.boxxy = {
