@@ -39,7 +39,7 @@ in
           db-exogui = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/exogui"; target = "${dbe}/exogui"; executable = true; };
           #db-gzdoom = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/gzdoom"; target = "${dbe}/gzdoom"; executable = true; };
           #db-ironwail = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/ironwail"; target = "${dbe}/ironwail"; executable = true; };
-          #db-lab3d-sdl = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/lab3d-sdl"; target = "${dbe}/lab3d-sdl"; executable = true; };
+          db-lab3d-sdl = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/lab3d-sdl"; target = "${dbe}/lab3d-sdl"; executable = true; };
           #db-nsz = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/nsz"; target = "${dbe}/nsz"; executable = true; };
           db-obs-gamecapture = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/obs-gamecapture"; target = "${dbe}/obs-gamecapture-db"; executable = true; };
           db-openxcom = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/openxcom"; target = "${dbe}/openxcom"; executable = true; };
