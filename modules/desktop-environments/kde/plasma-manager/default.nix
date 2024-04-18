@@ -106,6 +106,9 @@
           "Window Minimize" = "Meta+Shift+PgDown";
           "Window Move Center" = [ "Meta+C" "Meta+." ];
         };
+        "services/org.kde.konsole.desktop"."_launch" = [ ];
+        "services/Alacritty.desktop"."New" = "Ctrl+Alt+T";
+        "services/Alacritty.desktop"."_launch" = "Ctrl+Alt+T";
       };
       hotkeys = {
         commands = {
