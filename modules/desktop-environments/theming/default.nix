@@ -87,7 +87,10 @@ in
     };
 
     home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
-      catppuccin.flavour = "mocha";
+      catppuccin = {
+        #enable = true; # Wait for https://github.com/catppuccin/nix/pull/124
+        flavour = "mocha";
+      };
       colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
       fonts.fontconfig.enable = true;
