@@ -1,4 +1,4 @@
-{ inputs, home-manager, lib, config, username,  ... }: with lib;
+{ inputs, home-manager, lib, config, username, ... }: with lib;
 let
   cfg = config.wezterm;
 in
@@ -60,7 +60,9 @@ in
             db_tab:set_title ' distrobox '
             -- fastfetch tab
             local ff_tab, ff_pane, _ = window:spawn_tab { }
+            local neo_pane = ff_pane:split { direction = 'Bottom', size = 0.2 }
             ff_pane:send_text 'fastfetch\n'
+            neo_pane:send_text 'neo -D -b 1\n'
             ff_tab:set_title ' fetch '
             -- Set active panes
             db_bag_pane:activate()
@@ -73,7 +75,7 @@ in
           config.color_scheme = 'Catppuccin Mocha'
           config.default_prog = { "zsh" }
           config.font_size = 14
-          config.font = wezterm.font_with_fallback { 'JetBrainsMono Nerd Font', 'BlexMono Nerd Font', }
+          config.font = wezterm.font_with_fallback { { family = 'JetBrainsMono Nerd Font', weight = "Medium" }, { family = 'BlexMono Nerd Font', weight = "Medium" }, }
           config.unzoom_on_switch_pane = true
           config.check_for_updates = false
           config.line_height = 1.0

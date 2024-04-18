@@ -66,6 +66,10 @@ in
         };
       };
 
+      home.packages = with pkgs; [
+        neo
+      ];
+
       nixpkgs = {
         overlays = [
           inputs.nix-vscode-extensions.overlays.default
