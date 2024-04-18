@@ -76,6 +76,7 @@ in
         #bcachefs-tools
         cifs-utils
         nfs-utils
+        pciutils
         #pulseaudio
         sops
         ssh-to-age
