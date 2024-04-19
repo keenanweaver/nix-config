@@ -75,23 +75,23 @@
             };
           };
 
-          modules = [
+          modules = with inputs; [
 
             ./hosts/desktop
 
             (args: { nixpkgs.overlays = import ./nix/overlays args; })
 
-            inputs.catppuccin.nixosModules.catppuccin
-            inputs.chaotic.nixosModules.default
-            inputs.disko.nixosModules.disko
+            catppuccin.nixosModules.catppuccin
+            chaotic.nixosModules.default
+            disko.nixosModules.disko
             ./hosts/desktop/disko.nix
             {
               _module.args.disks = [ "/dev/nvme0n1" ];
             }
-            inputs.lanzaboote.nixosModules.lanzaboote
-            inputs.nur.nixosModules.nur
-            inputs.sops-nix.nixosModules.sops
-            inputs.home-manager.nixosModules.home-manager
+            lanzaboote.nixosModules.lanzaboote
+            nur.nixosModules.nur
+            sops-nix.nixosModules.sops
+            home-manager.nixosModules.home-manager
             {
               home-manager = {
                 extraSpecialArgs = {
@@ -112,14 +112,14 @@
                   };
                 };
                 sharedModules = [
-                  inputs.catppuccin.homeManagerModules.catppuccin
-                  inputs.hyprland.homeManagerModules.default
-                  inputs.nix-colors.homeManagerModules.default
-                  inputs.nix-index-database.hmModules.nix-index
-                  inputs.nixvim.homeManagerModules.nixvim
-                  inputs.nur.hmModules.nur
-                  inputs.plasma-manager.homeManagerModules.plasma-manager
-                  inputs.sops-nix.homeManagerModules.sops
+                  catppuccin.homeManagerModules.catppuccin
+                  hyprland.homeManagerModules.default
+                  nix-colors.homeManagerModules.default
+                  nix-index-database.hmModules.nix-index
+                  nixvim.homeManagerModules.nixvim
+                  nur.hmModules.nur
+                  plasma-manager.homeManagerModules.plasma-manager
+                  sops-nix.homeManagerModules.sops
                 ];
               };
             }
@@ -139,23 +139,23 @@
             };
           };
 
-          modules = [
+          modules = with inputs; [
 
             ./hosts/laptop
 
             (args: { nixpkgs.overlays = import ./nix/overlays args; })
 
-            inputs.catppuccin.nixosModules.catppuccin
-            inputs.chaotic.nixosModules.default
-            inputs.disko.nixosModules.disko
+            catppuccin.nixosModules.catppuccin
+            chaotic.nixosModules.default
+            disko.nixosModules.disko
             ./hosts/desktop/disko.nix
             {
               _module.args.disks = [ "/dev/nvme0n1" ];
             }
-            inputs.lanzaboote.nixosModules.lanzaboote
-            inputs.nur.nixosModules.nur
-            inputs.sops-nix.nixosModules.sops
-            inputs.home-manager.nixosModules.home-manager
+            lanzaboote.nixosModules.lanzaboote
+            nur.nixosModules.nur
+            sops-nix.nixosModules.sops
+            home-manager.nixosModules.home-manager
             {
               home-manager = {
                 extraSpecialArgs = {
@@ -176,14 +176,14 @@
                   };
                 };
                 sharedModules = [
-                  inputs.catppuccin.homeManagerModules.catppuccin
-                  inputs.hyprland.homeManagerModules.default
-                  inputs.nix-colors.homeManagerModules.default
-                  inputs.nix-index-database.hmModules.nix-index
-                  inputs.nixvim.homeManagerModules.nixvim
-                  inputs.nur.hmModules.nur
-                  inputs.plasma-manager.homeManagerModules.plasma-manager
-                  inputs.sops-nix.homeManagerModules.sops
+                  catppuccin.homeManagerModules.catppuccin
+                  hyprland.homeManagerModules.default
+                  nix-colors.homeManagerModules.default
+                  nix-index-database.hmModules.nix-index
+                  nixvim.homeManagerModules.nixvim
+                  nur.hmModules.nur
+                  plasma-manager.homeManagerModules.plasma-manager
+                  sops-nix.homeManagerModules.sops
                 ];
               };
             }

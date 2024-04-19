@@ -69,7 +69,14 @@ in
 
     system.autoUpgrade = {
       enable = false;
+      dates = "04:00:00";
+      allowReboot = true;
+      rebootWindow = {
+        lower = "04:00";
+        upper = "06:00";
+      };
     };
+
     home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
       home = {
         extraProfileCommands = ''

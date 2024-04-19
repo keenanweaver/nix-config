@@ -1,4 +1,4 @@
-{ inputs, home-manager, lib, config, username, pkgs, dotfiles, ... }: with lib;
+{ inputs, home-manager, lib, config, username, pkgs, dotfiles, vars, ... }: with lib;
 let
   bibata-sky-mocha = pkgs.stdenvNoCC.mkDerivation {
     pname = "bibata-sky-mocha";
@@ -213,7 +213,7 @@ in
         target = "${config.xdg.configHome}/helix/themes/catppuccin_mocha.toml";
           }; */
           catppuccin-heroic = {
-            enable = true;
+            enable = vars.gaming;
             recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-heroic}/themes/catppuccin-mocha.css";
             target = "Games/Heroic/catppuccin-mocha.css";
@@ -298,18 +298,6 @@ in
             source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.local/share/kwin/scripts";
             target = "${config.xdg.dataHome}/kwin/scripts";
           };
-          /*       kde-plasmoid-configurable-button = {
-        enable = true;
-        recursive = true;
-        source = config.lib.file.mkOutOfStoreSymlink "${inputs.kde-plasmoid-configurable-button}";
-        target = "${config.xdg.dataHome}/plasma/plasmoids/com.github.configurable_button";
-      };
-      kde-plasmoid-wunderground = {
-        enable = true;
-        recursive = true;
-        source = config.lib.file.mkOutOfStoreSymlink "${inputs.kde-plasmoid-wunderground}/plasmoid";
-        target = "${config.xdg.dataHome}/plasma/plasmoids/com.github.k-donn.plasmoid-wunderground";
-          }; */
           kde-plasmoid-tiled-menu = {
             enable = false;
             recursive = true;
