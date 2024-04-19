@@ -94,20 +94,7 @@
         executable = true;
       };
     };
-    home.packages = with pkgs; [
-      bottles
-      #xmousepasteblock
-      ## Graphics
-      clinfo
-      lact
-      #libva-utils
-      #wlr-randr
-      ## GNOME
-      adw-gtk3
-      gnome.gnome-settings-daemon
-      gsettings-desktop-schemas
-      gsettings-qt
-    ];
+    home.packages = with pkgs; [ bottles ];
     xdg = {
       desktopEntries = {
         foobar2000 = {

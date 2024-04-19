@@ -49,7 +49,6 @@
     ];
   };
   environment.systemPackages = with pkgs; [
-    # For debugging and troubleshooting Secure Boot.
     sbctl
   ];
 }

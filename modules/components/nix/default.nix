@@ -37,7 +37,6 @@ in
           "https://nix-gaming.cachix.org"
           "https://nix-community.cachix.org"
           "https://nixpkgs-wayland.cachix.org"
-          #"https://yazi.cachix.org"
         ];
         trusted-public-keys = [
           "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
@@ -46,7 +45,6 @@ in
           "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-          #"yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
         ];
         trusted-users = [ "${username}" ];
         use-xdg-base-directories = false;
@@ -80,7 +78,6 @@ in
         language.base = "en_US.UTF-8";
         sessionPath = [ "/home/${username}/.bin" "/home/${username}/.local/bin" "/var/lib/flatpak/exports/bin" "${config.xdg.dataHome}/flatpak/exports/bin" "${config.xdg.dataHome}/distrobox/exports/bin" ];
         sessionVariables = {
-          #EDITOR = "micro";
           #https://www.reddit.com/r/linux_gaming/comments/16lwgnj/comment/k1536zb/?utm_source=reddit&utm_medium=web2x&context=3
           GDK_DEBUG = "portals"; # KDE filepicker
           NIXOS_OZONE_WL = "1";

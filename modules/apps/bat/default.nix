@@ -9,7 +9,6 @@ in
     };
   };
   config = mkIf cfg.enable {
-    #nixosConfiguration = { };
     home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
       programs.bat = {
         enable = true;

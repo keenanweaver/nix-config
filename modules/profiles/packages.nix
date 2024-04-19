@@ -35,9 +35,6 @@ in
         };
       };
       home.packages = with pkgs; [ ] ++ lib.optionals cfg.dev [
-        #########
-        ## Dev ##
-        #########
         codeium
         devbox
         just
@@ -84,9 +81,6 @@ in
         nodePackages.yaml-language-server
         yamllint
       ] ++ lib.optionals cfg.misc [
-        ##################
-        ## Other tools ##
-        #################
         projectm
         yq
         ### unix alternatives ###
@@ -110,9 +104,6 @@ in
         nvd
         statix
       ] ++ lib.optionals cfg.system [
-        ############
-        ## System ##
-        ############
         aspell
         aspellDicts.en
         fastfetch
@@ -120,7 +111,6 @@ in
         libnotify
         kmon
         p7zip
-        #pciutils
         repgrep
         unrar
         unzip

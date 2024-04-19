@@ -213,6 +213,7 @@ in
         dsda-doom
         gzdoom
         prboom-plus
+        rbdoom-3-bfg
         zandronum
         ## Quake
         ironwail
@@ -246,6 +247,7 @@ in
         openjk
         openloco
         openxray
+        qtads
         ## Input
         joystickwake
         makima

@@ -45,6 +45,7 @@ net.rpcs3.RPCS3
 net.runelite.RuneLite
 net.sourceforge.uqm_mods.UQM-MegaMod
 org.citra_emu.citra
+org.dhewm3.Dhewm3
 org.diasurgical.DevilutionX
 org.DolphinEmu.dolphin-emu
 org.duckstation.DuckStation
@@ -76,6 +77,7 @@ org.sonic3air.Sonic3AIR
 org.srb2.SRB2
 org.srb2.SRB2Kart-galaxy/x86_64/stable
 org.srb2.SRB2Kart-Saturn
+org.twinery.Twine
 org.zdoom.Raze
 page.kramo.Cartridges
 re.chiaki.Chiaki

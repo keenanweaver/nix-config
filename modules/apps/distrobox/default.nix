@@ -25,37 +25,197 @@ in
       in
       {
         home.file = {
-          # Desktop-only
-          db-aaru = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/aaru"; target = "${dbe}/aaru"; executable = true; };
-          #db-bstone = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/bstone"; target = "${dbe}/bstone"; executable = true; };
-          #db-chocolate-doom = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/chocolate-doom"; target = "${dbe}/chocolate-doom"; executable = true; };
-          #db-crispy-doom = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/crispy-doom"; target = "${dbe}/crispy-doom"; executable = true; };
-          #db-crispy-heretic = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/crispy-heretic"; target = "${dbe}/crispy-heretic"; executable = true; };
-          #db-crispy-hexen = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/crispy-hexen"; target = "${dbe}/crispy-hexen"; executable = true; };
-          db-dbgl = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/dbgl"; target = "${dbe}/dbgl"; executable = true; };
-          #db-doomseeker = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/doomseeker"; target = "${dbe}/doomseeker"; executable = true; };
-          #db-dsda-doom = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/dsda-doom"; target = "${dbe}/dsda-doom"; executable = true; };
-          #db-ecwolf = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/ecwolf"; target = "${dbe}/ecwolf"; executable = true; };
-          db-exogui = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/exogui"; target = "${dbe}/exogui"; executable = true; };
-          #db-gzdoom = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/gzdoom"; target = "${dbe}/gzdoom"; executable = true; };
-          #db-ironwail = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/ironwail"; target = "${dbe}/ironwail"; executable = true; };
-          db-lab3d-sdl = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/lab3d-sdl"; target = "${dbe}/lab3d-sdl"; executable = true; };
-          #db-nsz = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/nsz"; target = "${dbe}/nsz"; executable = true; };
-          db-obs-gamecapture = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/obs-gamecapture"; target = "${dbe}/obs-gamecapture-db"; executable = true; };
-          db-openxcom = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/openxcom"; target = "${dbe}/openxcom"; executable = true; };
-          #db-portproton = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/portproton"; target = "${dbe}/portproton"; executable = true; };
-          #db-prboom-plus = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/prboom-plus"; target = "${dbe}/prboom-plus"; executable = true; };
-          #db-quake3e = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/quake3e"; target = "${dbe}/quake3e"; executable = true; };
-          #db-sm64ex-nightly = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/sm64ex-nightly"; target = "${dbe}/sm64ex-nightly"; executable = true; };
-          #db-soh = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/soh"; target = "${dbe}/soh"; executable = true; };
-          db-sonic-1 = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/sonic-1"; target = "${dbe}/sonic-1"; executable = true; };
-          db-sonic-2 = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/sonic-2"; target = "${dbe}/sonic-2"; executable = true; };
-          #db-trenchbroom = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/trenchbroom"; target = "${dbe}/trenchbroom"; executable = true; };
-          #db-xash3d = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/xash3d"; target = "${dbe}/xash3d"; executable = true; };
-          #db-zandronum = { enable = true; source = config.lib.file.mkOutOfStoreSymlink "${dbs}/zandronum"; target = "${dbe}/zandronum"; executable = true; };
-          # Others
-          db-nccm = { source = config.lib.file.mkOutOfStoreSymlink "${dbs}/nccm"; target = "${dbe}/nccm"; executable = true; };
-          db-qobuz-dl = { source = config.lib.file.mkOutOfStoreSymlink "${dbs}/qobuz-dl"; target = "${dbe}/qobuz-dl"; executable = true; };
+          db-aaru =
+            let
+              args = "";
+              bin = "aaru";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = true;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
+          db-dbgl =
+            let
+              args = "obs-gamecapture mangohud";
+              bin = "dbgl";
+              container = "bazzite-arch-exodos";
+            in
+            {
+              enable = true;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin} "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
+          db-exogui =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "exogui";
+              container = "bazzite-arch-exodos";
+            in
+            {
+              enable = true;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin} "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
+          db-lab3d-sdl =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "lab3d-sdl";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = true;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
+          db-nccm =
+            let
+              args = "";
+              bin = "nccm";
+              container = "bazzite-arch-sys";
+            in
+            {
+              enable = true;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
+          db-openxcom =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "openxcom";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = true;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
+          db-qobuz-dl =
+            let
+              args = "";
+              bin = "qobuz-dl";
+              container = "bazzite-arch-sys";
+            in
+            {
+              enable = true;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
+          db-sonic-1 =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "RSDKv4";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = true;
+              text = ''
+                #!/usr/bin/env bash
+                cd ${config.xdg.configHome}/distrobox/${container}/.config/SonicTheHedgehog || exit
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/sonic-1";
+              executable = true;
+            };
+          db-sonic-2 =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "RSDKv4";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = true;
+              text = ''
+                #!/usr/bin/env bash
+                cd ${config.xdg.configHome}/distrobox/${container}/.config/SonicTheHedgehog2 || exit
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/sonic-2";
+              executable = true;
+            };
           distrobox-assemble-desktop = {
             enable = true;
             recursive = false;
@@ -111,7 +271,6 @@ in
               paru -S --noconfirm archlinux-keyring
               paru -Syu --needed --noconfirm base-devel
               paru -S --noconfirm --needed atuin blesh yay
-              #echo '[[ $- == *i* ]] && source /usr/share/blesh/ble.sh' >> ${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.bashrc
               echo 'eval "$(atuin init bash)"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.bashrc
               echo 'db_path = "/home/${username}/.local/share/atuin/history.db"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/atuin/config.toml
               echo 'key_path = "/home/${username}/.local/share/atuin/key"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/atuin/config.toml
@@ -196,27 +355,16 @@ in
               paru -R --noconfirm xcursor-breeze
               paru -S --noconfirm archlinux-keyring
               paru -S --noconfirm --needed atuin blesh yay
-              #echo '[[ $- == *i* ]] && source /usr/share/blesh/ble.sh' >> ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.bashrc
               echo 'eval "$(atuin init bash)"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.bashrc
               echo 'db_path = "/home/${username}/.local/share/atuin/history.db"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/atuin/config.toml
               echo 'key_path = "/home/${username}/.local/share/atuin/key"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/atuin/config.toml
               paru -Syu --needed --noconfirm base-devel gamescope gamemode kdialog micro pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber #plasma-desktop
               paru -R steam lutris
               ### Download game stuff
-              #paru -S --noconfirm sm64ex-nightly-git soh soh-otr-n64_pal_11
-              #wget 'https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Legend%20of%20Zelda%2C%20The%20-%20Ocarina%20of%20Time%20%28Europe%29%20%28En%2CFr%2CDe%29%20%28Rev%201%29.zip' -P /home/${username}/Games
-              #wget 'https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Super%20Mario%2064%20%28USA%29.zip' -P /home/${username}/Games
-              #unzip '/home/${username}/Games/Legend of Zelda, The - Ocarina of Time (Europe) (En,Fr,De) (Rev 1).zip' -j 'Legend of Zelda, The - Ocarina of Time (Europe) (En,Fr,De) (Rev 1).z64' -d ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.cache/paru/clone/soh-otr-n64_pal_11 ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.cache/paru/clone/sm64ex-nightly-git
-              #mv '${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.cache/paru/clone/soh-otr-n64_pal_11/Legend of Zelda, The - Ocarina of Time (Europe) (En,Fr,De) (Rev 1).z64' ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.cache/paru/clone/soh-otr-n64_pal_11/baserom.z64
-              #unzip '/home/${username}/Games/Super Mario 64 (USA).zip' -j 'Super Mario 64 (USA).z64' -d ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.cache/paru/clone/sm64ex-nightly-git
-              #mv '${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.cache/paru/clone/sm64ex-nightly-git/Super Mario 64 (USA).z64' ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.cache/paru/clone/sm64ex-nightly-git/baserom.us.z64
-              ### Install game stuff
               paru -S --needed --noconfirm aaru lab3d-sdl openxcom-extended rsdkv4-bin xash3d-fwgs-git
-              #bstone chocolate-doom crispy-doom doomseeker dsda-doom ecwolf-git gzdoom ironwail nsz python-kivy prboom-plus quake3e-git ryusak sm64ex-nightly-git soh soh-otr-n64_pal_11 trenchbroom-git zandronum
               paru -Scc --noconfirm
               ### Post-install stuff
               grep ${username} /etc/passwd | sudo sed -i 's/\/usr\/sbin\/zsh/\/usr\/bin\/bash/g' /etc/passwd
-              #distrobox-export --app lutris
             '';
             target = "${config.xdg.configHome}/distrobox/bootstrap-bazzite-arch-gaming.sh";
             executable = true;
@@ -239,12 +387,6 @@ in
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/gtk-4.0";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/gtk-4.0";
           };
-          /*         distrobox-bazzite-arch-gaming-icons = {
-          enable = false;
-          recursive = true;
-          source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.icons";
-          target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.icons";
-          }; */
           distrobox-bazzite-arch-gaming-kdeglobals = {
             enable = true;
             recursive = false;
@@ -306,7 +448,6 @@ in
               paru -S --noconfirm archlinux-keyring
               paru -Syu --needed --noconfirm base-devel
               paru -S --noconfirm --needed atuin blesh yay
-              #echo '[[ $- == *i* ]] && source /usr/share/blesh/ble.sh' >> ${config.xdg.configHome}/distrobox/bazzite-arch-sys/.bashrc
               echo 'eval "$(atuin init bash)"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-sys/.bashrc
               echo 'db_path = "/home/${username}/.local/share/atuin/history.db"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-sys/.config/atuin/config.toml
               echo 'key_path = "/home/${username}/.local/share/atuin/key"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-sys/.config/atuin/config.toml

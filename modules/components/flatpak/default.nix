@@ -63,7 +63,6 @@ in
             /home/${username}/.local/bin/flatpak-install-sys.sh
             /home/${username}/.local/bin/flatpak-install.sh
             /home/${username}/.local/bin/flatpak-install-games.sh
-            #/home/${username}/.local/bin/flatpak-install-beta.sh
           '';
           target = ".local/bin/flatpak-install-all.sh";
           executable = true;

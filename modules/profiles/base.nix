@@ -73,11 +73,9 @@ in
       shells = with pkgs; [ bashInteractive zsh ];
       systemPackages = with pkgs; [
         appimage-run
-        #bcachefs-tools
         cifs-utils
         nfs-utils
         pciutils
-        #pulseaudio
         sops
         ssh-to-age
         xdg-dbus-proxy

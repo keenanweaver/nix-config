@@ -29,6 +29,7 @@ in
         alsa-plugins
         alsa-tools
         alsa-utils
+        pulseaudio
         xdg-desktop-portal
       ];
     };
@@ -68,6 +69,14 @@ in
 
       home.packages = with pkgs; [
         neo
+        ## Graphics
+        clinfo
+        lact
+        ## GNOME
+        adw-gtk3
+        gnome.gnome-settings-daemon
+        gsettings-desktop-schemas
+        gsettings-qt
       ];
 
       nixpkgs = {

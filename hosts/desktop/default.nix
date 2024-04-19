@@ -91,7 +91,6 @@
           # Set up flatpaks
           sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
           flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-          #flatpak --user remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
           /home/${username}/.local/bin/flatpak-install-all.sh
           curl https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | test(".*flatpak$")).browser_download_url' | wget -i- -N -P /home/${username}/Downloads
           fd 'rustdesk' /home/${username}/Downloads -e flatpak -x flatpak install -u -y
@@ -113,19 +112,7 @@
         executable = true;
       };
     };
-    home.packages = with pkgs; [
-      #xmousepasteblock
-      ## Graphics
-      clinfo
-      lact
-      #libva-utils
-      #wlr-randr
-      ## GNOME
-      adw-gtk3
-      gnome.gnome-settings-daemon
-      gsettings-desktop-schemas
-      gsettings-qt
-    ];
+    home.packages = with pkgs; [ ];
     xdg = {
       desktopEntries = {
         exogui = {
@@ -168,6 +155,21 @@
           };
           settings = {
             StartupWMClass = "GOG Galaxy";
+          };
+        };
+        qobuz = {
+          name = "Qobuz";
+          comment = "Launch Qobuz using Bottles.";
+          exec = "bottles-cli run -p Qobuz -b Qobuz";
+          icon = "/home/${username}/Games/Bottles/Qobuz/icons/Qobuz.png";
+          categories = [ "AudioVideo" "Player" "Audio" ];
+          noDisplay = false;
+          startupNotify = true;
+          actions = {
+            "Configure" = { name = "Configure in Bottles"; exec = "bottles -b Qobuz"; };
+          };
+          settings = {
+            StartupWMClass = "foobar2000";
           };
         };
       };

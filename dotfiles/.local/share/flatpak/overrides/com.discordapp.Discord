@@ -1,5 +1,0 @@
-[Context]
-filesystems=!host
-
-[Environment]
-XCURSOR_PATH=
