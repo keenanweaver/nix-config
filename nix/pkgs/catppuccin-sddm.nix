@@ -4,7 +4,6 @@
   fetchFromGitHub,
   just,
   qtsvg,
-  qtquickcontrols2,
   flavor ? "mocha",
   font ? "Noto Sans",
   fontSize ? "9",
@@ -30,7 +29,6 @@ stdenvNoCC.mkDerivation rec {
 
   propagatedBuildInputs = [
     qtsvg
-    qtquickcontrols2
   ];
 
   buildPhase = ''
@@ -58,7 +56,6 @@ stdenvNoCC.mkDerivation rec {
   postFixup = ''
     mkdir -p $out/nix-support
     echo ${qtsvg} >> $out/nix-support/propagated-user-env-packages
-    echo ${qtquickcontrols2} >> $out/nix-support/propagated-user-env-packages
   '';
 
   meta = {
