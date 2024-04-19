@@ -83,69 +83,6 @@ in
       };
     };
     home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
-      home = {
-        file = {
-          kate-lsp = {
-            enable = true;
-            recursive = false;
-            text = ''
-              {
-                "servers": {
-                  "css": {
-                    "command": ["vscode-css-language-server", "--stdio"],
-                    "url": "https://github.com/Microsoft/vscode/tree/main/extensions/css-language-features/server",
-                    "highlightingModeRegex": "^CSS$"
-                  },
-                  "html": {
-                    "command": ["vscode-html-language-server", "--stdio"],
-                    "url": "https://github.com/Microsoft/vscode/tree/main/extensions/html-language-features/server",
-                    "highlightingModeRegex": "^HTML$"
-                  },
-                  "json": {
-                    "command": ["vscode-json-language-server", "--stdio"],
-                    "url": "https://github.com/microsoft/vscode/tree/main/extensions/json-language-features/server",
-                    "highlightingModeRegex": "^JSON$"
-                  },
-                  "markdown": {
-                    "command": ["marksman"],
-                    "url": "https://github.com/artempyanykh/marksman",
-                    "highlightingModeRegex": "^Markdown$"
-                  },
-                  "nix": {
-                    "command": ["nixd"],
-                    "url": "https://github.com/nix-community/nixd",
-                    "highlightingModeRegex": "^Nix$"
-                  },
-                  "python": {
-                    "command": ["ruff-lsp"],
-                    "url": "https://github.com/astral-sh/ruff-lsp",
-                    "highlightingModeRegex": "^Python$"
-                  },
-                  "terraform": {
-                    "rootIndicationFileNames": ["*.tf", "*.tfvars"]
-                  }
-                }
-              }
-            '';
-            target = "${config.xdg.configHome}/kate/lspclient/settings.json";
-          };
-          konsole-profile = {
-            enable = true;
-            recursive = false;
-            text = ''
-              [Appearance]
-              ColorScheme=Catppuccin-Mocha
-              Font=JetBrainsMono Nerd Font,14,-1,5,50,0,0,0,0,0
-
-              [General]
-              Command=/etc/profiles/per-user/${username}/bin/zsh
-              Name=${username}
-              Parent=FALLBACK/
-            '';
-            target = "${config.xdg.dataHome}/konsole/${username}.profile";
-          };
-        };
-      };
       services = {
         kdeconnect.enable = true;
       };

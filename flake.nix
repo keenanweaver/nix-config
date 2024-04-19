@@ -68,6 +68,11 @@
           specialArgs = {
             inherit inputs;
             inherit fullname username dotfiles;
+
+            vars = {
+              desktop = true;
+              gaming = true;
+            };
           };
 
           modules = [
@@ -90,8 +95,13 @@
             {
               home-manager = {
                 extraSpecialArgs = {
-                  inherit inputs;
+                  inherit inputs; # Experiment with config and other attributes
                   inherit fullname username dotfiles;
+
+                  vars = {
+                    desktop = true;
+                    gaming = true;
+                  };
                 };
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -122,6 +132,11 @@
           specialArgs = {
             inherit inputs;
             inherit fullname username dotfiles;
+
+            vars = {
+              desktop = true;
+              gaming = false;
+            };
           };
 
           modules = [
@@ -146,6 +161,11 @@
                 extraSpecialArgs = {
                   inherit inputs;
                   inherit fullname username dotfiles;
+
+                  vars = {
+                    desktop = true;
+                    gaming = false;
+                  };
                 };
                 useGlobalPkgs = true;
                 useUserPackages = true;

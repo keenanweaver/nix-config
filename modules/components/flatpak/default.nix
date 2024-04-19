@@ -1,4 +1,4 @@
-{ inputs, home-manager, lib, config, username, dotfiles, ... }: with lib;
+{ inputs, home-manager, lib, config, username, dotfiles, vars, ... }: with lib;
 let
   cfg = config.flatpak;
 in
@@ -29,7 +29,7 @@ in
           target = ".local/bin/.flatpak-list-beta";
         };
         flatpak-list-games = {
-          enable = true;
+          enable = vars.gaming;
           recursive = false;
           source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/flatpak-games";
           target = ".local/bin/.flatpak-games-list";
@@ -78,7 +78,7 @@ in
           executable = true;
         };
         script-flatpak-install-games = {
-          enable = true;
+          enable = vars.gaming;
           recursive = false;
           text = ''
             #!/usr/bin/env bash

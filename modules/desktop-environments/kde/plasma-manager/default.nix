@@ -1,6 +1,57 @@
 { username, inputs, home-manager, ... }:
 {
   home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+    programs.kate = {
+      lsp.customServers = {
+        css = {
+          command = [ "vscode-css-language-server" "--stdio" ];
+          url = "https://github.com/Microsoft/vscode/tree/main/extensions/css-language-features/server";
+          highlightingModeRegex = "^CSS$";
+        };
+        html = {
+          command = [ "vscode-html-language-server" "--stdio" ];
+          url = "https://github.com/Microsoft/vscode/tree/main/extensions/html-language-features/server";
+          highlightingModeRegex = "^HTML$";
+        };
+        json = {
+          command = [ "vscode-json-language-server" "--stdio" ];
+          url = "https://github.com/microsoft/vscode/tree/main/extensions/json-language-features/server";
+          highlightingModeRegex = "^JSON$";
+        };
+        markdown = {
+          command = [ "marksman" ];
+          url = "https://github.com/artempyanykh/marksman";
+          highlightingModeRegex = "^Markdown$";
+        };
+        nix = {
+          command = [ "nixd" ];
+          url = "https://github.com/nix-community/nixd";
+          highlightingModeRegex = "^Nix$";
+        };
+        python = {
+          command = [ "ruff-lsp" ];
+          url = "https://github.com/astral-sh/ruff-lsp";
+          highlightingModeRegex = "^Python$";
+        };
+        terraform = {
+          rootIndicationFileNames = [ "*.tf" "*.tfvars" ];
+        };
+      };
+    };
+    programs.konsole = {
+      enable = true;
+      defaultProfile = "${username}";
+      profiles = {
+        "${username}" = {
+          colorScheme = "Catppuccin-Mocha";
+          command = "${pkgs.zsh}/bin/zsh";
+          font = {
+            name = "JetBrainsMono Nerd Font";
+            size = 14;
+          };
+        };
+      };
+    };
     programs.plasma = {
       enable = true;
       configFile = {

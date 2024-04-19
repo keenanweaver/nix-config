@@ -15,7 +15,9 @@ in
       image-analyzer = false;
     };
     home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
-      home.packages = with pkgs; [ ]; #cdemu-client cdemu-daemon
+      /*       home = mkIf (config.networking.hostName == "steamdeck") {
+        packages = with pkgs; [ cdemu-client cdemu-daemon ];
+      }; */
     };
   };
 }

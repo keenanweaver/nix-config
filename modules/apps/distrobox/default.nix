@@ -1,4 +1,4 @@
-{ inputs, home-manager, lib, config, username, pkgs, ... }: with lib;
+{ inputs, home-manager, lib, config, username, pkgs, vars, ... }: with lib;
 let
   cfg = config.distrobox;
 in
@@ -32,7 +32,7 @@ in
               container = "bazzite-arch-gaming";
             in
             {
-              enable = true;
+              enable = vars.gaming;
               text = ''
                 #!/usr/bin/env bash
                 if [ -z "''${CONTAINER_ID}" ]; then
@@ -53,7 +53,7 @@ in
               container = "bazzite-arch-exodos";
             in
             {
-              enable = true;
+              enable = vars.gaming;
               text = ''
                 #!/usr/bin/env bash
                 if [ -z "''${CONTAINER_ID}" ]; then
@@ -74,7 +74,7 @@ in
               container = "bazzite-arch-exodos";
             in
             {
-              enable = true;
+              enable = vars.gaming;
               text = ''
                 #!/usr/bin/env bash
                 if [ -z "''${CONTAINER_ID}" ]; then
@@ -95,7 +95,7 @@ in
               container = "bazzite-arch-gaming";
             in
             {
-              enable = true;
+              enable = vars.gaming;
               text = ''
                 #!/usr/bin/env bash
                 if [ -z "''${CONTAINER_ID}" ]; then
@@ -137,7 +137,7 @@ in
               container = "bazzite-arch-gaming";
             in
             {
-              enable = true;
+              enable = vars.gaming;
               text = ''
                 #!/usr/bin/env bash
                 if [ -z "''${CONTAINER_ID}" ]; then
@@ -179,7 +179,7 @@ in
               container = "bazzite-arch-gaming";
             in
             {
-              enable = true;
+              enable = vars.gaming;
               text = ''
                 #!/usr/bin/env bash
                 cd ${config.xdg.configHome}/distrobox/${container}/.config/SonicTheHedgehog || exit
@@ -201,7 +201,7 @@ in
               container = "bazzite-arch-gaming";
             in
             {
-              enable = true;
+              enable = vars.gaming;
               text = ''
                 #!/usr/bin/env bash
                 cd ${config.xdg.configHome}/distrobox/${container}/.config/SonicTheHedgehog2 || exit
@@ -219,15 +219,7 @@ in
           distrobox-assemble-desktop = {
             enable = true;
             recursive = false;
-            text = ''
-              [bazzite-arch-sys]
-              home=${config.xdg.configHome}/distrobox/bazzite-arch-sys
-              image=ghcr.io/ublue-os/bazzite-arch:latest
-              init=true
-              pull=false
-              replace=false
-              start_now=true
-
+            text = (if vars.gaming then ''
               [bazzite-arch-exodos]
               home=${config.xdg.configHome}/distrobox/bazzite-arch-exodos
               image=ghcr.io/ublue-os/bazzite-arch:latest
@@ -243,11 +235,20 @@ in
               pull=false
               replace=false
               start_now=true
+            '' else '''') + ''
+            
+              [bazzite-arch-sys]
+              home=${config.xdg.configHome}/distrobox/bazzite-arch-sys
+              image=ghcr.io/ublue-os/bazzite-arch:latest
+              init=true
+              pull=false
+              replace=false
+              start_now=true
             '';
             target = "${config.xdg.configHome}/distrobox/distrobox.ini";
           };
           distrobox-bazzite-arch-exodos = {
-            enable = true;
+            enable = vars.gaming;
             recursive = false;
             text = ''
               #!/usr/bin/env bash
@@ -284,55 +285,55 @@ in
             executable = true;
           };
           distrobox-bazzite-arch-exodos-catppuccin-konsole = {
-            enable = true;
+            enable = vars.gaming;
             recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-konsole}/Catppuccin-Mocha.colorscheme";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.local/share/konsole/Catppuccin-Mocha.colorscheme";
           };
           distrobox-bazzite-arch-exodos-gtk2 = {
-            enable = true;
+            enable = vars.gaming;
             recursive = true;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/gtk-2.0";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/gtk-2.0";
           };
           distrobox-bazzite-arch-exodos-gtk3 = {
-            enable = true;
+            enable = vars.gaming;
             recursive = true;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/gtk-3.0";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/gtk-3.0";
           };
           distrobox-bazzite-arch-exodos-gtk4 = {
-            enable = true;
+            enable = vars.gaming;
             recursive = true;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/gtk-4.0";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/gtk-4.0";
           };
           distrobox-bazzite-arch-exodos-kdeglobals = {
-            enable = true;
+            enable = vars.gaming;
             recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/kdeglobals";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/kdeglobals";
           };
           distrobox-bazzite-arch-exodos-konsole = {
-            enable = true;
+            enable = vars.gaming;
             recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/konsole/${username}.profile";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.local/share/konsole/${username}.profile";
           };
           distrobox-bazzite-arch-exodos-themes = {
-            enable = true;
+            enable = vars.gaming;
             recursive = true;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/themes";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.local/share/themes";
           };
           distrobox-bazzite-arch-exodos-trolltech = {
-            enable = true;
+            enable = vars.gaming;
             recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/Trolltech.conf";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/Trolltech.conf";
           };
           distrobox-bazzite-arch-gaming = {
-            enable = true;
+            enable = vars.gaming;
             recursive = false;
             text = ''
               #!/usr/bin/env bash
@@ -370,55 +371,55 @@ in
             executable = true;
           };
           distrobox-bazzite-arch-gaming-gtk2 = {
-            enable = true;
+            enable = vars.gaming;
             recursive = true;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/gtk-2.0";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/gtk-2.0";
           };
           distrobox-bazzite-arch-gaming-gtk3 = {
-            enable = true;
+            enable = vars.gaming;
             recursive = true;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/gtk-3.0";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/gtk-3.0";
           };
           distrobox-bazzite-arch-gaming-gtk4 = {
-            enable = true;
+            enable = vars.gaming;
             recursive = true;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/gtk-4.0";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/gtk-4.0";
           };
           distrobox-bazzite-arch-gaming-kdeglobals = {
-            enable = true;
+            enable = vars.gaming;
             recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/kdeglobals";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/kdeglobals";
           };
           distrobox-bazzite-arch-gaming-konsole = {
-            enable = true;
+            enable = vars.gaming;
             recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/konsole/${username}.profile";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.local/share/konsole/${username}.profile";
           };
           distrobox-bazzite-arch-gaming-themes = {
-            enable = true;
+            enable = vars.gaming;
             recursive = true;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/themes";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.local/share/themes";
           };
           distrobox-bazzite-arch-gaming-trolltech = {
-            enable = true;
+            enable = vars.gaming;
             recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/Trolltech.conf";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/Trolltech.conf";
           };
           distrobox-mangohud-gaming = {
-            enable = true;
+            enable = vars.gaming;
             recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/MangoHud/MangoHud.conf";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/MangoHud/MangoHud.conf";
           };
           distrobox-mangohud-exodos = {
-            enable = true;
+            enable = vars.gaming;
             recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/MangoHud/MangoHud.conf";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/MangoHud/MangoHud.conf";

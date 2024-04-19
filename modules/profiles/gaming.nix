@@ -247,7 +247,6 @@ in
         openjk
         openloco
         openxray
-        qtads
         ## Input
         joystickwake
         makima
