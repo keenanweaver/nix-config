@@ -60,7 +60,7 @@ in
         (self: super: { })
         (final: prev: {
           apple-fonts = pkgs.callPackage ../../../nix/pkgs/apple-fonts.nix { };
-          catppuccin-sddm = pkgs.libsForQt5.callPackage ../../../nix/pkgs/catppuccin-sddm.nix { };
+          catppuccin-sddm = pkgs.kdePackages.callPackage ../../../nix/pkgs/catppuccin-sddm.nix { };
           doomrunner = pkgs.qt5.callPackage ../../../nix/pkgs/doomrunner.nix { };
         })
       ];
@@ -70,7 +70,7 @@ in
     system.autoUpgrade = {
       enable = false;
       dates = "04:00:00";
-      allowReboot = true;
+      allowReboot = if vars.server then true else false;
       rebootWindow = {
         lower = "04:00";
         upper = "06:00";
@@ -85,17 +85,11 @@ in
         language.base = "en_US.UTF-8";
         sessionPath = [ "/home/${username}/.bin" "/home/${username}/.local/bin" "/var/lib/flatpak/exports/bin" "${config.xdg.dataHome}/flatpak/exports/bin" "${config.xdg.dataHome}/distrobox/exports/bin" ];
         sessionVariables = {
-          #https://www.reddit.com/r/linux_gaming/comments/16lwgnj/comment/k1536zb/?utm_source=reddit&utm_medium=web2x&context=3
-          GDK_DEBUG = "portals"; # KDE filepicker
           NIXOS_OZONE_WL = "1";
           NIXPKGS_ALLOW_UNFREE = "1";
           RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
-          SDL_SOUNDFONTS = "/home/${username}/Music/soundfonts/default.sf2";
-          #SSH_ASKPASS = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
-          #SSH_ASKPASS_REQUIRE = "prefer";
           WLR_NO_HARDWARE_CURSOR = "1";
           XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
-          XDG_CURRENT_DESKTOP = "KDE";
         };
         shellAliases = {
           b = "bat --color=always -pp";

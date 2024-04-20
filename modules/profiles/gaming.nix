@@ -27,6 +27,7 @@ in
     environment = {
       sessionVariables = {
         OBS_VKCAPTURE_QUIET = "1";
+        SDL_SOUNDFONTS = "/home/${username}/Music/soundfonts/default.sf2";
       };
       systemPackages = with pkgs; [
         logitech-udev-rules
@@ -215,6 +216,7 @@ in
         prboom-plus
         rbdoom-3-bfg
         zandronum
+        zandronum-server
         ## Quake
         ironwail
         quake3e
@@ -271,6 +273,7 @@ in
         ## One and dones ##
         /*  igir
             innoextract
+            jpsxdec
             lgogdownloader
             mame.tools
             mkvtoolnix-cli

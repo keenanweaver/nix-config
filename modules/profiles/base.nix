@@ -72,7 +72,6 @@ in
       localBinInPath = true;
       shells = with pkgs; [ bashInteractive zsh ];
       systemPackages = with pkgs; [
-        appimage-run
         cifs-utils
         nfs-utils
         pciutils

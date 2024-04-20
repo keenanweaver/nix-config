@@ -11,6 +11,8 @@ in
   config = mkIf cfg.enable {
     hardware.pulseaudio.enable = false;
 
+    security.rtkit.enable = true;
+
     services.pipewire = {
       enable = true;
       audio.enable = true;
@@ -34,10 +36,6 @@ in
           text = ''
             context.properties = {
                 default.clock.allowed-rates = [ 44100 48000 88200 96000 ]
-                ## Below adds crackling to some games
-                #default.clock.quantum       = 1024
-                #default.clock.min-quantum   = 1024
-                #default.clock.max-quantum   = 1024
             }
           '';
           target = "${config.xdg.configHome}/pipewire/pipewire.conf.d/10-allowed-rates.conf";

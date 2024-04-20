@@ -9,7 +9,6 @@ in
     };
   };
   config = mkIf cfg.enable {
-    #nixosConfiguration = {
     sops = {
       age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
       defaultSopsFile = ./secrets.yaml;
@@ -18,7 +17,6 @@ in
         pass = { };
       };
     };
-    #};
     home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
       sops = {
         age.keyFile = "/home/${username}/.config/sops/age/keys.txt";

@@ -15,6 +15,10 @@ in
   config = mkIf cfg.enable {
     environment = {
       plasma6.excludePackages = with pkgs.kdePackages; [ elisa kwrited ];
+      sessionVariables = {
+        GDK_DEBUG = "portals"; # KDE filepicker
+        XDG_CURRENT_DESKTOP = "KDE";
+      };
       systemPackages = with pkgs; with pkgs.kdePackages; [
         ffmpegthumbnailer
         colord-kde
