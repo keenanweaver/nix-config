@@ -1,4 +1,4 @@
-{ inputs, home-manager, lib, config, username, dotfiles, vars, ... }: with lib;
+{ inputs, home-manager, lib, config, username, dotfiles, vars, pkgs, ... }: with lib;
 let
   cfg = config.flatpak;
 in
@@ -14,6 +14,14 @@ in
   };
   config = mkIf cfg.enable {
     services.flatpak.enable = true;
+    systemd.services.flatpak-repo = {
+      wantedBy = [ "multi-user.target" ];
+      path = [ pkgs.flatpak ];
+      script = ''
+        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+      '';
+    };
     home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
       home.file = {
         flatpak-list = {

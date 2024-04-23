@@ -11,7 +11,6 @@
     lanzaboote = { url = "github:nix-community/lanzaboote"; inputs.nixpkgs.follows = "nixpkgs"; };
     plasma-manager = { url = "github:pjones/plasma-manager"; inputs.nixpkgs.follows = "nixpkgs"; inputs.home-manager.follows = "home-manager"; };
 
-    nh = { url = "github:viperML/nh"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix-colors.url = "github:misterio77/nix-colors";
     nix-index-database = { url = "github:Mic92/nix-index-database"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix-inspect.url = "github:bluskript/nix-inspect";
@@ -164,6 +163,70 @@
 
                   vars = {
                     desktop = true;
+                    gaming = false;
+                  };
+                };
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${username} = {
+                  home = {
+                    # do not change this value
+                    stateVersion = "23.11";
+                  };
+                };
+                sharedModules = [
+                  catppuccin.homeManagerModules.catppuccin
+                  hyprland.homeManagerModules.default
+                  nix-colors.homeManagerModules.default
+                  nix-index-database.hmModules.nix-index
+                  nixvim.homeManagerModules.nixvim
+                  nur.hmModules.nur
+                  plasma-manager.homeManagerModules.plasma-manager
+                  sops-nix.homeManagerModules.sops
+                ];
+              };
+            }
+          ];
+        };
+        # Unraid
+        nixos-unraid = nixpkgs.lib.nixosSystem rec {
+          system = "x86_64-linux";
+
+          specialArgs = {
+            inherit inputs;
+            inherit fullname username dotfiles;
+
+            vars = {
+              desktop = false;
+              gaming = false;
+            };
+          };
+
+          modules = with inputs; [
+
+            ./hosts/vm
+
+            (args: { nixpkgs.overlays = import ./nix/overlays args; })
+
+            catppuccin.nixosModules.catppuccin
+            chaotic.nixosModules.default
+            disko.nixosModules.disko
+            ./hosts/vm/disko.nix
+            {
+              _module.args.disks = [ "/dev/nvme0n1" ];
+            }
+            lanzaboote.nixosModules.lanzaboote
+            nur.nixosModules.nur
+            sops-nix.nixosModules.sops
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                extraSpecialArgs = {
+                  inherit inputs; # Experiment with config and other attributes
+                  inherit fullname username dotfiles;
+
+                  vars = {
+                    desktop = false;
                     gaming = false;
                   };
                 };

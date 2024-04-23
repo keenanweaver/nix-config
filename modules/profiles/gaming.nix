@@ -228,8 +228,8 @@ in
         dxx-rebirth
         knossosnet
         ## N64
-        shipwright
-        sm64ex
+        #shipwright
+        #sm64ex
         ## Ultima
         exult
         # Wipeout

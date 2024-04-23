@@ -59,7 +59,7 @@ in
     packages.enable = true;
     performance.enable = true;
     pipewire.enable = true;
-    printing.enable = true;
+    printing.enable = false;
     secrets.enable = true;
     virtualization.enable = true;
     users.enable = true;

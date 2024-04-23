@@ -78,7 +78,49 @@ in
               text = ''
                 #!/usr/bin/env bash
                 if [ -z "''${CONTAINER_ID}" ]; then
-                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin} "$@"
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /mnt/crusader/eXo/eXoDOS/exogui/${bin} "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
+          db-jazzjackrabbit =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "jazzjackrabbit";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = vars.gaming;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
+          db-jazzjackrabbit2 =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "jazzjackrabbit2";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = vars.gaming;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
                 	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
                 else
@@ -151,6 +193,27 @@ in
               target = "${dbe}/${bin}";
               executable = true;
             };
+          db-perfectdark =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "perfectdark";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = vars.gaming;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
           db-qobuz-dl =
             let
               args = "";
@@ -172,17 +235,16 @@ in
               target = "${dbe}/${bin}";
               executable = true;
             };
-          db-sonic-1 =
+          db-sonic =
             let
               args = "gamemoderun obs-gamecapture mangohud";
-              bin = "RSDKv4";
+              bin = "sonic";
               container = "bazzite-arch-gaming";
             in
             {
               enable = vars.gaming;
               text = ''
                 #!/usr/bin/env bash
-                cd ${config.xdg.configHome}/distrobox/${container}/.config/SonicTheHedgehog || exit
                 if [ -z "''${CONTAINER_ID}" ]; then
                 	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -191,20 +253,19 @@ in
                 	exec /usr/bin/${bin} "$@"
                 fi
               '';
-              target = "${dbe}/sonic-1";
+              target = "${dbe}/${bin}";
               executable = true;
             };
-          db-sonic-2 =
+          db-sonic2 =
             let
               args = "gamemoderun obs-gamecapture mangohud";
-              bin = "RSDKv4";
+              bin = "sonic2";
               container = "bazzite-arch-gaming";
             in
             {
               enable = vars.gaming;
               text = ''
                 #!/usr/bin/env bash
-                cd ${config.xdg.configHome}/distrobox/${container}/.config/SonicTheHedgehog2 || exit
                 if [ -z "''${CONTAINER_ID}" ]; then
                 	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -213,7 +274,91 @@ in
                 	exec /usr/bin/${bin} "$@"
                 fi
               '';
-              target = "${dbe}/sonic-2";
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
+          db-supermario64 =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "supermario64";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = vars.gaming;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
+          db-supermarioworld =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "supermarioworld";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = vars.gaming;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
+          db-zeldalttp =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "zeldalttp";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = vars.gaming;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
+          db-zeldamm =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "zeldamm";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = vars.gaming;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
               executable = true;
             };
           distrobox-assemble-desktop = {
@@ -246,43 +391,6 @@ in
               start_now=true
             '';
             target = "${config.xdg.configHome}/distrobox/distrobox.ini";
-          };
-          distrobox-bazzite-arch-exodos = {
-            enable = vars.gaming;
-            recursive = false;
-            text = ''
-              #!/usr/bin/env bash
-              ### Set up pacman/paru settings
-              sudo pacman-key --init
-              sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
-              sudo pacman-key --lsign-key 3056513887B78AEB
-              sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-              sudo bash -c "{ echo '[chaotic-aur]'; } >> /etc/pacman.conf"
-              sudo bash -c "{ echo 'Include = /etc/pacman.d/chaotic-mirrorlist'; } >> /etc/pacman.conf"
-              sudo bash -c "{ echo 'en_US.UTF-8 UTF-8'; } >> /etc/locale.gen"
-              paru -Syu --noconfirm reflector
-              sudo sed -i -e 's/# --country France,Germany/--country US/g' /etc/xdg/reflector/reflector.conf
-              sudo systemctl enable --now reflector.timer
-              sudo systemctl start reflector.service
-              mkdir -p ${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/paru
-              wget https://raw.githubusercontent.com/Morganamilo/paru/master/paru.conf -O ${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/paru/paru.conf
-              sed -i -e 's/#SudoLoop/SudoLoop/g' -e 's/#BottomUp/BottomUp/g' -e 's/#CleanAfter/CleanAfter/g' ${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/paru/paru.conf
-              ### Install base packages
-              paru -R --noconfirm xcursor-breeze
-              paru -S --noconfirm archlinux-keyring
-              paru -Syu --needed --noconfirm base-devel
-              paru -S --noconfirm --needed atuin blesh yay
-              echo 'eval "$(atuin init bash)"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.bashrc
-              echo 'db_path = "/home/${username}/.local/share/atuin/history.db"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/atuin/config.toml
-              echo 'key_path = "/home/${username}/.local/share/atuin/key"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/atuin/config.toml
-              paru -Syu --needed --noconfirm dbgl gamemode pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber #plasma-desktop
-              paru -S --needed --noconfirm fluidsynth gwenview innoextract konsole okular
-              paru -Scc --noconfirm
-              ### Post-install stuff
-              grep ${username} /etc/passwd | sudo sed -i 's/\/usr\/sbin\/zsh/\/usr\/bin\/bash/g' /etc/passwd
-            '';
-            target = "${config.xdg.configHome}/distrobox/bootstrap-bazzite-arch-exodos.sh";
-            executable = true;
           };
           distrobox-bazzite-arch-exodos-catppuccin-konsole = {
             enable = vars.gaming;
@@ -332,44 +440,6 @@ in
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/Trolltech.conf";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/Trolltech.conf";
           };
-          distrobox-bazzite-arch-gaming = {
-            enable = vars.gaming;
-            recursive = false;
-            text = ''
-              #!/usr/bin/env bash
-              ### Set pacman/paru settings
-              sudo pacman-key --init
-              sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
-              sudo pacman-key --lsign-key 3056513887B78AEB
-              sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-              sudo bash -c "{ echo '[chaotic-aur]'; } >> /etc/pacman.conf"
-              sudo bash -c "{ echo 'Include = /etc/pacman.d/chaotic-mirrorlist'; } >> /etc/pacman.conf"
-              sudo bash -c "{ echo 'en_US.UTF-8 UTF-8'; } >> /etc/locale.gen"
-              paru -Syu --noconfirm reflector
-              sudo sed -i -e 's/# --country France,Germany/--country US/g' /etc/xdg/reflector/reflector.conf
-              sudo systemctl enable --now reflector.timer
-              sudo systemctl start reflector.service
-              mkdir -p ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/paru
-              wget https://raw.githubusercontent.com/Morganamilo/paru/master/paru.conf -O ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/paru/paru.conf
-              sed -i -e 's/#SudoLoop/SudoLoop/g' -e 's/#BottomUp/BottomUp/g' -e 's/#CleanAfter/CleanAfter/g' ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/paru/paru.conf
-              ### Install base packages
-              paru -R --noconfirm xcursor-breeze
-              paru -S --noconfirm archlinux-keyring
-              paru -S --noconfirm --needed atuin blesh yay
-              echo 'eval "$(atuin init bash)"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.bashrc
-              echo 'db_path = "/home/${username}/.local/share/atuin/history.db"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/atuin/config.toml
-              echo 'key_path = "/home/${username}/.local/share/atuin/key"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/atuin/config.toml
-              paru -Syu --needed --noconfirm base-devel gamescope gamemode kdialog micro pipewire pipewire-alsa pipewire-jack pipewire-pulse wireplumber #plasma-desktop
-              paru -R steam lutris
-              ### Download game stuff
-              paru -S --needed --noconfirm aaru lab3d-sdl openxcom-extended rsdkv4-bin xash3d-fwgs-git
-              paru -Scc --noconfirm
-              ### Post-install stuff
-              grep ${username} /etc/passwd | sudo sed -i 's/\/usr\/sbin\/zsh/\/usr\/bin\/bash/g' /etc/passwd
-            '';
-            target = "${config.xdg.configHome}/distrobox/bootstrap-bazzite-arch-gaming.sh";
-            executable = true;
-          };
           distrobox-bazzite-arch-gaming-gtk2 = {
             enable = vars.gaming;
             recursive = true;
@@ -412,6 +482,32 @@ in
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/Trolltech.conf";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/Trolltech.conf";
           };
+          distrobox-bootstrap-ansible = {
+            enable = true;
+            recursive = false;
+            text = ''
+              #!/usr/bin/env bash
+              paru -S --noconfirm --needed ansible
+              ansible-galaxy collection install -r requirements.yml
+              ansible-playbook --connection=local --inventory 127.0.0.1, --limit 127.0.0.1 ${config.xdg.configHome}/distrobox/playbook.yml
+            '';
+            target = "${config.xdg.configHome}/distrobox/bootstrap-ansible.sh";
+            executable = true;
+          };
+          distrobox-bootstrap-ansible-playbook = {
+            enable = true;
+            recursive = false;
+            source = config.lib.file.mkOutOfStoreSymlink ./playbook.yml;
+            target = "${config.xdg.configHome}/distrobox/playbook.yml";
+            executable = false;
+          };
+          distrobox-bootstrap-ansible-reqs = {
+            enable = true;
+            recursive = false;
+            source = config.lib.file.mkOutOfStoreSymlink ./requirements.yml;
+            target = "${config.xdg.configHome}/distrobox/requirements.yml";
+            executable = false;
+          };
           distrobox-mangohud-gaming = {
             enable = vars.gaming;
             recursive = false;
@@ -423,43 +519,6 @@ in
             recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/MangoHud/MangoHud.conf";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/MangoHud/MangoHud.conf";
-          };
-          distrobox-bazzite-arch-sys = {
-            enable = true;
-            recursive = false;
-            text = ''
-              #!/usr/bin/env bash
-              ### Set pacman/paru settings
-              sudo pacman-key --init
-              sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
-              sudo pacman-key --lsign-key 3056513887B78AEB
-              sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-              sudo bash -c "{ echo '[chaotic-aur]'; } >> /etc/pacman.conf"
-              sudo bash -c "{ echo 'Include = /etc/pacman.d/chaotic-mirrorlist'; } >> /etc/pacman.conf"
-              sudo bash -c "{ echo 'en_US.UTF-8 UTF-8'; } >> /etc/locale.gen"
-              paru -Syu --noconfirm reflector
-              sudo sed -i -e 's/# --country France,Germany/--country US/g' /etc/xdg/reflector/reflector.conf
-              sudo systemctl enable --now reflector.timer
-              sudo systemctl start reflector.service
-              mkdir -p ${config.xdg.configHome}/distrobox/bazzite-arch-sys/.config/paru
-              wget https://raw.githubusercontent.com/Morganamilo/paru/master/paru.conf -O ${config.xdg.configHome}/distrobox/bazzite-arch-sys/.config/paru/paru.conf
-              sed -i -e 's/#SudoLoop/SudoLoop/g' -e 's/#BottomUp/BottomUp/g' -e 's/#CleanAfter/CleanAfter/g' ${config.xdg.configHome}/distrobox/bazzite-arch-sys/.config/paru/paru.conf
-              ### Install base packages
-              paru -R --noconfirm xcursor-breeze
-              paru -S --noconfirm archlinux-keyring
-              paru -Syu --needed --noconfirm base-devel
-              paru -S --noconfirm --needed atuin blesh yay
-              echo 'eval "$(atuin init bash)"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-sys/.bashrc
-              echo 'db_path = "/home/${username}/.local/share/atuin/history.db"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-sys/.config/atuin/config.toml
-              echo 'key_path = "/home/${username}/.local/share/atuin/key"' >> ${config.xdg.configHome}/distrobox/bazzite-arch-sys/.config/atuin/config.toml
-              paru -S --needed --noconfirm nccm python-pipx
-              pipx install qobuz-dl
-              paru -Scc --noconfirm
-              ### Post-install stuff
-              grep ${username} /etc/passwd | sudo sed -i 's/\/usr\/sbin\/zsh/\/usr\/bin\/bash/g' /etc/passwd
-            '';
-            target = "${config.xdg.configHome}/distrobox/bootstrap-bazzite-arch-sys.sh";
-            executable = true;
           };
           nccm = {
             enable = true;
