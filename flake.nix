@@ -213,7 +213,7 @@
             disko.nixosModules.disko
             ./hosts/vm/disko.nix
             {
-              _module.args.disks = [ "/dev/nvme0n1" ];
+              _module.args.disks = [ "/dev/disk/by-id/virtio-vdisk1" ];
             }
             lanzaboote.nixosModules.lanzaboote
             nur.nixosModules.nur

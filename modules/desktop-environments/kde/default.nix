@@ -79,6 +79,8 @@ in
         };
       };
     };
+    # https://github.com/NixOS/nixpkgs/issues/305119#issuecomment-2067970575
+    systemd.user.services.nixos-rebuild-sycoca.enable = false;
     xdg = {
       portal = {
         config.common.default = "*";

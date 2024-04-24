@@ -104,6 +104,21 @@ in
         '';
       }; # RPCS3
     };
+
+    systemd.services.speed-up-shutdown = {
+      description = "Speeds up shutdown and reboot";
+      wantedBy = [ "shutdown.target" ];
+      before = [ "shutdown.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        TimeoutStartSec = "0";
+      };
+      script = ''
+        /home/${username}/.local/bin/gsr-stop-replay.sh
+        podman stop -a
+      '';
+    };
+
     home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: { };
   };
 }

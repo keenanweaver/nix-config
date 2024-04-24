@@ -32,8 +32,10 @@ in
     };
   };
   config = mkIf cfg.enable {
-    catppuccin.flavour = "mocha";
-    console.catppuccin.enable = true;
+    catppuccin = {
+      enable = true;
+      flavour = "mocha";
+    };
     boot = {
       plymouth = {
         themePackages = with pkgs; [
@@ -88,21 +90,21 @@ in
 
     home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
       catppuccin = {
-        #enable = true; # Wait for https://github.com/catppuccin/nix/pull/124
+        enable = true;
         flavour = "mocha";
       };
+
       colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
       fonts.fontconfig.enable = true;
 
       gtk = {
         catppuccin = {
-          enable = true;
           accent = "sky";
         };
         cursorTheme = {
-          name = "Bibata-${catppuccin-accent-upper}-Mocha";
-          package = bibata-sky-mocha;
+          name = lib.mkForce "Bibata-${catppuccin-accent-upper}-Mocha";
+          package = lib.mkForce bibata-sky-mocha;
           size = 24;
         };
         font = {
@@ -267,13 +269,13 @@ in
             recursive = true;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-yazi}/themes/mocha.toml";
             target = "${config.xdg.configHome}/yazi/theme.toml";
-          }; */
+          }; 
           catppuccin-yazi-sh = {
             enable = true;
             recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-bat}/themes/Catppuccin Mocha.tmTheme";
             target = "${config.xdg.configHome}/yazi/Catppuccin-mocha.tmTheme";
-          };
+          };*/
           cursor = {
             enable = true;
             recursive = true;
@@ -347,7 +349,6 @@ in
       };
       programs = {
         alacritty = {
-          catppuccin.enable = true;
           settings = {
             colors = {
               draw_bold_text_with_bright_colors = true;
@@ -368,7 +369,6 @@ in
           };
         };
         bat = {
-          catppuccin.enable = true;
           config = {
             pager = "less -FR";
             #theme = "Catppuccin-mocha";
@@ -381,7 +381,6 @@ in
           }; */
         };
         btop = {
-          catppuccin.enable = true;
           settings = {
             #color_theme = "catppuccin_mocha";
             theme_background = false;
@@ -389,27 +388,6 @@ in
         };
         foot = {
           settings = {
-            colors = {
-              "alpha" = "0.7";
-              "foreground" = "cdd6f4"; # Text
-              "background" = "1e1e2e"; # Base
-              "regular0" = "45475a"; # Surface 1
-              "regular1" = "f38ba8"; # red
-              "regular2" = "a6e3a1"; # green
-              "regular3" = "f9e2af"; # yellow
-              "regular4" = "89b4fa"; # blue
-              "regular5" = "f5c2e7"; # pink
-              "regular6" = "94e2d5"; # teal
-              "regular7" = "bac2de"; # Subtext 1
-              "bright0" = "585b70"; # Surface 2
-              "bright1" = "f38ba8"; # red
-              "bright2" = "a6e3a1"; # green
-              "bright3" = "f9e2af"; # yellow
-              "bright4" = "89b4fa"; # blue
-              "bright5" = "f5c2e7"; # pink
-              "bright6" = "94e2d5"; # teal
-              "bright7" = "a6adc8"; # Subtext 0
-            };
             main = {
               font = "${mono-font}:size=13";
             };
@@ -432,12 +410,9 @@ in
           };
         };
         git = {
-          delta = {
-            catppuccin.enable = true;
-          };
+          delta = { };
         };
         helix = {
-          catppuccin.enable = true;
           settings = {
             theme = lib.mkForce "catppuccin_transparent";
           };
@@ -461,7 +436,6 @@ in
           };
         };
         lazygit = {
-          catppuccin.enable = true;
           settings = {
             gui = {
               border = "single";
@@ -487,7 +461,7 @@ in
           };
         };
         micro = {
-          catppuccin.enable = true;
+          #catppuccin.enable = true;
           /*       settings = {
         colorscheme = "catppuccin-mocha";
           }; */
@@ -543,7 +517,6 @@ in
           }; */
         };
         starship = {
-          catppuccin.enable = true;
           /*       settings = {
         palette = "catppuccin_mocha";
           } // builtins.fromTOML (builtins.readFile "${inputs.catppuccin-starship}/palettes/mocha.toml"); */
@@ -567,11 +540,6 @@ in
             "workbench.iconTheme" = "catppuccin-mocha";
           };
         };
-        zellij = {
-          settings = {
-            theme = "catppuccin-mocha";
-          };
-        };
       };
       services = {
         xsettingsd = {
@@ -584,9 +552,7 @@ in
           };
         };
       };
-      wayland.windowManager.hyprland = {
-        catppuccin.enable = true;
-      };
+      wayland.windowManager.hyprland = { };
       /*       xdg.configFile = {
         #https://github.com/catppuccin/gtk/pull/151/files
         "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";

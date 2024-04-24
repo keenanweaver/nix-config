@@ -1,6 +1,6 @@
 { inputs, home-manager, lib, config, pkgs, username, ... }: with lib;
 let
-  cfg = config.desktop;
+  cfg = config.server;
 in
 {
   imports = [
@@ -8,8 +8,8 @@ in
   ];
 
   options = {
-    desktop = {
-      enable = mkEnableOption "Enable desktop in NixOS";
+    server = {
+      enable = mkEnableOption "Enable server in NixOS";
     };
   };
   config = mkIf cfg.enable {
