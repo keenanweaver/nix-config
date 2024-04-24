@@ -363,7 +363,7 @@ in
             };
           distrobox-assemble-desktop = {
             enable = true;
-            recursive = false;
+            
             text = (if vars.gaming then ''
               [bazzite-arch-exodos]
               home=${config.xdg.configHome}/distrobox/bazzite-arch-exodos
@@ -394,7 +394,6 @@ in
           };
           distrobox-bazzite-arch-exodos-catppuccin-konsole = {
             enable = vars.gaming;
-            recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-konsole}/Catppuccin-Mocha.colorscheme";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.local/share/konsole/Catppuccin-Mocha.colorscheme";
           };
@@ -418,13 +417,11 @@ in
           };
           distrobox-bazzite-arch-exodos-kdeglobals = {
             enable = vars.gaming;
-            recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/kdeglobals";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/kdeglobals";
           };
           distrobox-bazzite-arch-exodos-konsole = {
             enable = vars.gaming;
-            recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/konsole/${username}.profile";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.local/share/konsole/${username}.profile";
           };
@@ -436,7 +433,6 @@ in
           };
           distrobox-bazzite-arch-exodos-trolltech = {
             enable = vars.gaming;
-            recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/Trolltech.conf";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/Trolltech.conf";
           };
@@ -460,13 +456,11 @@ in
           };
           distrobox-bazzite-arch-gaming-kdeglobals = {
             enable = vars.gaming;
-            recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/kdeglobals";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/kdeglobals";
           };
           distrobox-bazzite-arch-gaming-konsole = {
             enable = vars.gaming;
-            recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/konsole/${username}.profile";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.local/share/konsole/${username}.profile";
           };
@@ -478,13 +472,11 @@ in
           };
           distrobox-bazzite-arch-gaming-trolltech = {
             enable = vars.gaming;
-            recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/Trolltech.conf";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/Trolltech.conf";
           };
           distrobox-bootstrap-ansible = {
             enable = true;
-            recursive = false;
             text = ''
               #!/usr/bin/env bash
               paru -S --noconfirm --needed ansible
@@ -496,33 +488,26 @@ in
           };
           distrobox-bootstrap-ansible-playbook = {
             enable = true;
-            recursive = false;
-            source = config.lib.file.mkOutOfStoreSymlink ./playbook.yml;
+            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/playbook.yml";
             target = "${config.xdg.configHome}/distrobox/playbook.yml";
-            executable = false;
           };
           distrobox-bootstrap-ansible-reqs = {
             enable = true;
-            recursive = false;
-            source = config.lib.file.mkOutOfStoreSymlink ./requirements.yml;
+            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/requirements.yml";
             target = "${config.xdg.configHome}/distrobox/requirements.yml";
-            executable = false;
           };
           distrobox-mangohud-gaming = {
             enable = vars.gaming;
-            recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/MangoHud/MangoHud.conf";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/MangoHud/MangoHud.conf";
           };
           distrobox-mangohud-exodos = {
             enable = vars.gaming;
-            recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/MangoHud/MangoHud.conf";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/MangoHud/MangoHud.conf";
           };
           nccm = {
             enable = true;
-            recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/nccm/nccm.yml";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-sys/.config/nccm/nccm.yml";
           };

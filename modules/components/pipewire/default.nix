@@ -32,7 +32,6 @@ in
       home.file = {
         pipewire-allowed-rates = {
           enable = true;
-          recursive = false;
           text = ''
             context.properties = {
                 default.clock.allowed-rates = [ 44100 48000 88200 96000 ]
@@ -42,7 +41,6 @@ in
         };
         pipewire-coupled-streams = {
           enable = vars.gaming;
-          recursive = false;
           text = ''
             context.modules = [
                 {   name = libpipewire-module-loopback
@@ -128,7 +126,6 @@ in
         };
         pipewire-pulseaudio-wine = {
           enable = true;
-          recursive = false;
           text = ''
             pulse.rules = [
                 {
@@ -145,7 +142,6 @@ in
         };
         wireplumber-bluetooth-config = {
           enable = true;
-          recursive = false;
           text = ''
             bluez_monitor.properties = {
               ["bluez5.enable-sbc-xq"] = true,
@@ -158,7 +154,6 @@ in
         };
         wireplumber-disable-suspend = {
           enable = true;
-          recursive = false;
           text = ''
             monitor.alsa.rules = [
               {

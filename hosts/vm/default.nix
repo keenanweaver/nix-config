@@ -69,7 +69,6 @@
         file = {
           lgogdownloader-blacklist = {
             enable = true;
-            recursive = false;
             text = ''
               #!/usr/bin/env bash
               cd ${unraid}/Games/Other/GOG
@@ -80,7 +79,6 @@
           };
           lgogdownloader-cleanup = {
             enable = true;
-            recursive = false;
             text = ''
               #!/usr/bin/env bash
               for orphan in $(cat /home/${username}/orphans.txt)

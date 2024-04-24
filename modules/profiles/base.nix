@@ -117,7 +117,6 @@ in
         file = {
           script-7z-to-zip = {
             enable = true;
-            recursive = false;
             text = ''
               #!/usr/bin/env bash
               TMPDIR=tempdir_$$

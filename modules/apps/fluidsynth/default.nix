@@ -30,13 +30,11 @@ in
         };
         midi-soundfonts-default = {
           enable = true;
-          recursive = false;
           source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts/${soundfont}";
           target = "Music/soundfonts/default.sf2";
         };
         midi-soundfonts-default-exodos = {
           enable = true;
-          recursive = false;
           source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts/${soundfont}";
           target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/dosbox/soundfonts/default.sf2";
         };

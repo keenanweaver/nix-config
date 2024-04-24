@@ -20,7 +20,6 @@ in
       home.file = {
         desktop-entry-corectrl = {
           enable = true;
-          recursive = false;
           text = ''
             [Desktop Entry]
             Categories=System;Settings;Utility;

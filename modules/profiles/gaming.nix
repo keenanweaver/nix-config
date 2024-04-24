@@ -131,7 +131,6 @@ in
         };
         roms-dolphin = {
           enable = true;
-          recursive = false;
           source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/dolphin/USA/IPL.bin";
           target = ".var/app/org.DolphinEmu.dolphin-emu/data/dolphin-emu/GC/USA/IPL.bin";
         };
@@ -179,13 +178,11 @@ in
         };
         roms-xemu-mcpx = {
           enable = true;
-          recursive = false;
           source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/xbox/mcpx_1.0.bin";
           target = ".var/app/app.xemu.xemu/data/xemu/xemu/mcpx_1.0.bin";
         };
         roms-xemu-bios = {
           enable = true;
-          recursive = false;
           source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/xbox/xbox-4627_debug.bin";
           target = ".var/app/app.xemu.xemu/data/xemu/xemu/xbox-4627_debug.bin";
         };

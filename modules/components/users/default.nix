@@ -20,6 +20,7 @@ in
             "audio"
             "cdrom" # CD Emu
             "corectrl"
+            "docker"
             "flatpak"
             "gamemode"
             "input"

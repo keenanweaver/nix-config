@@ -26,25 +26,21 @@ in
       home.file = {
         flatpak-list = {
           enable = true;
-          recursive = false;
           source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/flatpak";
           target = ".local/bin/.flatpak-list";
         };
         flatpak-list-beta = {
           enable = true;
-          recursive = false;
           source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/flatpak-beta";
           target = ".local/bin/.flatpak-list-beta";
         };
         flatpak-list-games = {
           enable = vars.gaming;
-          recursive = false;
           source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/flatpak-games";
           target = ".local/bin/.flatpak-games-list";
         };
         flatpak-list-sys = {
           enable = true;
-          recursive = false;
           source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/flatpak-sys";
           target = ".local/bin/.flatpak-list-sys";
         };
@@ -56,7 +52,6 @@ in
         };
         flatpak-overrides-global = {
           enable = true;
-          recursive = false;
           text = ''
             [Context]
             filesystems=/run/media/${username}:ro;/home/${username}/.icons:ro;/home/${username}/.themes:ro;xdg-data/themes:ro;xdg-data/icons:ro;xdg-config/gtkrc:ro;xdg-config/gtkrc-2.0:ro;xdg-config/gtk-2.0:ro;xdg-config/gtk-3.0:ro;xdg-config/gtk-4.0:ro;xdg-run/.flatpak/com.xyz.armcord.ArmCord:create;xdg-run/discord-ipc-*;xdg-config/MangoHud:ro;/nix/store:ro
@@ -65,7 +60,6 @@ in
         };
         script-flatpak-install-all = {
           enable = true;
-          recursive = false;
           text = ''
             #!/usr/bin/env bash
             /home/${username}/.local/bin/flatpak-install-sys.sh
@@ -77,7 +71,6 @@ in
         };
         script-flatpak-install = {
           enable = true;
-          recursive = false;
           text = ''
             #!/usr/bin/env bash
             < /home/${username}/.local/bin/.flatpak-list xargs flatpak install --user --assumeyes
@@ -87,7 +80,6 @@ in
         };
         script-flatpak-install-games = {
           enable = vars.gaming;
-          recursive = false;
           text = ''
             #!/usr/bin/env bash
             < /home/${username}/.local/bin/.flatpak-games-list xargs flatpak install --user --assumeyes
@@ -97,7 +89,6 @@ in
         };
         script-flatpak-install-beta = {
           enable = true;
-          recursive = false;
           text = ''
             #!/usr/bin/env bash
             < /home/${username}/.local/bin/.flatpak-list-beta xargs flatpak install --user --assumeyes
@@ -107,7 +98,6 @@ in
         };
         script-flatpak-install-sys = {
           enable = true;
-          recursive = false;
           text = ''
             #!/usr/bin/env bash
             < /home/${username}/.local/bin/.flatpak-list-sys xargs flatpak install --system --assumeyes

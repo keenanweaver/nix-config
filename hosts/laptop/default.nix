@@ -71,7 +71,6 @@
     home.file = {
       script-bootstrap-baremetal-laptop = {
         enable = true;
-        recursive = false;
         text = ''
           #!/usr/bin/env bash
           # Set up Distrobox containers

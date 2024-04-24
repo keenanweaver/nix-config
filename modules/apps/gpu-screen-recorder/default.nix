@@ -69,7 +69,6 @@ in
         file = {
           script-gsr-save-replay = {
             enable = true;
-            recursive = false;
             text = ''
               #!/usr/bin/env bash
               killall -SIGUSR1 .gpu-screen-recorder
@@ -80,7 +79,6 @@ in
           };
           script-gsr-stop-replay = {
             enable = true;
-            recursive = false;
             text = ''
               #!/usr/bin/env bash
               systemctl --user stop gpu-screen-recorder.service

@@ -13,7 +13,6 @@ in
       home.file = {
         desktop-entry-mangohud-get-vars = {
           enable = true;
-          recursive = false;
           text = ''
             [Desktop Entry]
             Exec=${config.xdg.configHome}/MangoHud/get-vars.sh
@@ -26,13 +25,11 @@ in
         };
         mangohud = {
           enable = true;
-          recursive = false;
           source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/MangoHud/MangoHud.conf";
           target = "${config.xdg.configHome}/MangoHud/MangoHud.conf";
         };
         script-mangohud-get-vars = {
           enable = true;
-          recursive = false;
           text = ''
             #!/usr/bin/env bash
             # OS

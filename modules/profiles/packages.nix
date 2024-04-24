@@ -37,17 +37,6 @@ in
       ];
     };
     home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
-      home.file = {
-        powershell-profile = {
-          enable = true;
-          recursive = false;
-          text = ''
-            Import-Module Catppuccin
-            $Flavor = $Catppuccin['Mocha']
-          '';
-          target = "${config.xdg.configHome}/powershell/Microsoft.PowerShell_profile.ps1";
-        };
-      };
       home.packages = with pkgs; [ ] ++ lib.optionals cfg.dev [
         codeium
         devbox

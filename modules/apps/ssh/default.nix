@@ -48,7 +48,6 @@ in
       home.file = {
         desktop-entry-ssh-add = {
           enable = true;
-          recursive = false;
           text = ''
             [Desktop Entry]
             Exec=ssh-add -q .ssh/id_ed25519
