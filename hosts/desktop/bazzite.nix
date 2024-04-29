@@ -1,10 +1,6 @@
-{ lib, username, ... }:
+{ username, ... }:
 {
   imports = [
-    # System
-    ./disko.nix
-    ./hardware-configuration.nix
-    ./impermanence.nix
     # Profiles
     ../../modules
   ];
@@ -12,48 +8,6 @@
   # Custom modules
   desktop.enable = true;
   gaming.enable = true;
-
-  boot = {
-    initrd = {
-      availableKernelModules = lib.mkDefault [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
-    };
-    kernelModules = lib.mkDefault [ "dm-snapshot" "hid-nintendo" "kvm-amd" "snd-seq" "snd-rawmidi" "tcp_bbr" "uinput" ]; #"v4l2loopback"
-    kernelParams = lib.mkDefault [ "amd_iommu=on" "amd_pstate=guided" ];
-  };
-
-  hardware = {
-    cpu.amd.updateMicrocode = true;
-    system76.power-daemon.enable = true;
-  };
-
-  networking = {
-    firewall.enable = lib.mkForce false;
-    hostName = "nixos-desktop";
-    wireless.enable = false;
-  };
-
-  services = {
-    udev = {
-      extraRules = ''
-        # GPU artifacting https://wiki.archlinux.org/title/AMDGPU#Screen_artifacts_and_frequency_problem
-        #KERNEL=="card0", SUBSYSTEM=="drm", DRIVERS=="amdgpu", ATTR{device/power_dpm_force_performance_level}="high"
-        # https://reddit.com/r/linux_gaming/comments/196tz6v/psa_amdgpu_power_management_may_fix_your/khxs3q3/?context=3 https://gitlab.freedesktop.org/drm/amd/-/issues/1500#note_825883
-        KERNEL=="card0", SUBSYSTEM=="drm", DRIVERS=="amdgpu", ATTR{device/power_dpm_force_performance_level}="manual", ATTR{device/pp_power_profile_mode}="1"
-      '';
-    };
-    xserver = {
-      deviceSection = ''
-        #Option "AsyncFlipSecondaries" "true"
-        Option "TearFree" "true"
-        Option "VariableRefresh" "true"
-      '';
-    };
-  };
-
-  zramSwap = {
-    enable = true;
-    memoryPercent = 25;
-  };
 
   home-manager.users.${username} = { config, username, ... }: {
     home.file = {
@@ -84,6 +38,7 @@
           ## Conty
           curl https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | wget -i- -N -P /home/${username}/.local/bin
           chmod +x /home/${username}/.local/bin/conty_lite.sh
+          #conty_lite.sh -u
         '';
         target = ".local/bin/bootstrap-baremetal.sh";
         executable = true;

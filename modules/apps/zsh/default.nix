@@ -1,19 +1,19 @@
-{ inputs, home-manager, lib, config, username, ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.zsh;
 in
 {
   options = {
     zsh = {
-      enable = mkEnableOption "Enable zsh in NixOS";
+      enable = lib.mkEnableOption "Enable zsh in NixOS";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs = {
       zsh.enable = true;
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
-      programs.zsh = with pkgs; {
+    home-manager.users.${username} = { inputs, config, pkgs, ... }: {
+      programs.zsh = {
         enable = true;
         autosuggestion.enable = true;
         enableCompletion = true;
@@ -38,12 +38,12 @@ in
           }
           {
             name = "zsh-fast-syntax-highlighting";
-            src = zsh-fast-syntax-highlighting;
+            src = pkgs.zsh-fast-syntax-highlighting;
             file = "share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh";
           }
           {
             name = "nix-zsh-completions";
-            src = nix-zsh-completions;
+            src = pkgs.nix-zsh-completions;
             file = "share/zsh/site-functions/nix-zsh-completions.plugin.zsh";
           }
         ];

@@ -1,4 +1,4 @@
-{ inputs, home-manager, lib, config, username, pkgs, ... }:
+{ lib, username, ... }:
 {
   imports = [
     # System
@@ -60,7 +60,7 @@
 
   system.stateVersion = "23.11";
 
-  home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }:
+  home-manager.users.${username} = { config, username, pkgs, ... }:
     let
       unraid = "/mnt/crusader";
     in

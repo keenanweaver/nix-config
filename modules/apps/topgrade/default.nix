@@ -1,15 +1,15 @@
-{ inputs, home-manager, lib, config, username,  ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.topgrade;
 in
 {
   options = {
     topgrade = {
-      enable = mkEnableOption "Enable topgrade in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable topgrade in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+  config = lib.mkIf cfg.enable {
+    home-manager.users.${username} = { config, ... }: {
       programs.topgrade = {
         enable = true;
         settings = {
@@ -20,6 +20,7 @@ in
             "display_time" = true;
             disable = [
               "home_manager"
+              "vim"
               "system"
             ];
           };

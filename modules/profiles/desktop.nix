@@ -1,4 +1,4 @@
-{ inputs, home-manager, lib, config, pkgs, username, ... }: with lib;
+{ lib, config, pkgs, username, ... }:
 let
   cfg = config.desktop;
 in
@@ -9,10 +9,10 @@ in
 
   options = {
     desktop = {
-      enable = mkEnableOption "Enable desktop in NixOS";
+      enable = lib.mkEnableOption "Enable desktop in NixOS";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # Custom modules
     base.enable = true;
     catppuccinTheming.enable = true;
@@ -53,7 +53,7 @@ in
       fwupd.enable = true;
     };
 
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+    home-manager.users.${username} = { inputs, config, pkgs, ... }: {
       dconf.settings = {
         "org/virt-manager/virt-manager/connections" = {
           autoconnect = [ "qemu:///system" ];

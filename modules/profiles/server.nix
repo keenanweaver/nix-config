@@ -1,4 +1,4 @@
-{ inputs, home-manager, lib, config, pkgs, username, ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.server;
 in
@@ -9,10 +9,10 @@ in
 
   options = {
     server = {
-      enable = mkEnableOption "Enable server in NixOS";
+      enable = lib.mkEnableOption "Enable server in NixOS";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # Custom modules
     base.enable = true;
     catppuccinTheming.enable = true;
@@ -25,8 +25,6 @@ in
     printing.enable = lib.mkForce false;
     virtualization.enable = lib.mkForce false;
 
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
-      home.packages = with pkgs; [ ];
-    };
+    home-manager.users.${username} = { };
   };
 }

@@ -1,20 +1,20 @@
-{ inputs, home-manager, lib, config, pkgs, username, fullname, ... }: with lib;
+{ lib, config, pkgs, username, fullname, ... }:
 let
   cfg = config.git;
 in
 {
   options = {
     git = {
-      enable = mkEnableOption "Enable git in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable git in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.git = {
       enable = true;
       package = pkgs.gitFull;
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
-      programs.git = with pkgs; {
+    home-manager.users.${username} = { config, pkgs, ... }: {
+      programs.git = {
         enable = true;
         delta = {
           enable = true;
@@ -42,7 +42,7 @@ in
           };
         };
         includes = [{ path = "${config.xdg.configHome}/git/mocha.gitconfig"; }];
-        package = gitFull;
+        package = pkgs.gitFull;
         userName = "${fullname}";
         userEmail = "keenanweaver@protonmail.com";
         signing = {

@@ -1,15 +1,15 @@
-{ inputs, home-manager, lib, config, username,  ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.tealdeer;
 in
 {
   options = {
     tealdeer = {
-      enable = mkEnableOption "Enable tealdeer in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable tealdeer in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+  config = lib.mkIf cfg.enable {
+    home-manager.users.${username} = {
       programs.tealdeer.enable = true;
     };
   };

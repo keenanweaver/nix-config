@@ -1,4 +1,4 @@
-{ inputs, home-manager, lib, config, pkgs, username, ... }: with lib;
+{ inputs, lib, config, pkgs, username, ... }:
 let
   cfg = config.hyprland;
   theme_name = "mocha";
@@ -6,10 +6,10 @@ in
 {
   options = {
     hyprland = {
-      enable = mkEnableOption "Enable hyprland in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable hyprland in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     #imports = [ inputs.hyprlock.homeManagerModules.default ];
 
     environment.sessionVariables = {
@@ -20,7 +20,7 @@ in
       package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     };
     services.xserver.displayManager.sddm.enable = true;
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+    home-manager.users.${username} = { inputs, config, pkgs, dotfiles, ... }: {
       home.file = {
         hyprlock-config = {
           enable = true;
@@ -67,7 +67,7 @@ in
       wayland.windowManager.hyprland = {
         enable = true;
         package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-        enableNvidiaPatches = mkIf config.nvidia;
+        enableNvidiaPatches = lib.mkIf config.nvidia;
         #extraConfig = builtins.readFile ./hyprland.conf;
         plugins = [ ];
         settings = {

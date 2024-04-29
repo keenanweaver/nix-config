@@ -1,4 +1,4 @@
-{ inputs, home-manager, lib, config, pkgs, username, ... }: with lib;
+{ inputs, lib, config, pkgs, username, ... }:
 let
   cfg = config.kde;
 in
@@ -9,12 +9,12 @@ in
 
   options = {
     kde = {
-      enable = mkEnableOption "Enable kde in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable kde in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment = {
-      plasma6.excludePackages = with pkgs.kdePackages; [ elisa kwrited ];
+      plasma6.excludePackages = with pkgs.kdePackages; [ elisa ];
       sessionVariables = {
         GDK_DEBUG = "portals"; # KDE filepicker
         XDG_CURRENT_DESKTOP = "KDE";
@@ -25,6 +25,7 @@ in
         discover
         filelight
         ghostwriter
+        k3b
         kate
         kcalc
         kcron
@@ -32,25 +33,26 @@ in
         kdialog
         kio-extras
         kirigami-addons
+        kjournald
         inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
+        neochat
         packagekit-qt # Discover store
         plasma-browser-integration
         qtimageformats
         qtstyleplugin-kvantum
         sddm-kcm
         syntax-highlighting
+        tokodon
       ];
     };
     programs = {
-      fuse = { userAllowOther = true; };
-      kdeconnect = with pkgs; {
-        enable = true;
-      };
+      fuse.userAllowOther = true;
+      kdeconnect.enable = true;
       partition-manager.enable = true;
     };
     services = {
       colord.enable = true;
-      desktopManager = { plasma6.enable = true; };
+      desktopManager.plasma6.enable = true;
       displayManager = {
         autoLogin = { user = "${username}"; };
         defaultSession = "plasmax11";
@@ -65,10 +67,10 @@ in
         };
       };
       xserver = {
+        enable = true;
         displayManager.setupCommands = ''
           ${pkgs.xorg.xhost}/bin/xhost +local:
         ''; # Distrobox games
-        enable = true;
         excludePackages = with pkgs; [ xterm ];
         libinput = {
           mouse.accelProfile = "flat";
@@ -88,10 +90,8 @@ in
         xdgOpenUsePortal = true;
       };
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
-      services = {
-        kdeconnect.enable = true;
-      };
+    home-manager.users.${username} = {
+      services.kdeconnect.enable = true;
     };
   };
 }

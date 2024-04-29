@@ -1,4 +1,4 @@
-{ inputs, home-manager, lib, config, username, ... }: with lib;
+{ lib, config, username, pkgs, ... }:
 let
   cfg = config.nvidia;
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
@@ -12,12 +12,13 @@ in
 {
   options = {
     nvidia = {
-      enable = mkEnableOption "Enable nvidia in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable nvidia in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
     boot.blacklistedKernelModules = [ "nouveau" ];
+    environment.systemPackages = [ nvidia-offload ];
     hardware = {
       nvidia = {
         modesetting.enable = true;
@@ -30,6 +31,6 @@ in
       };
     };
     services.xserver.videoDrivers = lib.mkForce [ "nvidia" ];
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: { };
+    home-manager.users.${username} = { };
   };
 }

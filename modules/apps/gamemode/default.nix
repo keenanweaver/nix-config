@@ -1,22 +1,22 @@
-{ inputs, home-manager, lib, config, username, pkgs, ... }: with lib;
+{ lib, config, username, pkgs, ... }:
 let
   cfg = config.gamemode;
 in
 {
   options = {
     gamemode = {
-      enable = mkEnableOption "Enable gamemode in NixOS & home-manager";
-      customStart = mkOption {
-        type = types.str;
-        default = "${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GameMode' 'GameMode started' --icon=applications-games --app-name='GameMode'"; # & qdbus org.kde.KWin /Compositor org.kde.kwin.Compositing.suspend
+      enable = lib.mkEnableOption "Enable gamemode in NixOS & home-manager";
+      customStart = lib.mkOption {
+        type = lib.types.str;
+        default = "${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GameMode' 'GameMode started' --icon=applications-games --app-name='GameMode'";
       };
-      customStop = mkOption {
-        type = types.str;
-        default = "${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GameMode' 'GameMode stopped' --icon=applications-games --app-name='GameMode'"; # & qdbus org.kde.KWin /Compositor org.kde.kwin.Compositing.resume
+      customStop = lib.mkOption {
+        type = lib.types.str;
+        default = "${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GameMode' 'GameMode stopped' --icon=applications-games --app-name='GameMode'";
       };
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.gamemode = {
       enable = true;
       settings = {
@@ -33,6 +33,6 @@ in
     users = {
       groups.gamemode = { };
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: { };
+    home-manager.users.${username} = { };
   };
 }

@@ -8,7 +8,6 @@
 , fontSize ? "9"
 , background ? null
 , loginBackground ? false
-,
 }:
 stdenvNoCC.mkDerivation rec {
   pname = "catppuccin-sddm";

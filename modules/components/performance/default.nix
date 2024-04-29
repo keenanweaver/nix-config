@@ -1,14 +1,14 @@
-{ inputs, home-manager, lib, config, username, ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.performance;
 in
 {
   options = {
     performance = {
-      enable = mkEnableOption "Enable performance in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable performance in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     boot = {
       kernel = {
         sysctl = {
@@ -18,7 +18,7 @@ in
           "net.core.netdev_max_backlog" = 16384;
           "net.core.somaxconn" = 8192;
           "net.ipv4.tcp_slow_start_after_idle" = 0;
-          "split_lock_mitigate" = 0; # https://reddit.com/r/linux_gaming/comments/1bgqfuk/god_of_war_poor_performance/kv8xsae/?context=3
+          #"split_lock_mitigate" = 0; # https://reddit.com/r/linux_gaming/comments/1bgqfuk/god_of_war_poor_performance/kv8xsae/?context=3
           "vm.max_map_count" = 1085476;
         };
       };
@@ -105,7 +105,7 @@ in
       }; # RPCS3
     };
 
-    systemd.services.speed-up-shutdown = {
+    /*     systemd.services.speed-up-shutdown = {
       description = "Speeds up shutdown and reboot";
       wantedBy = [ "shutdown.target" ];
       before = [ "shutdown.target" ];
@@ -117,8 +117,8 @@ in
         /home/${username}/.local/bin/gsr-stop-replay.sh
         podman stop -a
       '';
-    };
+    }; */
 
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: { };
+    home-manager.users.${username} = { };
   };
 }

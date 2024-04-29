@@ -1,14 +1,14 @@
-{ inputs, home-manager, lib, config, username, ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.secrets;
 in
 {
   options = {
     secrets = {
-      enable = mkEnableOption "Enable secrets in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable secrets in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     sops = {
       age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
       defaultSopsFile = ./secrets.yaml;
@@ -17,7 +17,7 @@ in
         pass = { };
       };
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+    home-manager.users.${username} = { username, ... }: {
       sops = {
         age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
         defaultSopsFile = ./secrets.yaml;

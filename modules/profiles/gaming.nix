@@ -1,18 +1,18 @@
-{ inputs, home-manager, config, lib, pkgs, username, ... }: with lib;
+{ config, lib, pkgs, username, ... }:
 let
   cfg = config.gaming;
 in
 {
   options = {
     gaming = {
-      enable = mkEnableOption "Enable Gaming module in NixOS";
-      copyROMS = mkOption {
-        type = types.bool;
+      enable = lib.mkEnableOption "Enable Gaming module in NixOS";
+      copyROMS = lib.mkOption {
+        type = lib.types.bool;
         default = true;
       };
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # Custom modules
     cdemu.enable = true;
     corectrl.enable = true;
@@ -23,9 +23,13 @@ in
     mangohud.enable = true;
     steam.enable = true;
     timidity.enable = true;
+    zerotier.enable = true;
 
     environment = {
       sessionVariables = {
+        # https://reddit.com/r/linux_gaming/comments/1b9foom/workaround_for_cursor_movement_cutting_our_vrr_on/
+        KWIN_DRM_DELAY_VRR_CURSOR_UPDATES = "1";
+        KWIN_FORCE_SW_CURSOR = "1";
         OBS_VKCAPTURE_QUIET = "1";
         SDL_SOUNDFONTS = "/home/${username}/Music/soundfonts/default.sf2";
       };
@@ -56,6 +60,7 @@ in
         ];
         allowedUDPPorts = [
           59999 # MoonDeck Buddy
+          9993 # ZeroTier
         ];
         allowedUDPPortRanges = [
           { from = 45000; to = 45010; } # simple64 server
@@ -71,13 +76,9 @@ in
           package = pkgs.openrgb-with-all-plugins;
         };
       };
-      input-remapper = {
-        enable = true;
-      };
+      input-remapper.enable = true;
       joycond.enable = true;
-      system76-scheduler = {
-        enable = true;
-      };
+      system76-scheduler.enable = true;
       udev = {
         packages = with pkgs; [
           game-devices-udev-rules
@@ -115,7 +116,7 @@ in
         ];
       };
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+    home-manager.users.${username} = { inputs, config, username, pkgs, ... }: {
       home.file = {
         roms-amiga = {
           enable = true;
@@ -140,7 +141,7 @@ in
           source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/mt-32";
           target = "Music/mt-32";
         };
-        roms-mt32-flatpak = {
+        /*         roms-mt32-flatpak = {
           enable = true;
           recursive = true;
           source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/mt-32";
@@ -151,7 +152,7 @@ in
           recursive = true;
           source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/mt-32";
           target = "${config.xdg.configHome}/dosbox/mt32-roms";
-        };
+        }; */
         roms-mt32-exodos = {
           enable = true;
           recursive = true;
@@ -241,11 +242,11 @@ in
         alephone-durandal
         alephone-infinity
         arx-libertatis
-        inputs.nix-citizen.packages.${system}.star-citizen
-        inputs.nix-citizen.packages.${system}.star-citizen-helper
         openjk
         openloco
         openxray
+        inputs.nix-citizen.packages.${system}.star-citizen
+        inputs.nix-citizen.packages.${system}.star-citizen-helper
         ## Input
         joystickwake
         makima
@@ -265,7 +266,6 @@ in
         vkbasalt
         vulkan-tools
         winetricks
-        wineWowPackages.fonts
         wineWowPackages.stagingFull
         ## One and dones ##
         /*  igir
@@ -299,7 +299,37 @@ in
           }
         ];
       };
+      xdg = {
+        desktopEntries = {
+          exogui = {
+            name = "exogui";
+            comment = "eXoDOS Launcher";
+            exec = "exogui";
+            icon = "distributor-logo-ms-dos";
+            categories = [ "Game" ];
+            noDisplay = false;
+            startupNotify = true;
+            settings = {
+              Keywords = "exodos;dos";
+            };
+          };
+          gog-galaxy = {
+            name = "GOG Galaxy";
+            comment = "Launch GOG Galaxy using Bottles.";
+            exec = "bottles-cli run -p \"GOG Galaxy\" -b \"GOG Galaxy\"";
+            icon = "/home/${username}/Games/Bottles/GOG-Galaxy/icons/GOG Galaxy.png";
+            categories = [ "Game" ];
+            noDisplay = false;
+            startupNotify = true;
+            actions = {
+              "Configure" = { name = "Configure in Bottles"; exec = "bottles -b \"GOG Galaxy\""; };
+            };
+            settings = {
+              StartupWMClass = "GOG Galaxy";
+            };
+          };
+        };
+      };
     };
-
   };
 }

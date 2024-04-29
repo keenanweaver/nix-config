@@ -1,27 +1,26 @@
-{ inputs, home-manager, lib, config, username, pkgs, vars, ... }: with lib;
+{ lib, config, username, pkgs, vars, ... }:
 let
   cfg = config.distrobox;
 in
 {
   options = {
     distrobox = {
-      enable = mkEnableOption "Enable distrobox in NixOS & home-manager";
-      gaming = mkOption {
-        type = types.bool;
+      enable = lib.mkEnableOption "Enable distrobox in NixOS & home-manager";
+      gaming = lib.mkOption {
+        type = lib.types.bool;
         default = true;
       };
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment = {
       systemPackages = with pkgs; [
         distrobox_git
       ];
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, dotfiles, ... }:
+    home-manager.users.${username} = { inputs, config, username, pkgs, dotfiles, ... }:
       let
         dbe = "${config.xdg.dataHome}/distrobox/exports/bin";
-        dbs = "${dotfiles}/distrobox";
       in
       {
         home.file = {

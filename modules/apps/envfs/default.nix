@@ -1,15 +1,15 @@
-{ inputs, home-manager, lib, config, username, ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.envfs;
 in
 {
   options = {
     envfs = {
-      enable = mkEnableOption "Enable envfs in NixOS";
+      enable = lib.mkEnableOption "Enable envfs in NixOS";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.envfs.enable = true;
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }:{ };
+    home-manager.users.${username} = { };
   };
 }

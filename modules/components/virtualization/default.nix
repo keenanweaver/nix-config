@@ -1,14 +1,14 @@
-{ inputs, home-manager, lib, config, pkgs, username, ... }: with lib;
+{ lib, config, pkgs, username, vars, ... }:
 let
   cfg = config.virtualization;
 in
 {
   options = {
     virtualization = {
-      enable = mkEnableOption "Enable virtualization in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable virtualization in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment = {
       systemPackages = with pkgs; [
         docker-compose
@@ -25,11 +25,6 @@ in
       spice-vdagentd.enable = true;
     };
     virtualisation = {
-      /*     lxc = {
-      enable = true;
-      lxcfs.enable = true;
-      };
-        lxd.enable = true; */
       # (Make sure you run this once: "sudo virsh net-autostart default")
       podman = {
         enable = true;
@@ -40,6 +35,7 @@ in
         defaultNetwork.settings.dns_enabled = true;
         dockerCompat = true;
         dockerSocket.enable = true;
+        enableNvidia = if vars.nvidia then true else false;
       };
       libvirtd = {
         enable = true;
@@ -51,6 +47,6 @@ in
       };
       spiceUSBRedirection.enable = true;
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: { };
+    home-manager.users.${username} = { };
   };
 }

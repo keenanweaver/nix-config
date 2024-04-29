@@ -1,14 +1,14 @@
-{ inputs, home-manager, lib, config, username, dotfiles, pkgs, vars, ... }: with lib;
+{ lib, config, username, vars, ... }:
 let
   cfg = config.pipewire;
 in
 {
   options = {
     pipewire = {
-      enable = mkEnableOption "Enable pipewire in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable pipewire in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     hardware.pulseaudio.enable = false;
 
     security.rtkit.enable = true;
@@ -28,7 +28,7 @@ in
     };
 
     sound.enable = false;
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+    home-manager.users.${username} = { config, ... }: {
       home.file = {
         pipewire-allowed-rates = {
           enable = true;
@@ -140,7 +140,7 @@ in
           '';
           target = "${config.xdg.configHome}/pipewire/pipewire-pulse.conf.d/10-wine-latency.conf";
         };
-        wireplumber-bluetooth-config = {
+        /*         wireplumber-bluetooth-config = {
           enable = true;
           text = ''
             bluez_monitor.properties = {
@@ -151,7 +151,7 @@ in
             }
           '';
           target = "${config.xdg.configHome}/wireplumber/bluetooth.lua.d/51-bluez-config.lua";
-        };
+        }; */
         wireplumber-disable-suspend = {
           enable = true;
           text = ''

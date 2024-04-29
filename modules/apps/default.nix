@@ -47,6 +47,7 @@
     ./yt-dlp
     ./xwayland
     ./zellij
+    ./zerotier
     ./zoxide
     ./zsh
   ];

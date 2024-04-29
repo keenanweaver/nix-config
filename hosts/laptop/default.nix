@@ -1,4 +1,4 @@
-{ config, lib, pkgs, username, ... }:
+{ lib, username, ... }:
 {
   imports = [
     # System
@@ -17,19 +17,12 @@
     initrd.availableKernelModules = lib.mkDefault [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
     kernelModules = lib.mkDefault [ "tcp_bbr" "kvm-amd" ]; #"v4l2loopback"
     kernelParams = lib.mkDefault [ "amd_iommu=on" "amd_pstate=guided" ];
-    loader = {
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
-      };
-      systemd-boot.enable = true;
-      timeout = 3;
+    lanzaboote = {
+      enable = lib.mkForce false;
     };
-  };
-
-  environment = {
-    sessionVariables = { };
-    systemPackages = with pkgs; [ ];
+    loader = {
+      systemd-boot.enable = lib.mkForce true;
+    };
   };
 
   hardware = {
@@ -61,13 +54,7 @@
 
   system.stateVersion = "23.11";
 
-  /*     zramSwap = {
-      enable = true;
-      memoryPercent = 25;
-    }; */
-  #};
-
-  home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+  home-manager.users.${username} = { config, username, pkgs, ... }: {
     home.file = {
       script-bootstrap-baremetal-laptop = {
         enable = true;

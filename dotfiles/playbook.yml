@@ -121,15 +121,16 @@
       loop:
         - { path: '/tmp/paru.conf', regex: '#SudoLoop', replace: 'SudoLoop' }
         - { path: '/tmp/paru.conf', regex: '#CleanAfter', replace: 'CleanAfter' }
+        - { path: '/tmp/paru.conf', regex: '#BottomUp', replace: 'BottomUp' }
 
     - name: Copy paru.conf to distroboxes
       ansible.builtin.copy:
         src: /tmp/paru.conf
         dest: "{{ item.path }}/"
       loop:
-        - { path: '/home/keenan/.config/distrobox/bazzite-arch-exodos/.config/paru', when: "{{ distrobox }}" is "bazzite-arch-exodos" }
-        - { path: '/home/keenan/.config/distrobox/bazzite-arch-gaming/.config/paru', when: "{{ distrobox }}" is "bazzite-arch-gaming" }
-        - { path: '/home/keenan/.config/distrobox/bazzite-arch-sys/.config/paru', when: "{{ distrobox }}" is "bazzite-arch-sys" }
+        - { path: '/home/keenan/.config/distrobox/bazzite-arch-exodos/.config/paru/paru.conf', when: "{{ distrobox }}" is "bazzite-arch-exodos" }
+        - { path: '/home/keenan/.config/distrobox/bazzite-arch-gaming/.config/paru/paru.conf', when: "{{ distrobox }}" is "bazzite-arch-gaming" }
+        - { path: '/home/keenan/.config/distrobox/bazzite-arch-sys/.config/paru/paru.conf', when: "{{ distrobox }}" is "bazzite-arch-sys" }
 
     - name: Add atuin to .bashrc
       ansible.builtin.lineinfile:

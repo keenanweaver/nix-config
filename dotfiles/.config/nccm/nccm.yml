@@ -317,5 +317,5 @@ opnsense:
      customargs: -p 6777
 steamdeck:
      user: deck
-     address: 10.20.1.249
+     address: 10.20.1.114
      comment: Steam Deck

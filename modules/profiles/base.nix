@@ -1,14 +1,14 @@
-{ inputs, home-manager, lib, config, pkgs, username, ... }: with lib;
+{ lib, config, pkgs, username, ... }:
 let
   cfg = config.base;
 in
 {
   options = {
     base = {
-      enable = mkEnableOption "Enable base in NixOS";
+      enable = lib.mkEnableOption "Enable base in NixOS";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # Custom modules
     # Apps
     alacritty.enable = true;
@@ -59,7 +59,7 @@ in
     packages.enable = true;
     performance.enable = true;
     pipewire.enable = true;
-    printing.enable = false;
+    printing.enable = true;
     secrets.enable = true;
     virtualization.enable = true;
     users.enable = true;
@@ -81,7 +81,7 @@ in
         xdg-user-dirs
       ];
     };
-    i18n =
+    /*     i18n =
       let
         defaultLocale = "en_US.UTF-8";
       in
@@ -102,17 +102,23 @@ in
           LC_TELEPHONE = defaultLocale;
           LC_TIME = defaultLocale;
         };
-      };
+      }; */
+
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
     services = {
+      btrfs.autoScrub.enable = true;
+      cron.enable = true;
       earlyoom.enable = true;
       fstrim.enable = true;
       logrotate.enable = true;
     };
 
+    system.stateVersion = "23.11";
+
     time.timeZone = "America/Chicago";
 
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+    home-manager.users.${username} = { lib, username, ... }: {
       home = {
         file = {
           script-7z-to-zip = {

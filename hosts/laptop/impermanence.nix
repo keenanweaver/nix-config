@@ -1,5 +1,5 @@
 # https://github.com/nix-community/impermanence#module-usage
-{ inputs, home-manager, username, ... }:
+{ inputs, ... }:
 {
 
   imports = [
@@ -20,7 +20,7 @@
           "/etc/wireguard"
           "/var/db/sudo/lectured"
           "/var/lib/AccountsService"
-          "/var/lib/bluetooth"
+          #"/var/lib/bluetooth"
           "/var/lib/clamav"
           "/var/lib/docker"
           "/var/lib/flatpak"

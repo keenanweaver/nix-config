@@ -1,14 +1,14 @@
-{ inputs, home-manager, lib, config, username, fullname, pkgs, ... }: with lib;
+{ lib, config, username, fullname, pkgs, ... }:
 let
   cfg = config.users;
 in
 {
   options = {
     users = {
-      enable = mkEnableOption "Enable users in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable users in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     users = {
       mutableUsers = true;
       users = {
@@ -40,6 +40,6 @@ in
         };
       };
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: { };
+    home-manager.users.${username} = { };
   };
 }

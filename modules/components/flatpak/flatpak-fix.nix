@@ -1,17 +1,16 @@
 { config, lib, pkgs, ... }:
-with lib;
 let
   cfg = config.workarounds.flatpak-fix;
 in
 {
   options.workarounds.flatpak-fix = {
-    enable = mkOption {
-      type = types.bool;
+    enable = lib.mkOption {
+      type = lib.types.bool;
       default = config.services.flatpak.enable;
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = [ pkgs.bindfs ];
     fileSystems = lib.mapAttrs
       (_: v: v // {

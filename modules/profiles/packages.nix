@@ -1,26 +1,26 @@
-{ inputs, home-manager, lib, config, username, pkgs, ... }: with lib;
+{ lib, config, username, pkgs, ... }:
 let
   cfg = config.packages;
 in
 {
   options = {
     packages = {
-      enable = mkEnableOption "Enable packages in home-manager";
-      dev = mkOption {
-        type = types.bool;
+      enable = lib.mkEnableOption "Enable packages in home-manager";
+      dev = lib.mkOption {
+        type = lib.types.bool;
         default = true;
       };
-      misc = mkOption {
-        type = types.bool;
+      misc = lib.mkOption {
+        type = lib.types.bool;
         default = true;
       };
-      system = mkOption {
-        type = types.bool;
+      system = lib.mkOption {
+        type = lib.types.bool;
         default = true;
       };
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     boot = {
       binfmt.registrations.appimage = {
         wrapInterpreterInShell = false;
@@ -35,8 +35,16 @@ in
       systemPackages = with pkgs; [
         appimage-run
       ];
+      # Writes current *system* packagesto /etc/current-system/packages
+      etc."packages".text =
+        let
+          packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
+          sortedUnique = builtins.sort builtins.lessThan (pkgs.lib.lists.unique packages);
+          formatted = builtins.concatStringsSep "\n" sortedUnique;
+        in
+        formatted;
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+    home-manager.users.${username} = { lib, pkgs, ... }: {
       home.packages = with pkgs; [ ] ++ lib.optionals cfg.dev [
         codeium
         devbox

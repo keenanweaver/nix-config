@@ -22,6 +22,7 @@
     nur.url = "github:nix-community/NUR";
     sops-nix = { url = "github:Mic92/sops-nix"; inputs.nixpkgs.follows = "nixpkgs"; };
 
+    jovian = { url = "github:Jovian-Experiments/Jovian-NixOS"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix-citizen = { url = "github:LovingMelody/nix-citizen"; inputs.nix-gaming.follows = "nix-gaming"; };
     nix-gaming.url = "github:fufexan/nix-gaming";
 
@@ -50,8 +51,40 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    homeConfigurations = { };
+  outputs = { nixpkgs, home-manager, ... }@inputs: {
+    homeConfigurations =
+      let
+        fullname = "Keenan Weaver";
+        username = "deck";
+        home = "/home/deck";
+        dotfiles = ./dotfiles;
+      in
+      {
+        steamdeck = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = with inputs; [
+            ./hosts/steamdeck/home.nix
+            catppuccin.homeManagerModules.catppuccin
+            nix-colors.homeManagerModules.default
+            nur.hmModules.nur
+            plasma-manager.homeManagerModules.plasma-manager
+            sops-nix.homeManagerModules.sops
+          ];
+
+          extraSpecialArgs = {
+            inherit inputs;
+            username = username;
+            home = home;
+          };
+          users.${username} = {
+            home = {
+              stateVersion = "23.11";
+            };
+          };
+          useGlobalPkgs = true;
+          useUserPackages = true;
+        };
+      };
     nixosConfigurations =
       let
         fullname = "Keenan Weaver";
@@ -61,7 +94,7 @@
       in
       {
         # Desktop
-        nixos-desktop = nixpkgs.lib.nixosSystem rec {
+        nixos-desktop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
 
           specialArgs = {
@@ -71,25 +104,26 @@
             vars = {
               desktop = true;
               gaming = true;
+              nvidia = false;
             };
           };
 
-          modules = with inputs; [
+          modules = [
 
             ./hosts/desktop
 
             (args: { nixpkgs.overlays = import ./nix/overlays args; })
 
-            catppuccin.nixosModules.catppuccin
-            chaotic.nixosModules.default
-            disko.nixosModules.disko
+            inputs.catppuccin.nixosModules.catppuccin
+            inputs.chaotic.nixosModules.default
+            inputs.disko.nixosModules.disko
             ./hosts/desktop/disko.nix
             {
               _module.args.disks = [ "/dev/nvme0n1" ];
             }
-            lanzaboote.nixosModules.lanzaboote
-            nur.nixosModules.nur
-            sops-nix.nixosModules.sops
+            inputs.lanzaboote.nixosModules.lanzaboote
+            inputs.nur.nixosModules.nur
+            inputs.sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -111,21 +145,21 @@
                   };
                 };
                 sharedModules = [
-                  catppuccin.homeManagerModules.catppuccin
-                  hyprland.homeManagerModules.default
-                  nix-colors.homeManagerModules.default
-                  nix-index-database.hmModules.nix-index
-                  nixvim.homeManagerModules.nixvim
-                  nur.hmModules.nur
-                  plasma-manager.homeManagerModules.plasma-manager
-                  sops-nix.homeManagerModules.sops
+                  inputs.catppuccin.homeManagerModules.catppuccin
+                  inputs.hyprland.homeManagerModules.default
+                  inputs.nix-colors.homeManagerModules.default
+                  inputs.nix-index-database.hmModules.nix-index
+                  inputs.nixvim.homeManagerModules.nixvim
+                  inputs.nur.hmModules.nur
+                  inputs.plasma-manager.homeManagerModules.plasma-manager
+                  inputs.sops-nix.homeManagerModules.sops
                 ];
               };
             }
           ];
         };
         # Laptop
-        nixos-laptop = nixpkgs.lib.nixosSystem rec {
+        nixos-laptop = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
 
           specialArgs = {
@@ -135,25 +169,26 @@
             vars = {
               desktop = true;
               gaming = false;
+              nvidia = false;
             };
           };
 
-          modules = with inputs; [
+          modules = [
 
             ./hosts/laptop
 
             (args: { nixpkgs.overlays = import ./nix/overlays args; })
 
-            catppuccin.nixosModules.catppuccin
-            chaotic.nixosModules.default
-            disko.nixosModules.disko
+            inputs.catppuccin.nixosModules.catppuccin
+            inputs.chaotic.nixosModules.default
+            inputs.disko.nixosModules.disko
             ./hosts/desktop/disko.nix
             {
               _module.args.disks = [ "/dev/nvme0n1" ];
             }
-            lanzaboote.nixosModules.lanzaboote
-            nur.nixosModules.nur
-            sops-nix.nixosModules.sops
+            inputs.lanzaboote.nixosModules.lanzaboote
+            inputs.nur.nixosModules.nur
+            inputs.sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -175,21 +210,21 @@
                   };
                 };
                 sharedModules = [
-                  catppuccin.homeManagerModules.catppuccin
-                  hyprland.homeManagerModules.default
-                  nix-colors.homeManagerModules.default
-                  nix-index-database.hmModules.nix-index
-                  nixvim.homeManagerModules.nixvim
-                  nur.hmModules.nur
-                  plasma-manager.homeManagerModules.plasma-manager
-                  sops-nix.homeManagerModules.sops
+                  inputs.catppuccin.homeManagerModules.catppuccin
+                  inputs.hyprland.homeManagerModules.default
+                  inputs.nix-colors.homeManagerModules.default
+                  inputs.nix-index-database.hmModules.nix-index
+                  inputs.nixvim.homeManagerModules.nixvim
+                  inputs.nur.hmModules.nur
+                  inputs.plasma-manager.homeManagerModules.plasma-manager
+                  inputs.sops-nix.homeManagerModules.sops
                 ];
               };
             }
           ];
         };
         # Unraid
-        nixos-unraid = nixpkgs.lib.nixosSystem rec {
+        nixos-unraid = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
 
           specialArgs = {
@@ -202,22 +237,22 @@
             };
           };
 
-          modules = with inputs; [
+          modules = [
 
             ./hosts/vm
 
             (args: { nixpkgs.overlays = import ./nix/overlays args; })
 
-            catppuccin.nixosModules.catppuccin
-            chaotic.nixosModules.default
-            disko.nixosModules.disko
+            inputs.catppuccin.nixosModules.catppuccin
+            inputs.chaotic.nixosModules.default
+            inputs.disko.nixosModules.disko
             ./hosts/vm/disko.nix
             {
               _module.args.disks = [ "/dev/disk/by-id/virtio-vdisk1" ];
             }
-            lanzaboote.nixosModules.lanzaboote
-            nur.nixosModules.nur
-            sops-nix.nixosModules.sops
+            inputs.lanzaboote.nixosModules.lanzaboote
+            inputs.nur.nixosModules.nur
+            inputs.sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -239,14 +274,14 @@
                   };
                 };
                 sharedModules = [
-                  catppuccin.homeManagerModules.catppuccin
-                  hyprland.homeManagerModules.default
-                  nix-colors.homeManagerModules.default
-                  nix-index-database.hmModules.nix-index
-                  nixvim.homeManagerModules.nixvim
-                  nur.hmModules.nur
-                  plasma-manager.homeManagerModules.plasma-manager
-                  sops-nix.homeManagerModules.sops
+                  inputs.catppuccin.homeManagerModules.catppuccin
+                  inputs.hyprland.homeManagerModules.default
+                  inputs.nix-colors.homeManagerModules.default
+                  inputs.nix-index-database.hmModules.nix-index
+                  inputs.nixvim.homeManagerModules.nixvim
+                  inputs.nur.hmModules.nur
+                  inputs.plasma-manager.homeManagerModules.plasma-manager
+                  inputs.sops-nix.homeManagerModules.sops
                 ];
               };
             }

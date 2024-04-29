@@ -1,20 +1,19 @@
-{ inputs, home-manager, lib, config, username,  ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.gpg;
 in
 {
   options = {
     gpg = {
-      enable = mkEnableOption "Enable gpg in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable gpg in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+  config = lib.mkIf cfg.enable {
+    home-manager.users.${username} = { pkgs, ... }: {
       programs.gpg = {
         enable = true;
-        #homedir = "${config.xdg.dataHome}/gnupg";
       };
-      services.gpg-agent = with pkgs; {
+      services.gpg-agent = {
         enable = true;
         enableExtraSocket = true;
         enableSshSupport = true;
@@ -22,7 +21,7 @@ in
         defaultCacheTtlSsh = 43200;
         maxCacheTtl = 86400; # 24h
         maxCacheTtlSsh = 86400;
-        pinentryPackage = pinentry-qt;
+        pinentryPackage = pkgs.pinentry-qt;
       };
     };
   };

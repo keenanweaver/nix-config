@@ -1,4 +1,4 @@
-{ inputs, home-manager, lib, config, username, pkgs, ... }: with lib;
+{ inputs, lib, config, username, ... }:
 let
   cfg = config.vscode;
   marketplace-extensions = with inputs.nix-vscode-extensions.extensions.x86_64-linux.vscode-marketplace; [
@@ -29,22 +29,20 @@ let
     usernamehw.errorlens
     yzhang.markdown-all-in-one
   ];
-  nix-extensions = with pkgs.vscode-extension; [ ];
 in
 {
   options = {
     vscode = {
-      enable = mkEnableOption "Enable vscode in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable vscode in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
-      # for theming, check modules/home/theming/default.nix
+  config = lib.mkIf cfg.enable {
+    home-manager.users.${username} = { pkgs, ... }: {
       programs.vscode = {
         enable = true;
         enableExtensionUpdateCheck = false;
         enableUpdateCheck = false;
-        extensions = marketplace-extensions ++ nix-extensions;
+        extensions = marketplace-extensions;
         package = pkgs.vscodium;
         userSettings = {
           "ansible.ansible.path" = "ansible";

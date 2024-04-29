@@ -1,10 +1,10 @@
-{ inputs, home-manager, config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }: {
 
   boot = {
     consoleLogLevel = 0;
-    extraModulePackages = with config.boot.kernelPackages; [ ]; #v4l2loopback
+    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
     initrd = {
-      systemd.enable = true;
+      systemd.enable = true; # Plymouth login screen
       verbose = false;
     };
     kernel = {
@@ -29,10 +29,15 @@
       enable = true;
       pkiBundle = "/etc/secureboot";
     };
-    loader.systemd-boot.enable = lib.mkForce false;
-    plymouth = {
-      enable = true;
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
+      #systemd-boot.enable = lib.mkDefault false;
+      timeout = 1;
     };
+    plymouth.enable = true;
     supportedFilesystems = [
       "btrfs"
       "cifs"

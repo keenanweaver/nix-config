@@ -1,4 +1,4 @@
-{ lib, username, ... }:
+{ lib, ... }:
 {
   fileSystems."/" = {
     fsType = "tmpfs";

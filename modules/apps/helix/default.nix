@@ -1,13 +1,13 @@
-{ inputs, home-manager, lib, config, pkgs, username, ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.helix;
 in
 {
   options.helix = {
-    enable = mkEnableOption "Enable Helix in home-manager";
+    enable = lib.mkEnableOption "Enable Helix in home-manager";
   };
-  config = mkIf cfg.enable {
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+  config = lib.mkIf cfg.enable {
+    home-manager.users.${username} = { pkgs, ... }: {
       programs.helix = {
         enable = true;
         defaultEditor = true;

@@ -1,19 +1,19 @@
-{ inputs, home-manager, lib, config, username, pkgs, ... }: with lib;
+{ lib, config, username, pkgs, ... }:
 let
   cfg = config.gamescope;
 in
 {
   options = {
     gamescope = {
-      enable = mkEnableOption "Enable gamescope in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable gamescope in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
-    programs.gamescope = with pkgs; {
+  config = lib.mkIf cfg.enable {
+    programs.gamescope = {
       enable = true;
-      package = gamescope_git; # Chaotic package
+      package = pkgs.gamescope_git; # Chaotic package
       capSysNice = true;
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: { };
+    home-manager.users.${username} = { };
   };
 }

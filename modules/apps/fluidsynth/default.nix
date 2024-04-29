@@ -1,26 +1,26 @@
-{ inputs, home-manager, lib, config, username, ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.fluidsynth;
   soundfont = "SC-55 SoundFont.v1.2b [Trevor0402].sf2";
 in
 {
   options.fluidsynth = {
-    enable = mkEnableOption "Enable Fluidsynth in home-manager";
-    extraOptions = mkOption {
-      type = types.listOf types.str;
+    enable = lib.mkEnableOption "Enable Fluidsynth in home-manager";
+    extraOptions = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
       default = [ "--gain 1.0" ];
     };
-    soundFont = mkOption {
-      type = types.path;
+    soundFont = lib.mkOption {
+      type = lib.types.path;
       default = "/home/${username}/Music/soundfonts/default.sf2";
     };
-    soundService = mkOption {
-      type = types.enum [ "jack" "pipewire-pulse" "pulseaudio" ];
+    soundService = lib.mkOption {
+      type = lib.types.enum [ "jack" "pipewire-pulse" "pulseaudio" ];
       default = "pipewire-pulse";
     };
   };
-  config = mkIf cfg.enable {
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+  config = lib.mkIf cfg.enable {
+    home-manager.users.${username} = { inputs, config, ... }: {
       home.file = {
         midi-soundfonts = {
           enable = true;

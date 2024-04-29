@@ -1,14 +1,18 @@
-{ inputs, home-manager, lib, config, username, pkgs, ... }: with lib;
+{ lib, config, username, pkgs, ... }:
 let
   cfg = config.networking;
 in
 {
   options = {
     networking = {
-      enable = mkEnableOption "Enable networking in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable networking in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
+
+    environment = {
+      systemPackages = [ ];
+    };
     networking = {
       extraHosts = ''
         10.20.1.1 opnsense
@@ -33,8 +37,10 @@ in
     };
 
     services = {
-      resolved.enable = true;
+      avahi = {
+        enable = true;
+      };
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: { };
+    home-manager.users.${username} = { };
   };
 }

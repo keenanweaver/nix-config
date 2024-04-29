@@ -1,4 +1,4 @@
-{ inputs, home-manager, lib, config, username, dotfiles, vars, pkgs, ... }: with lib;
+{ lib, config, username, dotfiles, vars, ... }:
 let
   cfg = config.flatpak;
 in
@@ -9,20 +9,20 @@ in
 
   options = {
     flatpak = {
-      enable = mkEnableOption "Enable flatpak in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable flatpak in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.flatpak.enable = true;
-    systemd.services.flatpak-repo = {
+    /*     systemd.services.flatpak-repo = {
       wantedBy = [ "multi-user.target" ];
       path = [ pkgs.flatpak ];
       script = ''
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
       '';
-    };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+    }; */
+    home-manager.users.${username} = { config, username, ... }: {
       home.file = {
         flatpak-list = {
           enable = true;

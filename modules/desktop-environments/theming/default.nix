@@ -1,4 +1,4 @@
-{ inputs, home-manager, lib, config, username, pkgs, dotfiles, vars, ... }: with lib;
+{ config, lib, username, pkgs, dotfiles, vars, ... }:
 let
   bibata-sky-mocha = pkgs.stdenvNoCC.mkDerivation {
     pname = "bibata-sky-mocha";
@@ -30,10 +30,10 @@ in
 {
   options = {
     catppuccinTheming = {
-      enable = mkEnableOption "Enable catppuccinTheming in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable catppuccinTheming in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     catppuccin = {
       enable = true;
       flavour = "${flavor-lower}";
@@ -216,12 +216,12 @@ in
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; }}/share/fonts/truetype/NerdFonts";
             target = "${config.xdg.dataHome}/fonts/blex-mono";
           };
-          kde-kwin-scripts = {
+          /*           kde-kwin-scripts = {
             enable = true;
             recursive = true;
             source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.local/share/kwin/scripts";
             target = "${config.xdg.dataHome}/kwin/scripts";
-          };
+          }; */
           kde-plasmoid-tiled-menu = {
             enable = false;
             recursive = true;

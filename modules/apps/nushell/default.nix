@@ -1,15 +1,15 @@
-{ inputs, home-manager, lib, config, username, dotfiles, ... }: with lib;
+{ lib, config, username, dotfiles, ... }:
 let
   cfg = config.nushell;
 in
 {
   options = {
     nushell = {
-      enable = mkEnableOption "Enable nushell in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable nushell in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+  config = lib.mkIf cfg.enable {
+    home-manager.users.${username} = {
       programs.nushell = {
         enable = true;
         configFile.source = "${dotfiles}/.config/nushell/config.nu";

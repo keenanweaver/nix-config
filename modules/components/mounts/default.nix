@@ -1,4 +1,4 @@
-{ inputs, home-manager, lib, config, username, ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.mounts;
   server = "crusader";
@@ -7,10 +7,10 @@ in
 {
   options = {
     mounts = {
-      enable = mkEnableOption "Enable mounts in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable mounts in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     fileSystems = {
       "${mountpoint}/appdata" = {
         device = "${server}:/mnt/user/appdata";
@@ -69,6 +69,6 @@ in
       };
     };
     services.rpcbind.enable = true;
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: { };
+    home-manager.users.${username} = { };
   };
 }

@@ -1,15 +1,15 @@
-{ inputs, home-manager, lib, config, username,  ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.alacritty;
 in
 {
   options = {
     alacritty = {
-      enable = mkEnableOption "Enable alacritty in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable alacritty in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+  config = lib.mkIf cfg.enable {
+    home-manager.users.${username} = {
       programs.alacritty = {
         enable = true;
         settings = {

@@ -1,4 +1,4 @@
-{ username, inputs, home-manager, ... }:
+{ username, ... }:
 let
   primaryPanel = screenId: {
     height = 54;
@@ -101,7 +101,7 @@ in
   imports = [
     ./default.nix
   ];
-  home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+  home-manager.users.${username} = { username, ... }: {
     programs.plasma = {
       hotkeys = {
         commands = {

@@ -1,14 +1,14 @@
-{ inputs, home-manager, lib, config, username, ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.ssh;
 in
 {
   options = {
     ssh = {
-      enable = mkEnableOption "Enable ssh in NixOS";
+      enable = lib.mkEnableOption "Enable ssh in NixOS";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.ssh = {
       startAgent = true;
     };
@@ -44,7 +44,7 @@ in
         X11Forwarding = true;
       };
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+    home-manager.users.${username} = { config, ... }: {
       home.file = {
         desktop-entry-ssh-add = {
           enable = true;

@@ -1,10 +1,11 @@
-{ inputs, home-manager, lib, config, username, pkgs, ... }: with lib; {
+{ lib, config, username, pkgs, ... }:
+{
   options = {
     steam = {
-      enable = mkEnableOption "Enable Steam in NixOS";
+      enable = lib.mkEnableOption "Enable Steam in NixOS";
     };
   };
-  config = mkIf config.steam.enable {
+  config = lib.mkIf config.steam.enable {
     hardware = {
       steam-hardware.enable = true;
     };
@@ -58,7 +59,7 @@
       };
     };
 
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+    home-manager.users.${username} = { pkgs, ... }: {
       home.packages = with pkgs; [
         steamtinkerlaunch
         protontricks

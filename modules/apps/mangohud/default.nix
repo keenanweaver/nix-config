@@ -1,15 +1,15 @@
-{ inputs, home-manager, lib, config, username, dotfiles, ... }: with lib;
+{ lib, config, username, dotfiles, ... }:
 let
   cfg = config.mangohud;
 in
 {
   options = {
     mangohud = {
-      enable = mkEnableOption "Enable mangohud in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable mangohud in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+  config = lib.mkIf cfg.enable {
+    home-manager.users.${username} = { config, pkgs, ... }: {
       home.file = {
         desktop-entry-mangohud-get-vars = {
           enable = true;
@@ -45,9 +45,9 @@ in
           executable = true;
         };
       };
-      programs.mangohud = with pkgs; {
+      programs.mangohud = {
         enable = true;
-        package = mangohud;
+        package = pkgs.mangohud_git; # Chaotic package
       };
     };
   };

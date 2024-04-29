@@ -1,14 +1,14 @@
-{ inputs, home-manager, lib, config, username, pkgs, ... }: with lib;
+{ inputs, lib, config, username, pkgs, vars, ... }:
 let
   cfg = config.nixConfig;
 in
 {
   options = {
     nixConfig = {
-      enable = mkEnableOption "Enable nix in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable nix in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     documentation = {
       man = {
         man-db.enable = true;
@@ -77,7 +77,7 @@ in
       };
     };
 
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+    home-manager.users.${username} = { config, username, ... }: {
       home = {
         extraProfileCommands = ''
           export GPG_TTY=$(tty)
@@ -105,7 +105,9 @@ in
           nn = "nnn -dHix";
           n = "micro";
           nv = "nvim";
+          nfc = "nix flake check /mnt/crusader/Projects/GitHub/nix-config --no-build";
           ngc = "nh clean all";
+          nhr = "nh home switch";
           nor = "nh os switch";
           npr = "nix run nixpkgs#nixpkgs-review -- pr";
           repw = "systemctl --user restart wireplumber pipewire pipewire-pulse pipewire-pulse.socket";

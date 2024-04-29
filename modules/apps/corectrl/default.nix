@@ -1,14 +1,14 @@
-{ inputs, home-manager, lib, config, username, ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.corectrl;
 in
 {
   options = {
     corectrl = {
-      enable = mkEnableOption "Enable corectrl in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable corectrl in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs = {
       corectrl = {
         enable = true;
@@ -16,7 +16,7 @@ in
         gpuOverclock.ppfeaturemask = "0xffffffff";
       };
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+    home-manager.users.${username} = { config, ... }: {
       home.file = {
         desktop-entry-corectrl = {
           enable = true;

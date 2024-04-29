@@ -1,5 +1,5 @@
 # From https://github.com/matt1432/nixos-configs/blob/master/devices/binto/modules/gpu-replay.nix
-{ pkgs, config, lib, gpu-screen-recorder-src, inputs, home-manager, username, ... }: with lib;
+{ pkgs, config, lib, inputs, username, ... }:
 let
   cfg = config.gpu-screen-recorder;
   gsr = pkgs.stdenv.mkDerivation {
@@ -44,10 +44,10 @@ in
 {
   options = {
     gpu-screen-recorder = {
-      enable = mkEnableOption "Enable gpu-screen-recorder in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable gpu-screen-recorder in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     security.wrappers = {
       gpu-screen-recorder = {
         owner = "root";
@@ -64,7 +64,7 @@ in
       };
     };
 
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+    home-manager.users.${username} = { username, pkgs, ... }: {
       home = {
         file = {
           script-gsr-save-replay = {
@@ -89,7 +89,7 @@ in
             executable = true;
           };
         };
-        packages = with pkgs; [ gsr ];
+        packages = [ gsr ];
       };
       systemd = {
         user = {

@@ -1,15 +1,15 @@
-{ inputs, home-manager, lib, config, pkgs, username, vars, ... }: with lib;
+{ lib, config, pkgs, username, vars, ... }:
 let
   cfg = config.fonts;
 in
 {
   options = {
     fonts = {
-      enable = mkEnableOption "Enable fonts in NixOS or home-manager";
+      enable = lib.mkEnableOption "Enable fonts in NixOS or home-manager";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     fonts = {
       enableDefaultPackages = false;
       fontDir = {
@@ -18,6 +18,7 @@ in
       };
       packages = with pkgs; [
         apple-fonts
+        b612
         caladea
         carlito
         corefonts
@@ -70,7 +71,7 @@ in
         QT_SCALE_FACTOR_ROUNDING_POLICY = "RoundPreferFloor";
       };
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+    home-manager.users.${username} = { inputs, config, ... }: {
       home.file = {
         rpg-maker-2003-fonts = {
           enable = vars.gaming;

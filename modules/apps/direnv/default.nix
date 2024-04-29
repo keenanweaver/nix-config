@@ -1,15 +1,15 @@
-{ inputs, home-manager, lib, config, username,  ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.direnv;
 in
 {
   options = {
     direnv = {
-      enable = mkEnableOption "Enable direnv in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable direnv in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+  config = lib.mkIf cfg.enable {
+    home-manager.users.${username} = {
       programs = {
         direnv = {
           enable = true;

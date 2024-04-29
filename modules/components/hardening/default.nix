@@ -1,14 +1,14 @@
-{ inputs, home-manager, lib, config, username, ... }: with lib;
+{ lib, config, username, ... }:
 let
   cfg = config.hardening;
 in
 {
   options = {
     hardening = {
-      enable = mkEnableOption "Enable hardening in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable hardening in NixOS & home-manager";
     };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     boot = {
       blacklistedKernelModules = [
         # Filesystems
@@ -70,7 +70,7 @@ in
           "kernel.unprivileged_bpf_disabled" = 1;
           #"kernel.yama.ptrace_scope" = 2; Breaks Hunt: Showdown
           "net.core.bpf_jit_harden" = 2;
-          "net.ipv4.conf.default.rp_filter" = 1;
+          /*           "net.ipv4.conf.default.rp_filter" = 1;
           "net.ipv4.conf.all.rp_filter" = 1;
           "net.ipv4.conf.all.accept_source_route" = 0;
           "net.ipv4.conf.all.send_redirects" = 0;
@@ -91,7 +91,7 @@ in
           "net.ipv6.conf.all.accept_redirects" = 0;
           "net.ipv6.conf.default.accept_redirects" = 0;
           "net.ipv6.conf.all.accept_ra" = 0;
-          "net.ipv6.conf.default.accept_ra" = 0;
+          "net.ipv6.conf.default.accept_ra" = 0; */
           "vm.mmap_rnd_bits" = 32;
           "vm.mmap_rnd_compat_bits" = 16;
           "vm.unprivileged_userfaultfd" = 0;
@@ -138,6 +138,7 @@ in
       polkit.enable = true;
       sudo = {
         execWheelOnly = true;
+        extraConfig = '' Defaults env_reset,pwfeedback '';
         extraRules = [
           {
             commands =
@@ -172,6 +173,6 @@ in
         enable = true;
       };
     };
-    home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: { };
+    home-manager.users.${username} = { };
   };
 }

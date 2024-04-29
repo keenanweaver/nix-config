@@ -1,6 +1,6 @@
-{ username, inputs, home-manager, ... }:
+{ username, ... }:
 {
-  home-manager.users.${username} = { inputs, lib, config, username, pkgs, ... }: {
+  home-manager.users.${username} = { username, pkgs, ... }: {
     programs.kate = {
       lsp.customServers = {
         css = {
@@ -129,7 +129,7 @@
           "Plugins"."trackmouseEnabled".value = true;
           "Plugins"."translucencyEnabled".value = true;
           #"Plugins"."wobblywindowsEnabled" = true;
-          "Script-alwaysopenonprimaryscreen"."classList".value = "steam\nsteamwebhelper\nmumble\ninfo.mumble.Mumble\nstrawberry\nobs\narmcord\nsignal";
+          #"Script-alwaysopenonprimaryscreen"."classList".value = "steam\nsteamwebhelper\nmumble\ninfo.mumble.Mumble\nstrawberry\nobs\narmcord\nsignal";
           "Script-forceblur"."blurExceptMatching".value = true;
           "Script-forceblur"."blurMatching".value = false;
           "TabBox"."LayoutName".value = "thumbnail_grid";
