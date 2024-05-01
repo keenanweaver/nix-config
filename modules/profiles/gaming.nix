@@ -33,13 +33,14 @@ in
         OBS_VKCAPTURE_QUIET = "1";
         SDL_SOUNDFONTS = "/home/${username}/Music/soundfonts/default.sf2";
       };
-      systemPackages = with pkgs; [
-        logitech-udev-rules
-      ];
     };
 
     hardware = {
-      logitech.wireless.enable = true;
+      logitech = {
+        wireless = {
+          enable = true;
+        };
+      };
       new-lg4ff.enable = true;
       uinput.enable = true;
       xone.enable = true;
@@ -80,10 +81,10 @@ in
       joycond.enable = true;
       system76-scheduler.enable = true;
       udev = {
-        packages = with pkgs; [
-          game-devices-udev-rules
+        packages = [
+          pkgs.game-devices-udev-rules
           # xpad for 8BitDo Ultimate Wireless https://github.com/SKyletoft/dots/commit/8825e58d24a79f48afed65bef84bd9295e5e3ea3
-          (writeTextFile {
+          (pkgs.writeTextFile {
             name = "50-xpad-8bitdo-ultimate-wireless.rules";
             text = ''
               ACTION=="add", \
@@ -96,7 +97,7 @@ in
               "/etc/udev/rules.d/50-xpad-8bitdo-ultimate-wireless.rules";
           })
           # AntiMicroX / SC-Controller https://github.com/AntiMicroX/antimicrox/wiki/Open-uinput-error
-          (writeTextFile {
+          (pkgs.writeTextFile {
             name = "60-antimicrox-uinput.rules";
             text = ''
               SUBSYSTEM=="misc", KERNEL=="uinput", TAG+="uaccess"
@@ -104,7 +105,7 @@ in
             destination = "/etc/udev/rules.d/60-antimicrox-uinput.rules";
           })
           # Dualsense touchpad https://wiki.archlinux.org/title/Gamepad#Motion_controls_taking_over_joypad_controls_and/or_causing_unintended_input_with_joypad_controls
-          (writeTextFile {
+          (pkgs.writeTextFile {
             name = "51-disable-DS3-and-DS4-motion-controls.rules";
             text = ''
               SUBSYSTEM=="input", ATTRS{name}=="*Controller Motion Sensors", RUN+="${pkgs.coreutils}/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
@@ -141,18 +142,6 @@ in
           source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/mt-32";
           target = "Music/mt-32";
         };
-        /*         roms-mt32-flatpak = {
-          enable = true;
-          recursive = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/mt-32";
-          target = ".var/app/io.github.dosbox-staging/config/dosbox/mt32-roms";
-        };
-        roms-mt32-native = {
-          enable = true;
-          recursive = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/mt-32";
-          target = "${config.xdg.configHome}/dosbox/mt32-roms";
-        }; */
         roms-mt32-exodos = {
           enable = true;
           recursive = true;
@@ -301,6 +290,18 @@ in
       };
       xdg = {
         desktopEntries = {
+          dosbox = {
+            name = "dosbox-staging";
+            comment = "DOSBox Staging";
+            exec = "dosbox";
+            icon = "dosbox-staging";
+            categories = [ "Game" ];
+            noDisplay = false;
+            startupNotify = true;
+            settings = {
+              Keywords = "dosbox;dos";
+            };
+          };
           exogui = {
             name = "exogui";
             comment = "eXoDOS Launcher";
