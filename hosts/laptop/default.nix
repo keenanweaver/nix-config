@@ -52,7 +52,8 @@
     };
   };
 
-  system.stateVersion = "23.11";
+  # https://discourse.nixos.org/t/how-to-disable-networkmanager-wait-online-service-in-the-configuration-file/19963
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   home-manager.users.${username} = { config, username, pkgs, ... }: {
     home.file = {
