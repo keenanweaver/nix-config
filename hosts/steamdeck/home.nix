@@ -12,8 +12,8 @@
   gaming.enable = true;
 
   home = {
-    /*     packages = with pkgs; [
-      # System
+    packages = with pkgs; [
+      /* # System
       dua
       duf
       fd
@@ -23,7 +23,7 @@
       unzip
       usbutils
       zip
-      vivid
+      vivid*/
       # Fonts
       ibm-plex
       (nerdfonts.override {
@@ -31,7 +31,7 @@
       })
       roboto
       roboto-serif
-    ]; */
+    ];
     file = {
       bazzite-enable-mounts = {
         enable = true;
