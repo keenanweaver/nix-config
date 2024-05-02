@@ -1,6 +1,127 @@
 { config, lib, pkgs, username, ... }:
 let
   cfg = config.gaming;
+  p = with pkgs; {
+    games = [
+      arx-libertatis # Arx Fatalis
+      exult # Ultima VII
+      openjk # Jedi Academy
+      openloco # Locomotion
+      openxray # STALKER
+      wipeout-rewrite # Wipeout
+      # Doom
+      [
+        #chocolate-doom
+        crispy-doom
+        #doom64ex-plus
+        (callPackage ../../nix/pkgs/doom64ex-plus.nix { })
+        doomrunner
+        doomseeker
+        dsda-doom
+        gzdoom
+        prboom-plus
+        rbdoom-3-bfg
+        zandronum
+        zandronum-server
+      ]
+      # Fallout
+      [
+        fallout-ce
+        fallout2-ce
+      ]
+      # Freespace
+      [
+        dxx-rebirth
+        knossosnet
+      ]
+      # Marathon
+      [
+        alephone
+        alephone-marathon
+        alephone-durandal
+        alephone-infinity
+      ]
+      # Quake
+      [
+        ironwail
+        quake3e
+        trenchbroom
+      ]
+      # Star Citizen
+      [
+        inputs.nix-citizen.packages.${system}.star-citizen
+        inputs.nix-citizen.packages.${system}.star-citizen-helper
+      ]
+      # Wolf3D
+      [
+        bstone
+        ecwolf
+        lzwolf
+      ]
+    ];
+    tools = [
+      obs-studio-plugins.obs-vkcapture
+      # Emulators 
+      [
+        #bizhawk
+        #hypseus-singe
+        #mesen
+      ]
+      # Input
+      [
+        joystickwake
+        makima
+        oversteer
+        sc-controller
+        xboxdrv
+      ]
+      # Graphics
+      [
+        glxinfo
+        libstrangle
+        vkbasalt
+        vulkan-tools
+      ]
+      # Launchers 
+      [
+        bottles
+        heroic
+        lutris
+      ]
+      # Modding
+      [
+        r2modman # Lethal Company
+      ]
+      # Wine
+      [
+        winetricks
+        wineWowPackages.stagingFull
+      ]
+      /*
+      gst_all_1.gstreamer
+      gst_all_1.gst-libav
+      gst_all_1.gst-plugins-bad
+      gst_all_1.gst-plugins-base
+      gst_all_1.gst-plugins-good
+      gst_all_1.gst-plugins-ugly
+      */
+      /*       
+      igir
+      innoextract
+      jpsxdec
+      lgogdownloader
+      mame.tools
+      mkvtoolnix-cli
+      mmv
+      nsz
+      oxyromon
+      ps3-disc-dumper
+      vgmplay-libvgm
+      vgmstream
+      vgmtools 
+      */
+    ];
+  };
 in
 {
   options = {
@@ -117,7 +238,7 @@ in
         ];
       };
     };
-    home-manager.users.${username} = { inputs, config, username, pkgs, ... }: {
+    home-manager.users.${username} = { inputs, config, username, ... }: {
       home.file = {
         roms-amiga = {
           enable = true;
@@ -177,100 +298,9 @@ in
           target = ".var/app/app.xemu.xemu/data/xemu/xemu/xbox-4627_debug.bin";
         };
       };
-      home.packages = with pkgs; [
-        #############
-        ## Gaming ##
-        ############
-        ## Launchers
-        bottles
-        heroic
-        lutris
-        ## Emulators
-        #bizhawk
-        #hypseus-singe
-        #mesen
-        ## Modding
-        r2modman
-        ## Doom
-        #chocolate-doom
-        crispy-doom
-        #doom64ex-plus
-        (callPackage ../../nix/pkgs/doom64ex-plus.nix { })
-        doomrunner
-        doomseeker
-        dsda-doom
-        gzdoom
-        prboom-plus
-        rbdoom-3-bfg
-        zandronum
-        zandronum-server
-        ## Quake
-        ironwail
-        quake3e
-        #trenchbroom
-        ## Fallout
-        fallout-ce
-        fallout2-ce
-        ## Freespace
-        dxx-rebirth
-        knossosnet
-        ## N64
-        #shipwright
-        #sm64ex
-        ## Ultima
-        exult
-        # Wipeout
-        wipeout-rewrite
-        ## Wolf3D
-        bstone
-        ecwolf
-        lzwolf
-        ## Other
-        alephone
-        alephone-marathon
-        alephone-durandal
-        alephone-infinity
-        arx-libertatis
-        openjk
-        openloco
-        openxray
-        inputs.nix-citizen.packages.${system}.star-citizen
-        inputs.nix-citizen.packages.${system}.star-citizen-helper
-        ## Input
-        joystickwake
-        makima
-        oversteer
-        sc-controller
-        xboxdrv
-        ## Tools
-        glxinfo
-        gst_all_1.gstreamer
-        gst_all_1.gst-libav
-        gst_all_1.gst-plugins-bad
-        gst_all_1.gst-plugins-base
-        gst_all_1.gst-plugins-good
-        gst_all_1.gst-plugins-ugly
-        libstrangle
-        obs-studio-plugins.obs-vkcapture
-        vkbasalt
-        vulkan-tools
-        winetricks
-        wineWowPackages.stagingFull
-        ## One and dones ##
-        /*  igir
-            innoextract
-            jpsxdec
-            lgogdownloader
-            mame.tools
-            mkvtoolnix-cli
-            mmv
-            nsz
-            oxyromon
-            ps3-disc-dumper
-            vgmplay-libvgm
-            vgmstream
-            vgmtools 
-          */
+      home.packages = [
+        lib.flatten
+        (lib.attrValues p)
       ];
       # Move config files out of home
       programs.boxxy = {
