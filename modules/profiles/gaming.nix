@@ -1,4 +1,4 @@
-{ config, lib, pkgs, username, ... }:
+{ inputs, config, lib, pkgs, username, ... }:
 let
   cfg = config.gaming;
   p = with pkgs; {
@@ -45,7 +45,7 @@ let
       [
         ironwail
         quake3e
-        trenchbroom
+        #trenchbroom
       ]
       # Star Citizen
       [
@@ -191,6 +191,11 @@ in
       };
     };
 
+    # Trenchbroom
+    /*     nixpkgs.config.permittedInsecurePackages = [
+      "freeimage-unstable-2021-11-01"
+    ]; */
+
     services = {
       hardware = {
         openrgb = {
@@ -298,10 +303,7 @@ in
           target = ".var/app/app.xemu.xemu/data/xemu/xemu/xbox-4627_debug.bin";
         };
       };
-      home.packages = [
-        lib.flatten
-        (lib.attrValues p)
-      ];
+      home.packages = lib.flatten (lib.attrValues p);
       # Move config files out of home
       programs.boxxy = {
         rules = [
