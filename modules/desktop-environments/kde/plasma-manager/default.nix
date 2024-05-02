@@ -153,6 +153,7 @@
       };
       shortcuts = {
         kwin = {
+          "Toggle Night Color" = "Meta+Shift+N";
           "Window Maximize" = "Meta+Shift+PgUp";
           "Window Minimize" = "Meta+Shift+PgDown";
           "Window Move Center" = [ "Meta+C" "Meta+." ];
@@ -180,7 +181,7 @@
           };
         };
       };
-      spectacle.shortcuts = {
+      /*       spectacle.shortcuts = {
         captureActiveWindow = "Meta+Print";
         captureCurrentMonitor = "Print";
         captureEntireDesktop = "Shift+Print";
@@ -188,7 +189,7 @@
         captureWindowUnderCursor = "Meta+Ctrl+Print";
         launch = "Meta+S";
         launchWithoutCapturing = "Meta+Alt+S";
-      };
+      }; */
       workspace = {
         clickItemTo = "select";
       };
