@@ -18,7 +18,7 @@
           proton-ge-custom # Chaotic package
           steamtinkerlaunch
         ];
-        #extest.enable = true;
+        gamescopeSession.enable = true;
         localNetworkGameTransfers.openFirewall = true;
         package = pkgs.steam.override {
           extraLibraries = pkgs: with pkgs; [
