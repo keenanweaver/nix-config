@@ -61,7 +61,6 @@ in
         (final: prev: {
           apple-fonts = pkgs.callPackage ../../../nix/pkgs/apple-fonts.nix { };
           catppuccin-sddm = pkgs.kdePackages.callPackage ../../../nix/pkgs/catppuccin-sddm.nix { };
-          doomrunner = pkgs.qt5.callPackage ../../../nix/pkgs/doomrunner.nix { };
         })
       ];
 
