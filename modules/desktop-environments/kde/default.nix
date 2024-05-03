@@ -3,6 +3,7 @@ let
   cfg = config.kde;
 in
 {
+
   imports = [
     ./plasma-manager/desktop.nix
   ];

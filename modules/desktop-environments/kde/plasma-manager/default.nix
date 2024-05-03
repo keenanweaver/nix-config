@@ -158,38 +158,32 @@
           "Window Minimize" = "Meta+Shift+PgDown";
           "Window Move Center" = [ "Meta+C" "Meta+." ];
         };
-        "services/org.kde.konsole.desktop"."_launch" = [ ];
-        "services/Alacritty.desktop"."New" = "Ctrl+Alt+T";
-        "services/Alacritty.desktop"."_launch" = "Ctrl+Alt+T";
       };
       hotkeys = {
         commands = {
-          "alacritty" = {
-            name = "Launch Alacritty";
-            key = "Ctrl+Alt+T";
-            command = "alacritty";
-          };
           "Spectacle-region-clipboard" = {
             name = "Launch Spectacle with region capture";
             key = "Meta+Shift+Print";
             command = "spectacle -bcr";
+            comment = "Region capture to clipboard";
           };
           "wezterm" = {
             name = "Launch wezterm";
             key = "F12";
             command = "wezterm";
+            comment = "Launch wezterm";
           };
         };
       };
-      /*       spectacle.shortcuts = {
+      spectacle.shortcuts = {
         captureActiveWindow = "Meta+Print";
         captureCurrentMonitor = "Print";
         captureEntireDesktop = "Shift+Print";
-        captureRectangularRegion = "Meta+Shift+S";
+        #captureRectangularRegion = "Meta+Shift+S";
         captureWindowUnderCursor = "Meta+Ctrl+Print";
         launch = "Meta+S";
         launchWithoutCapturing = "Meta+Alt+S";
-      }; */
+      };
       workspace = {
         clickItemTo = "select";
       };
