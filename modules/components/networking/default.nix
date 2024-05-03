@@ -36,11 +36,6 @@ in
       };
     };
 
-    services = {
-      avahi = {
-        enable = true;
-      };
-    };
     home-manager.users.${username} = { };
   };
 }

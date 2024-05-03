@@ -38,6 +38,7 @@
     ./ssh
     ./starship
     ./steam
+    ./sunshine
     ./tealdeer
     ./timidity
     ./topgrade
