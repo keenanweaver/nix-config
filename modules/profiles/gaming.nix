@@ -56,7 +56,6 @@ let
       [
         bstone
         ecwolf
-        lzwolf
       ]
     ];
     tools = [
@@ -143,8 +142,18 @@ in
     gpu-screen-recorder.enable = true;
     mangohud.enable = true;
     steam.enable = true;
+    sunshine.enable = true;
     timidity.enable = true;
     zerotier.enable = true;
+
+    boot = {
+      extraModulePackages = [
+        config.boot.kernelPackages.gcadapter-oc-kmod
+      ];
+      kernelModules = [
+        "gcadapter_oc"
+      ];
+    };
 
     environment = {
       sessionVariables = {
@@ -166,29 +175,6 @@ in
       uinput.enable = true;
       xone.enable = true;
       xpadneo.enable = true;
-    };
-
-    networking = {
-      firewall = {
-        allowedTCPPorts = [
-          47984 # Sunshine
-          47989
-          47990
-          48010
-          59999 # MoonDeck Buddy
-        ];
-        allowedTCPPortRanges = [
-          { from = 45000; to = 45010; } # simple64 server
-        ];
-        allowedUDPPorts = [
-          59999 # MoonDeck Buddy
-          9993 # ZeroTier
-        ];
-        allowedUDPPortRanges = [
-          { from = 45000; to = 45010; } # simple64 server
-          { from = 47998; to = 48000; } # sunshine
-        ];
-      };
     };
 
     # Trenchbroom
@@ -301,6 +287,19 @@ in
           enable = true;
           source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/xbox/xbox-4627_debug.bin";
           target = ".var/app/app.xemu.xemu/data/xemu/xemu/xbox-4627_debug.bin";
+        };
+        # Use Bottles to manage Wine runners for Heroic and Lutris
+        wine-links-heroic = {
+          enable = true;
+          recursive = true;
+          source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/bottles/runners";
+          target = "${config.xdg.configHome}/heroic/tools/wine";
+        };
+        wine-links-lutris = {
+          enable = true;
+          recursive = true;
+          source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/bottles/runners";
+          target = "${config.xdg.dataHome}/lutris/runners/wine";
         };
       };
       home.packages = lib.flatten (lib.attrValues p);
