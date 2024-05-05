@@ -5,8 +5,8 @@ let
     version = "master";
 
     src = pkgs.fetchurl {
-      url = "https://codeberg.org/Keenan/nix-config/raw/branch/main/dotfiles/Bibata-Sky-Mocha.tar.gz";
-      hash = "sha256-CEwI9UsMkBLjkwxkX9z4xK5DsxIS8rzC5n4cdaMR6jk=";
+      url = "https://github.com/keenanweaver/nix-config/raw/main/dotfiles/Bibata-Sky-Mocha.tar.gz";
+      hash = "sha256-myH5uUUHQGmtF7uON2nLo2tr0taMbq8yZeU6AeSspqo=";
     };
 
     dontPatch = true;
