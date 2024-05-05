@@ -16,7 +16,6 @@
         dedicatedServer.openFirewall = true;
         extraCompatPackages = with pkgs; [
           proton-ge-custom # Chaotic package
-          steamtinkerlaunch
         ];
         gamescopeSession.enable = true;
         localNetworkGameTransfers.openFirewall = true;
@@ -51,8 +50,6 @@
             pango
             vkbasalt
             xdotool
-            ## Steam
-            yad # SteamTinkerLaunch
           ];
         };
         remotePlay.openFirewall = true;
@@ -61,9 +58,28 @@
 
     home-manager.users.${username} = { pkgs, ... }: {
       home.packages = with pkgs; [
-        steamtinkerlaunch
         protontricks
       ];
+      xdg = {
+        desktopEntries.steam = {
+          name = "Steam";
+          icon = "steam";
+          exec = "env MANGOHUD=1 obs-gamecapture steam -silent %U";
+          terminal = false;
+          categories = [ "Network" "FileTransfer" "Game" ];
+          mimeType = [ "x-scheme-handler/steam" "x-scheme-handler/steamlink" ];
+          actions = {
+            "Store" = { exec = "steam steam://store"; };
+            "Library" = { exec = "steam steam://open/games"; };
+            "Friends" = { exec = "steam steam://open/friends"; };
+            "Settings" = { exec = "steam steam://open/settings"; };
+            "BigPicture" = {
+              name = "Big Picture";
+              exec = "steam steam://open/bigpicture";
+            };
+          };
+        };
+      };
     };
   };
 }
