@@ -29,13 +29,6 @@ in
       wireguard.enable = true;
     };
 
-    programs = {
-      wireshark = {
-        enable = true;
-        package = pkgs.wireshark;
-      };
-    };
-
     home-manager.users.${username} = { };
   };
 }
