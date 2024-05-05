@@ -1,5 +1,2 @@
 [Context]
 filesystems=!xdg-public-share;!xdg-videos;!xdg-pictures;!xdg-download;!xdg-music;!xdg-desktop;!xdg-documents
-
-[Environment]
-XCURSOR_PATH=
