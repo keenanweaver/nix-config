@@ -83,7 +83,7 @@ in
           extraPackages = [ bibata-sky-mocha ];
           settings = {
             Theme = {
-              CursorTheme = "Bibata-${accent-upper}-${flavor-upper}";
+              CursorTheme = "breeze_cursors";
             };
           };
           theme = "catppuccin-${flavor-lower}";
@@ -106,8 +106,7 @@ in
           accent = "${accent-lower}";
         };
         cursorTheme = {
-          name = lib.mkForce "Bibata-${accent-upper}-${flavor-upper}";
-          package = lib.mkForce bibata-sky-mocha;
+          name = lib.mkDefault "breeze_cursors";
           size = 24;
         };
         font = {
@@ -142,19 +141,19 @@ in
       };
       home = {
         file = {
+          # Flatpak theming issue workarounds
+          catppuccin-gtk = {
+            enable = true;
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.catppuccin-gtk.override { accents = [ "${accent-lower}" ]; variant = "${flavor-lower}";}}/share/themes/Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark";
+            target = "${config.xdg.dataHome}/themes/Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark";
+          };
           catppuccin-armcord = {
             enable = true;
             text = ''
               @import url("https://catppuccin.github.io/discord/dist/catppuccin-${flavor-lower}-${accent-lower}.theme.css");
             '';
             target = ".var/app/xyz.armcord.ArmCord/config/ArmCord/themes/${flavor-lower}.theme.css";
-          };
-          # Flatpak theming issue workaround
-          catppuccin-gtk = {
-            enable = true;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.catppuccin-gtk.override { accents = [ "${accent-lower}" ]; variant = "${flavor-lower}";}}/share/themes/Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark";
-            target = "${config.xdg.dataHome}/themes/Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark";
           };
           catppuccin-ghostwriter = {
             enable = true;
@@ -198,12 +197,6 @@ in
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-powershell}";
             target = "${config.xdg.dataHome}/powershell/Modules/Catppuccin";
           };
-          cursor = {
-            enable = true;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${bibata-sky-mocha}/share/icons/Bibata-${accent-upper}-${flavor-upper}";
-            target = "${config.xdg.dataHome}/icons/Bibata-${accent-upper}-${flavor-upper}";
-          };
           ibm-plex = {
             enable = true;
             recursive = true;
@@ -246,7 +239,7 @@ in
             enable = true;
             text = ''
               [Icon Theme]
-              Inherits=Bibata-${accent-upper}-${flavor-upper}
+              Inherits=breeze_cursors
             '';
             target = "${config.xdg.dataHome}/icons/default/index.theme";
           };
@@ -382,7 +375,7 @@ in
         plasma = {
           workspace = {
             colorScheme = "Catppuccin${flavor-upper}${accent-upper}";
-            cursorTheme = "Bibata-${accent-upper}-${flavor-upper}";
+            cursorTheme = "breeze_cursors";
             iconTheme = "Papirus-Dark";
             lookAndFeel = "Catppuccin-${flavor-upper}-${accent-upper}";
             theme = "default";
@@ -411,8 +404,8 @@ in
       services = {
         xsettingsd = {
           settings = {
-            "Gtk/CursorThemeSize" = 32;
-            "Gtk/CursorThemeName" = "Bibata-${accent-upper}-${flavor-upper}";
+            "Gtk/CursorThemeSize" = 24;
+            "Gtk/CursorThemeName" = "breeze_cursors";
             "Gtk/FontName" = "${sans-font},  13";
             "Net/IconThemeName" = "Papirus-Dark";
             "Net/ThemeName" = "Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark";
@@ -429,7 +422,7 @@ in
       xresources = {
         properties = {
           "Xcursor.size" = 24;
-          "Xcursor.theme" = "Bibata-${accent-upper}-${flavor-upper}";
+          "Xcursor.theme" = "breeze_cursors";
           "Xft.autohint" = 1;
           "Xft.lcdfilter" = "lcddefault";
           "Xft.hintstyle" = "hintfull";
