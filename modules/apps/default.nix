@@ -27,6 +27,7 @@
     ./mangohud
     ./micro
     ./mullvad
+    ./mumble
     ./navi
     ./nh
     ./nix-index
@@ -44,6 +45,7 @@
     ./topgrade
     ./vscode
     ./wezterm
+    ./wireshark
     ./yazi
     ./yt-dlp
     ./xwayland
