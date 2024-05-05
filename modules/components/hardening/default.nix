@@ -1,4 +1,4 @@
-{ lib, config, username, ... }:
+{ lib, config, username, vars, ... }:
 let
   cfg = config.hardening;
 in
@@ -173,6 +173,10 @@ in
         enable = true;
       };
     };
-    home-manager.users.${username} = { };
+    home-manager.users.${username} = {
+      services = {
+        opensnitch-ui.enable = if vars.desktop then true else false;
+      };
+    };
   };
 }
