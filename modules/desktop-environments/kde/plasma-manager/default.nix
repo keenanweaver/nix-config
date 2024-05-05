@@ -126,7 +126,6 @@
           "Plugins"."kwin4_effect_translucencyEnabled".value = true;
           "Plugins"."restoreToScreenEnabled".value = true;
           "Plugins"."scaleEnabled".value = false;
-          "Plugins"."trackmouseEnabled".value = true;
           "Plugins"."translucencyEnabled".value = true;
           #"Plugins"."wobblywindowsEnabled" = true;
           #"Script-alwaysopenonprimaryscreen"."classList".value = "steam\nsteamwebhelper\nmumble\ninfo.mumble.Mumble\nstrawberry\nobs\narmcord\nsignal";
