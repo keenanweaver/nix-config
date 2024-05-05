@@ -153,6 +153,15 @@ in
       kernelModules = [
         "gcadapter_oc"
       ];
+      kernelParams = [
+        "split_lock_detect=off"
+      ];
+      kernel = {
+        sysctl = {
+          "split_lock_mitigate" = 0; # https://reddit.com/r/linux_gaming/comments/1bgqfuk/god_of_war_poor_performance/kv8xsae/?context=3
+          "vm.max_map_count" = 2147483642;
+        };
+      };
     };
 
     environment = {
@@ -195,27 +204,6 @@ in
       udev = {
         packages = [
           pkgs.game-devices-udev-rules
-          # xpad for 8BitDo Ultimate Wireless https://github.com/SKyletoft/dots/commit/8825e58d24a79f48afed65bef84bd9295e5e3ea3
-          /*           (pkgs.writeTextFile {
-            name = "50-xpad-8bitdo-ultimate-wireless.rules";
-            text = ''
-              ACTION=="add", \
-                 	ATTRS{idVendor}=="2dc8", \
-                 	ATTRS{idProduct}=="3106", \
-                 	RUN+="${pkgs.kmod}/bin/modprobe xpad", \
-                 	RUN+="${pkgs.bash}/bin/sh -c 'echo 2dc8 3106 > /sys/bus/usb/drivers/xpad/new_id'"
-            '';
-            destination =
-              "/etc/udev/rules.d/50-xpad-8bitdo-ultimate-wireless.rules";
-          }) 
-          # AntiMicroX / SC-Controller https://github.com/AntiMicroX/antimicrox/wiki/Open-uinput-error
-          (pkgs.writeTextFile {
-            name = "60-antimicrox-uinput.rules";
-            text = ''
-              SUBSYSTEM=="misc", KERNEL=="uinput", TAG+="uaccess"
-            '';
-            destination = "/etc/udev/rules.d/60-antimicrox-uinput.rules";
-          })*/
           # Dualsense touchpad https://wiki.archlinux.org/title/Gamepad#Motion_controls_taking_over_joypad_controls_and/or_causing_unintended_input_with_joypad_controls
           (pkgs.writeTextFile {
             name = "51-disable-DS3-and-DS4-motion-controls.rules";
@@ -229,6 +217,50 @@ in
         ];
       };
     };
+
+    security = {
+      pam = {
+        loginLimits = [
+          # https://scribe.rip/@a.b.t./here-are-some-possibly-useful-tweaks-for-steamos-on-the-steam-deck-fcb6b571b577
+          # https://github.com/RPCS3/rpcs3/issues/9328#issuecomment-732390362
+          # https://github.com/CachyOS/CachyOS-Settings/tree/master/etc/security/limits.d
+          #{ domain = "*"; item = "nofile"; type = "-"; value = "unlimited"; }
+          #{ domain = "*"; item = "memlock"; type = "-"; value = "unlimited"; } # RPCS3
+          { domain = "*"; item = "nofile"; type = "hard"; value = "1048576"; }
+        ];
+      };
+    };
+
+    systemd = {
+      extraConfig = ''
+        DefaultLimitNOFILE=1048576
+      '';
+      tmpfiles = {
+        rules = [
+          # https://wiki.archlinux.org/title/Gaming#Make_the_changes_permanent
+          "w /proc/sys/vm/compaction_proactiveness - - - - 0"
+          "w /proc/sys/vm/min_free_kbytes - - - - 1048576"
+          "w /sys/kernel/mm/lru_gen/enabled - - - - 5"
+          "w /proc/sys/vm/zone_reclaim_mode - - - - 0"
+          ## CS2
+          #"w /sys/kernel/mm/transparent_hugepage/enabled - - - - never"
+          #"w /sys/kernel/mm/transparent_hugepage/shmem_enabled - - - - never"
+          #"w /sys/kernel/mm/transparent_hugepage/khugepaged/defrag - - - - 0"
+          "w /proc/sys/vm/page_lock_unfairness - - - - 1"
+          "w /proc/sys/kernel/sched_child_runs_first - - - - 0"
+          "w /proc/sys/kernel/sched_autogroup_enabled - - - - 1"
+          "w /proc/sys/kernel/sched_cfs_bandwidth_slice_us - - - - 500"
+          "w /sys/kernel/debug/sched/latency_ns  - - - - 1000000"
+          "w /sys/kernel/debug/sched/migration_cost_ns - - - - 500000"
+          "w /sys/kernel/debug/sched/min_granularity_ns - - - - 500000"
+          "w /sys/kernel/debug/sched/wakeup_granularity_ns  - - - - 0"
+          "w /sys/kernel/debug/sched/nr_migrate - - - - 8"
+          # https://github.com/CachyOS/CachyOS-Settings/blob/master/etc/tmpfiles.d/thp.conf
+          "w! /sys/kernel/mm/transparent_hugepage/defrag - - - - defer+madvise"
+        ];
+      };
+    };
+
     home-manager.users.${username} = { inputs, config, username, ... }: {
       home.file = {
         roms-amiga = {

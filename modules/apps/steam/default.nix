@@ -20,6 +20,10 @@
         gamescopeSession.enable = true;
         localNetworkGameTransfers.openFirewall = true;
         package = pkgs.steam.override {
+          extraEnv = {
+            MANGOHUD = true;
+            OBS_VKCAPTURE = true;
+          };
           extraLibraries = pkgs: with pkgs; [
             openssl
             #openssl_1_1 # Devil Daggers
@@ -60,26 +64,6 @@
       home.packages = with pkgs; [
         protontricks
       ];
-      xdg = {
-        desktopEntries.steam = {
-          name = "Steam";
-          icon = "steam";
-          exec = "env MANGOHUD=1 obs-gamecapture steam -silent %U";
-          terminal = false;
-          categories = [ "Network" "FileTransfer" "Game" ];
-          mimeType = [ "x-scheme-handler/steam" "x-scheme-handler/steamlink" ];
-          actions = {
-            "Store" = { exec = "steam steam://store"; };
-            "Library" = { exec = "steam steam://open/games"; };
-            "Friends" = { exec = "steam steam://open/friends"; };
-            "Settings" = { exec = "steam steam://open/settings"; };
-            "BigPicture" = {
-              name = "Big Picture";
-              exec = "steam steam://open/bigpicture";
-            };
-          };
-        };
-      };
     };
   };
 }
