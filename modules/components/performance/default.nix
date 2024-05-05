@@ -58,8 +58,8 @@ in
           ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
 
           # Realtime Audio (https://gentoostudio.org/?page_id=420)
-          KERNEL=="rtc0", GROUP="audio"
-          KERNEL=="hpet", GROUP="audio"
+          #KERNEL=="rtc0", GROUP="audio"
+          #KERNEL=="hpet", GROUP="audio"
         '';
       };
     };
