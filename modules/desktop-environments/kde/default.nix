@@ -55,15 +55,19 @@ in
       colord.enable = true;
       desktopManager.plasma6.enable = true;
       displayManager = {
-        autoLogin = { user = "${username}"; };
-        defaultSession = "plasmax11";
+        # Black screen on login if enabled with Wayland. https://github.com/NixOS/nixpkgs/issues/292980#issuecomment-1975380961
+        #autoLogin = { user = "${username}"; };
+        #defaultSession = "plasmax11";
         sddm = {
           enable = true;
           settings = {
             General = {
               InputMethod = ""; # Remove virtual keyboard
             };
-            wayland.enable = true;
+          };
+          wayland = {
+            enable = true;
+            compositor = "kwin";
           };
         };
       };
@@ -92,7 +96,10 @@ in
       };
     };
     home-manager.users.${username} = {
-      services.kdeconnect.enable = true;
+      services.kdeconnect = {
+        enable = true;
+        package = pkgs.kdePackages.kdeconnect-kde;
+      };
     };
   };
 }
