@@ -173,8 +173,8 @@ in
       };
       new-lg4ff.enable = true;
       uinput.enable = true;
-      xone.enable = true;
-      xpadneo.enable = true;
+      #xone.enable = true;
+      #xpadneo.enable = true;
     };
 
     # Trenchbroom
@@ -196,18 +196,18 @@ in
         packages = [
           pkgs.game-devices-udev-rules
           # xpad for 8BitDo Ultimate Wireless https://github.com/SKyletoft/dots/commit/8825e58d24a79f48afed65bef84bd9295e5e3ea3
-          (pkgs.writeTextFile {
+          /*           (pkgs.writeTextFile {
             name = "50-xpad-8bitdo-ultimate-wireless.rules";
             text = ''
               ACTION=="add", \
-               	ATTRS{idVendor}=="2dc8", \
-               	ATTRS{idProduct}=="3106", \
-               	RUN+="${pkgs.kmod}/bin/modprobe xpad", \
-               	RUN+="${pkgs.bash}/bin/sh -c 'echo 2dc8 3106 > /sys/bus/usb/drivers/xpad/new_id'"
+                 	ATTRS{idVendor}=="2dc8", \
+                 	ATTRS{idProduct}=="3106", \
+                 	RUN+="${pkgs.kmod}/bin/modprobe xpad", \
+                 	RUN+="${pkgs.bash}/bin/sh -c 'echo 2dc8 3106 > /sys/bus/usb/drivers/xpad/new_id'"
             '';
             destination =
               "/etc/udev/rules.d/50-xpad-8bitdo-ultimate-wireless.rules";
-          })
+          }) 
           # AntiMicroX / SC-Controller https://github.com/AntiMicroX/antimicrox/wiki/Open-uinput-error
           (pkgs.writeTextFile {
             name = "60-antimicrox-uinput.rules";
@@ -215,7 +215,7 @@ in
               SUBSYSTEM=="misc", KERNEL=="uinput", TAG+="uaccess"
             '';
             destination = "/etc/udev/rules.d/60-antimicrox-uinput.rules";
-          })
+          })*/
           # Dualsense touchpad https://wiki.archlinux.org/title/Gamepad#Motion_controls_taking_over_joypad_controls_and/or_causing_unintended_input_with_joypad_controls
           (pkgs.writeTextFile {
             name = "51-disable-DS3-and-DS4-motion-controls.rules";
