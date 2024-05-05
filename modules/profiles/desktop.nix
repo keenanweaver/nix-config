@@ -18,8 +18,10 @@ in
     catppuccinTheming.enable = true;
     hyprland.enable = false;
     kde.enable = true;
+    mumble.enable = true;
     vscode.enable = true;
     wezterm.enable = true;
+    wireshark.enable = true;
     xwayland.enable = true;
 
     environment = {
@@ -83,10 +85,6 @@ in
         overlays = [
           inputs.nix-vscode-extensions.overlays.default
         ];
-      };
-
-      services = {
-        opensnitch-ui.enable = true;
       };
 
       xdg = {
