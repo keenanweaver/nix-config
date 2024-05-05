@@ -18,10 +18,10 @@
     kernelModules = lib.mkDefault [ "tcp_bbr" "kvm-amd" ]; #"v4l2loopback"
     kernelParams = lib.mkDefault [ "amd_iommu=on" "amd_pstate=guided" ];
     lanzaboote = {
-      enable = lib.mkForce false;
+      enable = true;
     };
     loader = {
-      systemd-boot.enable = lib.mkForce true;
+      systemd-boot.enable = lib.mkForce false;
     };
   };
 
