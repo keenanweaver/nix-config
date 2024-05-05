@@ -41,6 +41,7 @@
     supportedFilesystems = [
       "btrfs"
       "cifs"
+      "ext4"
       "fat"
       "ntfs"
     ];
