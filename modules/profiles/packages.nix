@@ -35,7 +35,7 @@ in
       systemPackages = with pkgs; [
         appimage-run
       ];
-      # Writes current *system* packagesto /etc/current-system/packages
+      # Writes current *system* packages to /etc/current-system/packages
       etc."packages".text =
         let
           packages = builtins.map (p: "${p.name}") config.environment.systemPackages;

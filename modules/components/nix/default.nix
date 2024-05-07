@@ -109,6 +109,7 @@ in
           nhr = "nh home switch";
           nor = "nh os switch";
           npr = "nix run nixpkgs#nixpkgs-review -- pr";
+          rbn = "podman stop -a && systemctl reboot";
           repw = "systemctl --user restart wireplumber pipewire pipewire-pulse pipewire-pulse.socket";
           sudo = "sudo ";
           up = "topgrade";
