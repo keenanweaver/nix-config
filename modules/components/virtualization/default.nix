@@ -11,8 +11,9 @@ in
   config = lib.mkIf cfg.enable {
     environment = {
       systemPackages = with pkgs; [
-        docker-compose
-        podman-compose
+        #docker-compose
+        #podman-compose
+        quickemu
         spice
         spice-protocol
         virt-manager
