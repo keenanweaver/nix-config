@@ -109,6 +109,7 @@ in
     services = {
       btrfs.autoScrub.enable = true;
       cron.enable = true;
+      dbus.implementation = "broker";
       earlyoom.enable = true;
       fstrim.enable = true;
       logrotate.enable = true;
