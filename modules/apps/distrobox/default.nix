@@ -16,6 +16,7 @@ in
     environment = {
       systemPackages = with pkgs; [
         distrobox_git
+        lilipod
       ];
     };
     home-manager.users.${username} = { inputs, config, username, pkgs, dotfiles, ... }:
