@@ -67,7 +67,7 @@ let
               "applications:org.wezfurlong.wezterm.desktop"
               "applications:org.signal.Signal.desktop"
               "applications:xyz.armcord.ArmCord.desktop"
-              "applications:info.mumble.Mumble.desktop"
+              "applications:info.mumble.Mumble.desktop" 
               "applications:qobuz.desktop"
               "applications:org.strawberrymusicplayer.strawberry.desktop"
               "applications:foobar2000.desktop"
@@ -81,7 +81,7 @@ let
         name = "com.github.k-donn.plasmoid-wunderground";
         config = {
           Station = {
-            stationID = "KNEOMAHA1072";
+            stationID = "KNEOMAHA1167";
           };
           Units = {
             unitsChoice = "1";
