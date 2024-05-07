@@ -39,6 +39,9 @@ in
           target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/dosbox/soundfonts/default.sf2";
         };
       };
+      home.sessionVariables = {
+        SDL_SOUNDFONTS = "/home/${username}/Music/soundfonts/default.sf2";
+      };
       services.fluidsynth = {
         enable = true;
         extraOptions = cfg.extraOptions;
