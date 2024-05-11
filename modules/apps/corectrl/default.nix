@@ -1,4 +1,9 @@
-{ lib, config, username, ... }:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 let
   cfg = config.corectrl;
 in
@@ -16,27 +21,29 @@ in
         gpuOverclock.ppfeaturemask = "0xffffffff";
       };
     };
-    home-manager.users.${username} = { config, ... }: {
-      home.file = {
-        desktop-entry-corectrl = {
-          enable = true;
-          text = ''
-            [Desktop Entry]
-            Categories=System;Settings;Utility;
-            Comment=Control your computer with ease using application profiles
-            Exec=corectrl
-            GenericName=Core control
-            Icon=corectrl
-            Keywords=core;control;system;hardware;
-            Name=CoreCtrl
-            StartupNotify=true
-            StartupWMClass=corectrl
-            Terminal=false
-            Type=Application
-          '';
-          target = "${config.xdg.configHome}/autostart/org.corectrl.corectrl.desktop";
+    home-manager.users.${username} =
+      { config, ... }:
+      {
+        home.file = {
+          desktop-entry-corectrl = {
+            enable = true;
+            text = ''
+              [Desktop Entry]
+              Categories=System;Settings;Utility;
+              Comment=Control your computer with ease using application profiles
+              Exec=corectrl
+              GenericName=Core control
+              Icon=corectrl
+              Keywords=core;control;system;hardware;
+              Name=CoreCtrl
+              StartupNotify=true
+              StartupWMClass=corectrl
+              Terminal=false
+              Type=Application
+            '';
+            target = "${config.xdg.configHome}/autostart/org.corectrl.corectrl.desktop";
+          };
         };
       };
-    };
   };
 }

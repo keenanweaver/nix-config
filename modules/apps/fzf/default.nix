@@ -1,4 +1,9 @@
-{ lib, config, username, ... }:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 let
   cfg = config.fzf;
 in
@@ -13,9 +18,7 @@ in
       programs.fzf = {
         enable = true;
         defaultCommand = "fd --type f";
-        fileWidgetOptions = [
-          "--preview bat -pp --color=always {}"
-        ];
+        fileWidgetOptions = [ "--preview bat -pp --color=always {}" ];
       };
     };
   };

@@ -1,11 +1,15 @@
-{ lib, config, pkgs, username, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  username,
+  ...
+}:
 let
   cfg = config.desktop;
 in
 {
-  imports = [
-    ./base.nix
-  ];
+  imports = [ ./base.nix ];
 
   options = {
     desktop = {
@@ -39,7 +43,9 @@ in
       bluetooth = {
         enable = true;
         settings = {
-          General = { Experimental = "true"; }; # https://reddit.com/r/NixOS/comments/1aoteqb/keychron_k1_pro_bluetooth_nixos_wkde_install/kq49q9r/?context=3
+          General = {
+            Experimental = "true";
+          }; # https://reddit.com/r/NixOS/comments/1aoteqb/keychron_k1_pro_bluetooth_nixos_wkde_install/kq49q9r/?context=3
         };
       };
       enableAllFirmware = true;
@@ -55,99 +61,120 @@ in
       fwupd.enable = true;
     };
 
-    home-manager.users.${username} = { inputs, config, pkgs, ... }: {
-      dconf.settings = {
-        "org/virt-manager/virt-manager/connections" = {
-          autoconnect = [ "qemu:///system" ];
-          uris = [ "qemu:///system" ];
+    home-manager.users.${username} =
+      {
+        inputs,
+        config,
+        pkgs,
+        ...
+      }:
+      {
+        dconf.settings = {
+          "org/virt-manager/virt-manager/connections" = {
+            autoconnect = [ "qemu:///system" ];
+            uris = [ "qemu:///system" ];
+          };
         };
-      };
-      gtk = {
-        enable = true;
-        gtk2 = {
-          configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-          # force = true; # https://github.com/nix-community/home-manager/pull/5263
-        };
-      };
-
-      home.packages = with pkgs; [
-        neo
-        ## Graphics
-        clinfo
-        lact
-        ## GNOME
-        adw-gtk3
-        gnome.gnome-settings-daemon
-        gsettings-desktop-schemas
-        gsettings-qt
-      ];
-
-      nixpkgs = {
-        overlays = [
-          inputs.nix-vscode-extensions.overlays.default
-        ];
-      };
-
-      xdg = {
-        enable = true;
-        mimeApps = {
+        gtk = {
           enable = true;
-          associations = {
-            added = {
-              "application/json" = [ "org.kde.kate.desktop" ];
-              "application/pdf" = [ "org.kde.okular.desktop" "one.ablaze.floorp.desktop" ];
-              "application/toml" = [ "org.kde.kate.desktop" ];
-              "application/x-bat" = [ "org.kde.kate.desktop" ];
+          gtk2 = {
+            configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+            # force = true; # https://github.com/nix-community/home-manager/pull/5263
+          };
+        };
+
+        home.packages = with pkgs; [
+          neo
+          ## Graphics
+          clinfo
+          lact
+          ## GNOME
+          adw-gtk3
+          gnome.gnome-settings-daemon
+          gsettings-desktop-schemas
+          gsettings-qt
+        ];
+
+        nixpkgs = {
+          overlays = [ inputs.nix-vscode-extensions.overlays.default ];
+        };
+
+        xdg = {
+          enable = true;
+          mimeApps = {
+            enable = true;
+            associations = {
+              added = {
+                "application/json" = [ "org.kde.kate.desktop" ];
+                "application/pdf" = [
+                  "org.kde.okular.desktop"
+                  "one.ablaze.floorp.desktop"
+                ];
+                "application/toml" = [ "org.kde.kate.desktop" ];
+                "application/x-bat" = [ "org.kde.kate.desktop" ];
+                "application/x-cue" = [ "cdemu-client.desktop" ];
+                "application/x-msdownload" = [ "wine.desktop" ];
+                "application/xhtml+xml" = [ "one.ablaze.floorp.desktop" ];
+                "application/xml" = [ "org.kde.kate.desktop" ];
+                "audio/*" = [ "org.strawberrymusicplayer.strawberry.desktop" ];
+                "image/*" = [ "org.kde.gwenview.desktop" ];
+                "inode/directory" = [ "org.kde.dolphin.desktop" ];
+                "text/*" = [
+                  "org.kde.kate.desktop"
+                  "Helix.desktop"
+                  "micro.desktop"
+                  "nvim.desktop"
+                ];
+                "text/html" = [
+                  "one.ablaze.floorp.desktop"
+                  "com.vivaldi.Vivaldi.desktop"
+                  "net.mullvad.MullvadBrowser.desktop"
+                  "org.kde.kate.desktop"
+                ];
+                "video/*" = [ "org.kde.haruna.desktop" ];
+                "x-scheme-handler/bottles" = [ "com.usebottles.bottles.desktop" ];
+                "x-scheme-handler/http" = [ "one.ablaze.floorp.desktop" ];
+                "x-scheme-handler/https" = [ "one.ablaze.floorp.desktop" ];
+              };
+              removed = { };
+            };
+            defaultApplications = {
               "application/x-cue" = [ "cdemu-client.desktop" ];
               "application/x-msdownload" = [ "wine.desktop" ];
-              "application/xhtml+xml" = [ "one.ablaze.floorp.desktop" ];
-              "application/xml" = [ "org.kde.kate.desktop" ];
-              "audio/*" = [ "org.strawberrymusicplayer.strawberry.desktop" ];
-              "image/*" = [ "org.kde.gwenview.desktop" ];
-              "inode/directory" = [ "org.kde.dolphin.desktop" ];
-              "text/*" = [ "org.kde.kate.desktop" "Helix.desktop" "micro.desktop" "nvim.desktop" ];
-              "text/html" = [ "one.ablaze.floorp.desktop" "com.vivaldi.Vivaldi.desktop" "net.mullvad.MullvadBrowser.desktop" "org.kde.kate.desktop" ];
-              "video/*" = [ "org.kde.haruna.desktop" ];
+              "audio/aac" = [ "org.strawberrymusicplayer.strawberry.desktop" ];
+              "audio/flac" = [ "org.strawberrymusicplayer.strawberry.desktop" ];
+              "audio/mpeg" = [ "org.strawberrymusicplayer.strawberry.desktop" ];
+              "audio/ogg" = [ "org.strawberrymusicplayer.strawberry.desktop" ];
+              "audio/webm" = [ "org.kde.haruna.desktop" ];
+              "image/bmp" = [ "org.kde.gwenview.desktop" ];
+              "image/gif" = [ "org.kde.gwenview.desktop" ];
+              "image/jpeg" = [ "org.kde.gwenview.desktop" ];
+              "image/png" = [ "org.kde.gwenview.desktop" ];
+              "image/webp" = [ "org.kde.gwenview.desktop" ];
+              "text/html" = [ "one.ablaze.floorp.desktop" ];
+              "text/plain" = [ "org.kde.kate.desktop" ];
+              "video/mp4" = [ "org.kde.haruna.desktop" ];
+              "video/mpeg" = [ "org.kde.haruna.desktop" ];
+              "video/quicktime" = [ "org.kde.haruna.desktop" ];
+              "video/webm" = [ "org.kde.haruna.desktop" ];
+              "video/x-flv" = [ "org.kde.haruna.desktop" ];
+              "video/x-matroska" = [ "org.kde.haruna.desktop" ];
+              "video/x-ms-wmv" = [ "org.kde.haruna.desktop" ];
               "x-scheme-handler/bottles" = [ "com.usebottles.bottles.desktop" ];
               "x-scheme-handler/http" = [ "one.ablaze.floorp.desktop" ];
               "x-scheme-handler/https" = [ "one.ablaze.floorp.desktop" ];
+              "x-scheme-handler/ror2mm" = [ "r2modman.desktop" ];
             };
-            removed = { };
           };
-          defaultApplications = {
-            "application/x-cue" = [ "cdemu-client.desktop" ];
-            "application/x-msdownload" = [ "wine.desktop" ];
-            "audio/aac" = [ "org.strawberrymusicplayer.strawberry.desktop" ];
-            "audio/flac" = [ "org.strawberrymusicplayer.strawberry.desktop" ];
-            "audio/mpeg" = [ "org.strawberrymusicplayer.strawberry.desktop" ];
-            "audio/ogg" = [ "org.strawberrymusicplayer.strawberry.desktop" ];
-            "audio/webm" = [ "org.kde.haruna.desktop" ];
-            "image/bmp" = [ "org.kde.gwenview.desktop" ];
-            "image/gif" = [ "org.kde.gwenview.desktop" ];
-            "image/jpeg" = [ "org.kde.gwenview.desktop" ];
-            "image/png" = [ "org.kde.gwenview.desktop" ];
-            "image/webp" = [ "org.kde.gwenview.desktop" ];
-            "text/html" = [ "one.ablaze.floorp.desktop" ];
-            "text/plain" = [ "org.kde.kate.desktop" ];
-            "video/mp4" = [ "org.kde.haruna.desktop" ];
-            "video/mpeg" = [ "org.kde.haruna.desktop" ];
-            "video/quicktime" = [ "org.kde.haruna.desktop" ];
-            "video/webm" = [ "org.kde.haruna.desktop" ];
-            "video/x-flv" = [ "org.kde.haruna.desktop" ];
-            "video/x-matroska" = [ "org.kde.haruna.desktop" ];
-            "video/x-ms-wmv" = [ "org.kde.haruna.desktop" ];
-            "x-scheme-handler/bottles" = [ "com.usebottles.bottles.desktop" ];
-            "x-scheme-handler/http" = [ "one.ablaze.floorp.desktop" ];
-            "x-scheme-handler/https" = [ "one.ablaze.floorp.desktop" ];
-            "x-scheme-handler/ror2mm" = [ "r2modman.desktop" ];
+          portal = {
+            config.common.default = "*";
+            enable = true;
+            extraPortals = with pkgs; [
+              kdePackages.xdg-desktop-portal-kde
+              xdg-desktop-portal-gtk
+            ];
           };
-        };
-        portal = {
-          config.common.default = "*";
-          enable = true;
-          extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde xdg-desktop-portal-gtk ];
         };
       };
-    };
   };
 }

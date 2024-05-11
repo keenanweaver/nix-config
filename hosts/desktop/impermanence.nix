@@ -2,9 +2,7 @@
 { inputs, ... }:
 {
 
-  imports = [
-    "${inputs.impermanence}/nixos.nix"
-  ];
+  imports = [ "${inputs.impermanence}/nixos.nix" ];
 
   environment = {
     persistence = {

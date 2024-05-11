@@ -1,4 +1,10 @@
-{ lib, config, pkgs, username, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  username,
+  ...
+}:
 let
   cfg = config.base;
 in
@@ -70,7 +76,10 @@ in
     environment = {
       homeBinInPath = true;
       localBinInPath = true;
-      shells = with pkgs; [ bashInteractive zsh ];
+      shells = with pkgs; [
+        bashInteractive
+        zsh
+      ];
       systemPackages = with pkgs; [
         cifs-utils
         nfs-utils
@@ -81,7 +90,8 @@ in
         xdg-user-dirs
       ];
     };
-    /*     i18n =
+    /*
+      i18n =
       let
         defaultLocale = "en_US.UTF-8";
       in
@@ -102,7 +112,8 @@ in
           LC_TELEPHONE = defaultLocale;
           LC_TIME = defaultLocale;
         };
-      }; */
+      };
+    */
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
@@ -119,31 +130,33 @@ in
 
     time.timeZone = "America/Chicago";
 
-    home-manager.users.${username} = { lib, username, ... }: {
-      home = {
-        file = {
-          script-7z-to-zip = {
-            enable = true;
-            text = ''
-              #!/usr/bin/env bash
-              TMPDIR=tempdir_$$
-              for x in *.7z; do
-                mkdir $TMPDIR
-                cd $TMPDIR || return
-                cp "../$x" .
-                7z x "$x"
-                zip -r -9 "../$\\{x%.7z\\}.zip" ./* --exclude ./*.7z
-                cd ..
-                rm -rf $TMPDIR
-              done
-            '';
-            target = ".local/bin/7z-to-zip.sh";
-            executable = true;
+    home-manager.users.${username} =
+      { lib, username, ... }:
+      {
+        home = {
+          file = {
+            script-7z-to-zip = {
+              enable = true;
+              text = ''
+                #!/usr/bin/env bash
+                TMPDIR=tempdir_$$
+                for x in *.7z; do
+                  mkdir $TMPDIR
+                  cd $TMPDIR || return
+                  cp "../$x" .
+                  7z x "$x"
+                  zip -r -9 "../$\\{x%.7z\\}.zip" ./* --exclude ./*.7z
+                  cd ..
+                  rm -rf $TMPDIR
+                done
+              '';
+              target = ".local/bin/7z-to-zip.sh";
+              executable = true;
+            };
           };
+          username = username;
+          homeDirectory = lib.mkDefault "/home/${username}";
         };
-        username = username;
-        homeDirectory = lib.mkDefault "/home/${username}";
       };
-    };
   };
 }

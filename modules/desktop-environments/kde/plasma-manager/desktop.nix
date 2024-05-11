@@ -37,14 +37,16 @@ let
           };
         };
       }
-      /*       {
-        name = "org.kde.plasma.volume";
-        config = {
-          General = {
-            showVirtualDevices = "true";
+      /*
+        {
+          name = "org.kde.plasma.volume";
+          config = {
+            General = {
+              showVirtualDevices = "true";
+            };
           };
-        };
-      } */
+        }
+      */
       "org.kde.plasma.digitalclock"
       "org.kde.plasma.showdesktop"
     ];
@@ -67,7 +69,7 @@ let
               "applications:org.wezfurlong.wezterm.desktop"
               "applications:org.signal.Signal.desktop"
               "applications:xyz.armcord.ArmCord.desktop"
-              "applications:info.mumble.Mumble.desktop" 
+              "applications:info.mumble.Mumble.desktop"
               "applications:qobuz.desktop"
               "applications:org.strawberrymusicplayer.strawberry.desktop"
               "applications:foobar2000.desktop"
@@ -98,28 +100,28 @@ let
   };
 in
 {
-  imports = [
-    ./default.nix
-  ];
-  home-manager.users.${username} = { username, ... }: {
-    programs.plasma = {
-      hotkeys = {
-        commands = {
-          "gsr-save-replay" = {
-            name = "Save GSR Replay";
-            key = "Meta+Ctrl+|";
-            command = "/home/${username}/.local/bin/gsr-save-replay.sh";
-            comment = "Save GPU Screen Recorder replay";
+  imports = [ ./default.nix ];
+  home-manager.users.${username} =
+    { username, ... }:
+    {
+      programs.plasma = {
+        hotkeys = {
+          commands = {
+            "gsr-save-replay" = {
+              name = "Save GSR Replay";
+              key = "Meta+Ctrl+|";
+              command = "/home/${username}/.local/bin/gsr-save-replay.sh";
+              comment = "Save GPU Screen Recorder replay";
+            };
           };
         };
+        shortcuts = {
+          "services/services.gsr-save-replay.sh.desktop"."_launch" = "Meta+Ctrl+|";
+        };
+        panels = [
+          (primaryPanel 0)
+          (secondaryPanel 1)
+        ];
       };
-      shortcuts = {
-        "services/services.gsr-save-replay.sh.desktop"."_launch" = "Meta+Ctrl+|";
-      };
-      panels = [
-        (primaryPanel 0)
-        (secondaryPanel 1)
-      ];
     };
-  };
 }

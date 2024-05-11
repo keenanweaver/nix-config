@@ -1,4 +1,10 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
 
   boot = {
     consoleLogLevel = 0;
@@ -46,7 +52,5 @@
       "ntfs"
     ];
   };
-  environment.systemPackages = with pkgs; [
-    sbctl
-  ];
+  environment.systemPackages = with pkgs; [ sbctl ];
 }

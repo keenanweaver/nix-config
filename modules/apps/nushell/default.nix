@@ -1,4 +1,10 @@
-{ lib, config, username, dotfiles, ... }:
+{
+  lib,
+  config,
+  username,
+  dotfiles,
+  ...
+}:
 let
   cfg = config.nushell;
 in

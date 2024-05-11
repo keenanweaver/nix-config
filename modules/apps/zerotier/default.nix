@@ -1,4 +1,9 @@
-{ lib, config, username, ... }:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 let
   cfg = config.zerotier;
 in
@@ -11,9 +16,7 @@ in
   config = lib.mkIf cfg.enable {
     networking = {
       firewall = {
-        allowedUDPPorts = [
-          9993
-        ];
+        allowedUDPPorts = [ 9993 ];
       };
     };
     services = {

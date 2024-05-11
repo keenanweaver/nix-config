@@ -1,4 +1,11 @@
-{ lib, config, username, fullname, pkgs, ... }:
+{
+  lib,
+  config,
+  username,
+  fullname,
+  pkgs,
+  ...
+}:
 let
   cfg = config.users;
 in

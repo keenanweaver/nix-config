@@ -1,4 +1,9 @@
-{ lib, config, username, ... }:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 let
   cfg = config.timidity;
 in
@@ -9,13 +14,15 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${username} = { username, ... }: {
-      programs.timidity = {
-        enable = true;
-        extraConfig = ''
-          soundfont /home/${username}/Music/soundfonts/default.sf2
-        '';
+    home-manager.users.${username} =
+      { username, ... }:
+      {
+        programs.timidity = {
+          enable = true;
+          extraConfig = ''
+            soundfont /home/${username}/Music/soundfonts/default.sf2
+          '';
+        };
       };
-    };
   };
 }

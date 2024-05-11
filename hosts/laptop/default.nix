@@ -14,9 +14,22 @@
   gaming.enable = false;
 
   boot = {
-    initrd.availableKernelModules = lib.mkDefault [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
-    kernelModules = lib.mkDefault [ "tcp_bbr" "kvm-amd" ]; #"v4l2loopback"
-    kernelParams = lib.mkDefault [ "amd_iommu=on" "amd_pstate=guided" ];
+    initrd.availableKernelModules = lib.mkDefault [
+      "xhci_pci"
+      "ahci"
+      "nvme"
+      "usb_storage"
+      "usbhid"
+      "sd_mod"
+    ];
+    kernelModules = lib.mkDefault [
+      "tcp_bbr"
+      "kvm-amd"
+    ]; # "v4l2loopback"
+    kernelParams = lib.mkDefault [
+      "amd_iommu=on"
+      "amd_pstate=guided"
+    ];
     lanzaboote = {
       enable = true;
     };
@@ -33,7 +46,11 @@
   networking = {
     firewall = {
       allowedUDPPorts = [ 51821 ]; # Wireguard
-      interfaces = { wg0 = { allowedTCPPorts = [ 993 ]; }; };
+      interfaces = {
+        wg0 = {
+          allowedTCPPorts = [ 993 ];
+        };
+      };
     };
     hostName = "nixos-laptop";
   };
@@ -57,51 +74,65 @@
   # https://discourse.nixos.org/t/how-to-disable-networkmanager-wait-online-service-in-the-configuration-file/19963
   systemd.services.NetworkManager-wait-online.enable = false;
 
-  home-manager.users.${username} = { config, username, pkgs, ... }: {
-    home.file = {
-      script-bootstrap-baremetal-laptop = {
-        enable = true;
-        text = ''
-          #!/usr/bin/env bash
-          # Set up Distrobox containers
-          distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
-          distrobox enter bazzite-arch-sys -- bash -l -c "${config.xdg.configHome}/distrobox/bootstrap-bazzite-arch-sys.sh"
-          # Set up flatpaks
-          sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-          flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-          #flatpak --user remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
-          /home/${username}/.local/bin/flatpak-install.sh
-          /home/${username}/.local/bin/flatpak-install-sys.sh
-          curl https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | test(".*flatpak$")).browser_download_url' | wget -i- -N -P /home/${username}/Downloads
-          fd 'rustdesk' /home/${username}/Downloads -e flatpak -x flatpak install -u -y
-          # Set up other things
-          curl https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | wget -i- -N -P /home/${username}/.local/bin
-          chmod +x /home/${username}/.local/bin/conty_lite.sh
-          #conty_lite.sh -u
-        '';
-        target = ".local/bin/bootstrap-baremetal.sh";
-        executable = true;
+  home-manager.users.${username} =
+    {
+      config,
+      username,
+      pkgs,
+      ...
+    }:
+    {
+      home.file = {
+        script-bootstrap-baremetal-laptop = {
+          enable = true;
+          text = ''
+            #!/usr/bin/env bash
+            # Set up Distrobox containers
+            distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
+            distrobox enter bazzite-arch-sys -- bash -l -c "${config.xdg.configHome}/distrobox/bootstrap-bazzite-arch-sys.sh"
+            # Set up flatpaks
+            sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+            flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+            #flatpak --user remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+            /home/${username}/.local/bin/flatpak-install.sh
+            /home/${username}/.local/bin/flatpak-install-sys.sh
+            curl https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | test(".*flatpak$")).browser_download_url' | wget -i- -N -P /home/${username}/Downloads
+            fd 'rustdesk' /home/${username}/Downloads -e flatpak -x flatpak install -u -y
+            # Set up other things
+            curl https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | wget -i- -N -P /home/${username}/.local/bin
+            chmod +x /home/${username}/.local/bin/conty_lite.sh
+            #conty_lite.sh -u
+          '';
+          target = ".local/bin/bootstrap-baremetal.sh";
+          executable = true;
+        };
       };
-    };
-    home.packages = with pkgs; [ bottles ];
-    xdg = {
-      desktopEntries = {
-        foobar2000 = {
-          name = "foobar2000";
-          comment = "Launch foobar2000 using Bottles.";
-          exec = "bottles-cli run -p foobar2000 -b foobar2000";
-          icon = "/home/${username}/Games/Bottles/foobar2000/icons/foobar2000.png";
-          categories = [ "AudioVideo" "Player" "Audio" ];
-          noDisplay = false;
-          startupNotify = true;
-          actions = {
-            "Configure" = { name = "Configure in Bottles"; exec = "bottles -b foobar2000"; };
-          };
-          settings = {
-            StartupWMClass = "foobar2000";
+      home.packages = with pkgs; [ bottles ];
+      xdg = {
+        desktopEntries = {
+          foobar2000 = {
+            name = "foobar2000";
+            comment = "Launch foobar2000 using Bottles.";
+            exec = "bottles-cli run -p foobar2000 -b foobar2000";
+            icon = "/home/${username}/Games/Bottles/foobar2000/icons/foobar2000.png";
+            categories = [
+              "AudioVideo"
+              "Player"
+              "Audio"
+            ];
+            noDisplay = false;
+            startupNotify = true;
+            actions = {
+              "Configure" = {
+                name = "Configure in Bottles";
+                exec = "bottles -b foobar2000";
+              };
+            };
+            settings = {
+              StartupWMClass = "foobar2000";
+            };
           };
         };
       };
     };
-  };
 }

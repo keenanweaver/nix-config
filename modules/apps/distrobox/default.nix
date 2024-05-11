@@ -1,4 +1,11 @@
-{ lib, config, username, pkgs, vars, ... }:
+{
+  lib,
+  config,
+  username,
+  pkgs,
+  vars,
+  ...
+}:
 let
   cfg = config.distrobox;
 in
@@ -19,7 +26,15 @@ in
         lilipod
       ];
     };
-    home-manager.users.${username} = { inputs, config, username, pkgs, dotfiles, ... }:
+    home-manager.users.${username} =
+      {
+        inputs,
+        config,
+        username,
+        pkgs,
+        dotfiles,
+        ...
+      }:
       let
         dbe = "${config.xdg.dataHome}/distrobox/exports/bin";
       in
@@ -385,32 +400,39 @@ in
           distrobox-assemble-desktop = {
             enable = true;
 
-            text = (if vars.gaming then ''
-              [bazzite-arch-exodos]
-              home=${config.xdg.configHome}/distrobox/bazzite-arch-exodos
-              image=ghcr.io/ublue-os/bazzite-arch:latest
-              init=true
-              pull=false
-              replace=false
-              start_now=true
+            text =
+              (
+                if vars.gaming then
+                  ''
+                    [bazzite-arch-exodos]
+                    home=${config.xdg.configHome}/distrobox/bazzite-arch-exodos
+                    image=ghcr.io/ublue-os/bazzite-arch:latest
+                    init=true
+                    pull=false
+                    replace=false
+                    start_now=true
 
-              [bazzite-arch-gaming]
-              home=${config.xdg.configHome}/distrobox/bazzite-arch-gaming
-              image=ghcr.io/ublue-os/bazzite-arch:latest
-              init=true
-              pull=false
-              replace=false
-              start_now=true
-            '' else '''') + ''
-            
-              [bazzite-arch-sys]
-              home=${config.xdg.configHome}/distrobox/bazzite-arch-sys
-              image=ghcr.io/ublue-os/bazzite-arch:latest
-              init=true
-              pull=false
-              replace=false
-              start_now=true
-            '';
+                    [bazzite-arch-gaming]
+                    home=${config.xdg.configHome}/distrobox/bazzite-arch-gaming
+                    image=ghcr.io/ublue-os/bazzite-arch:latest
+                    init=true
+                    pull=false
+                    replace=false
+                    start_now=true
+                  ''
+                else
+                  ''''
+              )
+              + ''
+
+                [bazzite-arch-sys]
+                home=${config.xdg.configHome}/distrobox/bazzite-arch-sys
+                image=ghcr.io/ublue-os/bazzite-arch:latest
+                init=true
+                pull=false
+                replace=false
+                start_now=true
+              '';
             target = "${config.xdg.configHome}/distrobox/distrobox.ini";
           };
           distrobox-bazzite-arch-exodos-catppuccin-konsole = {

@@ -1,4 +1,9 @@
-{ lib, config, username, ... }:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 let
   cfg = config.ssh;
 in
@@ -20,13 +25,9 @@ in
           port = 6777;
         }
       ];
-      ports = [
-        6777
-      ];
+      ports = [ 6777 ];
       settings = {
-        AllowUsers = [
-          "${username}"
-        ];
+        AllowUsers = [ "${username}" ];
         # Allow forwarding ports to everywhere
         GatewayPorts = "clientspecified";
         KbdInteractiveAuthentication = false;
@@ -44,22 +45,24 @@ in
         X11Forwarding = true;
       };
     };
-    home-manager.users.${username} = { config, ... }: {
-      home.file = {
-        desktop-entry-ssh-add = {
+    home-manager.users.${username} =
+      { config, ... }:
+      {
+        home.file = {
+          desktop-entry-ssh-add = {
+            enable = true;
+            text = ''
+              [Desktop Entry]
+              Exec=ssh-add -q .ssh/id_ed25519
+              Name=ssh-add
+              Type=Application
+            '';
+            target = "${config.xdg.configHome}/autostart/ssh-add.desktop";
+          };
+        };
+        programs.ssh = {
           enable = true;
-          text = ''
-            [Desktop Entry]
-            Exec=ssh-add -q .ssh/id_ed25519
-            Name=ssh-add
-            Type=Application
-          '';
-          target = "${config.xdg.configHome}/autostart/ssh-add.desktop";
         };
       };
-      programs.ssh = {
-        enable = true;
-      };
-    };
   };
 }

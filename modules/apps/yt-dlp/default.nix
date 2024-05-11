@@ -1,4 +1,9 @@
-{ lib, config, username, ... }:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 let
   cfg = config.yt-dlp;
 in
@@ -9,11 +14,13 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${username} = { pkgs, ... }: {
-      programs.yt-dlp = {
-        enable = true;
-        package = pkgs.yt-dlp_git; # Chaotic Nyx package
+    home-manager.users.${username} =
+      { pkgs, ... }:
+      {
+        programs.yt-dlp = {
+          enable = true;
+          package = pkgs.yt-dlp_git; # Chaotic Nyx package
+        };
       };
-    };
   };
 }

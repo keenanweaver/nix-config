@@ -1,4 +1,9 @@
-{ lib, config, username, ... }:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 let
   cfg = config.gpg;
 in
@@ -9,20 +14,22 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${username} = { pkgs, ... }: {
-      programs.gpg = {
-        enable = true;
+    home-manager.users.${username} =
+      { pkgs, ... }:
+      {
+        programs.gpg = {
+          enable = true;
+        };
+        services.gpg-agent = {
+          enable = true;
+          enableExtraSocket = true;
+          enableSshSupport = true;
+          defaultCacheTtl = 43200; # 12h
+          defaultCacheTtlSsh = 43200;
+          maxCacheTtl = 86400; # 24h
+          maxCacheTtlSsh = 86400;
+          pinentryPackage = pkgs.pinentry-qt;
+        };
       };
-      services.gpg-agent = {
-        enable = true;
-        enableExtraSocket = true;
-        enableSshSupport = true;
-        defaultCacheTtl = 43200; # 12h
-        defaultCacheTtlSsh = 43200;
-        maxCacheTtl = 86400; # 24h
-        maxCacheTtlSsh = 86400;
-        pinentryPackage = pkgs.pinentry-qt;
-      };
-    };
   };
 }

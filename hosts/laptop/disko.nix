@@ -1,4 +1,7 @@
-{ disks ? [ "/dev/nvme0n1" ], ... }:
+{
+  disks ? [ "/dev/nvme0n1" ],
+  ...
+}:
 {
   disko.devices = {
     disk.main = {
@@ -15,7 +18,10 @@
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
-              mountOptions = [ "defaults" "umask=0077" ];
+              mountOptions = [
+                "defaults"
+                "umask=0077"
+              ];
             };
           };
           luks = {
@@ -35,7 +41,10 @@
                     mountpoint = "/home";
                   };
                   "/nix" = {
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = [
+                      "compress=zstd"
+                      "noatime"
+                    ];
                     mountpoint = "/nix";
                   };
                   "/persist" = {

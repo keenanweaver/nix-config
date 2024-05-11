@@ -14,7 +14,14 @@
 
   boot = {
     initrd = {
-      availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "virtio_pci" "sr_mod" "virtio_blk" ];
+      availableKernelModules = [
+        "uhci_hcd"
+        "ehci_pci"
+        "ahci"
+        "virtio_pci"
+        "sr_mod"
+        "virtio_blk"
+      ];
     };
     kernelModules = [ "kvm-intel" ];
     loader = {
@@ -25,10 +32,15 @@
       systemd-boot.enable = true;
       timeout = 5;
     };
-    supportedFilesystems = [ "nfs" "btrfs" ];
+    supportedFilesystems = [
+      "nfs"
+      "btrfs"
+    ];
   };
 
-  hardware = { cpu.intel.updateMicrocode = true; };
+  hardware = {
+    cpu.intel.updateMicrocode = true;
+  };
 
   networking = {
     hostName = "nixos-unraid";
@@ -60,7 +72,13 @@
 
   system.stateVersion = "23.11";
 
-  home-manager.users.${username} = { config, username, pkgs, ... }:
+  home-manager.users.${username} =
+    {
+      config,
+      username,
+      pkgs,
+      ...
+    }:
     let
       unraid = "/mnt/crusader";
     in
@@ -100,17 +118,21 @@
       systemd = {
         user = {
           services = {
-            /*         "chd_3do" = {
-          Unit = { Description = "Download 'chd_3do' from Internet Archive"; };
-          Service = {
-            ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] chd_3do'";
-            ExecStart = "${pkgs.internetarchive}/bin/ia download chd_3do --destdir='${unraid}/Games/Games/Rom/Redump/Panasonic 3DO/CHD' --no-directories";
-            ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] chd_3do'";
-            Type = "oneshot";
-          };
-            }; */
+            /*
+              "chd_3do" = {
+              Unit = { Description = "Download 'chd_3do' from Internet Archive"; };
+              Service = {
+                ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] chd_3do'";
+                ExecStart = "${pkgs.internetarchive}/bin/ia download chd_3do --destdir='${unraid}/Games/Games/Rom/Redump/Panasonic 3DO/CHD' --no-directories";
+                ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] chd_3do'";
+                Type = "oneshot";
+              };
+                };
+            */
             "chd_dc" = {
-              Unit = { Description = "Download 'chd_dc' from Internet Archive"; };
+              Unit = {
+                Description = "Download 'chd_dc' from Internet Archive";
+              };
               Service = {
                 ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] chd_dc'";
                 ExecStart = "${pkgs.internetarchive}/bin/ia download chd_dc --destdir='${unraid}/Games/Rom/Redump/Sega Dreamcast/CHD' --no-directories";
@@ -118,67 +140,77 @@
                 Type = "oneshot";
               };
             };
-            /*         "chd_neogeocd" = {
-          Unit = {
-            Description = "Download 'chd_neogeocd' from Internet Archive";
-          };
-          Service = {
-            ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] chd_neogeocd'";
-            ExecStart = "${pkgs.internetarchive}/bin/ia download chd_neogeocd --destdir='${unraid}/Games/Rom/Redump/SNK Neo Geo CD/CHD' --no-directories";
-            ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] chd_neogeocd'";
-            Type = "oneshot";
-          };
-            }; */
-            /*         "chd_pcecd" = {
-          Unit = {
-            Description = "Download 'chd_pcecd' from Internet Archive";
-          };
-          Service = {
-            ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] chd_pcecd'";
-            ExecStart = "${pkgs.internetarchive}/bin/ia download chd_pcecd --destdir='${unraid}/Games/Rom/Redump/NEC PC Engine/CHD' --no-directories";
-            ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] chd_pcecd'";
-            Type = "oneshot";
-          };
-            }; */
-            /*         "chd_psx" = {
-          Unit = {
-            Description = "Download 'chd_psx' from Internet Archive";
-          };
-          Service = {
-            ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] chd_psx'";
-            ExecStart = [
-              "${pkgs.internetarchive}/bin/ia download chd_psx --destdir='${unraid}/Games/Rom/Redump/Sony Playstation/CHD' --no-directories"
-              "${pkgs.internetarchive}/bin/ia download chd_psx_eur --destdir='${unraid}/Games/Rom/Redump/Sony Playstation/CHD' --no-directories"
-              "${pkgs.internetarchive}/bin/ia download chd_psx_jap --destdir='${unraid}/Games/Rom/Redump/Sony Playstation/CHD' --no-directories"
-              "${pkgs.internetarchive}/bin/ia download chd_psx_jap_p2 --destdir='${unraid}/Games/Rom/Redump/Sony Playstation/CHD' --no-directories"
-              "${pkgs.internetarchive}/bin/ia download chd_psx_misc --destdir='${unraid}/Games/Rom/Redump/Sony Playstation/CHD' --no-directories"
-            ];
-            ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] chd_psx'";
-            Type = "oneshot";
-          };
-            }; */
-            /*         "chd_saturn" = {
-          Unit = {
-            Description = "Download 'chd_saturn' from Internet Archive";
-          };
-          Service = {
-            ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] chd_saturn'";
-            ExecStart = "${pkgs.internetarchive}/bin/ia download chd_saturn --destdir='${unraid}/Games/Rom/Redump/Sega Saturn/CHD' --no-directories";
-            ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] chd_saturn'";
-            Type = "oneshot";
-          };
-            }; */
-            /*         "chd_segacd" = {
-          Unit = {
-            Description = "Download 'chd_segacd' from Internet Archive";
-          };
-          Service = {
-            ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] chd_segacd'";
-            ExecStart = "${pkgs.internetarchive}/bin/ia download chd_segacd --destdir='${unraid}/Games/Rom/Redump/Sega CD/CHD' --no-directories";
-            ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] chd_segacd'";
-            Type = "oneshot";
-          };
-            }; */
+            /*
+              "chd_neogeocd" = {
+              Unit = {
+                Description = "Download 'chd_neogeocd' from Internet Archive";
+              };
+              Service = {
+                ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] chd_neogeocd'";
+                ExecStart = "${pkgs.internetarchive}/bin/ia download chd_neogeocd --destdir='${unraid}/Games/Rom/Redump/SNK Neo Geo CD/CHD' --no-directories";
+                ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] chd_neogeocd'";
+                Type = "oneshot";
+              };
+                };
+            */
+            /*
+              "chd_pcecd" = {
+              Unit = {
+                Description = "Download 'chd_pcecd' from Internet Archive";
+              };
+              Service = {
+                ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] chd_pcecd'";
+                ExecStart = "${pkgs.internetarchive}/bin/ia download chd_pcecd --destdir='${unraid}/Games/Rom/Redump/NEC PC Engine/CHD' --no-directories";
+                ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] chd_pcecd'";
+                Type = "oneshot";
+              };
+                };
+            */
+            /*
+              "chd_psx" = {
+              Unit = {
+                Description = "Download 'chd_psx' from Internet Archive";
+              };
+              Service = {
+                ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] chd_psx'";
+                ExecStart = [
+                  "${pkgs.internetarchive}/bin/ia download chd_psx --destdir='${unraid}/Games/Rom/Redump/Sony Playstation/CHD' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download chd_psx_eur --destdir='${unraid}/Games/Rom/Redump/Sony Playstation/CHD' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download chd_psx_jap --destdir='${unraid}/Games/Rom/Redump/Sony Playstation/CHD' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download chd_psx_jap_p2 --destdir='${unraid}/Games/Rom/Redump/Sony Playstation/CHD' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download chd_psx_misc --destdir='${unraid}/Games/Rom/Redump/Sony Playstation/CHD' --no-directories"
+                ];
+                ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] chd_psx'";
+                Type = "oneshot";
+              };
+                };
+            */
+            /*
+              "chd_saturn" = {
+              Unit = {
+                Description = "Download 'chd_saturn' from Internet Archive";
+              };
+              Service = {
+                ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] chd_saturn'";
+                ExecStart = "${pkgs.internetarchive}/bin/ia download chd_saturn --destdir='${unraid}/Games/Rom/Redump/Sega Saturn/CHD' --no-directories";
+                ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] chd_saturn'";
+                Type = "oneshot";
+              };
+                };
+            */
+            /*
+              "chd_segacd" = {
+              Unit = {
+                Description = "Download 'chd_segacd' from Internet Archive";
+              };
+              Service = {
+                ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] chd_segacd'";
+                ExecStart = "${pkgs.internetarchive}/bin/ia download chd_segacd --destdir='${unraid}/Games/Rom/Redump/Sega CD/CHD' --no-directories";
+                ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] chd_segacd'";
+                Type = "oneshot";
+              };
+                };
+            */
             "htgdb-gamepacks" = {
               Unit = {
                 Description = "Download 'htgdb-gamepacks' from Internet Archive";
@@ -239,7 +271,9 @@
               };
             };
             "idgames-archive" = {
-              Unit = { Description = "Download idgames archive"; };
+              Unit = {
+                Description = "Download idgames archive";
+              };
               Service = {
                 ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] idgames Archive'";
                 ExecStart = "${pkgs.wget}/bin/wget -e robots=off --no-check-certificate -nH --no-cache -R '.DS_Store,Thumbs.db,thumbcache.db,desktop.ini,_macosx,index.html*' -c -w 1 --random-wait --cut-dirs=2 -P '${unraid}/Games/Games/Doom/idgames' -q -r -l 6 --no-parent -nc -a -nv 'https://youfailit.net/pub/idgames'";
@@ -248,7 +282,9 @@
               };
             };
             "lgogdownloader" = {
-              Unit = { Description = "Download & update GOG offline installers"; };
+              Unit = {
+                Description = "Download & update GOG offline installers";
+              };
               Service = {
                 ExecStartPre = [
                   "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] lgogdownloader'"
@@ -264,7 +300,9 @@
               };
             };
             "lgogdownloader-cleanup" = {
-              Unit = { Description = "Clean up old GOG offline installers"; };
+              Unit = {
+                Description = "Clean up old GOG offline installers";
+              };
               Service = {
                 ExecStartPre = [
                   "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] lgogdownloader-cleanup'"
@@ -280,22 +318,26 @@
                 Type = "oneshot";
               };
             };
-            /*         "mame" = {
-          Unit = { Description = "Download mame from Internet Archive"; };
-          Service = {
-            ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] mame'";
-            ExecStart = [
-              "${pkgs.internetarchive}/bin/ia download mame-merged --destdir='${unraid}/Games/Rom/MAME/merged' --no-directories"
-              "${pkgs.internetarchive}/bin/ia download mame-sl --destdir='${unraid}/Games/Rom/MAME/sl' --no-directories"
-              "${pkgs.internetarchive}/bin/ia download mame-support --destdir='${unraid}/Games/Rom/MAME/support' --no-directories"
-              "${pkgs.internetarchive}/bin/ia download MAME_0.225_CHDs_merged --destdir='${unraid}/Games/Rom/MAME/CHD' --no-directories"
-            ];
-            ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] mame'";
-            Type = "oneshot";
-          };
-            }; */
+            /*
+              "mame" = {
+              Unit = { Description = "Download mame from Internet Archive"; };
+              Service = {
+                ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] mame'";
+                ExecStart = [
+                  "${pkgs.internetarchive}/bin/ia download mame-merged --destdir='${unraid}/Games/Rom/MAME/merged' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download mame-sl --destdir='${unraid}/Games/Rom/MAME/sl' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download mame-support --destdir='${unraid}/Games/Rom/MAME/support' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download MAME_0.225_CHDs_merged --destdir='${unraid}/Games/Rom/MAME/CHD' --no-directories"
+                ];
+                ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] mame'";
+                Type = "oneshot";
+              };
+                };
+            */
             "modland" = {
-              Unit = { Description = "Download modland"; };
+              Unit = {
+                Description = "Download modland";
+              };
               Service = {
                 ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] modland'";
                 ExecStart = "${pkgs.wget}/bin/wget -R '.DS_Store,Thumbs.db,thumbcache.db,desktop.ini,_macosx,index.html*' -nH -nc --no-cache --no-check-certificate -e robots=off -c --random-wait -P '${unraid}/Media/Audio/Music/Tracker/ModLand' -r -l 6 --no-parent 'ftp://modland.com/pub'";
@@ -303,37 +345,41 @@
                 Type = "oneshot";
               };
             };
-            /*         "nintendo-3ds-complete-collection" = {
-          Unit = {
-            Description = "Download 'nintendo-3ds-complete-collection' from Internet Archive";
-          };
-          Service = {
-            ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] nintendo-3ds-complete-collection'";
-            ExecStart = [
-              "${pkgs.internetarchive}/bin/ia download nintendo-3ds-complete-collection --destdir='${unraid}/Games/Rom/Other/Nintendo 3DS' --no-directories"
-              "${pkgs.internetarchive}/bin/ia download nintendo-3ds-complete-collection-pt2 --destdir='${unraid}/Games/Rom/Other/Nintendo 3DS' --no-directories"
-              "${pkgs.internetarchive}/bin/ia download nintendo-3ds-eshop-complete-collection --destdir='${unraid}/Games/Rom/Other/Nintendo 3DS' --no-directories"
-            ];
-            ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] nintendo-3ds-complete-collection'";
-            Type = "oneshot";
-          };
-            }; */
-            /*         "nintendo-ds" = {
-          Unit = {
-            Description = "Download 'nintendo-ds' from Internet Archive";
-          };
-          Service = {
-            ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] nintendo-ds'";
-            ExecStart = [
-              "${pkgs.internetarchive}/bin/ia download no-ndsdec2021 --destdir='${unraid}/Games/Rom/No-Intro/Nintendo DS' --no-directories"
-              "${pkgs.internetarchive}/bin/ia download no-intro-nintendo-nintendo-ds-download-play_202207 --destdir='${unraid}/Games/Rom/No-Intro/Nintendo DS' --no-directories"
-              "${pkgs.internetarchive}/bin/ia download No-Intro_Nintendo_DSi_2018-06-30 --destdir='${unraid}/Games/Rom/No-Intro/Nintendo DS' --no-directories"
-              "${pkgs.internetarchive}/bin/ia download nds_apfix --destdir='${unraid}/Games/Rom/No-Intro/Nintendo DS' --no-directories"
-            ];
-            ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] nintendo-ds'";
-            Type = "oneshot";
-          };
-            }; */
+            /*
+              "nintendo-3ds-complete-collection" = {
+              Unit = {
+                Description = "Download 'nintendo-3ds-complete-collection' from Internet Archive";
+              };
+              Service = {
+                ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] nintendo-3ds-complete-collection'";
+                ExecStart = [
+                  "${pkgs.internetarchive}/bin/ia download nintendo-3ds-complete-collection --destdir='${unraid}/Games/Rom/Other/Nintendo 3DS' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download nintendo-3ds-complete-collection-pt2 --destdir='${unraid}/Games/Rom/Other/Nintendo 3DS' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download nintendo-3ds-eshop-complete-collection --destdir='${unraid}/Games/Rom/Other/Nintendo 3DS' --no-directories"
+                ];
+                ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] nintendo-3ds-complete-collection'";
+                Type = "oneshot";
+              };
+                };
+            */
+            /*
+              "nintendo-ds" = {
+              Unit = {
+                Description = "Download 'nintendo-ds' from Internet Archive";
+              };
+              Service = {
+                ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] nintendo-ds'";
+                ExecStart = [
+                  "${pkgs.internetarchive}/bin/ia download no-ndsdec2021 --destdir='${unraid}/Games/Rom/No-Intro/Nintendo DS' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download no-intro-nintendo-nintendo-ds-download-play_202207 --destdir='${unraid}/Games/Rom/No-Intro/Nintendo DS' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download No-Intro_Nintendo_DSi_2018-06-30 --destdir='${unraid}/Games/Rom/No-Intro/Nintendo DS' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download nds_apfix --destdir='${unraid}/Games/Rom/No-Intro/Nintendo DS' --no-directories"
+                ];
+                ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] nintendo-ds'";
+                Type = "oneshot";
+              };
+                };
+            */
             "ni-roms" = {
               Unit = {
                 Description = "Download 'ni-roms' from Internet Archive";
@@ -382,7 +428,9 @@
               };
             };
             "smspower" = {
-              Unit = { Description = "Download SMSPower"; };
+              Unit = {
+                Description = "Download SMSPower";
+              };
               Service = {
                 ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] SMSPower'";
                 ExecStart = "${pkgs.wget}/bin/wget -e robots=off --no-check-certificate --no-cache -R '.DS_Store,Thumbs.db,thumbcache.db,desktop.ini,_macosx,index.html*' -c -w 1 -r --timestamping --random-wait -nH --cut-dirs=2 -P '${unraid}/Media/Audio/Music/VGM/Sega Master System & Game Gear' -l 1 -A 'zip' 'https://www.smspower.org/Music/VGMs'";
@@ -391,7 +439,9 @@
               };
             };
             "taffersparadise" = {
-              Unit = { Description = "Download taffersparadise"; };
+              Unit = {
+                Description = "Download taffersparadise";
+              };
               Service = {
                 ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] TaffersParadise'";
                 ExecStart = [
@@ -422,42 +472,52 @@
             };
           };
           timers = {
-            /*         "chd_3do" = {
-          Install.WantedBy = [ "timers.target" ];
-          Timer = {
-            OnCalendar = "*-*-* 6:06:00 America/Chicago";
-          };
-            }; */
+            /*
+              "chd_3do" = {
+              Install.WantedBy = [ "timers.target" ];
+              Timer = {
+                OnCalendar = "*-*-* 6:06:00 America/Chicago";
+              };
+                };
+            */
             "chd_dc" = {
               Install.WantedBy = [ "timers.target" ];
               Timer = {
                 OnCalendar = "*-*-* 6:06:00 America/Chicago";
               };
             };
-            /*         "chd_neogeocd" = {
-          Install.WantedBy = [ "timers.target" ];
-          Timer = {
-            OnCalendar = "*-*-* 6:07:00 America/Chicago";
-          };
-            }; */
-            /*         "chd_pcecd" = {
-          Install.WantedBy = [ "timers.target" ];
-          Timer = {
-            OnCalendar = "*-*-* 6:08:00 America/Chicago";
-          };
-            }; */
-            /*         "chd_saturn" = {
-          Install.WantedBy = [ "timers.target" ];
-          Timer = {
-            OnCalendar = "*-*-* 6:26:00 America/Chicago";
-          };
-            }; */
-            /*         "chd_segacd" = {
-          Install.WantedBy = [ "timers.target" ];
-          Timer = {
-            OnCalendar = "*-*-* 6:40:00 America/Chicago";
-          };
-            }; */
+            /*
+              "chd_neogeocd" = {
+              Install.WantedBy = [ "timers.target" ];
+              Timer = {
+                OnCalendar = "*-*-* 6:07:00 America/Chicago";
+              };
+                };
+            */
+            /*
+              "chd_pcecd" = {
+              Install.WantedBy = [ "timers.target" ];
+              Timer = {
+                OnCalendar = "*-*-* 6:08:00 America/Chicago";
+              };
+                };
+            */
+            /*
+              "chd_saturn" = {
+              Install.WantedBy = [ "timers.target" ];
+              Timer = {
+                OnCalendar = "*-*-* 6:26:00 America/Chicago";
+              };
+                };
+            */
+            /*
+              "chd_segacd" = {
+              Install.WantedBy = [ "timers.target" ];
+              Timer = {
+                OnCalendar = "*-*-* 6:40:00 America/Chicago";
+              };
+                };
+            */
             "joshw" = {
               Install.WantedBy = [ "timers.target" ];
               Timer = {
@@ -494,36 +554,40 @@
                 OnCalendar = "*-01,04,07,10-01 05:00:00 America/Chicago";
               };
             };
-            /*         "nintendo-3ds-complete-collection" = {
-          Install.WantedBy = [ "timers.target" ];
-          Timer = {
-            OnCalendar = "*-*-* 6:30:00 America/Chicago";
-          };
-        };
-        "nintendo-ds" = {
-          Install.WantedBy = [ "timers.target" ];
-          Timer = {
-            OnCalendar = "*-*-* 6:30:00 America/Chicago";
-          };
-            }; */
+            /*
+              "nintendo-3ds-complete-collection" = {
+                Install.WantedBy = [ "timers.target" ];
+                Timer = {
+                  OnCalendar = "*-*-* 6:30:00 America/Chicago";
+                };
+              };
+              "nintendo-ds" = {
+                Install.WantedBy = [ "timers.target" ];
+                Timer = {
+                  OnCalendar = "*-*-* 6:30:00 America/Chicago";
+                };
+                  };
+            */
             "ni-roms" = {
               Install.WantedBy = [ "timers.target" ];
               Timer = {
                 OnCalendar = "*-*-* 06:00:00 America/Chicago";
               };
             };
-            /*         "rvz-gc-asia-redump" = {
-          Install.WantedBy = [ "timers.target" ];
-          Timer = {
-            OnCalendar = "*-*-* 06:00:00 America/Chicago";
-          };
-        };
-        "rvz-gc-usa-redump" = {
-          Install.WantedBy = [ "timers.target" ];
-          Timer = {
-            OnCalendar = "*-*-* 06:00:00 America/Chicago";
-          };
-            }; */
+            /*
+              "rvz-gc-asia-redump" = {
+                Install.WantedBy = [ "timers.target" ];
+                Timer = {
+                  OnCalendar = "*-*-* 06:00:00 America/Chicago";
+                };
+              };
+              "rvz-gc-usa-redump" = {
+                Install.WantedBy = [ "timers.target" ];
+                Timer = {
+                  OnCalendar = "*-*-* 06:00:00 America/Chicago";
+                };
+                  };
+            */
             "smspower" = {
               Install.WantedBy = [ "timers.target" ];
               Timer = {
@@ -536,12 +600,14 @@
                 OnCalendar = "*-01,07-01 11:05:00 America/Chicago";
               };
             };
-            /*         "wii_rvz_usa" = {
-          Install.WantedBy = [ "timers.target" ];
-          Timer = {
-            OnCalendar = "*-*-* 6:30:00 America/Chicago";
-          };
-            }; */
+            /*
+              "wii_rvz_usa" = {
+              Install.WantedBy = [ "timers.target" ];
+              Timer = {
+                OnCalendar = "*-*-* 6:30:00 America/Chicago";
+              };
+                };
+            */
           };
         };
       };

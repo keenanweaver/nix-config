@@ -1,4 +1,9 @@
-{ lib, config, username, ... }:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 let
   cfg = config.performance;
 in
@@ -70,19 +75,21 @@ in
       '';
     };
 
-    /*     systemd.services.speed-up-shutdown = {
-      description = "Speeds up shutdown and reboot";
-      wantedBy = [ "shutdown.target" ];
-      before = [ "shutdown.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        TimeoutStartSec = "0";
+    /*
+      systemd.services.speed-up-shutdown = {
+        description = "Speeds up shutdown and reboot";
+        wantedBy = [ "shutdown.target" ];
+        before = [ "shutdown.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          TimeoutStartSec = "0";
+        };
+        script = ''
+          /home/${username}/.local/bin/gsr-stop-replay.sh
+          podman stop -a
+        '';
       };
-      script = ''
-        /home/${username}/.local/bin/gsr-stop-replay.sh
-        podman stop -a
-      '';
-    }; */
+    */
 
     home-manager.users.${username} = { };
   };

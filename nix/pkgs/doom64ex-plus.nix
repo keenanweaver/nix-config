@@ -1,13 +1,14 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, SDL2
-, SDL2_net
-, fluidsynth
-, libGLU
-, libpng
-, pkg-config
-, makeDesktopItem
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  SDL2,
+  SDL2_net,
+  fluidsynth,
+  libGLU,
+  libpng,
+  pkg-config,
+  makeDesktopItem,
 }:
 
 let

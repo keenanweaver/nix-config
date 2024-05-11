@@ -1,4 +1,10 @@
-{ lib, config, username, pkgs, ... }:
+{
+  lib,
+  config,
+  username,
+  pkgs,
+  ...
+}:
 let
   cfg = config.gamescope;
 in

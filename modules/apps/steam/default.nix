@@ -1,4 +1,10 @@
-{ lib, config, username, pkgs, ... }:
+{
+  lib,
+  config,
+  username,
+  pkgs,
+  ...
+}:
 let
   cfg = config.steam;
 in
@@ -29,57 +35,61 @@ in
           MANGOHUD = true;
           OBS_VKCAPTURE = true;
         };
-        extraLibraries = pkgs: with pkgs; [
-          openssl
-          #openssl_1_1 # Devil Daggers
-          wqy_zenhei
-        ];
-        extraPkgs = pkgs: with pkgs; [
-          ### Gamescope
-          keyutils
-          libkrb5
-          libpng
-          libpulseaudio
-          libvorbis
-          stdenv.cc.cc.lib
-          xorg.libXcursor
-          xorg.libXi
-          xorg.libXinerama
-          xorg.libXScrnSaver
-          ###
-          corefonts
-          curl
-          harfbuzz
-          imagemagick
-          gnome.zenity
-          libgdiplus
-          libthai
-          libxcrypt-legacy
-          ncurses6 # CK III
-          pango
-          vkbasalt
-          xdotool
-        ];
+        extraLibraries =
+          pkgs: with pkgs; [
+            openssl
+            #openssl_1_1 # Devil Daggers
+            wqy_zenhei
+          ];
+        extraPkgs =
+          pkgs: with pkgs; [
+            ### Gamescope
+            keyutils
+            libkrb5
+            libpng
+            libpulseaudio
+            libvorbis
+            stdenv.cc.cc.lib
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXinerama
+            xorg.libXScrnSaver
+            ###
+            corefonts
+            curl
+            harfbuzz
+            imagemagick
+            gnome.zenity
+            libgdiplus
+            libthai
+            libxcrypt-legacy
+            ncurses6 # CK III
+            pango
+            vkbasalt
+            xdotool
+          ];
       };
       remotePlay.openFirewall = true;
     };
-    home-manager.users.${username} = { pkgs, config, ... }: {
-      home = {
-        file = {
-          steam-slow-fix = {
-            enable = cfg.fixDownloadSpeed;
-            text = ''
-              @nClientDownloadEnableHTTP2PlatformLinux 0
-              @fDownloadRateImprovementToAddAnotherConnection 1.0
-            '';
-            target = "${config.xdg.dataHome}/Steam/steam_dev.cfg";
+    home-manager.users.${username} =
+      { pkgs, config, ... }:
+      {
+        home = {
+          file = {
+            steam-slow-fix = {
+              enable = cfg.fixDownloadSpeed;
+              text = ''
+                @nClientDownloadEnableHTTP2PlatformLinux 0
+                @fDownloadRateImprovementToAddAnotherConnection 1.0
+              '';
+              target = "${config.xdg.dataHome}/Steam/steam_dev.cfg";
+            };
           };
+          packages = with pkgs; [
+            protontricks
+            steamtinkerlaunch
+          ];
         };
-        packages = with pkgs; [
-          protontricks
-          steamtinkerlaunch
-        ];
       };
-    };
   };
 }

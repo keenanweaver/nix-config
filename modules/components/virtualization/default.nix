@@ -1,4 +1,11 @@
-{ lib, config, pkgs, username, vars, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  username,
+  vars,
+  ...
+}:
 let
   cfg = config.virtualization;
 in
@@ -23,7 +30,10 @@ in
       ];
     };
     # https://github.com/NixOS/nixpkgs/issues/226365
-    networking.firewall.interfaces."podman+".allowedUDPPorts = [ 53 5353 ];
+    networking.firewall.interfaces."podman+".allowedUDPPorts = [
+      53
+      5353
+    ];
     services = {
       spice-vdagentd.enable = true;
     };

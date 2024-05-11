@@ -1,4 +1,10 @@
-{ lib, config, username, pkgs, ... }:
+{
+  lib,
+  config,
+  username,
+  pkgs,
+  ...
+}:
 let
   cfg = config.nvidia;
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
@@ -16,7 +22,12 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+    boot.initrd.kernelModules = [
+      "nvidia"
+      "nvidia_modeset"
+      "nvidia_uvm"
+      "nvidia_drm"
+    ];
     boot.blacklistedKernelModules = [ "nouveau" ];
     environment.systemPackages = [ nvidia-offload ];
     hardware = {

@@ -1,4 +1,9 @@
-{ lib, config, username, ... }:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 let
   cfg = config.nnn;
 in
@@ -9,11 +14,13 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${username} = { pkgs, ... }: {
-      programs.nnn = {
-        enable = true;
-        package = pkgs.nnn.override { withNerdIcons = true; };
+    home-manager.users.${username} =
+      { pkgs, ... }:
+      {
+        programs.nnn = {
+          enable = true;
+          package = pkgs.nnn.override { withNerdIcons = true; };
+        };
       };
-    };
   };
 }

@@ -1,4 +1,9 @@
-{ lib, config, username, ... }:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 let
   cfg = config.fluidsynth;
   soundfont = "SC-55 SoundFont.v1.2b [Trevor0402].sf2";
@@ -15,39 +20,45 @@ in
       default = "/home/${username}/Music/soundfonts/default.sf2";
     };
     soundService = lib.mkOption {
-      type = lib.types.enum [ "jack" "pipewire-pulse" "pulseaudio" ];
+      type = lib.types.enum [
+        "jack"
+        "pipewire-pulse"
+        "pulseaudio"
+      ];
       default = "pipewire-pulse";
     };
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${username} = { inputs, config, ... }: {
-      home.file = {
-        midi-soundfonts = {
-          enable = true;
-          recursive = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts";
-          target = "Music/soundfonts";
+    home-manager.users.${username} =
+      { inputs, config, ... }:
+      {
+        home.file = {
+          midi-soundfonts = {
+            enable = true;
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts";
+            target = "Music/soundfonts";
+          };
+          midi-soundfonts-default = {
+            enable = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts/${soundfont}";
+            target = "Music/soundfonts/default.sf2";
+          };
+          midi-soundfonts-default-exodos = {
+            enable = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts/${soundfont}";
+            target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/dosbox/soundfonts/default.sf2";
+          };
         };
-        midi-soundfonts-default = {
-          enable = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts/${soundfont}";
-          target = "Music/soundfonts/default.sf2";
+        home.sessionVariables = {
+          SDL_SOUNDFONTS = "/home/${username}/Music/soundfonts/default.sf2";
         };
-        midi-soundfonts-default-exodos = {
+        services.fluidsynth = {
           enable = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts/${soundfont}";
-          target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/dosbox/soundfonts/default.sf2";
+          extraOptions = cfg.extraOptions;
+          soundFont = cfg.soundFont;
+          soundService = cfg.soundService;
         };
       };
-      home.sessionVariables = {
-        SDL_SOUNDFONTS = "/home/${username}/Music/soundfonts/default.sf2";
-      };
-      services.fluidsynth = {
-        enable = true;
-        extraOptions = cfg.extraOptions;
-        soundFont = cfg.soundFont;
-        soundService = cfg.soundService;
-      };
-    };
   };
 }

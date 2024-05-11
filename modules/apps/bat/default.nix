@@ -1,4 +1,9 @@
-{ lib, config, username, ... }:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 let
   cfg = config.bat;
 in
@@ -9,16 +14,18 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${username} = { pkgs, ... }: {
-      programs.bat = {
-        enable = true;
-        extraPackages = with pkgs.bat-extras; [
-          batdiff
-          batgrep
-          batman
-          batpipe
-        ];
+    home-manager.users.${username} =
+      { pkgs, ... }:
+      {
+        programs.bat = {
+          enable = true;
+          extraPackages = with pkgs.bat-extras; [
+            batdiff
+            batgrep
+            batman
+            batpipe
+          ];
+        };
       };
-    };
   };
 }

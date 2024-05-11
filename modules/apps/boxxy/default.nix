@@ -1,4 +1,9 @@
-{ lib, config, username, ... }:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 let
   cfg = config.boxxy;
 in
@@ -9,18 +14,20 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${username} = { config, username, ... }: {
-      programs.boxxy = {
-        enable = true;
-        rules = [
-          {
-            name = "wget";
-            target = "/home/${username}/.wget-hsts";
-            rewrite = "${config.xdg.dataHome}/wget-hsts";
-            mode = "file";
-          }
-        ];
+    home-manager.users.${username} =
+      { config, username, ... }:
+      {
+        programs.boxxy = {
+          enable = true;
+          rules = [
+            {
+              name = "wget";
+              target = "/home/${username}/.wget-hsts";
+              rewrite = "${config.xdg.dataHome}/wget-hsts";
+              mode = "file";
+            }
+          ];
+        };
       };
-    };
   };
 }

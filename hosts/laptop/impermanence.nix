@@ -2,9 +2,7 @@
 { inputs, ... }:
 {
 
-  imports = [
-    "${inputs.impermanence}/nixos.nix"
-  ];
+  imports = [ "${inputs.impermanence}/nixos.nix" ];
 
   #system.activationScripts.createPersist = "mkdir -p /nix/persist/{system,home}";
 

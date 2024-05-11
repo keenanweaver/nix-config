@@ -1,4 +1,12 @@
-{ inputs, lib, config, username, pkgs, vars, ... }:
+{
+  inputs,
+  lib,
+  config,
+  username,
+  pkgs,
+  vars,
+  ...
+}:
 let
   cfg = config.nixConfig;
 in
@@ -28,7 +36,10 @@ in
       settings = {
         auto-optimise-store = true;
         connect-timeout = 5;
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
         log-lines = lib.mkDefault 25;
         substituters = [
           "https://nyx.chaotic.cx"
@@ -63,7 +74,6 @@ in
           catppuccin-sddm = pkgs.kdePackages.callPackage ../../../nix/pkgs/catppuccin-sddm.nix { };
         })
       ];
-
     };
 
     system.autoUpgrade = {
@@ -76,63 +86,71 @@ in
       };
     };
 
-    home-manager.users.${username} = { config, username, ... }: {
-      home = {
-        extraProfileCommands = ''
-          export GPG_TTY=$(tty)
-        '';
-        language.base = "en_US.UTF-8";
-        sessionPath = [ "/home/${username}/.bin" "/home/${username}/.local/bin" "/var/lib/flatpak/exports/bin" "${config.xdg.dataHome}/flatpak/exports/bin" "${config.xdg.dataHome}/distrobox/exports/bin" ];
-        sessionVariables = {
-          NIXOS_OZONE_WL = "1";
-          NIXPKGS_ALLOW_UNFREE = "1";
-          RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
-          WLR_NO_HARDWARE_CURSOR = "1";
-          XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
+    home-manager.users.${username} =
+      { config, username, ... }:
+      {
+        home = {
+          extraProfileCommands = ''
+            export GPG_TTY=$(tty)
+          '';
+          language.base = "en_US.UTF-8";
+          sessionPath = [
+            "/home/${username}/.bin"
+            "/home/${username}/.local/bin"
+            "/var/lib/flatpak/exports/bin"
+            "${config.xdg.dataHome}/flatpak/exports/bin"
+            "${config.xdg.dataHome}/distrobox/exports/bin"
+          ];
+          sessionVariables = {
+            NIXOS_OZONE_WL = "1";
+            NIXPKGS_ALLOW_UNFREE = "1";
+            RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
+            WLR_NO_HARDWARE_CURSOR = "1";
+            XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
+          };
+          shellAliases = {
+            b = "bat --color=always -pp";
+            bb = "bat --color=always";
+            bd = "batdiff";
+            bg = "batgrep";
+            bm = "batman";
+            bp = "batpipe";
+            db = "distrobox";
+            dbe = "db enter";
+            l = "lsd -la --group-dirs=first";
+            ls = "lsd -l --group-dirs=first";
+            nn = "nnn -dHix";
+            n = "micro";
+            nv = "nvim";
+            nfc = "nix flake check /mnt/crusader/Projects/GitHub/nix-config --no-build";
+            ngc = "nh clean all";
+            nhr = "nh home switch";
+            nor = "nh os switch";
+            npr = "nix run nixpkgs#nixpkgs-review -- pr";
+            rbn = "podman stop -a && systemctl reboot";
+            repw = "systemctl --user restart wireplumber pipewire pipewire-pulse pipewire-pulse.socket";
+            sudo = "sudo ";
+            up = "topgrade";
+            wget = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
+            wttr = "curl wttr.in/Omaha\\?format=4";
+          };
         };
-        shellAliases = {
-          b = "bat --color=always -pp";
-          bb = "bat --color=always";
-          bd = "batdiff";
-          bg = "batgrep";
-          bm = "batman";
-          bp = "batpipe";
-          db = "distrobox";
-          dbe = "db enter";
-          l = "lsd -la --group-dirs=first";
-          ls = "lsd -l --group-dirs=first";
-          nn = "nnn -dHix";
-          n = "micro";
-          nv = "nvim";
-          nfc = "nix flake check /mnt/crusader/Projects/GitHub/nix-config --no-build";
-          ngc = "nh clean all";
-          nhr = "nh home switch";
-          nor = "nh os switch";
-          npr = "nix run nixpkgs#nixpkgs-review -- pr";
-          rbn = "podman stop -a && systemctl reboot";
-          repw = "systemctl --user restart wireplumber pipewire pipewire-pulse pipewire-pulse.socket";
-          sudo = "sudo ";
-          up = "topgrade";
-          wget = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
-          wttr = "curl wttr.in/Omaha\\?format=4";
+        nix = {
+          gc = {
+            automatic = true;
+            frequency = "weekly";
+            options = "--delete-older-than 30d";
+          };
         };
-      };
-      nix = {
-        gc = {
-          automatic = true;
-          frequency = "weekly";
-          options = "--delete-older-than 30d";
-        };
-      };
-      xdg = {
-        enable = true;
-        userDirs = {
+        xdg = {
           enable = true;
-          createDirectories = true;
-          templates = null;
-          publicShare = null;
+          userDirs = {
+            enable = true;
+            createDirectories = true;
+            templates = null;
+            publicShare = null;
+          };
         };
       };
-    };
   };
 }

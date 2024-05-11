@@ -1,4 +1,9 @@
-{ config, username, pkgs, ... }:
+{
+  config,
+  username,
+  pkgs,
+  ...
+}:
 
 {
 
@@ -13,21 +18,27 @@
 
   home = {
     packages = with pkgs; [
-      /* # System
-      dua
-      duf
-      fd
-      killall
-      powershell
-      repgrep
-      unzip
-      usbutils
-      zip
-      vivid*/
+      /*
+        # System
+        dua
+        duf
+        fd
+        killall
+        powershell
+        repgrep
+        unzip
+        usbutils
+        zip
+        vivid
+      */
       # Fonts
       ibm-plex
       (nerdfonts.override {
-        fonts = [ "JetBrainsMono" "IBMPlexMono" "RobotoMono" ];
+        fonts = [
+          "JetBrainsMono"
+          "IBMPlexMono"
+          "RobotoMono"
+        ];
       })
       roboto
       roboto-serif
@@ -60,7 +71,9 @@
       fonts-jetbrains = {
         enable = true;
         recursive = true;
-        source = config.lib.file.mkOutOfStoreSymlink "${pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }}/share/fonts/truetype/NerdFonts";
+        source = config.lib.file.mkOutOfStoreSymlink "${
+          pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }
+        }/share/fonts/truetype/NerdFonts";
         target = "${config.xdg.dataHome}/fonts/jetbrains-mono";
       };
       script-plasma-nested = {
@@ -89,5 +102,4 @@
       };
     };
   };
-
 }

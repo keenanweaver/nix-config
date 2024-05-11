@@ -1,11 +1,14 @@
-{ lib, config, username, ... }:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 let
   cfg = config.server;
 in
 {
-  imports = [
-    ./base.nix
-  ];
+  imports = [ ./base.nix ];
 
   options = {
     server = {

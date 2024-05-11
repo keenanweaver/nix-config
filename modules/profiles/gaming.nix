@@ -1,4 +1,11 @@
-{ inputs, config, lib, pkgs, username, ... }:
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  username,
+  ...
+}:
 let
   cfg = config.gaming;
   p = with pkgs; {
@@ -104,19 +111,19 @@ let
       gst_all_1.gst-plugins-good
       gst_all_1.gst-plugins-ugly
       /*
-      igir
-      innoextract
-      jpsxdec
-      lgogdownloader
-      mame.tools
-      mkvtoolnix-cli
-      mmv
-      nsz
-      oxyromon
-      ps3-disc-dumper
-      vgmplay-libvgm
-      vgmstream
-      vgmtools 
+        igir
+        innoextract
+        jpsxdec
+        lgogdownloader
+        mame.tools
+        mkvtoolnix-cli
+        mmv
+        nsz
+        oxyromon
+        ps3-disc-dumper
+        vgmplay-libvgm
+        vgmstream
+        vgmtools
       */
     ];
   };
@@ -146,15 +153,9 @@ in
     zerotier.enable = true;
 
     boot = {
-      extraModulePackages = [
-        config.boot.kernelPackages.gcadapter-oc-kmod
-      ];
-      kernelModules = [
-        "gcadapter_oc"
-      ];
-      kernelParams = [
-        "split_lock_detect=off"
-      ];
+      extraModulePackages = [ config.boot.kernelPackages.gcadapter-oc-kmod ];
+      kernelModules = [ "gcadapter_oc" ];
+      kernelParams = [ "split_lock_detect=off" ];
       kernel = {
         sysctl = {
           "split_lock_mitigate" = 0; # https://reddit.com/r/linux_gaming/comments/1bgqfuk/god_of_war_poor_performance/kv8xsae/?context=3
@@ -188,9 +189,11 @@ in
     };
 
     # Trenchbroom
-    /*     nixpkgs.config.permittedInsecurePackages = [
-      "freeimage-unstable-2021-11-01"
-    ]; */
+    /*
+      nixpkgs.config.permittedInsecurePackages = [
+        "freeimage-unstable-2021-11-01"
+      ];
+    */
 
     services = {
       hardware = {
@@ -212,8 +215,7 @@ in
               SUBSYSTEM=="input", ATTRS{name}=="*Controller Motion Sensors", RUN+="${pkgs.coreutils}/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
               #SUBSYSTEM=="input", ATTRS{name}=="*Controller Touchpad", RUN+="${pkgs.coreutils}/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
             '';
-            destination =
-              "/etc/udev/rules.d/51-disable-DS3-and-DS4-motion-controls.rules";
+            destination = "/etc/udev/rules.d/51-disable-DS3-and-DS4-motion-controls.rules";
           })
         ];
       };
@@ -227,7 +229,12 @@ in
           # https://github.com/CachyOS/CachyOS-Settings/tree/master/etc/security/limits.d
           #{ domain = "*"; item = "nofile"; type = "-"; value = "unlimited"; }
           #{ domain = "*"; item = "memlock"; type = "-"; value = "unlimited"; } # RPCS3
-          { domain = "*"; item = "nofile"; type = "hard"; value = "1048576"; }
+          {
+            domain = "*";
+            item = "nofile";
+            type = "hard";
+            value = "1048576";
+          }
         ];
       };
     };
@@ -262,139 +269,149 @@ in
       };
     };
 
-    home-manager.users.${username} = { inputs, config, username, ... }: {
-      home.file = {
-        roms-amiga = {
-          enable = true;
-          recursive = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/amiga";
-          target = ".var/app/net.fsuae.FS-UAE/data/fs-uae";
-        };
-        roms-fightcade = {
-          enable = true;
-          recursive = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/fightcade";
-          target = ".var/app/com.fightcade.Fightcade/data";
-        };
-        roms-dolphin = {
-          enable = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/dolphin/USA/IPL.bin";
-          target = ".var/app/org.DolphinEmu.dolphin-emu/data/dolphin-emu/GC/USA/IPL.bin";
-        };
-        roms-mt32 = {
-          enable = true;
-          recursive = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/mt-32";
-          target = "Music/mt-32";
-        };
-        roms-mt32-exodos = {
-          enable = true;
-          recursive = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/mt-32";
-          target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/dosbox/mt32-roms";
-        };
-        roms-duckstation = {
-          enable = true;
-          recursive = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/ps1";
-          target = ".var/app/org.duckstation.DuckStation/config/duckstation/bios";
-        };
-        roms-pcsx2 = {
-          enable = true;
-          recursive = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/ps2";
-          target = ".var/app/net.pcsx2.PCSX2/config/PCSX2/bios";
-        };
-        roms-retroarch = {
-          enable = true;
-          recursive = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/retroarch";
-          target = ".var/app/org.libretro.RetroArch/config/retroarch/system";
-        };
-        roms-xemu-mcpx = {
-          enable = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/xbox/mcpx_1.0.bin";
-          target = ".var/app/app.xemu.xemu/data/xemu/xemu/mcpx_1.0.bin";
-        };
-        roms-xemu-bios = {
-          enable = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/xbox/xbox-4627_debug.bin";
-          target = ".var/app/app.xemu.xemu/data/xemu/xemu/xbox-4627_debug.bin";
-        };
-        # Use Bottles to manage Wine runners for Heroic and Lutris
-        wine-links-heroic = {
-          enable = true;
-          recursive = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/bottles/runners";
-          target = "${config.xdg.configHome}/heroic/tools/wine";
-        };
-        wine-links-lutris = {
-          enable = true;
-          recursive = true;
-          source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/bottles/runners";
-          target = "${config.xdg.dataHome}/lutris/runners/wine";
-        };
-      };
-      home.packages = lib.flatten (lib.attrValues p);
-      # Move config files out of home
-      programs.boxxy = {
-        rules = [
-          {
-            name = "exult directory";
-            target = "/home/${username}/.exult";
-            rewrite = "${config.xdg.configHome}/exult";
-          }
-          {
-            name = "exult config file";
-            target = "/home/${username}/.exult.cfg";
-            rewrite = "${config.xdg.configHome}/exult/exult.cfg";
-            mode = "file";
-          }
-        ];
-      };
-      xdg = {
-        desktopEntries = {
-          dosbox = {
-            name = "dosbox-staging";
-            comment = "DOSBox Staging";
-            exec = "dosbox";
-            icon = "dosbox-staging";
-            categories = [ "Game" ];
-            noDisplay = false;
-            startupNotify = true;
-            settings = {
-              Keywords = "dosbox;dos";
-            };
+    home-manager.users.${username} =
+      {
+        inputs,
+        config,
+        username,
+        ...
+      }:
+      {
+        home.file = {
+          roms-amiga = {
+            enable = true;
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/amiga";
+            target = ".var/app/net.fsuae.FS-UAE/data/fs-uae";
           };
-          exogui = {
-            name = "exogui";
-            comment = "eXoDOS Launcher";
-            exec = "exogui";
-            icon = "distributor-logo-ms-dos";
-            categories = [ "Game" ];
-            noDisplay = false;
-            startupNotify = true;
-            settings = {
-              Keywords = "exodos;dos";
-            };
+          roms-fightcade = {
+            enable = true;
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/fightcade";
+            target = ".var/app/com.fightcade.Fightcade/data";
           };
-          gog-galaxy = {
-            name = "GOG Galaxy";
-            comment = "Launch GOG Galaxy using Bottles.";
-            exec = "bottles-cli run -p \"GOG Galaxy\" -b \"GOG Galaxy\"";
-            icon = "/home/${username}/Games/Bottles/GOG-Galaxy/icons/GOG Galaxy.png";
-            categories = [ "Game" ];
-            noDisplay = false;
-            startupNotify = true;
-            actions = {
-              "Configure" = { name = "Configure in Bottles"; exec = "bottles -b \"GOG Galaxy\""; };
-            };
-            settings = {
-              StartupWMClass = "GOG Galaxy";
-            };
+          roms-dolphin = {
+            enable = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/dolphin/USA/IPL.bin";
+            target = ".var/app/org.DolphinEmu.dolphin-emu/data/dolphin-emu/GC/USA/IPL.bin";
+          };
+          roms-mt32 = {
+            enable = true;
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/mt-32";
+            target = "Music/mt-32";
+          };
+          roms-mt32-exodos = {
+            enable = true;
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/mt-32";
+            target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/dosbox/mt32-roms";
+          };
+          roms-duckstation = {
+            enable = true;
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/ps1";
+            target = ".var/app/org.duckstation.DuckStation/config/duckstation/bios";
+          };
+          roms-pcsx2 = {
+            enable = true;
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/ps2";
+            target = ".var/app/net.pcsx2.PCSX2/config/PCSX2/bios";
+          };
+          roms-retroarch = {
+            enable = true;
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/retroarch";
+            target = ".var/app/org.libretro.RetroArch/config/retroarch/system";
+          };
+          roms-xemu-mcpx = {
+            enable = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/xbox/mcpx_1.0.bin";
+            target = ".var/app/app.xemu.xemu/data/xemu/xemu/mcpx_1.0.bin";
+          };
+          roms-xemu-bios = {
+            enable = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/xbox/xbox-4627_debug.bin";
+            target = ".var/app/app.xemu.xemu/data/xemu/xemu/xbox-4627_debug.bin";
+          };
+          # Use Bottles to manage Wine runners for Heroic and Lutris
+          wine-links-heroic = {
+            enable = true;
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/bottles/runners";
+            target = "${config.xdg.configHome}/heroic/tools/wine";
+          };
+          wine-links-lutris = {
+            enable = true;
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/bottles/runners";
+            target = "${config.xdg.dataHome}/lutris/runners/wine";
           };
         };
+        home.packages = lib.flatten (lib.attrValues p);
+        # Move config files out of home
+        programs.boxxy = {
+          rules = [
+            {
+              name = "exult directory";
+              target = "/home/${username}/.exult";
+              rewrite = "${config.xdg.configHome}/exult";
+            }
+            {
+              name = "exult config file";
+              target = "/home/${username}/.exult.cfg";
+              rewrite = "${config.xdg.configHome}/exult/exult.cfg";
+              mode = "file";
+            }
+          ];
+        };
+        xdg = {
+          desktopEntries = {
+            dosbox = {
+              name = "dosbox-staging";
+              comment = "DOSBox Staging";
+              exec = "dosbox";
+              icon = "dosbox-staging";
+              categories = [ "Game" ];
+              noDisplay = false;
+              startupNotify = true;
+              settings = {
+                Keywords = "dosbox;dos";
+              };
+            };
+            exogui = {
+              name = "exogui";
+              comment = "eXoDOS Launcher";
+              exec = "exogui";
+              icon = "distributor-logo-ms-dos";
+              categories = [ "Game" ];
+              noDisplay = false;
+              startupNotify = true;
+              settings = {
+                Keywords = "exodos;dos";
+              };
+            };
+            gog-galaxy = {
+              name = "GOG Galaxy";
+              comment = "Launch GOG Galaxy using Bottles.";
+              exec = "bottles-cli run -p \"GOG Galaxy\" -b \"GOG Galaxy\"";
+              icon = "/home/${username}/Games/Bottles/GOG-Galaxy/icons/GOG Galaxy.png";
+              categories = [ "Game" ];
+              noDisplay = false;
+              startupNotify = true;
+              actions = {
+                "Configure" = {
+                  name = "Configure in Bottles";
+                  exec = "bottles -b \"GOG Galaxy\"";
+                };
+              };
+              settings = {
+                StartupWMClass = "GOG Galaxy";
+              };
+            };
+          };
+        };
       };
-    };
   };
 }

@@ -1,12 +1,17 @@
-{ inputs, lib, config, pkgs, username, ... }:
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  username,
+  ...
+}:
 let
   cfg = config.kde;
 in
 {
 
-  imports = [
-    ./plasma-manager/desktop.nix
-  ];
+  imports = [ ./plasma-manager/desktop.nix ];
 
   options = {
     kde = {
@@ -20,32 +25,35 @@ in
         GDK_DEBUG = "portals"; # KDE filepicker
         XDG_CURRENT_DESKTOP = "KDE";
       };
-      systemPackages = with pkgs; with pkgs.kdePackages; [
-        ffmpegthumbnailer
-        colord-kde
-        discover
-        filelight
-        ghostwriter
-        k3b
-        kate
-        kcalc
-        kcron
-        kde-rounded-corners
-        kdesu
-        kdialog
-        kio-extras
-        kirigami-addons
-        kjournald
-        inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
-        neochat
-        packagekit-qt # Discover store
-        plasma-browser-integration
-        qtimageformats
-        qtstyleplugin-kvantum
-        sddm-kcm
-        syntax-highlighting
-        tokodon
-      ];
+      systemPackages =
+        with pkgs;
+        with pkgs.kdePackages;
+        [
+          ffmpegthumbnailer
+          colord-kde
+          discover
+          filelight
+          ghostwriter
+          k3b
+          kate
+          kcalc
+          kcron
+          kde-rounded-corners
+          kdesu
+          kdialog
+          kio-extras
+          kirigami-addons
+          kjournald
+          inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
+          neochat
+          packagekit-qt # Discover store
+          plasma-browser-integration
+          qtimageformats
+          qtstyleplugin-kvantum
+          sddm-kcm
+          syntax-highlighting
+          tokodon
+        ];
     };
     programs = {
       fuse.userAllowOther = true;
@@ -92,7 +100,10 @@ in
     xdg = {
       portal = {
         config.common.default = "*";
-        extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde xdg-desktop-portal-gtk ];
+        extraPortals = with pkgs; [
+          kdePackages.xdg-desktop-portal-kde
+          xdg-desktop-portal-gtk
+        ];
         wlr.enable = true;
         xdgOpenUsePortal = true;
       };

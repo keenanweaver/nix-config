@@ -1,4 +1,9 @@
-{ lib, config, username, ... }:
+{
+  lib,
+  config,
+  username,
+  ...
+}:
 let
   cfg = config.bash;
 in
@@ -12,16 +17,18 @@ in
     programs.bash = {
       blesh.enable = true;
     };
-    home-manager.users.${username} = { config, ... }: {
-      programs.bash = {
-        enable = true;
-        historyFile = "${config.xdg.dataHome}/bash/.bash_history";
-        initExtra = ''
-          function cdd {
-            builtin cd "$@" && ls
-          }
-        '';
+    home-manager.users.${username} =
+      { config, ... }:
+      {
+        programs.bash = {
+          enable = true;
+          historyFile = "${config.xdg.dataHome}/bash/.bash_history";
+          initExtra = ''
+            function cdd {
+              builtin cd "$@" && ls
+            }
+          '';
+        };
       };
-    };
   };
 }

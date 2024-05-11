@@ -1,13 +1,14 @@
-{ lib
-, stdenvNoCC
-, fetchFromGitHub
-, just
-, qtsvg
-, flavor ? "mocha"
-, font ? "Noto Sans"
-, fontSize ? "9"
-, background ? null
-, loginBackground ? false
+{
+  lib,
+  stdenvNoCC,
+  fetchFromGitHub,
+  just,
+  kdePackages,
+  flavor ? "mocha",
+  font ? "Noto Sans",
+  fontSize ? "9",
+  background ? null,
+  loginBackground ? false,
 }:
 stdenvNoCC.mkDerivation rec {
   pname = "catppuccin-sddm";
@@ -22,51 +23,39 @@ stdenvNoCC.mkDerivation rec {
 
   dontWrapQtApps = true;
 
-  nativeBuildInputs = [
-    just
-  ];
+  nativeBuildInputs = [ just ];
 
-  propagatedBuildInputs = [
-    qtsvg
-  ];
+  propagatedBuildInputs = [ kdePackages.qtsvg ];
 
   buildPhase = ''
     runHook preBuild
-
     just build
-
     runHook postBuild
   '';
 
   installPhase = ''
     runHook preInstall
-
     mkdir -p "$out/share/sddm/themes/"
     cp -r dist/catppuccin-${flavor} "$out/share/sddm/themes/catppuccin-${flavor}"
-
     configFile=$out/share/sddm/themes/catppuccin-${flavor}/theme.conf
-
     substituteInPlace $configFile \
       --replace-fail 'Font="Noto Sans"' 'Font="${font}"' \
       --replace-fail 'FontSize=9' 'FontSize=${fontSize}'
-
     ${lib.optionalString (background != null) ''
       substituteInPlace $configFile \
         --replace-fail 'Background="backgrounds/wall.jpg"' 'Background="${background}"' \
         --replace-fail 'CustomBackground="false"' 'CustomBackground="true"'
     ''}
-
     ${lib.optionalString loginBackground ''
       substituteInPlace $configFile \
         --replace-fail 'LoginBackground="false"' 'LoginBackground="true"'
     ''}
-
     runHook postInstall
   '';
 
   postFixup = ''
     mkdir -p $out/nix-support
-    echo ${qtsvg} >> $out/nix-support/propagated-user-env-packages
+    echo ${kdePackages.qtsvg} >> $out/nix-support/propagated-user-env-packages
   '';
 
   meta = {
