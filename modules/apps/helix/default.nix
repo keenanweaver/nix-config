@@ -104,16 +104,16 @@ in
               auto-format = true;
               language-servers = [ "nixd" ];
               formatter = {
-                command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+                command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
               };
             }
             {
               name = "python";
               auto-format = true;
               language-servers = [ "ruff" ];
-              #formatter = {
-              #  command = "${pkgs.ruff-lsp}/bin/ruff-lsp";
-              #};
+              formatter = {
+                command = "${pkgs.ruff-lsp}/bin/ruff-lsp";
+              };
             }
             {
               name = "rust";

@@ -66,22 +66,26 @@ in
           };
           codeium-nvim.enable = true; # AI assistant https://github.com/Exafunction/codeium.vim
           codeium-vim.enable = true; # AI assistant https://github.com/Exafunction/codeium.vim
+          comment.enable = true; # Toggle comments https://github.com/terrortylor/nvim-comment
           friendly-snippets.enable = true; # Snippets https://github.com/rafamadriz/friendly-snippets
           gitsigns.enable = true; # Git decorations https://github.com/lewis6991/gitsigns.nvim
           lsp = {
             enable = true;
             servers = {
-              lua-ls.enable = true;
-              nil_ls.enable = true;
-              ruff-lsp.enable = true;
-              rust-analyzer = {
-                enable = true;
-                installCargo = true;
-                installRustc = true;
-                autostart = true;
-              };
+              ansiblels = { enable = true; autostart = true; };
+              bashls = { enable = true; autostart = true; };
+              dockerls = { enable = true; autostart = true; };
+              gopls = { enable = true; autostart = true; };
+              html = { enable = true; autostart = true; };
+              lua-ls = { enable = true; autostart = true; };
+              marksman = { enable = true; autostart = true; };
+              nixd = { enable = true; autostart = true; };
+              ruff-lsp = { enable = true; autostart = true; };
+              rust-analyzer = { enable = true; installCargo = true; installRustc = true; autostart = true; };
+              terraformls = { enable = true; autostart = true; };
             };
           };
+          lsp-format.enable = true; # Formatting https://github.com/lukas-reineke/lsp-format.nvim
           lualine = {
             # Status line https://github.com/nvim-lualine/lualine.nvim
             enable = true;
@@ -102,11 +106,9 @@ in
             };
           };
           rustaceanvim.enable = true; # https://github.com/mrcjkb/rustaceanvim
-          comment.enable = true; # Toggle comments https://github.com/terrortylor/nvim-comment
-          lsp-format.enable = true; # Formatting https://github.com/lukas-reineke/lsp-format.nvim
-          toggleterm.enable = true; # Terminal manager https://github.com/akinsho/toggleterm.nvim
-          which-key.enable = true; # Key bindings https://github.com/folke/which-key.nvim
           todo-comments.enable = true; # Highlight todo comments https://github.com/folke/todo-comments.nvim
+          toggleterm.enable = true; # Terminal manager https://github.com/akinsho/toggleterm.nvim
+          transparent.enable = true; # Transparency https://github.com/xiyaowong/transparent.nvim/
           treesitter = {
             enable = true;
             nixvimInjections = true;
@@ -119,6 +121,7 @@ in
           treesitter-refactor = {
             enable = true;
           };
+          which-key.enable = true; # Key bindings https://github.com/folke/which-key.nvim
         };
       };
     };

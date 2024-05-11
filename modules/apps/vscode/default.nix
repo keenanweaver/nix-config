@@ -67,9 +67,9 @@ in
           "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
           #"[nix]"."editor.formatOnSave" = true;
           "nix.enableLanguageServer" = true;
-          "nix.formatterPath" = "nixpkgs-fmt";
+          "nix.formatterPath" = "nixfmt";
           "nix.serverPath" = "nixd";
-          "nix.serverSettings"."nixd"."formatting"."command" = [ "nixpkgs-fmt" ];
+          "nix.serverSettings"."nixd"."formatting"."command" = [ "nixfmt" ];
           "nix.serverSettings"."nixd"."formatting"."options"."enable" = [ true ];
           "powershell.powerShellAdditionalExePaths"."exePath" = "${pkgs.powershell}/bin/pwsh";
           "powershell.integratedConsole.focusConsoleOnExecute" = false;

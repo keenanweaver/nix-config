@@ -99,6 +99,7 @@ in
         dua #du
         duf #df
         fd #find
+        ouch #compression
         pigz #gz
         procs #ps
         sd #sed
@@ -108,10 +109,11 @@ in
         manix
         nixd
         nix-init
-        nixpkgs-review
         nix-update
+        nixfmt-rfc-style
+        #nixpkgs-fmt
+        nixpkgs-review
         nixos-shell
-        nixpkgs-fmt
         nvd
         statix
       ] ++ lib.optionals cfg.system [
