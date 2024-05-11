@@ -77,6 +77,7 @@ in
         };
         packages = with pkgs; [
           protontricks
+          steamtinkerlaunch
         ];
       };
     };
