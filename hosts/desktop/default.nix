@@ -23,7 +23,7 @@
 
   hardware = {
     cpu.amd.updateMicrocode = true;
-    system76.power-daemon.enable = true;
+    #system76.power-daemon.enable = true;
   };
 
   networking = {
