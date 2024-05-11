@@ -66,6 +66,7 @@ in
         enable = true;
         gtk2 = {
           configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+          # force = true; # https://github.com/nix-community/home-manager/pull/5263
         };
       };
 
