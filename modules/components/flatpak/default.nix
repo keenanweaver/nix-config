@@ -1,4 +1,4 @@
-{ lib, config, username, dotfiles, vars, ... }:
+{ lib, config, username, dotfiles, pkgs, vars, ... }:
 let
   cfg = config.flatpak;
 in
@@ -22,6 +22,8 @@ in
         flatpak --user remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
       '';
     }; */
+    environment.systemPackages = with pkgs; [ flatpak-builder ];
+
     home-manager.users.${username} = { config, username, ... }: {
       home.file = {
         flatpak-list = {
