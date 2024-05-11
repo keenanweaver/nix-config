@@ -30,6 +30,7 @@ in
         kate
         kcalc
         kcron
+        kde-rounded-corners
         kdesu
         kdialog
         kio-extras
