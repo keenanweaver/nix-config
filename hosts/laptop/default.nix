@@ -27,7 +27,7 @@
 
   hardware = {
     cpu.amd.updateMicrocode = true;
-    system76.power-daemon.enable = true;
+    #system76.power-daemon.enable = true;
   };
 
   networking = {
@@ -40,8 +40,10 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
+  programs.auto-cpufreq.enable = true;
+
   services = {
-    thermald.enable = true;
+    #thermald.enable = true;
     udev = {
       extraRules = ''
         # GPU artifacting https://wiki.archlinux.org/title/AMDGPU#Screen_artifacts_and_frequency_problem

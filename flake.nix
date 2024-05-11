@@ -26,6 +26,7 @@
     nix-citizen = { url = "github:LovingMelody/nix-citizen"; inputs.nix-gaming.follows = "nix-gaming"; };
     nix-gaming.url = "github:fufexan/nix-gaming";
 
+    auto-cpufreq = { url = "github:AdnanHodzic/auto-cpufreq"; inputs.nixpkgs.follows = "nixpkgs"; };
     cd-ls = { url = "github:zshzoo/cd-ls"; flake = false; };
     gpu-screen-recorder-src = { type = "git"; url = "https://repo.dec05eba.com/gpu-screen-recorder"; flake = false; };
     nonfree = { url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1"; flake = false; };
@@ -33,7 +34,7 @@
     # Hyprland
     hyprland.url = "github:hyprwm/Hyprland";
     # Theming
-    catppuccin = { url = "github:catppuccin/nix/28d41bc7187a1e0e9a36440872c0b46bed124f34"; };
+    catppuccin = { url = "github:catppuccin/nix"; }; #/28d41bc7187a1e0e9a36440872c0b46bed124f34
     catppuccinifier = { url = "github:lighttigerXIV/catppuccinifier"; inputs.nixpkgs.follows = "nixpkgs"; };
     catppuccin-bat = { url = "github:catppuccin/bat"; flake = false; };
     catppuccin-ghostwriter = { url = "github:catppuccin/ghostwriter"; flake = false; };
@@ -62,13 +63,13 @@
       {
         steamdeck = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          modules = with inputs; [
+          modules = [
             ./hosts/steamdeck/home.nix
-            catppuccin.homeManagerModules.catppuccin
-            nix-colors.homeManagerModules.default
-            nur.hmModules.nur
-            plasma-manager.homeManagerModules.plasma-manager
-            sops-nix.homeManagerModules.sops
+            inputs.catppuccin.homeManagerModules.catppuccin
+            inputs.nix-colors.homeManagerModules.default
+            inputs.nur.hmModules.nur
+            inputs.plasma-manager.homeManagerModules.plasma-manager
+            inputs.sops-nix.homeManagerModules.sops
           ];
 
           extraSpecialArgs = {
@@ -179,6 +180,7 @@
 
             (args: { nixpkgs.overlays = import ./nix/overlays args; })
 
+            inputs.auto-cpufreq.nixosModules.default
             inputs.catppuccin.nixosModules.catppuccin
             inputs.chaotic.nixosModules.default
             inputs.disko.nixosModules.disko
