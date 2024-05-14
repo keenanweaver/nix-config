@@ -399,7 +399,6 @@ in
             };
           distrobox-assemble-desktop = {
             enable = true;
-
             text =
               (
                 if vars.gaming then
