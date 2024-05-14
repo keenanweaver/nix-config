@@ -210,7 +210,7 @@
           - nccm
           - python-pipx
 
-    - name: Install qobuz-dl from pipx
+    - name: Install qobuz-dl from pipx (bazzite-arch-sys)
       when: distrobox is "bazzite-arch-sys"
       ignore_errors: true
       ansible.builtin.shell: |
