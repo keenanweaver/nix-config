@@ -16,6 +16,7 @@ let
       openjk # Jedi Academy
       openloco # Locomotion
       openxray # STALKER
+      #relive # Oddworld
       wipeout-rewrite # Wipeout
       # Doom
       [
@@ -334,6 +335,23 @@ in
             enable = true;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/xbox/xbox-4627_debug.bin";
             target = ".var/app/app.xemu.xemu/data/xemu/xemu/xbox-4627_debug.bin";
+          };
+          script-get-game-stuff = {
+            enable = true;
+            text = ''
+              ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
+              steamtinkerlaunch compat add
+              steamtinkerlaunch
+              sed -i -e 's/-SKIPINTDEPCHECK="0"/-SKIPINTDEPCHECK="1"/g' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
+              ## SheepShaver
+              curl https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | wget -i- -N -P /home/${username}/.local/bin
+              ## MoonDeck Buddy
+              curl https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | wget -i- -N -P /home/${username}/.local/bin
+              ## Conty
+              curl https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | wget -i- -N -P /home/${username}/.local/bin
+              chmod +x /home/${username}/.local/bin/conty_lite.sh
+            '';
+            target = "/home/${username}/.local/bin/game-stuff.sh";
           };
           # Use Bottles to manage Wine runners for Heroic and Lutris
           wine-links-heroic = {

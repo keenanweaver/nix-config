@@ -111,18 +111,8 @@
             /home/${username}/.local/bin/flatpak-install-all.sh
             curl https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | test(".*flatpak$")).browser_download_url' | wget -i- -N -P /home/${username}/Downloads
             fd 'rustdesk' /home/${username}/Downloads -e flatpak -x flatpak install -u -y
-            # Set up other things
-            ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
-            steamtinkerlaunch compat add
-            steamtinkerlaunch
-            sed -i -e 's/-SKIPINTDEPCHECK="0"/-SKIPINTDEPCHECK="1"/g' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
-            ## SheepShaver
-            curl https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | wget -i- -N -P /home/${username}/.local/bin
-            ## MoonDeck Buddy
-            curl https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | wget -i- -N -P /home/${username}/.local/bin
-            ## Conty
-            curl https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | wget -i- -N -P /home/${username}/.local/bin
-            chmod +x /home/${username}/.local/bin/conty_lite.sh
+            # Game stuff
+            /home/${username}/.local/bin/game-stuff.sh
           '';
           target = ".local/bin/bootstrap-baremetal.sh";
           executable = true;
