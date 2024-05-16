@@ -73,6 +73,7 @@ let
               "applications:qobuz.desktop"
               "applications:org.strawberrymusicplayer.strawberry.desktop"
               "applications:foobar2000.desktop"
+              "applications:org.fooyin.fooyin.desktop"
             ];
           };
         };
@@ -92,7 +93,7 @@ let
       }
       "org.kde.plasma.marginsseparator"
       "org.kde.plasma.marginsseparator"
-      "org.kde.plasma.systemtray"
+      #"org.kde.plasma.systemtray"
       "org.kde.plasma.digitalclock"
       "org.kde.plasma.showdesktop"
     ];
