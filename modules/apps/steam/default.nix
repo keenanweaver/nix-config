@@ -69,6 +69,7 @@ in
             xdotool
           ];
       };
+      #protontricks.enable = true;
       remotePlay.openFirewall = true;
     };
     home-manager.users.${username} =

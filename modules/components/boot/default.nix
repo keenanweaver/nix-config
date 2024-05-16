@@ -8,7 +8,6 @@
 
   boot = {
     consoleLogLevel = 0;
-    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
     initrd = {
       systemd.enable = true; # Plymouth login screen
       verbose = false;
@@ -40,7 +39,6 @@
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
-      #systemd-boot.enable = lib.mkDefault false;
       timeout = 1;
     };
     plymouth.enable = true;

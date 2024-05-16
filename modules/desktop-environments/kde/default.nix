@@ -49,7 +49,7 @@ in
           packagekit-qt # Discover store
           plasma-browser-integration
           qtimageformats
-          qtstyleplugin-kvantum
+          #qtstyleplugin-kvantum
           sddm-kcm
           syntax-highlighting
           tokodon

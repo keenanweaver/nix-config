@@ -11,7 +11,7 @@ let
   p = with pkgs; {
     games = [
       arx-libertatis # Arx Fatalis
-      clonehero
+      clonehero # Guitar Hero
       exult # Ultima VII
       openjk # Jedi Academy
       openloco # Locomotion
@@ -105,12 +105,14 @@ let
         winetricks
         wineWowPackages.stagingFull
       ]
-      gst_all_1.gstreamer
-      gst_all_1.gst-libav
-      gst_all_1.gst-plugins-bad
-      gst_all_1.gst-plugins-base
-      gst_all_1.gst-plugins-good
-      gst_all_1.gst-plugins-ugly
+      /*
+        gst_all_1.gstreamer
+           gst_all_1.gst-libav
+           gst_all_1.gst-plugins-bad
+           gst_all_1.gst-plugins-base
+           gst_all_1.gst-plugins-good
+           gst_all_1.gst-plugins-ugly
+      */
       /*
         igir
         innoextract
@@ -147,6 +149,7 @@ in
     gamemode.enable = true;
     gamescope.enable = true;
     gpu-screen-recorder.enable = true;
+    lact.enable = true;
     mangohud.enable = true;
     steam.enable = true;
     sunshine.enable = true;
@@ -154,7 +157,13 @@ in
     zerotier.enable = true;
 
     boot = {
-      extraModulePackages = [ config.boot.kernelPackages.gcadapter-oc-kmod ];
+      extraModprobeConfig = ''
+        options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+      '';
+      extraModulePackages = with config.boot.kernelPackages; [
+        gcadapter-oc-kmod
+        v4l2loopback
+      ];
       kernelModules = [ "gcadapter_oc" ];
       kernelParams = [ "split_lock_detect=off" ];
       kernel = {
@@ -168,8 +177,8 @@ in
     environment = {
       sessionVariables = {
         # https://reddit.com/r/linux_gaming/comments/1b9foom/workaround_for_cursor_movement_cutting_our_vrr_on/
-        KWIN_DRM_DELAY_VRR_CURSOR_UPDATES = "1";
-        KWIN_FORCE_SW_CURSOR = "1";
+        #KWIN_DRM_DELAY_VRR_CURSOR_UPDATES = "1";
+        #KWIN_FORCE_SW_CURSOR = "1";
         #KWIN_DRM_DONT_FORCE_AMD_SW_CURSOR = "1";
         # https://invent.kde.org/plasma/kwin/-/merge_requests/927#note_586727
         KWIN_DRM_NO_AMS = "1"; # Input latency/tearing

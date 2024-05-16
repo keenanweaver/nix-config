@@ -2,7 +2,6 @@
   lib,
   config,
   username,
-  dotfiles,
   ...
 }:
 let
@@ -18,7 +17,6 @@ in
     home-manager.users.${username} = {
       programs.nushell = {
         enable = true;
-        configFile.source = "${dotfiles}/.config/nushell/config.nu";
       };
     };
   };
