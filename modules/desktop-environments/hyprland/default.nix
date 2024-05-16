@@ -36,14 +36,16 @@ in
         ...
       }:
       {
-        home.file = {
-          hyprlock-config = {
-            enable = true;
-            recursive = false;
-            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/hyprland/hyprlock.conf";
-            target = "${config.xdg.configHome}/hyprland/hyprlock.conf";
-          };
-        };
+        /*
+          home.file = {
+                 hyprlock-config = {
+                   enable = true;
+                   recursive = false;
+                   source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/hyprland/hyprlock.conf";
+                   target = "${config.xdg.configHome}/hyprland/hyprlock.conf";
+                 };
+               };
+        */
         home.packages = with pkgs; [
           inputs.hyprpaper.packages.${pkgs.system}.hyprpaper
           inputs.hyprpicker.packages.${pkgs.system}.hyprpicker

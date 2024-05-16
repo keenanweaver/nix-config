@@ -528,16 +528,18 @@ in
             target = "${config.xdg.configHome}/distrobox/bootstrap-ansible.sh";
             executable = true;
           };
-          distrobox-bootstrap-ansible-playbook = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/playbook.yml";
-            target = "${config.xdg.configHome}/distrobox/playbook.yml";
-          };
-          distrobox-bootstrap-ansible-reqs = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/requirements.yml";
-            target = "${config.xdg.configHome}/distrobox/requirements.yml";
-          };
+          /*
+            distrobox-bootstrap-ansible-playbook = {
+                     enable = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/playbook.yml";
+                     target = "${config.xdg.configHome}/distrobox/playbook.yml";
+                   };
+                   distrobox-bootstrap-ansible-reqs = {
+                     enable = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/requirements.yml";
+                     target = "${config.xdg.configHome}/distrobox/requirements.yml";
+                   };
+          */
           distrobox-mangohud-gaming = {
             enable = vars.gaming;
             source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/MangoHud/MangoHud.conf";

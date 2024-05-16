@@ -153,11 +153,13 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-konsole}/Catppuccin-${flavor-upper}.colorscheme";
               target = "${config.xdg.dataHome}/konsole/Catppuccin-${flavor-upper}.colorscheme";
             };
-            catppuccin-krita = {
-              enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/Catppuccin${flavor-upper}${accent-upper}.colors";
-              target = ".var/app/org.kde.krita/data/krita/color-schemes/Catppuccin${flavor-upper}${accent-upper}.colors";
-            };
+            /*
+              catppuccin-krita = {
+                         enable = true;
+                         source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/Catppuccin${flavor-upper}${accent-upper}.colors";
+                         target = ".var/app/org.kde.krita/data/krita/color-schemes/Catppuccin${flavor-upper}${accent-upper}.colors";
+                       };
+            */
             /*
               catppuccin-kvantum = {
                          enable = true;
@@ -213,12 +215,14 @@ in
               '';
               target = "${config.xdg.configHome}/powershell/Microsoft.PowerShell_profile.ps1";
             };
-            wallpapers = {
-              enable = true;
-              recursive = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/wallpapers";
-              target = "Pictures/wallpapers";
-            };
+            /*
+              wallpapers = {
+                         enable = true;
+                         recursive = true;
+                         source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/wallpapers";
+                         target = "Pictures/wallpapers";
+                       };
+            */
             wayland-cursor-fix = {
               enable = true;
               text = ''

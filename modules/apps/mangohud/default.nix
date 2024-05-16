@@ -31,11 +31,13 @@ in
             '';
             target = "${config.xdg.configHome}/autostart/get-vars.desktop";
           };
-          mangohud = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/MangoHud/MangoHud.conf";
-            target = "${config.xdg.configHome}/MangoHud/MangoHud.conf";
-          };
+          /*
+            mangohud = {
+                     enable = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/MangoHud/MangoHud.conf";
+                     target = "${config.xdg.configHome}/MangoHud/MangoHud.conf";
+                   };
+          */
           script-mangohud-get-vars = {
             enable = true;
             text = ''

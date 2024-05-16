@@ -36,32 +36,35 @@ in
       { config, username, ... }:
       {
         home.file = {
-          flatpak-list = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/flatpak";
-            target = ".local/bin/.flatpak-list";
-          };
-          flatpak-list-beta = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/flatpak-beta";
-            target = ".local/bin/.flatpak-list-beta";
-          };
-          flatpak-list-games = {
-            enable = vars.gaming;
-            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/flatpak-games";
-            target = ".local/bin/.flatpak-games-list";
-          };
-          flatpak-list-sys = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/flatpak-sys";
-            target = ".local/bin/.flatpak-list-sys";
-          };
-          flatpak-overrides = {
-            enable = true;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.local/share/flatpak/overrides";
-            target = "${config.xdg.dataHome}/flatpak/overrides";
-          };
+          /*
+              flatpak-list = {
+                       enable = true;
+                       source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/flatpak";
+                       target = ".local/bin/.flatpak-list";
+                     };
+                     flatpak-list-beta = {
+                       enable = true;
+                       source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/flatpak-beta";
+                       target = ".local/bin/.flatpak-list-beta";
+                     };
+                     flatpak-list-games = {
+                       enable = vars.gaming;
+                       source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/flatpak-games";
+                       target = ".local/bin/.flatpak-games-list";
+                     };
+                     flatpak-list-sys = {
+                       enable = true;
+                       source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/flatpak-sys";
+                       target = ".local/bin/.flatpak-list-sys";
+                     };
+
+            flatpak-overrides = {
+              enable = true;
+              recursive = true;
+              source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.local/share/flatpak/overrides";
+              target = "${config.xdg.dataHome}/flatpak/overrides";
+            };
+          */
           flatpak-overrides-global = {
             enable = true;
             text = ''
