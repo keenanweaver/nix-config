@@ -84,10 +84,10 @@ in
         };
 
         home.packages = with pkgs; [
+          fooyin
           neo
           ## Graphics
           clinfo
-          lact
           ## GNOME
           adw-gtk3
           gnome.gnome-settings-daemon

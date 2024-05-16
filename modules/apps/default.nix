@@ -23,6 +23,7 @@
     ./home-manager
     ./jq
     ./lazygit
+    ./lact
     ./lsd
     ./mangohud
     ./micro
