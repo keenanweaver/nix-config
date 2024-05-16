@@ -8,27 +8,8 @@
   ...
 }:
 let
-  bibata-sky-mocha = pkgs.stdenvNoCC.mkDerivation {
-    pname = "bibata-sky-mocha";
-    version = "master";
-
-    src = pkgs.fetchurl {
-      url = "https://github.com/keenanweaver/nix-config/raw/main/dotfiles/Bibata-Sky-Mocha.tar.gz";
-      hash = "sha256-myH5uUUHQGmtF7uON2nLo2tr0taMbq8yZeU6AeSspqo=";
-    };
-
-    dontPatch = true;
-    dontConfigure = true;
-    dontBuild = true;
-    dontFixup = true;
-
-    installPhase = ''
-      mkdir -p $out/share/icons/Bibata-Sky-Mocha
-      mv * $out/share/icons/Bibata-Sky-Mocha
-    '';
-  };
-  accent-lower = "sky";
-  accent-upper = "Sky";
+  accent-lower = "lavender";
+  accent-upper = "Lavender";
   flavor-lower = "mocha";
   flavor-upper = "Mocha";
   cfg = config.catppuccinTheming;
@@ -44,53 +25,36 @@ in
   config = lib.mkIf cfg.enable {
     catppuccin = {
       enable = true;
+      accent = "${accent-lower}";
       flavour = "${flavor-lower}";
-    };
-    boot = {
-      plymouth = {
-        themePackages = with pkgs; [ (catppuccin-plymouth.override { variant = "${flavor-lower}"; }) ];
-        theme = "catppuccin-${flavor-lower}";
-      };
     };
     console = {
       packages = with pkgs; [ terminus_font ];
     };
     environment = {
+      sessionVariables = {
+        GTK_THEME = "Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark:dark";
+      };
       systemPackages = with pkgs; [
-        bibata-sky-mocha
-        (catppuccin-gtk.override {
-          size = "standard";
-          accents = [ "${accent-lower}" ];
-          variant = "${flavor-lower}";
-          tweaks = [ "rimless" ];
-        })
         (catppuccin-kde.override {
           accents = [ "${accent-lower}" ];
           flavour = [ "${flavor-lower}" ];
-        })
-        (catppuccin-papirus-folders.override {
-          accent = "${accent-lower}";
-          flavor = "${flavor-lower}";
-        })
-        (catppuccin-sddm.override {
-          flavor = "${flavor-lower}";
-          font = "${mono-font}";
-          fontSize = "14";
-          background = "${dotfiles}/wallpapers/layered-waves-haikei.png";
-          loginBackground = true;
         })
       ];
     };
     services = {
       displayManager = {
         sddm = {
-          extraPackages = [ bibata-sky-mocha ];
+          catppuccin = {
+            background = "${dotfiles}/wallpapers/lavender-wave-haikei.png";
+            font = "${mono-font}";
+            fontSize = "11";
+          };
           settings = {
             Theme = {
               CursorTheme = "breeze_cursors";
             };
           };
-          theme = "catppuccin-${flavor-lower}";
         };
       };
     };
@@ -107,6 +71,7 @@ in
       {
         catppuccin = {
           enable = true;
+          accent = "${accent-lower}";
           flavour = "${flavor-lower}";
         };
 
@@ -117,6 +82,9 @@ in
         gtk = {
           catppuccin = {
             accent = "${accent-lower}";
+            cursor.enable = false;
+            size = "standard";
+            tweaks = [ "normal" ];
           };
           cursorTheme = {
             name = lib.mkDefault "breeze_cursors";
@@ -143,16 +111,6 @@ in
               gtk-xft-rgba = "rgb";
             };
           };
-          # Icon theming breaks in GTK4 apps
-          /*
-            iconTheme = {
-              name = "Papirus-Dark";
-              package = pkgs.catppuccin-papirus-folders.override {
-                accent = "${accent-lower}";
-                flavor = "${flavor-lower}";
-              };
-            };
-          */
         };
         home = {
           file = {
@@ -200,11 +158,13 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/Catppuccin${flavor-upper}${accent-upper}.colors";
               target = ".var/app/org.kde.krita/data/krita/color-schemes/Catppuccin${flavor-upper}${accent-upper}.colors";
             };
-            catppuccin-kvantum = {
-              enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-kvantum}/src/Catppuccin-${flavor-upper}-${accent-upper}";
-              target = "${config.xdg.configHome}/Kvantum/Catppuccin-${flavor-upper}-${accent-upper}-backup";
-            };
+            /*
+              catppuccin-kvantum = {
+                         enable = true;
+                         source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-kvantum}/src/Catppuccin-${flavor-upper}-${accent-upper}";
+                         target = "${config.xdg.configHome}/Kvantum/Catppuccin-${flavor-upper}-${accent-upper}-backup";
+                       };
+            */
             catppuccin-obs = {
               enable = true;
               recursive = true;
@@ -269,7 +229,6 @@ in
             };
           };
           packages = with pkgs; [
-            bibata-sky-mocha
             gnome.adwaita-icon-theme
             hicolor-icon-theme
             vivid
@@ -319,22 +278,6 @@ in
               };
             };
           };
-          fzf = {
-            colors = {
-              "bg+" = "#313244";
-              "bg" = "#1e1e2e";
-              "spinner" = "#f5e0dc";
-              "hl" = "#f38ba8";
-              "fg" = "#cdd6f4";
-              "header" = "#f38ba8";
-              "info" = "#cba6f7";
-              "pointer" = "#f5e0dc";
-              "marker" = "#f5e0dc";
-              "fg+" = "#cdd6f4";
-              "prompt" = "#cba6f7";
-              "hl+" = "#f38ba8";
-            };
-          };
           git = {
             delta = { };
           };
@@ -355,7 +298,7 @@ in
                 colorScheme = "Catppuccin-${flavor-upper}";
                 font = {
                   name = "${mono-font}";
-                  size = 14;
+                  size = 13;
                 };
               };
             };
@@ -436,14 +379,7 @@ in
           };
         };
         wayland.windowManager.hyprland = { };
-        /*
-          xdg.configFile = {
-            #https://github.com/catppuccin/gtk/pull/151/files
-            "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-            "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-            "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-          };
-        */
+
         xresources = {
           properties = {
             "Xcursor.size" = 24;
