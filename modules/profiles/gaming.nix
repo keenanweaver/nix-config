@@ -288,63 +288,67 @@ in
       }:
       {
         home.file = {
-          roms-amiga = {
-            enable = true;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/amiga";
-            target = ".var/app/net.fsuae.FS-UAE/data/fs-uae";
-          };
-          roms-fightcade = {
-            enable = true;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/fightcade";
-            target = ".var/app/com.fightcade.Fightcade/data";
-          };
-          roms-dolphin = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/dolphin/USA/IPL.bin";
-            target = ".var/app/org.DolphinEmu.dolphin-emu/data/dolphin-emu/GC/USA/IPL.bin";
-          };
-          roms-mt32 = {
-            enable = true;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/mt-32";
-            target = "Music/mt-32";
-          };
+          /*
+            roms-amiga = {
+                     enable = true;
+                     recursive = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/amiga";
+                     target = ".var/app/net.fsuae.FS-UAE/data/fs-uae";
+                   };
+                   roms-fightcade = {
+                     enable = true;
+                     recursive = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/fightcade";
+                     target = ".var/app/com.fightcade.Fightcade/data";
+                   };
+                   roms-dolphin = {
+                     enable = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/dolphin/USA/IPL.bin";
+                     target = ".var/app/org.DolphinEmu.dolphin-emu/data/dolphin-emu/GC/USA/IPL.bin";
+                   };
+                   roms-mt32 = {
+                     enable = true;
+                     recursive = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/mt-32";
+                     target = "Music/mt-32";
+                   };
+          */
           roms-mt32-exodos = {
             enable = true;
             recursive = true;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/mt-32";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/dosbox/mt32-roms";
           };
-          roms-duckstation = {
-            enable = true;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/ps1";
-            target = ".var/app/org.duckstation.DuckStation/config/duckstation/bios";
-          };
-          roms-pcsx2 = {
-            enable = true;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/ps2";
-            target = ".var/app/net.pcsx2.PCSX2/config/PCSX2/bios";
-          };
-          roms-retroarch = {
-            enable = true;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/retroarch";
-            target = ".var/app/org.libretro.RetroArch/config/retroarch/system";
-          };
-          roms-xemu-mcpx = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/xbox/mcpx_1.0.bin";
-            target = ".var/app/app.xemu.xemu/data/xemu/xemu/mcpx_1.0.bin";
-          };
-          roms-xemu-bios = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/xbox/xbox-4627_debug.bin";
-            target = ".var/app/app.xemu.xemu/data/xemu/xemu/xbox-4627_debug.bin";
-          };
+          /*
+            roms-duckstation = {
+                     enable = true;
+                     recursive = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/ps1";
+                     target = ".var/app/org.duckstation.DuckStation/config/duckstation/bios";
+                   };
+                   roms-pcsx2 = {
+                     enable = true;
+                     recursive = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/ps2";
+                     target = ".var/app/net.pcsx2.PCSX2/config/PCSX2/bios";
+                   };
+                   roms-retroarch = {
+                     enable = true;
+                     recursive = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/retroarch";
+                     target = ".var/app/org.libretro.RetroArch/config/retroarch/system";
+                   };
+                   roms-xemu-mcpx = {
+                     enable = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/xbox/mcpx_1.0.bin";
+                     target = ".var/app/app.xemu.xemu/data/xemu/xemu/mcpx_1.0.bin";
+                   };
+                   roms-xemu-bios = {
+                     enable = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/ROMs/xbox/xbox-4627_debug.bin";
+                     target = ".var/app/app.xemu.xemu/data/xemu/xemu/xbox-4627_debug.bin";
+                   };
+          */
           script-get-game-stuff = {
             enable = true;
             text = ''

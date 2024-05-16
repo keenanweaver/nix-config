@@ -62,6 +62,7 @@ in
     mounts.enable = true;
     networking.enable = true;
     nixConfig.enable = true;
+    nonfree.enable = true;
     packages.enable = true;
     performance.enable = true;
     pipewire.enable = true;
