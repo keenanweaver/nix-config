@@ -80,14 +80,10 @@
     # Theming
     catppuccin = {
       url = "github:catppuccin/nix";
-    }; # /28d41bc7187a1e0e9a36440872c0b46bed124f34
+    };
     catppuccinifier = {
       url = "github:lighttigerXIV/catppuccinifier";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    catppuccin-bat = {
-      url = "github:catppuccin/bat";
-      flake = false;
     };
     catppuccin-ghostwriter = {
       url = "github:catppuccin/ghostwriter";
@@ -105,10 +101,12 @@
       url = "github:catppuccin/konsole";
       flake = false;
     };
-    catppuccin-kvantum = {
-      url = "github:catppuccin/kvantum";
-      flake = false;
-    };
+    /*
+      catppuccin-kvantum = {
+         url = "github:catppuccin/kvantum";
+         flake = false;
+       };
+    */
     catppuccin-obs = {
       url = "github:catppuccin/obs";
       flake = false;
