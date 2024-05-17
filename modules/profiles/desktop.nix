@@ -23,6 +23,7 @@ in
     hyprland.enable = false;
     kde.enable = true;
     mumble.enable = true;
+    nonfree.enable = true;
     vscode.enable = true;
     wezterm.enable = true;
     wireshark.enable = true;

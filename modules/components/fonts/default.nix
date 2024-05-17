@@ -88,22 +88,14 @@ in
     home-manager.users.${username} =
       { inputs, config, ... }:
       {
-        /*
-          home.file = {
-                 rpg-maker-2003-fonts = {
-                   enable = vars.gaming;
-                   recursive = true;
-                   source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Fonts/RPGMaker2003";
-                   target = "${config.xdg.dataHome}/fonts/RPGMaker2003";
-                 };
-                 windows-fonts = {
-                   enable = true;
-                   recursive = true;
-                   source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Fonts/Windows";
-                   target = "${config.xdg.dataHome}/fonts/windows";
-                 };
-               };
-        */
+        home.file = {
+          windows-fonts = {
+            enable = true;
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/.local/share/fonts/windows";
+            target = "${config.xdg.dataHome}/fonts/windows";
+          };
+        };
       };
   };
 }
