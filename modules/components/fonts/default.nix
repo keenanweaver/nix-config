@@ -92,8 +92,8 @@ in
           windows-fonts = {
             enable = true;
             recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/.local/share/fonts/windows";
-            target = "${config.xdg.dataHome}/fonts/windows";
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/.local/share/fonts/Windows";
+            target = "${config.xdg.dataHome}/fonts/Windows";
           };
         };
       };
