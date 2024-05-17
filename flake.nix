@@ -77,13 +77,10 @@
 
     # Hyprland
     hyprland.url = "github:hyprwm/Hyprland";
+
     # Theming
     catppuccin = {
       url = "github:catppuccin/nix";
-    };
-    catppuccinifier = {
-      url = "github:lighttigerXIV/catppuccinifier";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin-ghostwriter = {
       url = "github:catppuccin/ghostwriter";
@@ -101,12 +98,6 @@
       url = "github:catppuccin/konsole";
       flake = false;
     };
-    /*
-      catppuccin-kvantum = {
-         url = "github:catppuccin/kvantum";
-         flake = false;
-       };
-    */
     catppuccin-obs = {
       url = "github:catppuccin/obs";
       flake = false;

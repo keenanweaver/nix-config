@@ -17,7 +17,6 @@
   # Custom modules
   desktop.enable = true;
   gaming.enable = true;
-  nonfree.enable = true;
 
   boot = {
     initrd = {

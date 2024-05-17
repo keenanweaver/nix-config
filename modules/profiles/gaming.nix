@@ -156,6 +156,7 @@ in
     gpu-screen-recorder.enable = true;
     lact.enable = true;
     mangohud.enable = true;
+    nonfree.enable = true;
     steam.enable = true;
     sunshine.enable = true;
     timidity.enable = true;
