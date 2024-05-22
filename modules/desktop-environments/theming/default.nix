@@ -15,6 +15,7 @@ let
   cfg = config.catppuccinTheming;
   mono-font = "JetBrainsMono Nerd Font";
   sans-font = "IBM Plex Sans";
+  serif-font = "IBM Plex Serif";
 in
 {
   options = {
@@ -26,16 +27,24 @@ in
     catppuccin = {
       enable = true;
       accent = "${accent-lower}";
-      flavour = "${flavor-lower}";
+      flavor = "${flavor-lower}";
     };
     console = {
       packages = with pkgs; [ terminus_font ];
     };
     environment = {
       sessionVariables = {
-        GTK_THEME = "Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark:dark";
+        # Breaks theming but forces the color scheme
+        #GTK_THEME = "Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark:dark";
       };
       systemPackages = with pkgs; [
+        # Needed for some GTK3 apps. For some reason the catppuccin nix/gtk module doesn't cover these
+        (catppuccin-gtk.override {
+          accents = [ "${accent-lower}" ];
+          variant = "${flavor-lower}";
+          size = "standard";
+          tweaks = [ "normal" ];
+        })
         (catppuccin-kde.override {
           accents = [ "${accent-lower}" ];
           flavour = [ "${flavor-lower}" ];
@@ -46,7 +55,7 @@ in
       displayManager = {
         sddm = {
           catppuccin = {
-            background = "${dotfiles}/wallpapers/lavender-wave-haikei.png";
+            background = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
             font = "${mono-font}";
             fontSize = "11";
           };
@@ -58,6 +67,44 @@ in
         };
       };
     };
+
+    /*
+      stylix = {
+         base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-${flavor-lower}.yaml";
+         cursor = {
+           name = "breeze_cursors";
+           size = 24;
+         };
+         fonts = {
+           monospace = {
+             name = "${mono-font}";
+             package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+           };
+           sansSerif = {
+             name = "${sans-font}";
+             package = pkgs.ibm-plex;
+           };
+           serif = {
+             name = "${serif-font}";
+             package = pkgs.ibm-plex;
+           };
+           sizes = {
+             applications = 13;
+             desktop = 13;
+             popups = 11;
+             terminal = 13;
+           };
+         };
+         image = "${dotfiles}/Pictures/wallpapers/lavender-low-poly-grid-haikei.png";
+         opacity = {
+           applications = 1.0;
+           terminal = 0.7;
+           desktop = 1.0;
+           popups = 1.0;
+         };
+         polarity = "dark";
+       };
+    */
 
     home-manager.users.${username} =
       {
@@ -72,7 +119,7 @@ in
         catppuccin = {
           enable = true;
           accent = "${accent-lower}";
-          flavour = "${flavor-lower}";
+          flavor = "${flavor-lower}";
         };
 
         colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
@@ -80,8 +127,8 @@ in
         fonts.fontconfig.enable = true;
 
         gtk = {
+          enable = true;
           catppuccin = {
-            accent = "${accent-lower}";
             cursor.enable = false;
             size = "standard";
             tweaks = [ "normal" ];
@@ -94,6 +141,10 @@ in
             name = "${sans-font}";
             size = 13;
             package = pkgs.ibm-plex;
+          };
+          gtk2 = {
+            configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+            # force = true; # https://github.com/nix-community/home-manager/pull/5263
           };
           gtk3 = {
             extraConfig = {
@@ -122,6 +173,8 @@ in
                 pkgs.catppuccin-gtk.override {
                   accents = [ "${accent-lower}" ];
                   variant = "${flavor-lower}";
+                  size = "standard";
+                  tweaks = [ "normal" ];
                 }
               }/share/themes/Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark";
               target = "${config.xdg.dataHome}/themes/Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark";
@@ -153,20 +206,6 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-konsole}/Catppuccin-${flavor-upper}.colorscheme";
               target = "${config.xdg.dataHome}/konsole/Catppuccin-${flavor-upper}.colorscheme";
             };
-            /*
-              catppuccin-krita = {
-                         enable = true;
-                         source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/Catppuccin${flavor-upper}${accent-upper}.colors";
-                         target = ".var/app/org.kde.krita/data/krita/color-schemes/Catppuccin${flavor-upper}${accent-upper}.colors";
-                       };
-            */
-            /*
-              catppuccin-kvantum = {
-                         enable = true;
-                         source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-kvantum}/src/Catppuccin-${flavor-upper}-${accent-upper}";
-                         target = "${config.xdg.configHome}/Kvantum/Catppuccin-${flavor-upper}-${accent-upper}-backup";
-                       };
-            */
             catppuccin-obs = {
               enable = true;
               recursive = true;
@@ -215,14 +254,6 @@ in
               '';
               target = "${config.xdg.configHome}/powershell/Microsoft.PowerShell_profile.ps1";
             };
-            /*
-              wallpapers = {
-                         enable = true;
-                         recursive = true;
-                         source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/wallpapers";
-                         target = "Pictures/wallpapers";
-                       };
-            */
             wayland-cursor-fix = {
               enable = true;
               text = ''
@@ -233,9 +264,14 @@ in
             };
           };
           packages = with pkgs; [
-            gnome.adwaita-icon-theme
             hicolor-icon-theme
             vivid
+            ## GNOME
+            #adw-gtk3
+            gnome.adwaita-icon-theme
+            gnome.gnome-settings-daemon
+            gsettings-desktop-schemas
+            gsettings-qt
           ];
           sessionVariables = {
             GSETTINGS_BACKEND = "keyfile";
@@ -257,7 +293,7 @@ in
                 TERM = "xterm-256color";
               };
               font = {
-                size = 14;
+                size = 13;
               };
               window = {
                 opacity = 0.7;
@@ -325,7 +361,7 @@ in
               enable = true;
               settings = {
                 background.dark = "${flavor-lower}";
-                flavour = "${flavor-lower}";
+                flavor = "${flavor-lower}";
                 integrations = {
                   cmp = true;
                   coc_nvim = true;
@@ -395,24 +431,26 @@ in
             "Xft.antialias" = 1;
             "Xft.rgba" = "rgb";
             # Catppuccin
-            "*background" = "#1E1E2E";
-            "*foreground" = "#CDD6F4";
-            "*color0" = "#45475A";
-            "*color8" = "#585B70";
-            "*color1" = "#F38BA8";
-            "*color9" = "#F38BA8";
-            "*color2" = "#A6E3A1";
-            "*color10" = "#A6E3A1";
-            "*color3" = "#F9E2AF";
-            "*color11" = "#F9E2AF";
-            "*color4" = "#89B4FA";
-            "*color12" = "#89B4FA";
-            "*color5" = "#F5C2E7";
-            "*color13" = "#F5C2E7";
-            "*color6" = "#94E2D5";
-            "*color14" = "#94E2D5";
-            "*color7" = "#BAC2DE";
-            "*color15" = "#A6ADC8";
+            /*
+              "*background" = "#1E1E2E";
+                       "*foreground" = "#CDD6F4";
+                       "*color0" = "#45475A";
+                       "*color8" = "#585B70";
+                       "*color1" = "#F38BA8";
+                       "*color9" = "#F38BA8";
+                       "*color2" = "#A6E3A1";
+                       "*color10" = "#A6E3A1";
+                       "*color3" = "#F9E2AF";
+                       "*color11" = "#F9E2AF";
+                       "*color4" = "#89B4FA";
+                       "*color12" = "#89B4FA";
+                       "*color5" = "#F5C2E7";
+                       "*color13" = "#F5C2E7";
+                       "*color6" = "#94E2D5";
+                       "*color14" = "#94E2D5";
+                       "*color7" = "#BAC2DE";
+                       "*color15" = "#A6ADC8";
+            */
           };
         };
       };
