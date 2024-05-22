@@ -21,6 +21,9 @@ in
         gpuOverclock.ppfeaturemask = "0xffffffff";
       };
     };
+
+    users.users.${username}.extraGroups = [ "corectrl" ];
+
     home-manager.users.${username} =
       { config, ... }:
       {

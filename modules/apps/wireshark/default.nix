@@ -21,6 +21,9 @@ in
         package = pkgs.wireshark;
       };
     };
+
+    users.users.${username}.extraGroups = [ "wireshark" ];
+
     home-manager.users.${username} = { };
   };
 }

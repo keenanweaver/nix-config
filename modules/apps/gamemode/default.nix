@@ -37,9 +37,9 @@ in
         };
       };
     };
-    users = {
-      groups.gamemode = { };
-    };
+
+    users.users.${username}.extraGroups = [ "gamemode" ];
+
     home-manager.users.${username} = { };
   };
 }

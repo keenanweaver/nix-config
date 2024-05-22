@@ -18,9 +18,11 @@ in
       programs.foot = {
         enable = true;
         settings = {
-          main = {
-            dpi-aware = "yes";
-          };
+          /*
+            main = {
+                     dpi-aware = "yes";
+                   };
+          */
         };
       };
     };
