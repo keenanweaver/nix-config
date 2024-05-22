@@ -51,7 +51,7 @@
   };
 
   networking = {
-    firewall.enable = lib.mkForce false;
+    #firewall.enable = lib.mkForce false;
     hostName = "nixos-desktop";
     wireless.enable = false;
   };
