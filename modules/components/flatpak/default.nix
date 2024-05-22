@@ -32,6 +32,10 @@ in
     */
     environment.systemPackages = with pkgs; [ flatpak-builder ];
 
+    users.users.${username}.extraGroups = [ "flatpak" ];
+
+    xdg.portal.enable = true;
+
     home-manager.users.${username} =
       { config, username, ... }:
       {

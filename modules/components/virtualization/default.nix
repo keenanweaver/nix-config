@@ -60,6 +60,19 @@ in
       };
       spiceUSBRedirection.enable = true;
     };
-    home-manager.users.${username} = { };
+
+    users.users.${username}.extraGroups = [
+      "docker"
+      "libvirtd"
+    ];
+
+    home-manager.users.${username} = {
+      dconf.settings = {
+        "org/virt-manager/virt-manager/connections" = {
+          autoconnect = [ "qemu:///system" ];
+          uris = [ "qemu:///system" ];
+        };
+      };
+    };
   };
 }
