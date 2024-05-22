@@ -19,11 +19,28 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
     fd 'Zelda64' -t d /home/keenan/Games -x mv {} /home/keenan/Games/zelda64
     fd 'Zelda64' -e tar.gz /home/keenan/Games -x rm {}
 
+    ## Quake 3 / CPMA
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/quake_iii_arena_and_team_arena/setup_quake3_2.0.0.2.exe' -d /home/keenan/.q3a && mv /home/keenan/.q3a/app/* /home/keenan/.q3a && rm -rf /home/keenan/.q3a/tmp /home/keenan/.q3a/app
+    mkdir -p /home/keenan/Games/quake/quake-3/base/{baseq3,cpma}
+    wget -nc https://cdn.playmorepromode.com/files/cpma/cpma-1.53-nomaps.zip -P /home/keenan/Games/quake/quake-3
+    wget -nc https://cdn.playmorepromode.com/files/cpma-mappack-full.zip -P /home/keenan/Games/quake/quake-3
+    wget -nc https://cdn.playmorepromode.com/files/cnq3/cnq3-1.53.zip -P /home/keenan/Games/quake/quake-3
+    wget -nc https://cdn.playmorepromode.com/files/maps/cpma-mappack-beta-june-2020.zip -P /home/keenan/Games/quake/quake-3
+    wget -nc https://files.ioquake3.org/xcsv_hires.zip -P /home/keenan/Games/quake/quake-3
+    wget -nc -O /home/keenan/Games/quake/quake-3/pak9hqq37test20181106.pk3 https://github.com/diegoulloao/ioquake3-mac-install/raw/master/extras/extra-pack-resolution.pk3
+    wget -nc -O /home/keenan/Games/quake/quake-3/pakxy01Tv5.pk3 https://github.com/diegoulloao/ioquake3-mac-install/raw/master/extras/hd-weapons.pk3
+    wget -nc https://raw.githubusercontent.com/twerszko/ioquake3-linux-installer/master/config/q3config.cfg -P /home/keenan/Games/quake/quake-3
+    fd 'nomaps*' -e zip /home/keenan/Games/quake/quake-3 -x ouch d --yes {} -d /home/keenan/Games/quake/quake-3/base
+    fd 'cnq*' -e zip /home/keenan/Games/quake/quake-3 -x ouch d --yes {} -d /home/keenan/Games/quake/quake-3
+    fd . /home/keenan/Games/quake/quake-3/cnq* -x mv {} /home/keenan/Games/quake/quake-3/base
+    fd 'xcsv' -e zip /home/keenan/Games/quake/quake-3 -x ouch d --yes {} -d /home/keenan/Games/quake/quake-3
+    fd . -e pk3 /home/keenan/Games/quake/quake-3/xcsv* -x cp {} /home/keenan/Games/quake/quake-3/base/cpma
+    fd . -e pk3 /home/keenan/Games/quake/quake-3/xcsv* -x cp {} /home/keenan/Games/quake/quake-3/base/baseq3
+    fd . -e pk3 /home/keenan/Games/quake/quake-3 -x cp {} /home/keenan/Games/quake/quake-3/base/baseq3
+    fd . -e pk3 /home/keenan/Games/quake/quake-3 -x cp {} /home/keenan/Games/quake/quake-3/base/cpma
 ```
-## Extract game files
 
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/quake_the_offering_game/setup_quake_the_offering_2.0.0.6.exe' -d /home/keenan/Games/quake/quake-1`
-* `, innoextract -g '/mnt/crusader/Games/Other/GOG/quake_iii_arena_and_team_arena/setup_quake3_2.0.0.2.exe' -d /home/keenan/Games/quake/quake-3`
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/rollercoaster_tycoon_deluxe/setup_rollercoaster_tycoon_deluxe_1.20.015_(17822).exe' -d /home/keenan/Games/RCT`
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/the_elder_scrolls_iii_morrowind_goty_edition_game/setup_tes_morrowind_goty_2.0.0.7.exe' -d /home/keenan/Games/morrowind`
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/blake_stone_aliens_of_gold/setup_blake_stone_-_aliens_of_gold_1.0_(28043).exe' -d /home/keenan/Games/blake-stone/aog`
