@@ -90,9 +90,36 @@ in
           mouse.accelProfile = "flat";
           touchpad.accelProfile = "flat";
         };
-        xkb = {
-          layout = "us";
-        };
+        /*
+          xkb = {
+                 layout = "mine,us";
+                 # https://github.com/nagy/dotfiles/blob/bbc152df487086aa6fea10c69ad9341831f1595a/modules/desktop.nix#L17
+                 # https://libreddit.perennialte.ch/r/linux_gaming/comments/1cvxws3/i_got_f13_to_work_on_nobara/
+                 extraLayouts = {
+                   mine = {
+                     description = "Restore original keys for F13-24";
+                     languages = [ "eng" ];
+                     symbolsFile = pkgs.writeText "myinclude.conf" ''
+                       default partial function_keys
+                       xkb_symbols "restore_fk" {
+                           key<FK13> { [ F13 ] };
+                           key<FK14> { [ F14 ] };
+                           key<FK15> { [ F15 ] };
+                           key<FK16> { [ F16 ] };
+                           key<FK17> { [ F17 ] };
+                           key<FK18> { [ F18 ] };
+                           key<FK19> { [ F19 ] };
+                           key<FK20> { [ F20 ] };
+                           key<FK21> { [ F21 ] };
+                           key<FK22> { [ F22 ] };
+                           key<FK23> { [ F23 ] };
+                           key<FK24> { [ F24 ] };
+                       };
+                     '';
+                   };
+                 };
+               };
+        */
       };
     };
     # https://github.com/NixOS/nixpkgs/issues/305119#issuecomment-2067970575
