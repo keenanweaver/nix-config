@@ -5,5 +5,6 @@
     ./gaming.nix
     ./nonfree.nix
     ./packages.nix
+    ./server.nix
   ];
 }

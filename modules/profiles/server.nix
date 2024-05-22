@@ -19,11 +19,13 @@ in
     # Custom modules
     base.enable = true;
     catppuccinTheming.enable = true;
-    hyprland.enable = false;
-    kde.enable = false;
+    packages.enable = lib.mkForce false;
 
     # Server tweaks
+    alacritty.enable = lib.mkForce false;
+    boxxy.enable = lib.mkForce false;
     distrobox.enable = lib.mkForce false;
+    foot.enable = lib.mkForce false;
     mullvad.enable = lib.mkForce false;
     printing.enable = lib.mkForce false;
     virtualization.enable = lib.mkForce false;

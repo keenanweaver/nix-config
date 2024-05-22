@@ -47,6 +47,10 @@ in
     home-manager.users.${username} =
       { pkgs, ... }:
       {
+        nixpkgs = {
+          overlays = [ inputs.nix-vscode-extensions.overlays.default ];
+        };
+
         programs.vscode = {
           enable = true;
           enableExtensionUpdateCheck = false;

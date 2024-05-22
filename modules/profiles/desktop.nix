@@ -63,41 +63,15 @@ in
 
     home-manager.users.${username} =
       {
-        inputs,
         config,
         pkgs,
         ...
       }:
       {
-        dconf.settings = {
-          "org/virt-manager/virt-manager/connections" = {
-            autoconnect = [ "qemu:///system" ];
-            uris = [ "qemu:///system" ];
-          };
-        };
-        gtk = {
-          enable = true;
-          gtk2 = {
-            configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-            # force = true; # https://github.com/nix-community/home-manager/pull/5263
-          };
-        };
-
         home.packages = with pkgs; [
           fooyin
           neo
-          ## Graphics
-          clinfo
-          ## GNOME
-          adw-gtk3
-          gnome.gnome-settings-daemon
-          gsettings-desktop-schemas
-          gsettings-qt
         ];
-
-        nixpkgs = {
-          overlays = [ inputs.nix-vscode-extensions.overlays.default ];
-        };
 
         xdg = {
           enable = true;

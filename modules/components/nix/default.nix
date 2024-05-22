@@ -71,7 +71,7 @@ in
         (self: super: { })
         (final: prev: {
           apple-fonts = pkgs.callPackage ../../../nix/pkgs/apple-fonts.nix { };
-          fooyin = pkgs.callPackage ../../../nix/pkgs/fooyin.nix { };
+          woof-doom = pkgs.callPackage ../../../nix/pkgs/woof.nix { };
         })
       ];
     };
