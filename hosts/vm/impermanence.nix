@@ -11,7 +11,7 @@
         directories = [
           #"/etc/mullvad-vpn"
           "/etc/NetworkManager/system-connections"
-          "/etc/opensnitchd"
+          #"/etc/opensnitchd"
           "/etc/secureboot"
           "/etc/wireguard"
           "/var/db/sudo/lectured"

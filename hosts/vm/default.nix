@@ -11,6 +11,7 @@
 
   # Custom modules
   server.enable = true;
+  flatpak.enable = lib.mkForce false;
 
   boot = {
     initrd = {
@@ -24,6 +25,9 @@
       ];
     };
     kernelModules = [ "kvm-intel" ];
+    lanzaboote = {
+      enable = lib.mkForce false;
+    };
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -44,13 +48,13 @@
 
   networking = {
     hostName = "nixos-unraid";
-    useDHCP = lib.mkDefault true;
     wireless.enable = false;
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   services = {
+    btrfs.autoScrub.enable = lib.mkForce false;
     clamav = {
       daemon = {
         enable = lib.mkForce false;
@@ -75,6 +79,7 @@
   home-manager.users.${username} =
     {
       config,
+      inputs,
       username,
       pkgs,
       ...
@@ -83,6 +88,8 @@
       unraid = "/mnt/crusader";
     in
     {
+      imports = [ inputs.sops-nix.homeManagerModules.sops ];
+
       home = {
         file = {
           lgogdownloader-blacklist = {
@@ -391,6 +398,17 @@
                 Type = "oneshot";
               };
             };
+            "proper1g1r-collection" = {
+              Unit = {
+                Description = "Download 'proper1g1r-collection' from Internet Archive";
+              };
+              Service = {
+                ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url} '[Start] proper1g1r-collection'";
+                ExecStart = "${pkgs.internetarchive}/bin/ia download proper1g1r-collection --destdir='${unraid}/Games/Rom/No-Intro/1g1r' --no-directories";
+                ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user}:${config.sops.secrets.unraid.ntfy.password} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url} '[End] proper1g1r-collection'";
+                Type = "oneshot";
+              };
+            };
             "quaddicted" = {
               Unit = {
                 Description = "Download Quaddicted maps";
@@ -569,6 +587,12 @@
                   };
             */
             "ni-roms" = {
+              Install.WantedBy = [ "timers.target" ];
+              Timer = {
+                OnCalendar = "*-*-* 06:00:00 America/Chicago";
+              };
+            };
+            "proper1g1r-collection" = {
               Install.WantedBy = [ "timers.target" ];
               Timer = {
                 OnCalendar = "*-*-* 06:00:00 America/Chicago";
