@@ -30,6 +30,7 @@ let
         gzdoom
         prboom-plus
         rbdoom-3-bfg
+        woof-doom
         zandronum
         zandronum-server
       ]
@@ -52,6 +53,15 @@ let
       ]
       # Quake
       [
+        (ioquake3.overrideAttrs (attrs: {
+          version = "unstable-2024-05-20";
+          src = fetchFromGitHub {
+            owner = "ioquake";
+            repo = "ioq3";
+            rev = "1fc83e4845b53a9b259f5980468c8db15fce8de7";
+            hash = "sha256-qnIyNXPeSu/vJfURw7BG41qosAoKGS6NZR9cCb/9Cxw=";
+          };
+        }))
         ironwail
         quake3e
         #trenchbroom
@@ -129,6 +139,7 @@ let
         nsz
         oxyromon
         ps3-disc-dumper
+        renderdoc
         vgmplay-libvgm
         vgmstream
         vgmtools
@@ -183,8 +194,8 @@ in
     environment = {
       sessionVariables = {
         # https://reddit.com/r/linux_gaming/comments/1b9foom/workaround_for_cursor_movement_cutting_our_vrr_on/
-        #KWIN_DRM_DELAY_VRR_CURSOR_UPDATES = "1";
-        #KWIN_FORCE_SW_CURSOR = "1";
+        KWIN_DRM_DELAY_VRR_CURSOR_UPDATES = "1";
+        KWIN_FORCE_SW_CURSOR = "1";
         #KWIN_DRM_DONT_FORCE_AMD_SW_CURSOR = "1";
         # https://invent.kde.org/plasma/kwin/-/merge_requests/927#note_586727
         KWIN_DRM_NO_AMS = "1"; # Input latency/tearing
@@ -218,7 +229,7 @@ in
           package = pkgs.openrgb-with-all-plugins;
         };
       };
-      input-remapper.enable = true;
+      #input-remapper.enable = true;
       joycond.enable = true;
       system76-scheduler.enable = true;
       udev = {
