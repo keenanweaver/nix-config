@@ -110,6 +110,7 @@
       url = "github:catppuccin/xresources";
       flake = false;
     };
+    stylix.url = "github:danth/stylix";
 
     # KDE
     kwin-effects-forceblur = {
@@ -190,6 +191,7 @@
               inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nur.nixosModules.nur
               inputs.sops-nix.nixosModules.sops
+              #inputs.stylix.nixosModules.stylix
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
@@ -254,6 +256,7 @@
               inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nur.nixosModules.nur
               inputs.sops-nix.nixosModules.sops
+              #inputs.stylix.nixosModules.stylix
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
