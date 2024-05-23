@@ -23,24 +23,14 @@ in
       lact
     ];
 
-    systemd.services.lactd = {
-      enable = true;
-      description = "Radeon GPU monitor";
-      after = [
-        "syslog.target"
-        "systemd-modules-load.service"
-      ];
-
-      unitConfig = {
-        ConditionPathExists = "${pkgs.lact}/bin/lact";
-      };
-
+    systemd.services.lact = {
+      description = "AMDGPU Control Daemon";
+      after = [ "multi-user.target" ];
+      wantedBy = [ "multi-user.target" ];
       serviceConfig = {
-        User = "root";
         ExecStart = "${pkgs.lact}/bin/lact daemon";
       };
-
-      wantedBy = [ "multi-user.target" ];
+      enable = true;
     };
   };
 }
