@@ -108,6 +108,7 @@ let
       # Launchers 
       [
         bottles
+        cartridges
         heroic
         lutris
       ]
