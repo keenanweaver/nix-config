@@ -41,7 +41,8 @@ in
             #openssl_1_1 # Devil Daggers
             wqy_zenhei
           ];
-        extraPkgs =
+        /*
+          extraPkgs =
           pkgs: with pkgs; [
             ### Gamescope
             keyutils
@@ -68,6 +69,7 @@ in
             vkbasalt
             xdotool
           ];
+        */
       };
       #protontricks.enable = true;
       remotePlay.openFirewall = true;
