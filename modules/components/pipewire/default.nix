@@ -3,6 +3,7 @@
   config,
   username,
   vars,
+  pkgs,
   ...
 }:
 let
@@ -15,6 +16,15 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      alsa-firmware
+      alsa-lib
+      alsa-plugins
+      alsa-tools
+      alsa-utils
+      pulseaudio
+    ];
+
     hardware.pulseaudio.enable = false;
 
     security.rtkit.enable = true;

@@ -30,12 +30,7 @@ in
 
     environment = {
       systemPackages = with pkgs; [
-        alsa-firmware
-        alsa-lib
-        alsa-plugins
-        alsa-tools
-        alsa-utils
-        pulseaudio
+        apostrophe
         xdg-desktop-portal
       ];
     };
@@ -62,14 +57,18 @@ in
     };
 
     home-manager.users.${username} =
-      {
-        config,
-        pkgs,
-        ...
-      }:
+      { pkgs, ... }:
       {
         home.packages = with pkgs; [
-          fooyin
+          (fooyin.overrideAttrs (attrs: {
+            version = "0.4.3";
+            src = fetchFromGitHub {
+              owner = "ludouzi";
+              repo = "fooyin";
+              rev = "v" + finalAttrs.version;
+              hash = "sha256-S74Y7Q3MmKfxMGyO8un+YDHmCJUYNKY6KqTSPn+CynE=";
+            };
+          }))
           neo
         ];
 
