@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  pkgs,
   ...
 }:
 let
@@ -16,6 +17,10 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      cifs-utils
+      nfs-utils
+    ];
     fileSystems = {
       "${mountpoint}/appdata" = {
         device = "${server}:/mnt/user/appdata";
