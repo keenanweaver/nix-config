@@ -76,10 +76,12 @@ let
         inputs.nix-citizen.packages.${system}.star-citizen
         inputs.nix-citizen.packages.${system}.star-citizen-helper
       ]
-      # Wolf3D
+      # Wolf
       [
         bstone
         ecwolf
+        iortcw
+        iortcw_sp
       ]
     ];
     tools = [
