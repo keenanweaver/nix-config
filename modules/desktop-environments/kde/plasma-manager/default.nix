@@ -66,7 +66,6 @@
         #overrideConfig = true;
         configFile = {
           "baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
-          "kwinrc"."Desktops"."Number" = 2;
           "systemsettingsrc"."KFileDialog Settings"."detailViewIconSize" = 16;
           "systemsettingsrc"."systemsettings_sidebar_mode"."HighlightNonDefaultSettings" = true;
           dolphinrc = {
@@ -122,7 +121,7 @@
             "NightColor"."MorningBeginFixed" = 800;
             "NightColor"."NightTemperature" = 3300;
             "Plugins"."MoveWindowToCenterEnabled" = true;
-            "Plugins"."alwaysopenonprimaryscreen" = "Enabled";
+            #"Plugins"."alwaysopenonprimaryscreen" = "Enabled";
             "Plugins"."blurEnabled" = true;
             "Plugins"."glideEnabled" = true;
             "Plugins"."kwin4_effect_fadingpopupsEnabled" = false;
@@ -145,6 +144,7 @@
             "TabBoxAlternative"."LayoutName" = "thumbnails";
             "Windows"."ActiveMouseScreen" = false;
             "Windows"."Placement" = "Centered";
+            "Windows"."RollOverDesktops" = true;
           };
           kwinrulesrc = {
             "06034a13-968b-4c69-b80f-47e7d2eca419"."Description" = "Application settings for foobar2000.exe";
@@ -189,6 +189,15 @@
             "1"."wmclass" = "codium";
             "1"."wmclasscomplete" = true;
             "1"."wmclassmatch" = 3;
+            "126b3420-931d-4d7a-8e01-a406b09e4842"."Description" = "neochat (wayland)";
+            "126b3420-931d-4d7a-8e01-a406b09e4842"."desktops" = "1d834873-370c-4369-9965-0c4595f2a8e1";
+            "126b3420-931d-4d7a-8e01-a406b09e4842"."desktopsrule" = 3;
+            "126b3420-931d-4d7a-8e01-a406b09e4842"."position" = "1287,0";
+            "126b3420-931d-4d7a-8e01-a406b09e4842"."positionrule" = 3;
+            "126b3420-931d-4d7a-8e01-a406b09e4842"."size" = "1273,961";
+            "126b3420-931d-4d7a-8e01-a406b09e4842"."sizerule" = 3;
+            "126b3420-931d-4d7a-8e01-a406b09e4842"."wmclass" = "neochat";
+            "126b3420-931d-4d7a-8e01-a406b09e4842"."wmclassmatch" = 3;
             "188716e8-75b6-4d1c-b0c7-3088fdb41b5a"."Description" = "Application settings for foobar2000.exe";
             "188716e8-75b6-4d1c-b0c7-3088fdb41b5a"."clientmachine" = "localhost";
             "188716e8-75b6-4d1c-b0c7-3088fdb41b5a"."position" = "0,644";
@@ -474,7 +483,7 @@
             "9c6ea422-8783-48c7-848d-b16e254ba12a"."wmclass" = "armcord";
             "9c6ea422-8783-48c7-848d-b16e254ba12a"."wmclassmatch" = 1;
             "General"."count" = 10;
-            "General"."rules" = "1,2,b28b923a-6565-4f36-9608-d5c906e703f8,3,4,5,6,7,8,9";
+            "General"."rules" = "1,2,3,4,5,6,7,8,9,10,427cc9e3-821f-4213-87f5-438b98d864fb,126b3420-931d-4d7a-8e01-a406b09e4842";
             "a0e6e3db-ee9d-425d-86e8-566cf4803a32"."Description" = "Application settings for armcord";
             "a0e6e3db-ee9d-425d-86e8-566cf4803a32"."clientmachine" = "localhost";
             "a0e6e3db-ee9d-425d-86e8-566cf4803a32"."ignoregeometry" = true;
@@ -485,6 +494,15 @@
             "a0e6e3db-ee9d-425d-86e8-566cf4803a32"."screenrule" = 2;
             "a0e6e3db-ee9d-425d-86e8-566cf4803a32"."wmclass" = "armcord";
             "a0e6e3db-ee9d-425d-86e8-566cf4803a32"."wmclassmatch" = 1;
+            "427cc9e3-821f-4213-87f5-438b98d864fb"."Description" = "tokodon (wayland)";
+            "427cc9e3-821f-4213-87f5-438b98d864fb"."desktops" = "1d834873-370c-4369-9965-0c4595f2a8e1";
+            "427cc9e3-821f-4213-87f5-438b98d864fb"."desktopsrule" = 3;
+            "427cc9e3-821f-4213-87f5-438b98d864fb"."position" = "0,0";
+            "427cc9e3-821f-4213-87f5-438b98d864fb"."positionrule" = 3;
+            "427cc9e3-821f-4213-87f5-438b98d864fb"."size" = "1287,961";
+            "427cc9e3-821f-4213-87f5-438b98d864fb"."sizerule" = 3;
+            "427cc9e3-821f-4213-87f5-438b98d864fb"."wmclass" = "tokodon";
+            "427cc9e3-821f-4213-87f5-438b98d864fb"."wmclassmatch" = 3;
             "b28b923a-6565-4f36-9608-d5c906e703f8"."Description" = "fooyin (wayland)";
             "b28b923a-6565-4f36-9608-d5c906e703f8"."clientmachine" = "localhost";
             "b28b923a-6565-4f36-9608-d5c906e703f8"."ignoregeometry" = true;
@@ -575,10 +593,10 @@
           effects.shakeCursor.enable = true;
           virtualDesktops = {
             animation = "slide";
-            rows = 2;
+            rows = 1;
             names = [
               "Main"
-              "Scratch"
+              "Social"
             ];
             number = 2;
           };

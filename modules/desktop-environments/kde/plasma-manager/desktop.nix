@@ -74,6 +74,8 @@ let
               "applications:org.strawberrymusicplayer.strawberry.desktop"
               "applications:foobar2000.desktop"
               "applications:org.fooyin.fooyin.desktop"
+              "applications:org.kde.neochat.desktop"
+              "applications:org.kde.tokodon.desktop"
             ];
           };
         };
