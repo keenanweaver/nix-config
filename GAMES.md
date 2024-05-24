@@ -62,6 +62,7 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/arx_fatalis/setup_arx_fatalis_1.22_(38577).exe' -d /home/keenan/Games/arx-fatalis`
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/star_wars_jedi_knight_ii_jedi_outcast/setup_star_wars_jedi_knight_ii_-_jedi_outcast_1.04_(17964).exe' -d '/home/keenan/.local/share/openjo/base'`
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/star_wars_jedi_knight_jedi_academy/setup_star_wars_jedi_knight_-_jedi_academy_1.01_(a)_(10331).exe' -d '/home/keenan/.local/share/openjk/base'`
+* `, innoextract -g '/mnt/crusader/Games/Other/GOG/return_to_castle_wolfenstein_game/setup_return_to_castle_wolfenstein_2.0.0.2.exe' -d '/home/keenan/.wolf' && mv /home/keenan/.wolf/app/* /home/keenan/.wolf && mv /home/keenan/.wolf/Main /home/keenan/.wolf/main`
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/doom_3_classic/setup_doom_3_1.3.1_(62814).exe' -d '/home/keenan/.var/app/org.dhewm3.Dhewm3/data/dhewm3'`
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/doom_3_bfg_edition_game/setup_doom_3_bfg_1.14_(13452).exe' -d /home/keenan/.local/share/rbdoom3bfg && mv /home/keenan/.local/share/rbdoom3bfg/app/* /home/keenan/.local/share/rbdoom3bfg && rm -rf /home/keenan/.local/share/rbdoom3bfg/tmp /home/keenan/.local/share/rbdoom3bfg/app`
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/doom_64/setup_doom_64_20220523_(56385).exe' -I 'DOOM64.WAD' -d '/home/keenan/.local/share/doom64ex-plus/'`
