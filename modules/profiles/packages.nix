@@ -128,6 +128,7 @@ in
             statix
           ]
           ++ lib.optionals cfg.system [
+            (_7zz.override { enableUnfree = true; })
             aspell
             aspellDicts.en
             fastfetch
