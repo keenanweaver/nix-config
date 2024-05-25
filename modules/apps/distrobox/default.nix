@@ -447,7 +447,8 @@ in
 
                 [bazzite-arch-sys]
                 home=${config.xdg.configHome}/distrobox/bazzite-arch-sys
-                image=ghcr.io/ublue-os/bazzite-arch:latest
+                image=ghcr.io/ublue-os/arch-distrobox:latest
+                hostname=$(uname -n)
                 init=true
                 pull=false
                 replace=false
