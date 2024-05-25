@@ -81,7 +81,6 @@ let
         bstone
         ecwolf
         iortcw
-        iortcw_sp
       ]
     ];
     tools = [
