@@ -71,7 +71,6 @@ in
         (self: super: { })
         (final: prev: {
           apple-fonts = pkgs.callPackage ../../../nix/pkgs/apple-fonts.nix { };
-          woof-doom = pkgs.callPackage ../../../nix/pkgs/woof.nix { };
         })
       ];
     };
@@ -105,7 +104,7 @@ in
             NIXOS_OZONE_WL = "1";
             NIXPKGS_ALLOW_UNFREE = "1";
             RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
-            WLR_NO_HARDWARE_CURSOR = "1";
+            #WLR_NO_HARDWARE_CURSOR = "1";
             XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
           };
           shellAliases = {
