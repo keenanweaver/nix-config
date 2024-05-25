@@ -33,7 +33,6 @@ io.github.lime3ds.Lime3DS
 io.github.lxndr.gswatcher
 io.github.santiagocezar.maniatic-launcher
 io.github.simple64.simple64
-io.github.srb2.rphys
 io.github.theforceengine.tfe
 io.itch.tx00100xt.SeriousSamClassic-VK
 io.openrct2.OpenRCT2
@@ -78,8 +77,6 @@ org.ryujinx.Ryujinx
 org.scummvm.ScummVM
 org.sonic3air.Sonic3AIR
 org.srb2.SRB2
-org.srb2.SRB2Kart-galaxy/x86_64/stable
-org.srb2.SRB2Kart-Saturn
 org.twinery.Twine
 org.zdoom.Raze
 re.chiaki.Chiaki
