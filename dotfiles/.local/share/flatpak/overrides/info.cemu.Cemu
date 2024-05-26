@@ -1,2 +1,5 @@
 [Context]
 filesystems=/mnt/crusader/Games/Rom/Other/Wii U
+
+[Environment]
+GTK_THEME=Catppuccin-Mocha-Standard-Lavender-Dark
