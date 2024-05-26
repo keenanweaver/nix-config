@@ -152,6 +152,7 @@ in
               gtk-xft-hinting = 1;
               gtk-xft-hintstyle = "hintslight";
               gtk-xft-rgba = "rgb";
+              gtk-application-prefer-dark-theme = true;
             };
           };
           gtk4 = {

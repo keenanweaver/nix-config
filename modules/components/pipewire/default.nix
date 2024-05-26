@@ -158,20 +158,6 @@ in
             '';
             target = "${config.xdg.configHome}/pipewire/pipewire-pulse.conf.d/10-wine-latency.conf";
           };
-          /*
-            wireplumber-bluetooth-config = {
-              enable = true;
-              text = ''
-                bluez_monitor.properties = {
-                  ["bluez5.enable-sbc-xq"] = true,
-                  ["bluez5.enable-msbc"] = true,
-                  ["bluez5.enable-hw-volume"] = true,
-                  ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-                }
-              '';
-              target = "${config.xdg.configHome}/wireplumber/bluetooth.lua.d/51-bluez-config.lua";
-            };
-          */
           wireplumber-disable-suspend = {
             enable = true;
             text = ''
