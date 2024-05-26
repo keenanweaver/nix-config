@@ -51,6 +51,7 @@ in
         driSupport32Bit = true;
       };
     };
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     services = {
       devmon.enable = true;
       fwupd.enable = true;
@@ -65,7 +66,7 @@ in
             src = fetchFromGitHub {
               owner = "ludouzi";
               repo = "fooyin";
-              rev = "v" + finalAttrs.version;
+              rev = "v0.4.3";
               hash = "sha256-S74Y7Q3MmKfxMGyO8un+YDHmCJUYNKY6KqTSPn+CynE=";
             };
           }))
