@@ -23,12 +23,13 @@ in
           input-overlay
           obs-gstreamer
           obs-pipewire-audio-capture
+          obs-vaapi
           obs-vkcapture
         ];
       };
       xdg = {
         desktopEntries = {
-          "com.obsproject.Studio" = {
+          "obs" = {
             name = "OBS Studio";
             comment = "Free and Open Source Streaming/Recording Software";
             exec = "env QT_QPA_PLATFORM=xcb GDK_BACKEND=x11 obs --disable-shutdown-check"; # Run with XWayland compatibility for docks
