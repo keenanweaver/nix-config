@@ -170,6 +170,7 @@ in
     lact.enable = true;
     mangohud.enable = true;
     nonfree.enable = true;
+    obs.enable = true;
     steam.enable = true;
     sunshine.enable = true;
     timidity.enable = true;

@@ -36,6 +36,7 @@
     ./nnn
     ./nushell
     ./nvim
+    ./obs
     ./ripgrep
     ./ssh
     ./starship
