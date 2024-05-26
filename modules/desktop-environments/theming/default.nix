@@ -206,11 +206,17 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-konsole}/Catppuccin-${flavor-upper}.colorscheme";
               target = "${config.xdg.dataHome}/konsole/Catppuccin-${flavor-upper}.colorscheme";
             };
-            catppuccin-obs = {
+            catppuccin-obs-flatpak = {
               enable = true;
               recursive = true;
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-obs}/themes";
               target = ".var/app/com.obsproject.Studio/config/obs-studio/themes/";
+            };
+            catppuccin-obs = {
+              enable = true;
+              recursive = true;
+              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-obs}/themes";
+              target = "${config.xdg.configHome}/obs-studio/themes/";
             };
             catppuccin-powershell = {
               enable = true;
@@ -379,6 +385,40 @@ in
             };
           };
           plasma = {
+            configFile = {
+              # Window decorations
+              "kdeglobals"."KDE"."widgetStyle" = "Breeze";
+              kwinrc = {
+                "org.kde.kdecoration2"."library" = "org.kde.breeze";
+                "org.kde.kdecoration2"."theme" = "Breeze";
+              };
+            };
+            fonts = {
+              general = {
+                family = "${sans-font}";
+                pointSize = 13;
+              };
+              fixedWidth = {
+                family = "${mono-font}";
+                pointSize = 13;
+              };
+              small = {
+                family = "${sans-font}";
+                pointSize = 12;
+              };
+              toolbar = {
+                family = "${sans-font}";
+                pointSize = 13;
+              };
+              menu = {
+                family = "${sans-font}";
+                pointSize = 13;
+              };
+              windowTitle = {
+                family = "${sans-font}";
+                pointSize = 13;
+              };
+            };
             workspace = {
               colorScheme = "Catppuccin${flavor-upper}${accent-upper}";
               cursorTheme = "breeze_cursors";
