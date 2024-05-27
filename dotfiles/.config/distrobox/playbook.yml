@@ -169,6 +169,7 @@
       kewlfft.aur.aur:
         use: paru
         name:
+          - 2s2h-bin
           - gamemode
           - gamescope
           - kdialog
@@ -183,9 +184,8 @@
           - supermario64
           - supermarioworld
           - xash3d-fwgs-git
-          - zelda64recomp-bin
+          - zelda64recomp
           - zeldalttp
-          - zeldamm
 
     - name: Install distrobox specific packages (bazzite-arch-exodos)
       when: distrobox is "bazzite-arch-exodos"

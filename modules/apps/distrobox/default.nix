@@ -40,6 +40,27 @@ in
       in
       {
         home.file = {
+          db-2s2h =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "2s2h";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = vars.gaming;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
           db-aaru =
             let
               args = "";
@@ -397,27 +418,6 @@ in
               target = "${dbe}/${bin}";
               executable = true;
             };
-          db-zeldamm =
-            let
-              args = "gamemoderun obs-gamecapture mangohud";
-              bin = "zeldamm";
-              container = "bazzite-arch-gaming";
-            in
-            {
-              enable = vars.gaming;
-              text = ''
-                #!/usr/bin/env bash
-                if [ -z "''${CONTAINER_ID}" ]; then
-                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
-                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
-                else
-                	exec /usr/bin/${bin} "$@"
-                fi
-              '';
-              target = "${dbe}/${bin}";
-              executable = true;
-            };
           distrobox-assemble-desktop = {
             enable = true;
             text =
@@ -550,18 +550,6 @@ in
             target = "${config.xdg.configHome}/distrobox/bootstrap-ansible.sh";
             executable = true;
           };
-          /*
-            distrobox-bootstrap-ansible-playbook = {
-                     enable = true;
-                     source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/playbook.yml";
-                     target = "${config.xdg.configHome}/distrobox/playbook.yml";
-                   };
-                   distrobox-bootstrap-ansible-reqs = {
-                     enable = true;
-                     source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/requirements.yml";
-                     target = "${config.xdg.configHome}/distrobox/requirements.yml";
-                   };
-          */
           distrobox-mangohud-gaming = {
             enable = vars.gaming;
             source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/MangoHud/MangoHud.conf";
