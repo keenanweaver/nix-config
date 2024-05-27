@@ -188,7 +188,7 @@ in
       kernelParams = [ "split_lock_detect=off" ];
       kernel = {
         sysctl = {
-          "split_lock_mitigate" = 0; # https://reddit.com/r/linux_gaming/comments/1bgqfuk/god_of_war_poor_performance/kv8xsae/?context=3
+          "kernel.split_lock_mitigate" = 0; # https://reddit.com/r/linux_gaming/comments/1bgqfuk/god_of_war_poor_performance/kv8xsae/?context=3
           "vm.max_map_count" = 2147483642;
         };
       };
