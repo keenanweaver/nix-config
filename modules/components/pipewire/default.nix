@@ -142,6 +142,28 @@ in
             '';
             target = "${config.xdg.configHome}/pipewire/pipewire.conf.d/10-coupled-streams.conf";
           };
+          pipewire-echo-cancellation = {
+            # https://wiki.archlinux.org/title/PipeWire/Examples#Echo_cancellation
+            enable = true;
+            text = ''
+              context.modules = [
+                  {   name = libpipewire-module-echo-cancel
+                      args = {
+                          monitor.mode = true
+                          source.props = {
+                              node.name = "source_ec"
+                              node.description = "Echo-cancelled source"
+                          }
+                          aec.args = {
+                              webrtc.gain_control = true
+                              webrtc.extended_filter = false
+                          }
+                      }
+                  }
+              ]
+            '';
+            target = "${config.xdg.configHome}/pipewire/pipewire.conf.d/60-echo-cancel.conf";
+          };
           pipewire-pulseaudio-wine = {
             # https://reddit.com/r/linux_gaming/comments/1d1ef61/pipewire_audio_distortion_and_crackling_fix/
             enable = true;
@@ -160,6 +182,27 @@ in
               ]
             '';
             target = "${config.xdg.configHome}/pipewire/pipewire-pulse.conf.d/10-wine-latency.conf";
+          };
+          wireplumber-alsa-config = {
+            enable = true;
+            text = ''
+              monitor.alsa.rules = [
+                {
+                  matches = [
+                    {
+                      node.name = "~alsa_output.*"
+                    }
+                  ]
+                  actions = {
+                    update-props = {
+                      api.alsa.period-size   = 1024
+                      api.alsa.headroom      = 8192
+                    }
+                  }
+                }
+              ]
+            '';
+            target = "${config.xdg.configHome}/wireplumber/wireplumber.conf.d/50-alsa-config.conf";
           };
           wireplumber-disable-suspend = {
             enable = true;
