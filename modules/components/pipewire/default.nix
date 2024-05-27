@@ -168,21 +168,34 @@ in
                 {
                   matches = [
                     {
-                      device.name = "~alsa_card.*"
+                      node.name = "~alsa_input.*"
+                    },
+                    {
+                      node.name = "~alsa_output.*"
                     }
                   ]
-                  actions = { update-props = { } }
+                  actions = {
+                    update-props = {
+                      session.suspend-timeout-seconds = 0
+                    }
+                  }
                 }
+              ]
+              monitor.bluez.rules = [
                 {
                   matches = [
                     {
-                      node.name = "~alsa_input.pci.*"
-                    }
+                      node.name = "~bluez_input.*"
+                    },
                     {
-                      node.name = "~alsa_output.pci.*"
+                      node.name = "~bluez_output.*"
                     }
                   ]
-                  actions = { update-props = { session.suspend-timeout-seconds = 0 } } 
+                  actions = {
+                    update-props = {
+                      session.suspend-timeout-seconds = 0
+                    }
+                  }
                 }
               ]
             '';
