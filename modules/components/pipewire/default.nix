@@ -143,6 +143,7 @@ in
             target = "${config.xdg.configHome}/pipewire/pipewire.conf.d/10-coupled-streams.conf";
           };
           pipewire-pulseaudio-wine = {
+            # https://reddit.com/r/linux_gaming/comments/1d1ef61/pipewire_audio_distortion_and_crackling_fix/
             enable = true;
             text = ''
               pulse.rules = [
@@ -151,6 +152,8 @@ in
                       actions = {
                           update-props = {
                               pulse.min.quantum = 1024/48000
+                              pulse.min.frag = 1024/48000
+                              pulse.min.req = 1024/48000
                           }
                       }
                   }
