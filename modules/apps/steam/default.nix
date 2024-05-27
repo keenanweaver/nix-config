@@ -71,7 +71,7 @@ in
           ];
         */
       };
-      #protontricks.enable = true;
+      protontricks.enable = true;
       remotePlay.openFirewall = true;
     };
     home-manager.users.${username} =
@@ -89,7 +89,6 @@ in
             };
           };
           packages = with pkgs; [
-            protontricks
             steamtinkerlaunch
           ];
         };
