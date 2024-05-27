@@ -14,7 +14,7 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
 
 ``` bash
     ## Zelda 64
-    curl https://api.github.com/repos/Mr-Wiseguy/Zelda64Recomp/releases/latest | jq -r '.assets[] | select(.name | test("Linux.tar.gz$")).browser_download_url' | wget -i- -N -P /home/keenan/Games
+    curl https://api.github.com/repositories/708994262/releases/latest | jq -r '.assets[] | select(.name | test("Linux.tar.gz$")).browser_download_url' | wget -i- -N -P /home/keenan/Games
     fd 'Zelda64' -e tar.gz /home/keenan/Games -x ouch d --yes {} -d /home/keenan/Games
     fd 'Zelda64' -t d /home/keenan/Games -x mv {} /home/keenan/Games/zelda64
     fd 'Zelda64' -e tar.gz /home/keenan/Games -x rm {}
