@@ -35,16 +35,18 @@ in
     environment = {
       sessionVariables = {
         # Breaks theming but forces the color scheme
-        #GTK_THEME = "Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark:dark";
+        GTK_THEME = "Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark:dark";
       };
       systemPackages = with pkgs; [
         # Needed for some GTK3 apps. For some reason the catppuccin nix/gtk module doesn't cover these
-        (catppuccin-gtk.override {
-          accents = [ "${accent-lower}" ];
-          variant = "${flavor-lower}";
-          size = "standard";
-          tweaks = [ "normal" ];
-        })
+        /*
+          (catppuccin-gtk.override {
+                 accents = [ "${accent-lower}" ];
+                 variant = "${flavor-lower}";
+                 size = "standard";
+                 tweaks = [ "normal" ];
+               })
+        */
         (catppuccin-kde.override {
           accents = [ "${accent-lower}" ];
           flavour = [ "${flavor-lower}" ];
@@ -472,26 +474,24 @@ in
             "Xft.antialias" = 1;
             "Xft.rgba" = "rgb";
             # Catppuccin
-            /*
-              "*background" = "#1E1E2E";
-                       "*foreground" = "#CDD6F4";
-                       "*color0" = "#45475A";
-                       "*color8" = "#585B70";
-                       "*color1" = "#F38BA8";
-                       "*color9" = "#F38BA8";
-                       "*color2" = "#A6E3A1";
-                       "*color10" = "#A6E3A1";
-                       "*color3" = "#F9E2AF";
-                       "*color11" = "#F9E2AF";
-                       "*color4" = "#89B4FA";
-                       "*color12" = "#89B4FA";
-                       "*color5" = "#F5C2E7";
-                       "*color13" = "#F5C2E7";
-                       "*color6" = "#94E2D5";
-                       "*color14" = "#94E2D5";
-                       "*color7" = "#BAC2DE";
-                       "*color15" = "#A6ADC8";
-            */
+            "*background" = "#1E1E2E";
+            "*foreground" = "#CDD6F4";
+            "*color0" = "#45475A";
+            "*color8" = "#585B70";
+            "*color1" = "#F38BA8";
+            "*color9" = "#F38BA8";
+            "*color2" = "#A6E3A1";
+            "*color10" = "#A6E3A1";
+            "*color3" = "#F9E2AF";
+            "*color11" = "#F9E2AF";
+            "*color4" = "#89B4FA";
+            "*color12" = "#89B4FA";
+            "*color5" = "#F5C2E7";
+            "*color13" = "#F5C2E7";
+            "*color6" = "#94E2D5";
+            "*color14" = "#94E2D5";
+            "*color7" = "#BAC2DE";
+            "*color15" = "#A6ADC8";
           };
         };
       };
