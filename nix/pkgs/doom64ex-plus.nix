@@ -9,6 +9,7 @@
   libpng,
   pkg-config,
   makeDesktopItem,
+  copyDesktopItems,
 }:
 
 let
@@ -29,6 +30,7 @@ stdenv.mkDerivation (finalAttrs: {
   nativeBuildInputs = [
     libGLU
     pkg-config
+    copyDesktopItems
   ];
 
   buildInputs = [
@@ -48,31 +50,32 @@ stdenv.mkDerivation (finalAttrs: {
     sh ${buildScript}
   '';
 
+  desktopItems = [
+    (makeDesktopItem {
+      name = "DOOM64EX-Plus";
+      exec = "DOOM64EX-Plus";
+      icon = "DOOM64EX-Plus";
+      desktopName = "DOOM 64 EX+";
+      comment = "An improved, modern version of Doom64EX";
+      categories = [ "Game" ];
+    })
+  ];
+
   installPhase = ''
-    mkdir -p $out/{bin,share/applications,share/icons/hicolor/256x256/apps}
-    cp $src/src/engine/doom64ex-plus.png $out/share/icons/hicolor/256x256/apps/DOOM64EX-Plus.png
-    install -Dm755 -t $out/bin DOOM64EX-Plus
+    runHook preInstall
+    install -Dm644 -t $out/share/icons/hicolor/256x256/apps/DOOM64EX-Plus.png $src/src/engine/doom64ex-plus.png
     install -Dm444 -t $out/bin $src/doom64ex-plus.wad $src/doomsnd.sf2
-    install -Dm444 -t $out/share/applications "$desktopItem/share/applications/"*
+    install -Dm755 -t $out/bin DOOM64EX-Plus
+    runHook postInstall
   '';
 
-  desktopItem = makeDesktopItem {
-    name = "DOOM64EX-Plus";
-    desktopName = "DOOM 64 EX+";
-    icon = "DOOM64EX-Plus";
-    exec = "DOOM64EX-Plus";
-    comment = "An improved, modern version of Doom64EX";
-    categories = [ "Game" ];
-  };
-
-  meta = with lib; {
+  meta = {
     description = "An improved, modern version of Doom64EX";
     homepage = "https://github.com/atsb/Doom64EX-Plus.git";
-    license = licenses.gpl2Only;
+    license = lib.licenses.gpl2Only;
     longDescription = ''
       Copy doomsnd.sf2 and doom64ex-plus.wad from the
       nix store to ~/.local/share/doom64ex-plus
-
       You will also need DOOM64.WAD from Nightdive Studios'
       DOOM 64 Remastered release. To extract it from the GOG
       installer, run:
@@ -82,8 +85,8 @@ stdenv.mkDerivation (finalAttrs: {
       -I DOOM64.WAD -d ~/.local/share/doom64ex-plus'
       ```
     '';
-    maintainers = with maintainers; [ keenanweaver ];
+    maintainers = with lib.maintainers; [ keenanweaver ];
     mainProgram = "DOOM64EX-Plus";
-    platforms = [ "x86_64-linux" ];
+    platforms = [ "x86_64-linux" ]; # TODO: Darwin & aarch64 builds
   };
 })
