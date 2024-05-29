@@ -28,6 +28,7 @@ let
       libva
       xorg.libXcomposite
       xorg.libXrandr
+      libxfixes
     ];
 
     buildPhase = ''
