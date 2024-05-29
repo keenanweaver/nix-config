@@ -91,7 +91,6 @@ in
             Host MiSTer
               HostName 10.20.1.29
               User root
-              Port 6777
             Host Mumble
               HostName game-central.party
               User ${username}
@@ -99,7 +98,6 @@ in
             Host unifi-CKG2
               HostName unifi
               User keenanweaver
-              Port 6777
             Host hellcatv.xyz
               HostName hellcatv.xyz
               User ${username}
@@ -111,7 +109,6 @@ in
             Host steamdeck
               HostName steamdeck
               User deck
-              Port 6777
           '';
         };
       };
