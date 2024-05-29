@@ -3,6 +3,10 @@
   home-manager.users.${username} = {
     programs.plasma = {
       configFile = {
+        kwinrc = {
+          "Desktops"."Id_1" = "a7432ce6-58b8-4c67-92e7-165c462be689"; # Main
+          "Desktops"."Id_2" = "913f595f-b9b9-46ac-9448-99b3a463d45e"; # Social
+        };
         kwinrulesrc = {
           "06034a13-968b-4c69-b80f-47e7d2eca419"."Description" = "Application settings for foobar2000.exe";
           "06034a13-968b-4c69-b80f-47e7d2eca419"."clientmachine" = "localhost";
@@ -47,7 +51,7 @@
           "1"."wmclasscomplete" = true;
           "1"."wmclassmatch" = 3;
           "126b3420-931d-4d7a-8e01-a406b09e4842"."Description" = "neochat (wayland)";
-          "126b3420-931d-4d7a-8e01-a406b09e4842"."desktops" = "1d834873-370c-4369-9965-0c4595f2a8e1";
+          "126b3420-931d-4d7a-8e01-a406b09e4842"."desktops" = "913f595f-b9b9-46ac-9448-99b3a463d45e";
           "126b3420-931d-4d7a-8e01-a406b09e4842"."desktopsrule" = 3;
           "126b3420-931d-4d7a-8e01-a406b09e4842"."position" = "1287,0";
           "126b3420-931d-4d7a-8e01-a406b09e4842"."positionrule" = 3;
@@ -169,7 +173,7 @@
           "4"."wmclasscomplete" = true;
           "4"."wmclassmatch" = 3;
           "427cc9e3-821f-4213-87f5-438b98d864fb"."Description" = "tokodon (wayland)";
-          "427cc9e3-821f-4213-87f5-438b98d864fb"."desktops" = "1d834873-370c-4369-9965-0c4595f2a8e1";
+          "427cc9e3-821f-4213-87f5-438b98d864fb"."desktops" = "913f595f-b9b9-46ac-9448-99b3a463d45e";
           "427cc9e3-821f-4213-87f5-438b98d864fb"."desktopsrule" = 3;
           "427cc9e3-821f-4213-87f5-438b98d864fb"."position" = "0,0";
           "427cc9e3-821f-4213-87f5-438b98d864fb"."positionrule" = 3;
