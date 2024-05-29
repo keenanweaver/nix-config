@@ -428,6 +428,7 @@ in
               iconTheme = "Papirus-Dark";
               lookAndFeel = "Catppuccin-${flavor-upper}-${accent-upper}";
               theme = "default";
+              wallpaper = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
             };
           };
           vscode = {
