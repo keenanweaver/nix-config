@@ -65,7 +65,7 @@ in
           enable = true;
           extraConfig = ''
             Host nixos-desktop
-              HostName nixos-desktop
+              HostName 10.20.1.8
               User ${username}
               Port 6777
             Host nixos-laptop
