@@ -197,11 +197,11 @@ in
     environment = {
       sessionVariables = {
         # https://reddit.com/r/linux_gaming/comments/1b9foom/workaround_for_cursor_movement_cutting_our_vrr_on/
-        KWIN_DRM_DELAY_VRR_CURSOR_UPDATES = "1";
-        KWIN_FORCE_SW_CURSOR = "1";
+        #KWIN_DRM_DELAY_VRR_CURSOR_UPDATES = "1";
+        #KWIN_FORCE_SW_CURSOR = "1";
         #KWIN_DRM_DONT_FORCE_AMD_SW_CURSOR = "1";
         # https://invent.kde.org/plasma/kwin/-/merge_requests/927#note_586727
-        KWIN_DRM_NO_AMS = "1"; # Input latency/tearing
+        #KWIN_DRM_NO_AMS = "1"; # Input latency/tearing
         OBS_VKCAPTURE_QUIET = "1";
       };
     };
@@ -233,7 +233,7 @@ in
         };
       };
       #input-remapper.enable = true;
-      joycond.enable = true;
+      #joycond.enable = true;
       system76-scheduler.enable = true;
       udev = {
         packages = [
