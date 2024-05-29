@@ -80,16 +80,16 @@ in
           };
         };
       };
+      libinput = {
+        mouse.accelProfile = "flat";
+        touchpad.accelProfile = "flat";
+      };
       xserver = {
         enable = true;
         displayManager.setupCommands = ''
           ${pkgs.xorg.xhost}/bin/xhost +local:
         ''; # Distrobox games
         excludePackages = with pkgs; [ xterm ];
-        libinput = {
-          mouse.accelProfile = "flat";
-          touchpad.accelProfile = "flat";
-        };
         /*
           xkb = {
                  layout = "mine,us";
