@@ -169,7 +169,7 @@
       kewlfft.aur.aur:
         use: paru
         name:
-          - 2s2h-bin
+          - 2s2h
           - gamemode
           - gamescope
           - kdialog
