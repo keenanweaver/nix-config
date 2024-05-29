@@ -174,8 +174,6 @@ in
                       actions = {
                           update-props = {
                               pulse.min.quantum = 1024/48000
-                              pulse.min.frag = 1024/48000
-                              pulse.min.req = 1024/48000
                           }
                       }
                   }
