@@ -182,7 +182,7 @@ in
             target = "${config.xdg.configHome}/pipewire/pipewire-pulse.conf.d/10-wine-latency.conf";
           };
           wireplumber-alsa-config = {
-            enable = true;
+            enable = false;
             text = ''
               monitor.alsa.rules = [
                 {
