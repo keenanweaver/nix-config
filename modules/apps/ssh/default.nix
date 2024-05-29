@@ -46,7 +46,7 @@ in
       };
     };
     home-manager.users.${username} =
-      { config, ... }:
+      { config, pkgs, ... }:
       {
         home.file = {
           desktop-entry-ssh-add = {
@@ -60,8 +60,59 @@ in
             target = "${config.xdg.configHome}/autostart/ssh-add.desktop";
           };
         };
+        home.packages = with pkgs; [ sshs ];
         programs.ssh = {
           enable = true;
+          extraConfig = ''
+            Host nixos-desktop
+              HostName nixos-desktop
+              User ${username}
+              Port 6777
+            Host nixos-laptop
+              HostName nixos-laptop
+              User ${username}
+              Port 6777
+            Host Unraid
+              HostName crusader
+              User root
+              Port 6777
+            Host nixos-unraid
+              HostName 10.20.1.112
+              User ${username}
+              Port 6777
+            Host remorsepi
+              HostName remorsepi
+              User ${username}
+              Port 6777
+            Host regretpi
+              HostName regretpi
+              User ${username}
+              Port 6777
+            Host MiSTer
+              HostName 10.20.1.29
+              User root
+              Port 6777
+            Host Mumble
+              HostName game-central.party
+              User ${username}
+              Port 6777
+            Host unifi-CKG2
+              HostName unifi
+              User keenanweaver
+              Port 6777
+            Host hellcatv.xyz
+              HostName hellcatv.xyz
+              User ${username}
+              Port 6777
+            Host opnsense
+              HostName opnsense
+              User ${username}
+              Port 6777
+            Host steamdeck
+              HostName steamdeck
+              User deck
+              Port 6777
+          '';
         };
       };
   };

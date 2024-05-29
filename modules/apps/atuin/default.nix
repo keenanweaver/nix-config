@@ -28,7 +28,6 @@ in
             "^clear$"
             "^exit$"
             "^fastfetch$"
-            "^nccm$"
             "^kmon$"
             "^l$"
             "^ll$"

@@ -51,10 +51,10 @@ in
             -- yazi tab
             local yazi_tab, yazi_pane, _ = window:spawn_tab { args = { 'yazi' } }
             yazi_tab:set_title ' yazi '
-            -- NCCM tab
-            local nccm_tab, nccm_pane, _ = window:spawn_tab { }
-            nccm_pane:send_text 'nccm\n'
-            nccm_tab:set_title ' nccm '
+            -- SSHS tab
+            local sshs_tab, sshs_pane, _ = window:spawn_tab { }
+            sshs_pane:send_text 'sshs\n'
+            sshs_tab:set_title ' sshs '
             -- Distrobox tab
             local db_tab, db_bag_pane, _ = window:spawn_tab { }
             local db_bae_pane = db_bag_pane:split { direction = 'Bottom' }

@@ -208,7 +208,6 @@
       kewlfft.aur.aur:
         use: paru
         name:
-          - nccm
           - python-pipx
 
     - name: Install qobuz-dl from pipx (bazzite-arch-sys)
