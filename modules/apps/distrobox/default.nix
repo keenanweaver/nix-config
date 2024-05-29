@@ -82,6 +82,27 @@ in
               target = "${dbe}/${bin}";
               executable = true;
             };
+          db-daikatana =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "daikatana";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = vars.gaming;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
           db-dbgl =
             let
               args = "obs-gamecapture mangohud";

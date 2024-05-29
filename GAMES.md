@@ -4,7 +4,7 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
 
 ## Set up directories
 ``` bash
-    mkdir -p /home/keenan/Games/{descent/descent-1,descent/descent-2,quake/quake-1,quake/quake-3,RCT,morrowind,blake-stone/aog,blake-stone/ps,jagged-alliance-2/ja2,jagged-alliance-2/unfinished-business,jagged-alliance-2/wildfire,loco,arx-fatalis}
+    mkdir -p /home/keenan/Games/{daikatana,descent/descent-1,descent/descent-2,quake/quake-1,quake/quake-3,RCT,morrowind,blake-stone/aog,blake-stone/ps,jagged-alliance-2/ja2,jagged-alliance-2/unfinished-business,jagged-alliance-2/wildfire,loco,arx-fatalis}
     mkdir -p /home/keenan/.var/app/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/openjkdf2
     mkdir -p '/home/keenan/.var/app/tk.deat.Jazz2Resurrection/data/Jazz² Resurrection/Source'
     mkdir -p /home/keenan/.var/app/io.itch.tx00100xt.SeriousSamClassic-VK/data/Serious-Engine/{serioussam,serioussamse}
@@ -38,6 +38,10 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
     fd . -e pk3 /home/keenan/Games/quake/quake-3/xcsv* -x cp {} /home/keenan/Games/quake/quake-3/base/baseq3
     fd . -e pk3 /home/keenan/Games/quake/quake-3 -x cp {} /home/keenan/Games/quake/quake-3/base/baseq3
     fd . -e pk3 /home/keenan/Games/quake/quake-3 -x cp {} /home/keenan/Games/quake/quake-3/base/cpma
+
+    ## Daikatana
+    wget -nc https://bitbucket.org/daikatana13/daikatana/downloads/Daikatana-Linux-2023-08-17-x64.tar.bz2 -P /home/keenan/Games/daikatana
+    wget -nc https://bitbucket.org/daikatana13/daikatana/downloads/pak6-2022-12-22.zip -P /home/keenan/Games/daikatana
 ```
 
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/quake_the_offering_game/setup_quake_the_offering_2.0.0.6.exe' -d /home/keenan/Games/quake/quake-1`
@@ -49,6 +53,7 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/jagged_alliance_2_unfinished_business/setup_ja2_-_unfinished_business_1.01_(17724).exe' -d /home/keenan/Games/jagged-alliance-2/unfinished-business`
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/jagged_alliance_2_wildfire/setup_jagged_alliance_2_wildfire_6.08_(16760).exe' -d /home/keenan/Games/jagged-alliance-2/wildfire`
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/caesar_3/setup_caesar3_2.0.0.9.exe' -d /home/keenan/Games/caesar-3 && mv /home/keenan/Games/caesar-3/app/* /home/keenan/Games/caesar-3 && rm -rf /home/keenan/Games/caesar-3/app /home/keenan/Games/caesar-3/tmp`
+* `, innoextract -g '/mnt/crusader/Games/Other/GOG/daikatana/setup_daikatana_1.0_(22142).exe' -d /home/keenan/Games/daikatana`
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/theme_hospital/setup_theme_hospital_v3_(28027).exe' -d /home/keenan/Games/theme-hospital`
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/descent/setup_descent_1.4a_(16596).exe' -d /home/keenan/Games/descent/descent-1 && mv /home/keenan/Games/descent/descent-1/app/* /home/keenan/Games/descent/descent-1 && rm -rf /home/keenan/Games/descent/descent-1/app /home/keenan/Games/descent/descent-1/tmp`
 * `, innoextract -g '/mnt/crusader/Games/Other/GOG/descent_2/setup_descent_2_1.1_(16596).exe' -d /home/keenan/Games/descent/descent-2 && mv /home/keenan/Games/descent/descent-2/app/* /home/keenan/Games/descent/descent-2 && rm -rf /home/keenan/Games/descent/descent-2/app /home/keenan/Games/descent/descent-2/tmp`
