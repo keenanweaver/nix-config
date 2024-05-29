@@ -61,15 +61,18 @@ in
       { pkgs, ... }:
       {
         home.packages = with pkgs; [
-          (fooyin.overrideAttrs (attrs: {
-            version = "0.4.3";
-            src = fetchFromGitHub {
-              owner = "ludouzi";
-              repo = "fooyin";
-              rev = "v0.4.3";
-              hash = "sha256-S74Y7Q3MmKfxMGyO8un+YDHmCJUYNKY6KqTSPn+CynE=";
-            };
-          }))
+          fooyin
+          /*
+            (fooyin.overrideAttrs (attrs: {
+                     version = "0.4.3";
+                     src = fetchFromGitHub {
+                       owner = "ludouzi";
+                       repo = "fooyin";
+                       rev = "v0.4.3";
+                       hash = "sha256-S74Y7Q3MmKfxMGyO8un+YDHmCJUYNKY6KqTSPn+CynE=";
+                     };
+                   }))
+          */
           neo
         ];
 
