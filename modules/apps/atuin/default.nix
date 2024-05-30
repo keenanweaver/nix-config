@@ -21,7 +21,6 @@ in
           history_filter = [
             "^btop$"
             "^distrobox enter bazzite-arch-exodos$"
-            "^distrobox enter bazzite-arch-sys$"
             "^distrobox enter bazzite-arch-gaming$"
             "^bash$"
             "^cd$"

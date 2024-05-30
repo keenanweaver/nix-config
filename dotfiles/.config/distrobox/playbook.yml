@@ -130,7 +130,6 @@
       loop:
         - { path: '/home/keenan/.config/distrobox/bazzite-arch-exodos/.config/paru/paru.conf', when: "{{ distrobox }}" is "bazzite-arch-exodos" }
         - { path: '/home/keenan/.config/distrobox/bazzite-arch-gaming/.config/paru/paru.conf', when: "{{ distrobox }}" is "bazzite-arch-gaming" }
-        - { path: '/home/keenan/.config/distrobox/bazzite-arch-sys/.config/paru/paru.conf', when: "{{ distrobox }}" is "bazzite-arch-sys" }
 
     - name: Add atuin to .bashrc
       ansible.builtin.lineinfile:
@@ -140,7 +139,6 @@
       loop:
         - { path: '/home/keenan/.config/distrobox/bazzite-arch-exodos/.bashrc', when: "{{ distrobox }}" is "bazzite-arch-exodos" }
         - { path: '/home/keenan/.config/distrobox/bazzite-arch-gaming/.bashrc', when: "{{ distrobox }}" is "bazzite-arch-gaming" }
-        - { path: '/home/keenan/.config/distrobox/bazzite-arch-sys/.bashrc', when: "{{ distrobox }}" is "bazzite-arch-sys" }
  
     - name: Change atuin config paths
       ansible.builtin.blockinfile:
@@ -153,7 +151,6 @@
       loop:
         - { path: '/home/keenan/.config/distrobox/bazzite-arch-exodos/.config/atuin/config.toml', when: "{{ distrobox }}" is "bazzite-arch-exodos" }
         - { path: '/home/keenan/.config/distrobox/bazzite-arch-gaming/.config/atuin/config.toml', when: "{{ distrobox }}" is "bazzite-arch-gaming" }
-        - { path: '/home/keenan/.config/distrobox/bazzite-arch-sys/.config/atuin/config.toml', when: "{{ distrobox }}" is "bazzite-arch-sys" }
 
     - name: Install base AUR packages
       kewlfft.aur.aur:
@@ -201,17 +198,3 @@
           - innoextract
           - konsole
           - okular
-
-    - name: Install distrobox specific packages (bazzite-arch-sys)
-      when: distrobox is "bazzite-arch-sys"
-      ignore_errors: true
-      kewlfft.aur.aur:
-        use: paru
-        name:
-          - python-pipx
-
-    - name: Install qobuz-dl from pipx (bazzite-arch-sys)
-      when: distrobox is "bazzite-arch-sys"
-      ignore_errors: true
-      ansible.builtin.shell: |
-          pipx install qobuz-dl

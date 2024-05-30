@@ -58,10 +58,8 @@ in
             -- Distrobox tab
             local db_tab, db_bag_pane, _ = window:spawn_tab { }
             local db_bae_pane = db_bag_pane:split { direction = 'Bottom' }
-            local db_bas_pane = db_bae_pane:split { direction = 'Bottom' }
             db_bag_pane:send_text 'distrobox enter bazzite-arch-gaming\nclear\n'
             db_bae_pane:send_text 'distrobox enter bazzite-arch-exodos\nclear\n'
-            db_bas_pane:send_text 'distrobox enter bazzite-arch-sys\nclear\n'
             db_tab:set_title ' distrobox '
             -- fastfetch tab
             local ff_tab, ff_pane, _ = window:spawn_tab { }

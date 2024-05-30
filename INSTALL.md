@@ -57,7 +57,6 @@ Run `bootstrap-baremetal.sh`
     * `distrobox create assemble`
     * `distrobox enter bazzite-arch-exodos -- bash -l -c "/home/keenan/.config/distrobox/bootstrap-bazzite-arch-exodos.sh"`
     * `distrobox enter bazzite-arch-gaming -- bash -l -c "/home/keenan/.config/distrobox/bootstrap-bazzite-arch-gaming.sh"`
-    * `distrobox enter bazzite-arch-sys -- bash -l -c "/home/keenan/.config/distrobox/bootstrap-bazzite-arch-sys.sh"`
 2. Set up flatpaks:
     * `flatpak-install-all.sh`
     <br />or<br />

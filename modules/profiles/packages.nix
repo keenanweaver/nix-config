@@ -103,6 +103,7 @@ in
           ]
           ++ lib.optionals cfg.misc [
             projectm
+            streamrip
             yq
             ### unix alternatives ###
             dogdns # dig

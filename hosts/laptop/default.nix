@@ -75,21 +75,13 @@
   systemd.services.NetworkManager-wait-online.enable = false;
 
   home-manager.users.${username} =
-    {
-      config,
-      username,
-      pkgs,
-      ...
-    }:
+    { username, pkgs, ... }:
     {
       home.file = {
         script-bootstrap-baremetal-laptop = {
           enable = true;
           text = ''
             #!/usr/bin/env bash
-            # Set up Distrobox containers
-            distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
-            distrobox enter bazzite-arch-sys -- bash -l -c "${config.xdg.configHome}/distrobox/bootstrap-bazzite-arch-sys.sh"
             # Set up flatpaks
             sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
             flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo

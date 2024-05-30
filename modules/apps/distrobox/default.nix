@@ -271,27 +271,6 @@ in
               target = "${dbe}/${bin}";
               executable = true;
             };
-          db-qobuz-dl =
-            let
-              args = "";
-              bin = "qobuz-dl";
-              container = "bazzite-arch-sys";
-            in
-            {
-              enable = true;
-              text = ''
-                #!/usr/bin/env bash
-                if [ -z "''${CONTAINER_ID}" ]; then
-                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
-                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
-                else
-                	exec /usr/bin/${bin} "$@"
-                fi
-              '';
-              target = "${dbe}/${bin}";
-              executable = true;
-            };
           db-sonic =
             let
               args = "gamemoderun obs-gamecapture mangohud";
@@ -399,40 +378,28 @@ in
             };
           distrobox-assemble-desktop = {
             enable = true;
-            text =
-              (
-                if vars.gaming then
-                  ''
-                    [bazzite-arch-exodos]
-                    home=${config.xdg.configHome}/distrobox/bazzite-arch-exodos
-                    image=ghcr.io/ublue-os/bazzite-arch:latest
-                    init=true
-                    pull=false
-                    replace=false
-                    start_now=true
+            text = (
+              if vars.gaming then
+                ''
+                  [bazzite-arch-exodos]
+                  home=${config.xdg.configHome}/distrobox/bazzite-arch-exodos
+                  image=ghcr.io/ublue-os/bazzite-arch:latest
+                  init=true
+                  pull=false
+                  replace=false
+                  start_now=true
 
-                    [bazzite-arch-gaming]
-                    home=${config.xdg.configHome}/distrobox/bazzite-arch-gaming
-                    image=ghcr.io/ublue-os/bazzite-arch:latest
-                    init=true
-                    pull=false
-                    replace=false
-                    start_now=true
-                  ''
-                else
-                  ''''
-              )
-              + ''
-
-                [bazzite-arch-sys]
-                home=${config.xdg.configHome}/distrobox/bazzite-arch-sys
-                image=ghcr.io/ublue-os/arch-distrobox:latest
-                hostname=$(uname -n)
-                init=true
-                pull=false
-                replace=false
-                start_now=true
-              '';
+                  [bazzite-arch-gaming]
+                  home=${config.xdg.configHome}/distrobox/bazzite-arch-gaming
+                  image=ghcr.io/ublue-os/bazzite-arch:latest
+                  init=true
+                  pull=false
+                  replace=false
+                  start_now=true
+                ''
+              else
+                ''''
+            );
             target = "${config.xdg.configHome}/distrobox/distrobox.ini";
           };
           distrobox-bazzite-arch-exodos-catppuccin-konsole = {
