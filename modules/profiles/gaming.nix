@@ -234,6 +234,74 @@ in
       };
       #input-remapper.enable = true;
       #joycond.enable = true;
+      pipewire = {
+        configPackages = [
+          (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-loopback-devices.conf" ''
+            context.modules = [
+                {   name = libpipewire-module-loopback
+                    args = {
+                            node.description = "Game capture"
+                            audio.position = [ FL FR ]
+                            capture.props = {
+                                    media.class = Audio/Sink
+                                    node.name = "Game"
+                                    node.description = "Game"
+                            }
+                            playback.props = {
+                                    node.name = "Game_m"
+                                    node.description = "Game capture"
+                            }
+                    }
+                }
+                {   name = libpipewire-module-loopback
+                    args = {
+                            node.description = "Music capture"
+                            audio.position = [ FL FR ]
+                            capture.props = {
+                                    media.class = Audio/Sink
+                                    node.name = "Music"
+                                    node.description = "Music"
+                            }
+                            playback.props = {
+                                    node.name = "Music_m"
+                                    node.description = "Music capture"
+                            }
+                    }
+                }
+                {   name = libpipewire-module-loopback
+                    args = {
+                            node.description = "Live-only capture"
+                            audio.position = [ FL FR ]
+                            capture.props = {
+                                    media.class = Audio/Sink
+                                    node.name = "Live-only"
+                                    node.description = "Live-only"
+                            }
+                            playback.props = {
+                                    node.name = "Live_m"
+                                    node.description = "Live-only capture"
+                            }
+                    }
+                }
+                {   name = libpipewire-module-loopback
+                    args = {
+                            node.description = "VoIP capture"
+                            audio.position = [ FL FR ]
+                            capture.props = {
+                                    media.class = Audio/Sink
+                                    node.name = "VoIP"
+                                    node.description = "VoIP"
+                            }
+                            playback.props = {
+                                    node.name = "VoIP_m"
+                                    node.description = "VoIP capture"
+                            }
+                    }
+                }
+            ]
+          '')
+        ];
+      };
       system76-scheduler.enable = true;
       udev = {
         packages = [
