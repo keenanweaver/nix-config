@@ -49,11 +49,15 @@
               }
               "org.kde.plasma.panelspacer"
               {
-                name = "org.kde.plasma.systemtray";
-                config = {
-                  General = {
-                    showVirtualDevices = "true";
-                  };
+                systemTray.items = {
+                  hidden = [
+                    "opensnitch-ui"
+                    "org.kde.plasma.addons.katesessions"
+                    "org.kde.plasma.networkmanagement"
+                    "org.kde.plasma.clipboard"
+                    "org.kde.kdeconnect"
+                    "tray-id" # Sunshine
+                  ];
                 };
               }
               {

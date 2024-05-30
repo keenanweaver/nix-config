@@ -69,7 +69,7 @@
       };
       programs.plasma = {
         enable = true;
-        overrideConfig = true;
+        #overrideConfig = true;
         configFile = {
           baloofilerc = {
             "Basic Settings"."Indexing-Enabled" = false;
