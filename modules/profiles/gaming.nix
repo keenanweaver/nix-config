@@ -474,6 +474,15 @@ in
                 StartupWMClass = "GOG Galaxy";
               };
             };
+            portproton = {
+              name = "PortProton";
+              comment = "Proton launcher";
+              exec = "portproton";
+              icon = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/PortProton/data/img/w.png";
+              categories = [ "Game" ];
+              noDisplay = false;
+              startupNotify = true;
+            };
           };
         };
       };
