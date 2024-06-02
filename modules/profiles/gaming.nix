@@ -184,6 +184,13 @@ in
         gcadapter-oc-kmod
         v4l2loopback
       ];
+      initrd = {
+        kernelModules = lib.mkDefault [
+          "hid-nintendo"
+          "snd-seq"
+          "snd-rawmidi"
+        ];
+      };
       kernelModules = [ "gcadapter_oc" ];
       kernelParams = [ "split_lock_detect=off" ];
       kernel = {

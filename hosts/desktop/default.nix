@@ -17,6 +17,7 @@
   # Custom modules
   desktop.enable = true;
   gaming.enable = true;
+  nvidia.enable = false;
 
   boot = {
     initrd = {
@@ -32,10 +33,7 @@
     };
     kernelModules = lib.mkDefault [
       "dm-snapshot"
-      "hid-nintendo"
       "kvm-amd"
-      "snd-seq"
-      "snd-rawmidi"
       "tcp_bbr"
       "uinput"
     ];
@@ -47,11 +45,9 @@
 
   hardware = {
     cpu.amd.updateMicrocode = true;
-    #system76.power-daemon.enable = true;
   };
 
   networking = {
-    #firewall.enable = lib.mkForce false;
     hostName = "nixos-desktop";
     wireless.enable = false;
   };
@@ -89,15 +85,12 @@
     };
     udev = {
       extraRules = ''
-        # GPU artifacting https://wiki.archlinux.org/title/AMDGPU#Screen_artifacts_and_frequency_problem
-        #KERNEL=="card1", SUBSYSTEM=="drm", DRIVERS=="amdgpu", ATTR{device/power_dpm_force_performance_level}="high"
         # https://reddit.com/r/linux_gaming/comments/196tz6v/psa_amdgpu_power_management_may_fix_your/khxs3q3/?context=3 https://gitlab.freedesktop.org/drm/amd/-/issues/1500#note_825883
         KERNEL=="card1", SUBSYSTEM=="drm", DRIVERS=="amdgpu", ATTR{device/power_dpm_force_performance_level}="manual", ATTR{device/pp_power_profile_mode}="1"
       '';
     };
     xserver = {
       deviceSection = ''
-        #Option "AsyncFlipSecondaries" "true"
         Option "TearFree" "true"
         Option "VariableRefresh" "true"
       '';
