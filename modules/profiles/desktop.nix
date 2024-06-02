@@ -29,10 +29,7 @@ in
     xwayland.enable = true;
 
     environment = {
-      systemPackages = with pkgs; [
-        apostrophe
-        xdg-desktop-portal
-      ];
+      systemPackages = with pkgs; [ xdg-desktop-portal ];
     };
     hardware = {
       bluetooth = {
@@ -61,6 +58,7 @@ in
       { pkgs, ... }:
       {
         home.packages = with pkgs; [
+          apostrophe
           fooyin
           /*
             (fooyin.overrideAttrs (attrs: {
@@ -74,6 +72,7 @@ in
                    }))
           */
           neo
+          (ventoy-full.override { withQt5 = true; })
         ];
 
         xdg = {
