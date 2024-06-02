@@ -57,6 +57,32 @@ in
     home-manager.users.${username} =
       { pkgs, ... }:
       {
+        home.file = {
+          userjs-floorp = {
+            enable = true;
+            text = ''
+              /* KDE integration */
+              user_pref("widget.use-xdg-desktop-portal.mime-handler", 1);
+              user_pref("widget.use-xdg-desktop-portal.file-picker", 1);
+
+              /* Hardware accelerated codecs */
+              user_pref("media.ffmpeg.vaapi.enable", true);
+
+              /* Disable autofill & password */
+              user_pref("extensions.formautofill.addresses.enabled", false);
+              user_pref("extensions.formautofill.creditCards.enabled", false);
+              user_pref("signon.rememberSignons", false);
+
+              /* Autoplay enable */
+              user_pref("media.autoplay.default", 0);
+
+              /* Enable DRM content */
+              user_pref("media.eme.enabled", true);
+              user_pref("browser.eme.ui.enabled", true);
+            '';
+            target = ".var/app/one.ablaze.floorp/.floorp/yshqu3aq.default-release/user.js";
+          };
+        };
         home.packages = with pkgs; [
           apostrophe
           fooyin
