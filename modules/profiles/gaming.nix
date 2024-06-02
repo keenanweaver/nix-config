@@ -185,7 +185,7 @@ in
         v4l2loopback
       ];
       initrd = {
-        kernelModules = lib.mkDefault [
+        kernelModules = [
           "hid-nintendo"
           "snd-seq"
           "snd-rawmidi"
