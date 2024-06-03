@@ -74,7 +74,7 @@ in
               user_pref("signon.rememberSignons", false);
 
               /* Autoplay enable */
-              user_pref("media.autoplay.default", 0);
+              user_pref("media.autoplay.default", 1);
 
               /* Enable DRM content */
               user_pref("media.eme.enabled", true);
