@@ -46,6 +46,7 @@ in
                 "/mnt/crusader/Projects/Codeberg/nix-config"
                 "/mnt/crusader/Projects/GitHub/keenanweaver.github.io"
                 "/mnt/crusader/Projects/GitHub/nix-config"
+                "/mnt/crusader/Projects/GitHub/nix-config/.git"
                 "/mnt/crusader/Projects/Gitlab/moka-pics"
               ];
             };
