@@ -18,8 +18,6 @@ in
   config = lib.mkIf cfg.enable {
     environment = {
       systemPackages = with pkgs; [
-        #docker-compose
-        #podman-compose
         quickemu
         spice
         spice-protocol
@@ -59,12 +57,30 @@ in
         };
       };
       spiceUSBRedirection.enable = true;
+      vmVariant = {
+        virtualisation = {
+          memorySize = 4096;
+          cores = 3;
+        };
+      };
     };
 
-    users.users.${username}.extraGroups = [
-      "docker"
-      "libvirtd"
-    ];
+    users = {
+      users = {
+        ${username}.extraGroups = [
+          "docker"
+          "libvirtd"
+        ];
+        nixosvmtest = {
+          isSystemUser = true;
+          initialHashedPassword = "$y$j9T$cLVPJpZrtzdgCM732gQ3g/$4qBIUCoDSJ1frFNcvqYSL6ykQSOdjQyDVqRIANx.SRD";
+          group = "nixosvmtest";
+        };
+      };
+      groups = {
+        nixosvmtest = { };
+      };
+    };
 
     home-manager.users.${username} = {
       dconf.settings = {
