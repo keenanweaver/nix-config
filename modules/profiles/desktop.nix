@@ -118,7 +118,7 @@ in
                 "application/x-msdownload" = [ "wine.desktop" ];
                 "application/xhtml+xml" = [ "one.ablaze.floorp.desktop" ];
                 "application/xml" = [ "org.kde.kate.desktop" ];
-                "audio/*" = [ "org.strawberrymusicplayer.strawberry.desktop" ];
+                "audio/*" = [ "org.fooyin.fooyin.desktop" ];
                 "image/*" = [ "org.kde.gwenview.desktop" ];
                 "inode/directory" = [ "org.kde.dolphin.desktop" ];
                 "text/*" = [
@@ -129,7 +129,6 @@ in
                 ];
                 "text/html" = [
                   "one.ablaze.floorp.desktop"
-                  "com.vivaldi.Vivaldi.desktop"
                   "net.mullvad.MullvadBrowser.desktop"
                   "org.kde.kate.desktop"
                 ];
@@ -143,10 +142,10 @@ in
             defaultApplications = {
               "application/x-cue" = [ "cdemu-client.desktop" ];
               "application/x-msdownload" = [ "wine.desktop" ];
-              "audio/aac" = [ "org.strawberrymusicplayer.strawberry.desktop" ];
-              "audio/flac" = [ "org.strawberrymusicplayer.strawberry.desktop" ];
-              "audio/mpeg" = [ "org.strawberrymusicplayer.strawberry.desktop" ];
-              "audio/ogg" = [ "org.strawberrymusicplayer.strawberry.desktop" ];
+              "audio/aac" = [ "org.fooyin.fooyin.desktop" ];
+              "audio/flac" = [ "org.fooyin.fooyin.desktop" ];
+              "audio/mpeg" = [ "org.fooyin.fooyin.desktop" ];
+              "audio/ogg" = [ "org.fooyin.fooyin.desktop" ];
               "audio/webm" = [ "org.kde.haruna.desktop" ];
               "image/bmp" = [ "org.kde.gwenview.desktop" ];
               "image/gif" = [ "org.kde.gwenview.desktop" ];

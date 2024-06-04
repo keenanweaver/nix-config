@@ -107,8 +107,8 @@
           };
           "kded5rc"."Module-device_automounter"."autoload" = false;
           kdeglobals = {
-            "General"."TerminalApplication" = "alacritty";
-            "General"."TerminalService" = "Alacritty.desktop";
+            "General"."TerminalApplication" = "foot";
+            "General"."TerminalService" = "org.codeberg.dnkl.foot.desktop";
             "KDE"."AnimationDurationFactor" = 0.5;
             "KDE"."ShowDeleteCommand" = true;
             "KFileDialog Settings"."Allow Expansion" = true;

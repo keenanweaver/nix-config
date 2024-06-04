@@ -17,12 +17,24 @@ in
     home-manager.users.${username} = {
       programs.foot = {
         enable = true;
+        server.enable = true;
         settings = {
-          /*
-            main = {
-                     dpi-aware = "yes";
-                   };
-          */
+          cursor = {
+            blink = "yes";
+            blink-rate = 1500;
+          };
+          main = {
+            dpi-aware = "yes";
+            pad = "10x10";
+          };
+          mouse = {
+            hide-when-typing = "yes";
+          };
+          key-bindings = {
+            clipboard-copy = "Control+Shift+c";
+            clipboard-paste = "Control+Shift+v";
+            primary-paste = "Shift+Insert";
+          };
         };
       };
     };

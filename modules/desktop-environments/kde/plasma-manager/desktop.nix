@@ -86,7 +86,7 @@
                     showOnlyCurrentActivity = "false";
                     showOnlyCurrentScreen = "true";
                     launchers = [
-                      "applications:Alacritty.desktop"
+                      "applications:org.codeberg.dnkl.foot.desktop"
                       "applications:org.wezfurlong.wezterm.desktop"
                       "applications:org.signal.Signal.desktop"
                       "applications:xyz.armcord.ArmCord.desktop"

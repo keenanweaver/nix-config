@@ -22,7 +22,6 @@ in
     packages.enable = lib.mkForce false;
 
     # Server tweaks
-    alacritty.enable = lib.mkForce false;
     boxxy.enable = lib.mkForce false;
     distrobox.enable = lib.mkForce false;
     foot.enable = lib.mkForce false;

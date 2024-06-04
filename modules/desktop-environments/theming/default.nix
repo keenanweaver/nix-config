@@ -362,6 +362,9 @@ in
           };
           foot = {
             settings = {
+              colors = {
+                alpha = 0.7;
+              };
               main = {
                 font = "${mono-font}:size=13";
               };
