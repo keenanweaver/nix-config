@@ -19,6 +19,7 @@ in
           enable = true;
           defaultEditor = true;
           extraPackages = with pkgs; [
+            shfmt
             # For accessing system clipboard
             wl-clipboard
           ];

@@ -65,7 +65,6 @@ in
             ansible-lint
             ## Bash ###
             nodePackages.bash-language-server
-            shfmt
             shellcheck
             ### C ###
             clang-tools
