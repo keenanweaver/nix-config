@@ -14,7 +14,6 @@ io.github.btpf.alexandria
 io.github.dvlv.boxbuddyrs
 io.github.eteran.edb-debugger
 io.github.jonmagon.kdiskmark
-io.github.prateekmedia.appimagepool
 io.github.pwr_solaar.solaar
 io.github.seadve.Breathing
 io.github.seadve.Mousai
@@ -32,7 +31,6 @@ org.bunkus.mkvtoolnix-gui
 org.filezillaproject.Filezilla
 org.fooyin.fooyin
 org.freedesktop.Platform.ffmpeg-full/x86_64/23.08
-org.gimp.GIMP
 org.kde.haruna
 org.kde.isoimagewriter
 org.kde.kdenlive
