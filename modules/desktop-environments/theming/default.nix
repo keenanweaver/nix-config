@@ -39,24 +39,20 @@ in
       };
       systemPackages = with pkgs; [
         # Needed for some GTK3 apps. For some reason the catppuccin nix/gtk module doesn't cover these
-        /*
-          (catppuccin-gtk.override {
-                 accents = [ "${accent-lower}" ];
-                 variant = "${flavor-lower}";
-                 size = "standard";
-                 tweaks = [ "normal" ];
-               })
-        */
+        (catppuccin-gtk.override {
+          accents = [ "${accent-lower}" ];
+          variant = "${flavor-lower}";
+          size = "standard";
+          tweaks = [ "normal" ];
+        })
         (catppuccin-kde.override {
           accents = [ "${accent-lower}" ];
           flavour = [ "${flavor-lower}" ];
         })
-        /*
-          (catppuccin-papirus-folders.override {
-                 accent = "${accent-lower}";
-                 flavor = "${flavor-lower}";
-               })
-        */
+        (catppuccin-papirus-folders.override {
+          accent = "${accent-lower}";
+          flavor = "${flavor-lower}";
+        })
       ];
     };
     services = {
@@ -154,7 +150,7 @@ in
         gtk = {
           enable = true;
           catppuccin = {
-            enable = true;
+            enable = false;
             cursor.enable = false;
             size = "standard";
             tweaks = [ "normal" ];
