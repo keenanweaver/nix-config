@@ -65,10 +65,13 @@ in
             ansible-lint
             ## Bash ###
             nodePackages.bash-language-server
+            shfmt
             shellcheck
             ### C ###
             clang-tools
+            cmake-language-server
             ### Docker ###
+            docker-compose-language-service
             dockerfile-language-server-nodejs
             ### Go ###
             gofumpt

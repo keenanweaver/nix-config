@@ -54,10 +54,10 @@ in
                 };
               };
               nixd = {
-                command = "${pkgs.nixd}/bin/nixd";
+                command = "nixd";
               };
               ruff = {
-                command = "${pkgs.ruff-lsp}/bin/ruff-lsp";
+                command = "ruff-lsp";
               };
               rustanalyzer = {
                 command = "rust-analyzer";
@@ -88,7 +88,7 @@ in
                 auto-format = true;
                 language-servers = [ "bash-language-server" ];
                 formatter = {
-                  command = "${pkgs.shfmt}/bin/shfmt";
+                  command = "shfmt";
                   args = [
                     "-i"
                     "2"
@@ -101,7 +101,7 @@ in
                 auto-format = true;
                 language-servers = [ "gopls" ];
                 formatter = {
-                  command = "${pkgs.gofumpt}/bin/gofumpt";
+                  command = "gofumpt";
                 };
               }
               {
@@ -109,7 +109,7 @@ in
                 auto-format = true;
                 language-servers = [ "marksman" ];
                 formatter = {
-                  command = "${pkgs.marksman}/bin/marksman";
+                  command = "marksman";
                 };
               }
               {
@@ -117,7 +117,7 @@ in
                 auto-format = true;
                 language-servers = [ "nixd" ];
                 formatter = {
-                  command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+                  command = "nixfmt";
                 };
               }
               {
@@ -125,7 +125,7 @@ in
                 auto-format = true;
                 language-servers = [ "ruff" ];
                 formatter = {
-                  command = "${pkgs.ruff-lsp}/bin/ruff-lsp";
+                  command = "ruff-lsp";
                 };
               }
               {
@@ -133,7 +133,7 @@ in
                 auto-format = true;
                 #language-servers = [ "rust-analyzer" ];
                 formatter = {
-                  command = "${pkgs.rustup}/bin/rustfmt";
+                  command = "rustfmt";
                 };
               }
               {
@@ -149,7 +149,7 @@ in
                 auto-format = true;
                 language-servers = [ "yamllint" ];
                 formatter = {
-                  command = "${pkgs.yamllint}/bin/yamllint";
+                  command = "yamllint";
                 };
               }
             ];
@@ -212,6 +212,11 @@ in
               };
             };
             keys = {
+              insert = {
+                j = {
+                  k = "normal_mode";
+                };
+              };
               normal = {
                 space = {
                   f = ":format"; # format using LSP formatter

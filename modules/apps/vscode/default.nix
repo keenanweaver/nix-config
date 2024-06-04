@@ -19,6 +19,7 @@ let
       #jetpack-io.devbox
       jnoortheen.nix-ide
       mkhl.direnv
+      mkhl.shfmt
       #ms-python.black-formatter
       #ms-python.isort
       ms-python.python
