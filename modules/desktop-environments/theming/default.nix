@@ -35,7 +35,7 @@ in
     environment = {
       sessionVariables = {
         # Breaks theming but forces the color scheme
-        #GTK_THEME = "Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark";
+        GTK_THEME = "Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark";
       };
       systemPackages = with pkgs; [
         # Needed for some GTK3 apps. For some reason the catppuccin nix/gtk module doesn't cover these
