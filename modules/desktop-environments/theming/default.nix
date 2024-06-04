@@ -51,6 +51,10 @@ in
           accents = [ "${accent-lower}" ];
           flavour = [ "${flavor-lower}" ];
         })
+        (catppuccin-papirus-folders.override {
+          accent = "${accent-lower}";
+          flavor = "${flavor-lower}";
+        })
       ];
     };
     services = {
@@ -69,6 +73,8 @@ in
         };
       };
     };
+
+    programs.dconf.enable = true;
 
     /*
       stylix = {
@@ -131,6 +137,7 @@ in
         gtk = {
           enable = true;
           catppuccin = {
+            enable = false;
             cursor.enable = false;
             size = "standard";
             tweaks = [ "normal" ];
@@ -150,15 +157,27 @@ in
           };
           gtk3 = {
             extraConfig = {
+              gtk-application-prefer-dark-theme = true;
+              gtk-button-images = true;
+              gtk-decoration-layout = "icon:minimize,maximize,close";
+              gtk-enable-animations = true;
+              gtk-menu-images = true;
+              gtk-modules = "colorreload-gtk-module";
+              gtk-primary-button-warps-slider = true;
+              gtk-sound-theme-name = "ocean";
+              gtk-toolbar-style = "3";
               gtk-xft-antialias = 1;
               gtk-xft-hinting = 1;
               gtk-xft-hintstyle = "hintslight";
               gtk-xft-rgba = "rgb";
-              gtk-application-prefer-dark-theme = true;
             };
           };
           gtk4 = {
             extraConfig = {
+              gtk-decoration-layout = "icon:minimize,maximize,close";
+              gtk-enable-animations = true;
+              gtk-primary-button-warps-slider = true;
+              gtk-sound-theme-name = "ocean";
               gtk-xft-antialias = 1;
               gtk-xft-hinting = 1;
               gtk-xft-hintstyle = "hintslight";
