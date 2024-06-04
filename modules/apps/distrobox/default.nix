@@ -231,7 +231,7 @@ in
             };
           db-mesen =
             let
-              args = "gamemoderun obs-gamecapture mangohud";
+              args = "gamemoderun obs-gamecapture";
               bin = "mesen2";
               container = "bazzite-arch-gaming";
             in
