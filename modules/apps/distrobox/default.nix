@@ -548,11 +548,6 @@ in
             source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/MangoHud/MangoHud.conf";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/MangoHud/MangoHud.conf";
           };
-          nccm = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/nccm/nccm.yml";
-            target = "${config.xdg.configHome}/distrobox/bazzite-arch-sys/.config/nccm/nccm.yml";
-          };
         };
         home.packages = with pkgs; [ xorg.xhost ];
       };
