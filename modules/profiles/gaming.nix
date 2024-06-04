@@ -392,6 +392,7 @@ in
           script-get-game-stuff = {
             enable = true;
             text = ''
+              #!/usr/bin/env bash
               ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
               steamtinkerlaunch compat add
               steamtinkerlaunch
