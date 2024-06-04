@@ -51,10 +51,12 @@ in
           accents = [ "${accent-lower}" ];
           flavour = [ "${flavor-lower}" ];
         })
-        (catppuccin-papirus-folders.override {
-          accent = "${accent-lower}";
-          flavor = "${flavor-lower}";
-        })
+        /*
+          (catppuccin-papirus-folders.override {
+                 accent = "${accent-lower}";
+                 flavor = "${flavor-lower}";
+               })
+        */
       ];
     };
     services = {
@@ -78,6 +80,7 @@ in
 
     /*
       stylix = {
+         autoEnable = false;
          base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-${flavor-lower}.yaml";
          cursor = {
            name = "breeze_cursors";
@@ -111,6 +114,10 @@ in
            popups = 1.0;
          };
          polarity = "dark";
+         targets = {
+           chromium.enable = true;
+           gtk.enable = true;
+         };
        };
     */
 
@@ -130,6 +137,16 @@ in
           flavor = "${flavor-lower}";
         };
 
+        /*
+          stylix = {
+                 autoEnable = false;
+                 targets = {
+                   #mangohud.enable = if vars.gaming then true else false;
+                   xresources.enable = true;
+                 };
+               };
+        */
+
         colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
         fonts.fontconfig.enable = true;
@@ -137,7 +154,7 @@ in
         gtk = {
           enable = true;
           catppuccin = {
-            enable = false;
+            enable = true;
             cursor.enable = false;
             size = "standard";
             tweaks = [ "normal" ];
@@ -292,6 +309,14 @@ in
             };
           };
           packages = with pkgs; [
+            /*
+              (catppuccin-gtk.override {
+                         accents = [ "${accent-lower}" ];
+                         variant = "${flavor-lower}";
+                         size = "standard";
+                         tweaks = [ "normal" ];
+                       })
+            */
             hicolor-icon-theme
             vivid
             ## GNOME
