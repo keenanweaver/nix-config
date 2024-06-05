@@ -8,148 +8,151 @@
 }:
 let
   cfg = config.gaming;
-  p = with pkgs; {
-    games = [
-      arx-libertatis # Arx Fatalis
-      clonehero # Guitar Hero
-      exult # Ultima VII
-      openjk # Jedi Academy
-      openloco # Locomotion
-      openxray # STALKER
-      #relive # Oddworld
-      wipeout-rewrite # Wipeout
-      # Doom
-      [
-        #chocolate-doom
-        crispy-doom
-        #doom64ex-plus
-        (callPackage ../../nix/pkgs/doom64ex-plus.nix { })
-        doomrunner
-        doomseeker
-        dsda-doom
-        gzdoom
-        prboom-plus
-        rbdoom-3-bfg
-        woof-doom
-        zandronum
-        zandronum-server
-      ]
-      # Fallout
-      [
-        fallout-ce
-        fallout2-ce
-      ]
-      # Freespace
-      [
-        dxx-rebirth
-        knossosnet
-      ]
-      # Marathon
-      [
-        alephone
-        alephone-marathon
-        alephone-durandal
-        alephone-infinity
-      ]
-      # Quake
-      [
-        (ioquake3.overrideAttrs (attrs: {
-          version = "unstable-2024-05-20";
-          src = fetchFromGitHub {
-            owner = "ioquake";
-            repo = "ioq3";
-            rev = "1fc83e4845b53a9b259f5980468c8db15fce8de7";
-            hash = "sha256-qnIyNXPeSu/vJfURw7BG41qosAoKGS6NZR9cCb/9Cxw=";
-          };
-        }))
-        ironwail
-        quake3e
-        #trenchbroom
-      ]
-      # Duke3D
-      [
-        eduke32
-        #raze
-      ]
-      # Star Citizen
-      [
-        inputs.nix-citizen.packages.${system}.star-citizen
-        inputs.nix-citizen.packages.${system}.star-citizen-helper
-      ]
-      # Wolf
-      [
-        bstone
-        ecwolf
-        iortcw
-      ]
-    ];
-    tools = [
-      obs-studio-plugins.obs-vkcapture
-      # Emulators 
-      [
-        #bizhawk
-        #hypseus-singe
-        #mesen
-      ]
-      # Input
-      [
-        joystickwake
-        makima
-        oversteer
-        sc-controller
-        xboxdrv
-      ]
-      # Graphics
-      [
-        glxinfo
-        libstrangle
-        nur.repos.ataraxiasje.reshade-shaders
-        vkbasalt
-        vkbasalt-cli
-        vulkan-tools
-      ]
-      # Launchers 
-      [
-        bottles
-        cartridges
-        heroic
-        lutris
-      ]
-      # Modding
-      [
-        r2modman # Lethal Company
-      ]
-      # Wine
-      [
-        winetricks
-        wineWowPackages.stagingFull
-      ]
-      /*
-        gst_all_1.gstreamer
-           gst_all_1.gst-libav
-           gst_all_1.gst-plugins-bad
-           gst_all_1.gst-plugins-base
-           gst_all_1.gst-plugins-good
-           gst_all_1.gst-plugins-ugly
-      */
-      /*
-        igir
-        innoextract
-        jpsxdec
-        lgogdownloader
-        mame.tools
-        mkvtoolnix-cli
-        mmv
-        nsz
-        oxyromon
-        ps3-disc-dumper
-        renderdoc
-        vgmplay-libvgm
-        vgmstream
-        vgmtools
-      */
-    ];
-  };
+  p =
+    with pkgs;
+    with config.nur.repos;
+    {
+      games = [
+        arx-libertatis # Arx Fatalis
+        clonehero # Guitar Hero
+        exult # Ultima VII
+        openjk # Jedi Academy
+        openloco # Locomotion
+        openxray # STALKER
+        #relive # Oddworld
+        wipeout-rewrite # Wipeout
+        # Doom
+        [
+          #chocolate-doom
+          crispy-doom
+          #doom64ex-plus
+          (callPackage ../../nix/pkgs/doom64ex-plus.nix { })
+          doomrunner
+          doomseeker
+          dsda-doom
+          gzdoom
+          prboom-plus
+          rbdoom-3-bfg
+          woof-doom
+          zandronum
+          zandronum-server
+        ]
+        # Fallout
+        [
+          fallout-ce
+          fallout2-ce
+        ]
+        # Freespace
+        [
+          dxx-rebirth
+          knossosnet
+        ]
+        # Marathon
+        [
+          alephone
+          alephone-marathon
+          alephone-durandal
+          alephone-infinity
+        ]
+        # Quake
+        [
+          (ioquake3.overrideAttrs (attrs: {
+            version = "unstable-2024-05-20";
+            src = fetchFromGitHub {
+              owner = "ioquake";
+              repo = "ioq3";
+              rev = "1fc83e4845b53a9b259f5980468c8db15fce8de7";
+              hash = "sha256-qnIyNXPeSu/vJfURw7BG41qosAoKGS6NZR9cCb/9Cxw=";
+            };
+          }))
+          ironwail
+          quake3e
+          #trenchbroom
+        ]
+        # Duke3D
+        [
+          eduke32
+          #raze
+        ]
+        # Star Citizen
+        [
+          inputs.nix-citizen.packages.${system}.star-citizen
+          inputs.nix-citizen.packages.${system}.star-citizen-helper
+        ]
+        # Wolf
+        [
+          bstone
+          ecwolf
+          iortcw
+        ]
+      ];
+      tools = [
+        obs-studio-plugins.obs-vkcapture
+        # Emulators 
+        [
+          #bizhawk
+          #hypseus-singe
+          #mesen
+        ]
+        # Input
+        [
+          joystickwake
+          makima
+          oversteer
+          sc-controller
+          xboxdrv
+        ]
+        # Graphics
+        [
+          glxinfo
+          libstrangle
+          ataraxiasje.reshade-shaders
+          vkbasalt
+          vkbasalt-cli
+          vulkan-tools
+        ]
+        # Launchers 
+        [
+          bottles
+          cartridges
+          heroic
+          lutris
+        ]
+        # Modding
+        [
+          r2modman # Lethal Company
+        ]
+        # Wine
+        [
+          winetricks
+          wineWowPackages.stagingFull
+        ]
+        /*
+          gst_all_1.gstreamer
+             gst_all_1.gst-libav
+             gst_all_1.gst-plugins-bad
+             gst_all_1.gst-plugins-base
+             gst_all_1.gst-plugins-good
+             gst_all_1.gst-plugins-ugly
+        */
+        /*
+          igir
+          innoextract
+          jpsxdec
+          lgogdownloader
+          mame.tools
+          mkvtoolnix-cli
+          mmv
+          nsz
+          oxyromon
+          ps3-disc-dumper
+          renderdoc
+          vgmplay-libvgm
+          vgmstream
+          vgmtools
+        */
+      ];
+    };
 in
 {
   options = {
@@ -414,8 +417,8 @@ in
             text = ''
               effects = smaa
               enableOnLaunch = False
-              reshadeTexturePath = "${pkgs.nur.repos.ataraxiasje.reshade-shaders}/share/reshade/textures"
-              reshadeIncludePath = "${pkgs.nur.repos.ataraxiasje.reshade-shaders}/share/reshade/shaders"
+              reshadeTexturePath = "${config.nur.repos.ataraxiasje.reshade-shaders}/share/reshade/textures"
+              reshadeIncludePath = "${config.nur.repos.ataraxiasje.reshade-shaders}/share/reshade/shaders"
               smaaEdgeDetection = luma
               smaaThreshold = 0.05
               smaaMaxSearchSteps = 32
