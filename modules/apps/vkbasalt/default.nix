@@ -55,7 +55,7 @@ in
           vkbasalt-cli
         ];
         sessionVariables = {
-          ENABLE_VKBASALT = "1";
+          #ENABLE_VKBASALT = "1";
         };
       };
     };
