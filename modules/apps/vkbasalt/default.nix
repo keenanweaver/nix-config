@@ -40,7 +40,7 @@ in
                 blending = ${reshade}/shaders/Blending.fxh
                 daltonize = ${reshade}/shaders/Daltonize.fx
                 deband = ${reshade}/shaders/Deband.fx
-                displaydepth = "${reshade}/shaders/DisplayDepth.fx
+                displaydepth = ${reshade}/shaders/DisplayDepth.fx
                 drawtext = ${reshade}/shaders/DrawText.fxh
                 lut = ${reshade}/shaders/LUT.fx
                 macros = ${reshade}/shaders/Macros.fxh
