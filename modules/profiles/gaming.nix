@@ -103,7 +103,9 @@ let
       [
         glxinfo
         libstrangle
+        nur.repos.ataraxiasje.reshade-shaders
         vkbasalt
+        vkbasalt-cli
         vulkan-tools
       ]
       # Launchers 
@@ -406,6 +408,22 @@ in
               chmod +x /home/${username}/.local/bin/conty_lite.sh
             '';
             target = "/home/${username}/.local/bin/game-stuff.sh";
+          };
+          vkbasalt-default-config = {
+            enable = true;
+            text = ''
+              effects = smaa
+              enableOnLaunch = False
+              reshadeTexturePath = "${pkgs.nur.repos.ataraxiasje.reshade-shaders}/share/reshade/textures"
+              reshadeIncludePath = "${pkgs.nur.repos.ataraxiasje.reshade-shaders}/share/reshade/shaders"
+              smaaEdgeDetection = luma
+              smaaThreshold = 0.05
+              smaaMaxSearchSteps = 32
+              smaaMaxSearchStepsDiag = 16
+              smaaCornerRounding = 25
+              toggleKey = Home
+            '';
+            target = "${config.xdg.configHome}/vkBasalt/vkBasalt.conf";
           };
           # Use Bottles to manage Wine runners for Heroic and Lutris
           wine-links-heroic = {
