@@ -21,7 +21,6 @@ in
         settings = {
           cursor = {
             blink = "yes";
-            blink-rate = 1500;
           };
           main = {
             dpi-aware = "yes";
