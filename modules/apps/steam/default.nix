@@ -88,9 +88,7 @@ in
               target = "${config.xdg.dataHome}/Steam/steam_dev.cfg";
             };
           };
-          packages = with pkgs; [
-            steamtinkerlaunch
-          ];
+          packages = with pkgs; [ steamtinkerlaunch ];
         };
       };
   };

@@ -74,6 +74,10 @@
       url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
       flake = false;
     };
+    ow-mod-man = {
+      url = "github:ow-mods/ow-mod-man";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Hyprland
     hyprland.url = "github:hyprwm/Hyprland";

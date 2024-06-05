@@ -13,6 +13,8 @@ let
       arx-libertatis # Arx Fatalis
       clonehero # Guitar Hero
       exult # Ultima VII
+      inputs.ow-mod-man.packages.${system}.owmods-cli
+      inputs.ow-mod-man.packages.${system}.owmods-gui
       openjk # Jedi Academy
       openloco # Locomotion
       openxray # STALKER
@@ -63,7 +65,7 @@ let
           };
         }))
         ironwail
-        quake3e
+        #quake3e
         #trenchbroom
       ]
       # Duke3D
@@ -103,8 +105,6 @@ let
       [
         glxinfo
         libstrangle
-        vkbasalt
-        vkbasalt-cli
         vulkan-tools
       ]
       # Launchers 
@@ -175,6 +175,7 @@ in
     steam.enable = true;
     sunshine.enable = true;
     timidity.enable = true;
+    vkbasalt.enable = true;
     zerotier.enable = true;
 
     boot = {
@@ -232,6 +233,14 @@ in
         "freeimage-unstable-2021-11-01"
       ];
     */
+
+    networking = {
+      firewall = {
+        # OW QSB KCP
+        allowedTCPPorts = [ 7777 ];
+        allowedUDPPorts = [ 7777 ];
+      };
+    };
 
     services = {
       hardware = {
@@ -407,22 +416,6 @@ in
               chmod +x /home/${username}/.local/bin/conty_lite.sh
             '';
             target = "/home/${username}/.local/bin/game-stuff.sh";
-          };
-          vkbasalt-default-config = {
-            enable = true;
-            text = ''
-              effects = smaa
-              enableOnLaunch = False
-              reshadeTexturePath = "${config.nur.repos.ataraxiasjel.reshade-shaders}/share/reshade/textures"
-              reshadeIncludePath = "${config.nur.repos.ataraxiasjel.reshade-shaders}/share/reshade/shaders"
-              smaaEdgeDetection = luma
-              smaaThreshold = 0.05
-              smaaMaxSearchSteps = 32
-              smaaMaxSearchStepsDiag = 16
-              smaaCornerRounding = 25
-              toggleKey = Home
-            '';
-            target = "${config.xdg.configHome}/vkBasalt/vkBasalt.conf";
           };
           # Use Bottles to manage Wine runners for Heroic and Lutris
           wine-links-heroic = {

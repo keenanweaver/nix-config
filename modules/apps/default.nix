@@ -45,6 +45,7 @@
     ./tealdeer
     ./timidity
     ./topgrade
+    ./vkbasalt
     ./vscode
     ./wezterm
     ./wireshark
