@@ -25,7 +25,7 @@ Prerequisites:
     * `nixos-install --flake .#nixos-desktop`
     * `nixos-install --flake .#nixos-laptop`
     * `nixos-install --flake .#nixos-pi`
-    * `nixos-install --flake .#nixos-vm`
+    * `nixos-install --flake .#nixos-unraid`
 10. Reboot: `reboot`
 11. Finish Secure Boot setup: 
     1.  Rebuild your system and check the sbctl verify output: `sudo sbctl verify`

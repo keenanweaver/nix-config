@@ -26,6 +26,7 @@ in
     distrobox.enable = lib.mkForce false;
     foot.enable = lib.mkForce false;
     mullvad.enable = lib.mkForce false;
+    pipewire.enable = lib.mkForce false;
     printing.enable = lib.mkForce false;
     virtualization.enable = lib.mkForce false;
 
