@@ -41,7 +41,7 @@ Prerequisites:
     * `sudo nixos-rebuild switch --impure --upgrade --flake /etc/nixos/#nixos-desktop`
     * `sudo nixos-rebuild switch --impure --upgrade --flake /etc/nixos/#nixos-laptop`
     * `sudo nixos-rebuild switch --impure --upgrade --flake /etc/nixos/#nixos-pi`
-    * `sudo nixos-rebuild switch --impure --upgrade --flake /etc/nixos/#nixos-vm`
+    * `sudo nixos-rebuild switch --impure --upgrade --flake /etc/nixos/#nixos-unraid`
 
 ## Post-install manual steps
 

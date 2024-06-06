@@ -18,7 +18,7 @@ in
   config = lib.mkIf cfg.enable {
     # Custom modules
     base.enable = true;
-    catppuccinTheming.enable = true;
+    catppuccinTheming.enable = lib.mkForce false;
     packages.enable = lib.mkForce false;
 
     # Server tweaks
