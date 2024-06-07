@@ -65,7 +65,7 @@ in
           enable = true;
           extraConfig = ''
             Host nixos-desktop
-              HostName 10.20.1.8
+              HostName nixos-desktop
               User ${username}
               Port 6777
             Host nixos-laptop
@@ -77,7 +77,7 @@ in
               User root
               Port 6777
             Host nixos-unraid
-              HostName 10.20.1.112
+              HostName nixos-unraid
               User ${username}
               Port 6777
             Host remorsepi
