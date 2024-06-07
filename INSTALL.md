@@ -73,4 +73,4 @@ Run `bootstrap-baremetal.sh`
 ### Server
 1. Log into GOG and Internet Archive
     * `lgogdownloader`
-    * `ia login`
+    * `ia configure`
