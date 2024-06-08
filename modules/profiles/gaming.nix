@@ -417,53 +417,53 @@ in
               chmod +x /home/${username}/.local/bin/conty_lite.sh
             '';
             target = "/home/${username}/.local/bin/game-stuff.sh";
-            script-pipewire-sink-helper = {
-              enable = true;
-              text = ''
-                #!/usr/bin/env bash
-                # Compiled from
-                # https://unix.stackexchange.com/questions/622987/send-music-from-specific-application-to-certain-sound-output-via-command-line
-                # https://bbs.archlinux.org/viewtopic.php?pid=1693617#p1693617
-                # https://forums.linuxmint.com/viewtopic.php?t=328616
-                # Set switches
-                app=$1
-                out=$2
+          };
+          script-pipewire-sink-helper = {
+            enable = true;
+            text = ''
+              #!/usr/bin/env bash
+              # Compiled from
+              # https://unix.stackexchange.com/questions/622987/send-music-from-specific-application-to-certain-sound-output-via-command-line
+              # https://bbs.archlinux.org/viewtopic.php?pid=1693617#p1693617
+              # https://forums.linuxmint.com/viewtopic.php?t=328616
+              # Set switches
+              app=$1
+              out=$2
 
-                # Collect all sinks
-                sinkList=$(pactl list sinks | tr '\n' '\r' | perl -pe 's/Sink #([0-9]+).+?device\.description = "([^\r]+)"\r.+?(?=Sink #|$)/\1:"\2",/g' | tr '\r' '\n')
-                IFS="," read -ra sinksArray <<< "$sinkList"
+              # Collect all sinks
+              sinkList=$(pactl list sinks | tr '\n' '\r' | perl -pe 's/Sink #([0-9]+).+?device\.description = "([^\r]+)"\r.+?(?=Sink #|$)/\1:"\2",/g' | tr '\r' '\n')
+              IFS="," read -ra sinksArray <<< "$sinkList"
 
-                # Is our Hi-fi sink available? → Use for loop with indexes to handle spaces in names
-                for ((i = 0; i < ''${#sinksArray[@]}; i++)); do
-                  sink="''${sinksArray[$i]}"
-                  echo "sink found: $sink"
+              # Is our Hi-fi sink available? → Use for loop with indexes to handle spaces in names
+              for ((i = 0; i < ''${#sinksArray[@]}; i++)); do
+                sink="''${sinksArray[$i]}"
+                echo "sink found: $sink"
 
-                  # Search for this output device's name
-                  [[ "$sink" =~ "Game" ]] && hifiSinkIndex=$(echo "$sink" | cut -d':' -f1)
+                # Search for this output device's name
+                [[ "$sink" =~ "Game" ]] && hifiSinkIndex=$(echo "$sink" | cut -d':' -f1)
+              done
+
+              if [[ $hifiSinkIndex ]]; then
+                echo "Game has index $hifiSinkIndex"
+
+                # Collect all sound streams
+                musicSourcesList=$(pactl list sink-inputs | tr '\n' '\r' | perl -pe 's/Sink Input #([0-9]+).+?application\.process\.binary = "([^\r]+)"\r.+?(?=Sink Input #|$)/\1:\2\r/g' | tr '\r' '\n')
+
+                for soundSource in $musicSourcesList; do
+                  binary=$(echo "$soundSource" | cut -d':' -f2);
+                  index=$(echo "$soundSource" | cut -d':' -f1);
+                  echo "index: $index, binary: $binary";
+
+                  if [[ "$binary" == "wine64-preloader" ]]; then
+                    echo "moving $binary output to $hifiSinkIndex"
+                    pactl move-sink-input "$index" "$hifiSinkIndex"
+                  fi
                 done
-
-                if [[ $hifiSinkIndex ]]; then
-                  echo "Game has index $hifiSinkIndex"
-
-                  # Collect all sound streams
-                  musicSourcesList=$(pactl list sink-inputs | tr '\n' '\r' | perl -pe 's/Sink Input #([0-9]+).+?application\.process\.binary = "([^\r]+)"\r.+?(?=Sink Input #|$)/\1:\2\r/g' | tr '\r' '\n')
-
-                  for soundSource in $musicSourcesList; do
-                    binary=$(echo "$soundSource" | cut -d':' -f2);
-                    index=$(echo "$soundSource" | cut -d':' -f1);
-                    echo "index: $index, binary: $binary";
-
-                    if [[ "$binary" == "wine64-preloader" ]]; then
-                      echo "moving $binary output to $hifiSinkIndex"
-                      pactl move-sink-input "$index" "$hifiSinkIndex"
-                    fi
-                  done
-                else
-                  echo "Hi-fi sink was not found"
-                fi
-              '';
-              target = "/home/${username}/.local/bin/sink-helper";
-            };
+              else
+                echo "Hi-fi sink was not found"
+              fi
+            '';
+            target = "/home/${username}/.local/bin/sink-helper";
           };
           # Use Bottles to manage Wine runners for Heroic and Lutris
           wine-links-heroic = {
