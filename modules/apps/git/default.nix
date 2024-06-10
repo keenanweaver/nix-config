@@ -44,6 +44,7 @@ in
             safe = {
               directory = [
                 "/mnt/crusader/Projects/Codeberg/nix-config"
+                "/mnt/crusader/Projects/GitHub/arch-distrobox"
                 "/mnt/crusader/Projects/GitHub/keenanweaver.github.io"
                 "/mnt/crusader/Projects/GitHub/nix-config"
                 "/mnt/crusader/Projects/GitHub/nix-config/.git"
