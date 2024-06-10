@@ -166,7 +166,6 @@
       kewlfft.aur.aur:
         use: paru
         name:
-          - 2s2h
           - gamemode
           - gamescope
           - kdialog
@@ -180,10 +179,8 @@
           - portproton
           - sonicthehedgehog
           - sonicthehedgehog2
-          - supermario64
           - supermarioworld
           - xash3d-fwgs-git
-          - zelda64recomp
           - zeldalttp
 
     - name: Install distrobox specific packages (bazzite-arch-exodos)
