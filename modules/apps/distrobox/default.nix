@@ -355,10 +355,10 @@ in
               target = "${dbe}/${bin}";
               executable = true;
             };
-          db-supermario64 =
+          db-sm64ex-nightly =
             let
               args = "gamemoderun obs-gamecapture mangohud";
-              bin = "supermario64";
+              bin = "sm64ex-nightly";
               container = "bazzite-arch-gaming";
             in
             {
