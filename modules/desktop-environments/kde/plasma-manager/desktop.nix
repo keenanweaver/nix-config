@@ -57,6 +57,7 @@
                     "org.kde.plasma.clipboard"
                     "org.kde.kdeconnect"
                     "tray-id" # Sunshine
+                    "chrome_status_icon_1" # Armcord
                   ];
                 };
               }

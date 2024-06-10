@@ -73,6 +73,7 @@ in
           apple-fonts = pkgs.callPackage ../../../nix/pkgs/apple-fonts.nix { };
           bottles = pkgs.callPackage ../../../nix/pkgs/bottles/fhsenv.nix { };
           bottles-unwrapped = pkgs.callPackage ../../../nix/pkgs/bottles { };
+          catppuccin-gtk = pkgs.callPackage ../../../nix/pkgs/catppuccin-gtk.nix { };
         })
       ];
     };

@@ -35,7 +35,7 @@ in
     environment = {
       sessionVariables = {
         # Breaks theming but forces the color scheme
-        GTK_THEME = "Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark";
+        GTK_THEME = "catppuccin-${flavor-lower}-${accent-lower}-standard+normal";
       };
       systemPackages = with pkgs; [
         # Needed for some GTK3 apps. For some reason the catppuccin nix/gtk module doesn't cover these
@@ -211,8 +211,8 @@ in
                   size = "standard";
                   tweaks = [ "normal" ];
                 }
-              }/share/themes/Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark";
-              target = "${config.xdg.dataHome}/themes/Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark";
+              }/share/themes/catppuccin-${flavor-lower}-${accent-lower}-standard+normal";
+              target = "${config.xdg.dataHome}/themes/catppuccin-${flavor-lower}-${accent-lower}-standard+normal";
             };
             catppuccin-armcord = {
               enable = true;
@@ -469,7 +469,7 @@ in
               colorScheme = "Catppuccin${flavor-upper}${accent-upper}";
               cursorTheme = "breeze_cursors";
               iconTheme = "Papirus-Dark";
-              lookAndFeel = "Catppuccin-${flavor-upper}-${accent-upper}";
+              #lookAndFeel = "Catppuccin-${flavor-upper}-${accent-upper}";
               theme = "default";
               wallpaper = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
             };
@@ -501,7 +501,7 @@ in
               "Gtk/CursorThemeName" = "breeze_cursors";
               "Gtk/FontName" = "${sans-font},  13";
               "Net/IconThemeName" = "Papirus-Dark";
-              "Net/ThemeName" = "Catppuccin-${flavor-upper}-Standard-${accent-upper}-Dark";
+              "Net/ThemeName" = "catppuccin-${flavor-lower}-${accent-lower}-standard+normal";
             };
           };
         };
