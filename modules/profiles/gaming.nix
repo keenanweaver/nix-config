@@ -20,6 +20,7 @@ let
       openxray # STALKER
       #relive # Oddworld
       wipeout-rewrite # Wipeout
+      vvvvvv
       # Doom
       [
         #chocolate-doom
@@ -53,6 +54,12 @@ let
         alephone-durandal
         alephone-infinity
       ]
+      # N64
+      [
+        #_2s2h
+        shipwright
+        #zelda64recomp
+      ]
       # Quake
       [
         (ioquake3.overrideAttrs (attrs: {
@@ -65,7 +72,6 @@ let
           };
         }))
         ironwail
-        #quake3e
         #trenchbroom
       ]
       # Duke3D
@@ -86,7 +92,6 @@ let
       ]
     ];
     tools = [
-      obs-studio-plugins.obs-vkcapture
       # Emulators 
       [
         #bizhawk
@@ -123,14 +128,6 @@ let
         winetricks
         wineWowPackages.stagingFull
       ]
-      /*
-        gst_all_1.gstreamer
-           gst_all_1.gst-libav
-           gst_all_1.gst-plugins-bad
-           gst_all_1.gst-plugins-base
-           gst_all_1.gst-plugins-good
-           gst_all_1.gst-plugins-ugly
-      */
       /*
         igir
         innoextract
