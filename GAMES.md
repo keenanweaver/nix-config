@@ -14,10 +14,10 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
 
 ``` bash
     ## Zelda 64
-    curl https://api.github.com/repositories/708994262/releases/latest | jq -r '.assets[] | select(.name | test("Linux.tar.gz$")).browser_download_url' | wget -i- -N -P /home/keenan/Games
-    fd 'Zelda64' -e tar.gz /home/keenan/Games -x ouch d --yes {} -d /home/keenan/Games
-    fd 'Zelda64' -t d /home/keenan/Games -x mv {} /home/keenan/Games/zelda64
-    fd 'Zelda64' -e tar.gz /home/keenan/Games -x rm {}
+    curl https://api.github.com/repositories/708994262/releases/latest | jq -r '.assets[] | select(.name | test("Linux-x64-AppImage.zip$")).browser_download_url' | wget -i- -N -P /home/keenan/Games/zelda64
+    fd 'Zelda64' -e zip /home/keenan/Games/zelda64 -x ouch d --yes {} -d /home/keenan/Games/zelda64
+    fd 'Zelda64' -e zip /home/keenan/Games/zelda64 -x rm {}
+    fd 'Zelda64' -e AppImage /home/keenan/Games/zelda64 -x chmod +x {}
 
     ## Quake 3 / CPMA
     , innoextract -g '/mnt/crusader/Games/Other/GOG/quake_iii_arena_and_team_arena/setup_quake3_2.0.0.2.exe' -d /home/keenan/.q3a && mv /home/keenan/.q3a/app/* /home/keenan/.q3a && rm -rf /home/keenan/.q3a/tmp /home/keenan/.q3a/app
