@@ -63,7 +63,7 @@ in
             enable = true;
             text = ''
               #!/usr/bin/env bash
-              < /home/${username}/.local/bin/.flatpak-list xargs flatpak install --user --assumeyes
+              < /home/${username}/.local/bin/.flatpak xargs flatpak install --user --assumeyes
             '';
             target = ".local/bin/flatpak-install.sh";
             executable = true;
@@ -72,7 +72,7 @@ in
             enable = vars.gaming;
             text = ''
               #!/usr/bin/env bash
-              < /home/${username}/.local/bin/.flatpak-games-list xargs flatpak install --user --assumeyes
+              < /home/${username}/.local/bin/.flatpak-games xargs flatpak install --user --assumeyes
             '';
             target = ".local/bin/flatpak-install-games.sh";
             executable = true;
@@ -81,7 +81,7 @@ in
             enable = true;
             text = ''
               #!/usr/bin/env bash
-              < /home/${username}/.local/bin/.flatpak-list-beta xargs flatpak install --user --assumeyes
+              < /home/${username}/.local/bin/.flatpak-beta xargs flatpak install --user --assumeyes
             '';
             target = ".local/bin/flatpak-install-beta.sh";
             executable = true;
@@ -90,7 +90,7 @@ in
             enable = true;
             text = ''
               #!/usr/bin/env bash
-              < /home/${username}/.local/bin/.flatpak-list-sys xargs flatpak install --system --assumeyes
+              < /home/${username}/.local/bin/.flatpak-sys xargs flatpak install --system --assumeyes
             '';
             target = ".local/bin/flatpak-install-sys.sh";
             executable = true;
