@@ -85,18 +85,15 @@ in
         };
         home.packages = with pkgs; [
           apostrophe
-          fooyin
-          /*
-            (fooyin.overrideAttrs (attrs: {
-                     version = "0.4.3";
-                     src = fetchFromGitHub {
-                       owner = "ludouzi";
-                       repo = "fooyin";
-                       rev = "v0.4.3";
-                       hash = "sha256-S74Y7Q3MmKfxMGyO8un+YDHmCJUYNKY6KqTSPn+CynE=";
-                     };
-                   }))
-          */
+          (fooyin.overrideAttrs (attrs: {
+            version = "0.4.5";
+            src = fetchFromGitHub {
+              owner = "ludouzi";
+              repo = "fooyin";
+              rev = "v0.4.5";
+              hash = "sha256-hrPbJnN4Ooq5unA9VbX0UjRZQjPz93X/IQdBSfTUIGk=";
+            };
+          }))
           neo
           (ventoy-full.override { withQt5 = true; })
         ];
