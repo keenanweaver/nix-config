@@ -41,35 +41,34 @@ in
             #openssl_1_1 # Devil Daggers
             wqy_zenhei
           ];
-        /*
-          extraPkgs =
+        extraPkgs =
           pkgs: with pkgs; [
             ### Gamescope
-            keyutils
-            libkrb5
-            libpng
-            libpulseaudio
-            libvorbis
-            stdenv.cc.cc.lib
             xorg.libXcursor
             xorg.libXi
             xorg.libXinerama
             xorg.libXScrnSaver
-            ###
-            corefonts
-            curl
-            harfbuzz
-            imagemagick
-            gnome.zenity
-            libgdiplus
-            libthai
-            libxcrypt-legacy
-            ncurses6 # CK III
-            pango
-            vkbasalt
-            xdotool
+            libpng
+            libpulseaudio
+            libvorbis
+            stdenv.cc.cc.lib
+            libkrb5
+            keyutils
+            /*
+              corefonts
+              curl
+              harfbuzz
+              imagemagick
+              gnome.zenity
+              libgdiplus
+              libthai
+              libxcrypt-legacy
+              ncurses6 # CK III
+              pango
+              vkbasalt
+              xdotool
+            */
           ];
-        */
       };
       protontricks.enable = true;
       remotePlay.openFirewall = true;
