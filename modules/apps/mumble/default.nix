@@ -16,7 +16,7 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} = {
-      home.packages = with pkgs; [ mumble ];
+      home.packages = with pkgs; [ (mumble.override { speechdSupport = true; }) ];
       xdg = {
         desktopEntries = {
           # For Wayland shortcuts
