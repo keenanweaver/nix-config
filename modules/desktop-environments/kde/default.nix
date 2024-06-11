@@ -44,7 +44,6 @@ in
           kio-extras
           kirigami-addons
           kjournald
-          konqueror
           inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
           neochat
           packagekit-qt # Discover store
