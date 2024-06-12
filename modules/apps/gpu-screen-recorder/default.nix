@@ -18,6 +18,8 @@ let
     nativeBuildInputs = with pkgs; [
       pkg-config
       makeWrapper
+      meson
+      ninja
     ];
 
     buildInputs = with pkgs; [
@@ -30,10 +32,6 @@ let
       xorg.libXrandr
       xorg.libXfixes
     ];
-
-    buildPhase = ''
-      ./build.sh
-    '';
 
     installPhase = ''
       strip gsr-kms-server
