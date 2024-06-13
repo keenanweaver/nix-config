@@ -505,7 +505,6 @@ in
             };
           };
         };
-        wayland.windowManager.hyprland = { };
 
         xresources = {
           properties = {
