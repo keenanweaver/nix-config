@@ -467,7 +467,7 @@ in
             };
             workspace = {
               colorScheme = "Catppuccin${flavor-upper}${accent-upper}";
-              cursorTheme = "breeze_cursors";
+              cursor.theme = "breeze_cursors";
               iconTheme = "Papirus-Dark";
               #lookAndFeel = "Catppuccin-${flavor-upper}-${accent-upper}";
               theme = "default";
