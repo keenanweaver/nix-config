@@ -121,10 +121,12 @@ let
       ]
       # Modding
       [
+        nexusmods-app-unfree
         r2modman # Lethal Company
       ]
       # Wine
       [
+        inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
         winetricks
         wineWowPackages.stagingFull
       ]
