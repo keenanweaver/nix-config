@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  inputs,
   pkgs,
   ...
 }:
@@ -34,6 +35,7 @@ in
         extraEnv = {
           MANGOHUD = true;
           OBS_VKCAPTURE = true;
+          #ENABLE_VKBASALT = "1";
         };
         extraLibraries =
           pkgs: with pkgs; [
@@ -43,6 +45,7 @@ in
           ];
         extraPkgs =
           pkgs: with pkgs; [
+            inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
             ### Gamescope
             xorg.libXcursor
             xorg.libXi
@@ -87,7 +90,13 @@ in
               target = "${config.xdg.dataHome}/Steam/steam_dev.cfg";
             };
           };
-          packages = with pkgs; [ steamtinkerlaunch ];
+          packages = with pkgs; [
+            # SteamTinkerLaunch & tools
+            (steamtinkerlaunch.overrideAttrs (o: {
+              src = inputs.steamtinkerlaunch-master;
+            }))
+            yad
+          ];
         };
       };
   };
