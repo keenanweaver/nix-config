@@ -47,6 +47,7 @@ in
         noto-fonts
         noto-fonts-cjk
         noto-fonts-emoji
+        noto-fonts-lgc-plus
         source-han-sans
         source-han-sans-japanese
         source-han-serif-japanese
