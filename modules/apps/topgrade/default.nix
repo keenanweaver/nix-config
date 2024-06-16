@@ -36,7 +36,9 @@ in
               "NixOS Rebuild" = "nh os switch --update";
             };
             commands = { };
-            post_commands = { };
+            post_commands = {
+              "Check SteamTinkerLaunch compat" = "steamtinkerlaunch compat add";
+            };
           };
         };
       };
