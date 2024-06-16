@@ -78,6 +78,11 @@
       url = "github:ow-mods/ow-mod-man";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    steamtinkerlaunch-master = {
+      type = "git";
+      url = "https://github.com/sonic2kk/steamtinkerlaunch.git";
+      flake = false;
+    };
 
     # Hyprland
     hyprland.url = "github:hyprwm/Hyprland";
