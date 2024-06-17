@@ -45,14 +45,12 @@ in
           kirigami-addons
           kjournald
           inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
-          neochat
           packagekit-qt # Discover store
           plasma-browser-integration
           qtimageformats
           #qtstyleplugin-kvantum
           sddm-kcm
           syntax-highlighting
-          tokodon
         ];
     };
     programs = {

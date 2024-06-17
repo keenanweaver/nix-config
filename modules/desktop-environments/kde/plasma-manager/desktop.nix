@@ -48,6 +48,7 @@
                 };
               }
               "org.kde.plasma.panelspacer"
+              "org.kde.plasma.pager"
               {
                 systemTray.items = {
                   hidden = [
@@ -93,7 +94,7 @@
                       "applications:xyz.armcord.ArmCord.desktop"
                       "applications:info.mumble.Mumble.desktop"
                       "applications:qobuz.desktop"
-                      "applications:org.strawberrymusicplayer.strawberry.desktop"
+                      #"applications:org.strawberrymusicplayer.strawberry.desktop"
                       "applications:foobar2000.desktop"
                       "applications:org.fooyin.fooyin.desktop"
                       "applications:org.kde.neochat.desktop"

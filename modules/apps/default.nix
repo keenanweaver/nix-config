@@ -11,6 +11,7 @@
     ./direnv
     ./distrobox
     ./envfs
+    ./floorp
     ./fluidsynth
     ./foot
     ./fzf

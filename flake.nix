@@ -25,6 +25,7 @@
     };
 
     nix-colors.url = "github:misterio77/nix-colors";
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -144,6 +145,7 @@
               ./hosts/steamdeck/home.nix
               inputs.catppuccin.homeManagerModules.catppuccin
               inputs.nix-colors.homeManagerModules.default
+              inputs.nix-flatpak.homeManagerModules.nix-flatpak
               inputs.nur.hmModules.nur
               inputs.plasma-manager.homeManagerModules.plasma-manager
               inputs.sops-nix.homeManagerModules.sops
@@ -198,6 +200,7 @@
               ./hosts/desktop/disko.nix
               { _module.args.disks = [ "/dev/nvme0n1" ]; }
               inputs.lanzaboote.nixosModules.lanzaboote
+              inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.nixosModules.nur
               inputs.sops-nix.nixosModules.sops
               #inputs.stylix.nixosModules.stylix
@@ -225,6 +228,7 @@
                     inputs.catppuccin.homeManagerModules.catppuccin
                     inputs.hyprland.homeManagerModules.default
                     inputs.nix-colors.homeManagerModules.default
+                    inputs.nix-flatpak.homeManagerModules.nix-flatpak
                     inputs.nix-index-database.hmModules.nix-index
                     inputs.nixvim.homeManagerModules.nixvim
                     inputs.nur.hmModules.nur
@@ -263,6 +267,7 @@
               ./hosts/desktop/disko.nix
               { _module.args.disks = [ "/dev/nvme0n1" ]; }
               inputs.lanzaboote.nixosModules.lanzaboote
+              inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.nixosModules.nur
               inputs.sops-nix.nixosModules.sops
               #inputs.stylix.nixosModules.stylix
@@ -290,6 +295,7 @@
                     inputs.catppuccin.homeManagerModules.catppuccin
                     inputs.hyprland.homeManagerModules.default
                     inputs.nix-colors.homeManagerModules.default
+                    inputs.nix-flatpak.homeManagerModules.nix-flatpak
                     inputs.nix-index-database.hmModules.nix-index
                     inputs.nixvim.homeManagerModules.nixvim
                     inputs.nur.hmModules.nur
@@ -326,6 +332,7 @@
               ./hosts/vm/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/virtio-vdisk1" ]; }
               inputs.lanzaboote.nixosModules.lanzaboote
+              inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.nixosModules.nur
               inputs.sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
@@ -352,6 +359,7 @@
                     inputs.catppuccin.homeManagerModules.catppuccin
                     inputs.hyprland.homeManagerModules.default
                     inputs.nix-colors.homeManagerModules.default
+                    inputs.nix-flatpak.homeManagerModules.nix-flatpak
                     inputs.nix-index-database.hmModules.nix-index
                     inputs.nixvim.homeManagerModules.nixvim
                     inputs.nur.hmModules.nur

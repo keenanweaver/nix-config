@@ -1,5 +1,0 @@
-[Context]
-filesystems=!home
-
-[Environment]
-PULSE_PROP_media.category=

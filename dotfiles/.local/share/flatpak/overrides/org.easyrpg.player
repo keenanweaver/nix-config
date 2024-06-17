@@ -1,6 +1,0 @@
-[Context]
-filesystems=/home/keenan/Music/soundfonts:ro;/home/keenan/Games/rpg-maker;!host
-
-[Environment]
-RPG2K_RTP_PATH=/home/keenan/Games/rpg-maker/RTP/2000
-RPG2K3_RTP_PATH=/home/keenan/Games/rpg-maker/RTP/2003

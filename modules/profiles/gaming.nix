@@ -495,6 +495,249 @@ in
             }
           ];
         };
+        services.flatpak = {
+          overrides = {
+            "com.github.mtkennerly.ludusavi" = {
+              Context = {
+                filesystems = [
+                  "~/.var/app/com.valvesoftware.Steam"
+                  "~/.var/app/com.usebottles.bottles"
+                  "~/Games"
+                  "/mnt/crusader/Games/Saves"
+                ];
+              };
+            };
+            "ca.parallel_launcher.ParallelLauncher" = {
+              Context = {
+                filesystems = [ "/mnt/crusader/Games/Rom/No-Intro/roms" ];
+              };
+            };
+            "com.supermodel3.Supermodel" = {
+              Context = {
+                filesystems = [
+                  "xdg-data/supermodel"
+                  "xdg-config/supermodel"
+                  "!home"
+                ];
+              };
+            };
+            "dev.lizardbyte.app.Sunshine" = {
+              Context = {
+                filesystems = [ "!home" ];
+              };
+            };
+            "info.cemu.Cemu" = {
+              Context = {
+                filesystems = [ "/mnt/crusader/Games/Rom/Other/Wii U" ];
+              };
+            };
+            "io.github.antimicrox.antimicrox" = {
+              Context = {
+                filesystems = [ "!home" ];
+              };
+            };
+            "io.github.ja2_stracciatella.JA2-Stracciatella" = {
+              Context = {
+                filesystems = [ "/home/${username}/Games/jagged-alliance-2/ja2" ];
+              };
+            };
+            "io.github.lime3ds.Lime3DS" = {
+              Context = {
+                filesystems = [ "/mnt/crusader/Games/Rom/Other/Nintendo 3DS" ];
+              };
+            };
+            "io.openrct2.OpenRCT2" = {
+              Context = {
+                filesystems = [ "/home/${username}/Games/RCT" ];
+              };
+            };
+            "net.mancubus.SLADE" = {
+              Context = {
+                filesystems = [
+                  "~/.slade3"
+                  "~/.slade"
+                  "/home/${username}/Games/doom"
+                  "!home"
+                ];
+              };
+            };
+            "net.pcsx2.PCSX2" = {
+              Context = {
+                filesystems = [ "/mnt/crusader/Games/Rom/Redump/Sony Playstation 2" ];
+              };
+            };
+            "net.rpcs3.RPCS3" = {
+              Context = {
+                filesystems = [
+                  "/mnt/crusader/Games/Other/RPCS3"
+                  "/home/${username}/Games/RPCS3"
+                  "!home"
+                ];
+              };
+            };
+            "org.DolphinEmu.dolphin-emu" = {
+              Context = {
+                filesystems = [
+                  "/mnt/crusader/Games/Rom/Redump/Nintendo Wii"
+                  "/mnt/crusader/Games/Rom/Redump/Nintendo GameCube"
+                ];
+              };
+            };
+            "org.duckstation.DuckStation" = {
+              Context = {
+                filesystems = [ "/mnt/crusader/Mister/PSX" ];
+              };
+            };
+            "org.easyrpg.player" = {
+              Context = {
+                filesystems = [
+                  "/home/${username}/Music/soundfonts:ro"
+                  "/home/${username}/Games/rpg-maker"
+                  "!host"
+                ];
+              };
+              Environment = {
+                RPG2K_RTP_PATH = "/home/${username}/Games/rpg-maker/RTP/2000";
+                RPG2K3_RTP_PATH = "/home/${username}/Games/rpg-maker/RTP/2003";
+              };
+            };
+            "org.libretro.RetroArch" = {
+              Context = {
+                filesystems = [
+                  "/mnt/crusader/Games/Rom"
+                  "/mnt/crusader/Mister/games"
+                ];
+              };
+            };
+            "org.mamedev.MAME" = {
+              Context = {
+                filesystems = [
+                  "/home/${username}/Games"
+                  "/mnt/crusader/Games/Rom/MAME"
+                  "!home"
+                ];
+              };
+            };
+            "org.openmw.OpenMW" = {
+              Context = {
+                filesystems = [ "/home/${username}/Games/morrowind" ];
+              };
+              Environment = {
+                OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
+              };
+            };
+            "org.ryujinx.Ryujinx" = {
+              Context = {
+                filesystems = [
+                  "/mnt/crusader/Games/Rom/Other/Switch"
+                  "!home"
+                ];
+              };
+            };
+            "org.scummvm.ScummVM" = {
+              Context = {
+                filesystems = [
+                  "~/Games/scummvm"
+                  "~/Music"
+                  "!home"
+                ];
+              };
+            };
+            "org.zdoom.Raze" = {
+              Context = {
+                filesystems = [ "/home/${username}/Games/duke3d" ];
+              };
+            };
+          };
+          packages = [
+            #"app.xemu.xemu"
+            #"ca.parallel_launcher.ParallelLauncher"
+            #"com.corsixth.corsixth"
+            #"com.etlegacy.ETLegacy"
+            "com.fightcade.Fightcade"
+            "com.fightcade.Fightcade.Wine"
+            #"com.github.Alcaro.Flips"
+            "com.github.mtkennerly.ludusavi"
+            #"com.github.keriew.augustus"
+            #"com.github.opentyrian.OpenTyrian"
+            #"com.github.optyfr.JRomManager"
+            #"com.github.Xenoveritas.abuse"
+            "com.obsproject.Studio.Plugin.Gstreamer"
+            "com.obsproject.Studio.Plugin.GStreamerVaapi"
+            "com.obsproject.Studio.Plugin.InputOverlay"
+            "com.obsproject.Studio.Plugin.OBSVkCapture"
+            #"com.parsecgaming.parsec"
+            #"com.qzandronum.Q-Zandronum"
+            #"com.richwhitehouse.BigPEmu"
+            #"com.spacestation14.Launcher"
+            #"com.supermodel3.Supermodel"
+            #"eu.vcmi.VCMI"
+            #"info.cemu.Cemu"
+            #"info.urbanterror.UrbanTerror"
+            #"io.github.am2r_community_developers.AM2RLauncher"
+            #"io.github.antimicrox.antimicrox"
+            "io.github.Foldex.AdwSteamGtk"
+            #"io.github.garglk.Gargoyle"
+            #"io.github.ihhub.Fheroes2"
+            #"io.github.ja2_stracciatella.JA2-Stracciatella"
+            #"io.github.lethal_guitar.RigelEngine"
+            #"io.github.lime3ds.Lime3DS"
+            #"io.github.lxndr.gswatcher"
+            #"io.github.santiagocezar.maniatic-launcher"
+            #"io.github.simple64.simple64"
+            #"io.github.theforceengine.tfe"
+            #"io.itch.tx00100xt.SeriousSamClassic-VK"
+            #"io.openrct2.OpenRCT2"
+            "net._86box._86Box"
+            "net._86box._86Box.ROMs"
+            #"net.darkradiant.DarkRadiant"
+            #"net.davidotek.pupgui2"
+            #"net.fsuae.FS-UAE"
+            #"net.mancubus.SLADE"
+            "net.pcsx2.PCSX2"
+            "net.rpcs3.RPCS3"
+            #"net.runelite.RuneLite"
+            #"net.sourceforge.uqm_mods.UQM-MegaMod"
+            #"org.dhewm3.Dhewm3"
+            #"org.diasurgical.DevilutionX"
+            "org.DolphinEmu.dolphin-emu"
+            "org.duckstation.DuckStation"
+            "org.easyrpg.player"
+            "org.freedesktop.Platform.GStreamer.gstreamer-vaapi/x86_64/23.08"
+            "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08"
+            "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08"
+            "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
+            "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/23.08"
+            "org.freedesktop.Platform.GStreamer.gstreamer-vaapi/x86_64/22.08"
+            "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08"
+            "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/22.08"
+            "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/22.08"
+            "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/22.08"
+            #"org.godotengine.Godot"
+            #"org.kartkrew.RingRacers"
+            #"org.kde.kigo"
+            "org.libretro.RetroArch"
+            "org.mamedev.MAME"
+            #"org.openfodder.OpenFodder"
+            #"org.openjkdf2.OpenJKDF2"
+            "org.openmw.OpenMW"
+            #"org.openttd.OpenTTD"
+            #"org.pegasus_frontend.Pegasus"
+            #"org.ppsspp.PPSSPP"
+            #"org.prismlauncher.PrismLauncher"
+            "org.ryujinx.Ryujinx"
+            "org.scummvm.ScummVM"
+            #"org.sonic3air.Sonic3AIR"
+            #"org.srb2.SRB2"
+            #"org.twinery.Twine"
+            "org.zdoom.Raze"
+            #"re.chiaki.Chiaki"
+            #"ru.linux_gaming.PortProton"
+            #"sh.fhs.KatawaShoujoReEngineered"
+            #"tk.deat.Jazz2Resurrection"
+            #"vet.rsc.OpenRSC.Launcher"
+          ];
+        };
         xdg = {
           desktopEntries = {
             dosbox = {

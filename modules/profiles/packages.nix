@@ -64,7 +64,7 @@ in
             ansible-language-server
             ansible-lint
             ## Bash ###
-            nodePackages.bash-language-server
+            #nodePackages.bash-language-server
             shellcheck
             ### C ###
             clang-tools
@@ -131,7 +131,7 @@ in
             statix
           ]
           ++ lib.optionals cfg.system [
-            (_7zz.override { enableUnfree = true; })
+            #(_7zz.override { enableUnfree = true; })
             aspell
             aspellDicts.en
             fastfetch
