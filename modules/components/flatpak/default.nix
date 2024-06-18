@@ -27,7 +27,11 @@ in
 
     environment.systemPackages = with pkgs; [ flatpak-builder ];
 
-    systemd.services.home-manager-keenan.serviceConfig.TimeoutStartSec = pkgs.lib.mkForce 1200;
+    systemd.services = {
+      "home-manager-${username}" = {
+        serviceConfig.TimeoutStartSec = pkgs.lib.mkForce 1200;
+      };
+    };
 
     users.users.${username}.extraGroups = [ "flatpak" ];
 
@@ -35,7 +39,7 @@ in
 
     home-manager.users.${username} = {
       services.flatpak = {
-        uninstallUnmanaged = true;
+        #uninstallUnmanaged = true;
         packages = [
           #"chat.revolt.RevoltDesktop"
           #"com.bitwig.BitwigStudio"
@@ -68,22 +72,22 @@ in
           "one.ablaze.floorp"
           #"org.bleachbit.BleachBit"
           #"org.bunkus.mkvtoolnix-gui"
-          #"org.filezillaproject.Filezilla"
+          "org.filezillaproject.Filezilla"
           #"org.fooyin.fooyin"
           "org.freedesktop.Platform.ffmpeg-full/x86_64/23.08"
           "org.kde.haruna"
-          #"org.kde.isoimagewriter"
-          #"org.kde.kdenlive"
-          #"org.kde.krita"
+          "org.kde.isoimagewriter"
+          "org.kde.kdenlive"
+          "org.kde.krita"
           "org.kde.neochat"
           "org.kde.tokodon"
           #"org.mozilla.firefox"
-          #"org.musicbrainz.Picard"
+          "org.musicbrainz.Picard"
           #"org.nickvision.tagger"
-          #"org.onlyoffice.desktopeditors"
-          #"org.rncbc.qpwgraph"
+          "org.onlyoffice.desktopeditors"
+          "org.rncbc.qpwgraph"
           "org.signal.Signal"
-          #"org.squidowl.halloy"
+          "org.squidowl.halloy"
           #"org.strawberrymusicplayer.strawberry"
           #"org.tildearrow.furnace"
           "xyz.armcord.ArmCord"
