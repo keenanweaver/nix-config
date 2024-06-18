@@ -208,6 +208,7 @@
         };
         kwin = {
           effects = {
+            desktopSwitching.animation = "slide";
             shakeCursor.enable = true;
           };
           titlebarButtons = {
@@ -219,7 +220,6 @@
             ];
           };
           virtualDesktops = {
-            animation = "slide";
             rows = 1;
             names = [
               "Main"
