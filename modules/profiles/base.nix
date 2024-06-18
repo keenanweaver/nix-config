@@ -43,7 +43,7 @@ in
     nix-index.enable = true;
     nnn.enable = true;
     nushell.enable = true;
-    #nvim.enable = true;
+    nvim.enable = true;
     ripgrep.enable = true;
     ssh.enable = true;
     starship.enable = true;
