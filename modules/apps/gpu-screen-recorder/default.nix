@@ -9,6 +9,7 @@
 }:
 let
   cfg = config.gpu-screen-recorder;
+  outputDir = "/home/${username}/Videos";
   gsr = pkgs.stdenv.mkDerivation {
     name = "gpu-screen-recorder";
     version = inputs.gpu-screen-recorder-src.shortRev;
@@ -82,7 +83,7 @@ in
               text = ''
                 #!/usr/bin/env bash
                 killall -SIGUSR1 .gpu-screen-recorder
-                notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay saved' --icon=com.dec05eba.gpu_screen_recorder --app-name='GPU Screen Recorder'
+                notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay saved to <br /> ${outputDir}' -i com.dec05eba.gpu_screen_recorder -a 'GPU Screen Recorder'
               '';
               target = ".local/bin/gsr-save-replay.sh";
               executable = true;
@@ -93,7 +94,7 @@ in
                 #!/usr/bin/env bash
                 systemctl --user stop gpu-screen-recorder.service
                 killall -SIGINT .gpu-screen-recorder
-                notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay stopped' --icon=com.dec05eba.gpu_screen_recorder --app-name='GPU Screen Recorder'
+                notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay stopped' -i com.dec05eba.gpu_screen_recorder -a 'GPU Screen Recorder'
               '';
               target = ".local/bin/gsr-stop-replay.sh";
               executable = true;
@@ -124,11 +125,11 @@ in
                     "AUDIO_DEVICE_VOIP=VoIP/VoIP.monitor"
                     "AUDIO_DEVICE_MUSIC=Music/Music.monitor"
                     "REPLAYDURATION=900"
-                    "OUTPUTDIR=/home/${username}/Videos"
+                    "OUTPUTDIR=${outputDir}"
                     "MAKEFOLDERS=no"
                     "FPSPPS=no"
                   ];
-                  ExecStartPre = "${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay started' --icon=com.dec05eba.gpu_screen_recorder --app-name='GPU Screen Recorder'";
+                  ExecStartPre = "${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay started' -i com.dec05eba.gpu_screen_recorder -a 'GPU Screen Recorder'";
                   ExecStart = "/run/wrappers/bin/gpu-screen-recorder -w $WINDOW -c $CONTAINER -q $QUALITY -f $FRAMERATE -fm $MODE -k $CODEC -ac $AUDIO_CODEC -r $REPLAYDURATION -v $FPSPPS -mf $MAKEFOLDERS -a $AUDIO_DEVICE_DEFAUlT -a $AUDIO_DEVICE_GAME -a $AUDIO_DEVICE_MIC -a $AUDIO_DEVICE_VOIP -a $AUDIO_DEVICE_MUSIC -o $OUTPUTDIR";
                   KillSignal = "SIGINT";
                   Restart = "on-failure";

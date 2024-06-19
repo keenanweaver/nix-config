@@ -26,12 +26,12 @@ in
           # https://github.com/Electrostasy/dots/blob/master/hosts/terra/gaming.nixy
           start = builtins.toString (
             pkgs.writeShellScript "gamemode-start.sh" ''
-              ${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GameMode' 'GameMode started' --icon=applications-games --app-name='GameMode'
+              ${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GameMode' 'GameMode started' -i applications-games -a 'GameMode'
             ''
           );
           end = builtins.toString (
             pkgs.writeShellScript "gamemode-end.sh" ''
-              ${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GameMode' 'GameMode stopped' --icon=applications-games --app-name='GameMode'
+              ${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GameMode' 'GameMode stopped' -i applications-games -a 'GameMode'
             ''
           );
         };
