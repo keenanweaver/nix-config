@@ -782,6 +782,14 @@ in
                 StartupWMClass = "GOG Galaxy";
               };
             };
+            nuked-sc55 = {
+              name = "Nuked SC-55";
+              comment = "Roland SC-55 emulator";
+              exec = "nuked-sc55";
+              categories = [ "Game" ];
+              noDisplay = false;
+              startupNotify = true;
+            };
             portproton = {
               name = "PortProton";
               comment = "Proton launcher";
