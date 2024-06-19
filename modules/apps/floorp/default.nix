@@ -133,10 +133,6 @@ in
               installation_mode = "normal_installed";
               install_url = "https://addons.mozilla.org/firefox/downloads/latest/firemonkey/latest.xpi";
             };
-            "frankerfacez@frankerfacez.com" = {
-              installation_mode = "normal_installed";
-              install_url = "https://cdn.frankerfacez.com/script/frankerfacez-4.0-an+fx.xpi";
-            };
             "freshrss-checker@addons.mozilla.org" = {
               installation_mode = "normal_installed";
               install_url = "https://addons.mozilla.org/firefox/downloads/latest/freshrss-checker/latest.xpi";
@@ -199,6 +195,9 @@ in
             };
           };
           PromptForDownloadLocation = true;
+          SearchSuggestEnabled = false;
+          ShowHomeButton = false;
+          StartDownloadsInTempDirectory = false;
           UserMessaging = {
             ExtensionRecommendations = false;
             SkipOnboarding = true;
