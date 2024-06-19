@@ -35,13 +35,13 @@ in
     jq.enable = true;
     lazygit.enable = true;
     lsd.enable = true;
-    micro.enable = true;
+    micro.enable = false;
     mullvad.enable = true;
     navi.enable = true;
     nh.enable = true;
     nix-ld.enable = true;
     nix-index.enable = true;
-    nnn.enable = true;
+    nnn.enable = false;
     nushell.enable = true;
     nvim.enable = true;
     ripgrep.enable = true;
