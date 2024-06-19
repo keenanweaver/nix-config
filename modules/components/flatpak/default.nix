@@ -73,7 +73,7 @@ in
           #"org.bleachbit.BleachBit"
           #"org.bunkus.mkvtoolnix-gui"
           "org.filezillaproject.Filezilla"
-          #"org.fooyin.fooyin"
+          "org.fooyin.fooyin"
           "org.freedesktop.Platform.ffmpeg-full/x86_64/23.08"
           "org.kde.haruna"
           "org.kde.isoimagewriter"
@@ -155,6 +155,14 @@ in
           "one.ablaze.floorp" = {
             Environment = {
               MOZ_ENABLE_WAYLAND = "1";
+            };
+          };
+          "org.fooyin.fooyin" = {
+            Context = {
+              filesystems = [
+                "/mnt/crusader/Media/Audio/Music"
+                "~/Music"
+              ];
             };
           };
           "org.kde.haruna" = {
