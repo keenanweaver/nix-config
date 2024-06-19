@@ -138,6 +138,9 @@
             "Confirmations"."ConfirmTrash" = false;
             "Executable scripts"."behaviourOnLaunch" = "alwaysAsk";
           };
+          klaunchrc = {
+            "BusyCursorSettings"."Bouncing" = false;
+          };
           kscreenlockerrc = {
             "Daemon"."Autolock" = false;
             "Greeter/Wallpaper/org.kde.image/General"."Image" = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
