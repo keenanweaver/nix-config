@@ -95,6 +95,13 @@ in
             (steamtinkerlaunch.overrideAttrs (o: {
               src = inputs.steamtinkerlaunch-master;
             }))
+            gawk
+            procps
+            unixtools.xxd
+            xdotool
+            xorg.xprop
+            xorg.xrandr
+            xorg.xwininfo
             yad
           ];
         };
