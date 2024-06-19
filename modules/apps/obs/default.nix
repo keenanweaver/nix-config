@@ -21,6 +21,7 @@ in
         enable = true;
         plugins = with pkgs.obs-studio-plugins; [
           input-overlay
+          looking-glass-obs
           obs-gstreamer
           obs-pipewire-audio-capture
           obs-vaapi
