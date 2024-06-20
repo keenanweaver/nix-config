@@ -35,16 +35,10 @@ in
     environment = {
       sessionVariables = {
         # Breaks theming but forces the color scheme
-        GTK_THEME = "catppuccin-${flavor-lower}-${accent-lower}-standard+normal";
+        GTK_THEME = "adw-gtk3-dark";
       };
       systemPackages = with pkgs; [
         # Needed for some GTK3 apps. For some reason the catppuccin nix/gtk module doesn't cover these
-        (catppuccin-gtk.override {
-          accents = [ "${accent-lower}" ];
-          variant = "${flavor-lower}";
-          size = "standard";
-          tweaks = [ "normal" ];
-        })
         (catppuccin-kde.override {
           accents = [ "${accent-lower}" ];
           flavour = [ "${flavor-lower}" ];
@@ -204,15 +198,8 @@ in
             catppuccin-gtk = {
               enable = true;
               recursive = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${
-                pkgs.catppuccin-gtk.override {
-                  accents = [ "${accent-lower}" ];
-                  variant = "${flavor-lower}";
-                  size = "standard";
-                  tweaks = [ "normal" ];
-                }
-              }/share/themes/catppuccin-${flavor-lower}-${accent-lower}-standard+normal";
-              target = "${config.xdg.dataHome}/themes/catppuccin-${flavor-lower}-${accent-lower}-standard+normal";
+              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.adw-gtk3}/share/themes/adw-gtk3-dark";
+              target = "${config.xdg.dataHome}/themes/adw-gtk3-dark";
             };
             catppuccin-armcord = {
               enable = true;
@@ -305,18 +292,10 @@ in
             };
           };
           packages = with pkgs; [
-            /*
-              (catppuccin-gtk.override {
-                         accents = [ "${accent-lower}" ];
-                         variant = "${flavor-lower}";
-                         size = "standard";
-                         tweaks = [ "normal" ];
-                       })
-            */
             hicolor-icon-theme
             vivid
             ## GNOME
-            #adw-gtk3
+            adw-gtk3
             gnome.adwaita-icon-theme
             gnome.gnome-settings-daemon
             gsettings-desktop-schemas
@@ -501,7 +480,7 @@ in
               "Gtk/CursorThemeName" = "breeze_cursors";
               "Gtk/FontName" = "${sans-font},  13";
               "Net/IconThemeName" = "Papirus-Dark";
-              "Net/ThemeName" = "catppuccin-${flavor-lower}-${accent-lower}-standard+normal";
+              "Net/ThemeName" = "adw-gtk3-dark";
             };
           };
         };

@@ -175,6 +175,8 @@
             "Plugins"."MoveWindowToCenterEnabled" = true;
             #"Plugins"."alwaysopenonprimaryscreen" = "Enabled";
             "Plugins"."blurEnabled" = true;
+            #"Plugins"."center-new-windowsEnabled" = true;
+            "Plugins"."fadedesktopEnabled" = false;
             "Plugins"."glideEnabled" = true;
             "Plugins"."kwin4_effect_fadingpopupsEnabled" = false;
             "Plugins"."kwin4_effect_fadingpopups_kineticEnabled" = true;
@@ -188,11 +190,12 @@
             "Plugins"."magiclampEnabled" = true;
             "Plugins"."restoreToScreenEnabled" = true;
             "Plugins"."scaleEnabled" = false;
+            "Plugins"."kwin4_effect_shapecornersEnabled" = false;
             "Plugins"."shakecursorEnabled" = true;
             "Plugins"."slideEnabled" = true;
             "Plugins"."squashEnabled" = false;
             "Plugins"."translucencyEnabled" = true;
-            "Plugins"."wobblywindowsEnabled" = true;
+            "Plugins"."wobblywindowsEnabled" = false;
             #"Script-alwaysopenonprimaryscreen"."classList" = "steam\nsteamwebhelper\nmumble\ninfo.mumble.Mumble\nstrawberry\nobs\narmcord\nsignal";
             "Script-forceblur"."blurExceptMatching" = true;
             "Script-forceblur"."blurMatching" = false;

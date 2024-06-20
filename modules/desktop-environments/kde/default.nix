@@ -33,12 +33,10 @@ in
           colord-kde
           discover
           filelight
-          ghostwriter
           k3b
           kate
           kcalc
           kcron
-          kde-rounded-corners
           kdesu
           kdialog
           kio-extras

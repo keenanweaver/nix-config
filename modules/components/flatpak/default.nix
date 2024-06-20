@@ -75,6 +75,7 @@ in
           "org.filezillaproject.Filezilla"
           "org.fooyin.fooyin"
           "org.freedesktop.Platform.ffmpeg-full/x86_64/23.08"
+          "org.gtk.Gtk3theme.adw-gtk3-dark"
           "org.kde.haruna"
           "org.kde.isoimagewriter"
           "org.kde.kdenlive"
