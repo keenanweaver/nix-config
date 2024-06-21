@@ -26,7 +26,7 @@ in
     vscode.enable = true;
     wezterm.enable = true;
     wireshark.enable = true;
-    xwayland.enable = true;
+    #xwayland.enable = true;
 
     environment = {
       systemPackages = with pkgs; [ xdg-desktop-portal ];
@@ -42,10 +42,9 @@ in
       };
       enableAllFirmware = true;
       i2c.enable = true;
-      opengl = {
+      graphics = {
         enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
+        enable32Bit = true;
       };
     };
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
@@ -85,19 +84,8 @@ in
         };
         home.packages = with pkgs; [
           apostrophe
-          /*
-            (fooyin.overrideAttrs (attrs: {
-                     version = "0.4.5";
-                     src = fetchFromGitHub {
-                       owner = "ludouzi";
-                       repo = "fooyin";
-                       rev = "v0.4.5";
-                       hash = "sha256-hrPbJnN4Ooq5unA9VbX0UjRZQjPz93X/IQdBSfTUIGk=";
-                     };
-                   }))
-          */
+          cyanrip
           neo
-          (ventoy-full.override { withQt5 = true; })
         ];
 
         xdg = {
