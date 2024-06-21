@@ -208,15 +208,10 @@ in
               '';
               target = ".var/app/xyz.armcord.ArmCord/config/ArmCord/themes/${flavor-lower}.theme.css";
             };
-            catppuccin-ghostwriter = {
-              enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-ghostwriter}/colours/Catppuccin-Latte-${flavor-upper}-${accent-upper}.json";
-              target = "${config.xdg.dataHome}/ghostwriter/themes/Catppuccin-Latte-${flavor-upper}-${accent-upper}.json";
-            };
             catppuccin-halloy = {
               enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-halloy}/catppuccin-${flavor-lower}.yaml";
-              target = ".var/app/org.squidowl.halloy/config/halloy/themes/catppuccin-${flavor-lower}.yaml";
+              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-halloy}/catppuccin-${flavor-lower}.toml";
+              target = ".var/app/org.squidowl.halloy/config/halloy/themes/catppuccin-${flavor-lower}.toml";
             };
             catppuccin-heroic = {
               enable = vars.gaming;
@@ -413,10 +408,6 @@ in
             configFile = {
               # Window decorations
               "kdeglobals"."KDE"."widgetStyle" = "Breeze";
-              kwinrc = {
-                "org.kde.kdecoration2"."library" = "org.kde.breeze";
-                "org.kde.kdecoration2"."theme" = "Breeze";
-              };
             };
             fonts = {
               general = {
@@ -444,13 +435,24 @@ in
                 pointSize = 13;
               };
             };
+            kscreenlocker = {
+              wallpaper = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
+            };
             workspace = {
               colorScheme = "Catppuccin${flavor-upper}${accent-upper}";
               cursor.theme = "breeze_cursors";
               iconTheme = "Papirus-Dark";
               #lookAndFeel = "Catppuccin-${flavor-upper}-${accent-upper}";
+              soundTheme = "ocean";
+              splashScreen = {
+                theme = "Catppuccin-${flavor-upper}-${accent-upper}";
+              };
               theme = "default";
               wallpaper = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
+              windowDecorations = {
+                library = "org.kde.breeze";
+                theme = "Breeze";
+              };
             };
           };
           vscode = {
