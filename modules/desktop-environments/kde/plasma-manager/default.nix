@@ -143,13 +143,8 @@
           };
           kscreenlockerrc = {
             "Daemon"."Autolock" = false;
-            "Greeter/Wallpaper/org.kde.image/General"."Image" = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
-            "Greeter/Wallpaper/org.kde.image/General"."PreviewImage" = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
           };
           kservicemenurc = {
-            "Show"."CreateK3bAudioProject" = false;
-            "Show"."CreateK3bDataProject" = false;
-            "Show"."CreateK3bVcdProject" = false;
             "Show"."WriteCdImage" = false;
             "Show"."compressfileitemaction" = true;
             "Show"."extractfileitemaction" = true;
@@ -174,28 +169,17 @@
             "NightColor"."NightTemperature" = 3300;
             "Plugins"."MoveWindowToCenterEnabled" = true;
             #"Plugins"."alwaysopenonprimaryscreen" = "Enabled";
-            "Plugins"."blurEnabled" = true;
             #"Plugins"."center-new-windowsEnabled" = true;
             "Plugins"."fadedesktopEnabled" = false;
-            "Plugins"."glideEnabled" = true;
             "Plugins"."kwin4_effect_fadingpopupsEnabled" = false;
-            "Plugins"."kwin4_effect_fadingpopups_kineticEnabled" = true;
             "Plugins"."kwin4_effect_maximizeEnabled" = false;
-            "Plugins"."kwin4_effect_maximize_kineticEnabled" = true;
-            "Plugins"."kwin4_effect_minimize_kineticEnabled" = true;
-            "Plugins"."kwin4_effect_open_close_kineticEnabled" = true;
             "Plugins"."kwin4_effect_scaleEnabled" = false;
             "Plugins"."kwin4_effect_squashEnabled" = false;
-            "Plugins"."kwin4_effect_translucencyEnabled" = true;
-            "Plugins"."magiclampEnabled" = true;
             "Plugins"."restoreToScreenEnabled" = true;
             "Plugins"."scaleEnabled" = false;
-            "Plugins"."kwin4_effect_shapecornersEnabled" = false;
             "Plugins"."shakecursorEnabled" = true;
             "Plugins"."slideEnabled" = true;
             "Plugins"."squashEnabled" = false;
-            "Plugins"."translucencyEnabled" = true;
-            "Plugins"."wobblywindowsEnabled" = false;
             #"Script-alwaysopenonprimaryscreen"."classList" = "steam\nsteamwebhelper\nmumble\ninfo.mumble.Mumble\nstrawberry\nobs\narmcord\nsignal";
             "Script-forceblur"."blurExceptMatching" = true;
             "Script-forceblur"."blurMatching" = false;
@@ -214,8 +198,19 @@
         };
         kwin = {
           effects = {
+            blur.enable = true;
             desktopSwitching.animation = "slide";
+            dimInactive.enable = false;
+            dimAdminMode.enable = false;
             shakeCursor.enable = true;
+            slideBack.enable = false;
+            minimization = {
+              animation = "magiclamp";
+              duration = 50;
+            };
+            translucency.enable = true;
+            windowOpenClose.animation = "glide";
+            wobblyWindows.enable = false;
           };
           titlebarButtons = {
             left = null;
