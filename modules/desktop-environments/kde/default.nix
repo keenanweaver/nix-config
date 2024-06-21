@@ -29,11 +29,10 @@ in
         with pkgs;
         with pkgs.kdePackages;
         [
-          ffmpegthumbnailer
           colord-kde
           discover
+          ffmpegthumbnailer
           filelight
-          k3b
           kate
           kcalc
           kcron
@@ -42,11 +41,12 @@ in
           kio-extras
           kirigami-addons
           kjournald
+          ksshaskpass
           inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
+          isoimagewriter
           packagekit-qt # Discover store
           plasma-browser-integration
           qtimageformats
-          #qtstyleplugin-kvantum
           sddm-kcm
           syntax-highlighting
         ];
