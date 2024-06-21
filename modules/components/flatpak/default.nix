@@ -77,7 +77,6 @@ in
           "org.freedesktop.Platform.ffmpeg-full/x86_64/23.08"
           "org.gtk.Gtk3theme.adw-gtk3-dark"
           "org.kde.haruna"
-          "org.kde.isoimagewriter"
           "org.kde.kdenlive"
           "org.kde.krita"
           "org.kde.neochat"
@@ -201,65 +200,6 @@ in
           };
         };
       };
-      /*
-        home.file = {
-               flatpak-overrides-global = {
-                 enable = true;
-                 text = ''
-                   [Context]
-                   filesystems=/run/media/${username}:ro;/home/${username}/.icons:ro;/home/${username}/.themes:ro;xdg-data/themes:ro;xdg-data/icons:ro;xdg-config/gtkrc:ro;xdg-config/gtkrc-2.0:ro;xdg-config/gtk-2.0:ro;xdg-config/gtk-3.0:ro;xdg-config/gtk-4.0:ro;xdg-run/.flatpak/com.xyz.armcord.ArmCord:create;xdg-run/discord-ipc-*;xdg-config/MangoHud:ro;/nix/store:ro
-                 '';
-                 target = "${config.xdg.dataHome}/flatpak/overrides/global";
-               };
-               script-flatpak-install-all = {
-                 enable = true;
-                 text = ''
-                   #!/usr/bin/env bash
-                   /home/${username}/.local/bin/flatpak-install-sys.sh
-                   /home/${username}/.local/bin/flatpak-install.sh
-                   /home/${username}/.local/bin/flatpak-install-games.sh
-                 '';
-                 target = ".local/bin/flatpak-install-all.sh";
-                 executable = true;
-               };
-               script-flatpak-install = {
-                 enable = true;
-                 text = ''
-                   #!/usr/bin/env bash
-                   < /home/${username}/.local/bin/.flatpak xargs flatpak install --user --assumeyes
-                 '';
-                 target = ".local/bin/flatpak-install.sh";
-                 executable = true;
-               };
-               script-flatpak-install-games = {
-                 enable = vars.gaming;
-                 text = ''
-                   #!/usr/bin/env bash
-                   < /home/${username}/.local/bin/.flatpak-games xargs flatpak install --user --assumeyes
-                 '';
-                 target = ".local/bin/flatpak-install-games.sh";
-                 executable = true;
-               };
-               script-flatpak-install-beta = {
-                 enable = true;
-                 text = ''
-                   #!/usr/bin/env bash
-                   < /home/${username}/.local/bin/.flatpak-beta xargs flatpak install --user --assumeyes
-                 '';
-                 target = ".local/bin/flatpak-install-beta.sh";
-                 executable = true;
-               };
-               script-flatpak-install-sys = {
-                 enable = true;
-                 text = ''
-                   #!/usr/bin/env bash
-                   < /home/${username}/.local/bin/.flatpak-sys xargs flatpak install --system --assumeyes
-                 '';
-                 target = ".local/bin/flatpak-install-sys.sh";
-                 executable = true;
-               };
-             };
-      */
     };
   };
 }
