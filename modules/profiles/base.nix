@@ -32,7 +32,6 @@ in
     gpg.enable = true;
     helix.enable = true;
     home-managerConfig.enable = true;
-    jq.enable = true;
     lazygit.enable = true;
     lsd.enable = true;
     micro.enable = false;

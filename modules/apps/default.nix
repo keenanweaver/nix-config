@@ -22,7 +22,6 @@
     ./gpg
     ./helix
     ./home-manager
-    ./jq
     ./lazygit
     ./lact
     ./lsd

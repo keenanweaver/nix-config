@@ -104,6 +104,7 @@ in
             yamllint
           ]
           ++ lib.optionals cfg.misc [
+            jq
             projectm
             streamrip
             yq
