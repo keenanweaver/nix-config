@@ -13,11 +13,11 @@ let
       arx-libertatis # Arx Fatalis
       clonehero # Guitar Hero
       exult # Ultima VII
-      inputs.ow-mod-man.packages.${system}.owmods-cli
-      inputs.ow-mod-man.packages.${system}.owmods-gui
+      #inputs.ow-mod-man.packages.${system}.owmods-cli
+      #inputs.ow-mod-man.packages.${system}.owmods-gui
       openjk # Jedi Academy
       openloco # Locomotion
-      openxray # STALKER
+      #openxray # STALKER
       #relive # Oddworld
       wipeout-rewrite # Wipeout
       vvvvvv
@@ -104,6 +104,7 @@ let
         makima
         oversteer
         sc-controller
+        solaar
         xboxdrv
       ]
       # Graphics
@@ -162,7 +163,7 @@ in
   config = lib.mkIf cfg.enable {
     # Custom modules
     cdemu.enable = true;
-    corectrl.enable = true;
+    corectrl.enable = false;
     fluidsynth.enable = true;
     gamemode.enable = true;
     gamescope.enable = true;
@@ -251,75 +252,7 @@ in
       };
       #input-remapper.enable = true;
       #joycond.enable = true;
-      pipewire = {
-        configPackages = [
-          (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-loopback-devices.conf" ''
-            context.modules = [
-                {   name = libpipewire-module-loopback
-                    args = {
-                            node.description = "Game capture"
-                            audio.position = [ FL FR ]
-                            capture.props = {
-                                    media.class = Audio/Sink
-                                    node.name = "Game"
-                                    node.description = "Game"
-                            }
-                            playback.props = {
-                                    node.name = "Game_m"
-                                    node.description = "Game capture"
-                            }
-                    }
-                }
-                {   name = libpipewire-module-loopback
-                    args = {
-                            node.description = "Music capture"
-                            audio.position = [ FL FR ]
-                            capture.props = {
-                                    media.class = Audio/Sink
-                                    node.name = "Music"
-                                    node.description = "Music"
-                            }
-                            playback.props = {
-                                    node.name = "Music_m"
-                                    node.description = "Music capture"
-                            }
-                    }
-                }
-                {   name = libpipewire-module-loopback
-                    args = {
-                            node.description = "Live-only capture"
-                            audio.position = [ FL FR ]
-                            capture.props = {
-                                    media.class = Audio/Sink
-                                    node.name = "Live-only"
-                                    node.description = "Live-only"
-                            }
-                            playback.props = {
-                                    node.name = "Live_m"
-                                    node.description = "Live-only capture"
-                            }
-                    }
-                }
-                {   name = libpipewire-module-loopback
-                    args = {
-                            node.description = "VoIP capture"
-                            audio.position = [ FL FR ]
-                            capture.props = {
-                                    media.class = Audio/Sink
-                                    node.name = "VoIP"
-                                    node.description = "VoIP"
-                            }
-                            playback.props = {
-                                    node.name = "VoIP_m"
-                                    node.description = "VoIP capture"
-                            }
-                    }
-                }
-            ]
-          '')
-        ];
-      };
-      system76-scheduler.enable = true;
+      #system76-scheduler.enable = true;
       udev = {
         packages = [
           pkgs.game-devices-udev-rules

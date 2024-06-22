@@ -71,9 +71,6 @@ in
         (self: super: { })
         (final: prev: {
           apple-fonts = pkgs.callPackage ../../../nix/pkgs/apple-fonts.nix { };
-          bottles = pkgs.callPackage ../../../nix/pkgs/bottles/fhsenv.nix { };
-          bottles-unwrapped = pkgs.callPackage ../../../nix/pkgs/bottles { };
-          catppuccin-gtk = pkgs.callPackage ../../../nix/pkgs/catppuccin-gtk.nix { };
         })
       ];
     };
@@ -124,11 +121,12 @@ in
             #nn = "nnn -dHix";
             #n = "micro";
             nv = "nvim";
-            nfc = "nix flake check /mnt/crusader/Projects/GitHub/nix-config --no-build";
+            #nfc = "nix flake check /mnt/crusader/Projects/GitHub/nix-config --no-build";
             ngc = "nh clean all";
-            nhr = "nh home switch";
+            #nhr = "nh home switch";
             nor = "nh os switch";
             npr = "nix run nixpkgs#nixpkgs-review -- pr";
+            psr = "plasmashell --replace & disown";
             rbn = "podman stop -a && systemctl reboot";
             repw = "systemctl --user restart wireplumber pipewire pipewire-pulse pipewire-pulse.socket";
             sudo = "sudo ";
