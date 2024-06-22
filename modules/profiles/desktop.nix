@@ -53,7 +53,12 @@ in
     };
 
     home-manager.users.${username} =
-      { pkgs, vars, ... }:
+      {
+        pkgs,
+        config,
+        vars,
+        ...
+      }:
       {
         home.file = {
           script-bootstrap-baremetal = {
@@ -65,7 +70,7 @@ in
                 fd 'rustdesk' /home/${username}/Downloads -e flatpak -x flatpak install -u -y
                 distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
               ''
-              ++ lib.optionalString vars.gaming ''
+              + lib.optionalString vars.gaming ''
                 distrobox enter bazzite-arch-exodos -- bash -l -c "${config.xdg.configHome}/distrobox/bootstrap-ansible.sh"
                 distrobox enter bazzite-arch-gaming -- bash -l -c "${config.xdg.configHome}/distrobox/bootstrap-ansible.sh"
                 /home/${username}/.local/bin/game-stuff.sh
