@@ -80,6 +80,52 @@ in
           neo
         ];
         xdg = {
+          desktopEntries = {
+            foobar2000 = {
+              name = "foobar2000";
+              comment = "Launch foobar2000 using Bottles.";
+              exec = "bottles-cli run -p foobar2000 -b foobar2000";
+              icon = "/home/${username}/Games/Bottles/foobar2000/icons/foobar2000.png";
+              categories = [
+                "AudioVideo"
+                "Player"
+                "Audio"
+              ];
+              noDisplay = false;
+              startupNotify = true;
+              actions = {
+                "Configure" = {
+                  name = "Configure in Bottles";
+                  exec = "bottles -b foobar2000";
+                };
+              };
+              settings = {
+                StartupWMClass = "foobar2000";
+              };
+            };
+            qobuz = {
+              name = "Qobuz";
+              comment = "Launch Qobuz using Bottles.";
+              exec = "bottles-cli run -p Qobuz -b Qobuz";
+              icon = "/home/${username}/Games/Bottles/Qobuz/icons/Qobuz.png";
+              categories = [
+                "AudioVideo"
+                "Player"
+                "Audio"
+              ];
+              noDisplay = false;
+              startupNotify = true;
+              actions = {
+                "Configure" = {
+                  name = "Configure in Bottles";
+                  exec = "bottles -b Qobuz";
+                };
+              };
+              settings = {
+                StartupWMClass = "Qobuz";
+              };
+            };
+          };
           mimeApps = {
             enable = true;
             associations = {
@@ -142,52 +188,6 @@ in
               "x-scheme-handler/http" = [ "one.ablaze.floorp.desktop" ];
               "x-scheme-handler/https" = [ "one.ablaze.floorp.desktop" ];
               "x-scheme-handler/ror2mm" = [ "r2modman.desktop" ];
-            };
-            desktopEntries = {
-              foobar2000 = {
-                name = "foobar2000";
-                comment = "Launch foobar2000 using Bottles.";
-                exec = "bottles-cli run -p foobar2000 -b foobar2000";
-                icon = "/home/${username}/Games/Bottles/foobar2000/icons/foobar2000.png";
-                categories = [
-                  "AudioVideo"
-                  "Player"
-                  "Audio"
-                ];
-                noDisplay = false;
-                startupNotify = true;
-                actions = {
-                  "Configure" = {
-                    name = "Configure in Bottles";
-                    exec = "bottles -b foobar2000";
-                  };
-                };
-                settings = {
-                  StartupWMClass = "foobar2000";
-                };
-              };
-              qobuz = {
-                name = "Qobuz";
-                comment = "Launch Qobuz using Bottles.";
-                exec = "bottles-cli run -p Qobuz -b Qobuz";
-                icon = "/home/${username}/Games/Bottles/Qobuz/icons/Qobuz.png";
-                categories = [
-                  "AudioVideo"
-                  "Player"
-                  "Audio"
-                ];
-                noDisplay = false;
-                startupNotify = true;
-                actions = {
-                  "Configure" = {
-                    name = "Configure in Bottles";
-                    exec = "bottles -b Qobuz";
-                  };
-                };
-                settings = {
-                  StartupWMClass = "Qobuz";
-                };
-              };
             };
           };
           portal = {
