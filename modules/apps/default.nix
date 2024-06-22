@@ -51,7 +51,6 @@
     ./wireshark
     ./yazi
     ./yt-dlp
-    ./xwayland
     ./zellij
     ./zerotier
     ./zoxide
