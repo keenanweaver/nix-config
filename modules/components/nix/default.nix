@@ -69,9 +69,7 @@ in
       overlays = [
         inputs.nur.overlay
         (self: super: { })
-        (final: prev: {
-          apple-fonts = pkgs.callPackage ../../../nix/pkgs/apple-fonts.nix { };
-        })
+        (final: prev: { })
       ];
     };
 
