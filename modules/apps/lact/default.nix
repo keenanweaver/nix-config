@@ -18,6 +18,10 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
+
+    # Allow for overclocking
+    boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
+
     environment.systemPackages = with pkgs; [
       nvtopPackages.amd
       lact
