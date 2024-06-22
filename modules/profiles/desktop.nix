@@ -26,7 +26,6 @@ in
     vscode.enable = true;
     wezterm.enable = true;
     wireshark.enable = true;
-    #xwayland.enable = true;
 
     environment = {
       systemPackages = with pkgs; [ xdg-desktop-portal ];
@@ -54,32 +53,25 @@ in
     };
 
     home-manager.users.${username} =
-      { pkgs, ... }:
+      { pkgs, vars, ... }:
       {
         home.file = {
-          userjs-floorp = {
+          script-bootstrap-baremetal = {
             enable = true;
-            text = ''
-              /* KDE integration */
-              user_pref("widget.use-xdg-desktop-portal.mime-handler", 1);
-              user_pref("widget.use-xdg-desktop-portal.file-picker", 1);
-
-              /* Hardware accelerated codecs */
-              user_pref("media.ffmpeg.vaapi.enable", true);
-
-              /* Disable autofill & password */
-              user_pref("extensions.formautofill.addresses.enabled", false);
-              user_pref("extensions.formautofill.creditCards.enabled", false);
-              user_pref("signon.rememberSignons", false);
-
-              /* Autoplay enable */
-              user_pref("media.autoplay.default", 1);
-
-              /* Enable DRM content */
-              user_pref("media.eme.enabled", true);
-              user_pref("browser.eme.ui.enabled", true);
-            '';
-            target = ".var/app/one.ablaze.floorp/.floorp/yshqu3aq.default-release/user.js";
+            text =
+              ''
+                #!/usr/bin/env bash
+                curl https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | test(".*flatpak$")).browser_download_url' | wget -i- -N -P /home/${username}/Downloads
+                fd 'rustdesk' /home/${username}/Downloads -e flatpak -x flatpak install -u -y
+                distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
+              ''
+              ++ lib.optionalString vars.gaming ''
+                distrobox enter bazzite-arch-exodos -- bash -l -c "${config.xdg.configHome}/distrobox/bootstrap-ansible.sh"
+                distrobox enter bazzite-arch-gaming -- bash -l -c "${config.xdg.configHome}/distrobox/bootstrap-ansible.sh"
+                /home/${username}/.local/bin/game-stuff.sh
+              '';
+            target = ".local/bin/bootstrap-baremetal.sh";
+            executable = true;
           };
         };
         home.packages = with pkgs; [
@@ -87,9 +79,7 @@ in
           cyanrip
           neo
         ];
-
         xdg = {
-          enable = true;
           mimeApps = {
             enable = true;
             associations = {
@@ -152,6 +142,52 @@ in
               "x-scheme-handler/http" = [ "one.ablaze.floorp.desktop" ];
               "x-scheme-handler/https" = [ "one.ablaze.floorp.desktop" ];
               "x-scheme-handler/ror2mm" = [ "r2modman.desktop" ];
+            };
+            desktopEntries = {
+              foobar2000 = {
+                name = "foobar2000";
+                comment = "Launch foobar2000 using Bottles.";
+                exec = "bottles-cli run -p foobar2000 -b foobar2000";
+                icon = "/home/${username}/Games/Bottles/foobar2000/icons/foobar2000.png";
+                categories = [
+                  "AudioVideo"
+                  "Player"
+                  "Audio"
+                ];
+                noDisplay = false;
+                startupNotify = true;
+                actions = {
+                  "Configure" = {
+                    name = "Configure in Bottles";
+                    exec = "bottles -b foobar2000";
+                  };
+                };
+                settings = {
+                  StartupWMClass = "foobar2000";
+                };
+              };
+              qobuz = {
+                name = "Qobuz";
+                comment = "Launch Qobuz using Bottles.";
+                exec = "bottles-cli run -p Qobuz -b Qobuz";
+                icon = "/home/${username}/Games/Bottles/Qobuz/icons/Qobuz.png";
+                categories = [
+                  "AudioVideo"
+                  "Player"
+                  "Audio"
+                ];
+                noDisplay = false;
+                startupNotify = true;
+                actions = {
+                  "Configure" = {
+                    name = "Configure in Bottles";
+                    exec = "bottles -b Qobuz";
+                  };
+                };
+                settings = {
+                  StartupWMClass = "Qobuz";
+                };
+              };
             };
           };
           portal = {
