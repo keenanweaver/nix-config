@@ -33,14 +33,6 @@ in
       { inputs, config, ... }:
       {
         home.file = {
-          /*
-            midi-soundfonts = {
-                     enable = true;
-                     recursive = true;
-                     source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts";
-                     target = "Music/soundfonts";
-                   };
-          */
           midi-soundfonts-default = {
             enable = true;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts/${soundfont}";

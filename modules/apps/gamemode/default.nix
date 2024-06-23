@@ -23,7 +23,7 @@ in
           inhibit_screensaver = 1;
         };
         custom = {
-          # https://github.com/Electrostasy/dots/blob/master/hosts/terra/gaming.nixy
+          # https://github.com/Electrostasy/dots/blob/master/hosts/terra/gaming.nix
           start = builtins.toString (
             pkgs.writeShellScript "gamemode-start.sh" ''
               ${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GameMode' 'GameMode started' -i applications-games -a 'GameMode'
