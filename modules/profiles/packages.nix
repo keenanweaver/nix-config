@@ -112,7 +112,6 @@ in
             dogdns # dig
             dua # du
             duf # df
-            fd # find
             ouch # compression
             pigz # gz
             procs # ps
@@ -135,7 +134,6 @@ in
             (_7zz.override { enableUnfree = true; })
             aspell
             aspellDicts.en
-            fastfetch
             killall
             libnotify
             kmon

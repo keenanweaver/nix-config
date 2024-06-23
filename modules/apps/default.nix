@@ -11,6 +11,8 @@
     ./direnv
     ./distrobox
     ./envfs
+    ./fastfetch
+    ./fd
     ./floorp
     ./fluidsynth
     ./foot
@@ -24,6 +26,7 @@
     ./home-manager
     ./lazygit
     ./lact
+    ./looking-glass
     ./lsd
     ./mangohud
     ./micro

@@ -26,6 +26,8 @@ in
     direnv.enable = true;
     distrobox.enable = true;
     envfs.enable = true;
+    fastfetch.enable = true;
+    fd.enable = true;
     foot.enable = true;
     fzf.enable = true;
     git.enable = true;
