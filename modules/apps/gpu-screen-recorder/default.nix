@@ -21,6 +21,7 @@ let
       makeWrapper
       meson
       ninja
+      cmake
     ];
 
     buildInputs = with pkgs; [
@@ -32,6 +33,8 @@ let
       xorg.libXcomposite
       xorg.libXrandr
       xorg.libXfixes
+      xorg.libXdamage
+      xorg.libXi
     ];
 
     installPhase = ''
@@ -74,7 +77,7 @@ in
     };
 
     home-manager.users.${username} =
-      { username, pkgs, ... }:
+      { pkgs, ... }:
       {
         home = {
           file = {
