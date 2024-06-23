@@ -19,7 +19,6 @@ in
     };
   };
   config = lib.mkIf config.steam.enable {
-    programs.java.enable = true;
     programs.steam = {
       enable = true;
       dedicatedServer.openFirewall = true;
@@ -70,7 +69,6 @@ in
               xdotool
             */
           ];
-        withJava = config.programs.java.enable;
       };
       protontricks.enable = true;
       remotePlay.openFirewall = true;
