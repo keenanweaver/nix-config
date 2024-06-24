@@ -11,8 +11,6 @@ let
 in
 {
 
-  imports = [ ./plasma-manager/desktop.nix ];
-
   options = {
     kde = {
       enable = lib.mkEnableOption "Enable kde in NixOS & home-manager";

@@ -7,6 +7,8 @@
     ./impermanence.nix
     # Profiles
     ../../modules
+    # Plasma
+    ../../modules/desktop-environments/kde/plasma-manager/laptop.nix
   ];
 
   # Custom modules

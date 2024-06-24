@@ -1,13 +1,7 @@
 { username, ... }:
 {
-  imports = [ ./window-rules.nix ];
   home-manager.users.${username} =
-    {
-      username,
-      pkgs,
-      dotfiles,
-      ...
-    }:
+    { username, pkgs, ... }:
     {
       programs.kate = {
         lsp.customServers = {
@@ -162,6 +156,8 @@
           };
           "kwalletrc"."Wallet"."First Use" = false;
           kwinrc = {
+            "Desktops"."Id_1" = "a7432ce6-58b8-4c67-92e7-165c462be689"; # Main
+            "Desktops"."Id_2" = "913f595f-b9b9-46ac-9448-99b3a463d45e"; # Social
             "Effect-blur"."BlurStrength" = 12;
             "Effect-windowview"."BorderActivateAll" = 9;
             "NightColor"."Active" = true;

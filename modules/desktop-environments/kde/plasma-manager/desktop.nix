@@ -118,6 +118,7 @@
               }
               "org.kde.plasma.marginsseparator"
               "org.kde.plasma.marginsseparator"
+              "org.kde.plasma.marginsseparator"
               {
                 digitalClock = {
                   calendar = {
@@ -129,6 +130,243 @@
               "org.kde.plasma.showdesktop"
             ];
             screen = 1;
+          }
+        ];
+        window-rules = [
+          {
+            description = "Move portal windows to primary screen";
+            match = {
+              window-class = {
+                value = "xdg-desktop-portal-kde";
+                type = "exact";
+                match-whole = false;
+              };
+            };
+            apply = {
+              ignoregeometry = {
+                value = true;
+              };
+              screen = {
+                value = 0;
+              };
+            };
+          }
+          {
+            description = "armcord";
+            match = {
+              window-class = {
+                value = "armcord";
+                type = "regex";
+              };
+            };
+            apply = {
+              ignoregeometry = {
+                value = true;
+              };
+              position = {
+                value = "0,0";
+              };
+              screen = {
+                value = 1;
+                apply = "force";
+              };
+              size = {
+                value = "1026,646";
+              };
+            };
+          }
+          {
+            description = "foobar2000";
+            match = {
+              window-class = {
+                value = "foobar2000";
+                type = "regex";
+              };
+            };
+            apply = {
+              ignoregeometry = {
+                value = true;
+              };
+              position = {
+                value = "0,646";
+                apply = "force";
+              };
+              screen = {
+                value = 1;
+              };
+              size = {
+                value = "1026,740";
+              };
+            };
+          }
+          {
+            description = "fooyin";
+            match = {
+              window-class = {
+                value = "fooyin";
+                type = "regex";
+              };
+            };
+            apply = {
+              ignoregeometry = {
+                value = true;
+              };
+              position = {
+                value = "1026,646";
+              };
+              screen = {
+                value = 1;
+                apply = "force";
+              };
+              size = {
+                value = "1534,741";
+              };
+            };
+          }
+          {
+            description = "mumble";
+            match = {
+              window-class = {
+                value = "mumble";
+                type = "regex";
+              };
+              window-types = [ "normal" ];
+            };
+            apply = {
+              ignoregeometry = {
+                value = true;
+              };
+              position = {
+                value = "1723,0";
+              };
+              screen = {
+                value = 1;
+                apply = "force";
+              };
+              size = {
+                value = "611,647";
+              };
+            };
+          }
+          {
+            description = "neochat";
+            match = {
+              window-class = {
+                value = "neochat";
+                type = "regex";
+                match-whole = false;
+              };
+            };
+            apply = {
+              desktops = {
+                value = "913f595f-b9b9-46ac-9448-99b3a463d45e"; # Social desktop
+              };
+              position = {
+                value = "1287,0";
+              };
+              screen = {
+                value = 1;
+              };
+              size = {
+                value = "1273,961";
+              };
+            };
+          }
+          {
+            description = "qobuz";
+            match = {
+              window-class = {
+                value = "qobuz";
+                type = "regex";
+              };
+            };
+            apply = {
+              ignoregeometry = {
+                value = true;
+              };
+              position = {
+                value = "1026,646";
+              };
+              screen = {
+                value = 1;
+                apply = "force";
+              };
+              size = {
+                value = "1534,740";
+                apply = "force";
+              };
+            };
+          }
+          {
+            description = "signal";
+            match = {
+              window-class = {
+                value = "signal";
+                type = "regex";
+              };
+            };
+            apply = {
+              ignoregeometry = {
+                value = true;
+              };
+              position = {
+                value = "1026,0";
+              };
+              screen = {
+                value = 1;
+                apply = "force";
+              };
+              size = {
+                value = "697,646";
+              };
+            };
+          }
+          {
+            description = "steam friends list";
+            match = {
+              window-class = {
+                value = "steam";
+                type = "exact";
+              };
+              title = {
+                value = "Friends list";
+                type = "exact";
+              };
+            };
+            apply = {
+              position = {
+                value = "2334,0";
+                apply = "force";
+              };
+              screen = {
+                value = 1;
+                apply = "force";
+              };
+            };
+          }
+          {
+            description = "tokodon";
+            match = {
+              window-class = {
+                value = "tokodon";
+                type = "regex";
+                match-whole = false;
+              };
+            };
+            apply = {
+              desktops = {
+                value = "913f595f-b9b9-46ac-9448-99b3a463d45e"; # Social desktop
+              };
+              position = {
+                value = "0,0";
+              };
+              screen = {
+                value = 1;
+              };
+              size = {
+                value = "1287,961";
+              };
+            };
           }
         ];
       };
