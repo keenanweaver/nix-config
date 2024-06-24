@@ -13,11 +13,11 @@ let
       arx-libertatis # Arx Fatalis
       clonehero # Guitar Hero
       exult # Ultima VII
-      #inputs.ow-mod-man.packages.${system}.owmods-cli
-      #inputs.ow-mod-man.packages.${system}.owmods-gui
+      inputs.ow-mod-man.packages.${system}.owmods-cli
+      inputs.ow-mod-man.packages.${system}.owmods-gui
       openjk # Jedi Academy
       openloco # Locomotion
-      #openxray # STALKER
+      openxray # STALKER
       #relive # Oddworld
       wipeout-rewrite # Wipeout
       vvvvvv
@@ -130,6 +130,19 @@ let
         inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
         winetricks
         wineWowPackages.stagingFull
+      ]
+      # GStreamer
+      [
+        gst_all_1.gstreamer
+        gst_all_1.gstreamermm
+        gst_all_1.gst-libav
+        gst_all_1.gst-plugins-bad
+        gst_all_1.gst-plugins-base
+        gst_all_1.gst-plugins-good
+        gst_all_1.gst-plugins-rs
+        gst_all_1.gst-plugins-ugly
+        gst_all_1.gst-plugins-viperfx
+        gst_all_1.gst-vaapi
       ]
       /*
         igir
