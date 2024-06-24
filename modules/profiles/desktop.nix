@@ -67,7 +67,7 @@ in
             text =
               ''
                 #!/usr/bin/env bash
-                curl https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | test(".*flatpak$")).browser_download_url' | wget -i- -N -P /home/${username}/Downloads
+                curl https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.flatpak$")).browser_download_url' | wget -i- -N -P /home/${username}/Downloads
                 fd 'rustdesk' /home/${username}/Downloads -e flatpak -x flatpak install -u -y
                 distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
               ''
