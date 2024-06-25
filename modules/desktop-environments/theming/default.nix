@@ -123,6 +123,7 @@ in
       {
         catppuccin = {
           enable = true;
+          pointerCursor.enable = false;
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
         };
