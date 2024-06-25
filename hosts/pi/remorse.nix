@@ -1,23 +1,44 @@
 {
   lib,
   username,
-  pkgs,
+  modulesPath,
   ...
 }:
 {
   imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
     # System
-    ./disko.nix
-    ./hardware-configuration.nix
     ./impermanence.nix
     # Profiles
     ../../modules
   ];
 
+  # Custom modules
+  server.enable = true;
+
+  boot = {
+    initrd = {
+      availableKernelModules = [
+        "xhci_pci"
+        "usbhid"
+      ];
+    };
+  };
+
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/NIXOS_SD"; # this is important!
+    fsType = "ext4";
+    options = [ "noatime" ];
+  };
+
+  swapDevices = [ ];
+
   networking = {
     hostName = "remorse";
     wireless.enable = false;
   };
+
+  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 
   services = {
     cockpit = {

@@ -306,6 +306,66 @@
               }
             ];
           };
+          # Pi
+          remorse = nixpkgs.lib.nixosSystem {
+            system = "aarch64-linux";
+
+            specialArgs = {
+              inherit inputs;
+              inherit fullname username dotfiles;
+
+              vars = {
+                desktop = false;
+                gaming = false;
+              };
+            };
+
+            modules = [
+
+              ./hosts/pi
+
+              (args: { nixpkgs.overlays = import ./nix/overlays args; })
+
+              inputs.chaotic.nixosModules.default
+              inputs.disko.nixosModules.disko
+              ./hosts/pi/disko.nix
+              { _module.args.disks = [ "/dev/disk/by-label/NIXOS_SD" ]; }
+              inputs.lanzaboote.nixosModules.lanzaboote
+              inputs.nix-flatpak.nixosModules.nix-flatpak
+              inputs.nur.nixosModules.nur
+              inputs.sops-nix.nixosModules.sops
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  extraSpecialArgs = {
+                    inherit inputs; # Experiment with config and other attributes
+                    inherit fullname username dotfiles;
+
+                    vars = {
+                      desktop = false;
+                      gaming = false;
+                    };
+                  };
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.${username} = {
+                    home = {
+                      # do not change this value
+                      stateVersion = "23.11";
+                    };
+                  };
+                  sharedModules = [
+                    inputs.nix-colors.homeManagerModules.default
+                    inputs.nix-flatpak.homeManagerModules.nix-flatpak
+                    inputs.nix-index-database.hmModules.nix-index
+                    inputs.nixvim.homeManagerModules.nixvim
+                    inputs.nur.hmModules.nur
+                    inputs.sops-nix.homeManagerModules.sops
+                  ];
+                };
+              }
+            ];
+          };
           # Unraid
           nixos-unraid = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
