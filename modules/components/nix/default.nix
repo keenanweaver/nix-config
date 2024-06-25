@@ -3,7 +3,6 @@
   lib,
   config,
   username,
-  pkgs,
   vars,
   ...
 }:
@@ -25,6 +24,7 @@ in
     };
     nix = {
       extraOptions = ''
+        !include ${config.sops.templates."nix-github-token.conf".path}
         keep-outputs = true
         keep-derivations = true
       '';
