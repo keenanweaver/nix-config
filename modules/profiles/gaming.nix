@@ -342,7 +342,7 @@ in
           roms-mt32-exodos = {
             enable = true;
             recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/mt-32";
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/dosbox/mt32-roms";
           };
           script-get-game-stuff = {
