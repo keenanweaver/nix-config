@@ -22,7 +22,7 @@ in
   config = lib.mkIf cfg.enable {
     environment = {
       systemPackages = with pkgs; [
-        distrobox
+        distrobox_git
         lilipod
       ];
     };
