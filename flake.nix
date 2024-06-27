@@ -322,14 +322,11 @@
 
             modules = [
 
-              ./hosts/pi
+              ./hosts/pi/remorse.nix
 
               (args: { nixpkgs.overlays = import ./nix/overlays args; })
 
               inputs.chaotic.nixosModules.default
-              inputs.disko.nixosModules.disko
-              ./hosts/pi/disko.nix
-              { _module.args.disks = [ "/dev/disk/by-label/NIXOS_SD" ]; }
               inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.nixosModules.nur
@@ -355,7 +352,6 @@
                     };
                   };
                   sharedModules = [
-                    inputs.nix-colors.homeManagerModules.default
                     inputs.nix-flatpak.homeManagerModules.nix-flatpak
                     inputs.nix-index-database.hmModules.nix-index
                     inputs.nixvim.homeManagerModules.nixvim

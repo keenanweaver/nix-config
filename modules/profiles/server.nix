@@ -28,7 +28,7 @@ in
     mullvad.enable = lib.mkForce false;
     pipewire.enable = lib.mkForce false;
     printing.enable = lib.mkForce false;
-    virtualization.enable = lib.mkForce false;
+    #virtualization.enable = lib.mkForce false;
 
     home-manager.users.${username} = { };
   };

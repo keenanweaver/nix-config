@@ -26,7 +26,7 @@
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/NIXOS_SD"; # this is important!
+    device = "/dev/disk/by-label/NIXOS_SD";
     fsType = "ext4";
     options = [ "noatime" ];
   };
@@ -35,6 +35,19 @@
 
   networking = {
     hostName = "remorse";
+    interfaces.end0 = {
+      ipv4.addresses = [
+        {
+          address = "10.20.1.95";
+          prefixLength = 24;
+        }
+      ];
+    };
+    defaultGateway = {
+      address = "10.20.1.1";
+      interface = "end0";
+    };
+    nameservers = [ "10.20.1.1" ];
     wireless.enable = false;
   };
 
@@ -45,11 +58,15 @@
       enable = true;
       openFirewall = true;
     };
-    homearr = {
-      enable = true;
-    };
+    #homearr = {
+    #  enable = true;
+    #};
     home-assistant = {
       enable = true;
+      extraComponents = [
+        "default_config"
+        "openweathermap"
+      ];
       openFirewall = true;
     };
     netdata = {
@@ -63,34 +80,34 @@
     };
   };
 
-  virtualisation = {
-    oci-containers = {
-      containers = {
-        flare-solvarr = {
-          image = "ghcr.io/flaresolverr/flaresolverr:latest";
-          autoStart = true;
-          ports = [ "127.0.0.1:8191:8191" ];
-          environment = {
-            LOG_LEVEL = "info";
-            LOG_HTML = "false";
-            CAPTCHA_SOLVER = "hcaptcha-solver";
-            TZ = "America/Chicago";
+  /*
+    virtualisation = {
+      oci-containers = {
+        containers = {
+          flare-solvarr = {
+            image = "ghcr.io/flaresolverr/flaresolverr:latest";
+            autoStart = true;
+            ports = [ "127.0.0.1:8191:8191" ];
+            environment = {
+              LOG_LEVEL = "info";
+              LOG_HTML = "false";
+              CAPTCHA_SOLVER = "hcaptcha-solver";
+              TZ = "America/Chicago";
+            };
           };
-        };
-        homarr = {
-          image = "ghcr.io/ajnart/homarr:latest";
-          ports = [ "7575:7575" ];
-          volumes = [
-            "./homarr/data:/data"
-            "./homarr/configs:/app/data/configs"
-            "./homarr/icons:/app/public/icons"
-          ];
+          homarr = {
+            image = "ghcr.io/ajnart/homarr:latest";
+            ports = [ "7575:7575" ];
+            volumes = [
+              "./homarr/data:/data"
+              "./homarr/configs:/app/data/configs"
+              "./homarr/icons:/app/public/icons"
+            ];
+          };
         };
       };
     };
-  };
+  */
 
-  home-manager.users.${username} = {
-
-  };
+  home-manager.users.${username} = { };
 }

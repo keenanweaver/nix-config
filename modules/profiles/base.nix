@@ -3,6 +3,7 @@
   config,
   pkgs,
   username,
+  vars,
   ...
 }:
 let
@@ -106,7 +107,7 @@ in
     };
 
     services = {
-      btrfs.autoScrub.enable = true;
+      btrfs.autoScrub.enable = vars.desktop;
       cron.enable = true;
       dbus.implementation = "broker";
       earlyoom.enable = true;
