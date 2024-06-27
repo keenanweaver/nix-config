@@ -1,4 +1,4 @@
-{ username, ... }:
+{ username, dotfiles, ... }:
 {
   imports = [ ./default.nix ];
   home-manager.users.${username} =
@@ -29,7 +29,7 @@
                 name = "org.kde.plasma.kickoff";
                 config = {
                   General = {
-                    icon = "/home/${username}/Downloads/nix-snowflake-white.svg";
+                    icon = "${dotfiles}/Pictures/nix-snowflake-white.svg";
                   };
                 };
               }
