@@ -52,6 +52,9 @@ in
     services = {
       devmon.enable = true;
       fwupd.enable = true;
+      udisks2 = {
+        enable = true;
+      };
     };
 
     home-manager.users.${username} =
