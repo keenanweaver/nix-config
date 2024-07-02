@@ -18,6 +18,7 @@
         shortcuts = {
           "services/services.gsr-save-replay.sh.desktop"."_launch" = "Meta+Ctrl+|";
         };
+        #extraWidgets = [ ];
         panels = [
           # Primary
           {
