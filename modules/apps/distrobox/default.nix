@@ -15,7 +15,7 @@ in
       enable = lib.mkEnableOption "Enable distrobox in NixOS & home-manager";
       gaming = lib.mkOption {
         type = lib.types.bool;
-        default = true;
+        default = vars.gaming;
       };
     };
   };
@@ -33,6 +33,7 @@ in
         username,
         pkgs,
         dotfiles,
+        vars,
         ...
       }:
       let
@@ -680,7 +681,7 @@ in
         home.packages = with pkgs; [ xorg.xhost ];
         xdg = {
           desktopEntries = {
-            archipelago = {
+            archipelago = lib.mkIf cfg.gaming {
               name = "Archipelago";
               comment = "Multiworld multi-game randomizer";
               exec = "archipelago";
@@ -690,7 +691,7 @@ in
                 "Emulator"
               ];
             };
-            bizhawk = {
+            bizhawk = lib.mkIf cfg.gaming {
               name = "bizhawk";
               comment = "A multi-platform emulator with full re-recording support and Lua scripting";
               exec = "bizhawk";
@@ -700,7 +701,7 @@ in
                 "Emulator"
               ];
             };
-            dosbox = {
+            dosbox = lib.mkIf cfg.gaming {
               name = "dosbox-staging";
               comment = "DOSBox Staging";
               exec = "dosbox";
@@ -712,7 +713,7 @@ in
                 Keywords = "dosbox;dos";
               };
             };
-            exogui = {
+            exogui = lib.mkIf cfg.gaming {
               name = "exogui";
               comment = "eXoDOS Launcher";
               exec = "exogui";
@@ -724,7 +725,7 @@ in
                 Keywords = "exodos;dos";
               };
             };
-            nuked-sc55 = {
+            nuked-sc55 = lib.mkIf cfg.gaming {
               name = "Nuked SC-55";
               comment = "Roland SC-55 emulator";
               exec = "nuked-sc55";
@@ -732,7 +733,7 @@ in
               noDisplay = false;
               startupNotify = true;
             };
-            portproton = {
+            portproton = lib.mkIf cfg.gaming {
               name = "PortProton";
               comment = "Proton launcher";
               exec = "portproton";
