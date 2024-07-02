@@ -160,6 +160,7 @@
             "Desktops"."Id_2" = "913f595f-b9b9-46ac-9448-99b3a463d45e"; # Social
             "Effect-blur"."BlurStrength" = 12;
             "Effect-windowview"."BorderActivateAll" = 9;
+            "MouseBindings"."CommandTitlebarWheel" = "Change Opacity";
             "NightColor"."Active" = true;
             "NightColor"."MorningBeginFixed" = 800;
             "NightColor"."NightTemperature" = 3300;
@@ -175,7 +176,6 @@
             "Plugins"."scaleEnabled" = false;
             "Plugins"."shakecursorEnabled" = true;
             "Plugins"."slideEnabled" = true;
-            "Plugins"."squashEnabled" = false;
             #"Script-alwaysopenonprimaryscreen"."classList" = "steam\nsteamwebhelper\nmumble\ninfo.mumble.Mumble\nstrawberry\nobs\narmcord\nsignal";
             "Script-forceblur"."blurExceptMatching" = true;
             "Script-forceblur"."blurMatching" = false;
@@ -201,8 +201,8 @@
             shakeCursor.enable = true;
             slideBack.enable = false;
             minimization = {
-              animation = "magiclamp";
-              duration = 50;
+              animation = "squash";
+              #duration = 50;
             };
             translucency.enable = true;
             windowOpenClose.animation = "glide";
