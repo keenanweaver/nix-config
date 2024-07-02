@@ -26,6 +26,8 @@ in
             misc = {
               "display_time" = true;
               disable = [
+                "clam_av_db"
+                "helix"
                 "home_manager"
                 "vim"
                 "system"
