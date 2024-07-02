@@ -25,7 +25,7 @@ in
       templates = {
         "nix-github-token.conf" = {
           content = ''
-            extra-access-tokens = "${config.sops.placeholder.github_token}"
+            access-tokens = "${config.sops.placeholder.github_token}"
           '';
         };
       };
