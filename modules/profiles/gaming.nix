@@ -8,13 +8,21 @@
 }:
 let
   cfg = config.gaming;
+  dxvkConfig = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
+    hash = "sha256-dt+IlHYw+IjjHNFDT9PgXft682uwB1pGv75SLZDvJcE=";
+  };
+  vkBasaltConfig = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/DadSchoorse/vkBasalt/master/config/vkBasalt.conf";
+    hash = "sha256-IN/Kuc17EZfzRoo8af1XoBX2/48/bCdyOxw/Tl463Mg=";
+  };
   p = with pkgs; {
     games = [
       arx-libertatis # Arx Fatalis
       clonehero # Guitar Hero
       exult # Ultima VII
-      inputs.ow-mod-man.packages.${system}.owmods-cli
-      inputs.ow-mod-man.packages.${system}.owmods-gui
+      #inputs.ow-mod-man.packages.${system}.owmods-cli
+      #inputs.ow-mod-man.packages.${system}.owmods-gui
       openjk # Jedi Academy
       openloco # Locomotion
       openxray # STALKER
@@ -57,7 +65,7 @@ let
       # N64
       [
         #_2s2h
-        shipwright
+        #shipwright
         #zelda64recomp
       ]
       # Quake
@@ -263,9 +271,7 @@ in
           package = pkgs.openrgb-with-all-plugins;
         };
       };
-      #input-remapper.enable = true;
       #joycond.enable = true;
-      #system76-scheduler.enable = true;
       udev = {
         packages = [
           pkgs.game-devices-udev-rules
@@ -339,6 +345,30 @@ in
       }:
       {
         home.file = {
+          desktop-entry-dxvk = {
+            enable = true;
+            text = ''
+              [Desktop Entry]
+              Comment=Create a new DXVK config from template
+              Icon=text-x-makefile
+              Name=DXVK Config...
+              Type=Link
+              URL[$e]=file:${dxvkConfig}
+            '';
+            target = "${config.xdg.dataHome}/templates/dxvk.desktop";
+          };
+          desktop-entry-vkBasalt = {
+            enable = true;
+            text = ''
+              [Desktop Entry]
+              Comment=Create a new vkBasalt config from template
+              Icon=text-x-makefile
+              Name=vkBasalt Config...
+              Type=Link
+              URL[$e]=file:${vkBasaltConfig}
+            '';
+            target = "${config.xdg.dataHome}/templates/vkBasalt.desktop";
+          };
           roms-mt32-exodos = {
             enable = true;
             recursive = true;
