@@ -85,7 +85,7 @@ let
       # Duke3D
       [
         eduke32
-        #raze
+        raze
       ]
       # Star Citizen
       [
@@ -716,30 +716,6 @@ in
         };
         xdg = {
           desktopEntries = {
-            dosbox = {
-              name = "dosbox-staging";
-              comment = "DOSBox Staging";
-              exec = "dosbox";
-              icon = "dosbox-staging";
-              categories = [ "Game" ];
-              noDisplay = false;
-              startupNotify = true;
-              settings = {
-                Keywords = "dosbox;dos";
-              };
-            };
-            exogui = {
-              name = "exogui";
-              comment = "eXoDOS Launcher";
-              exec = "exogui";
-              icon = "distributor-logo-ms-dos";
-              categories = [ "Game" ];
-              noDisplay = false;
-              startupNotify = true;
-              settings = {
-                Keywords = "exodos;dos";
-              };
-            };
             gog-galaxy = {
               name = "GOG Galaxy";
               comment = "Launch GOG Galaxy using Bottles.";
@@ -757,23 +733,6 @@ in
               settings = {
                 StartupWMClass = "GOG Galaxy";
               };
-            };
-            nuked-sc55 = {
-              name = "Nuked SC-55";
-              comment = "Roland SC-55 emulator";
-              exec = "nuked-sc55";
-              categories = [ "Game" ];
-              noDisplay = false;
-              startupNotify = true;
-            };
-            portproton = {
-              name = "PortProton";
-              comment = "Proton launcher";
-              exec = "portproton";
-              icon = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/PortProton/data/img/w.png";
-              categories = [ "Game" ];
-              noDisplay = false;
-              startupNotify = true;
             };
           };
         };

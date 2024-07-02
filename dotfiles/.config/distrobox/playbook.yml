@@ -169,7 +169,10 @@
           - gamemode
           - gamescope
           - kdialog
+          - 2s2h-bin
           - aaru
+          - archipelagomw-bin
+          - bizhawk-bin
           - jazzjackrabbit
           - jazzjackrabbit2
           - lab3d-sdl
@@ -178,12 +181,13 @@
           - openxcom-extended
           - perfectdark
           - portproton
-          - raze
           - sonicthehedgehog
           - sonicthehedgehog2
           - supermarioworld
           - xash3d-fwgs-git
+          - zelda64recomp-bin
           - zeldalttp
+          - zeldaoot
 
     - name: Install distrobox specific packages (bazzite-arch-exodos)
       when: distrobox is "bazzite-arch-exodos"

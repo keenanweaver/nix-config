@@ -82,6 +82,48 @@ in
               target = "${dbe}/${bin}";
               executable = true;
             };
+          db-archipelago =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "/opt/Archipelago/ArchipelagoLauncher";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = vars.gaming;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} ${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/archipelago  "$@"
+                else
+                	exec /opt/Archipelago/ArchipelagoLauncher "$@"
+                fi
+              '';
+              target = "${dbe}/archipelago";
+              executable = true;
+            };
+          db-bizhawk =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "bizhawk";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = vars.gaming;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
           db-daikatana =
             let
               args = "gamemoderun obs-gamecapture mangohud";
@@ -334,27 +376,29 @@ in
               target = "${dbe}/${bin}";
               executable = true;
             };
-          db-raze =
-            let
-              args = "gamemoderun obs-gamecapture mangohud";
-              bin = "raze";
-              container = "bazzite-arch-gaming";
-            in
-            {
-              enable = vars.gaming;
-              text = ''
-                #!/usr/bin/env bash
-                if [ -z "''${CONTAINER_ID}" ]; then
-                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
-                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
-                else
-                	exec /usr/bin/${bin} "$@"
-                fi
-              '';
-              target = "${dbe}/${bin}";
-              executable = true;
-            };
+          /*
+            db-raze =
+                     let
+                       args = "gamemoderun obs-gamecapture mangohud";
+                       bin = "raze";
+                       container = "bazzite-arch-gaming";
+                     in
+                     {
+                       enable = vars.gaming;
+                       text = ''
+                         #!/usr/bin/env bash
+                         if [ -z "''${CONTAINER_ID}" ]; then
+                         	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                         elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                         	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                         else
+                         	exec /usr/bin/${bin} "$@"
+                         fi
+                       '';
+                       target = "${dbe}/${bin}";
+                       executable = true;
+                     };
+          */
           db-sonic =
             let
               args = "gamemoderun obs-gamecapture mangohud";
@@ -439,10 +483,52 @@ in
               target = "${dbe}/${bin}";
               executable = true;
             };
+          db-zelda64recomp =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "zelda64recomp";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = vars.gaming;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
           db-zeldalttp =
             let
               args = "gamemoderun obs-gamecapture mangohud";
               bin = "zeldalttp";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = vars.gaming;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
+          db-zeldaoot =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "zeldaoot";
               container = "bazzite-arch-gaming";
             in
             {
@@ -592,6 +678,71 @@ in
           };
         };
         home.packages = with pkgs; [ xorg.xhost ];
+        xdg = {
+          desktopEntries = {
+            archipelago = {
+              name = "Archipelago";
+              comment = "Multiworld multi-game randomizer";
+              exec = "archipelago";
+              icon = "archipelago";
+              categories = [
+                "Game"
+                "Emulator"
+              ];
+            };
+            bizhawk = {
+              name = "bizhawk";
+              comment = "A multi-platform emulator with full re-recording support and Lua scripting";
+              exec = "bizhawk";
+              icon = "bizhawk";
+              categories = [
+                "Game"
+                "Emulator"
+              ];
+            };
+            dosbox = {
+              name = "dosbox-staging";
+              comment = "DOSBox Staging";
+              exec = "dosbox";
+              icon = "dosbox-staging";
+              categories = [ "Game" ];
+              noDisplay = false;
+              startupNotify = true;
+              settings = {
+                Keywords = "dosbox;dos";
+              };
+            };
+            exogui = {
+              name = "exogui";
+              comment = "eXoDOS Launcher";
+              exec = "exogui";
+              icon = "distributor-logo-ms-dos";
+              categories = [ "Game" ];
+              noDisplay = false;
+              startupNotify = true;
+              settings = {
+                Keywords = "exodos;dos";
+              };
+            };
+            nuked-sc55 = {
+              name = "Nuked SC-55";
+              comment = "Roland SC-55 emulator";
+              exec = "nuked-sc55";
+              categories = [ "Game" ];
+              noDisplay = false;
+              startupNotify = true;
+            };
+            portproton = {
+              name = "PortProton";
+              comment = "Proton launcher";
+              exec = "portproton";
+              icon = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/PortProton/data/img/w.png";
+              categories = [ "Game" ];
+              noDisplay = false;
+              startupNotify = true;
+            };
+          };
+        };
       };
   };
 }
