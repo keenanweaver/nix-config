@@ -54,6 +54,7 @@
     ./wireshark
     ./yazi
     ./yt-dlp
+    ./zed
     ./zellij
     ./zerotier
     ./zoxide

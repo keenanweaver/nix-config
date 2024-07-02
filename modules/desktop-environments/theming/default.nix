@@ -475,6 +475,19 @@ in
               "workbench.iconTheme" = "catppuccin-${flavor-lower}";
             };
           };
+          /*
+            zed-editor = {
+                     userSettings = ''
+                       {
+                         "buffer_font_family": "JetBrainsMono",
+                         "theme": "Catppuccin Mocha",
+                         "Catppuccin Mocha.theme_overrides: {
+                           "background.appearance": "blurred",
+                         },
+                       }
+                     '';
+                   };
+          */
         };
         services = {
           xsettingsd = {

@@ -27,6 +27,7 @@ in
     vscode.enable = true;
     wezterm.enable = true;
     wireshark.enable = true;
+    #zed.enable = true;
 
     environment = {
       systemPackages = with pkgs; [ xdg-desktop-portal ];
