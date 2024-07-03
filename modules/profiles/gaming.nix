@@ -643,6 +643,7 @@ in
             "com.obsproject.Studio.Plugin.InputOverlay"
             "com.obsproject.Studio.Plugin.OBSVkCapture"
             "com.parsecgaming.parsec"
+            "dev.opengoal.OpenGOAL"
             #"com.qzandronum.Q-Zandronum"
             #"com.richwhitehouse.BigPEmu"
             #"com.spacestation14.Launcher"

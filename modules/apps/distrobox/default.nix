@@ -377,29 +377,27 @@ in
               target = "${dbe}/${bin}";
               executable = true;
             };
-          /*
-            db-raze =
-                     let
-                       args = "gamemoderun obs-gamecapture mangohud";
-                       bin = "raze";
-                       container = "bazzite-arch-gaming";
-                     in
-                     {
-                       enable = vars.gaming;
-                       text = ''
-                         #!/usr/bin/env bash
-                         if [ -z "''${CONTAINER_ID}" ]; then
-                         	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
-                         elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                         	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
-                         else
-                         	exec /usr/bin/${bin} "$@"
-                         fi
-                       '';
-                       target = "${dbe}/${bin}";
-                       executable = true;
-                     };
-          */
+          db-raze =
+            let
+              args = "gamemoderun obs-gamecapture mangohud";
+              bin = "raze";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = false;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
           db-sonic =
             let
               args = "gamemoderun obs-gamecapture mangohud";

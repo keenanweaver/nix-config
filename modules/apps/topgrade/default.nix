@@ -15,7 +15,7 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} =
-      { config, ... }:
+      { config, vars, ... }:
       {
         programs.topgrade = {
           enable = true;
@@ -38,9 +38,11 @@ in
               "NixOS Rebuild" = "nh os switch --update";
             };
             commands = { };
-            post_commands = {
-              "Check SteamTinkerLaunch compat" = "steamtinkerlaunch compat add";
-            };
+            post_commands =
+              { }
+              // lib.optionalAttrs vars.gaming {
+                "Check SteamTinkerLaunch compat" = "steamtinkerlaunch compat add";
+              };
           };
         };
       };
