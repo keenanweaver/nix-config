@@ -502,6 +502,11 @@ in
                 filesystems = [ "!home" ];
               };
             };
+            "dev.opengoal.OpenGOAL" = {
+              Context = {
+                filesystems = [ "/home/${username}/Games/opengoal" ];
+              };
+            };
             "info.cemu.Cemu" = {
               Context = {
                 filesystems = [ "/mnt/crusader/Games/Rom/Other/Wii U" ];
