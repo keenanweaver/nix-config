@@ -2,7 +2,6 @@
   lib,
   config,
   username,
-  dotfiles,
   ...
 }:
 let
@@ -33,57 +32,55 @@ in
           };
           mangohud-config = {
             enable = true;
-            text =
-              ''
-                gpu_stats
-                gpu_temp
-                gpu_core_clock
-                gpu_power
-                gpu_load_change
-                gpu_load_value=60,90
-                gpu_fan
-                gpu_voltage
-                cpu_stats
-                cpu_temp
-                cpu_power
-                cpu_mhz
-                cpu_load_change
-                cpu_load_value=60,90
-                core_load_change
-                vram
-                ram
-                swap
-                procmem
-                fps
-                fps_color_change
-                fps_value=30,60
-                frametime
-                engine_version
-                gpu_name
-                vulkan_driver
-                wine
-                winesync
-                frame_timing
-                histogram
-                gamemode
-                vkbasalt
-                fsr
-                hdr
-                refresh_rate
-                show_fps_limit
-                resolution
-                custom_text=Distro:
-                exec=sed -n 1p ${config.xdg.configHome}/MangoHud/vars
-                custom_text=Kernel:
-                exec=sed -n 2p ${config.xdg.configHome}/MangoHud/vars
-                text_outline
-                position=bottom-right
-                no_display
-                width=450
-                background_alpha=0.5
-                toggle_hud=Shift_R
-              ''
-              ++ lib.optionalString config.catppuccinTheming.enable ''
+            text = ''
+              gpu_stats
+              gpu_temp
+              gpu_core_clock
+              gpu_power
+              gpu_load_change
+              gpu_load_value=60,90
+              gpu_fan
+              gpu_voltage
+              cpu_stats
+              cpu_temp
+              cpu_power
+              cpu_mhz
+              cpu_load_change
+              cpu_load_value=60,90
+              core_load_change
+              vram
+              ram
+              swap
+              procmem
+              fps
+              fps_color_change
+              fps_value=30,60
+              frametime
+              engine_version
+              gpu_name
+              vulkan_driver
+              wine
+              winesync
+              frame_timing
+              histogram
+              gamemode
+              vkbasalt
+              fsr
+              hdr
+              refresh_rate
+              show_fps_limit
+              resolution
+              custom_text=Distro:
+              exec=sed -n 1p ${config.xdg.configHome}/MangoHud/vars
+              custom_text=Kernel:
+              exec=sed -n 2p ${config.xdg.configHome}/MangoHud/vars
+              text_outline
+              position=bottom-right
+              no_display
+              width=450
+              background_alpha=0.5
+              toggle_hud=Shift_R
+              ${lib.optionalString config.catppuccin.enable ''
                 # Catppuccin theming
                 background_color=1e1e2e
                 battery_color=585b70
@@ -100,8 +97,13 @@ in
                 text_outline_color=1e1e2e
                 vram_color=94e2d5
                 wine_color=cba6f7
-              '';
+              ''}'';
             target = "${config.xdg.configHome}/MangoHud/MangoHud.conf";
+          };
+          mangohud-presets = {
+            enable = true;
+            text = '''';
+            target = "${config.xdg.configHome}/MangoHud/presets.conf";
           };
           script-mangohud-get-vars = {
             enable = true;
@@ -125,6 +127,5 @@ in
           package = pkgs.mangohud_git; # Chaotic package
         };
       };
-    xdg.configFile."MangoHud/presets.conf".text = "";
   };
 }
