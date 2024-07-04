@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  pkgs,
   ...
 }:
 let
@@ -17,6 +18,7 @@ in
     home-manager.users.${username} = {
       programs.zed-editor = {
         enable = true;
+        package = pkgs.zed-editor_git;
         extensions = [
           "csv"
           "cue"
