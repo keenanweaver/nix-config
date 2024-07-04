@@ -667,12 +667,12 @@ in
           };
           distrobox-mangohud-gaming = {
             enable = vars.gaming;
-            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/MangoHud/MangoHud.conf";
+            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/MangoHud/MangoHud.conf";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-gaming/.config/MangoHud/MangoHud.conf";
           };
           distrobox-mangohud-exodos = {
             enable = vars.gaming;
-            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.config/MangoHud/MangoHud.conf";
+            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/MangoHud/MangoHud.conf";
             target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/MangoHud/MangoHud.conf";
           };
         };
