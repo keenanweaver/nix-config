@@ -54,7 +54,6 @@
   programs.auto-cpufreq.enable = true;
 
   services = {
-    #thermald.enable = true;
     udev = {
       extraRules = ''
         # https://reddit.com/r/linux_gaming/comments/196tz6v/psa_amdgpu_power_management_may_fix_your/khxs3q3/?context=3 https://gitlab.freedesktop.org/drm/amd/-/issues/1500#note_825883
