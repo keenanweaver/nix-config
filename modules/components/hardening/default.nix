@@ -177,7 +177,7 @@ in
       };
     };
     services = {
-      clamav = lib.mkIf cfg.clamav {
+      clamav = lib.mkIf config.clamav {
         # run 'sudo freshclam' for first time
         daemon = {
           enable = true;
@@ -192,13 +192,13 @@ in
           enable = true;
         };
       };
-      opensnitch = lib.mkIf cfg.opensnitch {
+      opensnitch = lib.mkIf config.opensnitch {
         enable = true;
       };
     };
     home-manager.users.${username} = {
       services = {
-        opensnitch-ui.enable = cfg.opensnitch;
+        opensnitch-ui.enable = config.opensnitch;
       };
     };
   };
