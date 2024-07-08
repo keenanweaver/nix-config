@@ -45,6 +45,9 @@ in
             -- dua_pane:send_text 'dua interactive\n'
             -- nnn_pane:send_text 'nnn -dHix\n'
             btop_tab:set_title ' btop '
+            -- nvtop tab
+            local nvtop_tab, nvtop_pane, _ = window:spawn_tab { args = { 'nvtop' } }
+            nvtop_tab:set_title ' nvtop '
             -- kmon tab
             local kmon_tab, kmon_pane, _ = window:spawn_tab { args = { 'kmon' } }
             kmon_tab:set_title ' kmon '
