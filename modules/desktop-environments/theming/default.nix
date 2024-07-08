@@ -14,7 +14,7 @@ let
   flavor-upper = "Mocha";
   cfg = config.catppuccinTheming;
   mono-font = "JetBrainsMono Nerd Font";
-  sans-font = "IBM Plex Sans";
+  sans-font = "Poppins";
   serif-font = "IBM Plex Serif";
 in
 {
@@ -156,8 +156,8 @@ in
           };
           font = {
             name = "${sans-font}";
-            size = 13;
-            package = pkgs.ibm-plex;
+            size = 12;
+            package = pkgs.poppins;
           };
           gtk2 = {
             configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
@@ -242,20 +242,22 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-powershell}";
               target = "${config.xdg.dataHome}/powershell/Modules/Catppuccin";
             };
-            ibm-plex = {
-              enable = true;
-              recursive = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.ibm-plex}/share/fonts/opentype";
-              target = "${config.xdg.dataHome}/fonts/ibm-plex";
-            };
-            ibm-blex = {
-              enable = true;
-              recursive = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${
-                pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; }
-              }/share/fonts/truetype/NerdFonts";
-              target = "${config.xdg.dataHome}/fonts/blex-mono";
-            };
+            /*
+              ibm-plex = {
+                         enable = true;
+                         recursive = true;
+                         source = config.lib.file.mkOutOfStoreSymlink "${pkgs.ibm-plex}/share/fonts/opentype";
+                         target = "${config.xdg.dataHome}/fonts/ibm-plex";
+                       };
+                       ibm-blex = {
+                         enable = true;
+                         recursive = true;
+                         source = config.lib.file.mkOutOfStoreSymlink "${
+                           pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; }
+                         }/share/fonts/truetype/NerdFonts";
+                         target = "${config.xdg.dataHome}/fonts/blex-mono";
+                       };
+            */
             /*
               kde-kwin-scripts = {
                 enable = true;
@@ -317,7 +319,7 @@ in
                 TERM = "xterm-256color";
               };
               font = {
-                size = 13;
+                size = 12;
               };
               window = {
                 opacity = 0.7;
@@ -341,7 +343,7 @@ in
                 alpha = 0.7;
               };
               main = {
-                font = "${mono-font}:size=13";
+                font = "${mono-font}:size=12";
               };
             };
           };
@@ -362,7 +364,7 @@ in
           kitty = {
             font = {
               name = "${mono-font}";
-              size = 13;
+              size = 12;
             };
             settings = {
               background_opacity = "0.7";
@@ -374,7 +376,7 @@ in
                 colorScheme = "Catppuccin-${flavor-upper}";
                 font = {
                   name = "${mono-font}";
-                  size = 13;
+                  size = 12;
                 };
               };
             };
@@ -422,11 +424,11 @@ in
             fonts = {
               general = {
                 family = "${sans-font}";
-                pointSize = 13;
+                pointSize = 12;
               };
               fixedWidth = {
                 family = "${mono-font}";
-                pointSize = 13;
+                pointSize = 12;
               };
               small = {
                 family = "${sans-font}";
@@ -434,15 +436,15 @@ in
               };
               toolbar = {
                 family = "${sans-font}";
-                pointSize = 13;
+                pointSize = 12;
               };
               menu = {
                 family = "${sans-font}";
-                pointSize = 13;
+                pointSize = 12;
               };
               windowTitle = {
                 family = "${sans-font}";
-                pointSize = 13;
+                pointSize = 12;
               };
             };
             kscreenlocker = {
@@ -503,7 +505,7 @@ in
             settings = {
               "Gtk/CursorThemeSize" = 24;
               "Gtk/CursorThemeName" = "breeze_cursors";
-              "Gtk/FontName" = "${sans-font},  13";
+              "Gtk/FontName" = "${sans-font},  12";
               "Net/IconThemeName" = "Papirus-Dark";
               "Net/ThemeName" = "Breeze-Dark";
             };

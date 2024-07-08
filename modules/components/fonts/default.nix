@@ -104,6 +104,7 @@ in
         noto-fonts-cjk
         noto-fonts-emoji
         noto-fonts-lgc-plus
+        poppins
         source-han-sans
         source-han-sans-japanese
         source-han-serif-japanese
@@ -118,6 +119,7 @@ in
             "Noto Color Emoji"
           ];
           sansSerif = [
+            "Poppins"
             "IBM Plex Sans"
             "Noto Color Emoji"
           ];
@@ -146,12 +148,14 @@ in
       { inputs, config, ... }:
       {
         home.file = {
-          windows-fonts = {
-            enable = true;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/.local/share/fonts/Windows";
-            target = "${config.xdg.dataHome}/fonts/Windows";
-          };
+          /*
+            windows-fonts = {
+                     enable = true;
+                     recursive = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/.local/share/fonts/Windows";
+                     target = "${config.xdg.dataHome}/fonts/Windows";
+                   };
+          */
         };
       };
   };
