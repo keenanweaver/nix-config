@@ -13,6 +13,14 @@ in
     hardening = {
       enable = lib.mkEnableOption "Enable hardening in NixOS & home-manager";
     };
+    clamav = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
+    opensnitch = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
   };
   config = lib.mkIf cfg.enable {
     boot = {
@@ -169,7 +177,7 @@ in
       };
     };
     services = {
-      clamav = {
+      clamav = lib.mkIf cfg.clamav {
         # run 'sudo freshclam' for first time
         daemon = {
           enable = true;
@@ -184,13 +192,13 @@ in
           enable = true;
         };
       };
-      opensnitch = {
+      opensnitch = lib.mkIf cfg.opensnitch {
         enable = true;
       };
     };
     home-manager.users.${username} = {
       services = {
-        opensnitch-ui.enable = if vars.desktop then true else false;
+        opensnitch-ui.enable = cfg.opensnitch;
       };
     };
   };
