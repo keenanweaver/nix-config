@@ -35,10 +35,10 @@ in
     environment = {
       sessionVariables = {
         # Breaks theming but forces the color scheme
-        GTK_THEME = "adw-gtk3-dark";
+        #GTK_THEME = "adw-gtk3-dark";
+        #GTK_THEME = "Breeze-Dark";
       };
       systemPackages = with pkgs; [
-        # Needed for some GTK3 apps. For some reason the catppuccin nix/gtk module doesn't cover these
         (catppuccin-kde.override {
           accents = [ "${accent-lower}" ];
           flavour = [ "${flavor-lower}" ];
@@ -199,8 +199,8 @@ in
             catppuccin-gtk = {
               enable = true;
               recursive = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.adw-gtk3}/share/themes/adw-gtk3-dark";
-              target = "${config.xdg.dataHome}/themes/adw-gtk3-dark";
+              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.kdePackages.breeze-gtk}/share/themes/Breeze-Dark";
+              target = "${config.xdg.dataHome}/themes/Breeze-Dark";
             };
             catppuccin-armcord = {
               enable = true;
@@ -359,6 +359,15 @@ in
               };
             };
           };
+          kitty = {
+            font = {
+              name = "${mono-font}";
+              size = 13;
+            };
+            settings = {
+              background_opacity = "0.7";
+            };
+          };
           konsole = {
             profiles = {
               "${username}" = {
@@ -496,7 +505,7 @@ in
               "Gtk/CursorThemeName" = "breeze_cursors";
               "Gtk/FontName" = "${sans-font},  13";
               "Net/IconThemeName" = "Papirus-Dark";
-              "Net/ThemeName" = "adw-gtk3-dark";
+              "Net/ThemeName" = "Breeze-Dark";
             };
           };
         };

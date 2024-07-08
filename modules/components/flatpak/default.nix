@@ -75,6 +75,7 @@ in
           "org.fooyin.fooyin"
           "org.freedesktop.Platform.ffmpeg-full/x86_64/23.08"
           "org.gtk.Gtk3theme.adw-gtk3-dark"
+          "org.gtk.Gtk3theme.Breeze"
           "org.kde.haruna"
           "org.kde.kdenlive"
           "org.kde.krita"
