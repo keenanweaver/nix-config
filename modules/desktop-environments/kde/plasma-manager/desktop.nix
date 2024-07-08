@@ -27,11 +27,15 @@
             floating = false;
             widgets = [
               {
-                name = "org.kde.plasma.kickoff";
-                config = {
-                  General = {
-                    icon = "${dotfiles}/Pictures/nix-snowflake-white.svg";
-                  };
+                kickoff = {
+                  applicationsDisplayMode = "list";
+                  compactDisplayStyle = true;
+                  icon = "${dotfiles}/Pictures/nix-snowflake-white.svg";
+                  favoritesDisplayMode = "grid";
+                  # pin = true;
+                  showActionButtonCaptions = true;
+                  showButtonsFor = "power"; 
+                  sortAlphabetically = true;
                 };
               }
               {
