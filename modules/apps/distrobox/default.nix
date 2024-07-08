@@ -32,7 +32,6 @@ in
         config,
         username,
         pkgs,
-        dotfiles,
         vars,
         ...
       }:
@@ -200,6 +199,27 @@ in
                 #!/usr/bin/env bash
                 if [ -z "''${CONTAINER_ID}" ]; then
                 	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /mnt/crusader/eXo/eXoDOS/exogui/${bin} "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
+                else
+                	exec /usr/bin/${bin} "$@"
+                fi
+              '';
+              target = "${dbe}/${bin}";
+              executable = true;
+            };
+          db-faugus =
+            let
+              args = "obs-gamecapture";
+              bin = "faugus-launcher";
+              container = "bazzite-arch-gaming";
+            in
+            {
+              enable = vars.gaming;
+              text = ''
+                #!/usr/bin/env bash
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
                 	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
                 else
@@ -722,6 +742,23 @@ in
               settings = {
                 Keywords = "exodos;dos";
               };
+            };
+            faugus = lib.mkIf cfg.gaming {
+              name = "Faugus Launcher";
+              comment = "Faugus Launcher";
+              exec = "faugus-launcher";
+              icon = "faugus-launcher";
+              categories = [ "Game" ];
+            };
+            mesen2 = lib.mkIf cfg.gaming {
+              name = "Mesen2";
+              comment = "Multi-system emulator";
+              exec = "mesen2";
+              icon = "mesen";
+              categories = [
+                "Game"
+                "Emulator"
+              ];
             };
             nuked-sc55 = lib.mkIf cfg.gaming {
               name = "Nuked SC-55";
