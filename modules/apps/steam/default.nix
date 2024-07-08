@@ -18,13 +18,13 @@ in
       default = true;
     };
   };
-  config = lib.mkIf config.steam.enable {
+  config = lib.mkIf cfg.enable {
     programs.steam = {
       enable = true;
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         luxtorpeda # Chaotic package
-        proton-ge-custom # Chaotic package
+        proton-ge-bin
       ];
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
