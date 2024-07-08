@@ -34,22 +34,43 @@
                   favoritesDisplayMode = "grid";
                   # pin = true;
                   showActionButtonCaptions = true;
-                  showButtonsFor = "power"; 
+                  showButtonsFor = "power";
                   sortAlphabetically = true;
                 };
               }
               {
-                name = "org.kde.plasma.icontasks";
-                config = {
-                  General = {
-                    showOnlyCurrentDesktop = "false";
-                    showOnlyCurrentActivity = "false";
-                    showOnlyCurrentScreen = "true";
-                    launchers = [
-                      "applications:org.kde.dolphin.desktop"
-                      "preferred://browser"
-                    ];
+                iconTasks = {
+                  appearance = {
+                    fill = true;
+                    highlightWindows = true;
+                    indicateAudioStreams = true;
+                    showTooltips = true;
+                    rows.multirowView = "never";
                   };
+                  behavior = {
+                    grouping = {
+                      method = "byProgramName";
+                      clickAction = "cycle";
+                    };
+                    middleClickAction = "newInstance";
+                    newTasksAppearOn = "right";
+                    showTasks = {
+                      onlyInCurrentActivity = false;
+                      onlyInCurrentDesktop = false;
+                      onlyInCurrentScreen = true;
+                      onlyMinimized = false;
+                    };
+                    sortingMethod = "manually";
+                    unhideOnAttentionNeeded = true;
+                    wheel = {
+                      switchBetweenTasks = true;
+                      ignoreMinimizedTasks = true;
+                    };
+                  };
+                  launchers = [
+                    "applications:org.kde.dolphin.desktop"
+                    "preferred://browser"
+                  ];
                 };
               }
               "org.kde.plasma.panelspacer"
@@ -86,26 +107,47 @@
             floating = false;
             widgets = [
               {
-                name = "org.kde.plasma.icontasks";
-                config = {
-                  General = {
-                    showOnlyCurrentDesktop = "false";
-                    showOnlyCurrentActivity = "false";
-                    showOnlyCurrentScreen = "true";
-                    launchers = [
-                      "applications:org.codeberg.dnkl.foot.desktop"
-                      "applications:org.wezfurlong.wezterm.desktop"
-                      "applications:org.signal.Signal.desktop"
-                      "applications:xyz.armcord.ArmCord.desktop"
-                      "applications:info.mumble.Mumble.desktop"
-                      "applications:qobuz.desktop"
-                      #"applications:org.strawberrymusicplayer.strawberry.desktop"
-                      "applications:foobar2000.desktop"
-                      "applications:org.fooyin.fooyin.desktop"
-                      "applications:org.kde.neochat.desktop"
-                      "applications:org.kde.tokodon.desktop"
-                    ];
+                iconTasks = {
+                  appearance = {
+                    fill = true;
+                    highlightWindows = true;
+                    indicateAudioStreams = true;
+                    showTooltips = true;
+                    rows.multirowView = "never";
                   };
+                  behavior = {
+                    grouping = {
+                      method = "byProgramName";
+                      clickAction = "cycle";
+                    };
+                    middleClickAction = "newInstance";
+                    newTasksAppearOn = "right";
+                    showTasks = {
+                      onlyInCurrentActivity = false;
+                      onlyInCurrentDesktop = false;
+                      onlyInCurrentScreen = true;
+                      onlyMinimized = false;
+                    };
+                    sortingMethod = "manually";
+                    unhideOnAttentionNeeded = true;
+                    wheel = {
+                      switchBetweenTasks = true;
+                      ignoreMinimizedTasks = true;
+                    };
+                  };
+                  launchers = [
+                    "applications:org.codeberg.dnkl.foot.desktop"
+                    "applications:kitty.desktop"
+                    "applications:org.wezfurlong.wezterm.desktop"
+                    "applications:org.signal.Signal.desktop"
+                    "applications:xyz.armcord.ArmCord.desktop"
+                    "applications:info.mumble.Mumble.desktop"
+                    "applications:qobuz.desktop"
+                    "applications:foobar2000.desktop"
+                    "applications:org.fooyin.fooyin.desktop"
+                    "applications:org.kde.neochat.desktop"
+                    "applications:org.kde.tokodon.desktop"
+                  ];
                 };
               }
               "org.kde.plasma.panelspacer"
