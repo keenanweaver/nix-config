@@ -24,6 +24,7 @@
     ./gpg
     ./helix
     ./home-manager
+    ./kitty
     ./lazygit
     ./lact
     ./looking-glass
