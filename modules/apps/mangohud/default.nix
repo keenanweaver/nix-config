@@ -6,8 +6,6 @@
 }:
 let
   cfg = config.mangohud;
-  cpu = lib.mkIf (config.networking.hostName == "nixos-desktop") "5800X";
-  gpu = lib.mkIf (config.networking.hostName == "nixos-desktop") "7900XTX";
 in
 {
   options = {
@@ -43,12 +41,10 @@ in
               gpu_load_value=60,90
               gpu_fan
               gpu_voltage
-              gpu_text=${gpu}
               cpu_stats
               cpu_temp
               cpu_power
               cpu_mhz
-              cpu_text=${cpu}
               cpu_load_change
               cpu_load_value=60,90
               core_load_change
@@ -61,6 +57,7 @@ in
               fps_value=30,60
               frametime
               engine_version
+              gpu_name
               vulkan_driver
               wine
               winesync
