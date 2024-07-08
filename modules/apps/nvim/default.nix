@@ -155,12 +155,10 @@ in
             transparent.enable = true; # Transparency https://github.com/xiyaowong/transparent.nvim/
             treesitter = {
               enable = true;
-              nixvimInjections = true;
-              folding = false;
-              indent = true;
-              nixGrammars = true;
-              ensureInstalled = "all";
-              incrementalSelection.enable = true;
+              settings = {
+                auto_install = true;
+                indent.enable = true;
+              };
             };
             treesitter-refactor = {
               enable = true;
