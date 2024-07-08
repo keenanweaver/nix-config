@@ -39,6 +39,7 @@
       "tcp_bbr"
       "uinput"
     ];
+    kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
     kernelParams = lib.mkDefault [
       "amd_iommu=on"
       "amd_pstate=guided"
