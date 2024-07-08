@@ -243,13 +243,13 @@ in
               target = "${config.xdg.dataHome}/powershell/Modules/Catppuccin";
             };
             /*
-              ibm-plex = {
+              font-ibm-plex = {
                          enable = true;
                          recursive = true;
                          source = config.lib.file.mkOutOfStoreSymlink "${pkgs.ibm-plex}/share/fonts/opentype";
                          target = "${config.xdg.dataHome}/fonts/ibm-plex";
                        };
-                       ibm-blex = {
+                       font-ibm-blex = {
                          enable = true;
                          recursive = true;
                          source = config.lib.file.mkOutOfStoreSymlink "${
@@ -258,6 +258,12 @@ in
                          target = "${config.xdg.dataHome}/fonts/blex-mono";
                        };
             */
+            font-poppins = {
+              enable = true;
+              recursive = true;
+              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.poppins}/share/fonts/truetype";
+              target = "${config.xdg.dataHome}/fonts/poppins";
+            };
             /*
               kde-kwin-scripts = {
                 enable = true;
