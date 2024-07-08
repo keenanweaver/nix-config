@@ -6,6 +6,8 @@
 }:
 let
   cfg = config.mangohud;
+  cpu = if config.networking.hostName == "nixos-desktop" then "5800X" else "";
+  gpu = if config.networking.hostName == "nixos-desktop" then "7900XTX" else "";
 in
 {
   options = {
@@ -41,10 +43,12 @@ in
               gpu_load_value=60,90
               gpu_fan
               gpu_voltage
+              gpu_text=${gpu}
               cpu_stats
               cpu_temp
               cpu_power
               cpu_mhz
+              cpu_text=${cpu}
               cpu_load_change
               cpu_load_value=60,90
               core_load_change
@@ -57,7 +61,6 @@ in
               fps_value=30,60
               frametime
               engine_version
-              gpu_name
               vulkan_driver
               wine
               winesync
