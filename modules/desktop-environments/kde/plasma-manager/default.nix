@@ -101,8 +101,8 @@
           };
           "kded5rc"."Module-device_automounter"."autoload" = false;
           kdeglobals = {
-            "General"."TerminalApplication" = "foot";
-            "General"."TerminalService" = "org.codeberg.dnkl.foot.desktop";
+            "General"."TerminalApplication" = "kitty";
+            "General"."TerminalService" = "kitty.desktop";
             "KDE"."AnimationDurationFactor" = 0.5;
             "KDE"."ShowDeleteCommand" = true;
             "KFileDialog Settings"."Allow Expansion" = true;
