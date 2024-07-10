@@ -153,16 +153,8 @@ in
             todo-comments.enable = true; # Highlight todo comments https://github.com/folke/todo-comments.nvim
             toggleterm.enable = true; # Terminal manager https://github.com/akinsho/toggleterm.nvim
             transparent.enable = true; # Transparency https://github.com/xiyaowong/transparent.nvim/
-            treesitter = {
-              enable = true;
-              settings = {
-                auto_install = true;
-                indent.enable = true;
-              };
-            };
-            treesitter-refactor = {
-              enable = true;
-            };
+            treesitter.enable = true;
+            treesitter-refactor.enable = true;
             which-key.enable = true; # Key bindings https://github.com/folke/which-key.nvim
           };
         };
