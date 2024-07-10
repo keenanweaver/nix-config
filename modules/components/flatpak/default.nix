@@ -97,12 +97,6 @@ in
             name = "flathub";
             location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
           }
-          /*
-            {
-                     name = "flathub-beta";
-                     location = "https://dl.flathub.org/beta-repo/flathub-beta.flatpakrepo";
-                   }
-          */
         ];
         #update.auto.enable = true;
         overrides = {
