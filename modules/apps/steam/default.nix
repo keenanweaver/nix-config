@@ -24,7 +24,7 @@ in
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         luxtorpeda # Chaotic package
-        proton-ge-bin
+        proton-ge-custom # Chaotic package
       ];
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
