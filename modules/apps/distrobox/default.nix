@@ -593,8 +593,8 @@ in
           };
           distrobox-bazzite-arch-exodos-catppuccin-konsole = {
             enable = vars.gaming;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-konsole}/Catppuccin-Mocha.colorscheme";
-            target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.local/share/konsole/Catppuccin-Mocha.colorscheme";
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-konsole}/themes/catppuccin-mocha.colorscheme";
+            target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.local/share/konsole/catppuccin-mocha.colorscheme";
           };
           distrobox-bazzite-arch-exodos-gtk2 = {
             enable = vars.gaming;
