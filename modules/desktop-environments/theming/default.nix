@@ -221,8 +221,8 @@ in
             };
             catppuccin-konsole = {
               enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-konsole}/Catppuccin-${flavor-upper}.colorscheme";
-              target = "${config.xdg.dataHome}/konsole/Catppuccin-${flavor-upper}.colorscheme";
+              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-konsole}/themes/catppuccin-${flavor-lower}.colorscheme";
+              target = "${config.xdg.dataHome}/konsole/catppuccin-${flavor-lower}.colorscheme";
             };
             catppuccin-obs-flatpak = {
               enable = true;
