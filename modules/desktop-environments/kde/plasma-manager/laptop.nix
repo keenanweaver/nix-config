@@ -9,28 +9,53 @@
           location = "bottom";
           floating = false;
           widgets = [
-            {
-              name = "org.kde.plasma.kickoff";
-              config = {
-                General = {
+              {
+                kickoff = {
+                  applicationsDisplayMode = "list";
+                  compactDisplayStyle = true;
                   icon = "${dotfiles}/Pictures/nix-snowflake-white.svg";
+                  favoritesDisplayMode = "grid";
+                  # pin = true;
+                  showActionButtonCaptions = true;
+                  showButtonsFor = "power";
+                  sortAlphabetically = true;
                 };
-              };
-            }
-            {
-              name = "org.kde.plasma.icontasks";
-              config = {
-                General = {
-                  showOnlyCurrentDesktop = "false";
-                  showOnlyCurrentActivity = "false";
-                  showOnlyCurrentScreen = "true";
+              }
+              {
+                iconTasks = {
+                  appearance = {
+                    fill = true;
+                    highlightWindows = true;
+                    indicateAudioStreams = true;
+                    showTooltips = true;
+                    rows.multirowView = "never";
+                  };
+                  behavior = {
+                    grouping = {
+                      method = "byProgramName";
+                      clickAction = "cycle";
+                    };
+                    middleClickAction = "newInstance";
+                    newTasksAppearOn = "right";
+                    showTasks = {
+                      onlyInCurrentActivity = false;
+                      onlyInCurrentDesktop = false;
+                      onlyInCurrentScreen = true;
+                      onlyMinimized = false;
+                    };
+                    sortingMethod = "manually";
+                    unhideOnAttentionNeeded = true;
+                    wheel = {
+                      switchBetweenTasks = true;
+                      ignoreMinimizedTasks = true;
+                    };
+                  };
                   launchers = [
                     "applications:org.kde.dolphin.desktop"
                     "preferred://browser"
                   ];
                 };
-              };
-            }
+              }
             "org.kde.plasma.panelspacer"
             "org.kde.plasma.pager"
             {
