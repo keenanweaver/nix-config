@@ -67,7 +67,7 @@ in
             -- fastfetch tab
             local ff_tab, ff_pane, _ = window:spawn_tab { }
             local neo_pane = ff_pane:split { direction = 'Bottom', size = 0.2 }
-            ff_pane:send_text 'fastfetch -c neofetch\n'
+            ff_pane:send_text 'fastfetch\n'
             neo_pane:send_text 'neo -D -b 1\n'
             ff_tab:set_title ' fetch '
             -- Set active panes
