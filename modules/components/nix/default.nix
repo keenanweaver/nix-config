@@ -4,6 +4,7 @@
   config,
   username,
   vars,
+  pkgs,
   ...
 }:
 let
@@ -68,7 +69,10 @@ in
       overlays = [
         inputs.nur.overlay
         (self: super: { })
-        (final: prev: { })
+        (final: prev: {
+          bottles = pkgs.callPackage ../../../nix/pkgs/bottles/fhsenv.nix { };
+          bottles-unwrapped = pkgs.callPackage ../../../nix/pkgs/bottles { };
+        })
       ];
     };
 
