@@ -156,6 +156,7 @@
                 name = "com.github.k-donn.plasmoid-wunderground";
                 config = {
                   Station = {
+                    refreshPeriod = "900";
                     stationID = "KNEOMAHA1167";
                   };
                   Units = {
