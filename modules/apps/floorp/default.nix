@@ -269,8 +269,9 @@ in
               "widget.use-xdg-desktop-portal.mime-handler" = 1;
               # Theming options
               "font.name.monospace.x-western" = "JetBrainsMono Nerd Font";
-              "font.name.sans-serif.x-western" = "IBM Plex Sans";
-              "font.name.serif.x-western" = "IBM Plex Serif";
+              #"font.name.sans-serif.x-western" = "IBM Plex Sans";
+              #"font.name.serif.x-western" = "IBM Plex Serif";
+              "gfx.font_rendering.cleartype_params.rendering_mode" = 5;
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
               # Privacy options
               "browser.contentblocking.category" = "strict";
