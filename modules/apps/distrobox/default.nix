@@ -23,7 +23,7 @@ in
     environment = {
       systemPackages = with pkgs; [
         distrobox_git
-        lilipod
+        #lilipod
       ];
     };
     home-manager.users.${username} =
