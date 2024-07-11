@@ -87,6 +87,8 @@ in
         corefonts
         font-awesome
         ibm-plex
+        inter
+        lato
         lexend
         liberation_ttf
         (nerdfonts.override {
@@ -119,7 +121,7 @@ in
             "Noto Color Emoji"
           ];
           sansSerif = [
-            "Poppins"
+            "Lato Medium"
             "IBM Plex Sans"
             "Noto Color Emoji"
           ];
@@ -144,19 +146,6 @@ in
         QT_SCALE_FACTOR_ROUNDING_POLICY = "RoundPreferFloor";
       };
     };
-    home-manager.users.${username} =
-      { inputs, config, ... }:
-      {
-        home.file = {
-          /*
-            windows-fonts = {
-                     enable = true;
-                     recursive = true;
-                     source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/.local/share/fonts/Windows";
-                     target = "${config.xdg.dataHome}/fonts/Windows";
-                   };
-          */
-        };
-      };
+    home-manager.users.${username} = { };
   };
 }

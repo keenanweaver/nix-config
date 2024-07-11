@@ -14,8 +14,9 @@ let
   flavor-upper = "Mocha";
   cfg = config.catppuccinTheming;
   mono-font = "JetBrainsMono Nerd Font";
-  sans-font = "Poppins";
+  sans-font = "Lato Medium";
   serif-font = "IBM Plex Serif";
+  GTK-THEME = "Breeze-Dark";
 in
 {
   options = {
@@ -35,8 +36,7 @@ in
     environment = {
       sessionVariables = {
         # Breaks theming but forces the color scheme
-        #GTK_THEME = "adw-gtk3-dark";
-        #GTK_THEME = "Breeze-Dark";
+        #GTK_THEME = "${GTK-THEME}";
       };
       systemPackages = with pkgs; [
         (catppuccin-kde.override {
@@ -199,8 +199,8 @@ in
             catppuccin-gtk = {
               enable = true;
               recursive = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.kdePackages.breeze-gtk}/share/themes/Breeze-Dark";
-              target = "${config.xdg.dataHome}/themes/Breeze-Dark";
+              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.kdePackages.breeze-gtk}/share/themes/${GTK-THEME}";
+              target = "${config.xdg.dataHome}/themes/${GTK-THEME}";
             };
             catppuccin-armcord = {
               enable = true;
@@ -242,36 +242,12 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-powershell}";
               target = "${config.xdg.dataHome}/powershell/Modules/Catppuccin";
             };
-            /*
-              font-ibm-plex = {
-                         enable = true;
-                         recursive = true;
-                         source = config.lib.file.mkOutOfStoreSymlink "${pkgs.ibm-plex}/share/fonts/opentype";
-                         target = "${config.xdg.dataHome}/fonts/ibm-plex";
-                       };
-                       font-ibm-blex = {
-                         enable = true;
-                         recursive = true;
-                         source = config.lib.file.mkOutOfStoreSymlink "${
-                           pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; }
-                         }/share/fonts/truetype/NerdFonts";
-                         target = "${config.xdg.dataHome}/fonts/blex-mono";
-                       };
-            */
-            font-poppins = {
+            font-lato = {
               enable = true;
               recursive = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.poppins}/share/fonts/truetype";
-              target = "${config.xdg.dataHome}/fonts/poppins";
+              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.lato}/share/fonts/lato";
+              target = "${config.xdg.dataHome}/fonts/lato";
             };
-            /*
-              kde-kwin-scripts = {
-                enable = true;
-                recursive = true;
-                source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/.local/share/kwin/scripts";
-                target = "${config.xdg.dataHome}/kwin/scripts";
-              };
-            */
             kde-plasmoid-tiled-menu = {
               enable = false;
               recursive = true;
@@ -507,13 +483,27 @@ in
           */
         };
         services = {
+          flatpak = {
+            overrides = {
+              "one.ablaze.floorp" = {
+                Environment = {
+                  GTK_THEME = "${GTK-THEME}";
+                };
+              };
+              "org.signal.Signal" = {
+                Environment = {
+                  GTK_THEME = "${GTK-THEME}";
+                };
+              };
+            };
+          };
           xsettingsd = {
             settings = {
               "Gtk/CursorThemeSize" = 24;
               "Gtk/CursorThemeName" = "breeze_cursors";
               "Gtk/FontName" = "${sans-font},  12";
               "Net/IconThemeName" = "Papirus-Dark";
-              "Net/ThemeName" = "Breeze-Dark";
+              "Net/ThemeName" = "${GTK-THEME}";
             };
           };
         };
