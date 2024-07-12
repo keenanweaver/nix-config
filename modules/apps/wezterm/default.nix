@@ -43,28 +43,28 @@ in
               btop_tab:set_title ' btop '
           ''
           + lib.optionalString vars.gaming ''
-            -- nvtop tab
-            local nvtop_tab, nvtop_pane, _ = window:spawn_tab { args = { 'nvtop' } }
-            nvtop_tab:set_title ' nvtop '
+              -- nvtop tab
+              local nvtop_tab, nvtop_pane, _ = window:spawn_tab { args = { 'nvtop' } }
+              nvtop_tab:set_title ' nvtop '
           ''
           + ''
-            -- kmon tab
-            local kmon_tab, kmon_pane, _ = window:spawn_tab { args = { 'kmon' } }
-            kmon_tab:set_title ' kmon '
-            -- yazi tab
-            local yazi_tab, yazi_pane, _ = window:spawn_tab { args = { 'yazi' } }
-            yazi_tab:set_title ' yazi '
-            -- SSHS tab
-            local sshs_tab, sshs_pane, _ = window:spawn_tab { args = { 'sshs' } }
-            sshs_tab:set_title ' sshs '
+              -- kmon tab
+              local kmon_tab, kmon_pane, _ = window:spawn_tab { args = { 'kmon' } }
+              kmon_tab:set_title ' kmon '
+              -- yazi tab
+              local yazi_tab, yazi_pane, _ = window:spawn_tab { args = { 'yazi' } }
+              yazi_tab:set_title ' yazi '
+              -- SSHS tab
+              local sshs_tab, sshs_pane, _ = window:spawn_tab { args = { 'sshs' } }
+              sshs_tab:set_title ' sshs '
           ''
           + lib.optionalString vars.gaming ''
-            -- Distrobox tab
-            local db_tab, db_bae_pane, _ = window:spawn_tab { }
-            local db_bag_pane = db_bae_pane:split { direction = 'Bottom' }
-            db_bae_pane:send_text 'distrobox enter bazzite-arch-exodos\nclear\n'
-            db_bag_pane:send_text 'distrobox enter bazzite-arch-gaming\nclear\n'
-            db_tab:set_title ' distrobox '
+              -- Distrobox tab
+              local db_tab, db_bae_pane, _ = window:spawn_tab { }
+              local db_bag_pane = db_bae_pane:split { direction = 'Bottom' }
+              db_bae_pane:send_text 'distrobox enter bazzite-arch-exodos\nclear\n'
+              db_bag_pane:send_text 'distrobox enter bazzite-arch-gaming\nclear\n'
+              db_tab:set_title ' distrobox '
           ''
           + ''
               -- fastfetch tab
@@ -74,7 +74,6 @@ in
               neo_pane:send_text 'neo -D -b 1\n'
               ff_tab:set_title ' fetch '
               -- Set active panes
-              db_bag_pane:activate()
               zsh_pane:activate()
               mux.set_active_workspace 'Zsh'
               window:gui_window():maximize()
