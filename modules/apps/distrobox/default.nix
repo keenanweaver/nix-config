@@ -746,7 +746,7 @@ in
             faugus = lib.mkIf cfg.gaming {
               name = "Faugus Launcher";
               comment = "Faugus Launcher";
-              exec = "faugus-launcher";
+              exec = "env GTK_THEME=Breeze-Dark faugus-launcher";
               icon = "faugus-launcher";
               categories = [ "Game" ];
             };
