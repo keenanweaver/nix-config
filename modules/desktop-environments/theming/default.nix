@@ -355,7 +355,7 @@ in
           konsole = {
             profiles = {
               "${username}" = {
-                colorScheme = "Catppuccin-${flavor-upper}";
+                colorScheme = "catppuccin-${flavor-lower}";
                 font = {
                   name = "${mono-font}";
                   size = 12;
