@@ -17,6 +17,7 @@ let
   sans-font = "Geist";
   serif-font = "IBM Plex Serif";
   GTK-THEME = "Breeze-Dark";
+  cursor-theme = "breeze_cursors";
 in
 {
   options = {
@@ -59,7 +60,7 @@ in
           };
           settings = {
             Theme = {
-              CursorTheme = "breeze_cursors";
+              CursorTheme = "${cursor-theme}";
             };
           };
         };
@@ -73,7 +74,7 @@ in
          autoEnable = false;
          base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-${flavor-lower}.yaml";
          cursor = {
-           name = "breeze_cursors";
+           name = "${cursor-theme}";
            size = 24;
          };
          fonts = {
@@ -123,7 +124,6 @@ in
       {
         catppuccin = {
           enable = true;
-          pointerCursor.enable = false;
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
         };
@@ -140,8 +140,6 @@ in
 
         colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
-        fonts.fontconfig.enable = true;
-
         gtk = {
           enable = true;
           catppuccin = {
@@ -151,7 +149,7 @@ in
             tweaks = [ "normal" ];
           };
           cursorTheme = {
-            name = lib.mkDefault "breeze_cursors";
+            name = lib.mkDefault "${cursor-theme}";
             size = 24;
           };
           font = {
@@ -248,12 +246,6 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${pkgs.geist-font}/share/fonts/opentype";
               target = "${config.xdg.dataHome}/fonts/geist";
             };
-            kde-plasmoid-tiled-menu = {
-              enable = false;
-              recursive = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.kde-plasmoid-tiled-menu}/package";
-              target = "${config.xdg.dataHome}/plasma/plasmoids/com.github.zren.tiledmenu";
-            };
             powershell-profile = {
               enable = true;
               text = ''
@@ -266,7 +258,7 @@ in
               enable = true;
               text = ''
                 [Icon Theme]
-                Inherits=breeze_cursors
+                Inherits=${cursor-theme}
               '';
               target = "${config.xdg.dataHome}/icons/default/index.theme";
             };
@@ -275,7 +267,7 @@ in
             hicolor-icon-theme
             vivid
             ## GNOME
-            adw-gtk3
+            #adw-gtk3
             gnome.adwaita-icon-theme
             gnome.gnome-settings-daemon
             gsettings-desktop-schemas
@@ -285,30 +277,11 @@ in
             GSETTINGS_BACKEND = "keyfile";
             GTK_USE_PORTAL = "1";
             LS_COLORS = "$(vivid generate catppuccin-${flavor-lower})";
-            MICRO_TRUECOLOR = "1";
-            NNN_COLORS = "#04020301;4231";
-            NNN_FCOLORS = "030304020705050801060301";
+            #MICRO_TRUECOLOR = "1";
             XCURSOR_SIZE = "24";
           };
         };
         programs = {
-          alacritty = {
-            settings = {
-              colors = {
-                draw_bold_text_with_bright_colors = true;
-              };
-              env = {
-                TERM = "xterm-256color";
-              };
-              font = {
-                size = 12;
-              };
-              window = {
-                opacity = 0.7;
-                blur = true;
-              };
-            };
-          };
           bat = {
             config = {
               pager = "less -FR";
@@ -434,7 +407,7 @@ in
             };
             workspace = {
               colorScheme = "Catppuccin${flavor-upper}${accent-upper}";
-              cursor.theme = "breeze_cursors";
+              cursor.theme = "${cursor-theme}";
               iconTheme = "Papirus-Dark";
               #lookAndFeel = "Catppuccin-${flavor-upper}-${accent-upper}";
               soundTheme = "ocean";
@@ -500,7 +473,7 @@ in
           xsettingsd = {
             settings = {
               "Gtk/CursorThemeSize" = 24;
-              "Gtk/CursorThemeName" = "breeze_cursors";
+              "Gtk/CursorThemeName" = "${cursor-theme}";
               "Gtk/FontName" = "${sans-font},  12";
               "Net/IconThemeName" = "Papirus-Dark";
               "Net/ThemeName" = "${GTK-THEME}";
@@ -511,7 +484,7 @@ in
         xresources = {
           properties = {
             "Xcursor.size" = 24;
-            "Xcursor.theme" = "breeze_cursors";
+            "Xcursor.theme" = "${cursor-theme}";
             "Xft.autohint" = 1;
             "Xft.lcdfilter" = "lcddefault";
             "Xft.hintstyle" = "hintfull";

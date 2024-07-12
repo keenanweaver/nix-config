@@ -149,6 +149,8 @@ in
         QT_SCALE_FACTOR_ROUNDING_POLICY = "RoundPreferFloor";
       };
     };
-    home-manager.users.${username} = { };
+    home-manager.users.${username} = {
+      #fonts.fontconfig.enable = true;
+    };
   };
 }
