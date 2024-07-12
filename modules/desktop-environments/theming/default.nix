@@ -14,7 +14,7 @@ let
   flavor-upper = "Mocha";
   cfg = config.catppuccinTheming;
   mono-font = "JetBrainsMono Nerd Font";
-  sans-font = "Lato Medium";
+  sans-font = "Geist";
   serif-font = "IBM Plex Serif";
   GTK-THEME = "Breeze-Dark";
 in
@@ -242,11 +242,11 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-powershell}";
               target = "${config.xdg.dataHome}/powershell/Modules/Catppuccin";
             };
-            font-lato = {
+            font-geist = {
               enable = true;
               recursive = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.lato}/share/fonts/lato";
-              target = "${config.xdg.dataHome}/fonts/lato";
+              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.geist-font}/share/fonts/opentype";
+              target = "${config.xdg.dataHome}/fonts/geist";
             };
             kde-plasmoid-tiled-menu = {
               enable = false;

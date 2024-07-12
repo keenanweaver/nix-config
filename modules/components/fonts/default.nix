@@ -81,11 +81,14 @@ in
       };
       packages = with pkgs; [
         apple-fonts
-        b612
+        #b612
+        #barlow
         caladea
         carlito
         corefonts
-        font-awesome
+        fira-sans
+        #font-awesome
+        geist-font
         ibm-plex
         inter
         lato
@@ -121,7 +124,7 @@ in
             "Noto Color Emoji"
           ];
           sansSerif = [
-            "Lato Medium"
+            "Geist"
             "IBM Plex Sans"
             "Noto Color Emoji"
           ];
