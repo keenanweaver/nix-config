@@ -18,7 +18,6 @@ in
   config = lib.mkIf cfg.enable {
     # Custom modules
     # Apps
-    alacritty.enable = false;
     atuin.enable = true;
     bash.enable = true;
     bat.enable = true;
