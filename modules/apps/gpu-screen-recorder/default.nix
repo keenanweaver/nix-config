@@ -1,109 +1,51 @@
-# From https://github.com/matt1432/nixos-configs/blob/master/devices/binto/modules/gpu-replay.nix
 {
-  pkgs,
-  config,
   lib,
-  inputs,
+  config,
   username,
   ...
 }:
 let
-  cfg = config.gpu-screen-recorder;
-  outputDir = "/home/${username}/Videos";
-  gsr = pkgs.stdenv.mkDerivation {
-    name = "gpu-screen-recorder";
-    version = inputs.gpu-screen-recorder-src.shortRev;
-
-    src = inputs.gpu-screen-recorder-src;
-
-    nativeBuildInputs = with pkgs; [
-      pkg-config
-      makeWrapper
-      meson
-      ninja
-      cmake
-    ];
-
-    buildInputs = with pkgs; [
-      libpulseaudio
-      ffmpeg
-      wayland
-      libdrm
-      libva
-      xorg.libXcomposite
-      xorg.libXrandr
-      xorg.libXfixes
-      xorg.libXdamage
-      xorg.libXi
-    ];
-
-    installPhase = ''
-      strip gsr-kms-server
-      strip gpu-screen-recorder
-
-      install -Dm755 "gsr-kms-server" "$out/bin/gsr-kms-server"
-      install -Dm755 "gpu-screen-recorder" "$out/bin/gpu-screen-recorder"
-
-      wrapProgram $out/bin/gpu-screen-recorder --prefix LD_LIBRARY_PATH : "${
-        lib.makeLibraryPath [
-          pkgs.addOpenGLRunpath.driverLink
-          pkgs.libglvnd
-        ]
-      }"
-    '';
-  };
+  cfg = config.gsr;
 in
 {
   options = {
-    gpu-screen-recorder = {
-      enable = lib.mkEnableOption "Enable gpu-screen-recorder in NixOS & home-manager";
+    gsr = {
+      enable = lib.mkEnableOption "Enable gsr in NixOS";
     };
   };
   config = lib.mkIf cfg.enable {
-    security.wrappers = {
-      gpu-screen-recorder = {
-        owner = "root";
-        group = "video";
-        capabilities = "cap_sys_nice+ep";
-        source = "${gsr}/bin/gpu-screen-recorder";
-      };
-
-      gsr-kms-server = {
-        owner = "root";
-        group = "video";
-        capabilities = "cap_sys_admin+ep";
-        source = "${gsr}/bin/gsr-kms-server";
-      };
+    programs.gpu-screen-recorder = {
+      enable = true;
     };
 
     home-manager.users.${username} =
       { pkgs, ... }:
+      let
+        outputDir = "/home/${username}/Videos";
+      in
       {
-        home = {
-          file = {
-            script-gsr-save-replay = {
-              enable = true;
-              text = ''
-                #!/usr/bin/env bash
-                killall -SIGUSR1 .gpu-screen-recorder
-                notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay saved to <br /> ${outputDir}' -i com.dec05eba.gpu_screen_recorder -a 'GPU Screen Recorder'
-              '';
-              target = ".local/bin/gsr-save-replay.sh";
-              executable = true;
-            };
-            script-gsr-stop-replay = {
-              enable = true;
-              text = ''
-                #!/usr/bin/env bash
-                systemctl --user stop gpu-screen-recorder.service
-                killall -SIGINT .gpu-screen-recorder
-                notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay stopped' -i com.dec05eba.gpu_screen_recorder -a 'GPU Screen Recorder'
-              '';
-              target = ".local/bin/gsr-stop-replay.sh";
-              executable = true;
+        home.packages = with pkgs; [
+          (writeShellScriptBin "gsr-save-replay" ''
+            ${pkgs.killall}/bin/killall -SIGUSR1 gpu-screen-recorder
+            ${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay saved to <br /> ${outputDir}' -i com.dec05eba.gpu_screen_recorder -a 'GPU Screen Recorder'
+          '')
+          (writeShellScriptBin "gsr-stop-replay" ''
+            systemctl --user stop gpu-screen-recorder.service
+            ${pkgs.killall}/bin/killall -SIGINT gpu-screen-recorder
+            ${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay stopped' -i com.dec05eba.gpu_screen_recorder -a 'GPU Screen Recorder'
+          '')
+        ];
+        programs.plasma = {
+          hotkeys = {
+            commands = {
+              "gsr-save-replay" = {
+                name = "Save GSR Replay";
+                key = "Meta+Ctrl+|";
+                command = "${pkgs.gsr-save-replay}";
+                comment = "Save GPU Screen Recorder replay";
+              };
             };
           };
-          packages = [ gsr ];
         };
         systemd = {
           user = {
@@ -115,8 +57,7 @@ in
                 Service = {
                   Environment = [
                     "WINDOW=DP-1" # Primary monitor
-                    #"SIZE=2560x1440" -s $SIZE
-                    "CONTAINER=mkv"
+                    "CONTAINER=mp4"
                     "QUALITY=ultra"
                     "FRAMERATE=60"
                     "MODE=cfr"
@@ -133,7 +74,7 @@ in
                     "FPSPPS=no"
                   ];
                   ExecStartPre = "${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay started' -i com.dec05eba.gpu_screen_recorder -a 'GPU Screen Recorder'";
-                  ExecStart = "/run/wrappers/bin/gpu-screen-recorder -w $WINDOW -c $CONTAINER -q $QUALITY -f $FRAMERATE -fm $MODE -k $CODEC -ac $AUDIO_CODEC -r $REPLAYDURATION -v $FPSPPS -mf $MAKEFOLDERS -a $AUDIO_DEVICE_DEFAUlT -a $AUDIO_DEVICE_GAME -a $AUDIO_DEVICE_MIC -a $AUDIO_DEVICE_VOIP -a $AUDIO_DEVICE_MUSIC -o $OUTPUTDIR";
+                  ExecStart = "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w $WINDOW -c $CONTAINER -q $QUALITY -f $FRAMERATE -fm $MODE -k $CODEC -ac $AUDIO_CODEC -r $REPLAYDURATION -v $FPSPPS -mf $MAKEFOLDERS -a $AUDIO_DEVICE_DEFAUlT -a $AUDIO_DEVICE_GAME -a $AUDIO_DEVICE_MIC -a $AUDIO_DEVICE_VOIP -a $AUDIO_DEVICE_MUSIC -o $OUTPUTDIR";
                   KillSignal = "SIGINT";
                   Restart = "on-failure";
                   RestartSec = "5";

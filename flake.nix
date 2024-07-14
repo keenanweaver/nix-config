@@ -66,19 +66,23 @@
       url = "github:zshzoo/cd-ls";
       flake = false;
     };
-    gpu-screen-recorder-src = {
-      type = "git";
-      url = "https://repo.dec05eba.com/gpu-screen-recorder";
-      flake = false;
-    };
+    /*
+      gpu-screen-recorder-src = {
+         type = "git";
+         url = "https://repo.dec05eba.com/gpu-screen-recorder";
+         flake = false;
+       };
+    */
     nonfree = {
       url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
       flake = false;
     };
-    ow-mod-man = {
-      url = "github:ow-mods/ow-mod-man";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    /*
+      ow-mod-man = {
+         url = "github:ow-mods/ow-mod-man";
+         inputs.nixpkgs.follows = "nixpkgs";
+       };
+    */
     steamtinkerlaunch-master = {
       type = "git";
       url = "https://github.com/sonic2kk/steamtinkerlaunch.git";

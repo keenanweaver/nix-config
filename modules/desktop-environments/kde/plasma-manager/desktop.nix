@@ -2,22 +2,26 @@
 {
   imports = [ ./default.nix ];
   home-manager.users.${username} =
-    { username, ... }:
+    { pkgs, ... }:
     {
       programs.plasma = {
-        hotkeys = {
-          commands = {
-            "gsr-save-replay" = {
-              name = "Save GSR Replay";
-              key = "Meta+Ctrl+|";
-              command = "/home/${username}/.local/bin/gsr-save-replay.sh";
-              comment = "Save GPU Screen Recorder replay";
-            };
-          };
-        };
-        shortcuts = {
-          "services/services.gsr-save-replay.sh.desktop"."_launch" = "Meta+Ctrl+|";
-        };
+        /*
+          hotkeys = {
+                 commands = {
+                   "gsr-save-replay" = {
+                     name = "Save GSR Replay";
+                     key = "Meta+Ctrl+|";
+                     command = "${pkgs.gsr-save-replay}";
+                     comment = "Save GPU Screen Recorder replay";
+                   };
+                 };
+               };
+        */
+        /*
+          shortcuts = {
+                 "services/services.gsr-save-replay.sh.desktop"."_launch" = "Meta+Ctrl+|";
+               };
+        */
         #extraWidgets = [ ];
         panels = [
           # Primary
