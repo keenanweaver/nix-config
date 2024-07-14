@@ -275,6 +275,7 @@ in
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
               # Privacy options
               "browser.contentblocking.category" = "strict";
+              "dom.private-attribution.submission.enabled" = true;
               "privacy.clearOnShutdown.history" = false;
               "privacy.clearOnShutdown.offlineApps" = true;
               # Search options
