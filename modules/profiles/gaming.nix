@@ -25,7 +25,7 @@ let
       #inputs.ow-mod-man.packages.${system}.owmods-gui
       openjk # Jedi Academy
       openloco # Locomotion
-      openxray # STALKER
+      #openxray # STALKER
       #relive # Oddworld
       wipeout-rewrite # Wipeout
       vvvvvv
@@ -42,8 +42,8 @@ let
         prboom-plus
         rbdoom-3-bfg
         woof-doom
-        zandronum
-        zandronum-server
+        #zandronum
+        #zandronum-server
       ]
       # Fallout
       [
@@ -57,10 +57,10 @@ let
       ]
       # Marathon
       [
-        alephone
-        alephone-marathon
-        alephone-durandal
-        alephone-infinity
+        #alephone
+        #alephone-marathon
+        #alephone-durandal
+        #alephone-infinity
       ]
       # N64
       [
@@ -130,8 +130,20 @@ let
       ]
       # Modding
       [
-        nexusmods-app-unfree
-        r2modman # Lethal Company
+        #nexusmods-app-unfree
+        (r2modman.overrideAttrs (attrs: {
+          version = "3.1.49";
+          src = fetchFromGitHub {
+            owner = "ebkr";
+            repo = "r2modmanPlus";
+            rev = "v3.1.49";
+            hash = "sha256-Br+VkBHgwM/Zu1aypzlVYHB/v8T/KV+B6XUNJn/EbYM=";
+          };
+          offlineCache = fetchYarnDeps {
+            yarnLock = "https://github.com/ebkr/r2modmanPlus/blob/develop/yarn.lock";
+            hash = "sha256-ntXZ4gRXRqiPQxdwXDsLxGdBqUV5eboy9ntTlJsz9FA=";
+          };
+        }))
       ]
       # Wine
       [
@@ -188,13 +200,13 @@ in
     fluidsynth.enable = true;
     gamemode.enable = true;
     gamescope.enable = true;
-    gpu-screen-recorder.enable = true;
+    gsr.enable = true;
     lact.enable = true;
     mangohud.enable = true;
     nonfree.enable = true;
     obs.enable = true;
     steam.enable = true;
-    sunshine.enable = true;
+    sunshine.enable = false;
     timidity.enable = true;
     vkbasalt.enable = true;
     zerotier.enable = true;
