@@ -81,8 +81,8 @@ in
 
               config.color_scheme = 'Catppuccin Mocha'
               config.default_prog = { "zsh" }
-              config.font_size = 12
-              config.font = wezterm.font_with_fallback { { family = 'JetBrainsMono Nerd Font', weight = "Medium" }, { family = 'BlexMono Nerd Font', weight = "Medium" }, }
+              config.font_size = 14
+              config.font = wezterm.font_with_fallback { { family = 'JetBrainsMono Nerd Font' }, { family = 'BlexMono Nerd Font' }, }
               config.unzoom_on_switch_pane = true
               config.check_for_updates = false
               config.line_height = 1.0
