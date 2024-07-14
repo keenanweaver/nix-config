@@ -190,6 +190,12 @@ in
               gtk-xft-rgba = "rgb";
             };
           };
+          /*
+            theme = {
+                     name = "${GTK-THEME}";
+                     package = pkgs.kdePackages.breeze-gtk;
+                   };
+          */
         };
         home = {
           file = {
