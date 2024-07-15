@@ -42,8 +42,8 @@ let
         prboom-plus
         rbdoom-3-bfg
         woof-doom
-        #zandronum
-        #zandronum-server
+        zandronum
+        zandronum-server
       ]
       # Fallout
       [
@@ -102,6 +102,7 @@ let
     tools = [
       # Emulators 
       [
+        #archipelago
         #bizhawk
         #hypseus-singe
         #mesen
@@ -385,7 +386,7 @@ in
             enable = true;
             recursive = true;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
-            target = "${config.xdg.configHome}/distrobox/bazzite-arch-exodos/.config/dosbox/mt32-roms";
+            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-exodos/.config/dosbox/mt32-roms";
           };
           script-get-game-stuff = {
             enable = true;
@@ -659,8 +660,8 @@ in
             "com.obsproject.Studio.Plugin.GStreamerVaapi"
             "com.obsproject.Studio.Plugin.InputOverlay"
             "com.obsproject.Studio.Plugin.OBSVkCapture"
-            "com.parsecgaming.parsec"
-            "dev.opengoal.OpenGOAL"
+            #"com.parsecgaming.parsec"
+            #"dev.opengoal.OpenGOAL"
             #"com.qzandronum.Q-Zandronum"
             #"com.richwhitehouse.BigPEmu"
             #"com.spacestation14.Launcher"
@@ -668,32 +669,32 @@ in
             #"eu.vcmi.VCMI"
             "info.cemu.Cemu"
             #"info.urbanterror.UrbanTerror"
-            "io.github.am2r_community_developers.AM2RLauncher"
+            #"io.github.am2r_community_developers.AM2RLauncher"
             #"io.github.antimicrox.antimicrox"
             "io.github.Foldex.AdwSteamGtk"
             #"io.github.garglk.Gargoyle"
-            "io.github.ihhub.Fheroes2"
-            "io.github.ja2_stracciatella.JA2-Stracciatella"
-            "io.github.lethal_guitar.RigelEngine"
+            #"io.github.ihhub.Fheroes2"
+            #"io.github.ja2_stracciatella.JA2-Stracciatella"
+            #"io.github.lethal_guitar.RigelEngine"
             "io.github.lime3ds.Lime3DS"
             "io.github.lxndr.gswatcher"
-            "io.github.santiagocezar.maniatic-launcher"
+            #"io.github.santiagocezar.maniatic-launcher"
             #"io.github.simple64.simple64"
-            "io.github.theforceengine.tfe"
-            "io.itch.tx00100xt.SeriousSamClassic-VK"
+            #"io.github.theforceengine.tfe"
+            #"io.itch.tx00100xt.SeriousSamClassic-VK"
             "io.openrct2.OpenRCT2"
             "net._86box._86Box"
             "net._86box._86Box.ROMs"
             #"net.darkradiant.DarkRadiant"
             "net.davidotek.pupgui2"
             "net.fsuae.FS-UAE"
-            "net.mancubus.SLADE"
+            #"net.mancubus.SLADE"
             "net.pcsx2.PCSX2"
             "net.rpcs3.RPCS3"
-            "net.runelite.RuneLite"
-            "net.sourceforge.uqm_mods.UQM-MegaMod"
-            "org.dhewm3.Dhewm3"
-            "org.diasurgical.DevilutionX"
+            #"net.runelite.RuneLite"
+            #"net.sourceforge.uqm_mods.UQM-MegaMod"
+            #"org.dhewm3.Dhewm3"
+            #"org.diasurgical.DevilutionX"
             "org.DolphinEmu.dolphin-emu"
             "org.duckstation.DuckStation"
             "org.easyrpg.player"
@@ -702,34 +703,34 @@ in
             "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08"
             "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
             "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/23.08"
-            "org.freedesktop.Platform.GStreamer.gstreamer-vaapi/x86_64/22.08"
-            "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08"
-            "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/22.08"
-            "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/22.08"
-            "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/22.08"
-            "org.godotengine.Godot"
+            #"org.freedesktop.Platform.GStreamer.gstreamer-vaapi/x86_64/22.08"
+            #"org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08"
+            #"org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/22.08"
+            #"org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/22.08"
+            #"org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/22.08"
+            #"org.godotengine.Godot"
             "org.kartkrew.RingRacers"
-            "org.kde.kigo"
+            #"org.kde.kigo"
             "org.libretro.RetroArch"
             "org.mamedev.MAME"
-            "org.openfodder.OpenFodder"
-            "org.openjkdf2.OpenJKDF2"
-            "org.openmw.OpenMW"
-            "org.openttd.OpenTTD"
-            "org.pegasus_frontend.Pegasus"
-            "org.ppsspp.PPSSPP"
-            "org.prismlauncher.PrismLauncher"
+            #"org.openfodder.OpenFodder"
+            #"org.openjkdf2.OpenJKDF2"
+            #"org.openmw.OpenMW"
+            #"org.openttd.OpenTTD"
+            #"org.pegasus_frontend.Pegasus"
+            #"org.ppsspp.PPSSPP"
+            #"org.prismlauncher.PrismLauncher"
             "org.ryujinx.Ryujinx"
             "org.scummvm.ScummVM"
             "org.sonic3air.Sonic3AIR"
-            "org.srb2.SRB2"
+            #"org.srb2.SRB2"
             #"org.twinery.Twine"
             #"org.zdoom.Raze"
             #"re.chiaki.Chiaki"
             #"ru.linux_gaming.PortProton"
-            "sh.fhs.KatawaShoujoReEngineered"
+            #"sh.fhs.KatawaShoujoReEngineered"
             #"tk.deat.Jazz2Resurrection"
-            "vet.rsc.OpenRSC.Launcher"
+            #"vet.rsc.OpenRSC.Launcher"
           ];
         };
         xdg = {
