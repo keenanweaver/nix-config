@@ -131,8 +131,6 @@ in
       };
     };
 
-    sound.enable = false;
-
     home-manager.users.${username} = { };
   };
 }
