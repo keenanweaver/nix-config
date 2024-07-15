@@ -102,10 +102,6 @@ in
         overrides = {
           global = {
             Context = {
-              Environment = {
-                # Wrong cursor in flatpaks fix
-                XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
-              };
               filesystems = [
                 "/home/${username}/.icons:ro"
                 "/home/${username}/.themes:ro"
@@ -122,6 +118,10 @@ in
                 "xdg-run/.flatpak/com.xyz.armcord.ArmCord:create"
                 "xdg-run/discord-ipc-*"
               ];
+            };
+            Environment = {
+              # Wrong cursor in flatpaks fix
+              XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
             };
           };
           "com.georgefb.mangareader" = {
