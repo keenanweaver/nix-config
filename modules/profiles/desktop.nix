@@ -152,6 +152,7 @@ in
                 "application/x-msdownload" = [ "wine.desktop" ];
                 "application/xhtml+xml" = [ "one.ablaze.floorp.desktop" ];
                 "application/xml" = [ "org.kde.kate.desktop" ];
+                "application/x-shellscript" = [ "org.kde.kate.desktop" ];
                 "audio/*" = [ "org.fooyin.fooyin.desktop" ];
                 "image/*" = [ "org.kde.gwenview.desktop" ];
                 "inode/directory" = [ "org.kde.dolphin.desktop" ];
