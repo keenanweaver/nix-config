@@ -136,19 +136,7 @@ let
       # Modding
       [
         #nexusmods-app-unfree
-        (r2modman.overrideAttrs (attrs: {
-          version = "3.1.49";
-          src = fetchFromGitHub {
-            owner = "ebkr";
-            repo = "r2modmanPlus";
-            rev = "v3.1.49";
-            hash = "sha256-Br+VkBHgwM/Zu1aypzlVYHB/v8T/KV+B6XUNJn/EbYM=";
-          };
-          offlineCache = fetchYarnDeps {
-            yarnLock = "https://github.com/ebkr/r2modmanPlus/blob/develop/yarn.lock";
-            hash = "sha256-ntXZ4gRXRqiPQxdwXDsLxGdBqUV5eboy9ntTlJsz9FA=";
-          };
-        }))
+        r2modman
       ]
       # Wine
       [
