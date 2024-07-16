@@ -16,7 +16,12 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} = {
-      home.packages = with pkgs; [ obs-cmd ];
+      home = {
+        packages = with pkgs; [ obs-cmd ];
+        sessionVariables = {
+          OBS_VKCAPTURE_QUIET = "1";
+        };
+      };
       programs.obs-studio = {
         enable = true;
         plugins = with pkgs.obs-studio-plugins; [
