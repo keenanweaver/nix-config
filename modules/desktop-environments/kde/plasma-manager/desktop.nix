@@ -140,9 +140,9 @@
                     };
                   };
                   launchers = [
-                    "applications:org.codeberg.dnkl.foot.desktop"
-                    "applications:kitty.desktop"
+                    #"applications:org.codeberg.dnkl.foot.desktop"
                     "applications:org.wezfurlong.wezterm.desktop"
+                    "applications:kitty.desktop"
                     "applications:org.signal.Signal.desktop"
                     "applications:xyz.armcord.ArmCord.desktop"
                     "applications:info.mumble.Mumble.desktop"
