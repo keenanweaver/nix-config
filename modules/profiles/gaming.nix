@@ -82,6 +82,11 @@ let
         ironwail
         #trenchbroom
       ]
+      # Arma
+      [
+        #arma3-unix-launcher
+        #(arma3-unix-launcher.override { buildDayZLauncher = true; })
+      ]
       # Duke3D
       [
         eduke32
@@ -113,7 +118,6 @@ let
         makima
         oversteer
         sc-controller
-        solaar
         xboxdrv
       ]
       # Graphics
@@ -246,7 +250,6 @@ in
         #KWIN_DRM_DONT_FORCE_AMD_SW_CURSOR = "1";
         # https://invent.kde.org/plasma/kwin/-/merge_requests/927#note_586727
         KWIN_DRM_NO_AMS = "1"; # Input latency/tearing
-        OBS_VKCAPTURE_QUIET = "1";
       };
     };
 
@@ -254,6 +257,7 @@ in
       logitech = {
         wireless = {
           enable = true;
+          enableGraphical = true;
         };
       };
       new-lg4ff.enable = true;
