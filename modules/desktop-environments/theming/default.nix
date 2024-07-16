@@ -48,6 +48,8 @@ in
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
         })
+        (callPackage ../../../nix/pkgs/klassy.nix { })
+        utterly-round-plasma-style
       ];
     };
     services = {
@@ -252,6 +254,28 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${pkgs.geist-font}/share/fonts/opentype";
               target = "${config.xdg.dataHome}/fonts/geist";
             };
+            klassy-config = {
+              enable = true;
+              text = ''
+                [Global]
+                LookAndFeelSet=Catppuccin-${flavor-upper}-${accent-upper}
+
+                [SystemIconGeneration]
+                KlassyDarkIconThemeInherits=Papirus-Dark
+                KlassyIconThemeInherits=Papirus
+
+                [TitleBarOpacity]
+                ActiveTitleBarOpacity=70
+                InactiveTitleBarOpacity=70
+
+                [Windeco]
+                ButtonIconStyle=StyleSystemIconTheme
+
+                [WindowOutlineStyle]
+                ThinWindowOutlineThickness=1
+              '';
+              target = "${config.xdg.configHome}/klassy/klassyrc";
+            };
             powershell-profile = {
               enable = true;
               text = ''
@@ -379,8 +403,8 @@ in
           };
           plasma = {
             configFile = {
-              # Window decorations
-              "kdeglobals"."KDE"."widgetStyle" = "Breeze";
+              # Application Style
+              "kdeglobals"."KDE"."widgetStyle" = "Klassy";
             };
             fonts = {
               general = {
@@ -412,20 +436,31 @@ in
               wallpaper = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
             };
             workspace = {
-              colorScheme = "Catppuccin${flavor-upper}${accent-upper}";
-              cursor.theme = "${cursor-theme}";
-              iconTheme = "Papirus-Dark";
+              # Global theme
+              # plasma-apply-lookandfeel --list
               #lookAndFeel = "Catppuccin-${flavor-upper}-${accent-upper}";
-              soundTheme = "ocean";
-              splashScreen = {
-                theme = "Catppuccin-${flavor-upper}-${accent-upper}";
-              };
-              theme = "default";
-              wallpaper = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
+              # Colors
+              # plasma-apply-colorscheme --list-schemes
+              colorScheme = "Catppuccin${flavor-upper}${accent-upper}";
+              # Plasma Style
+              # plasma-apply-desktoptheme --list-themes
+              theme = "Utterly-Round";
+              # Window decorations
               windowDecorations = {
-                library = "org.kde.breeze";
-                theme = "Breeze";
+                library = "org.kde.klassy";
+                theme = "Klassy";
               };
+              # Icons
+              iconTheme = "Papirus-Dark";
+              # Cursors
+              # plasma-apply-cursortheme --list-themes
+              cursor.theme = "${cursor-theme}";
+              # System sounds
+              soundTheme = "ocean";
+              # Splash Screen
+              splashScreen.theme = "Catppuccin-${flavor-upper}-${accent-upper}";
+              # Wallpaper
+              wallpaper = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
             };
           };
           vscode = {
