@@ -78,7 +78,15 @@
                 };
               }
               "org.kde.plasma.panelspacer"
-              "org.kde.plasma.pager"
+              {
+                name = "org.kde.plasma.pager";
+                config = {
+                  General = {
+                    displayedText = "Number";
+                    wrapPage = true;
+                  };
+                };
+              }
               {
                 systemTray.items = {
                   hidden = [
@@ -155,7 +163,15 @@
                 };
               }
               "org.kde.plasma.panelspacer"
-              "org.kde.plasma.pager"
+              {
+                name = "org.kde.plasma.pager";
+                config = {
+                  General = {
+                    displayedText = "Number";
+                    wrapPage = true;
+                  };
+                };
+              }
               {
                 name = "com.github.k-donn.plasmoid-wunderground";
                 config = {
