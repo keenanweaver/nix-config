@@ -69,8 +69,10 @@ in
             enable = true;
             text =
               ''
+                #!/usr/bin/env bash
+                # Set bash
                 sudo chsh -s /bin/bash
-                bash
+                grep ${username} /etc/passwd | sudo sed -i 's/\/usr\/sbin\/zsh/\/usr\/bin\/bash/g' /etc/passwd
                 ## Set XDG (workaround)
                 paru -S --needed --noconfirm xdg-user-dirs
                 export XDG_DESKTOP_DIR=$HOME/Desktop
@@ -155,11 +157,11 @@ in
                   #soh-otr-n64_pal_11
                   # Download & place required data files
                   #xh -o "$HOME/zeldaoot.zip" -d https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Legend%20of%20Zelda%2C%20The%20-%20Ocarina%20of%20Time%20%28USA%29%20%28Rev%202%29.zip
-                  xh -o "$HOME/mario64.zip" -d https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Super%20Mario%2064%20%28USA%29.zip
                   #ouch d "$HOME/zeldaoot.zip" -y -d "$XDG_CACHE_HOME/paru/clone/soh-otr-n64_pal_11"
+                  #fd 'Zelda' -e z64 $XDG_CACHE_HOME/paru/clone/soh-otr-n64_pal_11 -x mv {} "$XDG_CACHE_HOME/paru/clone/soh-otr-n64_pal_11/baserom.z64"
+                  xh -o "$HOME/mario64.zip" -d https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Super%20Mario%2064%20%28USA%29.zip
                   ouch d "$HOME/mario64.zip" -y -d "$XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git"
-                  #mv $XDG_CACHE_HOME/paru/clone/soh-otr-n64_pal_11/*.z64 "$XDG_CACHE_HOME/paru/clone/soh-otr-n64_pal_11/baserom.z64"
-                  mv $XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git/*.z64 "$XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git/baserom.us.z64"
+                  fd 'Mario' -e z64 $XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git -x mv {} "$XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git/baserom.us.z64"
                   # Try again
                   paru -S --needed --noconfirm \
                   sm64ex-nightly-git           \
