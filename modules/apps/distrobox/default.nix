@@ -274,7 +274,7 @@ in
               text = ''
                 #!/usr/bin/env bash
                 if [ -z "''${CONTAINER_ID}" ]; then
-                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
+                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /home/${username}/Games/daikatana/${bin}  "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
                 	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
                 else
@@ -496,7 +496,7 @@ in
             };
           db-perfectdark =
             let
-              args = "gamemoderun obs-gamecapture mangohud";
+              args = "gamemoderun obs-gamecapture mangohud --dlsym";
               bin = "perfectdark";
               container = "bazzite-arch-gaming";
             in
@@ -523,27 +523,6 @@ in
             in
             {
               enable = vars.gaming;
-              text = ''
-                #!/usr/bin/env bash
-                if [ -z "''${CONTAINER_ID}" ]; then
-                	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
-                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                	exec distrobox-host-exec /home/${username}/.local/share/distrobox/exports/bin/${bin}  "$@"
-                else
-                	exec /usr/bin/${bin} "$@"
-                fi
-              '';
-              target = "${dbe}/${bin}";
-              executable = true;
-            };
-          db-raze =
-            let
-              args = "gamemoderun obs-gamecapture mangohud";
-              bin = "raze";
-              container = "bazzite-arch-gaming";
-            in
-            {
-              enable = false;
               text = ''
                 #!/usr/bin/env bash
                 if [ -z "''${CONTAINER_ID}" ]; then
@@ -643,7 +622,7 @@ in
             };
           db-zelda64recomp =
             let
-              args = "gamemoderun obs-gamecapture mangohud";
+              args = "gamemoderun obs-gamecapture";
               bin = "zelda64recomp";
               container = "bazzite-arch-gaming";
             in
@@ -791,7 +770,7 @@ in
             portproton = lib.mkIf cfg.gaming {
               name = "PortProton";
               comment = "Proton launcher";
-              exec = "portproton";
+              exec = "env GTK_THEME=Breeze-Dark portproton";
               icon = "${config.xdg.dataHome}/PortProton/data/img/w.png";
               categories = [ "Game" ];
               noDisplay = false;
