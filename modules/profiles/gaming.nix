@@ -378,7 +378,7 @@ in
             enable = true;
             recursive = true;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-exodos/.config/dosbox/mt32-roms";
+            target = "${config.xdg.configHome}/dosbox/mt32-roms";
           };
           script-get-game-stuff = {
             enable = true;

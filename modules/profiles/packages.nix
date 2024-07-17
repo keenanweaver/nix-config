@@ -87,8 +87,8 @@ in
             lua-language-server
             ### Python ###
             black
-            python3
-            python311Packages.python-lsp-server
+            #python3
+            #python311Packages.python-lsp-server
             ruff
             ruff-lsp
             ### Rust ###

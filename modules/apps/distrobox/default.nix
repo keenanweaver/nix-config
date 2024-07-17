@@ -25,7 +25,6 @@ in
     };
     home-manager.users.${username} =
       {
-        inputs,
         config,
         username,
         pkgs,
@@ -43,7 +42,6 @@ in
               if vars.gaming then
                 ''
                   [bazzite-arch-exodos]
-                  home=${config.xdg.dataHome}/distrobox/bazzite-arch-exodos
                   image=ghcr.io/ublue-os/arch-distrobox:latest
                   init=true
                   pull=false
@@ -52,7 +50,6 @@ in
                   volume="/etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"
 
                   [bazzite-arch-gaming]
-                  home=${config.xdg.dataHome}/distrobox/bazzite-arch-gaming
                   image=ghcr.io/ublue-os/arch-distrobox:latest
                   init=true
                   pull=false
@@ -70,26 +67,6 @@ in
             text =
               ''
                 #!/usr/bin/env bash
-                # Set bash
-                sudo chsh -s /bin/bash
-                grep ${username} /etc/passwd | sudo sed -i 's/\/usr\/sbin\/zsh/\/usr\/bin\/bash/g' /etc/passwd
-                ## Set XDG (workaround)
-                paru -S --needed --noconfirm xdg-user-dirs
-                export XDG_DESKTOP_DIR=$HOME/Desktop
-                export XDG_DOCUMENTS_DIR=$HOME/Documents
-                export XDG_DOWNLOAD_DIR=$HOME/Download
-                export XDG_MUSIC_DIR=$HOME/Music
-                export XDG_PICTURES_DIR=$HOME/Pictures
-                export XDG_VIDEOS_DIR=$HOME/Videos
-                xdg-user-dirs-update --set DESKTOP $HOME/Desktop
-                xdg-user-dirs-update --set DOCUMENTS $HOME/Documents
-                xdg-user-dirs-update --set DOWNLOAD $HOME/Downloads
-                xdg-user-dirs-update --set MUSIC $HOME/Music
-                xdg-user-dirs-update --set PICTURES $HOME/Pictures
-                xdg-user-dirs-update --set VIDEOS $HOME/Videos
-                if ! rg "XDG" $HOME/.bashrc; then
-                  echo -e "XDG_CACHE_HOME=$HOME/.cache\nXDG_CONFIG_HOME=$HOME/.config\nXDG_DATA_HOME=$HOME/.local/share\nXDG_STATE_HOME=$HOME/.local/state\n" | tee -a $HOME/.bashrc
-                fi
                 ## Set paru settings
                 mkdir -p $XDG_CONFIG_HOME/paru
                 xh -o "$XDG_CONFIG_HOME/paru/paru.conf" -d https://raw.githubusercontent.com/Morganamilo/paru/master/paru.conf
@@ -727,89 +704,6 @@ in
               target = "${dbe}/${bin}";
               executable = true;
             };
-          distrobox-bazzite-arch-exodos-catppuccin-konsole = {
-            enable = vars.gaming;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-konsole}/themes/catppuccin-mocha.colorscheme";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-exodos/.local/share/konsole/catppuccin-mocha.colorscheme";
-          };
-          distrobox-bazzite-arch-exodos-gtk2 = {
-            enable = vars.gaming;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/gtk-2.0";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-exodos/.config/gtk-2.0";
-          };
-          distrobox-bazzite-arch-exodos-gtk3 = {
-            enable = vars.gaming;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/gtk-3.0";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-exodos/.config/gtk-3.0";
-          };
-          distrobox-bazzite-arch-exodos-gtk4 = {
-            enable = vars.gaming;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/gtk-4.0";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-exodos/.config/gtk-4.0";
-          };
-          distrobox-bazzite-arch-exodos-kdeglobals = {
-            enable = vars.gaming;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/kdeglobals";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-exodos/.config/kdeglobals";
-          };
-          distrobox-bazzite-arch-exodos-konsole = {
-            enable = vars.gaming;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/konsole/${username}.profile";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-exodos/.local/share/konsole/${username}.profile";
-          };
-          distrobox-bazzite-arch-exodos-themes = {
-            enable = vars.gaming;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/themes";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-exodos/.local/share/themes";
-          };
-          distrobox-bazzite-arch-exodos-trolltech = {
-            enable = vars.gaming;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/Trolltech.conf";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-exodos/.config/Trolltech.conf";
-          };
-          distrobox-bazzite-arch-gaming-gtk2 = {
-            enable = vars.gaming;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/gtk-2.0";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-gaming/.config/gtk-2.0";
-          };
-          distrobox-bazzite-arch-gaming-gtk3 = {
-            enable = vars.gaming;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/gtk-3.0";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-gaming/.config/gtk-3.0";
-          };
-          distrobox-bazzite-arch-gaming-gtk4 = {
-            enable = vars.gaming;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/gtk-4.0";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-gaming/.config/gtk-4.0";
-          };
-          distrobox-bazzite-arch-gaming-kdeglobals = {
-            enable = vars.gaming;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/kdeglobals";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-gaming/.config/kdeglobals";
-          };
-          distrobox-bazzite-arch-gaming-konsole = {
-            enable = vars.gaming;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/konsole/${username}.profile";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-gaming/.local/share/konsole/${username}.profile";
-          };
-          distrobox-bazzite-arch-gaming-themes = {
-            enable = vars.gaming;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/themes";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-gaming/.local/share/themes";
-          };
-          distrobox-bazzite-arch-gaming-trolltech = {
-            enable = vars.gaming;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/Trolltech.conf";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-gaming/.config/Trolltech.conf";
-          };
           distrobox-bootstrap-ansible = {
             enable = true;
             text = ''
@@ -820,16 +714,6 @@ in
             '';
             target = "${config.xdg.configHome}/distrobox/bootstrap-ansible.sh";
             executable = true;
-          };
-          distrobox-mangohud-gaming = {
-            enable = vars.gaming;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/MangoHud/MangoHud.conf";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-gaming/.config/MangoHud/MangoHud.conf";
-          };
-          distrobox-mangohud-exodos = {
-            enable = vars.gaming;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/MangoHud/MangoHud.conf";
-            target = "${config.xdg.dataHome}/distrobox/bazzite-arch-exodos/.config/MangoHud/MangoHud.conf";
           };
         };
         home.packages = with pkgs; [ xorg.xhost ];
@@ -908,7 +792,7 @@ in
               name = "PortProton";
               comment = "Proton launcher";
               exec = "portproton";
-              icon = "${config.xdg.dataHome}/distrobox/bazzite-arch-gaming/PortProton/data/img/w.png";
+              icon = "${config.xdg.dataHome}/PortProton/data/img/w.png";
               categories = [ "Game" ];
               noDisplay = false;
               startupNotify = true;
