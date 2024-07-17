@@ -49,7 +49,7 @@ in
                   pull=false
                   replace=false
                   start_now=true
-                  container_additional_volumes="/etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"
+                  volume="/etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"
 
                   [bazzite-arch-gaming]
                   home=${config.xdg.dataHome}/distrobox/bazzite-arch-gaming
@@ -58,7 +58,7 @@ in
                   pull=false
                   replace=false
                   start_now=true
-                  container_additional_volumes="/etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"                
+                  volume="/etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"                
                 ''
               else
                 ''''
@@ -69,10 +69,29 @@ in
             enable = true;
             text =
               ''
-                chsh -s /bin/bash
+                sudo chsh -s /bin/bash
+                bash
+                ## Set XDG (workaround)
+                paru -S --needed --noconfirm xdg-user-dirs
+                export XDG_DESKTOP_DIR=$HOME/Desktop
+                export XDG_DOCUMENTS_DIR=$HOME/Documents
+                export XDG_DOWNLOAD_DIR=$HOME/Download
+                export XDG_MUSIC_DIR=$HOME/Music
+                export XDG_PICTURES_DIR=$HOME/Pictures
+                export XDG_VIDEOS_DIR=$HOME/Videos
+                xdg-user-dirs-update --set DESKTOP $HOME/Desktop
+                xdg-user-dirs-update --set DOCUMENTS $HOME/Documents
+                xdg-user-dirs-update --set DOWNLOAD $HOME/Downloads
+                xdg-user-dirs-update --set MUSIC $HOME/Music
+                xdg-user-dirs-update --set PICTURES $HOME/Pictures
+                xdg-user-dirs-update --set VIDEOS $HOME/Videos
+                if ! rg "XDG" $HOME/.bashrc; then
+                  echo -e "XDG_CACHE_HOME=$HOME/.cache\nXDG_CONFIG_HOME=$HOME/.config\nXDG_DATA_HOME=$HOME/.local/share\nXDG_STATE_HOME=$HOME/.local/state\n" | tee -a $HOME/.bashrc
+                fi
                 ## Set paru settings
+                mkdir -p $XDG_CONFIG_HOME/paru
                 xh -o "$XDG_CONFIG_HOME/paru/paru.conf" -d https://raw.githubusercontent.com/Morganamilo/paru/master/paru.conf
-                sd '#SudoLoop' 'SudoLoop' "$XDG_CONFIG_HOME/paru.conf"
+                sd '#SudoLoop' 'SudoLoop' "$XDG_CONFIG_HOME/paru/paru.conf"
                 sd '#CleanAfter' 'CleanAfter' "$XDG_CONFIG_HOME/paru/paru.conf"
                 sd '#BottomUp' 'BottomUp' "$XDG_CONFIG_HOME/paru/paru.conf"
                 ## Add Chaotic AUR
@@ -81,45 +100,45 @@ in
                 sudo pacman-key --lsign-key 3056513887B78AEB
                 sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
                 if ! rg "chaotic" /etc/pacman.conf; then
-                  echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" .. | sudo tee -a /etc/pacman.conf
+                  echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf
                 fi
                 ## TODO: atuin
                 ## Set up containers
               ''
               + lib.optionalString vars.gaming ''
                 ## Base packages
-                paru -S --needed --noconfirm   \
-                gamemode                       \
-                gamescope-git                  \
-                kdialog                        \
-                lib32-gamemode                 \
-                lib32-libpulse                 \
-                lib32-mangohud                 \
-                lib32-obs-vkcapture-git        \
-                lib32-vkbasalt                 \
-                lib32-vulkan-mesa-layers       \
-                lib32-vulkan-radeon            \
-                lib32-openal                   \
-                lib32-pipewire                 \
-                lib32-pipewire-jack            \
-                libva-mesa-driver              \
-                mangohud                       \
-                vkbasalt                       \
-                vulkan-mesa-layers             \
-                obs-vkcapture-git              \
-                openal                         \
-                pipewire                       \
-                pipewire-pulse                 \
-                pipewire-alsa                  \
-                pipewire-jack                  \
-                wireplumber                    \
+                paru -Syu --needed --noconfirm   \
+                gamemode                         \
+                gamescope-git                    \
+                kdialog                          \
+                lib32-gamemode                   \
+                lib32-libpulse                   \
+                lib32-mangohud                   \
+                lib32-obs-vkcapture-git          \
+                lib32-vkbasalt                   \
+                lib32-vulkan-mesa-layers         \
+                lib32-vulkan-radeon              \
+                lib32-openal                     \
+                lib32-pipewire                   \
+                lib32-pipewire-jack              \
+                libva-mesa-driver                \
+                mangohud                         \
+                vkbasalt                         \
+                vulkan-mesa-layers               \
+                obs-vkcapture-git                \
+                openal                           \
+                pipewire                         \
+                pipewire-pulse                   \
+                pipewire-alsa                    \
+                pipewire-jack                    \
+                wireplumber                      \
                 xdg-desktop-portal-kde
                 ## Install necessary packages
-                paru -Syu --needed --noconfirm \
-                archlinux-keyring              \
-                base-devel                     \
+                paru -S --needed --noconfirm     \
+                archlinux-keyring                \
+                base-devel                       \
                 yay
-                if [[ "$HOST" =~ ^bazzite-arch-exodos ]]; then
+                if [[ "$CONTAINER_ID" =~ ^bazzite-arch-exodos ]]; then
                   # Games/emulators/tools
                   paru -S --needed --noconfirm \
                   dbgl                         \
@@ -128,7 +147,7 @@ in
                   innoextract                  \
                   konsole                      \
                   okular
-                elif [[ "$HOST" =~ ^bazzite-arch-gaming ]]; then
+                elif [[ "$CONTAINER_ID" =~ ^bazzite-arch-gaming ]]; then
                   # Packages that will initially fail
                   paru -S --needed --noconfirm \
                   sm64ex-nightly-git           \
@@ -139,8 +158,8 @@ in
                   xh -o "$HOME/mario64.zip" -d https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Super%20Mario%2064%20%28USA%29.zip
                   #ouch d "$HOME/zeldaoot.zip" -y -d "$XDG_CACHE_HOME/paru/clone/soh-otr-n64_pal_11"
                   ouch d "$HOME/mario64.zip" -y -d "$XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git"
-                  #mv "$XDG_CACHE_HOME/paru/clone/soh-otr-n64_pal_11/*.z64" "$XDG_CACHE_HOME/paru/clone/soh-otr-n64_pal_11/baserom.z64"
-                  mv "$XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git/*.z64" "$XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git/baserom.us.z64"
+                  #mv $XDG_CACHE_HOME/paru/clone/soh-otr-n64_pal_11/*.z64 "$XDG_CACHE_HOME/paru/clone/soh-otr-n64_pal_11/baserom.z64"
+                  mv $XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git/*.z64 "$XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git/baserom.us.z64"
                   # Try again
                   paru -S --needed --noconfirm \
                   sm64ex-nightly-git           \
