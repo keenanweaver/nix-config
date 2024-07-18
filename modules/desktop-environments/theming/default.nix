@@ -297,7 +297,6 @@ in
             hicolor-icon-theme
             vivid
             ## GNOME
-            #adw-gtk3
             gnome.adwaita-icon-theme
             gnome.gnome-settings-daemon
             gsettings-desktop-schemas
@@ -307,7 +306,6 @@ in
             GSETTINGS_BACKEND = "keyfile";
             GTK_USE_PORTAL = "1";
             LS_COLORS = "$(vivid generate catppuccin-${flavor-lower})";
-            #MICRO_TRUECOLOR = "1";
             XCURSOR_SIZE = "24";
           };
         };

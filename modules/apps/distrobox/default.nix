@@ -26,6 +26,7 @@ in
     home-manager.users.${username} =
       {
         config,
+        inputs,
         username,
         pkgs,
         vars,
@@ -55,7 +56,7 @@ in
                   pull=false
                   replace=false
                   start_now=true
-                  volume="/etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"                
+                  volume="/etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"
                 ''
               else
                 ''''
@@ -129,21 +130,14 @@ in
                 elif [[ "$CONTAINER_ID" =~ ^bazzite-arch-gaming ]]; then
                   # Packages that will initially fail
                   paru -S --needed --noconfirm \
-                  sm64ex-nightly-git           \
-                  #soh                          \
-                  #soh-otr-n64_pal_11
+                  sm64ex-nightly-git
                   # Download & place required data files
-                  #xh -o "$HOME/zeldaoot.zip" -d https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Legend%20of%20Zelda%2C%20The%20-%20Ocarina%20of%20Time%20%28USA%29%20%28Rev%202%29.zip
-                  #ouch d "$HOME/zeldaoot.zip" -y -d "$XDG_CACHE_HOME/paru/clone/soh-otr-n64_pal_11"
-                  #fd 'Zelda' -e z64 $XDG_CACHE_HOME/paru/clone/soh-otr-n64_pal_11 -x mv {} "$XDG_CACHE_HOME/paru/clone/soh-otr-n64_pal_11/baserom.z64"
                   xh -o "$HOME/mario64.zip" -d https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Super%20Mario%2064%20%28USA%29.zip
                   ouch d "$HOME/mario64.zip" -y -d "$XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git"
                   fd 'Mario' -e z64 $XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git -x mv {} "$XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git/baserom.us.z64"
                   # Try again
                   paru -S --needed --noconfirm \
-                  sm64ex-nightly-git           \
-                  #soh                          \
-                  #soh-otr-n64_pal_11
+                  sm64ex-nightly-git
                   # Games/emulators/tools
                   paru -S --needed --noconfirm \
                   2s2h-bin                     \
@@ -164,7 +158,10 @@ in
                   xash3d-fwgs-git              \
                   zelda64recomp-bin            \
                   zeldalttp                    \
-                  zeldaoot 
+                  zeldaoot
+                  # Nuked-SC55
+                  sudo cp ${inputs.nonfree}/Music/roland/{rom1.bin,rom2.bin,rom_sm.bin,waverom1.bin,waverom2.bin} /usr/share/nuked-sc55
+                  sudo chmod 644 /usr/share/nuked-sc55/*.bin
                 else 
                   echo "Container hostname not found"
                 fi
@@ -294,6 +291,7 @@ in
               enable = vars.gaming;
               text = ''
                 #!/usr/bin/env bash
+                export GTK_USE_PORTAL=0
                 if [ -z "''${CONTAINER_ID}" ]; then
                 	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin} "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -357,6 +355,7 @@ in
               enable = vars.gaming;
               text = ''
                 #!/usr/bin/env bash
+                export GTK_USE_PORTAL=0
                 if [ -z "''${CONTAINER_ID}" ]; then
                 	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -525,6 +524,7 @@ in
               enable = vars.gaming;
               text = ''
                 #!/usr/bin/env bash
+                export GTK_USE_PORTAL=0
                 if [ -z "''${CONTAINER_ID}" ]; then
                 	exec "/run/current-system/sw/bin/distrobox-enter" -n ${container} -- ${args} /usr/bin/${bin}  "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -745,7 +745,7 @@ in
             faugus = lib.mkIf cfg.gaming {
               name = "Faugus Launcher";
               comment = "Faugus Launcher";
-              exec = "env GTK_THEME=Breeze-Dark faugus-launcher";
+              exec = "faugus-launcher";
               icon = "faugus-launcher";
               categories = [ "Game" ];
             };
@@ -770,7 +770,7 @@ in
             portproton = lib.mkIf cfg.gaming {
               name = "PortProton";
               comment = "Proton launcher";
-              exec = "env GTK_THEME=Breeze-Dark portproton";
+              exec = "portproton";
               icon = "${config.xdg.dataHome}/PortProton/data/img/w.png";
               categories = [ "Game" ];
               noDisplay = false;
