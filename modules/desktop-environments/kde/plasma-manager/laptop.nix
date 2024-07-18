@@ -9,55 +9,63 @@
           location = "bottom";
           floating = false;
           widgets = [
-              {
-                kickoff = {
-                  applicationsDisplayMode = "list";
-                  compactDisplayStyle = true;
-                  icon = "${dotfiles}/Pictures/nix-snowflake-white.svg";
-                  favoritesDisplayMode = "grid";
-                  # pin = true;
-                  showActionButtonCaptions = true;
-                  showButtonsFor = "power";
-                  sortAlphabetically = true;
+            {
+              kickoff = {
+                applicationsDisplayMode = "list";
+                compactDisplayStyle = true;
+                icon = "${dotfiles}/Pictures/nix-snowflake-white.svg";
+                favoritesDisplayMode = "grid";
+                # pin = true;
+                showActionButtonCaptions = true;
+                showButtonsFor = "power";
+                sortAlphabetically = true;
+              };
+            }
+            {
+              iconTasks = {
+                appearance = {
+                  fill = true;
+                  highlightWindows = true;
+                  indicateAudioStreams = true;
+                  showTooltips = true;
+                  rows.multirowView = "never";
                 };
-              }
-              {
-                iconTasks = {
-                  appearance = {
-                    fill = true;
-                    highlightWindows = true;
-                    indicateAudioStreams = true;
-                    showTooltips = true;
-                    rows.multirowView = "never";
+                behavior = {
+                  grouping = {
+                    method = "byProgramName";
+                    clickAction = "cycle";
                   };
-                  behavior = {
-                    grouping = {
-                      method = "byProgramName";
-                      clickAction = "cycle";
-                    };
-                    middleClickAction = "newInstance";
-                    newTasksAppearOn = "right";
-                    showTasks = {
-                      onlyInCurrentActivity = false;
-                      onlyInCurrentDesktop = false;
-                      onlyInCurrentScreen = true;
-                      onlyMinimized = false;
-                    };
-                    sortingMethod = "manually";
-                    unhideOnAttentionNeeded = true;
-                    wheel = {
-                      switchBetweenTasks = true;
-                      ignoreMinimizedTasks = true;
-                    };
+                  middleClickAction = "newInstance";
+                  newTasksAppearOn = "right";
+                  showTasks = {
+                    onlyInCurrentActivity = false;
+                    onlyInCurrentDesktop = false;
+                    onlyInCurrentScreen = true;
+                    onlyMinimized = false;
                   };
-                  launchers = [
-                    "applications:org.kde.dolphin.desktop"
-                    "preferred://browser"
-                  ];
+                  sortingMethod = "manually";
+                  unhideOnAttentionNeeded = true;
+                  wheel = {
+                    switchBetweenTasks = true;
+                    ignoreMinimizedTasks = true;
+                  };
                 };
-              }
+                launchers = [
+                  "applications:org.kde.dolphin.desktop"
+                  "preferred://browser"
+                ];
+              };
+            }
             "org.kde.plasma.panelspacer"
-            "org.kde.plasma.pager"
+            {
+              name = "org.kde.plasma.pager";
+              config = {
+                General = {
+                  displayedText = "Number";
+                  wrapPage = true;
+                };
+              };
+            }
             {
               name = "com.github.k-donn.plasmoid-wunderground";
               config = {
