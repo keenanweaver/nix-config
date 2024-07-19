@@ -88,6 +88,7 @@ in
         home.packages = with pkgs; [
           apostrophe
           cyanrip
+          mousai
           neo
         ];
         xdg = {
