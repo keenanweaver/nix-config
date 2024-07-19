@@ -51,7 +51,7 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  programs.auto-cpufreq.enable = true;
+  #programs.auto-cpufreq.enable = true;
 
   services = {
     udev = {
