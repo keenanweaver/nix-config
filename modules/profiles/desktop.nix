@@ -24,6 +24,7 @@ in
     kde.enable = true;
     looking-glass.enable = true;
     mumble.enable = true;
+    printing.enable = true;
     vscode.enable = true;
     wezterm.enable = true;
     wireshark.enable = true;
