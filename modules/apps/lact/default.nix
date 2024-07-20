@@ -9,7 +9,7 @@ let
   cfg = config.lact;
 in
 {
-  # https://libreddit.perennialte.ch/r/NixOS/comments/1cwbsqv/how_to_undervolt_amd_grapics_card_and_control_fan/
+  # https://reddit.com/r/NixOS/comments/1cwbsqv/how_to_undervolt_amd_grapics_card_and_control_fan/
   # https://github.com/JManch/nixos/blob/main/modules/nixos/upstream/lact.nix
   # https://github.com/JManch/nixos/blob/main/modules/nixos/services/lact.nix
   options = {

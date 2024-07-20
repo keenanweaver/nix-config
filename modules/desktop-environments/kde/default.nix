@@ -88,7 +88,7 @@ in
              xkb = {
                layout = "mine,us";
                # https://github.com/nagy/dotfiles/blob/bbc152df487086aa6fea10c69ad9341831f1595a/modules/desktop.nix#L17
-               # https://libreddit.perennialte.ch/r/linux_gaming/comments/1cvxws3/i_got_f13_to_work_on_nobara/
+               # https://reddit.com/r/linux_gaming/comments/1cvxws3/i_got_f13_to_work_on_nobara/
                extraLayouts = {
                  mine = {
                    description = "Restore original keys for F13-24";
