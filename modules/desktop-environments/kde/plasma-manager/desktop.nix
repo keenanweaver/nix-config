@@ -95,6 +95,7 @@
                     "org.kde.plasma.networkmanagement"
                     "org.kde.plasma.clipboard"
                     "org.kde.kdeconnect"
+                    "solaar"
                     "tray-id" # Sunshine
                     #"chrome_status_icon_1" # Armcord
                   ];

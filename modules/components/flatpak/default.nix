@@ -56,7 +56,6 @@ in
           #"io.github.dvlv.boxbuddyrs"
           #"io.github.eteran.edb-debugger"
           #"io.github.jonmagon.kdiskmark"
-          #"io.github.pwr_solaar.solaar"
           #"io.github.seadve.Breathing"
           #"io.github.seadve.Mousai"
           "io.github.ungoogled_software.ungoogled_chromium"
