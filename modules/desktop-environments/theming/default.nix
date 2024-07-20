@@ -157,7 +157,7 @@ in
           font = {
             name = "${sans-font}";
             size = 12;
-            package = pkgs.poppins;
+            package = pkgs.geist-font;
           };
           gtk2 = {
             configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
@@ -347,7 +347,7 @@ in
           kitty = {
             font = {
               name = "${mono-font}";
-              size = 12;
+              size = 14;
             };
             settings = {
               background_opacity = "0.7";
@@ -359,7 +359,7 @@ in
                 colorScheme = "catppuccin-${flavor-lower}";
                 font = {
                   name = "${mono-font}";
-                  size = 12;
+                  size = 14;
                 };
               };
             };
@@ -411,7 +411,7 @@ in
               };
               fixedWidth = {
                 family = "${mono-font}";
-                pointSize = 12;
+                pointSize = 14;
               };
               small = {
                 family = "${sans-font}";

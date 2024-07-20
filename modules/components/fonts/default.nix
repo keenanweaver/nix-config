@@ -113,7 +113,7 @@ in
         source-han-sans
         source-han-sans-japanese
         source-han-serif-japanese
-        ubuntu_font_family
+        ubuntu-sans
       ];
       fontconfig = {
         allowBitmaps = false;
