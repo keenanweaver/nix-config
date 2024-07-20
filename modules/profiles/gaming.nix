@@ -350,6 +350,11 @@ in
       }:
       {
         home.file = {
+          autostart-solaar = {
+            enable = true;
+            source = config.lib.file.mkOutOfStoreSymlink "/run/current-system/sw/share/applications/solaar.desktop";
+            target = "${config.xdg.configHome}/autostart/solaar.desktop";
+          };
           desktop-entry-dxvk = {
             enable = true;
             text = ''
