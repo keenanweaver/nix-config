@@ -198,6 +198,7 @@ in
     mangohud.enable = true;
     nonfree.enable = true;
     obs.enable = true;
+    solaar.enable = true;
     steam.enable = true;
     sunshine.enable = false;
     timidity.enable = true;
@@ -242,12 +243,6 @@ in
     };
 
     hardware = {
-      logitech = {
-        wireless = {
-          enable = true;
-          enableGraphical = true;
-        };
-      };
       new-lg4ff.enable = true;
       uinput.enable = true;
       #xone.enable = true;
@@ -350,11 +345,6 @@ in
       }:
       {
         home.file = {
-          autostart-solaar = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "/run/current-system/sw/share/applications/solaar.desktop";
-            target = "${config.xdg.configHome}/autostart/solaar.desktop";
-          };
           desktop-entry-dxvk = {
             enable = true;
             text = ''

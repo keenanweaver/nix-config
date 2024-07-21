@@ -41,6 +41,7 @@
     ./nvim
     ./obs
     ./ripgrep
+    ./solaar
     ./ssh
     ./starship
     ./steam

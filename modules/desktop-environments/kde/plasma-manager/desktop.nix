@@ -2,26 +2,8 @@
 {
   imports = [ ./default.nix ];
   home-manager.users.${username} =
-    { pkgs, ... }:
     {
       programs.plasma = {
-        /*
-          hotkeys = {
-                 commands = {
-                   "gsr-save-replay" = {
-                     name = "Save GSR Replay";
-                     key = "Meta+Ctrl+|";
-                     command = "${pkgs.gsr-save-replay}";
-                     comment = "Save GPU Screen Recorder replay";
-                   };
-                 };
-               };
-        */
-        /*
-          shortcuts = {
-                 "services/services.gsr-save-replay.sh.desktop"."_launch" = "Meta+Ctrl+|";
-               };
-        */
         #extraWidgets = [ ];
         panels = [
           # Primary
@@ -95,7 +77,7 @@
                     "org.kde.plasma.networkmanagement"
                     "org.kde.plasma.clipboard"
                     "org.kde.kdeconnect"
-                    "solaar"
+                    "indicator-solaar"
                     "tray-id" # Sunshine
                     #"chrome_status_icon_1" # Armcord
                   ];
