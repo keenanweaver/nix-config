@@ -180,19 +180,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                	exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -201,19 +197,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec ${bin-export} "$@"
+                else
+                	exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -222,19 +214,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "archipelago-db";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "archipelago-db" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                	exec '${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -243,19 +231,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -264,19 +248,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "daikatana-db";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "daikatana-db" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -285,20 +265,16 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-exodos";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  export GTK_USE_PORTAL=0
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                export GTK_USE_PORTAL=0
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -307,19 +283,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-exodos";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -328,19 +300,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-exodos";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/mnt/crusader/eXo/eXoDOS/exogui/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/mnt/crusader/eXo/eXoDOS/exogui/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/mnt/crusader/eXo/eXoDOS/exogui/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/mnt/crusader/eXo/eXoDOS/exogui/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -349,20 +317,16 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  export GTK_USE_PORTAL=0
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                export GTK_USE_PORTAL=0
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -371,19 +335,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -392,19 +352,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -413,19 +369,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -434,19 +386,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -455,19 +403,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -476,19 +420,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -497,19 +437,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -518,20 +454,16 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  export GTK_USE_PORTAL=0
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                export GTK_USE_PORTAL=0
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -540,19 +472,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -561,19 +489,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -582,19 +506,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -603,19 +523,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -624,19 +540,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -645,19 +557,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
             (
               let
@@ -666,19 +574,15 @@ in
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
-              writeShellApplication {
-                name = "${bin-export}";
-                runtimeInputs = [ db-package ];
-                text = ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec distrobox-enter -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                '';
-              }
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                  exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                  exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
             )
           ];
         xdg = {
