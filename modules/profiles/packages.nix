@@ -27,18 +27,7 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    boot = {
-      binfmt.registrations.appimage = {
-        wrapInterpreterInShell = false;
-        interpreter = "${pkgs.appimage-run}/bin/appimage-run";
-        recognitionType = "magic";
-        offset = 0;
-        mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
-        magicOrExtension = ''\x7fELF....AI\x02'';
-      };
-    };
     environment = {
-      systemPackages = with pkgs; [ appimage-run ];
       # Writes current *system* packages to /etc/current-system/packages
       etc."packages".text =
         let
@@ -47,6 +36,10 @@ in
           formatted = builtins.concatStringsSep "\n" sortedUnique;
         in
         formatted;
+    };
+    programs.appimage = {
+      enable = true;
+      binfmt = true;
     };
     home-manager.users.${username} =
       { lib, pkgs, ... }:
