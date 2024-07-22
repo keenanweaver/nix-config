@@ -80,11 +80,6 @@ in
       };
       /*
         xserver = {
-             enable = true;
-             displayManager.setupCommands = ''
-               ${pkgs.xorg.xhost}/bin/xhost +local:
-             ''; # Distrobox games
-             excludePackages = with pkgs; [ xterm ];
              xkb = {
                layout = "mine,us";
                # https://github.com/nagy/dotfiles/blob/bbc152df487086aa6fea10c69ad9341831f1595a/modules/desktop.nix#L17

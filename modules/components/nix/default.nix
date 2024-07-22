@@ -99,7 +99,6 @@ in
             "/home/${username}/.local/bin"
             "/var/lib/flatpak/exports/bin"
             "${config.xdg.dataHome}/flatpak/exports/bin"
-            "${config.xdg.dataHome}/distrobox/exports/bin"
           ];
           sessionVariables = {
             NIXOS_OZONE_WL = "1";
@@ -111,20 +110,12 @@ in
           shellAliases = {
             b = "bat --color=always -pp";
             bb = "bat --color=always";
-            #bd = "batdiff";
-            #bg = "batgrep";
-            #bm = "batman";
-            #bp = "batpipe";
             db = "distrobox";
             dbe = "db enter";
             l = "lsd -la --group-dirs=first";
             ls = "lsd -l --group-dirs=first";
-            #nn = "nnn -dHix";
-            #n = "micro";
             nv = "nvim";
-            #nfc = "nix flake check /mnt/crusader/Projects/GitHub/nix-config --no-build";
             ngc = "nh clean all";
-            #nhr = "nh home switch";
             nor = "nh os switch";
             npr = "nix run nixpkgs#nixpkgs-review -- pr";
             psr = "plasmashell --replace & disown";
@@ -133,7 +124,6 @@ in
             sudo = "sudo ";
             up = "topgrade";
             wget = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
-            wttr = "curl wttr.in/Omaha\\?format=4";
           };
         };
         nix = {
