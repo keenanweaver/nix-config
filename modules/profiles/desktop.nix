@@ -68,16 +68,25 @@ in
       {
         home.packages = with pkgs; [
           apostrophe
-          (writeShellScriptBin "bootstrap-baremetal" ''
-            fd 'rustdesk' /home/${username}/Downloads -e flatpak -x rm {}
-            curl https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.flatpak$")).browser_download_url' | wget -i- -N -P /home/${username}/Downloads
-            fd 'rustdesk' /home/${username}/Downloads -e flatpak -x flatpak install -u -y
-            distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
-            ${lib.optionalString vars.gaming ''
-              distrobox enter bazzite-arch-exodos -- bash -l -c "${config.xdg.configHome}/distrobox/bootstrap-ansible.sh"
-              distrobox enter bazzite-arch-gaming -- bash -l -c "${config.xdg.configHome}/distrobox/bootstrap-ansible.sh"
-              /home/${username}/.local/bin/game-stuff.sh''}
-          '')
+          (writeShellApplication {
+            name = "bootstrap-baremetal";
+            runtimeInputs = with pkgs; [
+              curl
+              distrobox_git
+              fd
+              findutils
+              flatpak
+              jq
+              xh
+            ];
+            text = ''
+              fd 'rustdesk' /home/${username}/Downloads -e flatpak -x rm {}
+              curl https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.flatpak$")).browser_download_url' | xargs xh get -d -o /home/${username}/Downloads/rustdesk.flatpak
+              fd 'rustdesk' /home/${username}/Downloads -e flatpak -x flatpak install -u -y
+              distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
+              ${lib.optionalString vars.gaming ''script-game-stuff''}
+            '';
+          })
           cyanrip
           mousai
           neo

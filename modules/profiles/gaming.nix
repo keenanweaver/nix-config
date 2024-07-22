@@ -200,7 +200,7 @@ in
     obs.enable = true;
     solaar.enable = true;
     steam.enable = true;
-    sunshine.enable = false;
+    sunshine.enable = true;
     timidity.enable = true;
     vkbasalt.enable = true;
     zerotier.enable = true;
@@ -273,10 +273,10 @@ in
       };
       #joycond.enable = true;
       udev = {
-        packages = [
-          pkgs.game-devices-udev-rules
+        packages = with pkgs; [
+          game-devices-udev-rules
           # Dualsense touchpad https://wiki.archlinux.org/title/Gamepad#Motion_controls_taking_over_joypad_controls_and/or_causing_unintended_input_with_joypad_controls
-          (pkgs.writeTextFile {
+          (writeTextFile {
             name = "51-disable-DS3-and-DS4-motion-controls.rules";
             text = ''
               SUBSYSTEM=="input", ATTRS{name}=="*Controller Motion Sensors", RUN+="${pkgs.coreutils}/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
@@ -392,61 +392,85 @@ in
         home.packages =
           with pkgs;
           [
-            (writeShellScriptBin "script-game-stuff" ''
-              ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
-              steamtinkerlaunch compat add
-              steamtinkerlaunch
-              sed -i -e 's/-SKIPINTDEPCHECK="0"/-SKIPINTDEPCHECK="1"/g' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
-              ## SheepShaver
-              curl https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | wget -i- -N -P /home/${username}/.local/bin
-              ## MoonDeck Buddy
-              curl https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | wget -i- -N -P /home/${username}/.local/bin
-              ## Conty
-              curl https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | wget -i- -N -P /home/${username}/.local/bin
-              chmod +x /home/${username}/.local/bin/conty_lite.sh
-            '')
-            (writeShellScriptBin "script-pipewire-sink-helper" ''
-              # Compiled from
-              # https://unix.stackexchange.com/questions/622987/send-music-from-specific-application-to-certain-sound-output-via-command-line
-              # https://bbs.archlinux.org/viewtopic.php?pid=1693617#p1693617
-              # https://forums.linuxmint.com/viewtopic.php?t=328616
-              # Set switches
-              app=$1
-              out=$2
+            (writeShellApplication {
+              name = "script-game-stuff";
+              runtimeInputs = [
+                coreutils
+                curl
+                findutils
+                jq
+                sd
+                (steamtinkerlaunch.overrideAttrs (o: {
+                  src = inputs.steamtinkerlaunch-master;
+                }))
+                xh
+              ];
+              text = ''
+                ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
+                steamtinkerlaunch compat add
+                steamtinkerlaunch
+                ## SheepShaver
+                sd '-SKIPINTDEPCHECK="0"' '-SKIPINTDEPCHECK="1"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
+                curl https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o /home/${username}/.local/bin/sheepshaver.appimage
+                ## MoonDeck Buddy
+                curl https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o /home/${username}/.local/bin/moondeckbuddy.appimage
+                ## Conty
+                curl https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o /home/${username}/.local/bin/conty_lite.sh
+                chmod +x /home/${username}/.local/bin/conty_lite.sh
+              '';
+            })
+            /*
+              (writeShellApplication {
+                         name = "script-pipewire-sink-helper";
+                         runtimeInputs = [
+                           coreutils
+                           perl
+                           pulseaudio
+                         ];
+                         text = ''
+                           # Compiled from
+                           # https://unix.stackexchange.com/questions/622987/send-music-from-specific-application-to-certain-sound-output-via-command-line
+                           # https://bbs.archlinux.org/viewtopic.php?pid=1693617#p1693617
+                           # https://forums.linuxmint.com/viewtopic.php?t=328616
+                           # Set switches
+                           app=$1
+                           out=$2
 
-              # Collect all sinks
-              sinkList=$(pactl list sinks | tr '\n' '\r' | perl -pe 's/Sink #([0-9]+).+?device\.description = "([^\r]+)"\r.+?(?=Sink #|$)/\1:"\2",/g' | tr '\r' '\n')
-              IFS="," read -ra sinksArray <<< "$sinkList"
+                           # Collect all sinks
+                           sinkList=$(pactl list sinks | tr '\n' '\r' | perl -pe 's/Sink #([0-9]+).+?device\.description = "([^\r]+)"\r.+?(?=Sink #|$)/\1:"\2",/g' | tr '\r' '\n')
+                           IFS="," read -ra sinksArray <<< "$sinkList"
 
-              # Is our Hi-fi sink available? → Use for loop with indexes to handle spaces in names
-              for ((i = 0; i < ''${#sinksArray[@]}; i++)); do
-                sink="''${sinksArray[$i]}"
-                echo "sink found: $sink"
+                           # Is our Hi-fi sink available? → Use for loop with indexes to handle spaces in names
+                           for ((i = 0; i < ''${#sinksArray[@]}; i++)); do
+                             sink="''${sinksArray[$i]}"
+                             echo "sink found: $sink"
 
-                # Search for this output device's name
-                [[ "$sink" =~ "Game" ]] && hifiSinkIndex=$(echo "$sink" | cut -d':' -f1)
-              done
+                             # Search for this output device's name
+                             [[ "$sink" =~ "Game" ]] && hifiSinkIndex=$(echo "$sink" | cut -d':' -f1)
+                           done
 
-              if [[ $hifiSinkIndex ]]; then
-                echo "Game has index $hifiSinkIndex"
+                           if [[ $hifiSinkIndex ]]; then
+                             echo "Game has index $hifiSinkIndex"
 
-                # Collect all sound streams
-                musicSourcesList=$(pactl list sink-inputs | tr '\n' '\r' | perl -pe 's/Sink Input #([0-9]+).+?application\.process\.binary = "([^\r]+)"\r.+?(?=Sink Input #|$)/\1:\2\r/g' | tr '\r' '\n')
+                             # Collect all sound streams
+                             musicSourcesList=$(pactl list sink-inputs | tr '\n' '\r' | perl -pe 's/Sink Input #([0-9]+).+?application\.process\.binary = "([^\r]+)"\r.+?(?=Sink Input #|$)/\1:\2\r/g' | tr '\r' '\n')
 
-                for soundSource in $musicSourcesList; do
-                  binary=$(echo "$soundSource" | cut -d':' -f2);
-                  index=$(echo "$soundSource" | cut -d':' -f1);
-                  echo "index: $index, binary: $binary";
+                             for soundSource in $musicSourcesList; do
+                               binary=$(echo "$soundSource" | cut -d':' -f2);
+                               index=$(echo "$soundSource" | cut -d':' -f1);
+                               echo "index: $index, binary: $binary";
 
-                  if [[ "$binary" == "wine64-preloader" ]]; then
-                    echo "moving $binary output to $hifiSinkIndex"
-                    pactl move-sink-input "$index" "$hifiSinkIndex"
-                  fi
-                done
-              else
-                echo "Hi-fi sink was not found"
-              fi
-            '')
+                               if [[ "$binary" == "wine64-preloader" ]]; then
+                                 echo "moving $binary output to $hifiSinkIndex"
+                                 pactl move-sink-input "$index" "$hifiSinkIndex"
+                               fi
+                             done
+                           else
+                             echo "Hi-fi sink was not found"
+                           fi
+                         '';
+                       })
+            */
           ]
           ++ lib.flatten (lib.attrValues p);
         # Move config files out of home

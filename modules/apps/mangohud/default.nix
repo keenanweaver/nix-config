@@ -113,13 +113,13 @@ in
             text = ''
               #!/usr/bin/env bash
               # OS
-              grep -w PRETTY_NAME /etc/os-release | cut -d '=' -f2 | tr -d '"' > ${config.xdg.configHome}/MangoHud/vars
+              ${pkgs.ripgrep}/bin/rg -w PRETTY_NAME /etc/os-release | ${pkgs.coreutils}/bin/cut -d '=' -f2 | ${pkgs.coreutils}/bin/tr -d '"' > ${config.xdg.configHome}/MangoHud/vars
               # Kernel
-              echo $(uname -r) >> ${config.xdg.configHome}/MangoHud/vars
+              ${pkgs.coreutils}/bin/echo $(uname -r) >> ${config.xdg.configHome}/MangoHud/vars
               # CPU
-              lscpu | grep -oP '(?<=Model\sname:).*' | xargs >> ${config.xdg.configHome}/MangoHud/vars
+              #${pkgs.util-linux}/bin/lscpu | ${pkgs.ripgrep}/bin/rg -oP '(?<=Model\sname:).*' | ${pkgs.findutils}/bin/xargs >> ${config.xdg.configHome}/MangoHud/vars
               # GPU
-              glxinfo | grep -oP '(?<=Device: )(.*?)(?=\()' >> ${config.xdg.configHome}/MangoHud/vars
+              #${pkgs.glxinfo}/bin/glxinfo | ${pkgs.ripgrep}/bin/rg -oP '(?<=Device: )(.*?)(?=\()' | ${pkgs.findutils}/bin/xargs >> ${config.xdg.configHome}/MangoHud/vars
             '';
             target = "${config.xdg.configHome}/MangoHud/get-vars.sh";
             executable = true;

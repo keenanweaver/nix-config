@@ -15,7 +15,7 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} =
-      { config, vars, ... }:
+      { config, vars, pkgs, ... }:
       {
         programs.topgrade = {
           enable = true;
@@ -34,8 +34,8 @@ in
               ];
             };
             pre_commands = {
-              "Delete conflicting HM files" = "rm --force ${config.xdg.configHome}/gtk-2.0/gtkrc ${config.xdg.configHome}/mimeapps.list"; #${config.xdg.configHome}/fontconfig/conf.d/10-hm-fonts.conf
-              "NixOS Rebuild" = "nh os switch --update";
+              "Delete conflicting HM files" = "${pkgs.coreutils}/bin/rm --force ${config.xdg.configHome}/gtk-2.0/gtkrc ${config.xdg.configHome}/mimeapps.list"; #${config.xdg.configHome}/fontconfig/conf.d/10-hm-fonts.conf
+              "NixOS Rebuild" = "${pkgs.nh}/bin/nh os switch --update";
             };
             commands = { };
             post_commands =
