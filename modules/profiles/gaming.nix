@@ -375,10 +375,24 @@ in
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
             target = "${config.xdg.configHome}/dosbox/mt32-roms";
           };
-          script-get-game-stuff = {
+          # Use Bottles to manage Wine runners for Heroic and Lutris
+          wine-links-heroic = {
             enable = true;
-            text = ''
-              #!/usr/bin/env bash
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/bottles/runners";
+            target = "${config.xdg.configHome}/heroic/tools/wine";
+          };
+          wine-links-lutris = {
+            enable = true;
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/bottles/runners";
+            target = "${config.xdg.dataHome}/lutris/runners/wine";
+          };
+        };
+        home.packages =
+          with pkgs;
+          [
+            (writeShellScriptBin "script-game-stuff" ''
               ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
               steamtinkerlaunch compat add
               steamtinkerlaunch
@@ -390,13 +404,8 @@ in
               ## Conty
               curl https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | wget -i- -N -P /home/${username}/.local/bin
               chmod +x /home/${username}/.local/bin/conty_lite.sh
-            '';
-            target = "/home/${username}/.local/bin/game-stuff.sh";
-          };
-          script-pipewire-sink-helper = {
-            enable = true;
-            text = ''
-              #!/usr/bin/env bash
+            '')
+            (writeShellScriptBin "script-pipewire-sink-helper" ''
               # Compiled from
               # https://unix.stackexchange.com/questions/622987/send-music-from-specific-application-to-certain-sound-output-via-command-line
               # https://bbs.archlinux.org/viewtopic.php?pid=1693617#p1693617
@@ -437,24 +446,9 @@ in
               else
                 echo "Hi-fi sink was not found"
               fi
-            '';
-            target = "/home/${username}/.local/bin/sink-helper";
-          };
-          # Use Bottles to manage Wine runners for Heroic and Lutris
-          wine-links-heroic = {
-            enable = true;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/bottles/runners";
-            target = "${config.xdg.configHome}/heroic/tools/wine";
-          };
-          wine-links-lutris = {
-            enable = true;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/bottles/runners";
-            target = "${config.xdg.dataHome}/lutris/runners/wine";
-          };
-        };
-        home.packages = lib.flatten (lib.attrValues p);
+            '')
+          ]
+          ++ lib.flatten (lib.attrValues p);
         # Move config files out of home
         programs.boxxy = {
           rules = [

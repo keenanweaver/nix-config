@@ -66,28 +66,18 @@ in
         ...
       }:
       {
-        home.file = {
-          script-bootstrap-baremetal = {
-            enable = true;
-            text =
-              ''
-                #!/usr/bin/env bash
-                fd 'rustdesk' /home/${username}/Downloads -e flatpak -x rm {}
-                curl https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.flatpak$")).browser_download_url' | wget -i- -N -P /home/${username}/Downloads
-                fd 'rustdesk' /home/${username}/Downloads -e flatpak -x flatpak install -u -y
-                distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
-              ''
-              + lib.optionalString vars.gaming ''
-                distrobox enter bazzite-arch-exodos -- bash -l -c "${config.xdg.configHome}/distrobox/bootstrap-ansible.sh"
-                distrobox enter bazzite-arch-gaming -- bash -l -c "${config.xdg.configHome}/distrobox/bootstrap-ansible.sh"
-                /home/${username}/.local/bin/game-stuff.sh
-              '';
-            target = ".local/bin/bootstrap-baremetal.sh";
-            executable = true;
-          };
-        };
         home.packages = with pkgs; [
           apostrophe
+          (writeShellScriptBin "bootstrap-baremetal" ''
+            fd 'rustdesk' /home/${username}/Downloads -e flatpak -x rm {}
+            curl https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.flatpak$")).browser_download_url' | wget -i- -N -P /home/${username}/Downloads
+            fd 'rustdesk' /home/${username}/Downloads -e flatpak -x flatpak install -u -y
+            distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
+            ${lib.optionalString vars.gaming ''
+              distrobox enter bazzite-arch-exodos -- bash -l -c "${config.xdg.configHome}/distrobox/bootstrap-ansible.sh"
+              distrobox enter bazzite-arch-gaming -- bash -l -c "${config.xdg.configHome}/distrobox/bootstrap-ansible.sh"
+              /home/${username}/.local/bin/game-stuff.sh''}
+          '')
           cyanrip
           mousai
           neo
