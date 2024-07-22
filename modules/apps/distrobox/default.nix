@@ -587,7 +587,7 @@ in
             archipelago = lib.mkIf cfg.gaming {
               name = "Archipelago";
               comment = "Multiworld multi-game randomizer";
-              exec = "archipelago";
+              exec = "archipelago-db";
               icon = "archipelago";
               categories = [
                 "Game"
@@ -597,7 +597,7 @@ in
             bizhawk = lib.mkIf cfg.gaming {
               name = "bizhawk";
               comment = "A multi-platform emulator with full re-recording support and Lua scripting";
-              exec = "bizhawk";
+              exec = "bizhawk-db";
               icon = "bizhawk";
               categories = [
                 "Game"
@@ -607,7 +607,7 @@ in
             dosbox = lib.mkIf cfg.gaming {
               name = "dosbox-staging";
               comment = "DOSBox Staging";
-              exec = "dosbox";
+              exec = "dosbox-db";
               icon = "dosbox-staging";
               categories = [ "Game" ];
               noDisplay = false;
@@ -619,7 +619,7 @@ in
             exogui = lib.mkIf cfg.gaming {
               name = "exogui";
               comment = "eXoDOS Launcher";
-              exec = "exogui";
+              exec = "exogui-db";
               icon = "distributor-logo-ms-dos";
               categories = [ "Game" ];
               noDisplay = false;
@@ -631,14 +631,14 @@ in
             faugus = lib.mkIf cfg.gaming {
               name = "Faugus Launcher";
               comment = "Faugus Launcher";
-              exec = "faugus-launcher";
+              exec = "faugus-launcher-db";
               icon = "faugus-launcher";
               categories = [ "Game" ];
             };
             mesen2 = lib.mkIf cfg.gaming {
               name = "Mesen2";
               comment = "Multi-system emulator";
-              exec = "mesen2";
+              exec = "mesen2-db";
               icon = "mesen";
               categories = [
                 "Game"
@@ -648,7 +648,7 @@ in
             nuked-sc55 = lib.mkIf cfg.gaming {
               name = "Nuked SC-55";
               comment = "Roland SC-55 emulator";
-              exec = "nuked-sc55";
+              exec = "nuked-sc55-db";
               categories = [ "Game" ];
               noDisplay = false;
               startupNotify = true;
@@ -656,7 +656,7 @@ in
             portproton = lib.mkIf cfg.gaming {
               name = "PortProton";
               comment = "Proton launcher";
-              exec = "portproton";
+              exec = "portproton-db";
               icon = "${config.xdg.dataHome}/PortProton/data/img/w.png";
               categories = [ "Game" ];
               noDisplay = false;
