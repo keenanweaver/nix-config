@@ -122,16 +122,45 @@ in
               ];
           };
         };
+        /*
+          pipewire-pulse = {
+                 # Switch to device on connect https://wiki.archlinux.org/title/PipeWire#Sound_does_not_automatically_switch_when_connecting_a_new_device
+                 "switch-on-connect" = {
+                   "pulse.cmd" = [
+                     {
+                       "cmd" = "load-module";
+                       "args" = "module-always-sink";
+                       flags = [ ];
+                     }
+                     {
+                       "cmd" = "load-module";
+                       "args" = "module-switch-on-connect";
+                     }
+                   ];
+                 };
+               };
+        */
       };
       wireplumber = {
         enable = true;
         extraConfig = {
+          # Disable HDMI audio
+          "51-disable-hdmi-audio" = {
+            "monitor.alsa.rules" = [
+              {
+                matches = [ { "device.name" = "~alsa_output.*.hdmi.*"; } ];
+                actions.update-props = {
+                  "device.disabled" = true;
+                };
+              }
+            ];
+          };
           # Static/crackling fix https://wiki.archlinux.org/title/PipeWire#Noticeable_audio_delay_or_audible_pop/crack_when_starting_playback
           "51-disable-suspension" = {
             "monitor.alsa.rules" = [
               {
                 matches = [
-                  { "node.name" = "~alsa_input.*"; }
+                  #{ "node.name" = "~alsa_input.*"; }
                   { "node.name" = "~alsa_output.*"; }
                 ];
                 actions.update-props = {
