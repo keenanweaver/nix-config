@@ -20,7 +20,7 @@
         "vm.swappiness" = 10;
       };
     };
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_6_9;
     kernelParams = [
       "quiet"
       "rd.systemd.show_status=false"
