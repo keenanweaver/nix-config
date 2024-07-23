@@ -56,34 +56,44 @@
 
   services = {
     pipewire = {
-      configPackages = [
-        (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-clock-allowed-rates.conf" ''
-          context.properties = {
-              default.clock.allowed-rates = [ 44100 48000 88200 96000 ]
-          }
-        '')
-        (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-loopback-mono-mic.conf" ''
-          context.modules = [
-              {   name = libpipewire-module-loopback
-                  args = {
-                          node.description = "Samson G-Track Pro [MONO]"
-                          capture.props = {
-                              node.name = "capture.mono-microphone"
-                              audio.position = [ FL ]
-                              target.object = "alsa_input.usb-Samson_Technologies_Samson_G-Track_Pro_D0B3381619112B00-00.analog-stereo"
-                              stream.dont-remix = true
-                              node.passive = true
-                          }
-                          playback.props = {
-                              media.class = "Audio/Source"
-                              node.name = "mono-microphone"
-                              audio.position = [ MONO ]
-                          }
-                      }
+      extraConfig = {
+        pipewire = {
+          "10-clock-allowed-rates" = {
+            "context.properties" = {
+              # To make DAC properly work
+              "default.clock.allowed-rates" = [
+                44100
+                48000
+                88200
+                96000
+              ];
+            };
+          };
+          # Create mono-only microphone output
+          "10-loopback-mono-mic" = {
+            "context.modules" = [
+              {
+                "name" = "libpipewire-module-loopback";
+                "args" = {
+                  "node.description" = "Samson G-Track Pro [MONO]";
+                  "capture.props" = {
+                    "node.name" = "capture.mono-microphone";
+                    "audio.position" = [ "FL" ];
+                    "target.object" = "alsa_input.usb-Samson_Technologies_Samson_G-Track_Pro_D0B3381619112B00-00.analog-stereo";
+                    "stream.dont-remix" = true;
+                    "node.passive" = true;
+                  };
+                  "playback.props" = {
+                    "media.class" = "Audio/Source";
+                    "node.name" = "mono-microphone";
+                    "audio.position" = [ "MONO" ];
+                  };
+                };
               }
-          ]
-        '')
-      ];
+            ];
+          };
+        };
+      };
     };
     /*
       udev = {

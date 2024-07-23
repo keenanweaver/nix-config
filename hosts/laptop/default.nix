@@ -51,7 +51,21 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  #programs.auto-cpufreq.enable = true;
+  /*
+    programs.auto-cpufreq = {
+      enable = true;
+      settings = {
+        charger = {
+          governor = "performance";
+          turbo = "auto";
+        };
+        battery = {
+          governor = "powersave";
+          turbo = "auto";
+        };
+      };
+    };
+  */
 
   /*
     services = {

@@ -25,15 +25,28 @@ in
       in
       {
         home.packages = with pkgs; [
-          (writeShellScriptBin "gsr-save-replay" ''
-            ${pkgs.killall}/bin/killall -SIGUSR1 gpu-screen-recorder
-            ${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay saved to <br /> ${outputDir}' -i com.dec05eba.gpu_screen_recorder -a 'GPU Screen Recorder'
-          '')
-          (writeShellScriptBin "gsr-stop-replay" ''
-            systemctl --user stop gpu-screen-recorder.service
-            ${pkgs.killall}/bin/killall -SIGINT gpu-screen-recorder
-            ${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay stopped' -i com.dec05eba.gpu_screen_recorder -a 'GPU Screen Recorder'
-          '')
+          (writeShellApplication {
+            name = "gsr-save-replay";
+            runtimeInputs = [
+              killall
+              libnotify
+            ];
+            text = ''
+              killall -SIGUSR1 gpu-screen-recorder
+              notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay saved to <br /> ${outputDir}' -i com.dec05eba.gpu_screen_recorder -a 'GPU Screen Recorder'
+            '';
+          })
+          (writeShellApplication {
+            name = "gsr-stop-replay";
+            runtimeInputs = [
+              killall
+              libnotify
+            ];
+            text = ''
+              killall -SIGINT gpu-screen-recorder
+              notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay stopped' -i com.dec05eba.gpu_screen_recorder -a 'GPU Screen Recorder'
+            '';
+          })
         ];
         programs.plasma = {
           hotkeys = {
