@@ -497,6 +497,11 @@ in
         services = {
           flatpak = {
             overrides = {
+              "com.fightcade.Fightcade" = {
+                Environment = {
+                  GTK_THEME = "${GTK-THEME}";
+                };
+              };
               "one.ablaze.floorp" = {
                 Environment = {
                   GTK_THEME = "${GTK-THEME}";
