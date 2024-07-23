@@ -161,9 +161,6 @@
             "Effect-blur"."BlurStrength" = 12;
             "Effect-windowview"."BorderActivateAll" = 9;
             "MouseBindings"."CommandTitlebarWheel" = "Change Opacity";
-            "NightColor"."Active" = true;
-            "NightColor"."MorningBeginFixed" = 800;
-            "NightColor"."NightTemperature" = 3300;
             "Plugins"."MoveWindowToCenterEnabled" = true;
             #"Plugins"."alwaysopenonprimaryscreen" = "Enabled";
             #"Plugins"."center-new-windowsEnabled" = true;
@@ -207,6 +204,23 @@
             translucency.enable = true;
             windowOpenClose.animation = "glide";
             wobblyWindows.enable = false;
+          };
+          nightLight = {
+            enable = true;
+            mode = "times";
+            location = {
+              latitude = "41.205500";
+              longitude = "-96.208814";
+            };
+            temperature = {
+              day = 6500;
+              night = 3300;
+            };
+            time = {
+              morning = "08:00";
+              evening = "21:00";
+            };
+            transitionTime = 30;
           };
           titlebarButtons = {
             left = null;
@@ -252,6 +266,12 @@
             };
           };
         };
+        powerdevil = {
+          autoSuspend.action = "nothing";
+          turnOffDisplay = {
+            idleTimeout = 900;
+          };
+        };
         spectacle.shortcuts = {
           captureActiveWindow = "Meta+Print";
           captureCurrentMonitor = "Print";
@@ -261,9 +281,11 @@
           launch = "Meta+S";
           launchWithoutCapturing = "Meta+Alt+S";
         };
-        windows = {
-          allowWindowsToRememberPositions = true;
-        };
+        /*
+          windows = {
+                 allowWindowsToRememberPositions = true;
+               };
+        */
         workspace = {
           clickItemTo = "select";
         };
