@@ -17,6 +17,7 @@ in
   };
   config = lib.mkIf cfg.enable {
     users = {
+      defaultUserShell = pkgs.zsh;
       mutableUsers = true;
       users = {
         "${username}" = {
@@ -36,7 +37,6 @@ in
           openssh.authorizedKeys.keys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN76CGOScFN8M/6oDyry/iP95DF0bTHixmk73fKsRP+f keenanweaver@protonmail.com"
           ];
-          shell = pkgs.zsh;
         };
       };
     };
