@@ -131,6 +131,10 @@
       url = "github:taj-ny/kwin-effects-forceblur";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    kwin-effects-kinetic = {
+      url = "github:gurrgur/kwin-effects-kinetic";
+      flake = false;
+    };
   };
   outputs =
     { nixpkgs, home-manager, ... }@inputs:

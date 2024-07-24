@@ -1,8 +1,22 @@
 { username, ... }:
 {
   home-manager.users.${username} =
-    { username, pkgs, ... }:
     {
+      username,
+      config,
+      inputs,
+      pkgs,
+      ...
+    }:
+    {
+      home.file = {
+        kinetic-effects = {
+          enable = true;
+          recursive = true;
+          source = "${inputs.kwin-effects-kinetic}";
+          target = "${config.xdg.dataHome}/kwin/effects";
+        };
+      };
       programs.kate = {
         lsp.customServers = {
           css = {
@@ -164,9 +178,17 @@
             "Plugins"."MoveWindowToCenterEnabled" = true;
             #"Plugins"."alwaysopenonprimaryscreen" = "Enabled";
             #"Plugins"."center-new-windowsEnabled" = true;
+            "Plugins"."forceblurEnabled" = true;
             "Plugins"."kinetic_fadingpopupsEnabled" = true;
             "Plugins"."kinetic_scaleEnabled" = true;
             "Plugins"."kinetic_squashEnabled" = true;
+            "Plugins"."kwin4_effect_fadingpopups_kineticEnabled" = true;
+            "Plugins"."kwin4_effect_maximizeEnabled" = false;
+            "Plugins"."kwin4_effect_maximize_kineticEnabled" = true;
+            "Plugins"."kwin4_effect_minimize_kineticEnabled" = true;
+            "Plugins"."kwin4_effect_open_close_kineticEnabled" = true;
+            "Plugins"."kwin4_effect_shapecornersEnabled" = false;
+            "Plugins"."kwin4_effect_squashEnabled" = false;
             "Plugins"."restoreToScreenEnabled" = true;
             #"Script-alwaysopenonprimaryscreen"."classList" = "steam\nsteamwebhelper\nmumble\ninfo.mumble.Mumble\nstrawberry\nobs\narmcord\nsignal";
             "Script-forceblur"."blurExceptMatching" = true;
@@ -186,7 +208,7 @@
         };
         kwin = {
           effects = {
-            blur.enable = true;
+            blur.enable = false;
             desktopSwitching.animation = "slide";
             dimInactive.enable = false;
             dimAdminMode.enable = false;
