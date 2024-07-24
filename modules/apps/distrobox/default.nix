@@ -40,7 +40,7 @@ in
               if vars.gaming then
                 ''
                   [bazzite-arch-exodos]
-                  image=ghcr.io/ublue-os/arch-distrobox:latest
+                  image=ghcr.io/ublue-os/bazzite-arch:latest
                   init=true
                   pull=false
                   replace=false
@@ -48,7 +48,7 @@ in
                   volume="/etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"
 
                   [bazzite-arch-gaming]
-                  image=ghcr.io/ublue-os/arch-distrobox:latest
+                  image=ghcr.io/ublue-os/bazzite-arch:latest
                   init=true
                   pull=false
                   replace=false

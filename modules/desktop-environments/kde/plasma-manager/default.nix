@@ -164,15 +164,10 @@
             "Plugins"."MoveWindowToCenterEnabled" = true;
             #"Plugins"."alwaysopenonprimaryscreen" = "Enabled";
             #"Plugins"."center-new-windowsEnabled" = true;
-            "Plugins"."fadedesktopEnabled" = false;
-            "Plugins"."kwin4_effect_fadingpopupsEnabled" = false;
-            "Plugins"."kwin4_effect_maximizeEnabled" = false;
-            "Plugins"."kwin4_effect_scaleEnabled" = false;
-            "Plugins"."kwin4_effect_squashEnabled" = false;
+            "Plugins"."kinetic_fadingpopupsEnabled" = true;
+            "Plugins"."kinetic_scaleEnabled" = true;
+            "Plugins"."kinetic_squashEnabled" = true;
             "Plugins"."restoreToScreenEnabled" = true;
-            "Plugins"."scaleEnabled" = false;
-            "Plugins"."shakecursorEnabled" = true;
-            "Plugins"."slideEnabled" = true;
             #"Script-alwaysopenonprimaryscreen"."classList" = "steam\nsteamwebhelper\nmumble\ninfo.mumble.Mumble\nstrawberry\nobs\narmcord\nsignal";
             "Script-forceblur"."blurExceptMatching" = true;
             "Script-forceblur"."blurMatching" = false;
@@ -197,12 +192,14 @@
             dimAdminMode.enable = false;
             shakeCursor.enable = true;
             slideBack.enable = false;
-            minimization = {
-              animation = "squash";
-              #duration = 50;
-            };
+            /*
+              minimization = {
+                         #animation = "squash";
+                         #duration = 50;
+                       };
+            */
             translucency.enable = true;
-            windowOpenClose.animation = "glide";
+            #windowOpenClose.animation = "glide";
             wobblyWindows.enable = false;
           };
           nightLight = {
@@ -217,8 +214,8 @@
               night = 3300;
             };
             time = {
-              morning = "08:00";
-              evening = "21:00";
+              morning = "07:30";
+              evening = "20:00";
             };
             transitionTime = 30;
           };
