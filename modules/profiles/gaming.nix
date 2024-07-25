@@ -117,6 +117,7 @@ let
         joystickwake
         makima
         oversteer
+        piper
         sc-controller
         xboxdrv
       ]
@@ -272,6 +273,7 @@ in
         };
       };
       #joycond.enable = true;
+      ratbagd.enable = true;
       udev = {
         packages = with pkgs; [
           game-devices-udev-rules
