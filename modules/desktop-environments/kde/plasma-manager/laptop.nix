@@ -104,6 +104,23 @@
           screen = 0;
         }
       ];
+      window-rules = [
+        {
+          description = "wezterm";
+          match = {
+            window-class = {
+              value = "wezterm-gui";
+              type = "regex";
+            };
+          };
+          apply = {
+            noborder = {
+              value = true;
+              apply = "force";
+            };
+          };
+        }
+      ];
     };
   };
 }
