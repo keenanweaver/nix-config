@@ -101,6 +101,10 @@ in
                   enable = true;
                   autostart = true;
                 };
+                lemminx = {
+                  enable = true;
+                  autostart = true;
+                };
                 lua-ls = {
                   enable = true;
                   autostart = true;

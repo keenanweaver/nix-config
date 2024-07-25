@@ -26,6 +26,7 @@ let
       ms-vscode-remote.remote-containers
       ms-vscode-remote.remote-ssh
       redhat.ansible
+      redhat.vscode-xml
       redhat.vscode-yaml
       rust-lang.rust-analyzer
       skellock.just

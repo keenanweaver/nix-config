@@ -95,6 +95,8 @@ in
             ### YAML ###
             nodePackages.yaml-language-server
             yamllint
+            ### XML ###
+            lemminx
           ]
           ++ lib.optionals cfg.misc [
             jq
