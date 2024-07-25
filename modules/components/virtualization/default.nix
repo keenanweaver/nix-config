@@ -23,7 +23,7 @@ in
         spice-protocol
         virt-manager
         virtiofsd
-        win-virtio
+        virtio-win
         win-spice
       ];
     };
