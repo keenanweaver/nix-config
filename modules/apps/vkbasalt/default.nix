@@ -26,7 +26,7 @@ in
               text = ''
                 depthCapture = off
                 effects = smaa
-                enableOnLaunch = False
+                enableOnLaunch = True
                 lutFile = "${reshade}/textures/lut.png"
                 reshadeTexturePath = "${reshade}/textures"
                 reshadeIncludePath = "${reshade}/shaders"
