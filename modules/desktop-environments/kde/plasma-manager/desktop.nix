@@ -4,6 +4,21 @@
   home-manager.users.${username} = {
     programs.plasma = {
       #extraWidgets = [ ];
+      input = {
+        mice = [
+          {
+            enable = true;
+            name = "Logitech G502 X LS";
+            vendorId = "046d";
+            productId = "409f";
+            leftHanded = false;
+            middleButtonEmulation = false;
+            accelerationProfile = "none";
+            naturalScroll = false;
+            scrollSpeed = 1;
+          }
+        ];
+      };
       panels = [
         # Primary
         {

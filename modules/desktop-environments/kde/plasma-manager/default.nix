@@ -206,7 +206,17 @@
             "systemsettings_sidebar_mode"."HighlightNonDefaultSettings" = true;
           };
         };
+        input = {
+          keyboard = {
+            layouts = [ "us" ];
+            numlockOnStartup = "off";
+            repeatDelay = 250;
+            repeatRate = 25;
+          };
+        };
         kwin = {
+          cornerBarrier = false;
+          edgeBarrier = 0;
           effects = {
             blur.enable = false;
             desktopSwitching.animation = "slide";
