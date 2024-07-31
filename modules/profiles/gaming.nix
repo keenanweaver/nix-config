@@ -398,7 +398,6 @@ in
               name = "script-game-stuff";
               runtimeInputs = [
                 coreutils
-                curl
                 findutils
                 jq
                 sd
@@ -413,11 +412,11 @@ in
                 steamtinkerlaunch
                 ## SheepShaver
                 sd '-SKIPINTDEPCHECK="0"' '-SKIPINTDEPCHECK="1"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
-                curl https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o /home/${username}/.local/bin/sheepshaver.appimage
+                xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o /home/${username}/.local/bin/sheepshaver.appimage
                 ## MoonDeck Buddy
-                curl https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o /home/${username}/.local/bin/moondeckbuddy.appimage
+                xh https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o /home/${username}/.local/bin/moondeckbuddy.appimage
                 ## Conty
-                curl https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o /home/${username}/.local/bin/conty_lite.sh
+                xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o /home/${username}/.local/bin/conty_lite.sh
                 chmod +x /home/${username}/.local/bin/conty_lite.sh
               '';
             })

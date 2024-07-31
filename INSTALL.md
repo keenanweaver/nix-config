@@ -63,11 +63,11 @@ Run `bootstrap-baremetal.sh`
     * `flatpak-install-sys.sh && flatpak-install.sh && flatpak-install-games.sh`
 3. Download other things:
     * Conty:
-      * `curl https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | wget -i- -N -P /home/keenan/.local/bin`
+      * `xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | wget -i- -N -P /home/keenan/.local/bin`
       * `chmod +x /home/keenan/.local/bin/conty_lite.sh`
       * `conty_lite.sh -u`
     * Rustdesk:
-      *  `curl https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | test(".*flatpak$")).browser_download_url' | wget -i- -N -P /home/keenan/Downloads`
+      *  `xh https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | test(".*flatpak$")).browser_download_url' | wget -i- -N -P /home/keenan/Downloads`
       *  `fd 'rustdesk' /home/keenan/Downloads -e flatpak -x flatpak install -u -y`
 4. Set up games. See [GAMES.md](GAMES.md)
 ### Server

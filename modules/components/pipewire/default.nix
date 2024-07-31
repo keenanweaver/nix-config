@@ -25,6 +25,9 @@ in
       pulseaudio
     ];
 
+    # https://github.com/NixOS/nixpkgs/issues/330606
+    #hardware.alsa.enablePersistence = true;
+
     hardware.pulseaudio.enable = false;
 
     security.rtkit.enable = true;

@@ -40,7 +40,7 @@ in
       services.flatpak = {
         #uninstallUnmanaged = true;
         packages = [
-          #"chat.revolt.RevoltDesktop"
+          "chat.revolt.RevoltDesktop"
           #"com.bitwig.BitwigStudio"
           #"com.felipekinoshita.Wildcard"
           "com.georgefb.mangareader"

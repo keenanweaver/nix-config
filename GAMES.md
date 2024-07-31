@@ -90,7 +90,7 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
     , innoextract -g '/mnt/crusader/Games/Other/GOG/xcom_ufo_defense/setup_x-com_ufo_defense_1.2_(28046).exe' -d /home/keenan/.local/share/openxcom/UFO
     , innoextract -g '/mnt/crusader/Games/Other/GOG/xcom_terror_from_the_deep/setup_x-com_terror_from_the_deep_2.1_(28046).exe' -d /home/keenan/.local/share/openxcom/TFTD
     ## Zelda 64
-    curl https://api.github.com/repositories/708994262/releases/latest | jq -r '.assets[] | select(.name | test("Linux-x64-AppImage.zip$")).browser_download_url' | wget -i- -N -P /home/keenan/Games/zelda64
+    xh https://api.github.com/repositories/708994262/releases/latest | jq -r '.assets[] | select(.name | test("Linux-x64-AppImage.zip$")).browser_download_url' | xargs xh get -d -o /home/keenan/Games/zelda64/zelda64.zip
     fd 'Zelda64' -e zip /home/keenan/Games/zelda64 -x ouch d --yes {} -d /home/keenan/Games/zelda64
     fd 'Zelda64' -e zip /home/keenan/Games/zelda64 -x rm {}
     fd 'Zelda64' -e AppImage /home/keenan/Games/zelda64 -x chmod +x {}
