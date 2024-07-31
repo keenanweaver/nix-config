@@ -117,6 +117,7 @@ in
             nv = "nvim";
             ngc = "nh clean all";
             nor = "nh os switch";
+            nos = "optinix get --no-tui | rg 'Name: ' | cut -d' ' -f2 | fzf --preview='optinix get --no-tui '{}''";
             npr = "nix run nixpkgs#nixpkgs-review -- pr";
             psr = "plasmashell --replace & disown";
             rbn = "podman stop -a && systemctl reboot";

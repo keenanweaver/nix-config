@@ -106,6 +106,7 @@ in
             jiq
             jq
             lazydocker
+            mkvtoolnix-cli
             projectm
             streamrip
             yq
@@ -128,10 +129,10 @@ in
             nix-init
             nix-update
             nixfmt-rfc-style
-            #nixpkgs-fmt
             nixpkgs-review
             nixos-shell
             nvd
+            optinix
             statix
           ]
           ++ lib.optionals cfg.system [
