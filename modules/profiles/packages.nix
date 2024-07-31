@@ -99,18 +99,27 @@ in
             lemminx
           ]
           ++ lib.optionals cfg.misc [
+            angle-grinder
+            glow
+            hexyl
+            hyperfine
+            jiq
             jq
+            lazydocker
             projectm
             streamrip
             yq
             ### unix alternatives ###
+            choose # cut
             dogdns # dig
             dua # du
             duf # df
             ouch # compression
             pigz # gz
             procs # ps
+            rclone # rsync
             sd # sed
+            writedisk # dd
             xh # curl
             ## Nix ##
             comma
