@@ -146,7 +146,6 @@ in
           enable = true;
           catppuccin = {
             enable = false;
-            cursor.enable = false;
             size = "standard";
             tweaks = [ "normal" ];
           };
@@ -297,7 +296,7 @@ in
             hicolor-icon-theme
             vivid
             ## GNOME
-            gnome.adwaita-icon-theme
+            adwaita-icon-theme
             gnome.gnome-settings-daemon
             gsettings-desktop-schemas
             gsettings-qt

@@ -19,7 +19,7 @@ in
       # https://reddit.com/r/NixOS/comments/k8yo9e/how_do_you_correcty_setup_a_brother_printer_in/k13rjna/?context=3
       avahi = {
         enable = true;
-        nssmdns = true;
+        nssmdns4 = true;
         openFirewall = true;
       };
       printing = {

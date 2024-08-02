@@ -295,7 +295,7 @@
             };
           };
         };
-        powerdevil = {
+        powerdevil.AC = {
           autoSuspend.action = "nothing";
           turnOffDisplay = {
             idleTimeout = 900;
