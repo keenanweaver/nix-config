@@ -164,7 +164,6 @@ let
         jpsxdec
         lgogdownloader
         mame.tools
-        mkvtoolnix-cli
         mmv
         nsz
         oxyromon

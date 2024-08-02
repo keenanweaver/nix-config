@@ -1,4 +1,4 @@
-{ username, dotfiles, ... }:
+{ username, pkgs, ... }:
 {
   imports = [ ./default.nix ];
   home-manager.users.${username} = {
@@ -30,7 +30,7 @@
               kickoff = {
                 applicationsDisplayMode = "list";
                 compactDisplayStyle = true;
-                icon = "${dotfiles}/Pictures/nix-snowflake-white.svg";
+                icon = with pkgs; "''${nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
                 favoritesDisplayMode = "grid";
                 # pin = true;
                 showActionButtonCaptions = true;
