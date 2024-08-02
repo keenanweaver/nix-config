@@ -30,7 +30,7 @@
               kickoff = {
                 applicationsDisplayMode = "list";
                 compactDisplayStyle = true;
-                icon = with pkgs; "''${nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                icon = with pkgs; "''${nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
                 favoritesDisplayMode = "grid";
                 # pin = true;
                 showActionButtonCaptions = true;
