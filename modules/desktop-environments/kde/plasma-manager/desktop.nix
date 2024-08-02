@@ -25,6 +25,7 @@
           height = 54;
           location = "bottom";
           floating = false;
+          screen = 0;
           widgets = [
             {
               kickoff = {
@@ -84,17 +85,26 @@
               };
             }
             {
-              systemTray.items = {
-                hidden = [
-                  "opensnitch-ui"
-                  "org.kde.plasma.addons.katesessions"
-                  "org.kde.plasma.networkmanagement"
-                  "org.kde.plasma.clipboard"
-                  "org.kde.kdeconnect"
-                  "indicator-solaar"
-                  "tray-id" # Sunshine
-                  #"chrome_status_icon_1" # Armcord
-                ];
+              systemTray = {
+                items = {
+                  configs = {
+                    "org.kde.plasma.volume".config = {
+                      General = {
+                        "showVirtualDevices" = true;
+                      };
+                    };
+                  };
+                  hidden = [
+                    "opensnitch-ui"
+                    "org.kde.plasma.addons.katesessions"
+                    "org.kde.plasma.networkmanagement"
+                    "org.kde.plasma.clipboard"
+                    "org.kde.kdeconnect"
+                    "indicator-solaar"
+                    "tray-id" # Sunshine
+                    #"chrome_status_icon_1" # Armcord
+                  ];
+                };
               };
             }
             {
@@ -107,13 +117,13 @@
             }
             "org.kde.plasma.showdesktop"
           ];
-          screen = 0;
         }
         # Secondary
         {
           height = 54;
           location = "bottom";
           floating = false;
+          screen = 1;
           widgets = [
             {
               iconTasks = {
@@ -194,7 +204,6 @@
             }
             "org.kde.plasma.showdesktop"
           ];
-          screen = 1;
         }
       ];
       window-rules = [

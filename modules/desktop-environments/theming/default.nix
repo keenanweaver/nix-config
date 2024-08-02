@@ -451,7 +451,10 @@ in
               iconTheme = "Papirus-Dark";
               # Cursors
               # plasma-apply-cursortheme --list-themes
-              cursor.theme = "${cursor-theme}";
+              cursor = {
+                size = 24;
+                theme = "${cursor-theme}";
+              };
               # System sounds
               soundTheme = "ocean";
               # Splash Screen

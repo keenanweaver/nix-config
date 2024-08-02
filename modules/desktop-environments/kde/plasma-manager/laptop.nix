@@ -3,6 +3,35 @@
   imports = [ ./default.nix ];
   home-manager.users.${username} = {
     programs.plasma = {
+      input = {
+        mice = [
+          {
+            enable = true;
+            name = "Logitech G903";
+            vendorId = "046d";
+            productId = "4067";
+            leftHanded = false;
+            middleButtonEmulation = false;
+            accelerationProfile = "none";
+            naturalScroll = false;
+            scrollSpeed = 1;
+          }
+        ];
+        touchpads = [
+          {
+            enable = true;
+            name = "DELL0B6B:00 04F3:3259 Touchpad";
+            vendorId = "04f3";
+            productId = "3259";
+            disableWhileTyping = true;
+            leftHanded = false;
+            middleButtonEmulation = false;
+            naturalScroll = true;
+            pointerSpeed = 0;
+            tapToClick = true;
+          }
+        ];
+      };
       panels = [
         {
           height = 54;
@@ -104,6 +133,34 @@
           screen = 0;
         }
       ];
+      powerdevil = {
+        AC = {
+          autoSuspend = {
+            idleTimeout = 600;
+          };
+          dimDisplay = {
+            enable = true;
+            idleTimeout = 900;
+          };
+          turnOffDisplay = {
+            idleTimeout = 300;
+            idleTimeoutWhenLocked = 300;
+          };
+        };
+        battery = {
+          autoSuspend = {
+            action = "sleep";
+            idleTimeout = 600;
+          };
+          dimDisplay = {
+            idleTimeout = 180;
+          };
+          turnOffDisplay = {
+            idleTimeout = 180;
+            idleTimeoutWhenLocked = 300;
+          };
+        };
+      };
       window-rules = [
         {
           description = "wezterm";

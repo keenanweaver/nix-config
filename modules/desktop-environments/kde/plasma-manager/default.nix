@@ -75,6 +75,20 @@
           };
         };
       };
+      programs.okular = {
+        enable = true;
+        general = {
+          obeyDrm = false;
+          openFileInTabs = true;
+          showScrollbars = true;
+          smoothScrolling = true;
+          viewMode = "Facing";
+          zoomMode = "fitWidth";
+        };
+        performance = {
+          enableTransparencyEffects = true;
+        };
+      };
       programs.plasma = {
         enable = true;
         #overrideConfig = true;
@@ -218,20 +232,13 @@
           cornerBarrier = false;
           edgeBarrier = 0;
           effects = {
-            blur.enable = false;
+            blur.enable = false; # Use ForceBlur addon instead
             desktopSwitching.animation = "slide";
             dimInactive.enable = false;
             dimAdminMode.enable = false;
             shakeCursor.enable = true;
             slideBack.enable = false;
-            /*
-              minimization = {
-                         #animation = "squash";
-                         #duration = 50;
-                       };
-            */
             translucency.enable = true;
-            #windowOpenClose.animation = "glide";
             wobblyWindows.enable = false;
           };
           nightLight = {
@@ -310,13 +317,12 @@
           launch = "Meta+S";
           launchWithoutCapturing = "Meta+Alt+S";
         };
-        /*
-          windows = {
-                 allowWindowsToRememberPositions = true;
-               };
-        */
+        windows = {
+          allowWindowsToRememberPositions = true;
+        };
         workspace = {
           clickItemTo = "select";
+          tooltipDelay = 50;
         };
       };
     };
