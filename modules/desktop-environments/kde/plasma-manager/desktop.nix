@@ -206,6 +206,12 @@
           ];
         }
       ];
+      powerdevil.AC = {
+        autoSuspend.action = "nothing";
+        turnOffDisplay = {
+          idleTimeout = 900;
+        };
+      };
       window-rules = [
         {
           description = "Move portal windows to primary screen";

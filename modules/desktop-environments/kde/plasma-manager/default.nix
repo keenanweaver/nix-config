@@ -302,12 +302,6 @@
             };
           };
         };
-        powerdevil.AC = {
-          autoSuspend.action = "nothing";
-          turnOffDisplay = {
-            idleTimeout = 900;
-          };
-        };
         spectacle.shortcuts = {
           captureActiveWindow = "Meta+Print";
           captureCurrentMonitor = "Print";
