@@ -53,7 +53,7 @@ in
           "fr.romainvigier.MetadataCleaner"
           #"im.riot.Riot"
           #"io.github.btpf.alexandria"
-          #"io.github.dvlv.boxbuddyrs"
+          "io.github.dvlv.boxbuddyrs"
           #"io.github.eteran.edb-debugger"
           #"io.github.jonmagon.kdiskmark"
           #"io.github.seadve.Breathing"
