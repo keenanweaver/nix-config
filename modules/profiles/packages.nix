@@ -107,6 +107,7 @@ in
             jq
             lazydocker
             mkvtoolnix-cli
+            okteta
             projectm
             streamrip
             yq
