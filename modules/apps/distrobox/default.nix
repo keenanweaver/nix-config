@@ -243,7 +243,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud";
+                args = "gamemoderun obs-gamecapture mangohud --dlsym";
                 bin = "/home/${username}/Games/daikatana/daikatana";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -260,7 +260,7 @@ in
             )
             (
               let
-                args = "obs-gamecapture mangohud";
+                args = "obs-gamecapture mangohud --dlsym";
                 bin = "dbgl";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-exodos";
@@ -268,7 +268,7 @@ in
               writeShellScriptBin "${bin-export}" ''
                 export GTK_USE_PORTAL=0
                 if [ -z "''${CONTAINER_ID}" ]; then
-                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/sbin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
                   exec distrobox-host-exec '${bin-export}' "$@"
                 else
@@ -278,7 +278,7 @@ in
             )
             (
               let
-                args = "obs-gamecapture mangohud";
+                args = "obs-gamecapture mangohud --dlsym";
                 bin = "dosbox";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-exodos";
@@ -295,7 +295,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud";
+                args = "gamemoderun obs-gamecapture mangohud --dlsym";
                 bin = "exogui";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-exodos";
@@ -330,7 +330,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud";
+                args = "gamemoderun obs-gamecapture mangohud --dlsym";
                 bin = "jazzjackrabbit";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -347,7 +347,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud";
+                args = "gamemoderun obs-gamecapture mangohud --dlsym";
                 bin = "jazzjackrabbit2";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -364,7 +364,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud";
+                args = "gamemoderun obs-gamecapture mangohud --dlsym";
                 bin = "lab3d-sdl";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -415,7 +415,24 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud";
+                args = "";
+                bin = "obs-gamecapture";
+                bin-export = "${bin}-db";
+                container = "bazzite-arch-gaming";
+              in
+              writeShellScriptBin "${bin-export}" ''
+                if [ -z "''${CONTAINER_ID}" ]; then
+                	exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                	exec distrobox-host-exec '${bin-export}' "$@"
+                else
+                	exec '/usr/bin/${bin}' "$@"
+                fi
+              ''
+            )
+            (
+              let
+                args = "gamemoderun obs-gamecapture mangohud --dlsym";
                 bin = "openxcom";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -432,7 +449,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
+                args = "gamemoderun /usr/bin/obs-gamecapture mangohud --dlsym";
                 bin = "perfectdark";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -535,7 +552,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture";
+                args = "gamemoderun obs-gamecapture mangohud";
                 bin = "zelda64recomp";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
