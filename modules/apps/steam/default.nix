@@ -30,8 +30,8 @@ in
       localNetworkGameTransfers.openFirewall = true;
       package = pkgs.steam.override {
         extraEnv = {
-          MANGOHUD = true;
-          OBS_VKCAPTURE = true;
+          #MANGOHUD = true;
+          #OBS_VKCAPTURE = true;
           #ENABLE_VKBASALT = "1";
         };
         extraLibraries =
