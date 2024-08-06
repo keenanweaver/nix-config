@@ -316,7 +316,7 @@
         };
         workspace = {
           clickItemTo = "select";
-          tooltipDelay = 50;
+          tooltipDelay = 300;
         };
       };
     };
