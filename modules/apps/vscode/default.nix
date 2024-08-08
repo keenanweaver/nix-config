@@ -12,7 +12,7 @@ let
       arrterian.nix-env-selector
       ban.spellright
       charliermarsh.ruff
-      codeium.codeium
+      #codeium.codeium
       eamodio.gitlens
       formulahendry.code-runner
       foxundermoon.shell-format
