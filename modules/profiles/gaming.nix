@@ -127,12 +127,12 @@ let
         libstrangle
         vulkan-tools
       ]
-      # Launchers 
+      # Launchers & utils
       [
-        bottles
-        cartridges
-        heroic
-        lutris
+        #bottles
+        #cartridges
+        #heroic
+        #lutris
       ]
       # Modding
       [
@@ -221,7 +221,10 @@ in
         ];
       };
       kernelModules = [ "gcadapter_oc" ];
-      kernelParams = [ "split_lock_detect=off" ];
+      kernelParams = [
+        "split_lock_detect=off"
+        "usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
+      ];
       kernel = {
         sysctl = {
           "kernel.split_lock_mitigate" = 0; # https://reddit.com/r/linux_gaming/comments/1bgqfuk/god_of_war_poor_performance/kv8xsae/?context=3
@@ -380,13 +383,13 @@ in
           wine-links-heroic = {
             enable = true;
             recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/bottles/runners";
+            source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.var/app/com.usebottles.bottles/data/bottles/runners";
             target = "${config.xdg.configHome}/heroic/tools/wine";
           };
           wine-links-lutris = {
             enable = true;
             recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.dataHome}/bottles/runners";
+            source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.var/app/com.usebottles.bottles/data/bottles/runners";
             target = "${config.xdg.dataHome}/lutris/runners/wine";
           };
         };
@@ -494,8 +497,10 @@ in
             "com.github.mtkennerly.ludusavi" = {
               Context = {
                 filesystems = [
+                  "~/.var/app/com.heroicgameslauncher.hgl"
                   "~/.var/app/com.valvesoftware.Steam"
                   "~/.var/app/com.usebottles.bottles"
+                  "~/.var/app/net.lutris.Lutris"
                   "~/Games"
                   "/mnt/crusader/Games/Saves"
                 ];
@@ -526,18 +531,17 @@ in
                 ];
               };
             };
-            /*
-              "com.usebottles.bottles" = {
-                         Context = {
-                           filesystems = [
-                             "~/Games"
-                             "/mnt/crusader/Games"
-                             "xdg-data/Steam"
-                             "~/.var/app/com.valvesoftware.Steam"
-                           ];
-                         };
-                       };
-            */
+            "com.usebottles.bottles" = {
+              Context = {
+                filesystems = [
+                  "~/Games"
+                  "/mnt/crusader/Games"
+                  "~/.var/app/com.valvesoftware.Steam"
+                  "xdg-data/applications"
+                  "xdg-data/Steam"
+                ];
+              };
+            };
             "dev.lizardbyte.app.Sunshine" = {
               Context = {
                 filesystems = [ "!home" ];
@@ -581,6 +585,14 @@ in
             "io.openrct2.OpenRCT2" = {
               Context = {
                 filesystems = [ "/home/${username}/Games/RCT" ];
+              };
+            };
+            "net.lutris.Lutris" = {
+              Context = {
+                filesystems = [
+                  "~/Games"
+                  "/mnt/crusader/Games"
+                ];
               };
             };
             "net.mancubus.SLADE" = {
@@ -682,6 +694,11 @@ in
                 filesystems = [ "/home/${username}/Games/duke3d" ];
               };
             };
+            "page.kramo.Cartridges" = {
+              Context = {
+                filesystems = [ "~/Games" ];
+              };
+            };
           };
           packages = [
             "app.xemu.xemu"
@@ -696,7 +713,7 @@ in
             "com.github.opentyrian.OpenTyrian"
             "com.github.optyfr.JRomManager"
             "com.github.Xenoveritas.abuse"
-            #com.heroicgameslauncher.hgl
+            "com.heroicgameslauncher.hgl"
             "com.obsproject.Studio.Plugin.Gstreamer"
             "com.obsproject.Studio.Plugin.GStreamerVaapi"
             "com.obsproject.Studio.Plugin.InputOverlay"
@@ -706,7 +723,7 @@ in
             "com.richwhitehouse.BigPEmu"
             "com.spacestation14.Launcher"
             "com.supermodel3.Supermodel"
-            #"com.usebottles.bottles"
+            "com.usebottles.bottles"
             #"com.valvesoftware.Steam"
             #"dev.goats.xivlauncher"
             "dev.opengoal.OpenGOAL"
@@ -733,7 +750,7 @@ in
             "net.darkradiant.DarkRadiant"
             "net.davidotek.pupgui2"
             "net.fsuae.FS-UAE"
-            #net.lutris.Lutris
+            "net.lutris.Lutris"
             "net.mancubus.SLADE"
             "net.pcsx2.PCSX2"
             "net.rpcs3.RPCS3"
@@ -772,7 +789,7 @@ in
             "org.srb2.SRB2"
             #"org.twinery.Twine"
             #"org.zdoom.Raze"
-            #"page.kramo.Cartridges"
+            "page.kramo.Cartridges"
             "re.chiaki.Chiaki"
             "ru.linux_gaming.PortProton"
             "sh.fhs.KatawaShoujoReEngineered"
@@ -785,17 +802,11 @@ in
             gog-galaxy = {
               name = "GOG Galaxy";
               comment = "Launch GOG Galaxy using Bottles.";
-              exec = "bottles-cli run -p \"GOG Galaxy\" -b \"GOG Galaxy\"";
+              exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p \"GOG Galaxy\" \"GOG Galaxy\" -- %u";
               icon = "/home/${username}/Games/Bottles/GOG-Galaxy/icons/GOG Galaxy.png";
               categories = [ "Game" ];
               noDisplay = false;
               startupNotify = true;
-              actions = {
-                "Configure" = {
-                  name = "Configure in Bottles";
-                  exec = "bottles -b \"GOG Galaxy\"";
-                };
-              };
               settings = {
                 StartupWMClass = "GOG Galaxy";
               };

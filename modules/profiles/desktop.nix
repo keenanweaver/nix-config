@@ -96,7 +96,7 @@ in
             foobar2000 = {
               name = "foobar2000";
               comment = "Launch foobar2000 using Bottles.";
-              exec = "bottles-cli run -p foobar2000 -b foobar2000";
+              exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p foobar2000 -b foobar2000";
               icon = "/home/${username}/Games/Bottles/foobar2000/icons/foobar2000.png";
               categories = [
                 "AudioVideo"
@@ -105,12 +105,6 @@ in
               ];
               noDisplay = false;
               startupNotify = true;
-              actions = {
-                "Configure" = {
-                  name = "Configure in Bottles";
-                  exec = "bottles -b foobar2000";
-                };
-              };
               settings = {
                 StartupWMClass = "foobar2000";
               };
@@ -118,7 +112,7 @@ in
             qobuz = {
               name = "Qobuz";
               comment = "Launch Qobuz using Bottles.";
-              exec = "bottles-cli run -p Qobuz -b Qobuz";
+              exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p Qobuz -b Qobuz";
               icon = "/home/${username}/Games/Bottles/Qobuz/icons/Qobuz.png";
               categories = [
                 "AudioVideo"
@@ -127,12 +121,6 @@ in
               ];
               noDisplay = false;
               startupNotify = true;
-              actions = {
-                "Configure" = {
-                  name = "Configure in Bottles";
-                  exec = "bottles -b Qobuz";
-                };
-              };
               settings = {
                 StartupWMClass = "Qobuz";
               };
