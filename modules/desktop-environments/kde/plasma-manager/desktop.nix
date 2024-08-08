@@ -75,12 +75,25 @@
               };
             }
             "org.kde.plasma.panelspacer"
+            /*
+              {
+                         name = "org.kde.plasma.pager";
+                         config = {
+                           General = {
+                             displayedText = "Number";
+                             wrapPage = true;
+                           };
+                         };
+                       }
+            */
             {
-              name = "org.kde.plasma.pager";
+              name = "com.github.tilorenz.compact_pager";
               config = {
+                Appearance = {
+                  displayBorder = "false";
+                };
                 General = {
-                  displayedText = "Number";
-                  wrapPage = true;
+                  forceLayout = "full";
                 };
               };
             }
@@ -169,12 +182,25 @@
               };
             }
             "org.kde.plasma.panelspacer"
+            /*
+              {
+                         name = "org.kde.plasma.pager";
+                         config = {
+                           General = {
+                             displayedText = "Number";
+                             wrapPage = true;
+                           };
+                         };
+                       }
+            */
             {
-              name = "org.kde.plasma.pager";
+              name = "com.github.tilorenz.compact_pager";
               config = {
+                Appearance = {
+                  displayBorder = "false";
+                };
                 General = {
-                  displayedText = "Number";
-                  wrapPage = true;
+                  forceLayout = "full";
                 };
               };
             }
