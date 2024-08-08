@@ -430,7 +430,9 @@ in
               };
             };
             kscreenlocker = {
-              wallpaper = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
+              appearance = {
+                wallpaper = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
+              };
             };
             workspace = {
               # Global theme
