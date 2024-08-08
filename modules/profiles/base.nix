@@ -34,7 +34,7 @@ in
     gpg.enable = true;
     helix.enable = true;
     home-managerConfig.enable = true;
-    kitty.enable = true;
+    kitty.enable = false;
     lazygit.enable = true;
     lsd.enable = true;
     micro.enable = false;

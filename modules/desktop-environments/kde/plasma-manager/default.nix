@@ -129,8 +129,8 @@
           };
           "kded5rc"."Module-device_automounter"."autoload" = false;
           kdeglobals = {
-            "General"."TerminalApplication" = "kitty";
-            "General"."TerminalService" = "kitty.desktop";
+            "General"."TerminalApplication" = "foot";
+            "General"."TerminalService" = "org.codeberg.dnkl.foot.desktop";
             "KDE"."AnimationDurationFactor" = 0.5;
             "KDE"."ShowDeleteCommand" = true;
             "KFileDialog Settings"."Allow Expansion" = true;
@@ -162,9 +162,6 @@
           };
           klaunchrc = {
             "BusyCursorSettings"."Bouncing" = false;
-          };
-          kscreenlockerrc = {
-            "Daemon"."Autolock" = false;
           };
           kservicemenurc = {
             "Show"."WriteCdImage" = false;
@@ -227,6 +224,10 @@
             repeatDelay = 250;
             repeatRate = 25;
           };
+        };
+        kscreenlocker = {
+          autoLock = false;
+          lockOnResume = false;
         };
         kwin = {
           cornerBarrier = false;
