@@ -19,7 +19,6 @@ in
       home = {
         packages = with pkgs; [
           obs-cmd
-          obs-studio-plugins.obs-vkcapture
         ];
         sessionVariables = {
           OBS_VKCAPTURE_QUIET = "1";
