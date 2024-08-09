@@ -18,20 +18,33 @@ in
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} =
       { config, pkgs, ... }:
+      let
+        mangohud-get-vars = (
+          pkgs.writeShellApplication {
+            name = "mangohud-get-vars";
+            runtimeInputs = with pkgs; [
+              coreutils
+              findutils
+              glxinfo
+              libnotify
+              ripgrep
+              util-linux
+            ];
+            text = ''
+              # OS
+              rg -w PRETTY_NAME /etc/os-release | cut -d '=' -f2 | tr -d '"' > ${config.xdg.configHome}/MangoHud/vars
+              # Kernel
+              uname -r >> ${config.xdg.configHome}/MangoHud/vars
+              # CPU
+              #lscpu | rg -oP '(?<=Model\sname:).*' | xargs >> ${config.xdg.configHome}/MangoHud/vars
+              # GPU
+              #glxinfo | rg -oP '(?<=Device: )(.*?)(?=\()' | xargs >> ${config.xdg.configHome}/MangoHud/vars
+            '';
+          }
+        );
+      in
       {
         home.file = {
-          desktop-entry-mangohud-get-vars = {
-            enable = true;
-            text = ''
-              [Desktop Entry]
-              Exec=${config.xdg.configHome}/MangoHud/get-vars.sh
-              Icon=dialog-scripts
-              Name=get-vars.sh
-              Type=Application
-              X-KDE-AutostartScript=true
-            '';
-            target = "${config.xdg.configHome}/autostart/get-vars.desktop";
-          };
           mangohud-config = {
             enable = true;
             text = ''
@@ -74,9 +87,9 @@ in
               show_fps_limit
               resolution
               custom_text=Distro:
-              exec=sed -n 1p ${config.xdg.configHome}/MangoHud/vars
+              exec=$(${pkgs.gnused}/bin/sed -n 1p ${config.xdg.configHome}/MangoHud/vars)
               custom_text=Kernel:
-              exec=sed -n 2p ${config.xdg.configHome}/MangoHud/vars
+              exec=$(${pkgs.gnused}/bin/sed -n 2p ${config.xdg.configHome}/MangoHud/vars)
               text_outline
               position=bottom-right
               no_display
@@ -108,26 +121,29 @@ in
             text = '''';
             target = "${config.xdg.configHome}/MangoHud/presets.conf";
           };
-          script-mangohud-get-vars = {
-            enable = true;
-            text = ''
-              #!/usr/bin/env bash
-              # OS
-              ${pkgs.ripgrep}/bin/rg -w PRETTY_NAME /etc/os-release | ${pkgs.coreutils}/bin/cut -d '=' -f2 | ${pkgs.coreutils}/bin/tr -d '"' > ${config.xdg.configHome}/MangoHud/vars
-              # Kernel
-              ${pkgs.coreutils}/bin/echo $(uname -r) >> ${config.xdg.configHome}/MangoHud/vars
-              # CPU
-              #${pkgs.util-linux}/bin/lscpu | ${pkgs.ripgrep}/bin/rg -oP '(?<=Model\sname:).*' | ${pkgs.findutils}/bin/xargs >> ${config.xdg.configHome}/MangoHud/vars
-              # GPU
-              #${pkgs.glxinfo}/bin/glxinfo | ${pkgs.ripgrep}/bin/rg -oP '(?<=Device: )(.*?)(?=\()' | ${pkgs.findutils}/bin/xargs >> ${config.xdg.configHome}/MangoHud/vars
-            '';
-            target = "${config.xdg.configHome}/MangoHud/get-vars.sh";
-            executable = true;
-          };
         };
+        home.packages = with pkgs; [ mangohud-get-vars ];
         programs.mangohud = {
           enable = true;
           package = pkgs.mangohud_git; # Chaotic package
+        };
+        systemd = {
+          user = {
+            services = {
+              "mangohud-get-vars" = {
+                Unit = {
+                  Description = "Writes variables for MangoHud config";
+                };
+                Service = {
+                  ExecStart = "${mangohud-get-vars}/bin/mangohud-get-vars";
+                  Type = "simple";
+                };
+                Install = {
+                  WantedBy = [ "graphical-session.target" ];
+                };
+              };
+            };
+          };
         };
       };
   };

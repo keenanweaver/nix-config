@@ -12,6 +12,10 @@ let
     url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
     hash = "sha256-dt+IlHYw+IjjHNFDT9PgXft682uwB1pGv75SLZDvJcE=";
   };
+  mangohudConfig = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/flightlessmango/MangoHud/master/data/MangoHud.conf";
+    hash = "sha256-88y6x7xkxClrgETdXIelvywEeY71/Rk4xZ49qzgHWAg=";
+  };
   vkBasaltConfig = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/DadSchoorse/vkBasalt/master/config/vkBasalt.conf";
     hash = "sha256-IN/Kuc17EZfzRoo8af1XoBX2/48/bCdyOxw/Tl463Mg=";
@@ -360,6 +364,18 @@ in
               URL[$e]=file:${dxvkConfig}
             '';
             target = "${config.xdg.dataHome}/templates/dxvk.desktop";
+          };
+          desktop-entry-mangohud = {
+            enable = true;
+            text = ''
+              [Desktop Entry]
+              Comment=Create a new MangoHud config from template
+              Icon=text-x-makefile
+              Name=MangoHud Config...
+              Type=Link
+              URL[$e]=file:${mangohudConfig}
+            '';
+            target = "${config.xdg.dataHome}/templates/mangohud.desktop";
           };
           desktop-entry-vkBasalt = {
             enable = true;
