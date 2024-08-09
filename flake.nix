@@ -77,6 +77,10 @@
       url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
       flake = false;
     };
+    nsearch = {
+      url = "github:niksingh710/nsearch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     /*
       ow-mod-man = {
          url = "github:ow-mods/ow-mod-man";
