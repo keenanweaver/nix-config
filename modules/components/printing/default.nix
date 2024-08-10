@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  pkgs,
   ...
 }:
 let
@@ -14,6 +15,14 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
+    # Scanning
+    hardware = {
+      sane = {
+        enable = true;
+        brscan5.enable = true;
+        dsseries.enable = true;
+      };
+    };
     services = {
       # Wireless printing
       # https://reddit.com/r/NixOS/comments/k8yo9e/how_do_you_correcty_setup_a_brother_printer_in/k13rjna/?context=3
@@ -27,6 +36,12 @@ in
         openFirewall = true;
       };
     };
-    home-manager.users.${username} = { };
+    users.users.${username}.extraGroups = [
+      "lp"
+      "scanner"
+    ];
+    home-manager.users.${username} = {
+      home.packages = with pkgs; with pkgs.kdePackages; [ skanlite ];
+    };
   };
 }
