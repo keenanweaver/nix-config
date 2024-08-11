@@ -98,8 +98,8 @@ let
       ]
       # Star Citizen
       [
-        inputs.nix-citizen.packages.${system}.star-citizen
-        inputs.nix-citizen.packages.${system}.star-citizen-helper
+        #inputs.nix-citizen.packages.${system}.star-citizen
+        #inputs.nix-citizen.packages.${system}.star-citizen-helper
       ]
       # Wolf
       [
