@@ -87,9 +87,9 @@ in
               show_fps_limit
               resolution
               custom_text=Distro:
-              exec=$(${pkgs.gnused}/bin/sed -n 1p ${config.xdg.configHome}/MangoHud/vars)
+              exec=${pkgs.gnused}/bin/sed -n 1p ${config.xdg.configHome}/MangoHud/vars
               custom_text=Kernel:
-              exec=$(${pkgs.gnused}/bin/sed -n 2p ${config.xdg.configHome}/MangoHud/vars)
+              exec=${pkgs.gnused}/bin/sed -n 2p ${config.xdg.configHome}/MangoHud/vars
               text_outline
               position=bottom-right
               no_display
