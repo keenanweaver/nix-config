@@ -136,11 +136,6 @@ in
               filesystems = [ "!home" ];
             };
           };
-          "com.rustdesk.RustDesk" = {
-            Context = {
-              filesystems = [ "!home" ];
-            };
-          };
           "it.mijorus.gearlever" = {
             Context = {
               filesystems = [ "/home/${username}/.local/bin" ];

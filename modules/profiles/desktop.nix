@@ -80,9 +80,6 @@ in
               xh
             ];
             text = ''
-              fd 'rustdesk' /home/${username}/Downloads -e flatpak -x rm {}
-              xh https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.flatpak$")).browser_download_url' | xargs xh get -d -o /home/${username}/Downloads/rustdesk.flatpak
-              fd 'rustdesk' /home/${username}/Downloads -e flatpak -x flatpak install -u -y
               distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
               ${lib.optionalString vars.gaming ''script-game-stuff''}
             '';

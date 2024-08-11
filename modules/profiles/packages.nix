@@ -1,5 +1,6 @@
 {
   lib,
+  inputs,
   config,
   username,
   pkgs,
@@ -109,6 +110,7 @@ in
             mkvtoolnix-cli
             okteta
             projectm
+            rustdesk-flutter
             streamrip
             yq
             ### unix alternatives ###
