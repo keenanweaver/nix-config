@@ -6,12 +6,12 @@
   ...
 }:
 let
-  cfg = config.printing;
+  cfg = config.office;
 in
 {
   options = {
-    printing = {
-      enable = lib.mkEnableOption "Enable printing in NixOS";
+    office = {
+      enable = lib.mkEnableOption "Enable office in NixOS";
     };
   };
   config = lib.mkIf cfg.enable {

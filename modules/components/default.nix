@@ -10,7 +10,7 @@
     ./nvidia
     ./performance
     ./pipewire
-    ./printing
+    ./office
     ./users
     ./virtualization
   ];
