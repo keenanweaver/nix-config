@@ -44,7 +44,7 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
     , innoextract -g '/mnt/crusader/Games/Other/GOG/jagged_alliance_2/setup_jagged_alliance_2_1.12_(17794).exe' -d /home/keenan/Games/jagged-alliance-2/ja2
     , innoextract -g '/mnt/crusader/Games/Other/GOG/jagged_alliance_2_unfinished_business/setup_ja2_-_unfinished_business_1.01_(17724).exe' -d /home/keenan/Games/jagged-alliance-2/unfinished-business
     , innoextract -g '/mnt/crusader/Games/Other/GOG/jagged_alliance_2_wildfire/setup_jagged_alliance_2_wildfire_6.08_(16760).exe' -d /home/keenan/Games/jagged-alliance-2/wildfire
-    ## Jazz Jackrabbit
+    ## Jazz Jackrabbit 2
     , innoextract -g '/mnt/crusader/Games/Other/GOG/jazz_jackrabbit_2_secret_files/extras/setup_jazz_jackrabbit_2_1.24_jj2_(5.11)_(62338).exe' -d '/home/keenan/.var/app/tk.deat.Jazz2Resurrection/data/Jazz² Resurrection/Source' && , innoextract -g '/mnt/crusader/Games/Other/GOG/jazz_jackrabbit_2_christmas_chronicles/setup_jazz_jackrabbit_2_cc_1.2x_(16742).exe' -d '/home/keenan/.var/app/tk.deat.Jazz2Resurrection/data/Jazz² Resurrection/Source' && cd '/home/keenan/.var/app/tk.deat.Jazz2Resurrection/data/Jazz² Resurrection/Source' && rm -rf __redist __support app commonappdata tmp
     ## Jedi Academy
     , innoextract -g '/mnt/crusader/Games/Other/GOG/star_wars_jedi_knight_jedi_academy/setup_star_wars_jedi_knight_-_jedi_academy_1.01_(a)_(10331).exe' -d '/home/keenan/.local/share/openjk/base'

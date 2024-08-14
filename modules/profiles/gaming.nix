@@ -809,7 +809,7 @@ in
             "re.chiaki.Chiaki"
             "ru.linux_gaming.PortProton"
             "sh.fhs.KatawaShoujoReEngineered"
-            #"tk.deat.Jazz2Resurrection"
+            "tk.deat.Jazz2Resurrection"
             "vet.rsc.OpenRSC.Launcher"
           ];
         };
