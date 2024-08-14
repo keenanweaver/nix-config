@@ -147,6 +147,12 @@ in
       wireplumber = {
         enable = true;
         extraConfig = {
+          # Webcam battery drain https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/2669
+          "10-disable-camera" = {
+            "wireplumber.profiles" = {
+              main."monitor.libcamera" = "disabled";
+            };
+          };
           # Disable HDMI audio
           "51-disable-hdmi-audio" = {
             "monitor.alsa.rules" = [
