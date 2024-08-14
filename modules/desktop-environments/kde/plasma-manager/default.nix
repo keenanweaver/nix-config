@@ -9,12 +9,14 @@
       ...
     }:
     {
-      home.file = {
-        kinetic-effects = {
-          enable = true;
-          recursive = true;
-          source = "${inputs.kwin-effects-kinetic}";
-          target = "${config.xdg.dataHome}/kwin/effects";
+      home = {
+        file = {
+          kinetic-effects = {
+            enable = true;
+            recursive = true;
+            source = "${inputs.kwin-effects-kinetic}";
+            target = "${config.xdg.dataHome}/kwin/effects";
+          };
         };
       };
       programs.kate = {
@@ -219,7 +221,7 @@
         };
         input = {
           keyboard = {
-            layouts = [ "us" ];
+            layouts = [ { layout = "us"; } ];
             numlockOnStartup = "off";
             repeatDelay = 250;
             repeatRate = 25;
