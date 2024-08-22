@@ -19,7 +19,7 @@ in
     };
 
     home-manager.users.${username} =
-      { pkgs, ... }:
+      { pkgs, config, ... }:
       let
         outputDir = "${config.home.homeDirectory}/Videos";
       in

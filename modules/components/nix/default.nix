@@ -87,7 +87,6 @@ in
       { config, ... }:
       {
         home = {
-          backupFileExtension = ".hmbak";
           extraProfileCommands = ''
             export GPG_TTY=$(tty)
           '';
@@ -123,8 +122,6 @@ in
             up = "topgrade";
             wget = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
           };
-          useGlobalPkgs = true;
-          useUserPackages = true;
         };
         nix = {
           gc = {

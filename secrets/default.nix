@@ -30,19 +30,21 @@ in
         };
       };
     };
-    home-manager.users.${username} = {
-      sops = {
-        age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
-        defaultSopsFile = ./secrets.yaml;
-        defaultSopsFormat = "yaml";
-        defaultSymlinkPath = "/run/user/1000/secrets";
-        defaultSecretsMountPoint = "/run/user/1000/secrets.d";
-        secrets = {
-          "unraid/ntfy/url" = { };
-          "unraid/ntfy/user" = { };
-          "unraid/ntfy/password" = { };
+    home-manager.users.${username} =
+      { config, ... }:
+      {
+        sops = {
+          age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
+          defaultSopsFile = ./secrets.yaml;
+          defaultSopsFormat = "yaml";
+          defaultSymlinkPath = "/run/user/1000/secrets";
+          defaultSecretsMountPoint = "/run/user/1000/secrets.d";
+          secrets = {
+            "unraid/ntfy/url" = { };
+            "unraid/ntfy/user" = { };
+            "unraid/ntfy/password" = { };
+          };
         };
       };
-    };
   };
 }
