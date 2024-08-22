@@ -8,6 +8,21 @@
 }:
 let
   cfg = config.distrobox;
+  distrobox-autostart = (
+    pkgs.writeShellApplication {
+      name = "distrobox-autostart";
+      runtimeInputs = with pkgs; [
+        coreutils
+        distrobox_git
+      ];
+      text = ''
+        boxes=$(distrobox list | cut -d "|" -f 2 | tail +2 | xargs)
+        for box in "''${boxes[@]}"; do
+          distrobox-enter -n "$box" -T -- bash -l -c "exit"
+        done
+      '';
+    }
+  );
 in
 {
   options = {
@@ -27,7 +42,6 @@ in
       {
         config,
         inputs,
-        username,
         pkgs,
         vars,
         ...
@@ -73,7 +87,10 @@ in
             db-package = pkgs.distrobox_git;
           in
           with pkgs;
-          [ xorg.xhost ]
+          [
+            distrobox-autostart
+            xorg.xhost
+          ]
           ++ lib.optionals vars.gaming [
             (writeShellScriptBin "bootstrap-distrobox" ''
               ## Set paru settings
@@ -152,7 +169,6 @@ in
                   archipelagomw-bin            \
                   bizhawk-bin                  \
                   jazzjackrabbit               \
-                  jazzjackrabbit2              \
                   lab3d-sdl                    \
                   mesen2-git                   \
                   nuked-sc55                   \
@@ -244,7 +260,7 @@ in
             (
               let
                 args = "gamemoderun obs-gamecapture mangohud --dlsym";
-                bin = "/home/${username}/Games/daikatana/daikatana";
+                bin = "${config.home.homeDirectory}/Games/daikatana/daikatana";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
@@ -332,23 +348,6 @@ in
               let
                 args = "gamemoderun obs-gamecapture mangohud --dlsym";
                 bin = "jazzjackrabbit";
-                bin-export = "${bin}-db";
-                container = "bazzite-arch-gaming";
-              in
-              writeShellScriptBin "${bin-export}" ''
-                if [ -z "''${CONTAINER_ID}" ]; then
-                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  exec distrobox-host-exec '${bin-export}' "$@"
-                else
-                  exec '/usr/bin/${bin}' "$@"
-                fi
-              ''
-            )
-            (
-              let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
-                bin = "jazzjackrabbit2";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
@@ -602,6 +601,26 @@ in
               ''
             )
           ];
+        /*
+          systemd = {
+                 user = {
+                   services = {
+                     "distrobox-start-containers" = {
+                       Unit = {
+                         Description = "Starts Distrobox containers on login";
+                       };
+                       Service = {
+                         ExecStart = "${distrobox-autostart}/bin/distrobox-autostart";
+                         Type = "simple";
+                       };
+                       Install = {
+                         WantedBy = [ "graphical-session.target" ];
+                       };
+                     };
+                   };
+                 };
+               };
+        */
         xdg = {
           desktopEntries = {
             archipelago = lib.mkIf cfg.gaming {
