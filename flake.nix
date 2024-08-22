@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.05";
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     disko = {
@@ -43,6 +44,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/NUR";
+    raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -228,24 +230,16 @@
                       gaming = true;
                     };
                   };
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  users.${username} = {
-                    home = {
-                      # do not change this value
-                      stateVersion = "23.11";
-                    };
-                  };
-                  sharedModules = [
-                    inputs.catppuccin.homeManagerModules.catppuccin
-                    inputs.hyprland.homeManagerModules.default
-                    inputs.nix-colors.homeManagerModules.default
-                    inputs.nix-flatpak.homeManagerModules.nix-flatpak
-                    inputs.nix-index-database.hmModules.nix-index
-                    inputs.nixvim.homeManagerModules.nixvim
-                    inputs.nur.hmModules.nur
-                    inputs.plasma-manager.homeManagerModules.plasma-manager
-                    inputs.sops-nix.homeManagerModules.sops
+                  sharedModules = with inputs; [
+                    catppuccin.homeManagerModules.catppuccin
+                    hyprland.homeManagerModules.default
+                    nix-colors.homeManagerModules.default
+                    nix-flatpak.homeManagerModules.nix-flatpak
+                    nix-index-database.hmModules.nix-index
+                    nixvim.homeManagerModules.nixvim
+                    nur.hmModules.nur
+                    plasma-manager.homeManagerModules.plasma-manager
+                    sops-nix.homeManagerModules.sops
                   ];
                 };
               }
