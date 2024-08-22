@@ -221,6 +221,9 @@
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
+                  backupFileExtension = ".hmbak";
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
                   extraSpecialArgs = {
                     inherit inputs; # Experiment with config and other attributes
                     inherit fullname username dotfiles;
