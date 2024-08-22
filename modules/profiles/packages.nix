@@ -29,7 +29,6 @@ in
   };
   config = lib.mkIf cfg.enable {
     environment = {
-      # Writes current *system* packages to /etc/current-system/packages
       etc."packages".text =
         let
           packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
@@ -37,6 +36,13 @@ in
           formatted = builtins.concatStringsSep "\n" sortedUnique;
         in
         formatted;
+      etc."packages-hm".text =
+        let
+          packages = builtins.map (p: "${p.name}") config.home.packages;
+          sortedUnique = builtins.sort builtins.lessThan (pkgs.lib.lists.unique packages);
+          formatted-hm = builtins.concatStringsSep "\n" sortedUnique;
+        in
+        formatted-hm;
     };
     programs.appimage = {
       enable = true;
