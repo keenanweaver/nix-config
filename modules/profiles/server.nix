@@ -26,8 +26,8 @@ in
     distrobox.enable = lib.mkForce false;
     foot.enable = lib.mkForce false;
     mullvad.enable = lib.mkForce false;
-    pipewire.enable = lib.mkForce false;
     office.enable = lib.mkForce false;
+    pipewire.enable = lib.mkForce false;
     #virtualization.enable = lib.mkForce false;
 
     home-manager.users.${username} = { };
