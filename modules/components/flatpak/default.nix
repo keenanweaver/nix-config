@@ -59,6 +59,7 @@ in
           #"io.github.seadve.Breathing"
           #"io.github.seadve.Mousai"
           "io.github.ungoogled_software.ungoogled_chromium"
+          "io.github.zen_browser.zen"
           #"io.gitlab.gregorni.Letterpress"
           #"io.gpt4all.gpt4all"
           #"io.mpv.Mpv"
@@ -102,8 +103,8 @@ in
           global = {
             Context = {
               filesystems = [
-                "/home/${username}/.icons:ro"
-                "/home/${username}/.themes:ro"
+                "${config.home.homeDirectory}/.icons:ro"
+                "${config.home.homeDirectory}/.themes:ro"
                 "/nix/store:ro"
                 "/run/media/${username}:ro"
                 "xdg-data/themes:ro"
@@ -138,7 +139,7 @@ in
           };
           "it.mijorus.gearlever" = {
             Context = {
-              filesystems = [ "/home/${username}/.local/bin" ];
+              filesystems = [ "${config.home.homeDirectory}/.local/bin" ];
             };
           };
           "net.mediaarea.MediaInfo" = {
