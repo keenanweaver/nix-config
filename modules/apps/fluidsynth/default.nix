@@ -45,7 +45,7 @@ in
           };
         };
         home.sessionVariables = {
-          SDL_SOUNDFONTS = "/home/${username}/Music/soundfonts/default.sf2";
+          SDL_SOUNDFONTS = "${cfg.soundFont}";
         };
         services.fluidsynth = {
           enable = true;

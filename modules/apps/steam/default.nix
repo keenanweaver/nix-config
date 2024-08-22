@@ -12,6 +12,10 @@ in
 {
   options.steam = {
     enable = lib.mkEnableOption "Enable Steam in NixOS";
+    enableNative = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+    };
     # https://reddit.com/r/linux_gaming/comments/16e1l4h/slow_steam_downloads_try_this/
     fixDownloadSpeed = lib.mkOption {
       type = lib.types.bool;
@@ -20,7 +24,7 @@ in
   };
   config = lib.mkIf cfg.enable {
     programs.steam = {
-      enable = true;
+      enable = cfg.enableNative;
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         luxtorpeda # Chaotic package
@@ -29,31 +33,27 @@ in
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
       package = pkgs.steam.override {
-        extraEnv = {
-          #MANGOHUD = true;
-          #OBS_VKCAPTURE = true;
-          #ENABLE_VKBASALT = "1";
-        };
         extraLibraries =
           pkgs: with pkgs; [
             openssl
-            #openssl_1_1 # Devil Daggers
             wqy_zenhei
           ];
         extraPkgs =
           pkgs: with pkgs; [
             inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
             ### Gamescope
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXinerama
-            xorg.libXScrnSaver
-            libpng
-            libpulseaudio
-            libvorbis
-            stdenv.cc.cc.lib
-            libkrb5
-            keyutils
+            /*
+              xorg.libXcursor
+                       xorg.libXi
+                       xorg.libXinerama
+                       xorg.libXScrnSaver
+                       libpng
+                       libpulseaudio
+                       libvorbis
+                       stdenv.cc.cc.lib
+                       libkrb5
+                       keyutils
+            */
             /*
               corefonts
               curl
@@ -86,6 +86,15 @@ in
                 @cMaxInitialDownloadSources 15
               '';
               target = "${config.xdg.dataHome}/Steam/steam_dev.cfg";
+            };
+            steam-slow-fix-flatpak = {
+              enable = cfg.fixDownloadSpeed;
+              text = ''
+                @nClientDownloadEnableHTTP2PlatformLinux 0
+                @fDownloadRateImprovementToAddAnotherConnection 1
+                @cMaxInitialDownloadSources 15
+              '';
+              target = ".var/app/com.valvesoftware.Steam/.steam/steam/steam_dev.cfg";
             };
           };
           packages = with pkgs; [
