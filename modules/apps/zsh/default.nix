@@ -37,9 +37,11 @@ in
             extended = true;
             ignoreSpace = true;
           };
-          initExtra = ''
-            export GITHUB_TOKEN="$(cat ${config.sops.secrets."github_token".path})"
-          '';
+          /*
+            initExtra = ''
+                     export GITHUB_TOKEN="$(cat ${config.sops.secrets."github_token".path})"
+                   '';
+          */
           oh-my-zsh = {
             enable = true;
             custom = "${config.xdg.configHome}/zsh/.zsh_custom";

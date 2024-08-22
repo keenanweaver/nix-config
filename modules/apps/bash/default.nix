@@ -27,9 +27,7 @@ in
             function cdd {
               builtin cd "$@" && ls
             }
-            export GITHUB_TOKEN="$(cat ${config.sops.secrets."github_token".path})"
           '';
-
         };
       };
   };
