@@ -15,14 +15,14 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} =
-      { config, username, ... }:
+      { config, ... }:
       {
         programs.boxxy = {
           enable = true;
           rules = [
             {
               name = "wget";
-              target = "/home/${username}/.wget-hsts";
+              target = "${config.home.homeDirectory}/.wget-hsts";
               rewrite = "${config.xdg.dataHome}/wget-hsts";
               mode = "file";
             }

@@ -149,6 +149,7 @@ in
         home = {
           username = username;
           homeDirectory = lib.mkDefault "/home/${username}";
+          stateVersion = "23.11";
         };
       };
   };

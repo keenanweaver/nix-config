@@ -21,7 +21,7 @@ in
     home-manager.users.${username} =
       { pkgs, ... }:
       let
-        outputDir = "/home/${username}/Videos";
+        outputDir = "${config.home.homeDirectory}/Videos";
       in
       {
         home.packages = with pkgs; [

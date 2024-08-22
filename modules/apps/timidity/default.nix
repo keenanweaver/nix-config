@@ -15,12 +15,11 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} =
-      { username, ... }:
       {
         programs.timidity = {
           enable = true;
           extraConfig = ''
-            soundfont /home/${username}/Music/soundfonts/default.sf2
+            soundfont ${config.home.homeDirectory}/Music/soundfonts/default.sf2
           '';
         };
       };

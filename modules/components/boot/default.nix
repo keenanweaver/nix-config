@@ -21,7 +21,6 @@
       };
     };
     kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-    #kernelPackages = lib.mkDefault pkgs.linuxPackages_6_9; # use until pipewire stops crackling
     kernelParams = [
       "quiet"
       "rd.systemd.show_status=false"

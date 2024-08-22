@@ -94,7 +94,7 @@ in
               name = "foobar2000";
               comment = "Launch foobar2000 using Bottles.";
               exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p foobar2000 -b foobar2000";
-              icon = "/home/${username}/Games/Bottles/foobar2000/icons/foobar2000.png";
+              icon = "${config.home.homeDirectory}/Games/Bottles/foobar2000/icons/foobar2000.png";
               categories = [
                 "AudioVideo"
                 "Player"
@@ -110,7 +110,7 @@ in
               name = "Qobuz";
               comment = "Launch Qobuz using Bottles.";
               exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p Qobuz -b Qobuz";
-              icon = "/home/${username}/Games/Bottles/Qobuz/icons/Qobuz.png";
+              icon = "${config.home.homeDirectory}/Games/Bottles/Qobuz/icons/Qobuz.png";
               categories = [
                 "AudioVideo"
                 "Player"

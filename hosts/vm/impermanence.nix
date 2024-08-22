@@ -20,6 +20,7 @@
           "/var/lib/clamav"
           "/var/lib/docker"
           "/var/lib/flatpak"
+          "/var/lib/nixos"
           #"/var/lib/opensnitch"
           "/var/lib/power-profiles-daemon"
           "/var/lib/systemd/coredump"

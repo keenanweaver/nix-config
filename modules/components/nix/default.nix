@@ -69,10 +69,7 @@ in
       overlays = [
         inputs.nur.overlay
         (self: super: { })
-        (final: prev: {
-          bottles = pkgs.callPackage ../../../nix/pkgs/bottles/fhsenv.nix { };
-          bottles-unwrapped = pkgs.callPackage ../../../nix/pkgs/bottles { };
-        })
+        (final: prev: { })
       ];
     };
 
@@ -87,16 +84,17 @@ in
     };
 
     home-manager.users.${username} =
-      { config, username, ... }:
+      { config, ... }:
       {
         home = {
+          backupFileExtension = ".hmbak";
           extraProfileCommands = ''
             export GPG_TTY=$(tty)
           '';
           language.base = "en_US.UTF-8";
           sessionPath = [
-            "/home/${username}/.bin"
-            "/home/${username}/.local/bin"
+            "${config.home.homeDirectory}/.bin"
+            "${config.home.homeDirectory}/.local/bin"
             "/var/lib/flatpak/exports/bin"
             "${config.xdg.dataHome}/flatpak/exports/bin"
           ];
@@ -125,6 +123,8 @@ in
             up = "topgrade";
             wget = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
           };
+          useGlobalPkgs = true;
+          useUserPackages = true;
         };
         nix = {
           gc = {

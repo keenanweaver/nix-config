@@ -140,7 +140,7 @@
                 Description = "Download 'chd_dc' from Internet Archive";
               };
               Service = {
-                ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user.path}:${config.sops.secrets.unraid.ntfy.password.path} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url.path} '[Start] chd_dc'";
+                ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u $(cat ${config.sops.secrets."unraid/ntfy/user".path}):${config.sops.secrets.unraid.ntfy.password.path} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url.path} '[Start] chd_dc'";
                 ExecStart = "${pkgs.internetarchive}/bin/ia download chd_dc --destdir='${unraid}/Games/Rom/Redump/Sega Dreamcast/CHD' --no-directories";
                 ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user.path}:${config.sops.secrets.unraid.ntfy.password.path} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url.path} '[End] chd_dc'";
                 Type = "oneshot";

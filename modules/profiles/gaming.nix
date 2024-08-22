@@ -348,7 +348,6 @@ in
       {
         inputs,
         config,
-        username,
         ...
       }:
       {
@@ -399,13 +398,13 @@ in
           wine-links-heroic = {
             enable = true;
             recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.var/app/com.usebottles.bottles/data/bottles/runners";
+            source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.var/app/com.usebottles.bottles/data/bottles/runners";
             target = "${config.xdg.configHome}/heroic/tools/wine";
           };
           wine-links-lutris = {
             enable = true;
             recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.var/app/com.usebottles.bottles/data/bottles/runners";
+            source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.var/app/com.usebottles.bottles/data/bottles/runners";
             target = "${config.xdg.dataHome}/lutris/runners/wine";
           };
         };
@@ -430,12 +429,12 @@ in
                 steamtinkerlaunch
                 ## SheepShaver
                 sd '-SKIPINTDEPCHECK="0"' '-SKIPINTDEPCHECK="1"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
-                xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o /home/${username}/.local/bin/sheepshaver.appimage
+                xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/sheepshaver.appimage
                 ## MoonDeck Buddy
-                xh https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o /home/${username}/.local/bin/moondeckbuddy.appimage
+                xh https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/moondeckbuddy.appimage
                 ## Conty
-                xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o /home/${username}/.local/bin/conty_lite.sh
-                chmod +x /home/${username}/.local/bin/conty_lite.sh
+                xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/conty_lite.sh
+                chmod +x ${config.home.homeDirectory}/.local/bin/conty_lite.sh
               '';
             })
             /*
@@ -497,12 +496,12 @@ in
           rules = [
             {
               name = "exult directory";
-              target = "/home/${username}/.exult";
+              target = "${config.home.homeDirectory}/.exult";
               rewrite = "${config.xdg.configHome}/exult";
             }
             {
               name = "exult config file";
-              target = "/home/${username}/.exult.cfg";
+              target = "${config.home.homeDirectory}/.exult.cfg";
               rewrite = "${config.xdg.configHome}/exult/exult.cfg";
               mode = "file";
             }
@@ -558,6 +557,11 @@ in
                 ];
               };
             };
+            "com.valvesoftware.Steam" = {
+              Context = {
+                filesystems = [ "~/Games" ];
+              };
+            };
             "dev.lizardbyte.app.Sunshine" = {
               Context = {
                 filesystems = [ "!home" ];
@@ -565,7 +569,7 @@ in
             };
             "dev.opengoal.OpenGOAL" = {
               Context = {
-                filesystems = [ "/home/${username}/Games/opengoal" ];
+                filesystems = [ "${config.home.homeDirectory}/Games/opengoal" ];
               };
             };
             "info.cemu.Cemu" = {
@@ -585,7 +589,7 @@ in
             };
             "io.github.ja2_stracciatella.JA2-Stracciatella" = {
               Context = {
-                filesystems = [ "/home/${username}/Games/jagged-alliance-2/ja2" ];
+                filesystems = [ "${config.home.homeDirectory}/Games/jagged-alliance-2/ja2" ];
               };
             };
             "io.github.lime3ds.Lime3DS" = {
@@ -600,7 +604,7 @@ in
             };
             "io.openrct2.OpenRCT2" = {
               Context = {
-                filesystems = [ "/home/${username}/Games/RCT" ];
+                filesystems = [ "${config.home.homeDirectory}/Games/RCT" ];
               };
             };
             "net.lutris.Lutris" = {
@@ -616,7 +620,7 @@ in
                 filesystems = [
                   "~/.slade3"
                   "~/.slade"
-                  "/home/${username}/Games/doom"
+                  "${config.home.homeDirectory}/Games/doom"
                   "!home"
                 ];
               };
@@ -630,7 +634,7 @@ in
               Context = {
                 filesystems = [
                   "/mnt/crusader/Games/Other/RPCS3"
-                  "/home/${username}/Games/RPCS3"
+                  "${config.home.homeDirectory}/Games/RPCS3"
                   "!home"
                 ];
               };
@@ -651,15 +655,15 @@ in
             "org.easyrpg.player" = {
               Context = {
                 filesystems = [
-                  "/home/${username}/Music/soundfonts:ro"
-                  "/home/${username}/Games/rpg-maker"
+                  "${config.home.homeDirectory}/Music/soundfonts:ro"
+                  "${config.home.homeDirectory}/Games/rpg-maker"
                   "!host"
                 ];
                 shared = "network"; # obs-gamecapture
               };
               Environment = {
-                RPG2K_RTP_PATH = "/home/${username}/Games/rpg-maker/RTP/2000";
-                RPG2K3_RTP_PATH = "/home/${username}/Games/rpg-maker/RTP/2003";
+                RPG2K_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2000";
+                RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2003";
               };
             };
             "org.libretro.RetroArch" = {
@@ -673,7 +677,7 @@ in
             "org.mamedev.MAME" = {
               Context = {
                 filesystems = [
-                  "/home/${username}/Games"
+                  "${config.home.homeDirectory}/Games"
                   "/mnt/crusader/Games/Rom/MAME"
                   "!home"
                 ];
@@ -681,7 +685,7 @@ in
             };
             "org.openmw.OpenMW" = {
               Context = {
-                filesystems = [ "/home/${username}/Games/morrowind" ];
+                filesystems = [ "${config.home.homeDirectory}/Games/morrowind" ];
                 shared = "network"; # obs-gamecapture
               };
               Environment = {
@@ -707,7 +711,7 @@ in
             };
             "org.zdoom.Raze" = {
               Context = {
-                filesystems = [ "/home/${username}/Games/duke3d" ];
+                filesystems = [ "${config.home.homeDirectory}/Games/duke3d" ];
               };
             };
             "page.kramo.Cartridges" = {
@@ -740,7 +744,7 @@ in
             "com.spacestation14.Launcher"
             "com.supermodel3.Supermodel"
             "com.usebottles.bottles"
-            #"com.valvesoftware.Steam"
+            "com.valvesoftware.Steam"
             #"dev.goats.xivlauncher"
             "dev.opengoal.OpenGOAL"
             "eu.vcmi.VCMI"
@@ -756,7 +760,7 @@ in
             "io.github.lime3ds.Lime3DS"
             "io.github.lxndr.gswatcher"
             "io.github.noxworld_dev.OpenNox"
-            #"io.github.santiagocezar.maniatic-launcher"
+            "io.github.santiagocezar.maniatic-launcher"
             "io.github.simple64.simple64"
             "io.github.theforceengine.tfe"
             "io.itch.tx00100xt.SeriousSamClassic-VK"
@@ -819,7 +823,7 @@ in
               name = "GOG Galaxy";
               comment = "Launch GOG Galaxy using Bottles.";
               exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p \"GOG Galaxy\" \"GOG Galaxy\" -- %u";
-              icon = "/home/${username}/Games/Bottles/GOG-Galaxy/icons/GOG Galaxy.png";
+              icon = "${config.home.homeDirectory}/Games/Bottles/GOG-Galaxy/icons/GOG Galaxy.png";
               categories = [ "Game" ];
               noDisplay = false;
               startupNotify = true;
