@@ -36,21 +36,32 @@ in
           formatted = builtins.concatStringsSep "\n" sortedUnique;
         in
         formatted;
-      etc."packages-hm".text =
-        let
-          packages = builtins.map (p: "${p.name}") config.home.packages;
-          sortedUnique = builtins.sort builtins.lessThan (pkgs.lib.lists.unique packages);
-          formatted-hm = builtins.concatStringsSep "\n" sortedUnique;
-        in
-        formatted-hm;
     };
     programs.appimage = {
       enable = true;
       binfmt = true;
     };
     home-manager.users.${username} =
-      { lib, pkgs, ... }:
       {
+        lib,
+        pkgs,
+        config,
+        ...
+      }:
+      {
+        home.file = {
+          current-packages = {
+            enable = true;
+            text =
+              let
+                packages = builtins.map (p: "${p.name}") config.home.packages;
+                sortedUnique = builtins.sort builtins.lessThan (pkgs.lib.lists.unique packages);
+                formatted-hm = builtins.concatStringsSep "\n" sortedUnique;
+              in
+              formatted-hm;
+            target = "${config.xdg.configHome}/packages-hm";
+          };
+        };
         home.packages =
           with pkgs;
           [ ]
