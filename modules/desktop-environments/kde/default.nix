@@ -45,6 +45,7 @@ in
           packagekit-qt # Discover store
           plasma-browser-integration
           qtimageformats
+          qtsvg #https://github.com/NixOS/nixpkgs/issues/325225
           sddm-kcm
           syntax-highlighting
         ];
