@@ -758,6 +758,7 @@ in
             "io.github.ja2_stracciatella.JA2-Stracciatella"
             "io.github.lethal_guitar.RigelEngine"
             "io.github.lime3ds.Lime3DS"
+            "io.github.limo_app.limo"
             "io.github.lxndr.gswatcher"
             "io.github.noxworld_dev.OpenNox"
             "io.github.santiagocezar.maniatic-launcher"
