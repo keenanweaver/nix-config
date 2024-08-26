@@ -66,6 +66,7 @@ in
               "gpu-screen-recorder" = {
                 Unit = {
                   Description = "GPU Screen Recorder Service";
+                  PartOf = [ "pipewire.service" ]; # Restart GSR when Pipewire restarts
                 };
                 Service = {
                   Environment = [
