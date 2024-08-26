@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ pkgs, lib, ... }:
 {
 
   boot = {
@@ -42,6 +37,12 @@
       timeout = 1;
     };
     plymouth.enable = true;
+    /*
+      tmp = {
+         cleanOnBoot = true;
+         useTmpfs = true;
+       };
+    */
     supportedFilesystems = [
       "btrfs"
       "cifs"
@@ -49,6 +50,11 @@
       "fat"
       "ntfs"
     ];
+    /*
+      systemd.services.nix-daemon = {
+         environment.TMPDIR = "/var/tmp"; # https://github.com/NixOS/nixpkgs/issues/336089#issuecomment-2308353273
+       };
+    */
   };
   environment.systemPackages = with pkgs; [ sbctl ];
 }
