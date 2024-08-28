@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   username,
   ...
 }:
@@ -21,7 +20,6 @@ in
         # https://github.com/nix-community/home-manager/issues/3849#issuecomment-2115899992
         # Copy dotfiles recursively in home
         home.file =
-          with pkgs;
           let
             listFilesRecursive =
               dir: acc:

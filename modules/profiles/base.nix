@@ -34,16 +34,13 @@ in
     gpg.enable = true;
     helix.enable = true;
     home-managerConfig.enable = true;
-    kitty.enable = false;
     lazygit.enable = true;
     lsd.enable = true;
-    micro.enable = false;
     mullvad.enable = true;
     navi.enable = true;
     nh.enable = true;
     nix-ld.enable = true;
     nix-index.enable = true;
-    nnn.enable = false;
     nushell.enable = true;
     nvim.enable = true;
     ripgrep.enable = true;
@@ -53,7 +50,6 @@ in
     topgrade.enable = true;
     yazi.enable = true;
     yt-dlp.enable = true;
-    zellij.enable = false;
     zoxide.enable = true;
     zsh.enable = true;
 
@@ -124,7 +120,6 @@ in
         # https://github.com/nix-community/home-manager/issues/3849#issuecomment-2115899992
         # Copy dotfiles recursively in home
         home.file =
-          with pkgs;
           let
             listFilesRecursive =
               dir: acc:
