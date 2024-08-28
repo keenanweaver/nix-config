@@ -41,7 +41,7 @@ in
       "scanner"
     ];
     home-manager.users.${username} = {
-      home.packages = with pkgs; with pkgs.kdePackages; [ skanlite ];
+      home.packages = with pkgs.kdePackages; [ skanlite ];
     };
   };
 }

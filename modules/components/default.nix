@@ -10,7 +10,6 @@
     ./nvidia
     ./performance
     ./pipewire
-    ./office
     ./users
     ./virtualization
   ];
