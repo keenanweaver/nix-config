@@ -44,7 +44,7 @@ let
         dsda-doom
         gzdoom
         prboom-plus
-        rbdoom-3-bfg
+        #rbdoom-3-bfg
         woof-doom
         zandronum
         zandronum-server
@@ -761,6 +761,7 @@ in
             "io.github.limo_app.limo"
             "io.github.lxndr.gswatcher"
             "io.github.noxworld_dev.OpenNox"
+            "io.github.RobertBeckebans.RBDoom3BFG-GL"
             "io.github.santiagocezar.maniatic-launcher"
             "io.github.simple64.simple64"
             "io.github.theforceengine.tfe"
