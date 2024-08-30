@@ -130,13 +130,13 @@ in
                 "application/json" = [ "org.kde.kate.desktop" ];
                 "application/pdf" = [
                   "org.kde.okular.desktop"
-                  "one.ablaze.floorp.desktop"
+                  "io.github.zen_browser.zen.desktop"
                 ];
                 "application/toml" = [ "org.kde.kate.desktop" ];
                 "application/x-bat" = [ "org.kde.kate.desktop" ];
                 "application/x-cue" = [ "cdemu-client.desktop" ];
                 "application/x-msdownload" = [ "wine.desktop" ];
-                "application/xhtml+xml" = [ "one.ablaze.floorp.desktop" ];
+                "application/xhtml+xml" = [ "io.github.zen_browser.zen.desktop" ];
                 "application/xml" = [ "org.kde.kate.desktop" ];
                 "application/x-shellscript" = [ "org.kde.kate.desktop" ];
                 "audio/*" = [ "org.fooyin.fooyin.desktop" ];
@@ -149,14 +149,14 @@ in
                   "nvim.desktop"
                 ];
                 "text/html" = [
-                  "one.ablaze.floorp.desktop"
+                  "io.github.zen_browser.zen.desktop"
                   "net.mullvad.MullvadBrowser.desktop"
                   "org.kde.kate.desktop"
                 ];
                 "video/*" = [ "org.kde.haruna.desktop" ];
                 "x-scheme-handler/bottles" = [ "com.usebottles.bottles.desktop" ];
-                "x-scheme-handler/http" = [ "one.ablaze.floorp.desktop" ];
-                "x-scheme-handler/https" = [ "one.ablaze.floorp.desktop" ];
+                "x-scheme-handler/http" = [ "io.github.zen_browser.zen.desktop" ];
+                "x-scheme-handler/https" = [ "io.github.zen_browser.zen.desktop" ];
               };
               removed = { };
             };
@@ -173,7 +173,7 @@ in
               "image/jpeg" = [ "org.kde.gwenview.desktop" ];
               "image/png" = [ "org.kde.gwenview.desktop" ];
               "image/webp" = [ "org.kde.gwenview.desktop" ];
-              "text/html" = [ "one.ablaze.floorp.desktop" ];
+              "text/html" = [ "io.github.zen_browser.zen.desktop" ];
               "text/plain" = [ "org.kde.kate.desktop" ];
               "video/mp4" = [ "org.kde.haruna.desktop" ];
               "video/mpeg" = [ "org.kde.haruna.desktop" ];
@@ -183,8 +183,8 @@ in
               "video/x-matroska" = [ "org.kde.haruna.desktop" ];
               "video/x-ms-wmv" = [ "org.kde.haruna.desktop" ];
               "x-scheme-handler/bottles" = [ "com.usebottles.bottles.desktop" ];
-              "x-scheme-handler/http" = [ "one.ablaze.floorp.desktop" ];
-              "x-scheme-handler/https" = [ "one.ablaze.floorp.desktop" ];
+              "x-scheme-handler/http" = [ "io.github.zen_browser.zen.desktop" ];
+              "x-scheme-handler/https" = [ "io.github.zen_browser.zen.desktop" ];
               "x-scheme-handler/ror2mm" = [ "r2modman.desktop" ];
             };
           };

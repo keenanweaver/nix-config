@@ -129,7 +129,6 @@ in
             "com.georgefb.mangareader" = {
               Context = {
                 filesystems = [
-                  "/mnt/crusader/Downloads/Torrents/F"
                   "!home"
                 ];
               };
@@ -137,6 +136,11 @@ in
             "com.github.Alcaro.Flips" = {
               Context = {
                 filesystems = [ "!home" ];
+              };
+            };
+            "io.github.zen_browser.zen" = {
+              Environment = {
+                MOZ_ENABLE_WAYLAND = "1";
               };
             };
             "it.mijorus.gearlever" = {

@@ -71,6 +71,7 @@
                 launchers = [
                   "applications:org.kde.dolphin.desktop"
                   "preferred://browser"
+                  "applications:one.ablaze.floorp.desktop"
                 ];
               };
             }
