@@ -46,6 +46,7 @@
     ./starship
     ./steam
     ./sunshine
+    ./tailscale
     ./tealdeer
     ./timidity
     ./topgrade

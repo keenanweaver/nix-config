@@ -46,6 +46,7 @@ in
     ripgrep.enable = true;
     ssh.enable = true;
     starship.enable = true;
+    tailscale.enable = true;
     tealdeer.enable = true;
     topgrade.enable = true;
     yazi.enable = true;
