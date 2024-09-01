@@ -109,6 +109,7 @@
                     };
                   };
                   hidden = [
+                    "KTailctl"
                     "opensnitch-ui"
                     "org.kde.plasma.addons.katesessions"
                     "org.kde.plasma.networkmanagement"
@@ -170,7 +171,6 @@
                 };
                 launchers = [
                   "applications:org.wezfurlong.wezterm.desktop"
-                  "applications:org.codeberg.dnkl.foot.desktop"
                   "applications:org.signal.Signal.desktop"
                   "applications:xyz.armcord.ArmCord.desktop"
                   "applications:info.mumble.Mumble.desktop"

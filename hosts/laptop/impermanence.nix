@@ -26,6 +26,7 @@
           #"/var/lib/opensnitch"
           "/var/lib/power-profiles-daemon"
           "/var/lib/systemd/coredump"
+          "/var/lib/tailscale"
           "/var/lib/upower"
           "/var/log"
         ];

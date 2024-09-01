@@ -126,6 +126,7 @@
             {
               systemTray.items = {
                 hidden = [
+                  "KTailctl"
                   "opensnitch-ui"
                   "org.kde.plasma.addons.katesessions"
                   "org.kde.plasma.networkmanagement"
