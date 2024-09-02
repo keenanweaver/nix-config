@@ -7,6 +7,28 @@
 }:
 let
   cfg = config.gamemode;
+  gamemode-start = (
+    pkgs.writeShellApplication {
+      name = "gamemode-start";
+      runtimeInputs = with pkgs; [
+        libnotify
+      ];
+      text = ''
+        notify-send -t 3000 -u low 'GameMode' 'GameMode started' -i applications-games -a 'GameMode'
+      '';
+    }
+  );
+  gamemode-end = (
+    pkgs.writeShellApplication {
+      name = "gamemode-end";
+      runtimeInputs = with pkgs; [
+        libnotify
+      ];
+      text = ''
+        notify-send -t 3000 -u low 'GameMode' 'GameMode stopped' -i applications-games -a 'GameMode'
+      '';
+    }
+  );
 in
 {
   options = {
@@ -24,16 +46,8 @@ in
         };
         custom = {
           # https://github.com/Electrostasy/dots/blob/master/hosts/terra/gaming.nix
-          start = builtins.toString (
-            pkgs.writeShellScript "gamemode-start" ''
-              ${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GameMode' 'GameMode started' -i applications-games -a 'GameMode'
-            ''
-          );
-          end = builtins.toString (
-            pkgs.writeShellScript "gamemode-end" ''
-              ${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GameMode' 'GameMode stopped' -i applications-games -a 'GameMode'
-            ''
-          );
+          start = "${lib.getBin gamemode-start}/bin/gamemode-start";
+          end = "${lib.getBin gamemode-end}/bin/gamemode-end";
         };
       };
     };
