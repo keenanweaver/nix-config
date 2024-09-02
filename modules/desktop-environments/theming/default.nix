@@ -506,6 +506,11 @@ in
                   GTK_THEME = "${GTK-THEME}";
                 };
               };
+              "io.github.zen_browser.zen" = {
+                Environment = {
+                  GTK_THEME = "${GTK-THEME}";
+                };
+              };
               "one.ablaze.floorp" = {
                 Environment = {
                   GTK_THEME = "${GTK-THEME}";

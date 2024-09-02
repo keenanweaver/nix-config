@@ -58,6 +58,7 @@
     ./yt-dlp
     ./zed
     ./zellij
+    ./zen-browser
     ./zerotier
     ./zoxide
     ./zsh
