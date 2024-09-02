@@ -16,7 +16,7 @@
           "/etc/wireguard"
           "/var/db/sudo/lectured"
           "/var/lib/AccountsService"
-          #"/var/lib/bluetooth"
+          "/var/lib/bluetooth"
           "/var/lib/clamav"
           "/var/lib/docker"
           "/var/lib/flatpak"
@@ -27,6 +27,7 @@
           "/var/lib/systemd/coredump"
           "/var/lib/tailscale"
           "/var/lib/upower"
+          "/var/lib/zerotier-one"
           "/var/log"
         ];
         files = [
