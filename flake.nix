@@ -221,7 +221,7 @@
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
-                  backupFileExtension = ".hmbak";
+                  backupFileExtension = "hmbak";
                   useGlobalPkgs = true;
                   useUserPackages = true;
                   extraSpecialArgs = {
