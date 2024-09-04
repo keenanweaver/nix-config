@@ -23,32 +23,28 @@ in
         GDK_DEBUG = "portals"; # KDE filepicker
         XDG_CURRENT_DESKTOP = "KDE";
       };
-      systemPackages =
-        with pkgs;
-        with pkgs.kdePackages;
-        [
-          colord-kde
-          discover
-          ffmpegthumbnailer
-          filelight
-          kate
-          kcalc
-          kcron
-          kdesu
-          kdialog
-          kio-extras
-          kirigami-addons
-          kjournald
-          ksshaskpass
-          inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
-          isoimagewriter
-          packagekit-qt # Discover store
-          plasma-browser-integration
-          qtimageformats
-          qtsvg #https://github.com/NixOS/nixpkgs/issues/325225
-          sddm-kcm
-          syntax-highlighting
-        ];
+      systemPackages = with pkgs.kdePackages; [
+        colord-kde
+        discover
+        ffmpegthumbnailer
+        filelight
+        kcalc
+        kcron
+        kdesu
+        kdialog
+        kio-extras
+        kirigami-addons
+        kjournald
+        ksshaskpass
+        inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
+        isoimagewriter
+        packagekit-qt # Discover store
+        plasma-browser-integration
+        qtimageformats
+        qtsvg # https://github.com/NixOS/nixpkgs/issues/325225
+        sddm-kcm
+        syntax-highlighting
+      ];
     };
     programs = {
       fuse.userAllowOther = true;
