@@ -241,16 +241,18 @@
             icons = {
               alignment = "left";
               arrangement = "leftToRight";
-              folderPreviewPopups = false;
+              folderPreviewPopups = true;
               previewPlugins = [
                 "audiothumbnail"
                 "fontthumbnail"
               ];
               size = 3;
+              sorting = {
+                foldersFirst = true;
+              };
             };
             mouseActions = {
-              leftClick = "appLauncher";
-              middleClick = "switchWindow";
+              middleClick = "paste";
               rightClick = "contextMenu";
               verticalScroll = "switchVirtualDesktop";
             };

@@ -75,7 +75,12 @@
                 ];
               };
             }
-            "org.kde.plasma.panelspacer"
+            #"org.kde.plasma.panelspacer"
+            {
+              panelSpacer = {
+                expanding = true;
+              };
+            }
             /*
               {
                          name = "org.kde.plasma.pager";
@@ -171,8 +176,8 @@
                 };
                 launchers = [
                   "applications:org.wezfurlong.wezterm.desktop"
-                  "applications:org.signal.Signal.desktop"
                   "applications:xyz.armcord.ArmCord.desktop"
+                  "applications:org.signal.Signal.desktop"
                   "applications:info.mumble.Mumble.desktop"
                   "applications:qobuz.desktop"
                   "applications:foobar2000.desktop"

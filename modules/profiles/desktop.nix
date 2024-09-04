@@ -67,7 +67,6 @@ in
       }:
       {
         home.packages = with pkgs; [
-          apostrophe
           (writeShellApplication {
             name = "bootstrap-baremetal";
             runtimeInputs = with pkgs; [
