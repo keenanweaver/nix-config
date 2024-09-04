@@ -395,17 +395,37 @@ in
             target = "${config.xdg.configHome}/dosbox/mt32-roms";
           };
           # Use Bottles to manage Wine runners for Heroic and Lutris
-          wine-links-heroic = {
+          /*
+            wine-links-heroic = {
+                     enable = true;
+                     recursive = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.var/app/com.usebottles.bottles/data/bottles/runners";
+                     target = "${config.home.homeDirectory}/.var/app/com.heroicgameslauncher.hgl/config/heroic/tools/wine";
+                   };
+                   wine-links-lutris = {
+                     enable = true;
+                     recursive = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.var/app/com.usebottles.bottles/data/bottles/runners";
+                     target = "${config.home.homeDirectory}/.var/app/net.lutris.Lutris/data/lutris/runners/wine";
+                   };
+          */
+          wine-links-protonge-bottles = {
             enable = true;
             recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.var/app/com.usebottles.bottles/data/bottles/runners";
-            target = "${config.xdg.configHome}/heroic/tools/wine";
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
+            target = "${config.home.homeDirectory}/.var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-custom";
           };
-          wine-links-lutris = {
+          wine-links-protonge-heroic = {
             enable = true;
             recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.var/app/com.usebottles.bottles/data/bottles/runners";
-            target = "${config.xdg.dataHome}/lutris/runners/wine";
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
+            target = "${config.home.homeDirectory}/.var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-ge-custom";
+          };
+          wine-links-protonge-lutris = {
+            enable = true;
+            recursive = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
+            target = "${config.home.homeDirectory}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-ge-custom";
           };
         };
         home.packages =
@@ -552,6 +572,7 @@ in
                   "~/Games"
                   "/mnt/crusader/Games"
                   "~/.var/app/com.valvesoftware.Steam"
+                  "~/.var/app/net.lutris.Lutris"
                   "xdg-data/applications"
                   "xdg-data/Steam"
                 ];
