@@ -61,17 +61,6 @@ in
               formatted-hm;
             target = "${config.xdg.configHome}/packages-hm";
           };
-          current-packages-flatpak = {
-            enable = config.services.flatpak.enable;
-            text =
-              let
-                packages = builtins.map (p: "${p.name}") config.services.flatpak.packages;
-                sortedUnique = builtins.sort builtins.lessThan (pkgs.lib.lists.unique packages);
-                formatted-hm = builtins.concatStringsSep "\n" sortedUnique;
-              in
-              formatted-hm;
-            target = "${config.xdg.configHome}/packages-fp";
-          };
         };
         home.packages =
           with pkgs;
@@ -81,6 +70,7 @@ in
             devbox
             just
             powershell
+            zed-editor
             ### Ansible ###
             ansible
             ansible-language-server
