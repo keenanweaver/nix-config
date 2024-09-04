@@ -27,7 +27,9 @@ in
         fsType = "nfs";
         options = [
           "x-systemd.automount"
+          "x-systemd.idle-timeout=600"
           "noauto"
+          "rw"
         ];
       };
       "${mountpoint}/Backup" = {
@@ -35,7 +37,9 @@ in
         fsType = "nfs";
         options = [
           "x-systemd.automount"
+          "x-systemd.idle-timeout=600"
           "noauto"
+          "rw"
         ];
       };
       "${mountpoint}/Downloads" = {
@@ -43,7 +47,9 @@ in
         fsType = "nfs";
         options = [
           "x-systemd.automount"
+          "x-systemd.idle-timeout=600"
           "noauto"
+          "rw"
         ];
       };
       "${mountpoint}/eXo" = {
@@ -51,7 +57,9 @@ in
         fsType = "nfs";
         options = [
           "x-systemd.automount"
+          "x-systemd.idle-timeout=600"
           "noauto"
+          "rw"
         ];
       };
       "${mountpoint}/Games" = {
@@ -59,7 +67,9 @@ in
         fsType = "nfs";
         options = [
           "x-systemd.automount"
+          "x-systemd.idle-timeout=600"
           "noauto"
+          "rw"
         ];
       };
       "${mountpoint}/Life" = {
@@ -67,7 +77,9 @@ in
         fsType = "nfs";
         options = [
           "x-systemd.automount"
+          "x-systemd.idle-timeout=600"
           "noauto"
+          "rw"
         ];
       };
       "${mountpoint}/Media" = {
@@ -75,7 +87,9 @@ in
         fsType = "nfs";
         options = [
           "x-systemd.automount"
+          "x-systemd.idle-timeout=600"
           "noauto"
+          "rw"
         ];
       };
       "${mountpoint}/Miscellaneous" = {
@@ -83,7 +97,9 @@ in
         fsType = "nfs";
         options = [
           "x-systemd.automount"
+          "x-systemd.idle-timeout=600"
           "noauto"
+          "rw"
         ];
       };
       "${mountpoint}/Mister" = {
@@ -91,7 +107,9 @@ in
         fsType = "nfs";
         options = [
           "x-systemd.automount"
+          "x-systemd.idle-timeout=600"
           "noauto"
+          "rw"
         ];
       };
       "${mountpoint}/Photos" = {
@@ -99,7 +117,9 @@ in
         fsType = "nfs";
         options = [
           "x-systemd.automount"
+          "x-systemd.idle-timeout=600"
           "noauto"
+          "rw"
         ];
       };
       "${mountpoint}/Projects" = {
@@ -107,7 +127,9 @@ in
         fsType = "nfs";
         options = [
           "x-systemd.automount"
+          "x-systemd.idle-timeout=600"
           "noauto"
+          "rw"
         ];
       };
     };
