@@ -297,7 +297,7 @@ in
             vivid
             ## GNOME
             adwaita-icon-theme
-            gnome.gnome-settings-daemon
+            gnome-settings-daemon
             gsettings-desktop-schemas
             gsettings-qt
           ];

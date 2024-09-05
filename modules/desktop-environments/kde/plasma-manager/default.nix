@@ -22,19 +22,15 @@
       programs = {
         ghostwriter = {
           enable = true;
-          package = with pkgs.kdePackages; [ ghostwriter ];
           general = {
-            display = {
-              session = {
-                openLastFileOnStartup = true;
-                rememberRecentFiles = true;
-              };
+            session = {
+              openLastFileOnStartup = true;
+              rememberRecentFiles = true;
             };
           };
         };
         kate = {
           enable = true;
-          package = with pkgs.kdePackages; [ kate ];
           lsp = {
             customServers = {
               css = {
@@ -96,7 +92,6 @@
         };
         okular = {
           enable = true;
-          packages = with pkgs.kdePackages; [ okular ];
           general = {
             obeyDrm = false;
             openFileInTabs = true;

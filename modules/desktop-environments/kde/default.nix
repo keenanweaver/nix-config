@@ -23,7 +23,7 @@ in
         GDK_DEBUG = "portals"; # KDE filepicker
         XDG_CURRENT_DESKTOP = "KDE";
       };
-      systemPackages = with pkgs.kdePackages; [
+      systemPackages = with pkgs; with pkgs.kdePackages; [
         colord-kde
         discover
         ffmpegthumbnailer
