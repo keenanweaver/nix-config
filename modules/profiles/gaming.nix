@@ -303,7 +303,19 @@ in
           # https://github.com/RPCS3/rpcs3/issues/9328#issuecomment-732390362
           # https://github.com/CachyOS/CachyOS-Settings/tree/master/etc/security/limits.d
           #{ domain = "*"; item = "nofile"; type = "-"; value = "unlimited"; }
-          #{ domain = "*"; item = "memlock"; type = "-"; value = "unlimited"; } # RPCS3
+          # RPCS3
+          {
+            domain = "*";
+            item = "memlock";
+            type = "hard";
+            value = "unlimited";
+          }
+          {
+            domain = "*";
+            item = "memlock";
+            type = "soft";
+            value = "unlimited";
+          }
           {
             domain = "*";
             item = "nofile";
@@ -394,21 +406,6 @@ in
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
             target = "${config.xdg.configHome}/dosbox/mt32-roms";
           };
-          # Use Bottles to manage Wine runners for Heroic and Lutris
-          /*
-            wine-links-heroic = {
-                     enable = true;
-                     recursive = true;
-                     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.var/app/com.usebottles.bottles/data/bottles/runners";
-                     target = "${config.home.homeDirectory}/.var/app/com.heroicgameslauncher.hgl/config/heroic/tools/wine";
-                   };
-                   wine-links-lutris = {
-                     enable = true;
-                     recursive = true;
-                     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.var/app/com.usebottles.bottles/data/bottles/runners";
-                     target = "${config.home.homeDirectory}/.var/app/net.lutris.Lutris/data/lutris/runners/wine";
-                   };
-          */
           wine-links-protonge-bottles = {
             enable = true;
             recursive = false;
@@ -529,6 +526,11 @@ in
         };
         services.flatpak = {
           overrides = {
+            "ca.parallel_launcher.ParallelLauncher" = {
+              Context = {
+                filesystems = [ "/mnt/crusader/Games/Rom/No-Intro/roms" ];
+              };
+            };
             "com.github.mtkennerly.ludusavi" = {
               Context = {
                 filesystems = [
@@ -552,9 +554,11 @@ in
                 shared = "network"; # obs-gamecapture
               };
             };
-            "ca.parallel_launcher.ParallelLauncher" = {
+            "com.heroicgameslauncher.hgl" = {
               Context = {
-                filesystems = [ "/mnt/crusader/Games/Rom/No-Intro/roms" ];
+                filesystems = [
+                  "~/Games"
+                ];
               };
             };
             "com.supermodel3.Supermodel" = {
@@ -845,7 +849,7 @@ in
             gog-galaxy = {
               name = "GOG Galaxy";
               comment = "Launch GOG Galaxy using Bottles.";
-              exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p \"GOG Galaxy\" \"GOG Galaxy\" -- %u";
+              exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p \"GOG Galaxy\" -b \"GOG Galaxy\" -- %u";
               icon = "${config.home.homeDirectory}/Games/Bottles/GOG-Galaxy/icons/GOG Galaxy.png";
               categories = [ "Game" ];
               noDisplay = false;
