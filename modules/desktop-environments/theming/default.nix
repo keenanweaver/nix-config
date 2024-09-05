@@ -343,6 +343,20 @@ in
               };
             };
           };
+          kate = {
+            editor = {
+              brackets = {
+                automaticallyAddClosing = true;
+                flashMatching = true;
+                highlightMatching = true;
+                highlightRangeBetween = true;
+              };
+              font = {
+                family = "${mono-font}";
+                pointSize = 14;
+              };
+            };
+          };
           kitty = {
             font = {
               name = "${mono-font}";

@@ -411,19 +411,19 @@ in
           */
           wine-links-protonge-bottles = {
             enable = true;
-            recursive = true;
+            recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
             target = "${config.home.homeDirectory}/.var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-custom";
           };
           wine-links-protonge-heroic = {
             enable = true;
-            recursive = true;
+            recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
             target = "${config.home.homeDirectory}/.var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-ge-custom";
           };
           wine-links-protonge-lutris = {
             enable = true;
-            recursive = true;
+            recursive = false;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
             target = "${config.home.homeDirectory}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-ge-custom";
           };
