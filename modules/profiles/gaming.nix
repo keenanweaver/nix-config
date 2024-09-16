@@ -95,6 +95,7 @@ let
       [
         eduke32
         raze
+        (callPackage ../../nix/pkgs/rigel.nix { })
       ]
       # Star Citizen
       [
@@ -775,13 +776,13 @@ in
             "eu.vcmi.VCMI"
             "info.cemu.Cemu"
             "info.urbanterror.UrbanTerror"
-            "io.github.am2r_community_developers.AM2RLauncher"
+            #"io.github.am2r_community_developers.AM2RLauncher"
             #"io.github.antimicrox.antimicrox"
             "io.github.Foldex.AdwSteamGtk"
             #"io.github.garglk.Gargoyle"
             "io.github.ihhub.Fheroes2"
             "io.github.ja2_stracciatella.JA2-Stracciatella"
-            "io.github.lethal_guitar.RigelEngine"
+            #"io.github.lethal_guitar.RigelEngine"
             "io.github.lime3ds.Lime3DS"
             "io.github.limo_app.limo"
             "io.github.lxndr.gswatcher"
@@ -808,12 +809,17 @@ in
             "org.DolphinEmu.dolphin-emu"
             "org.duckstation.DuckStation"
             "org.easyrpg.player"
-            "org.freedesktop.Platform.GStreamer.gstreamer-vaapi/x86_64/23.08"
+            #"org.freedesktop.Platform.GStreamer.gstreamer-vaapi/x86_64/24.08"
+            "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
+            #"org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08"
+            "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08"
+            #"org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/24.08"
+            #"org.freedesktop.Platform.GStreamer.gstreamer-vaapi/x86_64/23.08"
             "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08"
             "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08"
             "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
             "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/23.08"
-            "org.freedesktop.Platform.GStreamer.gstreamer-vaapi/x86_64/22.08"
+            #"org.freedesktop.Platform.GStreamer.gstreamer-vaapi/x86_64/22.08"
             "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08"
             "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/22.08"
             "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/22.08"
