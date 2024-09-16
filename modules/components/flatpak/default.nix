@@ -60,8 +60,9 @@ in
             #"io.github.jonmagon.kdiskmark"
             #"io.github.seadve.Breathing"
             #"io.github.seadve.Mousai"
+            "io.github.martinrotter.rssguardlite"
             "io.github.ungoogled_software.ungoogled_chromium"
-            "io.github.zen_browser.zen"
+            #"io.github.zen_browser.zen"
             #"io.gitlab.gregorni.Letterpress"
             #"io.gpt4all.gpt4all"
             #"io.mpv.Mpv"
@@ -136,6 +137,11 @@ in
             "com.github.Alcaro.Flips" = {
               Context = {
                 filesystems = [ "!home" ];
+              };
+            };
+            "io.github.martinrotter.rssguardlite" = {
+              Context = {
+                filesystems = [ "xdg-config/autostart" ];
               };
             };
             "io.github.zen_browser.zen" = {

@@ -121,12 +121,6 @@ in
                   enable = true;
                   autostart = true;
                 };
-                rust-analyzer = {
-                  enable = true;
-                  installCargo = true;
-                  installRustc = true;
-                  autostart = true;
-                };
                 terraformls = {
                   enable = true;
                   autostart = true;
@@ -137,7 +131,7 @@ in
             lualine = {
               # Status line https://github.com/nvim-lualine/lualine.nvim
               enable = true;
-              sections.lualine_x = [ "overseer" ];
+              settings.sections.lualine_x = [ "overseer" ];
             };
             luasnip.enable = true; # Lua snippets https://github.com/L3MON4D3/LuaSnip
             neo-tree = {

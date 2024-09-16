@@ -22,7 +22,7 @@ in
     catppuccinTheming.enable = true;
     hyprland.enable = false;
     kde.enable = true;
-    looking-glass.enable = true;
+    looking-glass.enable = false;
     mumble.enable = true;
     office.enable = true;
     vscode.enable = true;
@@ -122,71 +122,42 @@ in
               };
             };
           };
-          mimeApps = {
-            enable = true;
-            associations = {
-              added = {
-                "application/json" = [ "org.kde.kate.desktop" ];
-                "application/pdf" = [
-                  "org.kde.okular.desktop"
-                  "io.github.zen_browser.zen.desktop"
-                ];
-                "application/toml" = [ "org.kde.kate.desktop" ];
-                "application/x-bat" = [ "org.kde.kate.desktop" ];
-                "application/x-cue" = [ "cdemu-client.desktop" ];
-                "application/x-msdownload" = [ "wine.desktop" ];
-                "application/xhtml+xml" = [ "io.github.zen_browser.zen.desktop" ];
-                "application/xml" = [ "org.kde.kate.desktop" ];
-                "application/x-shellscript" = [ "org.kde.kate.desktop" ];
-                "audio/*" = [ "org.fooyin.fooyin.desktop" ];
-                "image/*" = [ "org.kde.gwenview.desktop" ];
-                "inode/directory" = [ "org.kde.dolphin.desktop" ];
-                "text/*" = [
-                  "org.kde.kate.desktop"
-                  "Helix.desktop"
-                  "micro.desktop"
-                  "nvim.desktop"
-                ];
-                "text/html" = [
-                  "io.github.zen_browser.zen.desktop"
-                  "net.mullvad.MullvadBrowser.desktop"
-                  "org.kde.kate.desktop"
-                ];
-                "video/*" = [ "org.kde.haruna.desktop" ];
-                "x-scheme-handler/bottles" = [ "com.usebottles.bottles.desktop" ];
-                "x-scheme-handler/http" = [ "io.github.zen_browser.zen.desktop" ];
-                "x-scheme-handler/https" = [ "io.github.zen_browser.zen.desktop" ];
+          mimeApps =
+            let
+              audioPlayer = "org.fooyin.fooyin.desktop";
+              browser = "one.ablaze.floorp.desktop";
+              editor = "org.kde.kate.desktop";
+              imageViewer = "org.kde.gwenview.desktop";
+              pdfViewer = "org.kde.okular.desktop";
+              videoPlayer = "org.kde.haruna.desktop";
+            in
+            {
+              enable = true;
+              defaultApplications = {
+                "audio/*" = audioPlayer;
+                "image/*" = imageViewer;
+                "video/*" = videoPlayer;
+                "text/*" = editor;
+                "text/html" = browser;
+                "text/plain" = editor;
+                "application/json" = editor;
+                "application/pdf" = pdfViewer;
+                "application/toml" = editor;
+                "application/x-bat" = editor;
+                "application/x-cue" = "cdemu-client.desktop";
+                "application/x-msdownload" = "wine.desktop";
+                "application/xhtml+xml" = browser;
+                "application/xml" = editor;
+                "application/x-shellscript" = editor;
+                "application/x-yaml" = editor;
+                "inode/directory" = "org.kde.dolphin.desktop";
+                "x-scheme-handler/bottles" = "com.usebottles.bottles.desktop";
+                "x-scheme-handler/http" = browser;
+                "x-scheme-handler/https" = browser;
+                "x-scheme-handler/ror2mm" = "r2modman.desktop";
+                "x-scheme-handler/terminal" = "org.wezfurlong.wezterm.desktop";
               };
-              removed = { };
             };
-            defaultApplications = {
-              "application/x-cue" = [ "cdemu-client.desktop" ];
-              "application/x-msdownload" = [ "wine.desktop" ];
-              "audio/aac" = [ "org.fooyin.fooyin.desktop" ];
-              "audio/flac" = [ "org.fooyin.fooyin.desktop" ];
-              "audio/mpeg" = [ "org.fooyin.fooyin.desktop" ];
-              "audio/ogg" = [ "org.fooyin.fooyin.desktop" ];
-              "audio/webm" = [ "org.kde.haruna.desktop" ];
-              "image/bmp" = [ "org.kde.gwenview.desktop" ];
-              "image/gif" = [ "org.kde.gwenview.desktop" ];
-              "image/jpeg" = [ "org.kde.gwenview.desktop" ];
-              "image/png" = [ "org.kde.gwenview.desktop" ];
-              "image/webp" = [ "org.kde.gwenview.desktop" ];
-              "text/html" = [ "io.github.zen_browser.zen.desktop" ];
-              "text/plain" = [ "org.kde.kate.desktop" ];
-              "video/mp4" = [ "org.kde.haruna.desktop" ];
-              "video/mpeg" = [ "org.kde.haruna.desktop" ];
-              "video/quicktime" = [ "org.kde.haruna.desktop" ];
-              "video/webm" = [ "org.kde.haruna.desktop" ];
-              "video/x-flv" = [ "org.kde.haruna.desktop" ];
-              "video/x-matroska" = [ "org.kde.haruna.desktop" ];
-              "video/x-ms-wmv" = [ "org.kde.haruna.desktop" ];
-              "x-scheme-handler/bottles" = [ "com.usebottles.bottles.desktop" ];
-              "x-scheme-handler/http" = [ "io.github.zen_browser.zen.desktop" ];
-              "x-scheme-handler/https" = [ "io.github.zen_browser.zen.desktop" ];
-              "x-scheme-handler/ror2mm" = [ "r2modman.desktop" ];
-            };
-          };
           portal = {
             config.common.default = "*";
             enable = true;

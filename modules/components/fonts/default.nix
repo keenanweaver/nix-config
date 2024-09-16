@@ -94,6 +94,8 @@ in
         lato
         lexend
         liberation_ttf
+        material-design-icons
+        monaspace
         (nerdfonts.override {
           fonts = [
             "FiraCode"
@@ -104,7 +106,6 @@ in
             "JetBrainsMono"
           ];
         })
-        material-design-icons
         noto-fonts
         noto-fonts-cjk
         noto-fonts-emoji
