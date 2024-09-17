@@ -37,28 +37,31 @@ in
       };
     };
 
-    # https://github.com/piyoki/nixos-config/blob/6f252c3a21faacdc192d9be7598ee6ab17608db7/system/networking/udp-gro-forwarding.nix#L14
-    systemd.services."udp-gro-forwarding" =
+    systemd.services.tailscale-optimal =
       let
-        swBin = "/run/current-system/sw/bin";
+        tailscale-optimize = (
+          pkgs.writeShellApplication {
+            name = "tailscale-optimize";
+            runtimeInputs = with pkgs; [
+              ethtool
+              iproute2
+            ];
+            text = ''
+              NETDEV=$(ip -o route get 9.9.9.9 | cut -f 5 -d " ")
+              ethtool -K "$NETDEV" rx-udp-gro-forwarding on rx-gro-list off;
+            '';
+          }
+        );
       in
       {
-        description = "UDP Gro Forwarding Service";
-        after = [
-          "network.target"
-          "iptables.service"
-          "ip6tables.service"
-        ];
+        # https://tailscale.com/kb/1320/performance-best-practices#ethtool-configuration
+        description = "Optimize tailscale exit node performance";
+        after = [ "network.target" ];
         serviceConfig = {
-          ExecStart = "${pkgs.writeShellScript "udp-gro-forwarding" ''
-            set -eux
-            NETDEV=$(${swBin}/ip route show 0/0 | grep 'via' | cut -f5 -d ' ')
-            ${pkgs.ethtool}/bin/ethtool -K $NETDEV rx-udp-gro-forwarding on rx-gro-list off;
-          ''}";
           Type = "oneshot";
-          Environment = [ "PATH=$PATH:${swBin}" ];
+          ExecStart = "${lib.getBin tailscale-optimize}/bin/tailscale-optimize";
         };
-        wantedBy = [ "multi-user.target" ];
+        wantedBy = [ "default.target" ];
       };
 
     home-manager.users.${username} = {
