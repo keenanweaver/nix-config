@@ -62,7 +62,7 @@ in
             #"io.github.seadve.Mousai"
             "io.github.martinrotter.rssguardlite"
             "io.github.ungoogled_software.ungoogled_chromium"
-            #"io.github.zen_browser.zen"
+            "io.github.zen_browser.zen"
             #"io.gitlab.gregorni.Letterpress"
             #"io.gpt4all.gpt4all"
             #"io.mpv.Mpv"

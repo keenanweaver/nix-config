@@ -130,7 +130,11 @@
       url = "github:catppuccin/xresources";
       flake = false;
     };
-    stylix.url = "github:danth/stylix";
+    catppuccin-zen = {
+      url = "github:IAmJafeth/zen-browser";
+      flake = false;
+    };
+    #stylix.url = "github:danth/stylix";
 
     # KDE
     kwin-effects-forceblur = {

@@ -252,6 +252,11 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-powershell}";
               target = "${config.xdg.dataHome}/powershell/Modules/Catppuccin";
             };
+            catppuccin-zen-flatpak = {
+              enable = true;
+              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-zen}/themes/${flavor-upper}/${accent-upper}";
+              target = ".var/app/io.github.zen_browser.zen/.zen/${username}/chrome";
+            };
             font-geist = {
               enable = true;
               recursive = true;
