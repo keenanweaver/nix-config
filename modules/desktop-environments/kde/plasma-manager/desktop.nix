@@ -71,26 +71,15 @@
                 launchers = [
                   "applications:org.kde.dolphin.desktop"
                   "preferred://browser"
+                  "applications:one.ablaze.floorp.desktop"
                 ];
               };
             }
-            #"org.kde.plasma.panelspacer"
             {
               panelSpacer = {
                 expanding = true;
               };
             }
-            /*
-              {
-                         name = "org.kde.plasma.pager";
-                         config = {
-                           General = {
-                             displayedText = "Number";
-                             wrapPage = true;
-                           };
-                         };
-                       }
-            */
             {
               name = "com.github.tilorenz.compact_pager";
               config = {
@@ -122,6 +111,9 @@
                     "indicator-solaar"
                     "tray-id" # Sunshine
                     #"chrome_status_icon_1" # Armcord
+                  ];
+                  shown = [
+                    "Akregator"
                   ];
                 };
               };
@@ -187,17 +179,6 @@
               };
             }
             "org.kde.plasma.panelspacer"
-            /*
-              {
-                         name = "org.kde.plasma.pager";
-                         config = {
-                           General = {
-                             displayedText = "Number";
-                             wrapPage = true;
-                           };
-                         };
-                       }
-            */
             {
               name = "com.github.tilorenz.compact_pager";
               config = {

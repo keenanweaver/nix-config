@@ -126,7 +126,6 @@ in
             jq
             lazydocker
             mkvtoolnix-cli
-            okteta
             projectm
             rustdesk-flutter
             streamrip

@@ -82,21 +82,11 @@
                 launchers = [
                   "applications:org.kde.dolphin.desktop"
                   "preferred://browser"
+                  "applications:one.ablaze.floorp.desktop"
                 ];
               };
             }
             "org.kde.plasma.panelspacer"
-            /*
-              {
-                         name = "org.kde.plasma.pager";
-                         config = {
-                           General = {
-                             displayedText = "Number";
-                             wrapPage = true;
-                           };
-                         };
-                       }
-            */
             {
               name = "com.github.tilorenz.compact_pager";
               config = {
@@ -131,6 +121,9 @@
                   "org.kde.plasma.networkmanagement"
                   "org.kde.plasma.clipboard"
                   "org.kde.kdeconnect"
+                ];
+                shown = [
+                  "Akregator"
                 ];
               };
             }
