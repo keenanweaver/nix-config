@@ -125,11 +125,25 @@ in
         xdgOpenUsePortal = true;
       };
     };
-    home-manager.users.${username} = {
-      services.kdeconnect = {
-        enable = true;
-        package = pkgs.kdePackages.kdeconnect-kde;
+    home-manager.users.${username} =
+      { config, ... }:
+      {
+        home.file = {
+          desktop-entry-akregator = {
+            enable = true;
+            text = ''
+              [Desktop Entry]
+              Exec=akregator %u --hide-mainwindow
+              Name=akregator
+              Type=Application
+            '';
+            target = "${config.xdg.configHome}/autostart/akregator.desktop";
+          };
+        };
+        services.kdeconnect = {
+          enable = true;
+          package = pkgs.kdePackages.kdeconnect-kde;
+        };
       };
-    };
   };
 }
