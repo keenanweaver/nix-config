@@ -204,7 +204,7 @@ in
     mangohud.enable = true;
     nonfree.enable = true;
     obs.enable = true;
-    solaar.enable = true;
+    solaar.enable = false;
     steam.enable = true;
     sunshine.enable = true;
     timidity.enable = true;
@@ -283,7 +283,7 @@ in
         };
       };
       #joycond.enable = true;
-      ratbagd.enable = true;
+      #ratbagd.enable = true;
       udev = {
         packages = with pkgs; [
           game-devices-udev-rules
@@ -539,6 +539,9 @@ in
                 Context = {
                   filesystems = [ "/mnt/crusader/Games/Rom/No-Intro/roms" ];
                 };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
               };
               "com.github.mtkennerly.ludusavi" = {
                 Context = {
@@ -557,10 +560,16 @@ in
                   filesystems = [ "~/Games/caesar-3" ];
                   shared = "network"; # obs-gamecapture
                 };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
               };
               "com.github.Xenoveritas.abuse" = {
                 Context = {
                   shared = "network"; # obs-gamecapture
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
                 };
               };
               "com.heroicgameslauncher.hgl" = {
@@ -568,6 +577,9 @@ in
                   filesystems = [
                     "~/Games"
                   ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
                 };
               };
               "com.supermodel3.Supermodel" = {
@@ -577,6 +589,9 @@ in
                     "xdg-config/supermodel"
                     "!home"
                   ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
                 };
               };
               "com.usebottles.bottles" = {
@@ -590,25 +605,40 @@ in
                     "xdg-data/Steam"
                   ];
                 };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
               };
               "com.valvesoftware.Steam" = {
                 Context = {
                   filesystems = [ "~/Games" ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
                 };
               };
               "dev.lizardbyte.app.Sunshine" = {
                 Context = {
                   filesystems = [ "!home" ];
                 };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
               };
               "dev.opengoal.OpenGOAL" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/opengoal" ];
                 };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
               };
               "info.cemu.Cemu" = {
                 Context = {
                   filesystems = [ "/mnt/crusader/Games/Rom/Other/Wii U" ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
                 };
               };
               "io.github.antimicrox.antimicrox" = {
@@ -620,25 +650,51 @@ in
                 Context = {
                   shared = "network"; # obs-gamecapture
                 };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
               };
               "io.github.ja2_stracciatella.JA2-Stracciatella" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/jagged-alliance-2/ja2" ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
                 };
               };
               "io.github.lime3ds.Lime3DS" = {
                 Context = {
                   filesystems = [ "/mnt/crusader/Games/Rom/Other/Nintendo 3DS" ];
                 };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
               };
               "io.github.theforceengine.tfe" = {
                 Context = {
                   shared = "network"; # obs-gamecapture
                 };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
+              "io.github.noxworld_dev.OpenNox" = {
+                Context = {
+                  filesystems = [
+                    "!home"
+                    "${config.home.homeDirectory}/Games/nox"
+                  ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
               };
               "io.openrct2.OpenRCT2" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/RCT" ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
                 };
               };
               "net.lutris.Lutris" = {
@@ -647,6 +703,9 @@ in
                     "~/Games"
                     "/mnt/crusader/Games"
                   ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
                 };
               };
               "net.mancubus.SLADE" = {
@@ -663,6 +722,9 @@ in
                 Context = {
                   filesystems = [ "/mnt/crusader/Games/Rom/Redump/Sony Playstation 2" ];
                 };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
               };
               "net.rpcs3.RPCS3" = {
                 Context = {
@@ -672,6 +734,9 @@ in
                     "!home"
                   ];
                 };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
               };
               "org.DolphinEmu.dolphin-emu" = {
                 Context = {
@@ -680,10 +745,16 @@ in
                     "/mnt/crusader/Games/Rom/Redump/Nintendo GameCube"
                   ];
                 };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
               };
               "org.duckstation.DuckStation" = {
                 Context = {
                   filesystems = [ "/mnt/crusader/Mister/PSX" ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
                 };
               };
               "org.easyrpg.player" = {
@@ -696,6 +767,7 @@ in
                   shared = "network"; # obs-gamecapture
                 };
                 Environment = {
+                  PULSE_SINK = "Game";
                   RPG2K_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2000";
                   RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2003";
                 };
@@ -707,6 +779,9 @@ in
                     "/mnt/crusader/Mister/games"
                   ];
                 };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
               };
               "org.mamedev.MAME" = {
                 Context = {
@@ -716,6 +791,9 @@ in
                     "!home"
                   ];
                 };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
               };
               "org.openmw.OpenMW" = {
                 Context = {
@@ -724,6 +802,7 @@ in
                 };
                 Environment = {
                   OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
+                  PULSE_SINK = "Game";
                 };
               };
               "org.ryujinx.Ryujinx" = {
@@ -732,6 +811,9 @@ in
                     "/mnt/crusader/Games/Rom/Other/Switch"
                     "!home"
                   ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
                 };
               };
               "org.scummvm.ScummVM" = {
@@ -742,10 +824,16 @@ in
                     "!home"
                   ];
                 };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
               };
               "org.zdoom.Raze" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/duke3d" ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
                 };
               };
               "page.kramo.Cartridges" = {

@@ -33,6 +33,9 @@ in
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
       package = pkgs.steam.override {
+        extraEnv = {
+          PULSE_SINK = "Game";
+        };
         extraLibraries =
           pkgs: with pkgs; [
             openssl
@@ -40,7 +43,7 @@ in
           ];
         extraPkgs =
           pkgs: with pkgs; [
-            inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
+            #inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
             ### Gamescope
             /*
               xorg.libXcursor
