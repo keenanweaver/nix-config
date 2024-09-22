@@ -23,12 +23,14 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
+    programs.java.enable = true;
     programs.steam = {
       enable = cfg.enableNative;
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
-        luxtorpeda # Chaotic package
-        proton-ge-custom # Chaotic package
+        # Chaotic packages
+        luxtorpeda
+        proton-ge-custom
       ];
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
@@ -36,42 +38,7 @@ in
         extraEnv = {
           PULSE_SINK = "Game";
         };
-        extraLibraries =
-          pkgs: with pkgs; [
-            openssl
-            wqy_zenhei
-          ];
-        extraPkgs =
-          pkgs: with pkgs; [
-            #inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
-            ### Gamescope
-            /*
-              xorg.libXcursor
-                       xorg.libXi
-                       xorg.libXinerama
-                       xorg.libXScrnSaver
-                       libpng
-                       libpulseaudio
-                       libvorbis
-                       stdenv.cc.cc.lib
-                       libkrb5
-                       keyutils
-            */
-            /*
-              corefonts
-              curl
-              harfbuzz
-              imagemagick
-              gnome.zenity
-              libgdiplus
-              libthai
-              libxcrypt-legacy
-              ncurses6 # CK III
-              pango
-              vkbasalt
-              xdotool
-            */
-          ];
+        extraLibraries = pkgs: with pkgs; [ wqy_zenhei ];
       };
       protontricks.enable = true;
       remotePlay.openFirewall = true;
@@ -92,11 +59,7 @@ in
             };
             steam-slow-fix-flatpak = {
               enable = cfg.fixDownloadSpeed;
-              text = ''
-                @nClientDownloadEnableHTTP2PlatformLinux 0
-                @fDownloadRateImprovementToAddAnotherConnection 1
-                @cMaxInitialDownloadSources 15
-              '';
+              text = config.home.file.steam-slow-fix.text;
               target = ".var/app/com.valvesoftware.Steam/.steam/steam/steam_dev.cfg";
             };
           };
