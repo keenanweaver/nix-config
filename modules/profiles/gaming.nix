@@ -194,7 +194,7 @@ in
   };
   config = lib.mkIf cfg.enable {
     # Custom modules
-    cdemu.enable = false;
+    cdemu.enable = true;
     corectrl.enable = false;
     fluidsynth.enable = true;
     gamemode.enable = true;

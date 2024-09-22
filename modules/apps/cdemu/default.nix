@@ -20,6 +20,8 @@ in
       image-analyzer = false;
     };
 
+    users.users.${username}.extraGroups = [ "cdrom" ];
+
     home-manager.users.${username} = { };
   };
 }

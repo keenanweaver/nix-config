@@ -147,7 +147,7 @@
           };
           dimDisplay = {
             enable = true;
-            idleTimeOut = 900;
+            idleTimeout = 900;
           };
           turnOffDisplay = {
             idleTimeout = 300;
@@ -160,7 +160,7 @@
             idleTimeout = 600;
           };
           dimDisplay = {
-            idleTimeOut = 180;
+            idleTimeout = 180;
           };
           turnOffDisplay = {
             idleTimeout = 180;

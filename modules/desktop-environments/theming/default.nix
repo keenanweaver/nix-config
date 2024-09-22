@@ -240,12 +240,6 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-obs}/themes";
               target = ".var/app/com.obsproject.Studio/config/obs-studio/themes/";
             };
-            catppuccin-obs = {
-              enable = true;
-              recursive = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-obs}/themes";
-              target = "${config.xdg.configHome}/obs-studio/themes/";
-            };
             catppuccin-powershell = {
               enable = true;
               recursive = true;
