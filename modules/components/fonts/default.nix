@@ -80,6 +80,7 @@ in
         decompressFonts = true;
       };
       packages = with pkgs; [
+        atkinson-hyperlegible
         apple-fonts
         #b612
         #barlow

@@ -86,9 +86,9 @@ in
               refresh_rate
               show_fps_limit
               resolution
-              custom_text=Distro:
+              custom_text=Distro
               exec=${pkgs.gnused}/bin/sed -n 1p ${config.xdg.configHome}/MangoHud/vars
-              custom_text=Kernel:
+              custom_text=Kernel
               exec=${pkgs.gnused}/bin/sed -n 2p ${config.xdg.configHome}/MangoHud/vars
               text_outline
               position=bottom-right
@@ -96,6 +96,9 @@ in
               width=450
               background_alpha=0.5
               toggle_hud=Shift_R
+              legacy_layout=0 # For scripts that rely on the old layout
+              fps_sampling_period=1000
+              font_file=${pkgs.atkinson-hyperlegible}/share/fonts/opentype/AtkinsonHyperlegible-Bold.otf
               ${lib.optionalString config.catppuccin.enable ''
                 # Catppuccin theming
                 background_color=1e1e2e
