@@ -297,7 +297,6 @@ in
             destination = "/etc/udev/rules.d/51-disable-DS3-and-DS4-motion-controls.rules";
           })
         ];
-        extraRules = ''KERNEL=="vhba_ctl", MODE="0660", OWNER="root", GROUP="cdrom"'';
       };
     };
 
