@@ -153,6 +153,7 @@ in
             transparent.enable = true; # Transparency https://github.com/xiyaowong/transparent.nvim/
             treesitter.enable = true;
             treesitter-refactor.enable = true;
+            web-devicons.enable = true;
             which-key.enable = true; # Key bindings https://github.com/folke/which-key.nvim
           };
         };

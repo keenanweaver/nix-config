@@ -16,55 +16,6 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} = {
-      home.file = {
-        userjs-floorp = {
-          enable = true;
-          text = ''
-            /* KDE integration */
-            user_pref("widget.use-xdg-desktop-portal.mime-handler", 1);
-            user_pref("widget.use-xdg-desktop-portal.file-picker", 1);
-            /* Hardware acceleration */
-            user_pref("gfx.webrender.all", true);
-            user_pref("media.ffmpeg.vaapi.enable", true);
-            /* Font */
-            user_pref("gfx.font_rendering.cleartype_params.rendering_mode", 5);
-            /* Disable autofill & password */
-            user_pref("extensions.formautofill.addresses.enabled", false);
-            user_pref("extensions.formautofill.creditCards.enabled", false);
-            user_pref("signon.rememberSignons", false);
-            /* Autoplay enable */
-            user_pref("media.autoplay.default", 1); /* Disable autoplay with sound */
-            /* Enable DRM content */
-            user_pref("media.eme.enabled", true);
-            user_pref("browser.eme.ui.enabled", true);
-            /* Scroll settings */
-            user_pref("general.autoScroll", true);
-            user_pref("general.smoothScroll", true);
-            user_pref("general.smoothScroll.currentVelocityWeighting", 0.15);
-            user_pref("general.smoothScroll.mouseWheel.durationMinMS", 80);
-            user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
-            user_pref("general.smoothScroll.msdPhysics.enabled", true);
-            user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 600);
-            user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 650);
-            user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 25);
-            user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250);
-            user_pref("general.smoothScroll.stopDecelerationWeighting", 0.6);
-            user_pref("mousewheel.min_line_scroll_amount", 10);
-            /* Autofill */
-            user_pref("browser.formfill.enable", false);
-            user_pref("extensions.formautofill.addresses.enabled", false);
-            user_pref("extensions.formautofill.creditCards.enabled", false);
-            user_pref("signon.management.page.breach-alerts.enabled", false);
-            user_pref("signon.rememberSignons", false);
-            user_pref("signon.autofillForms", false);
-            /* DRM content */
-            user_pref("browser.eme.ui.enabled", true);
-            user_pref("media.eme.enabled", true);
-          '';
-          target = ".var/app/one.ablaze.floorp/.floorp/yshqu3aq.default-release/user.js";
-        };
-      };
-      # Depends on https://github.com/nix-community/home-manager/pull/5128
       programs.firefox = {
         enable = true;
         package = pkgs.floorp;
@@ -252,7 +203,8 @@ in
           };
         };
         profiles = {
-          "${username}" = {
+          default = {
+            name = "${username}";
             settings = {
               # Disable auto-update
               "app.update.channel" = "default";
@@ -261,6 +213,8 @@ in
               "app.update.elevation.promptMaxAttempts" = 0;
               "browser.shell.checkDefaultBrowser" = false;
               "extensions.autoDisableScopes" = 0;
+              # Browser settings
+              "browser.aboutConfig.showWarning" = false;
               # Extension settings
               "extensions.screenshots.disabled" = true;
               # Download settings
@@ -318,6 +272,7 @@ in
               "browser.proton.toolbar.version" = 3;
               "browser.tabs.inTitlebar" = 1;
               "browser.tabs.warnOnClose" = false;
+              "floorp.bookmarks.bar.focus.mode" = true;
               "floorp.browser.sidebar.enable" = false;
               "floorp.browser.sidebar.is.displayed" = false;
               "floorp.browser.sidebar.right" = false;
@@ -331,6 +286,7 @@ in
               "floorp.legacy.dlui.enable" = true;
               "floorp.lepton.interface" = 3;
               "floorp.tabsleep.enabled" = true;
+              "floorp.tabsleep.tabTimeoutMinutes" = 30;
               "floorp.verticaltab.hover.enabled" = true;
               "floorp.verticaltab.show.newtab.button" = true;
               "floorp.Tree-type.verticaltab.optimization" = false;

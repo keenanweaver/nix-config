@@ -20,9 +20,9 @@ in
     # Custom modules
     base.enable = true;
     catppuccinTheming.enable = true;
+    floorp.enable = false;
     hyprland.enable = false;
     kde.enable = true;
-    looking-glass.enable = false;
     mumble.enable = true;
     office.enable = true;
     vscode.enable = true;
