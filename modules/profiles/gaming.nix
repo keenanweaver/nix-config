@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   lib,
   pkgs,
@@ -152,18 +151,20 @@ let
         wineWowPackages.stagingFull
       ]
       # GStreamer
-      [
-        gst_all_1.gstreamer
-        gst_all_1.gstreamermm
-        gst_all_1.gst-libav
-        gst_all_1.gst-plugins-bad
-        gst_all_1.gst-plugins-base
-        gst_all_1.gst-plugins-good
-        gst_all_1.gst-plugins-rs
-        gst_all_1.gst-plugins-ugly
-        gst_all_1.gst-plugins-viperfx
-        gst_all_1.gst-vaapi
-      ]
+      /*
+        [
+             gst_all_1.gstreamer
+             gst_all_1.gstreamermm
+             gst_all_1.gst-libav
+             gst_all_1.gst-plugins-bad
+             gst_all_1.gst-plugins-base
+             gst_all_1.gst-plugins-good
+             gst_all_1.gst-plugins-rs
+             gst_all_1.gst-plugins-ugly
+             gst_all_1.gst-plugins-viperfx
+             gst_all_1.gst-vaapi
+           ]
+      */
       /*
         igir
         innoextract
@@ -232,6 +233,9 @@ in
       kernelParams = [
         "split_lock_detect=off"
         "usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
+        "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
+        "amdgpu.mcbp=0"
+        "mitigations=off"
       ];
       kernel = {
         sysctl = {
@@ -244,12 +248,9 @@ in
 
     environment = {
       sessionVariables = {
-        # https://reddit.com/r/linux_gaming/comments/1b9foom/workaround_for_cursor_movement_cutting_our_vrr_on/
+        # https://reddit.com/r/linux_gaming/comments/1c2ey6u/vrr_newbie_questions_plasma_6_wayland_amd/kzasm0j/?context=3#kzasm0j
         KWIN_DRM_DELAY_VRR_CURSOR_UPDATES = "1";
         KWIN_FORCE_SW_CURSOR = "1";
-        #KWIN_DRM_DONT_FORCE_AMD_SW_CURSOR = "1";
-        # https://invent.kde.org/plasma/kwin/-/merge_requests/927#note_586727
-        KWIN_DRM_NO_AMS = "1"; # Input latency/tearing
       };
     };
 
