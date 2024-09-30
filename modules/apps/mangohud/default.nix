@@ -61,6 +61,7 @@ in
               refresh_rate
               show_fps_limit
               resolution
+              vsync=2 # https://gitlab.freedesktop.org/drm/amd/-/issues/3166#note_2277578
               custom_text=Distro
               exec=${pkgs.ripgrep}/bin/rg -w PRETTY_NAME /etc/os-release | ${pkgs.coreutils}/bin/cut -d '=' -f2 | ${pkgs.coreutils}/bin/tr -d '"'
               custom_text=Distrobox
