@@ -119,6 +119,7 @@ in
           ]
           ++ lib.optionals cfg.misc [
             angle-grinder
+            binsider
             glow
             hexyl
             hyperfine
