@@ -10,8 +10,6 @@ let
 in
 {
 
-  imports = [ ./flatpak-fix.nix ];
-
   options = {
     flatpak = {
       enable = lib.mkEnableOption "Enable flatpak in NixOS & home-manager";
