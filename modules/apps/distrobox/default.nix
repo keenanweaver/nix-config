@@ -173,7 +173,6 @@ in
                   mesen2-git                   \
                   nuked-sc55                   \
                   openxcom-extended            \
-                  perfectdark                  \
                   portproton                   \
                   sonicthehedgehog             \
                   sonicthehedgehog2            \
@@ -433,23 +432,6 @@ in
               let
                 args = "gamemoderun obs-gamecapture mangohud --dlsym";
                 bin = "openxcom";
-                bin-export = "${bin}-db";
-                container = "bazzite-arch-gaming";
-              in
-              writeShellScriptBin "${bin-export}" ''
-                if [ -z "''${CONTAINER_ID}" ]; then
-                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  exec distrobox-host-exec '${bin-export}' "$@"
-                else
-                  exec '/usr/bin/${bin}' "$@"
-                fi
-              ''
-            )
-            (
-              let
-                args = "gamemoderun /usr/bin/obs-gamecapture mangohud --dlsym";
-                bin = "perfectdark";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
