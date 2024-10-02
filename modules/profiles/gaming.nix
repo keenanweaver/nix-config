@@ -288,14 +288,23 @@ in
       udev = {
         packages = with pkgs; [
           game-devices-udev-rules
-          # Dualsense touchpad https://wiki.archlinux.org/title/Gamepad#Motion_controls_taking_over_joypad_controls_and/or_causing_unintended_input_with_joypad_controls
+          # https://wiki.archlinux.org/title/Gamepad#Motion_controls_taking_over_joypad_controls_and/or_causing_unintended_input_with_joypad_controls
           (writeTextFile {
             name = "51-disable-DS3-and-DS4-motion-controls.rules";
             text = ''
               SUBSYSTEM=="input", ATTRS{name}=="*Controller Motion Sensors", RUN+="${pkgs.coreutils}/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
-              #SUBSYSTEM=="input", ATTRS{name}=="*Controller Touchpad", RUN+="${pkgs.coreutils}/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
             '';
             destination = "/etc/udev/rules.d/51-disable-DS3-and-DS4-motion-controls.rules";
+          })
+          # https://reddit.com/r/linux_gaming/comments/1fu4ggk/can_someone_explain_dualsense_to_me/lpwxv12/?context=3#lpwxv12
+          (writeTextFile {
+            name = "51-disable-dualsense-sound-and-vibration.rules";
+            text = ''
+              KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", MODE="0660", TAG+="uaccess"
+              KERNEL=="hidraw*", KERNELS=="*054C:0CE6*", MODE="0660", TAG+="uaccess"
+              ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", ENV{PULSE_IGNORE}="1", ENV{ACP_IGNORE}="1"
+            '';
+            destination = "/etc/udev/rules.d/51-disable-dualsense-sound-and-vibration.rules";
           })
         ];
       };
@@ -886,6 +895,7 @@ in
               "io.github.RobertBeckebans.RBDoom3BFG-GL"
               "io.github.santiagocezar.maniatic-launcher"
               "io.github.simple64.simple64"
+              "io.github.streetpea.Chiaki4deck"
               "io.github.theforceengine.tfe"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
               "io.openrct2.OpenRCT2"
@@ -939,7 +949,6 @@ in
               #"org.twinery.Twine"
               #"org.zdoom.Raze"
               "page.kramo.Cartridges"
-              "re.chiaki.Chiaki"
               "ru.linux_gaming.PortProton"
               "sh.fhs.KatawaShoujoReEngineered"
               "tk.deat.Jazz2Resurrection"

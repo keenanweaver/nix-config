@@ -59,9 +59,9 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
     ## Perfect Dark
     xh https://api.github.com/repos/fgsfdsfgs/perfect_dark/releases/latest | jq -r '.assets[] | select(.name | test("flatpak")).browser_download_url' | xargs xh get -d -o /home/keenan/.local/bin/perfectdark.flatpak
     flatpak install --user /home/keenan/.local/bin/perfectdark.flatpak
-    xh get -d https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Perfect%20Dark%20%28USA%29%20%28Rev%201%29.zip -o /home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/roms/perfectdark.zip
-    ouch d --yes /home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/roms/perfectdark.zip -d /home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/roms
-    fd . -e z64 '/home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/roms' -x mv {} /home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/roms/pd.ntsc-final.z64
+    xh get -d https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Perfect%20Dark%20%28USA%29%20%28Rev%201%29.zip -o /home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/perfectdark/data/perfectdark.zip
+    ouch d --yes /home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/perfectdark/data/perfectdark.zip -d /home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/perfectdark/data
+    fd . -e z64 '/home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/perfectdark/data' -x mv {} /home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/perfectdark/data/pd.ntsc-final.z64
     ## Quake
     , innoextract -g '/mnt/crusader/Games/Other/GOG/quake_the_offering_game/setup_quake_the_offering_2.0.0.6.exe' -d /home/keenan/Games/quake/quake-1
     , innoextract -g '/mnt/crusader/Games/Other/GOG/quake_iii_arena_and_team_arena/setup_quake3_2.0.0.2.exe' -d /home/keenan/.q3a && mv /home/keenan/.q3a/app/* /home/keenan/.q3a && rm -rf /home/keenan/.q3a/tmp /home/keenan/.q3a/app

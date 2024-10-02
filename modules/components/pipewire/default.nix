@@ -146,50 +146,65 @@ in
       };
       wireplumber = {
         enable = true;
-        extraConfig = {
-          # Webcam battery drain https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/2669
-          "10-disable-camera" = {
-            "wireplumber.profiles" = {
-              main."monitor.libcamera" = "disabled";
+        extraConfig =
+          {
+            # Webcam battery drain https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/2669
+            "10-disable-camera" = {
+              "wireplumber.profiles" = {
+                main."monitor.libcamera" = "disabled";
+              };
+            };
+            # Disable HDMI audio
+            "51-disable-hdmi-audio" = {
+              "monitor.alsa.rules" = [
+                {
+                  matches = [ { "device.name" = "~alsa_output.*.hdmi.*"; } ];
+                  actions.update-props = {
+                    "device.disabled" = true;
+                  };
+                }
+              ];
+            };
+            # Static/crackling fix https://wiki.archlinux.org/title/PipeWire#Noticeable_audio_delay_or_audible_pop/crack_when_starting_playback
+            "51-disable-suspension" = {
+              "monitor.alsa.rules" = [
+                {
+                  matches = [
+                    #{ "node.name" = "~alsa_input.*"; }
+                    { "node.name" = "~alsa_output.*"; }
+                  ];
+                  actions.update-props = {
+                    "session.suspend-timeout-seconds" = 0;
+                  };
+                }
+              ];
+              "monitor.bluez.rules" = [
+                {
+                  matches = [
+                    { "node.name" = "~bluez_input.*"; }
+                    { "node.name" = "~bluez_output.*"; }
+                  ];
+                  actions.update-props = {
+                    "session.suspend-timeout-seconds" = 0;
+                  };
+                }
+              ];
+            };
+          }
+          // lib.optionalAttrs vars.gaming {
+            "51-disable-dualsense-audio" = {
+              "monitor.alsa.rules" = [
+                {
+                  matches = [
+                    { "alsa.card_name" = "Wireless Controller"; }
+                  ];
+                  actions.update-props = {
+                    "node.disabled" = true;
+                  };
+                }
+              ];
             };
           };
-          # Disable HDMI audio
-          "51-disable-hdmi-audio" = {
-            "monitor.alsa.rules" = [
-              {
-                matches = [ { "device.name" = "~alsa_output.*.hdmi.*"; } ];
-                actions.update-props = {
-                  "device.disabled" = true;
-                };
-              }
-            ];
-          };
-          # Static/crackling fix https://wiki.archlinux.org/title/PipeWire#Noticeable_audio_delay_or_audible_pop/crack_when_starting_playback
-          "51-disable-suspension" = {
-            "monitor.alsa.rules" = [
-              {
-                matches = [
-                  #{ "node.name" = "~alsa_input.*"; }
-                  { "node.name" = "~alsa_output.*"; }
-                ];
-                actions.update-props = {
-                  "session.suspend-timeout-seconds" = 0;
-                };
-              }
-            ];
-            "monitor.bluez.rules" = [
-              {
-                matches = [
-                  { "node.name" = "~bluez_input.*"; }
-                  { "node.name" = "~bluez_output.*"; }
-                ];
-                actions.update-props = {
-                  "session.suspend-timeout-seconds" = 0;
-                };
-              }
-            ];
-          };
-        };
       };
     };
 

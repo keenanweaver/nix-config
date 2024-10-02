@@ -69,6 +69,7 @@ in
             #"network.loki.Session"
             "no.mifi.losslesscut"
             #"one.ablaze.floorp"
+            "org.atheme.audacious"
             #"org.bleachbit.BleachBit"
             #"org.bunkus.mkvtoolnix-gui"
             "org.filezillaproject.Filezilla"
@@ -154,6 +155,13 @@ in
             "one.ablaze.floorp" = {
               Environment = {
                 MOZ_ENABLE_WAYLAND = "1";
+              };
+            };
+            "org.atheme.audacious" = {
+              Context = {
+                sockets = [
+                  "!wayland" # For Winamp skins
+                ];
               };
             };
             "org.fooyin.fooyin" = {
