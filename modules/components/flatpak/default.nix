@@ -3,6 +3,7 @@
   config,
   username,
   pkgs,
+  vars,
   ...
 }:
 let
@@ -38,86 +39,73 @@ in
       { config, ... }:
       {
         services.flatpak = {
-          #uninstallUnmanaged = true;
           packages = [
             "chat.revolt.RevoltDesktop"
-            #"com.bitwig.BitwigStudio"
-            #"com.felipekinoshita.Wildcard"
             "com.georgefb.mangareader"
             "com.github.tchx84.Flatseal"
-            #"com.logseq.Logseq"
-            #"com.makemkv.MakeMKV"
             "com.obsproject.Studio"
-            #"com.ranfdev.Notify"
-            #"fr.handbrake.ghb"
             "fr.romainvigier.MetadataCleaner"
-            #"im.riot.Riot"
-            #"io.github.btpf.alexandria"
             "io.github.dvlv.boxbuddyrs"
-            #"io.github.eteran.edb-debugger"
-            #"io.github.jonmagon.kdiskmark"
-            #"io.github.seadve.Breathing"
-            #"io.github.seadve.Mousai"
             "io.github.ungoogled_software.ungoogled_chromium"
             "io.github.zen_browser.zen"
-            #"io.gitlab.gregorni.Letterpress"
-            #"io.gpt4all.gpt4all"
-            #"io.mpv.Mpv"
             "it.mijorus.gearlever"
-            #"net.mediaarea.MediaInfo"
             "net.mullvad.MullvadBrowser"
-            #"network.loki.Session"
             "no.mifi.losslesscut"
-            #"one.ablaze.floorp"
             "org.atheme.audacious"
-            #"org.bleachbit.BleachBit"
-            #"org.bunkus.mkvtoolnix-gui"
             "org.filezillaproject.Filezilla"
             "org.fooyin.fooyin"
-            #"org.freedesktop.Platform.ffmpeg-full/x86_64/23.08"
-            #"org.gtk.Gtk3theme.adw-gtk3-dark"
-            #"org.gtk.Gtk3theme.Breeze"
             "org.kde.haruna"
             "org.kde.kdenlive"
             "org.kde.krita"
             "org.kde.neochat"
             "org.kde.tokodon"
-            #"org.mozilla.firefox"
             "org.musicbrainz.Picard"
-            #"org.nickvision.tagger"
             "org.onlyoffice.desktopeditors"
             "org.rncbc.qpwgraph"
             "org.signal.Signal"
             "org.squidowl.halloy"
-            #"org.strawberrymusicplayer.strawberry"
-            #"org.tildearrow.furnace"
             "xyz.armcord.ArmCord"
           ];
           remotes = [
             {
               name = "flathub";
-              location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+              location = "https://flathub.org/repo/flathub.flatpakrepo";
+            }
+            {
+              name = "flathub-beta";
+              location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
             }
           ];
-          #update.auto.enable = true;
           overrides = {
             global = {
               Context = {
-                filesystems = [
-                  "${config.home.homeDirectory}/.icons:ro"
-                  "${config.home.homeDirectory}/.themes:ro"
-                  "/nix/store:ro"
-                  "/run/media/${username}:ro"
-                  "xdg-data/themes:ro"
-                  "xdg-data/icons:ro"
-                  "xdg-config/gtkrc:ro"
-                  "xdg-config/gtkrc-2.0:ro"
-                  "xdg-config/gtk-2.0:ro"
-                  "xdg-config/gtk-3.0:ro"
-                  "xdg-config/gtk-4.0:ro"
-                  "xdg-config/MangoHud:ro"
-                  "xdg-run/.flatpak/com.xyz.armcord.ArmCord:create"
-                  "xdg-run/discord-ipc-*"
+                filesystems =
+                  [
+                    "/nix/store:ro"
+                    "/run/current-system/sw:ro"
+                    "/run/media/${username}:ro"
+                    # Theming
+                    "${config.home.homeDirectory}/.icons:ro"
+                    "${config.home.homeDirectory}/.themes:ro"
+                    "xdg-config/fontconfig:ro"
+                    "xdg-config/gtkrc:ro"
+                    "xdg-config/gtkrc-2.0:ro"
+                    "xdg-config/gtk-2.0:ro"
+                    "xdg-config/gtk-3.0:ro"
+                    "xdg-config/gtk-4.0:ro"
+                    "xdg-data/themes:ro"
+                    "xdg-data/icons:ro"
+                  ]
+                  ++ lib.optionals vars.gaming [
+                    "xdg-config/MangoHud:ro"
+                    "xdg-run/.flatpak/com.xyz.armcord.ArmCord:create"
+                    "xdg-run/discord-ipc-*"
+                  ];
+                sockets = [
+                  # Force Wayland by default
+                  "wayland"
+                  "!x11"
+                  "!fallback-x11"
                 ];
               };
               Environment = {
@@ -132,11 +120,6 @@ in
                 ];
               };
             };
-            "com.github.Alcaro.Flips" = {
-              Context = {
-                filesystems = [ "!home" ];
-              };
-            };
             "io.github.zen_browser.zen" = {
               Environment = {
                 MOZ_ENABLE_WAYLAND = "1";
@@ -145,11 +128,6 @@ in
             "it.mijorus.gearlever" = {
               Context = {
                 filesystems = [ "${config.home.homeDirectory}/.local/bin" ];
-              };
-            };
-            "net.mediaarea.MediaInfo" = {
-              Context = {
-                filesystems = [ "!home" ];
               };
             };
             "one.ablaze.floorp" = {
@@ -185,11 +163,6 @@ in
                   "xdg-download"
                   "~/Music"
                 ];
-              };
-            };
-            "org.nickvision.tagger" = {
-              Context = {
-                filesystems = [ "!home" ];
               };
             };
             "org.signal.Signal" = {
