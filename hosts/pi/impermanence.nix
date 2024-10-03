@@ -9,19 +9,16 @@
       "/persist" = {
         hideMounts = true;
         directories = [
-          #"/etc/mullvad-vpn"
           "/etc/NetworkManager/system-connections"
-          #"/etc/opensnitchd"
           "/etc/secureboot"
           "/etc/wireguard"
           "/var/db/sudo/lectured"
           "/var/lib/AccountsService"
           "/var/lib/bluetooth"
-          "/var/lib/clamav"
           "/var/lib/docker"
           "/var/lib/flatpak"
+          "/var/lib/freshrss"
           "/var/lib/nixos"
-          #"/var/lib/opensnitch"
           "/var/lib/power-profiles-daemon"
           "/var/lib/systemd/coredump"
           "/var/lib/upower"
