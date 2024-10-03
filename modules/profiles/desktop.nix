@@ -70,13 +70,7 @@ in
           (writeShellApplication {
             name = "bootstrap-baremetal";
             runtimeInputs = with pkgs; [
-              curl
               distrobox_git
-              fd
-              findutils
-              flatpak
-              jq
-              xh
             ];
             text = ''
               distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
