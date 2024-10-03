@@ -84,7 +84,7 @@
               name = "com.github.tilorenz.compact_pager";
               config = {
                 Appearance = {
-                  displayBorder = "false";
+                  displayBorder = "true";
                 };
                 General = {
                   forceLayout = "full";
@@ -183,7 +183,7 @@
               name = "com.github.tilorenz.compact_pager";
               config = {
                 Appearance = {
-                  displayBorder = "false";
+                  displayBorder = "true";
                 };
                 General = {
                   forceLayout = "full";
