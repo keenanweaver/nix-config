@@ -101,12 +101,14 @@ in
                     "xdg-run/.flatpak/com.xyz.armcord.ArmCord:create"
                     "xdg-run/discord-ipc-*"
                   ];
-                sockets = [
-                  # Force Wayland by default
-                  "wayland"
-                  "!x11"
-                  "!fallback-x11"
-                ];
+                /*
+                  sockets = [
+                                 # Force Wayland by default
+                                 "wayland"
+                                 "!x11"
+                                 "!fallback-x11"
+                               ];
+                */
               };
               Environment = {
                 # Wrong cursor in flatpaks fix
@@ -176,6 +178,12 @@ in
                   "!xdg-desktop"
                   "!xdg-documents"
                 ];
+                /*
+                  sockets = [
+                                 "wayland"
+                                 "x11"
+                               ];
+                */
               };
             };
           };

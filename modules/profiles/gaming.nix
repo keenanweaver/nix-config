@@ -939,7 +939,6 @@ in
               #"org.twinery.Twine"
               #"org.zdoom.Raze"
               "page.kramo.Cartridges"
-              "ru.linux_gaming.PortProton"
               "sh.fhs.KatawaShoujoReEngineered"
               "tk.deat.Jazz2Resurrection"
               "vet.rsc.OpenRSC.Launcher"
