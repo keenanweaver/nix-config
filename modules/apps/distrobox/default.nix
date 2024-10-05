@@ -447,13 +447,13 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud";
+                args = "";
                 bin = "portproton";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "${bin-export}" ''
-                export GTK_USE_PORTAL=0
+                export GTK_THEME=Breeze-Dark
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -533,7 +533,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud";
+                args = "obs-gamecapture mangohud";
                 bin = "zelda64recomp";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
