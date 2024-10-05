@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   username,
   ...
 }:
@@ -30,9 +29,6 @@ in
     wireshark.enable = true;
     #zed.enable = true;
 
-    environment = {
-      systemPackages = with pkgs; [ xdg-desktop-portal ];
-    };
     hardware = {
       bluetooth = {
         enable = true;
@@ -51,6 +47,7 @@ in
     };
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     services = {
+      btrfs.autoScrub.enable = true;
       devmon.enable = true;
       fwupd.enable = true;
       udisks2 = {
@@ -127,30 +124,33 @@ in
             in
             {
               enable = true;
-              defaultApplications = {
-                "audio/*" = audioPlayer;
-                "image/*" = imageViewer;
-                "video/*" = videoPlayer;
-                "text/*" = editor;
-                "text/html" = browser;
-                "text/plain" = editor;
-                "application/json" = editor;
-                "application/pdf" = pdfViewer;
-                "application/toml" = editor;
-                "application/x-bat" = editor;
-                "application/x-cue" = "cdemu-client.desktop";
-                "application/x-msdownload" = "wine.desktop";
-                "application/xhtml+xml" = browser;
-                "application/xml" = editor;
-                "application/x-shellscript" = editor;
-                "application/x-yaml" = editor;
-                "inode/directory" = "org.kde.dolphin.desktop";
-                "x-scheme-handler/bottles" = "com.usebottles.bottles.desktop";
-                "x-scheme-handler/http" = browser;
-                "x-scheme-handler/https" = browser;
-                "x-scheme-handler/ror2mm" = "r2modman.desktop";
-                "x-scheme-handler/terminal" = "org.wezfurlong.wezterm.desktop";
-              };
+              defaultApplications =
+                {
+                  "audio/*" = audioPlayer;
+                  "image/*" = imageViewer;
+                  "video/*" = videoPlayer;
+                  "text/*" = editor;
+                  "text/html" = browser;
+                  "text/plain" = editor;
+                  "application/json" = editor;
+                  "application/pdf" = pdfViewer;
+                  "application/toml" = editor;
+                  "application/x-bat" = editor;
+                  "application/xhtml+xml" = browser;
+                  "application/xml" = editor;
+                  "application/x-shellscript" = editor;
+                  "application/x-yaml" = editor;
+                  "inode/directory" = "org.kde.dolphin.desktop";
+                  "x-scheme-handler/bottles" = "com.usebottles.bottles.desktop";
+                  "x-scheme-handler/http" = browser;
+                  "x-scheme-handler/https" = browser;
+                  "x-scheme-handler/terminal" = "org.wezfurlong.wezterm.desktop";
+                }
+                // lib.optionalAttrs vars.gaming {
+                  "application/x-cue" = "cdemu-client.desktop";
+                  "application/x-msdownload" = "wine.desktop";
+                  "x-scheme-handler/ror2mm" = "r2modman.desktop";
+                };
             };
           portal = {
             config.common.default = "*";

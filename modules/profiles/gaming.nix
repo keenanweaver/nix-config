@@ -208,7 +208,7 @@ in
     solaar.enable = false;
     steam.enable = true;
     sunshine.enable = true;
-    timidity.enable = true;
+    timidity.enable = false;
     vkbasalt.enable = true;
     zerotier.enable = true;
 
