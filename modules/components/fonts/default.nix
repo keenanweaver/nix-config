@@ -126,7 +126,7 @@ in
             "Noto Color Emoji"
           ];
           sansSerif = [
-            "Geist"
+            "Inter"
             "IBM Plex Sans"
             "Noto Color Emoji"
           ];

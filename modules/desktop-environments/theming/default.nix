@@ -14,7 +14,8 @@ let
   flavor-upper = "Mocha";
   cfg = config.catppuccinTheming;
   mono-font = "JetBrainsMono Nerd Font";
-  sans-font = "Geist";
+  sans-font = "Inter";
+  sans-font-pkg = pkgs.inter;
   serif-font = "IBM Plex Serif";
   GTK-THEME = "Breeze-Dark";
   cursor-theme = "breeze_cursors";
@@ -156,7 +157,7 @@ in
           font = {
             name = "${sans-font}";
             size = 12;
-            package = pkgs.geist-font;
+            package = sans-font-pkg;
           };
           gtk2 = {
             configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
@@ -252,10 +253,16 @@ in
               target = ".var/app/io.github.zen_browser.zen/.zen/${username}/chrome";
             };
             font-geist = {
-              enable = true;
+              enable = false;
               recursive = true;
               source = config.lib.file.mkOutOfStoreSymlink "${pkgs.geist-font}/share/fonts/opentype";
               target = "${config.xdg.dataHome}/fonts/geist";
+            };
+            font-inter = {
+              enable = true;
+              recursive = true;
+              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.inter}/share/fonts/truetype";
+              target = "${config.xdg.dataHome}/fonts/inter";
             };
             klassy-config = {
               enable = true;
