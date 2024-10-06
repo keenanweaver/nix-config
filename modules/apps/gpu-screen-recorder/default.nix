@@ -2,7 +2,6 @@
   lib,
   config,
   username,
-  pkgs,
   ...
 }:
 let
@@ -17,7 +16,6 @@ in
   config = lib.mkIf cfg.enable {
     programs.gpu-screen-recorder = {
       enable = true;
-      package = (pkgs.callPackage ../../../nix/pkgs/gsr.nix { });
     };
 
     home-manager.users.${username} =
