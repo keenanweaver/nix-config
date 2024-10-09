@@ -31,6 +31,9 @@ in
         # Chaotic packages
         luxtorpeda
         proton-ge-custom
+        (steamtinkerlaunch.overrideAttrs (o: {
+          src = inputs.steamtinkerlaunch-master;
+        }))
       ];
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
@@ -64,10 +67,7 @@ in
             };
           };
           packages = with pkgs; [
-            # SteamTinkerLaunch & tools
-            (steamtinkerlaunch.overrideAttrs (o: {
-              src = inputs.steamtinkerlaunch-master;
-            }))
+            # SteamTinkerLaunch tools
             gawk
             procps
             unixtools.xxd
