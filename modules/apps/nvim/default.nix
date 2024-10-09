@@ -105,7 +105,7 @@ in
                   enable = true;
                   autostart = true;
                 };
-                lua-ls = {
+                lua_ls = {
                   enable = true;
                   autostart = true;
                 };
@@ -117,7 +117,7 @@ in
                   enable = true;
                   autostart = true;
                 };
-                ruff-lsp = {
+                ruff_lsp = {
                   enable = true;
                   autostart = true;
                 };
