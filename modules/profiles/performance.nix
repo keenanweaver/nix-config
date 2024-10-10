@@ -29,19 +29,8 @@ in
         "loglevel=0"
         "nmi_watchdog=0"
         "nowatchdog"
+        "preempt=full" # https://reddit.com/r/linux_gaming/comments/1g0g7i0/god_of_war_ragnarok_crackling_audio/lr8j475/?context=3#lr8j475
       ];
-    };
-
-    security = {
-      pam = {
-        loginLimits = [
-          # Realtime audio
-          #{ domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
-          #{ domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
-          #{ domain = "@realtime"; item = "memlock"; type = "-"; value = "unlimited"; }
-          #{ domain = "@realtime"; item = "rtprio"; type = "-"; value = "99"; }
-        ];
-      };
     };
 
     services = {
@@ -61,10 +50,6 @@ in
 
           # NVMe SSD
           ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
-
-          # Realtime Audio (https://gentoostudio.org/?page_id=420)
-          #KERNEL=="rtc0", GROUP="audio"
-          #KERNEL=="hpet", GROUP="audio"
         '';
       };
     };
