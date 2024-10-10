@@ -49,76 +49,85 @@ in
                 {
                   "name" = "libpipewire-module-loopback";
                   "args" = {
-                    "node.description" = "Game capture";
-                    "audio.position" = [
-                      "FL"
-                      "FR"
-                    ];
+                    "node.description" = "Browser";
                     "capture.props" = {
+                      "audio.position" = [
+                        "FL"
+                        "FR"
+                      ];
+                      "media.class" = "Audio/Sink";
+                      "node.name" = "Browser";
+                    };
+                    "playback.props" = {
+                      "node.name" = "Browser";
+                    };
+                  };
+                }
+                {
+                  "name" = "libpipewire-module-loopback";
+                  "args" = {
+                    "node.description" = "Game";
+                    "capture.props" = {
+                      "audio.position" = [
+                        "FL"
+                        "FR"
+                      ];
                       "media.class" = "Audio/Sink";
                       "node.name" = "Game";
-                      "node.description" = "Game";
                     };
                     "playback.props" = {
-                      "node.name" = "Game_m";
-                      "node.description" = "Game capture";
+                      "node.name" = "Game";
                     };
                   };
                 }
                 {
                   "name" = "libpipewire-module-loopback";
                   "args" = {
-                    "node.description" = "Music capture";
-                    "audio.position" = [
-                      "FL"
-                      "FR"
-                    ];
+                    "node.description" = "Live";
                     "capture.props" = {
+                      "audio.position" = [
+                        "FL"
+                        "FR"
+                      ];
+                      "media.class" = "Audio/Sink";
+                      "node.name" = "Live";
+                    };
+                    "playback.props" = {
+                      "node.name" = "Live";
+                    };
+                  };
+                }
+                {
+                  "name" = "libpipewire-module-loopback";
+                  "args" = {
+                    "node.description" = "Music";
+                    "capture.props" = {
+                      "audio.position" = [
+                        "FL"
+                        "FR"
+                      ];
                       "media.class" = "Audio/Sink";
                       "node.name" = "Music";
-                      "node.description" = "Music";
                     };
                     "playback.props" = {
-                      "node.name" = "Music_m";
-                      "node.description" = "Music capture";
+                      "node.name" = "Music";
                     };
                   };
                 }
                 {
                   "name" = "libpipewire-module-loopback";
                   "args" = {
-                    "node.description" = "Live-only capture";
-                    "audio.position" = [
-                      "FL"
-                      "FR"
-                    ];
+                    "node.description" = "Voice";
                     "capture.props" = {
+                      "audio.position" = [
+                        "FL"
+                        "FR"
+                      ];
                       "media.class" = "Audio/Sink";
-                      "node.name" = "Live-only";
-                      "node.description" = "Live-only";
+                      "node.name" = "Voice";
                     };
                     "playback.props" = {
-                      "node.name" = "Live-only_m";
-                      "node.description" = "Live-only capture";
-                    };
-                  };
-                }
-                {
-                  "name" = "libpipewire-module-loopback";
-                  "args" = {
-                    "node.description" = "VoIP capture";
-                    "audio.position" = [
-                      "FL"
-                      "FR"
-                    ];
-                    "capture.props" = {
-                      "media.class" = "Audio/Sink";
-                      "node.name" = "VoIP";
-                      "node.description" = "VoIP";
-                    };
-                    "playback.props" = {
-                      "node.name" = "VoIP_m";
-                      "node.description" = "VoIP capture";
+                      "node.name" = "Voice";
                     };
                   };
                 }
