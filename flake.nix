@@ -210,8 +210,6 @@
 
               ./hosts/desktop
 
-              (args: { nixpkgs.overlays = import ./nix/overlays args; })
-
               inputs.catppuccin.nixosModules.catppuccin
               inputs.chaotic.nixosModules.default
               inputs.disko.nixosModules.disko
@@ -270,8 +268,6 @@
             modules = [
 
               ./hosts/laptop
-
-              (args: { nixpkgs.overlays = import ./nix/overlays args; })
 
               inputs.auto-cpufreq.nixosModules.default
               inputs.catppuccin.nixosModules.catppuccin
@@ -337,8 +333,6 @@
 
               ./hosts/pi/remorse.nix
 
-              (args: { nixpkgs.overlays = import ./nix/overlays args; })
-
               inputs.chaotic.nixosModules.default
               inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
@@ -392,8 +386,6 @@
             modules = [
 
               ./hosts/vm
-
-              (args: { nixpkgs.overlays = import ./nix/overlays args; })
 
               inputs.catppuccin.nixosModules.catppuccin
               inputs.chaotic.nixosModules.default

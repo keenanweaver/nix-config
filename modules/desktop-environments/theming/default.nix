@@ -49,7 +49,7 @@ in
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
         })
-        (callPackage ../../../nix/pkgs/klassy.nix { })
+        klassy
         utterly-round-plasma-style
       ];
     };

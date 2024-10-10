@@ -36,8 +36,7 @@ let
       [
         #chocolate-doom
         crispy-doom
-        #doom64ex-plus
-        (callPackage ../../nix/pkgs/doom64ex-plus.nix { })
+        doom64ex-plus
         doomrunner
         doomseeker
         dsda-doom
@@ -96,7 +95,7 @@ let
       [
         eduke32
         raze
-        (callPackage ../../nix/pkgs/rigel.nix { })
+        rigel-engine
       ]
       # Star Citizen
       [
@@ -117,6 +116,7 @@ let
         #bizhawk
         #hypseus-singe
         #mesen
+        nuked-sc55
       ]
       # Input
       [

@@ -1,0 +1,132 @@
+diff --git a/src/lcd.cpp b/src/lcd.cpp
+index 5667db7..94c2bdd 100644
+--- a/src/lcd.cpp
++++ b/src/lcd.cpp
+@@ -226,7 +226,7 @@ void LCD_SetBackPath(const std::string &path)
+     m_back_path = path;
+ }
+ 
+-void LCD_Init(void)
++void LCD_Init(bool invisible)
+ {
+     FILE *raw;
+ 
+@@ -239,7 +239,15 @@ void LCD_Init(void)
+ 
+     title += rs_name[romset];
+ 
+-    window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, lcd_width, lcd_height, SDL_WINDOW_SHOWN);
++    if (invisible) 
++    {
++        window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, lcd_width, lcd_height, SDL_WINDOW_HIDDEN);
++    }
++    else 
++    {
++        window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, lcd_width, lcd_height, SDL_WINDOW_SHOWN);
++    }
++    
+     if (!window)
+         return;
+ 
+diff --git a/src/lcd.h b/src/lcd.h
+index a9982a8..f8ca33a 100644
+--- a/src/lcd.h
++++ b/src/lcd.h
+@@ -40,7 +40,7 @@ extern int lcd_width;
+ extern int lcd_height;
+ 
+ void LCD_SetBackPath(const std::string &path);
+-void LCD_Init(void);
++void LCD_Init(bool invisible);
+ void LCD_UnInit(void);
+ void LCD_Write(uint32_t address, uint8_t data);
+ void LCD_Enable(uint32_t enable);
+diff --git a/src/mcu.cpp b/src/mcu.cpp
+index cd2f1e2..4961bb5 100644
+--- a/src/mcu.cpp
++++ b/src/mcu.cpp
+@@ -31,6 +31,7 @@
+  *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  *  POSSIBILITY OF SUCH DAMAGE.
+  */
++#include <iostream>
+ #include <stdio.h>
+ #include <string.h>
+ #define SDL_MAIN_HANDLED
+@@ -1359,6 +1360,7 @@ int main(int argc, char *argv[])
+     int audioDeviceIndex = -1;
+     int pageSize = 512;
+     int pageNum = 32;
++    bool invisible = false;
+     bool autodetect = true;
+     ResetType resetType = ResetType::NONE;
+ 
+@@ -1396,6 +1398,10 @@ int main(int argc, char *argv[])
+                     pageNum = 32;
+                 }
+             }
++            else if (!strcmp(argv[i], "-i"))
++            {
++                invisible = true;
++            }
+             else if (!strcmp(argv[i], "-mk2"))
+             {
+                 romset = ROM_SET_MK2;
+@@ -1449,6 +1455,7 @@ int main(int argc, char *argv[])
+                 printf("  -p:<port_number>               Set MIDI port.\n");
+                 printf("  -a:<device_number>             Set Audio Device index.\n");
+                 printf("  -ab:<page_size>:[page_count]   Set Audio Buffer size.\n");
++                printf("  -i                             Make the main display invisible.\n");
+                 printf("\n");
+                 printf("  -mk2                           Use SC-55mk2 ROM set.\n");
+                 printf("  -st                            Use SC-55st ROM set.\n");
+@@ -1475,22 +1482,16 @@ int main(int argc, char *argv[])
+         }
+     }
+ 
+-#if __linux__
+-    char self_path[PATH_MAX];
+-    memset(&self_path[0], 0, PATH_MAX);
+-
+-    if(readlink("/proc/self/exe", self_path, PATH_MAX) == -1)
+-        basePath = Files::real_dirname(argv[0]);
+-    else
+-        basePath = Files::dirname(self_path);
+-#else
+-    basePath = Files::real_dirname(argv[0]);
+-#endif
+-
+-    printf("Base path is: %s\n", argv[0]);
++    std::string homedir;
++    if ((homedir = getenv("XDG_DATA_HOME")) != "") {
++        basePath = homedir + "/nuked-sc55";
++    } else if ((homedir = getenv("HOME")) != "") {
++        basePath = homedir + "/.local/share/nuked-sc55";
++    } else {
++        basePath = "";
++    }
+ 
+-    if(Files::dirExists(basePath + "/../share/nuked-sc55"))
+-        basePath += "/../share/nuked-sc55";
++    std::cout << "Base path is: " << basePath << std::endl;
+ 
+     if (autodetect)
+     {
+@@ -1591,7 +1592,7 @@ int main(int argc, char *argv[])
+         return 1;
+     }
+ 
+-    LCD_SetBackPath(basePath + "/back.data");
++    LCD_SetBackPath("@out@/share/nuked-sc55/back.data");
+ 
+     memset(&mcu, 0, sizeof(mcu_t));
+ 
+@@ -1734,7 +1735,7 @@ int main(int argc, char *argv[])
+         fflush(stderr);
+     }
+ 
+-    LCD_Init();
++    LCD_Init(invisible);
+     MCU_Init();
+     MCU_PatchROM();
+     MCU_Reset();
