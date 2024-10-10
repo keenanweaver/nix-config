@@ -79,7 +79,6 @@
     {
       config,
       inputs,
-      username,
       pkgs,
       ...
     }:
@@ -90,34 +89,33 @@
       imports = [ inputs.sops-nix.homeManagerModules.sops ];
 
       home = {
-        file = {
-          lgogdownloader-blacklist = {
-            enable = true;
+        packages = with pkgs; [
+          internetarchive
+          lgogdownloader
+          (writeShellApplication {
+            name = "lgogdownloader-blacklist";
+            runtimeInputs = [
+              coreutils
+              lgogdownloader
+            ];
             text = ''
-              #!/usr/bin/env bash
               cd ${unraid}/Games/Other/GOG
-              for i in $(/run/current-system/sw/bin/ls -d */); do echo "Rp /''${i%%}.*"; done > /home/${username}/.config/lgogdownloader/blacklist.txt
+              for i in $(ls -d */)
+              do 
+                echo "Rp /''${i%%}.*"
+              done > ${config.xdg.configHome}/lgogdownloader/blacklist.txt
             '';
-            target = ".local/bin/lgogdownloader-blacklist.sh";
-            executable = true;
-          };
-          lgogdownloader-cleanup = {
-            enable = true;
+          })
+          (writeShellApplication {
+            name = "lgogdownloader-cleanup";
+            runtimeInputs = [ coreutils ];
             text = ''
-              #!/usr/bin/env bash
-              for orphan in $(cat /home/${username}/orphans.txt)
+              for orphan in $(cat ${config.home.homeDirectory}/orphans.txt)
               do
                 rm $orphan
               done
             '';
-            target = ".local/bin/lgogdownloader-cleanup.sh";
-            executable = true;
-          };
-        };
-
-        packages = with pkgs; [
-          internetarchive
-          lgogdownloader
+          })
           ntfy-sh
         ];
       };
@@ -140,7 +138,9 @@
                 Description = "Download 'chd_dc' from Internet Archive";
               };
               Service = {
-                ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u $(cat ${config.sops.secrets."unraid/ntfy/user".path}):${config.sops.secrets.unraid.ntfy.password.path} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url.path} '[Start] chd_dc'";
+                ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u $(cat ${
+                  config.sops.secrets."unraid/ntfy/user".path
+                }):${config.sops.secrets.unraid.ntfy.password.path} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url.path} '[Start] chd_dc'";
                 ExecStart = "${pkgs.internetarchive}/bin/ia download chd_dc --destdir='${unraid}/Games/Rom/Redump/Sega Dreamcast/CHD' --no-directories";
                 ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user.path}:${config.sops.secrets.unraid.ntfy.password.path} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url.path} '[End] chd_dc'";
                 Type = "oneshot";
@@ -282,7 +282,7 @@
               };
               Service = {
                 ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user.path}:${config.sops.secrets.unraid.ntfy.password.path} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url.path} '[Start] idgames Archive'";
-                ExecStart = "${pkgs.wget}/bin/wget -e robots=off --no-check-certificate -nH --no-cache -R '.DS_Store,Thumbs.db,thumbcache.db,desktop.ini,_macosx,index.html*' -c -w 1 --random-wait --cut-dirs=2 -P '${unraid}/Games/Games/Doom/idgames' -q -r -l 6 --no-parent -nc -a -nv 'https://youfailit.net/pub/idgames'";
+                ExecStart = "${pkgs.wget}/bin/wget https://youfailit.net/pub/idgames -R DS_Store,Thumbs.db,thumbcache.db,desktop.ini,_macosx,index.html -nc -P '${unraid}/Games/Games/Doom/idgames' -l 6 -c -e robots=off --no-cache -w 2 -r -nH --cut-dirs=2 -np --no-parent";
                 ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user.path}:${config.sops.secrets.unraid.ntfy.password.path} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url.path} '[End] idgames Archive'";
                 Type = "oneshot";
               };

@@ -1,9 +1,101 @@
 {
+  inputs,
   lib,
   username,
   modulesPath,
+  config,
   ...
 }:
+let
+  basic-config =
+    { }:
+    {
+      raspberry-pi-nix.board = "bcm2711";
+      hardware = {
+        bluetooth.enable = lib.mkForce true;
+        raspberry-pi = {
+          config = {
+            cm4 = {
+              options = {
+                otg_mode = {
+                  enable = true;
+                  value = true;
+                };
+              };
+            };
+            pi4 = {
+              options = {
+                arm_boost = {
+                  enable = true;
+                  value = true;
+                };
+              };
+              dt-overlays = {
+                vc4-kms-v3d = {
+                  enable = true;
+                  params = {
+                    cma-512 = {
+                      enable = true;
+                    };
+                  };
+                };
+              };
+            };
+            all = {
+              options = {
+                # The firmware will start our u-boot binary rather than a
+                # linux kernel.
+                kernel = {
+                  enable = true;
+                  value = "u-boot-rpi-arm64.bin";
+                };
+                arm_64bit = {
+                  enable = true;
+                  value = true;
+                };
+                enable_uart = {
+                  enable = true;
+                  value = true;
+                };
+                avoid_warnings = {
+                  enable = true;
+                  value = true;
+                };
+                camera_auto_detect = {
+                  enable = true;
+                  value = true;
+                };
+                display_auto_detect = {
+                  enable = true;
+                  value = true;
+                };
+                disable_overscan = {
+                  enable = true;
+                  value = true;
+                };
+              };
+              dt-overlays = {
+                vc4-kms-v3d = {
+                  enable = true;
+                  params = { };
+                };
+              };
+              base-dt-params = {
+                krnbt = {
+                  enable = true;
+                  value = "on";
+                };
+                spi = {
+                  enable = true;
+                  value = "on";
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -11,6 +103,9 @@
     ./impermanence.nix
     # Profiles
     ../../modules
+    # Raspberry Pi
+    inputs.raspberry-pi-nix.nixosModules.raspberry-pi
+    basic-config
   ];
 
   # Custom modules
@@ -58,9 +153,15 @@
       enable = true;
       openFirewall = true;
     };
-    #homearr = {
-    #  enable = true;
-    #};
+    /*
+      homearr = {
+         enable = true;
+       };
+    */
+    freshrss = {
+      enable = true;
+      passwordFile = config.sops.secrets.unraid.ntfy.password.path;
+    };
     home-assistant = {
       enable = true;
       extraComponents = [
@@ -109,5 +210,9 @@
     };
   */
 
-  home-manager.users.${username} = { };
+  home-manager.users.${username} =
+    { pkgs, ... }:
+    {
+      home.packages = with pkgs; [ lgogdownloader ];
+    };
 }
