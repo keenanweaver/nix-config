@@ -15,11 +15,19 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} =
-      { config, vars, pkgs, ... }:
+      {
+        config,
+        vars,
+        pkgs,
+        ...
+      }:
       {
         programs.topgrade = {
           enable = true;
           settings = {
+            containers = {
+              runtime = "podman";
+            };
             linux = {
               "arch_package_manager" = "paru";
             };
@@ -34,7 +42,7 @@ in
               ];
             };
             pre_commands = {
-              "Delete conflicting HM files" = "${pkgs.coreutils}/bin/rm --force ${config.xdg.configHome}/gtk-2.0/gtkrc ${config.xdg.configHome}/mimeapps.list"; #${config.xdg.configHome}/fontconfig/conf.d/10-hm-fonts.conf
+              "Delete conflicting HM files" = "${pkgs.coreutils}/bin/rm --force ${config.xdg.configHome}/gtk-2.0/gtkrc ${config.xdg.configHome}/mimeapps.list"; # ${config.xdg.configHome}/fontconfig/conf.d/10-hm-fonts.conf
               "NixOS Rebuild" = "${pkgs.nh}/bin/nh os switch --update";
             };
             commands = { };
