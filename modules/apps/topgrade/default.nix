@@ -17,7 +17,6 @@ in
     home-manager.users.${username} =
       {
         config,
-        vars,
         pkgs,
         ...
       }:
@@ -42,15 +41,11 @@ in
               ];
             };
             pre_commands = {
-              "Delete conflicting HM files" = "${pkgs.coreutils}/bin/rm --force ${config.xdg.configHome}/gtk-2.0/gtkrc ${config.xdg.configHome}/mimeapps.list"; # ${config.xdg.configHome}/fontconfig/conf.d/10-hm-fonts.conf
+              "Delete conflicting HM files" = "${pkgs.coreutils}/bin/rm --force ${config.xdg.configHome}/gtk-2.0/gtkrc ${config.xdg.configHome}/mimeapps.list";
               "NixOS Rebuild" = "${pkgs.nh}/bin/nh os switch --update";
             };
             commands = { };
-            post_commands =
-              { }
-              // lib.optionalAttrs vars.gaming {
-                "Check SteamTinkerLaunch compat" = "steamtinkerlaunch compat add";
-              };
+            post_commands = { };
           };
         };
       };
