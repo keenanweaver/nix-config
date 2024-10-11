@@ -7,6 +7,8 @@
   alsa-lib,
   pkg-config,
   SDL2,
+  makeDesktopItem,
+  copyDesktopItems,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -29,6 +31,7 @@ stdenv.mkDerivation (finalAttrs: {
     cmake
     ninja
     pkg-config
+    copyDesktopItems
   ];
 
   buildInputs = [
@@ -36,8 +39,31 @@ stdenv.mkDerivation (finalAttrs: {
     SDL2
   ];
 
+  cmakeFlags = [
+    "-DCMAKE_BUILD_TYPE=Release" # https://github.com/nukeykt/Nuked-SC55/issues/100
+  ];
+
   # Hardcode the $out path to the back.data file
   postPatch = ''
     sed -i 's|@out@|'"''${out}"'|g' src/mcu.cpp
   '';
+
+  desktopItems = [
+    (makeDesktopItem {
+      name = "Nuked-SC55";
+      exec = "nuked-sc55";
+      desktopName = "Nuked-SC55";
+      comment = "Roland SC-55 series emulation";
+      categories = [ "Game" ];
+    })
+  ];
+
+  meta = {
+    description = "Roland SC-55 series emulation";
+    homepage = "https://github.com/nukeykt/Nuked-SC55";
+    license = lib.licenses.unfree; # FIXME: nix-init did not find a license
+    maintainers = with lib.maintainers; [ keenanweaver ];
+    mainProgram = "nuked-sc55";
+    platforms = lib.platforms.all;
+  };
 })

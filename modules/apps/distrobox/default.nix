@@ -171,7 +171,6 @@ in
                   jazzjackrabbit               \
                   lab3d-sdl                    \
                   mesen2-git                   \
-                  nuked-sc55                   \
                   openxcom-extended            \
                   portproton                   \
                   sonicthehedgehog             \
@@ -181,9 +180,6 @@ in
                   zelda64recomp-bin            \
                   zeldalttp                    \
                   zeldaoot
-                  # Nuked-SC55
-                  sudo cp ${inputs.nonfree}/Music/roland/{rom1.bin,rom2.bin,rom_sm.bin,waverom1.bin,waverom2.bin} /usr/share/nuked-sc55
-                  sudo chmod 644 /usr/share/nuked-sc55/*.bin
                 else 
                   echo "Container hostname not found"
                 fi
@@ -397,23 +393,6 @@ in
             (
               let
                 args = "";
-                bin = "nuked-sc55";
-                bin-export = "${bin}-db";
-                container = "bazzite-arch-gaming";
-              in
-              writeShellScriptBin "${bin-export}" ''
-                if [ -z "''${CONTAINER_ID}" ]; then
-                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  exec distrobox-host-exec '${bin-export}' "$@"
-                else
-                  exec '/usr/bin/${bin}' "$@"
-                fi
-              ''
-            )
-            (
-              let
-                args = "";
                 bin = "obs-gamecapture";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -583,26 +562,6 @@ in
               ''
             )
           ];
-        /*
-          systemd = {
-                 user = {
-                   services = {
-                     "distrobox-start-containers" = {
-                       Unit = {
-                         Description = "Starts Distrobox containers on login";
-                       };
-                       Service = {
-                         ExecStart = "${distrobox-autostart}/bin/distrobox-autostart";
-                         Type = "simple";
-                       };
-                       Install = {
-                         WantedBy = [ "graphical-session.target" ];
-                       };
-                     };
-                   };
-                 };
-               };
-        */
         xdg = {
           desktopEntries = {
             archipelago = lib.mkIf cfg.gaming {
@@ -665,14 +624,6 @@ in
                 "Game"
                 "Emulator"
               ];
-            };
-            nuked-sc55 = lib.mkIf cfg.gaming {
-              name = "Nuked SC-55";
-              comment = "Roland SC-55 emulator";
-              exec = "nuked-sc55-db";
-              categories = [ "Game" ];
-              noDisplay = false;
-              startupNotify = true;
             };
             portproton = lib.mkIf cfg.gaming {
               name = "PortProton";
