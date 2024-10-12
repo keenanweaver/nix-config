@@ -442,56 +442,58 @@ in
                 chmod +x ${config.home.homeDirectory}/.local/bin/conty_lite.sh
               '';
             })
-            (writeShellApplication {
-              name = "script-pipewire-sink-helper";
-              runtimeInputs = [
-                coreutils
-                perl
-                pulseaudio
-              ];
-              text = ''
-                # Compiled from
-                # https://unix.stackexchange.com/questions/622987/send-music-from-specific-application-to-certain-sound-output-via-command-line
-                # https://bbs.archlinux.org/viewtopic.php?pid=1693617#p1693617
-                # https://forums.linuxmint.com/viewtopic.php?t=328616
-                # Set switches
-                app=$1
-                out=$2
+            /*
+              (writeShellApplication {
+                         name = "script-pipewire-sink-helper";
+                         runtimeInputs = [
+                           coreutils
+                           perl
+                           pulseaudio
+                         ];
+                         text = ''
+                           # Compiled from
+                           # https://unix.stackexchange.com/questions/622987/send-music-from-specific-application-to-certain-sound-output-via-command-line
+                           # https://bbs.archlinux.org/viewtopic.php?pid=1693617#p1693617
+                           # https://forums.linuxmint.com/viewtopic.php?t=328616
+                           # Set switches
+                           app=$1
+                           out=$2
 
-                # Collect all sinks
-                sinkList=$(pactl list sinks | tr '\n' '\r' | perl -pe 's/Sink #([0-9]+).+?device\.description = "([^\r]+)"\r.+?(?=Sink #|$)/\1:"\2",/g' | tr '\r' '\n')
-                IFS="," read -ra sinksArray <<< "$sinkList"
+                           # Collect all sinks
+                           sinkList=$(pactl list sinks | tr '\n' '\r' | perl -pe 's/Sink #([0-9]+).+?device\.description = "([^\r]+)"\r.+?(?=Sink #|$)/\1:"\2",/g' | tr '\r' '\n')
+                           IFS="," read -ra sinksArray <<< "$sinkList"
 
-                # Is our Hi-fi sink available? → Use for loop with indexes to handle spaces in names
-                for ((i = 0; i < ''${#sinksArray[@]}; i++)); do
-                  sink="''${sinksArray[$i]}"
-                  echo "sink found: $sink"
+                           # Is our Hi-fi sink available? → Use for loop with indexes to handle spaces in names
+                           for ((i = 0; i < ''${#sinksArray[@]}; i++)); do
+                             sink="''${sinksArray[$i]}"
+                             echo "sink found: $sink"
 
-                  # Search for this output device's name
-                  [[ "$sink" =~ "Game" ]] && hifiSinkIndex=$(echo "$sink" | cut -d':' -f1)
-                done
+                             # Search for this output device's name
+                             [[ "$sink" =~ "Game" ]] && hifiSinkIndex=$(echo "$sink" | cut -d':' -f1)
+                           done
 
-                if [[ $hifiSinkIndex ]]; then
-                  echo "Game has index $hifiSinkIndex"
+                           if [[ $hifiSinkIndex ]]; then
+                             echo "Game has index $hifiSinkIndex"
 
-                  # Collect all sound streams
-                  musicSourcesList=$(pactl list sink-inputs | tr '\n' '\r' | perl -pe 's/Sink Input #([0-9]+).+?application\.process\.binary = "([^\r]+)"\r.+?(?=Sink Input #|$)/\1:\2\r/g' | tr '\r' '\n')
+                             # Collect all sound streams
+                             musicSourcesList=$(pactl list sink-inputs | tr '\n' '\r' | perl -pe 's/Sink Input #([0-9]+).+?application\.process\.binary = "([^\r]+)"\r.+?(?=Sink Input #|$)/\1:\2\r/g' | tr '\r' '\n')
 
-                  for soundSource in $musicSourcesList; do
-                    binary=$(echo "$soundSource" | cut -d':' -f2);
-                    index=$(echo "$soundSource" | cut -d':' -f1);
-                    echo "index: $index, binary: $binary";
+                             for soundSource in $musicSourcesList; do
+                               binary=$(echo "$soundSource" | cut -d':' -f2);
+                               index=$(echo "$soundSource" | cut -d':' -f1);
+                               echo "index: $index, binary: $binary";
 
-                    if [[ "$binary" == "wine64-preloader" ]]; then
-                      echo "moving $binary output to $hifiSinkIndex"
-                      pactl move-sink-input "$index" "$hifiSinkIndex"
-                    fi
-                  done
-                else
-                  echo "Hi-fi sink was not found"
-                fi
-              '';
-            })
+                               if [[ "$binary" == "wine64-preloader" ]]; then
+                                 echo "moving $binary output to $hifiSinkIndex"
+                                 pactl move-sink-input "$index" "$hifiSinkIndex"
+                               fi
+                             done
+                           else
+                             echo "Hi-fi sink was not found"
+                           fi
+                         '';
+                       })
+            */
           ]
           ++ lib.flatten (lib.attrValues p);
         # Move config files out of home
@@ -926,18 +928,25 @@ in
         };
         xdg = {
           desktopEntries = {
-            gog-galaxy = {
-              name = "GOG Galaxy";
-              comment = "Launch GOG Galaxy using Bottles.";
-              exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p \"GOG Galaxy\" -b \"GOG Galaxy\" -- %u";
-              icon = "${config.home.homeDirectory}/Games/Bottles/GOG-Galaxy/icons/GOG Galaxy.png";
-              categories = [ "Game" ];
-              noDisplay = false;
-              startupNotify = true;
-              settings = {
-                StartupWMClass = "GOG Galaxy";
+            gog-galaxy =
+              let
+                galaxyIcon = pkgs.fetchurl {
+                  url = "https://docs.gog.com/_assets/galaxy_icon_rgb.svg";
+                  hash = "sha256-SpaFaSK05Uq534qPYV7s7/vzexZmMnpJiVtOsbCtjvg=";
+                };
+              in
+              {
+                name = "GOG Galaxy";
+                comment = "Launch GOG Galaxy using Bottles.";
+                exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p \"GOG Galaxy\" -b \"GOG Galaxy\" -- %u";
+                icon = "${galaxyIcon}";
+                categories = [ "Game" ];
+                noDisplay = false;
+                startupNotify = true;
+                settings = {
+                  StartupWMClass = "GOG Galaxy";
+                };
               };
-            };
           };
         };
       };

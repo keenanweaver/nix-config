@@ -5,7 +5,7 @@
   cmake,
   fluidsynth,
   glew,
-  gnome,
+  zenity,
   libX11,
   libXrandr,
   libXinerama,
@@ -37,7 +37,7 @@ stdenv.mkDerivation (finalAttrs: {
     libXinerama
     libXext
     SDL2
-    gnome.zenity
+    zenity
   ];
 
   meta = {
