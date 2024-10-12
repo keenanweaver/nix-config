@@ -23,7 +23,6 @@
           "/var/lib/libvirt"
           "/var/lib/nixos"
           #"/var/lib/opensnitch"
-          #"/var/lib/power-profiles-daemon"
           "/var/lib/systemd/coredump"
           "/var/lib/tailscale"
           "/var/lib/upower"
@@ -36,10 +35,6 @@
           "/etc/ssh/ssh_host_ed25519_key.pub"
           "/etc/ssh/ssh_host_rsa_key"
           "/etc/ssh/ssh_host_rsa_key.pub"
-          #"/var/lib/NetworkManager/NetworkManager.state"
-          #"/var/lib/NetworkManager/secret_key"
-          #"/var/lib/NetworkManager/seen-bssids"
-          #"/var/lib/NetworkManager/timestamps"
         ];
       };
     };
