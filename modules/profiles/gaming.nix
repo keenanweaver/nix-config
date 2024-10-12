@@ -335,6 +335,18 @@ in
       }:
       {
         home.file = {
+          autostart-nuked = {
+            enable = true;
+            text = ''
+              [Desktop Entry]
+              Exec=nuked-sc55 -i
+              Name=nuked-sc55
+              Terminal=false
+              Type=Application
+            '';
+            target = "${config.xdg.configHome}/autostart/nuked.desktop";
+            executable = true;
+          };
           desktop-entry-dxvk =
             let
               dxvkConfig = pkgs.fetchurl {
