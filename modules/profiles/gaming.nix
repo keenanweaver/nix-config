@@ -34,6 +34,7 @@ let
       vvvvvv
       # Doom
       [
+        cherry-doom
         #chocolate-doom
         crispy-doom
         doom64ex-plus
@@ -41,6 +42,7 @@ let
         doomseeker
         dsda-doom
         gzdoom
+        nugget-doom
         prboom-plus
         #rbdoom-3-bfg
         woof-doom
