@@ -56,7 +56,6 @@ in
             "org.fooyin.fooyin"
             "org.kde.haruna"
             "org.kde.kdenlive"
-            "org.kde.krita"
             "org.kde.neochat"
             "org.kde.tokodon"
             "org.musicbrainz.Picard"

@@ -39,6 +39,7 @@ in
           kio-extras
           kirigami-addons
           kjournald
+          krita
           ksshaskpass
           inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
           isoimagewriter
