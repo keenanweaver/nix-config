@@ -7,180 +7,127 @@
 }:
 let
   cfg = config.gaming;
-  dxvkConfig = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
-    hash = "sha256-dt+IlHYw+IjjHNFDT9PgXft682uwB1pGv75SLZDvJcE=";
-  };
-  mangohudConfig = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/flightlessmango/MangoHud/master/data/MangoHud.conf";
-    hash = "sha256-88y6x7xkxClrgETdXIelvywEeY71/Rk4xZ49qzgHWAg=";
-  };
-  vkBasaltConfig = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/DadSchoorse/vkBasalt/master/config/vkBasalt.conf";
-    hash = "sha256-IN/Kuc17EZfzRoo8af1XoBX2/48/bCdyOxw/Tl463Mg=";
-  };
   p = with pkgs; {
     games = [
+      ## Doom
+      cherry-doom
+      # chocolate-doom
+      crispy-doom
+      doom64ex-plus
+      doomrunner
+      doomseeker
+      dsda-doom
+      gzdoom
+      nugget-doom
+      prboom-plus
+      # rbdoom-3-bfg
+      woof-doom
+      zandronum
+      zandronum-server
+      ## Fallout
+      fallout-ce
+      fallout2-ce
+      ## Freespace
+      dxx-rebirth
+      knossosnet
+      ## Marathon
+      /*
+        alephone
+           alephone-marathon
+           alephone-durandal
+           alephone-infinity
+      */
+      ## N64
+      /*
+        _2s2h
+           shipwright
+           zelda64recomp
+      */
+      ## Quake
+      /*
+        (ioquake3.overrideAttrs (attrs: {
+               version = "unstable-2024-05-20";
+               src = fetchFromGitHub {
+                 owner = "ioquake";
+                 repo = "ioq3";
+                 rev = "1fc83e4845b53a9b259f5980468c8db15fce8de7";
+                 hash = "sha256-qnIyNXPeSu/vJfURw7BG41qosAoKGS6NZR9cCb/9Cxw=";
+               };
+             }))
+      */
+      ironwail
+      # trenchbroom
+      ## Arma
+      arma3-unix-launcher
+      # (arma3-unix-launcher.override { buildDayZLauncher = true; })
+      ## Duke3D
+      eduke32
+      raze
+      rigel-engine
+      ## Star Citizen
+      # inputs.nix-citizen.packages.${system}.star-citizen
+      # inputs.nix-citizen.packages.${system}.star-citizen-helper
+      ## Wolf
+      bstone
+      ecwolf
+      iortcw
+      ## Other
       arx-libertatis # Arx Fatalis
       clonehero # Guitar Hero
       exult # Ultima VII
-      #inputs.ow-mod-man.packages.${system}.owmods-cli
-      #inputs.ow-mod-man.packages.${system}.owmods-gui
+      # inputs.ow-mod-man.packages.${system}.owmods-cli
+      # inputs.ow-mod-man.packages.${system}.owmods-gui
       openjk # Jedi Academy
       openloco # Locomotion
-      #openxray # STALKER
-      #relive # Oddworld
+      # openxray # STALKER
+      relive # Oddworld
       wipeout-rewrite # Wipeout
       vvvvvv
-      # Doom
-      [
-        cherry-doom
-        #chocolate-doom
-        crispy-doom
-        doom64ex-plus
-        doomrunner
-        doomseeker
-        dsda-doom
-        gzdoom
-        nugget-doom
-        prboom-plus
-        #rbdoom-3-bfg
-        woof-doom
-        zandronum
-        zandronum-server
-      ]
-      # Fallout
-      [
-        fallout-ce
-        fallout2-ce
-      ]
-      # Freespace
-      [
-        dxx-rebirth
-        knossosnet
-      ]
-      # Marathon
-      [
-        #alephone
-        #alephone-marathon
-        #alephone-durandal
-        #alephone-infinity
-      ]
-      # N64
-      [
-        #_2s2h
-        #shipwright
-        #zelda64recomp
-      ]
-      # Quake
-      [
-        /*
-          (ioquake3.overrideAttrs (attrs: {
-                 version = "unstable-2024-05-20";
-                 src = fetchFromGitHub {
-                   owner = "ioquake";
-                   repo = "ioq3";
-                   rev = "1fc83e4845b53a9b259f5980468c8db15fce8de7";
-                   hash = "sha256-qnIyNXPeSu/vJfURw7BG41qosAoKGS6NZR9cCb/9Cxw=";
-                 };
-               }))
-        */
-        ironwail
-        #trenchbroom
-      ]
-      # Arma
-      [
-        #arma3-unix-launcher
-        #(arma3-unix-launcher.override { buildDayZLauncher = true; })
-      ]
-      # Duke3D
-      [
-        eduke32
-        raze
-        rigel-engine
-      ]
-      # Star Citizen
-      [
-        #inputs.nix-citizen.packages.${system}.star-citizen
-        #inputs.nix-citizen.packages.${system}.star-citizen-helper
-      ]
-      # Wolf
-      [
-        bstone
-        ecwolf
-        iortcw
-      ]
     ];
     tools = [
-      # Emulators 
-      [
-        #archipelago
-        #bizhawk
-        #hypseus-singe
-        #mesen
-        nuked-sc55
-      ]
-      # Input
-      [
-        joystickwake
-        makima
-        oversteer
-        sc-controller
-        xboxdrv
-      ]
-      # Graphics
-      [
-        glxinfo
-        libstrangle
-        vulkan-tools
-      ]
-      # Launchers & utils
-      [
-        #bottles
-        #cartridges
-        #heroic
-        #lutris
-      ]
-      # Modding
-      [
-        #nexusmods-app-unfree
-        r2modman
-      ]
-      # Wine
-      [
-        #inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
-        winetricks
-        wineWowPackages.stagingFull
-      ]
-      # GStreamer
-      /*
-        [
-             gst_all_1.gstreamer
-             gst_all_1.gstreamermm
-             gst_all_1.gst-libav
-             gst_all_1.gst-plugins-bad
-             gst_all_1.gst-plugins-base
-             gst_all_1.gst-plugins-good
-             gst_all_1.gst-plugins-rs
-             gst_all_1.gst-plugins-ugly
-             gst_all_1.gst-plugins-viperfx
-             gst_all_1.gst-vaapi
-           ]
-      */
+      ## Emulators 
+      # archipelago
+      # bizhawk
+      # hypseus-singe
+      # mesen
+      nuked-sc55
+      ## Input
+      joystickwake
+      # makima
+      oversteer
+      sc-controller
+      xboxdrv
+      ## Graphics
+      glxinfo
+      libstrangle
+      vulkan-tools
+      ## Launchers & utils
+      # bottles
+      # cartridges
+      # heroic
+      # lutris
+      ## Modding
+      # nexusmods-app-unfree
+      r2modman
+      ## Wine
+      # inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
+      winetricks
+      wineWowPackages.stagingFull
+      ## One-and-dones
       /*
         igir
-        innoextract
-        jpsxdec
-        lgogdownloader
-        mame.tools
-        mmv
-        nsz
-        oxyromon
-        ps3-disc-dumper
-        renderdoc
-        vgmplay-libvgm
-        vgmstream
-        vgmtools
+           innoextract
+           jpsxdec
+           lgogdownloader
+           mame.tools
+           mmv
+           nsz
+           oxyromon
+           ps3-disc-dumper
+           renderdoc
+           vgmplay-libvgm
+           vgmstream
+           vgmtools
       */
     ];
   };
@@ -271,9 +218,11 @@ in
 
     networking = {
       firewall = {
-        # OW QSB KCP
-        allowedTCPPorts = [ 7777 ];
-        allowedUDPPorts = [ 7777 ];
+        # Outer Wilds Quantum Space Buddies KCP
+        /*
+          allowedTCPPorts = [ 7777 ];
+               allowedUDPPorts = [ 7777 ];
+        */
       };
     };
 
@@ -386,42 +335,63 @@ in
       }:
       {
         home.file = {
-          desktop-entry-dxvk = {
-            enable = true;
-            text = ''
-              [Desktop Entry]
-              Comment=Create a new DXVK config from template
-              Icon=text-x-makefile
-              Name=DXVK Config...
-              Type=Link
-              URL[$e]=file:${dxvkConfig}
-            '';
-            target = "${config.xdg.dataHome}/templates/dxvk.desktop";
-          };
-          desktop-entry-mangohud = {
-            enable = true;
-            text = ''
-              [Desktop Entry]
-              Comment=Create a new MangoHud config from template
-              Icon=text-x-makefile
-              Name=MangoHud Config...
-              Type=Link
-              URL[$e]=file:${mangohudConfig}
-            '';
-            target = "${config.xdg.dataHome}/templates/mangohud.desktop";
-          };
-          desktop-entry-vkBasalt = {
-            enable = true;
-            text = ''
-              [Desktop Entry]
-              Comment=Create a new vkBasalt config from template
-              Icon=text-x-makefile
-              Name=vkBasalt Config...
-              Type=Link
-              URL[$e]=file:${vkBasaltConfig}
-            '';
-            target = "${config.xdg.dataHome}/templates/vkBasalt.desktop";
-          };
+          desktop-entry-dxvk =
+            let
+              dxvkConfig = pkgs.fetchurl {
+                url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
+                hash = "sha256-dt+IlHYw+IjjHNFDT9PgXft682uwB1pGv75SLZDvJcE=";
+              };
+            in
+            {
+              enable = true;
+              text = ''
+                [Desktop Entry]
+                Comment=Create a new DXVK config from template
+                Icon=text-x-makefile
+                Name=DXVK Config...
+                Type=Link
+                URL[$e]=file:${dxvkConfig}
+              '';
+              target = "${config.xdg.dataHome}/templates/dxvk.desktop";
+            };
+          desktop-entry-mangohud =
+            let
+              mangohudConfig = pkgs.fetchurl {
+                url = "https://raw.githubusercontent.com/flightlessmango/MangoHud/master/data/MangoHud.conf";
+                hash = "sha256-88y6x7xkxClrgETdXIelvywEeY71/Rk4xZ49qzgHWAg=";
+              };
+            in
+            {
+              enable = true;
+              text = ''
+                [Desktop Entry]
+                Comment=Create a new MangoHud config from template
+                Icon=text-x-makefile
+                Name=MangoHud Config...
+                Type=Link
+                URL[$e]=file:${mangohudConfig}
+              '';
+              target = "${config.xdg.dataHome}/templates/mangohud.desktop";
+            };
+          desktop-entry-vkBasalt =
+            let
+              vkBasaltConfig = pkgs.fetchurl {
+                url = "https://raw.githubusercontent.com/DadSchoorse/vkBasalt/master/config/vkBasalt.conf";
+                hash = "sha256-IN/Kuc17EZfzRoo8af1XoBX2/48/bCdyOxw/Tl463Mg=";
+              };
+            in
+            {
+              enable = true;
+              text = ''
+                [Desktop Entry]
+                Comment=Create a new vkBasalt config from template
+                Icon=text-x-makefile
+                Name=vkBasalt Config...
+                Type=Link
+                URL[$e]=file:${vkBasaltConfig}
+              '';
+              target = "${config.xdg.dataHome}/templates/vkBasalt.desktop";
+            };
           roms-mt32-exodos = {
             enable = true;
             recursive = true;
@@ -472,58 +442,56 @@ in
                 chmod +x ${config.home.homeDirectory}/.local/bin/conty_lite.sh
               '';
             })
-            /*
-              (writeShellApplication {
-                         name = "script-pipewire-sink-helper";
-                         runtimeInputs = [
-                           coreutils
-                           perl
-                           pulseaudio
-                         ];
-                         text = ''
-                           # Compiled from
-                           # https://unix.stackexchange.com/questions/622987/send-music-from-specific-application-to-certain-sound-output-via-command-line
-                           # https://bbs.archlinux.org/viewtopic.php?pid=1693617#p1693617
-                           # https://forums.linuxmint.com/viewtopic.php?t=328616
-                           # Set switches
-                           app=$1
-                           out=$2
+            (writeShellApplication {
+              name = "script-pipewire-sink-helper";
+              runtimeInputs = [
+                coreutils
+                perl
+                pulseaudio
+              ];
+              text = ''
+                # Compiled from
+                # https://unix.stackexchange.com/questions/622987/send-music-from-specific-application-to-certain-sound-output-via-command-line
+                # https://bbs.archlinux.org/viewtopic.php?pid=1693617#p1693617
+                # https://forums.linuxmint.com/viewtopic.php?t=328616
+                # Set switches
+                app=$1
+                out=$2
 
-                           # Collect all sinks
-                           sinkList=$(pactl list sinks | tr '\n' '\r' | perl -pe 's/Sink #([0-9]+).+?device\.description = "([^\r]+)"\r.+?(?=Sink #|$)/\1:"\2",/g' | tr '\r' '\n')
-                           IFS="," read -ra sinksArray <<< "$sinkList"
+                # Collect all sinks
+                sinkList=$(pactl list sinks | tr '\n' '\r' | perl -pe 's/Sink #([0-9]+).+?device\.description = "([^\r]+)"\r.+?(?=Sink #|$)/\1:"\2",/g' | tr '\r' '\n')
+                IFS="," read -ra sinksArray <<< "$sinkList"
 
-                           # Is our Hi-fi sink available? → Use for loop with indexes to handle spaces in names
-                           for ((i = 0; i < ''${#sinksArray[@]}; i++)); do
-                             sink="''${sinksArray[$i]}"
-                             echo "sink found: $sink"
+                # Is our Hi-fi sink available? → Use for loop with indexes to handle spaces in names
+                for ((i = 0; i < ''${#sinksArray[@]}; i++)); do
+                  sink="''${sinksArray[$i]}"
+                  echo "sink found: $sink"
 
-                             # Search for this output device's name
-                             [[ "$sink" =~ "Game" ]] && hifiSinkIndex=$(echo "$sink" | cut -d':' -f1)
-                           done
+                  # Search for this output device's name
+                  [[ "$sink" =~ "Game" ]] && hifiSinkIndex=$(echo "$sink" | cut -d':' -f1)
+                done
 
-                           if [[ $hifiSinkIndex ]]; then
-                             echo "Game has index $hifiSinkIndex"
+                if [[ $hifiSinkIndex ]]; then
+                  echo "Game has index $hifiSinkIndex"
 
-                             # Collect all sound streams
-                             musicSourcesList=$(pactl list sink-inputs | tr '\n' '\r' | perl -pe 's/Sink Input #([0-9]+).+?application\.process\.binary = "([^\r]+)"\r.+?(?=Sink Input #|$)/\1:\2\r/g' | tr '\r' '\n')
+                  # Collect all sound streams
+                  musicSourcesList=$(pactl list sink-inputs | tr '\n' '\r' | perl -pe 's/Sink Input #([0-9]+).+?application\.process\.binary = "([^\r]+)"\r.+?(?=Sink Input #|$)/\1:\2\r/g' | tr '\r' '\n')
 
-                             for soundSource in $musicSourcesList; do
-                               binary=$(echo "$soundSource" | cut -d':' -f2);
-                               index=$(echo "$soundSource" | cut -d':' -f1);
-                               echo "index: $index, binary: $binary";
+                  for soundSource in $musicSourcesList; do
+                    binary=$(echo "$soundSource" | cut -d':' -f2);
+                    index=$(echo "$soundSource" | cut -d':' -f1);
+                    echo "index: $index, binary: $binary";
 
-                               if [[ "$binary" == "wine64-preloader" ]]; then
-                                 echo "moving $binary output to $hifiSinkIndex"
-                                 pactl move-sink-input "$index" "$hifiSinkIndex"
-                               fi
-                             done
-                           else
-                             echo "Hi-fi sink was not found"
-                           fi
-                         '';
-                       })
-            */
+                    if [[ "$binary" == "wine64-preloader" ]]; then
+                      echo "moving $binary output to $hifiSinkIndex"
+                      pactl move-sink-input "$index" "$hifiSinkIndex"
+                    fi
+                  done
+                else
+                  echo "Hi-fi sink was not found"
+                fi
+              '';
+            })
           ]
           ++ lib.flatten (lib.attrValues p);
         # Move config files out of home
@@ -560,14 +528,15 @@ in
                     "~/.var/app/com.valvesoftware.Steam"
                     "~/.var/app/com.usebottles.bottles"
                     "~/.var/app/net.lutris.Lutris"
-                    "~/Games"
+                    "${config.home.homeDirectory}/Games"
                     "/mnt/crusader/Games/Saves"
+                    "xdg-data/games"
                   ];
                 };
               };
               "com.github.keriew.augustus" = {
                 Context = {
-                  filesystems = [ "~/Games/caesar-3" ];
+                  filesystems = [ "${config.home.homeDirectory}/Games/caesar-3" ];
                   shared = "network"; # obs-gamecapture
                 };
                 Environment = {
@@ -585,7 +554,8 @@ in
               "com.heroicgameslauncher.hgl" = {
                 Context = {
                   filesystems = [
-                    "~/Games"
+                    "${config.home.homeDirectory}/Games"
+                    "xdg-data/games"
                   ];
                 };
                 Environment = {
@@ -607,11 +577,12 @@ in
               "com.usebottles.bottles" = {
                 Context = {
                   filesystems = [
-                    "~/Games"
+                    "${config.home.homeDirectory}/Games"
                     "/mnt/crusader/Games"
                     "~/.var/app/com.valvesoftware.Steam"
                     "~/.var/app/net.lutris.Lutris"
                     "xdg-data/applications"
+                    "xdg-data/games"
                     "xdg-data/Steam"
                   ];
                 };
@@ -621,7 +592,10 @@ in
               };
               "com.valvesoftware.Steam" = {
                 Context = {
-                  filesystems = [ "~/Games" ];
+                  filesystems = [
+                    "${config.home.homeDirectory}/Games"
+                    "xdg-data/games"
+                  ];
                 };
                 Environment = {
                   PULSE_SINK = "Game";
@@ -710,8 +684,9 @@ in
               "net.lutris.Lutris" = {
                 Context = {
                   filesystems = [
-                    "~/Games"
+                    "${config.home.homeDirectory}/Games"
                     "/mnt/crusader/Games"
+                    "xdg-data/games"
                   ];
                 };
                 Environment = {
@@ -829,7 +804,7 @@ in
               "org.scummvm.ScummVM" = {
                 Context = {
                   filesystems = [
-                    "~/Games/scummvm"
+                    "${config.home.homeDirectory}/Games/scummvm"
                     "~/Music"
                     "!home"
                   ];
@@ -848,7 +823,10 @@ in
               };
               "page.kramo.Cartridges" = {
                 Context = {
-                  filesystems = [ "~/Games" ];
+                  filesystems = [
+                    "${config.home.homeDirectory}/Games"
+                    "xdg-data/games"
+                  ];
                 };
               };
             };
@@ -874,14 +852,14 @@ in
               "com.supermodel3.Supermodel"
               "com.usebottles.bottles"
               "com.valvesoftware.Steam"
-              #"dev.goats.xivlauncher"
+              # "dev.goats.xivlauncher"
               "dev.opengoal.OpenGOAL"
               "eu.vcmi.VCMI"
               "info.cemu.Cemu"
               "info.urbanterror.UrbanTerror"
-              #"io.github.am2r_community_developers.AM2RLauncher"
+              # "io.github.am2r_community_developers.AM2RLauncher"
               "io.github.Foldex.AdwSteamGtk"
-              #"io.github.garglk.Gargoyle"
+              # "io.github.garglk.Gargoyle"
               "io.github.ihhub.Fheroes2"
               "io.github.ja2_stracciatella.JA2-Stracciatella"
               "io.github.lime3ds.Lime3DS"
@@ -912,9 +890,9 @@ in
               "org.duckstation.DuckStation"
               "org.easyrpg.player"
               "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
-              #"org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08"
+              # "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08"
-              #"org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/24.08"
+              # "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08"
               "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08"
               "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
@@ -937,8 +915,8 @@ in
               "org.scummvm.ScummVM"
               "org.sonic3air.Sonic3AIR"
               "org.srb2.SRB2"
-              #"org.twinery.Twine"
-              #"org.zdoom.Raze"
+              # "org.twinery.Twine"
+              # "org.zdoom.Raze"
               "page.kramo.Cartridges"
               "sh.fhs.KatawaShoujoReEngineered"
               "tk.deat.Jazz2Resurrection"

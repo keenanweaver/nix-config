@@ -15,5 +15,6 @@
       };
     }
   );
+  relive = prev.callPackage ./relive { };
   rigel-engine = prev.callPackage ./rigel { };
 })
