@@ -16,7 +16,7 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} = {
-      programs.firefox = {
+      programs.floorp = {
         enable = true;
         package = pkgs.floorp;
         policies = {

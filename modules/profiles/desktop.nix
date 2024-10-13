@@ -19,7 +19,7 @@ in
     # Custom modules
     base.enable = true;
     catppuccinTheming.enable = true;
-    floorp.enable = false;
+    floorp.enable = true;
     hyprland.enable = false;
     kde.enable = true;
     mumble.enable = true;
