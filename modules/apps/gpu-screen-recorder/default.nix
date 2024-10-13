@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  pkgs,
   ...
 }:
 let
@@ -16,6 +17,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.gpu-screen-recorder = {
       enable = true;
+      packages = pkgs.gsr;
     };
 
     home-manager.users.${username} =
@@ -71,16 +73,18 @@ in
                 Service = {
                   Environment = [
                     "WINDOW=DP-1" # Primary monitor
-                    "CONTAINER=mp4"
-                    "QUALITY=ultra"
+                    "CONTAINER=mkv"
+                    "QUALITY=very_high"
                     "FRAMERATE=60"
-                    "MODE=cfr"
-                    "CODEC=h264"
+                    "FRAMERATE_MODE=vfr"
+                    "CODEC=av1"
                     "AUDIO_CODEC=opus"
-                    "AUDIO_DEVICE_DEFAUlT=alsa_output.usb-Schiit_Audio_USB_Modi_Device-00.analog-stereo.monitor"
+                    "AUDIO_DEVICE_DEFAUlT="
+                    "AUDIO_DEVICE_BROWSER=Browser.monitor"
                     "AUDIO_DEVICE_GAME=Game.monitor"
                     "AUDIO_DEVICE_MIC=mono-microphone"
-                    "AUDIO_DEVICE_VOIP=VoIP.monitor"
+                    "AUDIO_DEVICE_VOIP=Voice.monitor"
+                    "AUDIO_DEVICE_LIVE=Live.monitor"
                     "AUDIO_DEVICE_MUSIC=Music.monitor"
                     "REPLAYDURATION=900"
                     "OUTPUTDIR=${outputDir}"
@@ -88,7 +92,7 @@ in
                     "FPSPPS=no"
                   ];
                   ExecStartPre = "${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay started' -i com.dec05eba.gpu_screen_recorder -a 'GPU Screen Recorder'";
-                  ExecStart = "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w $WINDOW -c $CONTAINER -q $QUALITY -f $FRAMERATE -fm $MODE -k $CODEC -ac $AUDIO_CODEC -r $REPLAYDURATION -v $FPSPPS -mf $MAKEFOLDERS -a $AUDIO_DEVICE_DEFAUlT -a $AUDIO_DEVICE_GAME -a $AUDIO_DEVICE_MIC -a $AUDIO_DEVICE_VOIP -a $AUDIO_DEVICE_MUSIC -o $OUTPUTDIR";
+                  ExecStart = "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder -w $WINDOW -c $CONTAINER -q $QUALITY -f $FRAMERATE -fm $FRAMERATE_MODE -k $CODEC -ac $AUDIO_CODEC -r $REPLAYDURATION -v $FPSPPS -mf $MAKEFOLDERS -a $AUDIO_DEVICE_DEFAUlT -a $AUDIO_DEVICE_GAME -a $AUDIO_DEVICE_MIC -a $AUDIO_DEVICE_BROWSER -a $AUDIO_DEVICE_VOIP -a $AUDIO_DEVICE_MUSIC -a $AUDIO_DEVICE_LIVE -o $OUTPUTDIR";
                   KillSignal = "SIGINT";
                   Restart = "on-failure";
                   RestartSec = "5";

@@ -1,6 +1,7 @@
 (final: prev: {
   cherry-doom = prev.callPackage ./cherry-doom { };
   doom64ex-plus = prev.callPackage ./doom64ex-plus { };
+  gsr = prev.callPackage ./gpu-screen-recorder { };
   klassy = prev.callPackage ./klassy { };
   nugget-doom = prev.callPackage ./nugget-doom { };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
