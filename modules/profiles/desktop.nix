@@ -75,6 +75,7 @@ in
             '';
           })
           cyanrip
+          mangareader
           mousai
           neo
         ];

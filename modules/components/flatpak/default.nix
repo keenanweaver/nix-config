@@ -41,7 +41,6 @@ in
         services.flatpak = {
           packages = [
             "chat.revolt.RevoltDesktop"
-            "com.georgefb.mangareader"
             "com.github.tchx84.Flatseal"
             "com.obsproject.Studio"
             "fr.romainvigier.MetadataCleaner"
@@ -54,10 +53,7 @@ in
             "org.atheme.audacious"
             "org.filezillaproject.Filezilla"
             "org.fooyin.fooyin"
-            "org.kde.haruna"
             "org.kde.kdenlive"
-            "org.kde.neochat"
-            "org.kde.tokodon"
             "org.musicbrainz.Picard"
             "org.onlyoffice.desktopeditors"
             "org.rncbc.qpwgraph"
@@ -114,13 +110,6 @@ in
                 XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
               };
             };
-            "com.georgefb.mangareader" = {
-              Context = {
-                filesystems = [
-                  "!home"
-                ];
-              };
-            };
             "io.github.zen_browser.zen" = {
               Environment = {
                 MOZ_ENABLE_WAYLAND = "1";
@@ -149,11 +138,6 @@ in
                   "/mnt/crusader/Media/Audio/Music"
                   "~/Music"
                 ];
-              };
-            };
-            "org.kde.haruna" = {
-              Context = {
-                filesystems = [ "!home" ];
               };
             };
             "org.musicbrainz.Picard" = {

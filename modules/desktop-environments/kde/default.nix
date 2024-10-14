@@ -32,6 +32,7 @@ in
           discover
           ffmpegthumbnailer
           filelight
+          haruna
           kcalc
           kcron
           kdesu
@@ -43,6 +44,7 @@ in
           ksshaskpass
           inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
           isoimagewriter
+          neochat
           okteta
           packagekit-qt # Discover store
           plasma-browser-integration
@@ -50,6 +52,7 @@ in
           qtsvg # https://github.com/NixOS/nixpkgs/issues/325225
           sddm-kcm
           syntax-highlighting
+          tokodon
         ];
     };
     programs = {
