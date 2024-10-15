@@ -73,7 +73,7 @@ in
               ff_tab:set_title ' fetch '
               -- neo tab
               local neo_tab, neo_pane = window:spawn_tab { }
-              neo_pane:send_text 'neo -D -b 1 --noglitch\n'
+              neo_pane:send_text 'neo -Da -b 2\n'
               neo_tab:set_title ' neo '
               -- Set active panes
               zsh_pane:activate()
