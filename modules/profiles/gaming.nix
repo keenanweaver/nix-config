@@ -410,6 +410,17 @@ in
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
             target = "${config.xdg.configHome}/dosbox/mt32-roms";
           };
+          wine-controller-proton = {
+            # https://selfmadepenguin.wordpress.com/2024/02/14/how-i-solved-my-gamecontroller-problems/
+            # Import with: wine start regedit.exe /home/keenan/.wine/controller-proton.reg
+            enable = true;
+            text = ''
+              [HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\winebus]
+              "DisableHidraw"=dword:00000001
+              "Enable SDL"=dword:00000001
+            '';
+            target = "${config.home.homeDirectory}/.wine/controller-proton.reg";
+          };
           wine-links-protonge-bottles = {
             enable = true;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
