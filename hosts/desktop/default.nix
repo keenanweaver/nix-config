@@ -109,6 +109,7 @@
       };
     };
 
+    # TODO: Remove when Linux 6.13 is out: https://www.phoronix.com/news/AMDGPU-More-Aggressive-Power
     udev = {
       extraRules = ''
         # https://reddit.com/r/linux_gaming/comments/196tz6v/psa_amdgpu_power_management_may_fix_your/khxs3q3/?context=3 https://gitlab.freedesktop.org/drm/amd/-/issues/1500#note_825883
