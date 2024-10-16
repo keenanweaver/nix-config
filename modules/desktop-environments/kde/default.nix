@@ -55,6 +55,10 @@ in
           tokodon
         ];
     };
+    # Neochat
+    nixpkgs.config.permittedInsecurePackages = [
+      "olm-3.2.16"
+    ];
     programs = {
       fuse.userAllowOther = true;
       kdeconnect.enable = true;
