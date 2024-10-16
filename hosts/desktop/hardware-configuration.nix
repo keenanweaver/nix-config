@@ -10,14 +10,14 @@
 
   fileSystems."/home" = {
     options = [
-      "compress=zstd"
+      "compress=zstd:1"
       "subvol=home"
     ];
   };
 
   fileSystems."/nix" = {
     options = [
-      "compress=zstd"
+      "compress=zstd:1"
       "subvol=nix"
     ];
   };
@@ -25,7 +25,7 @@
   fileSystems."/persist" = {
     neededForBoot = true;
     options = [
-      "compress=zstd"
+      "compress=zstd:1"
       "subvol=persist"
     ];
   };
@@ -35,8 +35,7 @@
     device = "/dev/disk/by-id/ata-Samsung_SSD_870_EVO_2TB_S620NJ0R902825F-part1";
     fsType = "btrfs";
     options = [
-      "compress-force=zstd"
-      "noatime"
+      "compress=zstd:1"
     ];
   };
 
