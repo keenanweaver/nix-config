@@ -19,74 +19,82 @@ in
           enable = true;
           defaultEditor = true;
           extraPackages = with pkgs; [
+            bash-language-server
+            biome
+            docker-compose-language-service
+            helix-gpt
+            marksman
+            nixd
+            nixfmt-rfc-style
+            nodePackages.prettier
+            pgformatter
+            (python3.withPackages (
+              p:
+              (with p; [
+                black
+                isort
+                python-lsp-black
+                python-lsp-server
+              ])
+            ))
+            ruff
+            rust-analyzer
+            shellcheck
             shfmt
-            # For accessing system clipboard
+            taplo
+            taplo-lsp
+            terraform-ls
+            vscode-langservers-extracted
             wl-clipboard
+            yaml-language-server
           ];
           languages = {
-            # Update language server settings
             language-server = {
-              gopls = {
-                command = "gopls";
-                config = {
-                  hints = {
-                    assignVariableTypes = true;
-                    compositeLiteralFields = true;
-                    constantValues = true;
-                    functionTypeParameters = true;
-                    parameterNames = true;
-                    rangeVariableTypes = true;
-                  };
-                  gofumpt = true;
-
-                  staticcheck = false;
-
-                  analyses = {
-                    nilness = true;
-                    shadow = true;
-                    unusedwrite = true;
-                    unusedparams = true;
-                    useany = true;
-                    unusedvariable = true;
-                  };
-
-                  vulncheck = "Imports";
-                  semanticTokens = true;
-                };
+              biome = {
+                command = "biome";
+                args = [ "lsp-proxy" ];
+              };
+              gpt = {
+                command = "helix-gpt";
+                args = [
+                  "--handler"
+                  "codeium"
+                ];
+              };
+              json = {
+                command = "vscode-json-languageserver";
+                args = [ "--stdio" ];
               };
               nixd = {
                 command = "nixd";
               };
+              pylyzer = {
+                command = "pylyzer";
+                args = [ "--server" ];
+              };
               ruff = {
-                command = "ruff-lsp";
+                command = "ruff";
+                args = [
+                  "server"
+                  "-q"
+                  "--preview"
+                ];
               };
-              rustanalyzer = {
-                command = "rust-analyzer";
-                args = [ ];
-                config = {
-                  hover.actions.references.enable = true;
-                  completion.fullFunctionSignatures.enable = true;
-
-                  # cargo.extraEnv = {CARGO_TARGET_DIR = "./target/rust_analyzer";};
-                  check.command = "clippy";
-                  cargo.features = "all";
-                  rustc.source = "discover";
-                  inlayHints.bindingModeHints.enable = true;
-                  inlayHints.closingBraceHints.minLines = 10;
-                  inlayHints.closureReturnTypeHints.enable = "with_block";
-                  inlayHints.discriminantHints.enable = "fieldless";
-                  inlayHints.lifetimeElisionHints.enable = "skip_trivial";
-                  inlayHints.typeHints.hideClosureInitialization = false;
-                };
+              taplo = {
+                command = "taplo";
+                args = [
+                  "lsp"
+                  "stdio"
+                ];
               };
-              yaml-language-server.config = {
-                yaml.keyOrdering = false;
+              yaml = {
+                command = "yaml-language-server";
+                args = [ "--stdio" ];
               };
             };
             language = [
               {
                 name = "bash";
-                auto-format = true;
                 language-servers = [ "bash-language-server" ];
                 formatter = {
                   command = "shfmt";
@@ -96,80 +104,165 @@ in
                     "-"
                   ];
                 };
+                auto-format = true;
               }
               {
-                name = "go";
-                auto-format = true;
-                language-servers = [ "gopls" ];
+                name = "css";
+                language-servers = [
+                  "vscode-css-language-server"
+                  "gpt"
+                ];
                 formatter = {
-                  command = "gofumpt";
+                  command = "prettier";
+                  args = [
+                    "--stdin-filepath"
+                    "file.css"
+                  ];
                 };
+                auto-format = true;
+              }
+              {
+                name = "html";
+                language-servers = [
+                  "vscode-html-language-server"
+                  "gpt"
+                ];
+                formatter = {
+                  command = "prettier";
+                  args = [
+                    "--stdin-filepath"
+                    "file.html"
+                  ];
+                };
+                auto-format = true;
+              }
+              {
+                name = "json";
+                language-servers = [
+                  {
+                    name = "vscode-json-language-server";
+                    except-features = [ "format" ];
+                  }
+                  "biome"
+                ];
+                formatter = {
+                  command = "biome";
+                  args = [
+                    "format"
+                    "--indent-style"
+                    "space"
+                    "--stdin-file-path"
+                    "file.json"
+                  ];
+                };
+                auto-format = true;
               }
               {
                 name = "markdown";
-                auto-format = true;
-                language-servers = [ "marksman" ];
+                language-servers = [
+                  "marksman"
+                  "gpt"
+                ];
                 formatter = {
-                  command = "marksman";
+                  command = "prettier";
+                  args = [
+                    "--stdin-filepath"
+                    "file.md"
+                  ];
                 };
+                auto-format = true;
               }
               {
                 name = "nix";
-                auto-format = true;
-                language-servers = [ "nixd" ];
+                language-servers = [
+                  "nixd"
+                  "nixfmt-rfc-style"
+                ];
                 formatter = {
                   command = "nixfmt";
                 };
+                auto-format = true;
               }
               {
                 name = "python";
-                auto-format = true;
-                language-servers = [ "ruff" ];
+                language-servers = [
+                  "pylyzer"
+                  "ruff"
+                  "gpt"
+                ];
                 formatter = {
-                  command = "ruff-lsp";
+                  command = "ruff";
+                  args = [
+                    "format"
+                    "-"
+                  ];
                 };
+                auto-format = true;
               }
               {
-                name = "rust";
-                auto-format = true;
-                #language-servers = [ "rust-analyzer" ];
+                name = "sql";
+                language-servers = [ "gpt" ];
                 formatter = {
-                  command = "rustfmt";
+                  command = "pg_format";
+                  args = [
+                    "-iu1"
+                    "--no-space-function"
+                    "-"
+                  ];
                 };
+                auto-format = true;
               }
               {
                 name = "toml";
+                language-servers = [ "taplo" ];
+                formatter = {
+                  command = "taplo";
+                  args = [
+                    "fmt"
+                    "-o"
+                    "column_width=120"
+                    "-"
+                  ];
+                };
                 file-types = [
-                  # editorconfig doesn't have .toml extension but is toml
                   ".editorconfig"
                   "toml"
                 ];
+                auto-format = true;
               }
               {
                 name = "yaml";
-                auto-format = true;
-                language-servers = [ "yamllint" ];
+                language-servers = [ "yaml-language-server" ];
                 formatter = {
-                  command = "yamllint";
+                  command = "prettier";
+                  args = [
+                    "--stdin-filepath"
+                    "file.yaml"
+                  ];
                 };
+                auto-format = true;
               }
             ];
           };
           settings = {
             editor = {
               auto-format = true;
-              bufferline = "always";
+              auto-pairs = true;
+              bufferline = "multiple";
               color-modes = true;
               cursor-shape = {
-                normal = "block";
                 insert = "bar";
+                normal = "block";
                 select = "underline";
               };
               cursorcolumn = true;
               cursorline = true;
               file-picker = {
-                # Display hidden files in file picker
+                follow-symlinks = true;
+                git-ignore = true;
+                git-global = true;
                 hidden = false;
+                ignore = false;
               };
               gutters = [
                 "diagnostics"
@@ -186,45 +279,80 @@ in
                 enable = true;
                 display-inlay-hints = true;
                 display-messages = true;
+                snippets = true;
               };
+              popup-border = "all";
               shell = [
                 "zsh"
                 "-c"
               ];
-              soft-wrap.enable = true;
+              smart-tab = {
+                enable = true;
+              };
+              soft-wrap = {
+                enable = true;
+              };
               statusline = {
                 left = [
                   "mode"
-                  "spinner"
                   "file-name"
+                  "spinner"
+                  "read-only-indicator"
+                  "file-modification-indicator"
                 ];
                 right = [
                   "diagnostics"
                   "selections"
-                  "position"
+                  "register"
                   "file-type"
-                  "file-encoding"
+                  "file-line-ending"
+                  "position"
                 ];
               };
               true-color = true;
-              whitespace.characters = {
-                newline = "↴";
-                tab = "⇥";
+              whitespace = {
+                render = "all";
+                characters = {
+                  space = "·";
+                  nbsp = "⍽";
+                  nnbsp = "␣";
+                  tab = "→";
+                  newline = "⏎";
+                  tabpad = "·";
+                };
               };
             };
             keys = {
               insert = {
+                C-u = [
+                  "extend_to_line_bounds"
+                  "delete_selection_noyank"
+                  "open_above"
+                ];
+                C-w = [
+                  "move_prev_word_start"
+                  "delete_selection_noyank"
+                ];
+                C-space = "completion";
+                S-tab = "move_parent_node_start";
                 j = {
                   k = "normal_mode";
                 };
               };
               normal = {
                 space = {
-                  f = ":format"; # format using LSP formatter
+                  A-f = ":toggle auto-format";
                   W = [
                     ":toggle soft-wrap.enable"
                     ":redraw"
                   ];
+                  Q = ":quit!";
+                  c = ":buffer-close";
+                  e = ":config-open";
+                  f = ":format";
+                  q = ":quit";
+                  w = ":write";
+                  space = "file_picker";
                 };
                 esc = [
                   "collapse_selection"
@@ -243,11 +371,13 @@ in
                 ];
                 C-r = ":reload";
                 C-h = ":toggle-option lsp.display-inlay-hints";
-                space.space = "file_picker";
-                space.w = ":w";
-                space.q = ":q";
               };
-              select = { };
+              select = {
+                g = {
+                  j = "goto_last_line";
+                  k = "goto_file_start";
+                };
+              };
             };
           };
         };
