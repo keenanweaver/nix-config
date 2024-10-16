@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  vars,
   ...
 }:
 let
@@ -47,7 +48,12 @@ in
     };
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     services = {
-      btrfs.autoScrub.enable = true;
+      btrfs = {
+        autoScrub = {
+          enable = true;
+          interval = "weekly";
+        };
+      };
       devmon.enable = true;
       fwupd.enable = true;
       udisks2 = {
