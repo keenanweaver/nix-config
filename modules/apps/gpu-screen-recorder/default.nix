@@ -9,15 +9,16 @@ let
   cfg = config.gsr;
 in
 {
-  options = {
-    gsr = {
-      enable = lib.mkEnableOption "Enable gsr in NixOS";
+  options.gsr = {
+    enable = lib.mkEnableOption "Enable gsr in NixOS";
+    defaultAudioDevice = lib.mkOption {
+      type = lib.types.str;
     };
   };
   config = lib.mkIf cfg.enable {
     programs.gpu-screen-recorder = {
       enable = true;
-      packages = pkgs.gsr;
+      package = pkgs.gsr;
     };
 
     home-manager.users.${username} =
@@ -79,7 +80,7 @@ in
                     "FRAMERATE_MODE=vfr"
                     "CODEC=av1"
                     "AUDIO_CODEC=opus"
-                    "AUDIO_DEVICE_DEFAUlT="
+                    "AUDIO_DEVICE_DEFAUlT=${cfg.defaultAudioDevice}"
                     "AUDIO_DEVICE_BROWSER=Browser.monitor"
                     "AUDIO_DEVICE_GAME=Game.monitor"
                     "AUDIO_DEVICE_MIC=mono-microphone"
