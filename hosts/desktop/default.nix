@@ -19,6 +19,7 @@
   # Custom modules
   desktop.enable = true;
   gaming.enable = true;
+  gsr.defaultAudioDevice = "alsa_output.pci-0000_12_00.4.analog-stereo";
 
   boot = {
     initrd = {
@@ -55,6 +56,18 @@
   };
 
   services = {
+    beesd = {
+      filesystems = {
+        games = {
+          spec = "/home/${username}/Games";
+          verbosity = "crit";
+          extraOptions = [
+            "--loadavg-target"
+            "5.0"
+          ];
+        };
+      };
+    };
     pipewire = {
       extraConfig = {
         pipewire = {
