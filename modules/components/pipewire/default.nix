@@ -167,7 +167,7 @@ in
             "51-disable-hdmi-audio" = {
               "monitor.alsa.rules" = [
                 {
-                  matches = [ { "device.name" = "~alsa_output.*.hdmi.*"; } ];
+                  matches = [ { "device.name" = "~*.hdmi-stereo.*"; } ];
                   actions.update-props = {
                     "device.disabled" = true;
                   };
