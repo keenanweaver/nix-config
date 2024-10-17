@@ -18,7 +18,7 @@ let
   sans-font-pkg = pkgs.inter;
   serif-font = "IBM Plex Serif";
   GTK-THEME = "Breeze-Dark";
-  cursor-theme = "breeze_cursors";
+  cursor-theme = "Catppuccin-${flavor-upper}-${accent-upper}";
 in
 {
   options = {
@@ -78,7 +78,7 @@ in
          base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-${flavor-lower}.yaml";
          cursor = {
            name = "${cursor-theme}";
-           size = 24;
+           size = 32;
          };
          fonts = {
            monospace = {
@@ -129,6 +129,11 @@ in
           enable = true;
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
+          pointerCursor = {
+            enable = true;
+            accent = "${accent-lower}";
+            flavor = "${flavor-lower}";
+          };
         };
 
         /*
@@ -150,10 +155,12 @@ in
             size = "standard";
             tweaks = [ "normal" ];
           };
+
           cursorTheme = {
             name = lib.mkDefault "${cursor-theme}";
-            size = 24;
+            size = 32;
           };
+
           font = {
             name = "${sans-font}";
             size = 12;
@@ -294,14 +301,16 @@ in
               '';
               target = "${config.xdg.configHome}/powershell/Microsoft.PowerShell_profile.ps1";
             };
-            wayland-cursor-fix = {
-              enable = true;
-              text = ''
-                [Icon Theme]
-                Inherits=${cursor-theme}
-              '';
-              target = "${config.xdg.dataHome}/icons/default/index.theme";
-            };
+            /*
+              wayland-cursor-fix = {
+                         enable = true;
+                         text = ''
+                           [Icon Theme]
+                           Inherits=${cursor-theme}
+                         '';
+                         target = "${config.xdg.dataHome}/icons/default/index.theme";
+                       };
+            */
           };
           packages = with pkgs; [
             hicolor-icon-theme
@@ -316,7 +325,7 @@ in
             GSETTINGS_BACKEND = "keyfile";
             GTK_USE_PORTAL = "1";
             LS_COLORS = "$(vivid generate catppuccin-${flavor-lower})";
-            XCURSOR_SIZE = "24";
+            XCURSOR_SIZE = "32";
           };
         };
         programs = {
@@ -479,7 +488,7 @@ in
               # Cursors
               # plasma-apply-cursortheme --list-themes
               cursor = {
-                size = 24;
+                size = 32;
                 theme = "${cursor-theme}";
               };
               # System sounds
@@ -550,7 +559,7 @@ in
           };
           xsettingsd = {
             settings = {
-              "Gtk/CursorThemeSize" = 24;
+              "Gtk/CursorThemeSize" = 32;
               "Gtk/CursorThemeName" = "${cursor-theme}";
               "Gtk/FontName" = "${sans-font},  12";
               "Net/IconThemeName" = "Papirus-Dark";
@@ -561,7 +570,7 @@ in
 
         xresources = {
           properties = {
-            "Xcursor.size" = 24;
+            "Xcursor.size" = 32;
             "Xcursor.theme" = "${cursor-theme}";
             "Xft.autohint" = 1;
             "Xft.lcdfilter" = "lcddefault";
