@@ -19,7 +19,7 @@
   # Custom modules
   desktop.enable = true;
   gaming.enable = true;
-  gsr.defaultAudioDevice = "alsa_output.pci-0000_12_00.4.analog-stereo";
+  gsr.defaultAudioDevice = "alsa_output.usb-Schiit_Audio_Schiit_Modi_-00.analog-stereo.monitor";
 
   boot = {
     initrd = {
