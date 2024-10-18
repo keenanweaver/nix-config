@@ -1,15 +1,4 @@
 (final: prev: {
-  /*
-    catppuccin-cursors = prev.catppuccin-cursors.overrideAttrs (
-      { src, ... }:
-      {
-        version = "0.4.0";
-        src = src.override {
-          hash = "sha256-VxLwZkZdV1xH4jeqtszqSnhNrgF3uamEXBLPKIc4lXE=";
-        };
-      }
-    );
-  */
   cherry-doom = prev.callPackage ./cherry-doom { };
   doom64ex-plus = prev.callPackage ./doom64ex-plus { };
   gsr = prev.callPackage ./gpu-screen-recorder { };
