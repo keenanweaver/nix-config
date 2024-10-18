@@ -330,6 +330,7 @@ in
               in
               writeShellScriptBin "${bin-export}" ''
                 export GTK_USE_PORTAL=0
+                export GTK_THEME=Breeze-Dark
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
