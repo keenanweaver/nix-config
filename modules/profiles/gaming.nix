@@ -415,6 +415,8 @@ in
             # Import with: wine start regedit.exe /home/keenan/.wine/controller-proton.reg
             enable = true;
             text = ''
+              Windows Registry Editor Version 5.00
+
               [HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\winebus]
               "DisableHidraw"=dword:00000001
               "Enable SDL"=dword:00000001
