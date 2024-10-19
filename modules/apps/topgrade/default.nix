@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  vars,
   ...
 }:
 let
@@ -45,7 +46,11 @@ in
               "NixOS Rebuild" = "${pkgs.nh}/bin/nh os switch --update";
             };
             commands = { };
-            post_commands = { };
+            post_commands =
+              { }
+              // lib.optionalAttrs vars.gaming {
+                "Check SteamTinkerLaunch compat" = "steamtinkerlaunch compat add";
+              };
           };
         };
       };

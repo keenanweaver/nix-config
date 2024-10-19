@@ -2,7 +2,6 @@
   lib,
   config,
   username,
-  inputs,
   pkgs,
   ...
 }:
@@ -31,13 +30,12 @@ in
         # Chaotic packages
         luxtorpeda
         proton-ge-custom
-        (steamtinkerlaunch.overrideAttrs (o: {
-          src = inputs.steamtinkerlaunch-master;
-        }))
+        #steamtinkerlaunch
       ];
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
       package = pkgs.steam.override {
+        extraBwrapArgs = [ "--unsetenv TZ" ]; # https://github.com/NixOS/nixpkgs/issues/338266#issuecomment-2419568331
         extraEnv = {
           PULSE_SINK = "Game";
         };
@@ -68,6 +66,7 @@ in
           };
           packages = with pkgs; [
             # SteamTinkerLaunch tools
+            steamtinkerlaunch
             gawk
             procps
             unixtools.xxd
