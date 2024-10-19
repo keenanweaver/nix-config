@@ -49,7 +49,9 @@ in
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
         })
-        klassy
+        (klassy.override {
+          qtMajorVersion = "6";
+        })
         utterly-round-plasma-style
       ];
     };
