@@ -3,37 +3,59 @@
   stdenv,
   fetchFromGitHub,
   cmake,
+  ninja,
   kdePackages,
   libsForQt5,
 
-  # Could be either 5 or 6 for Qt 5 and 6 respectively.
+  # Could be either "5" or "6" for Qt 5 and 6 respectively.
   qtMajorVersion ? "6",
 }:
 let
-  qtPackages =
-    {
-      "5" = libsForQt5;
-      "6" = kdePackages;
-    }
-    .${qtMajorVersion};
+  qtMajorVersions = {
+    "5" = {
+      qtPackages = libsForQt5;
+      extraBuildInputs = with libsForQt5; [
+        qtx11extras
+        kconfigwidgets
+        kirigami2
+      ];
+    };
+    "6" = {
+      qtPackages = kdePackages;
+      extraBuildInputs = with kdePackages; [
+        qtsvg
+        kcolorscheme
+        kconfig
+        kcoreaddons
+        kdecoration
+        kguiaddons
+        ki18n
+        kirigami
+        kwidgetsaddons
+      ];
+      # klassy-settings doesn't exist for the Qt 5 build.
+      mainProgram = "klassy-settings";
+    };
+  };
+
+  inherit (qtMajorVersions.${qtMajorVersion}) qtPackages extraBuildInputs mainProgram;
 in
-assert lib.assertOneOf "qtMajorVersion" qtMajorVersion [
-  "5"
-  "6"
-];
+assert lib.assertOneOf "qtMajorVersion" qtMajorVersion (lib.attrNames qtMajorVersions);
+
 stdenv.mkDerivation (finalAttrs: {
   pname = "klassy";
-  version = "6.1.breeze6.0.3";
+  version = "6.2.breeze6.2.1";
 
   src = fetchFromGitHub {
     owner = "paulmcauley";
     repo = "klassy";
     rev = finalAttrs.version;
-    hash = "sha256-D8vjc8LT+pn6Qzn9cSRL/TihrLZN4Y+M3YiNLPrrREc=";
+    hash = "sha256-tFqze3xN1XECY74Gj0nScis7DVNOZO4wcfeA7mNZT5M=";
   };
 
   nativeBuildInputs = with qtPackages; [
     cmake
+    ninja
     extra-cmake-modules
     wrapQtAppsHook
   ];
@@ -51,31 +73,11 @@ stdenv.mkDerivation (finalAttrs: {
       kiconthemes
       kwindowsystem
     ]
-    ++ lib.optionals (qtMajorVersion == "5") [
-      qtx11extras
-      kconfigwidgets
-      kirigami2
-    ]
-    ++ lib.optionals (qtMajorVersion == "6") [
-      qtsvg
-      kcolorscheme
-      kconfig
-      kcoreaddons
-      kdecoration
-      kguiaddons
-      ki18n
-      kirigami
-      kwidgetsaddons
-    ];
+    ++ extraBuildInputs;
 
-  cmakeFlags = [
-    "-DCMAKE_INSTALL_PREFIX=$out"
-    "-DBUILD_TESTING=OFF"
-    "-DKDE_INSTALL_USE_QT_SYS_PATHS=ON"
-    "-DBUILD_QT5=OFF"
-    "-DBUILD_QT6=OFF"
-    "-DBUILD_QT${qtMajorVersion}=ON"
-  ];
+  cmakeFlags = map (v: lib.cmakeBool "BUILD_QT${v}" (qtMajorVersion == v)) (
+    lib.attrNames qtMajorVersions
+  );
 
   meta =
     {
@@ -93,8 +95,7 @@ stdenv.mkDerivation (finalAttrs: {
       ];
       maintainers = with lib.maintainers; [ pluiedev ];
     }
-    // lib.optionalAttrs (qtMajorVersion == "6") {
-      # klassy-settings doesn't exist for the Qt 5 build.
-      mainProgram = "klassy-settings";
+    // lib.optionalAttrs (mainProgram != null) {
+      inherit mainProgram;
     };
 })

@@ -28,7 +28,6 @@ in
     vscode.enable = true;
     wezterm.enable = true;
     wireshark.enable = true;
-    #zed.enable = true;
 
     hardware = {
       bluetooth = {

@@ -56,7 +56,6 @@
     ./wireshark
     ./yazi
     ./yt-dlp
-    ./zed
     ./zellij
     ./zen-browser
     ./zerotier

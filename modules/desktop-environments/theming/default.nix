@@ -16,7 +16,7 @@ let
   mono-font = "JetBrainsMono Nerd Font";
   sans-font = "Inter";
   sans-font-pkg = pkgs.inter;
-  serif-font = "IBM Plex Serif";
+  #serif-font = "IBM Plex Serif";
   GTK-THEME = "Breeze-Dark";
   cursor-theme = "Catppuccin-${flavor-upper}-${accent-upper}";
 in
@@ -49,9 +49,7 @@ in
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
         })
-        (klassy.override {
-          qtMajorVersion = "6";
-        })
+        klassy
         utterly-round-plasma-style
       ];
     };
@@ -74,49 +72,6 @@ in
 
     programs.dconf.enable = true;
 
-    /*
-      stylix = {
-         autoEnable = false;
-         base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-${flavor-lower}.yaml";
-         cursor = {
-           name = "${cursor-theme}";
-           size = 32;
-         };
-         fonts = {
-           monospace = {
-             name = "${mono-font}";
-             package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-           };
-           sansSerif = {
-             name = "${sans-font}";
-             package = pkgs.ibm-plex;
-           };
-           serif = {
-             name = "${serif-font}";
-             package = pkgs.ibm-plex;
-           };
-           sizes = {
-             applications = 13;
-             desktop = 13;
-             popups = 11;
-             terminal = 13;
-           };
-         };
-         image = "${dotfiles}/Pictures/wallpapers/lavender-low-poly-grid-haikei.png";
-         opacity = {
-           applications = 1.0;
-           terminal = 0.7;
-           desktop = 1.0;
-           popups = 1.0;
-         };
-         polarity = "dark";
-         targets = {
-           chromium.enable = true;
-           gtk.enable = true;
-         };
-       };
-    */
-
     home-manager.users.${username} =
       {
         inputs,
@@ -137,18 +92,6 @@ in
             flavor = "${flavor-lower}";
           };
         };
-
-        /*
-          stylix = {
-                 autoEnable = false;
-                 targets = {
-                   #mangohud.enable = if vars.gaming then true else false;
-                   xresources.enable = true;
-                 };
-               };
-        */
-
-        colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
         gtk = {
           enable = true;
@@ -261,12 +204,6 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-zen}/themes/${flavor-upper}/${accent-upper}";
               target = ".var/app/io.github.zen_browser.zen/.zen/${username}/chrome";
             };
-            font-geist = {
-              enable = false;
-              recursive = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.geist-font}/share/fonts/opentype";
-              target = "${config.xdg.dataHome}/fonts/geist";
-            };
             font-inter = {
               enable = true;
               recursive = true;
@@ -303,16 +240,6 @@ in
               '';
               target = "${config.xdg.configHome}/powershell/Microsoft.PowerShell_profile.ps1";
             };
-            /*
-              wayland-cursor-fix = {
-                         enable = true;
-                         text = ''
-                           [Icon Theme]
-                           Inherits=${cursor-theme}
-                         '';
-                         target = "${config.xdg.dataHome}/icons/default/index.theme";
-                       };
-            */
           };
           packages = with pkgs; [
             hicolor-icon-theme
@@ -520,19 +447,6 @@ in
               "workbench.iconTheme" = "catppuccin-${flavor-lower}";
             };
           };
-          /*
-            zed-editor = {
-                     userSettings = ''
-                       {
-                         "buffer_font_family": "JetBrainsMono",
-                         "theme": "Catppuccin Mocha",
-                         "Catppuccin Mocha.theme_overrides: {
-                           "background.appearance": "blurred",
-                         },
-                       }
-                     '';
-                   };
-          */
         };
         services = {
           flatpak = {
@@ -543,11 +457,6 @@ in
                 };
               };
               "io.github.zen_browser.zen" = {
-                Environment = {
-                  GTK_THEME = "${GTK-THEME}";
-                };
-              };
-              "one.ablaze.floorp" = {
                 Environment = {
                   GTK_THEME = "${GTK-THEME}";
                 };

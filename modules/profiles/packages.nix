@@ -70,7 +70,6 @@ in
             devbox
             just
             powershell
-            zed-editor
             ### Ansible ###
             ansible
             ansible-language-server
