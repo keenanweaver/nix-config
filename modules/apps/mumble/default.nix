@@ -16,7 +16,7 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} = {
-      home.packages = with pkgs; [ (mumble.override { speechdSupport = true; }) ];
+      home.packages = with pkgs; [ mumble ];
     };
   };
 }
