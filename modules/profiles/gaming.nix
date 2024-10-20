@@ -521,22 +521,6 @@ in
             */
           ]
           ++ lib.flatten (lib.attrValues p);
-        # Move config files out of home
-        programs.boxxy = {
-          rules = [
-            {
-              name = "exult directory";
-              target = "${config.home.homeDirectory}/.exult";
-              rewrite = "${config.xdg.configHome}/exult";
-            }
-            {
-              name = "exult config file";
-              target = "${config.home.homeDirectory}/.exult.cfg";
-              rewrite = "${config.xdg.configHome}/exult/exult.cfg";
-              mode = "file";
-            }
-          ];
-        };
         services = {
           flatpak = {
             overrides = {

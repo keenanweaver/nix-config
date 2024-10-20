@@ -94,6 +94,12 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
     , innoextract -g '/mnt/crusader/Games/Other/GOG/serious_sam_the_first_encounter/setup_serious_sam_the_first_encounter_1.05_(21759).exe' -d /home/keenan/.var/app/io.itch.tx00100xt.SeriousSamClassic-VK/data/Serious-Engine/serioussam && , innoextract -g '/mnt/crusader/Games/Other/GOG/serious_sam_the_second_encounter/setup_serious_sam_the_second_encounter_1.07_(21759).exe' -d /home/keenan/.var/app/io.itch.tx00100xt.SeriousSamClassic-VK/data/Serious-Engine/serioussamse
     ## Theme Hospital
     , innoextract -g '/mnt/crusader/Games/Other/GOG/theme_hospital/setup_theme_hospital_v3_(28027).exe' -d /home/keenan/Games/theme-hospital
+    ## Ultima VII
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/ultima_vii_the_black_gate_the_forge_of_virtue/setup_ultima_vii_-_the_black_gate_1.0_(22309).exe' -d /home/keenan/.local/share/exult/forgeofvirtue
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/ultima_vii_serpent_isle/setup_ultima_vii_-_serpent_isle_1.0_(22309).exe' -d /home/keenan/.local/share/exult/silverseed
+    xh get -d -o /home/keenan/.local/share/exult/exult_audio.zip http://prdownloads.sourceforge.net/exult/exult_audio.zip
+    fd 'exult_audio' -e zip /home/keenan/.local/share/exult -x ouch d --yes {} -d /home/keenan/.local/share/exult
+    fd 'exult_audio' -e zip /home/keenan/.local/share/exult -x rm {}
     ## X-COM
     , innoextract -g '/mnt/crusader/Games/Other/GOG/xcom_ufo_defense/setup_x-com_ufo_defense_1.2_(28046).exe' -d /home/keenan/.local/share/openxcom/UFO
     , innoextract -g '/mnt/crusader/Games/Other/GOG/xcom_terror_from_the_deep/setup_x-com_terror_from_the_deep_2.1_(28046).exe' -d /home/keenan/.local/share/openxcom/TFTD
