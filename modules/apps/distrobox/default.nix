@@ -41,7 +41,6 @@ in
     home-manager.users.${username} =
       {
         config,
-        inputs,
         pkgs,
         vars,
         ...
