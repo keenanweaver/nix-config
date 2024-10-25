@@ -46,88 +46,94 @@ in
             "context.modules" =
               [ { } ]
               ++ lib.optionals vars.gaming [
+                # Keep playback node.name different from capture node.name so KDE doesn't get confused
                 {
                   "name" = "libpipewire-module-loopback";
                   "args" = {
-                    "node.description" = "Browser";
+                    "audio.position" = [
+                      "FL"
+                      "FR"
+                    ];
                     "capture.props" = {
-                      "audio.position" = [
-                        "FL"
-                        "FR"
-                      ];
                       "media.class" = "Audio/Sink";
                       "node.name" = "Browser";
+                      "node.description" = "Browser";
                     };
                     "playback.props" = {
-                      "node.name" = "Browser";
+                      "node.name" = "Browser_m";
+                      "node.description" = "Browser";
                     };
                   };
                 }
                 {
                   "name" = "libpipewire-module-loopback";
                   "args" = {
-                    "node.description" = "Game";
+                    "audio.position" = [
+                      "FL"
+                      "FR"
+                    ];
                     "capture.props" = {
-                      "audio.position" = [
-                        "FL"
-                        "FR"
-                      ];
                       "media.class" = "Audio/Sink";
                       "node.name" = "Game";
+                      "node.description" = "Game";
                     };
                     "playback.props" = {
-                      "node.name" = "Game";
+                      "node.name" = "Game_m";
+                      "node.description" = "Game";
                     };
                   };
                 }
                 {
                   "name" = "libpipewire-module-loopback";
                   "args" = {
-                    "node.description" = "Live";
+                    "audio.position" = [
+                      "FL"
+                      "FR"
+                    ];
                     "capture.props" = {
-                      "audio.position" = [
-                        "FL"
-                        "FR"
-                      ];
                       "media.class" = "Audio/Sink";
                       "node.name" = "Live";
+                      "node.description" = "Live";
                     };
                     "playback.props" = {
-                      "node.name" = "Live";
+                      "node.name" = "Live_m";
+                      "node.description" = "Live";
                     };
                   };
                 }
                 {
                   "name" = "libpipewire-module-loopback";
                   "args" = {
-                    "node.description" = "Music";
+                    "audio.position" = [
+                      "FL"
+                      "FR"
+                    ];
                     "capture.props" = {
-                      "audio.position" = [
-                        "FL"
-                        "FR"
-                      ];
                       "media.class" = "Audio/Sink";
                       "node.name" = "Music";
+                      "node.description" = "Music";
                     };
                     "playback.props" = {
-                      "node.name" = "Music";
+                      "node.name" = "Music_m";
+                      "node.description" = "Music";
                     };
                   };
                 }
                 {
                   "name" = "libpipewire-module-loopback";
                   "args" = {
-                    "node.description" = "Voice";
+                    "audio.position" = [
+                      "FL"
+                      "FR"
+                    ];
                     "capture.props" = {
-                      "audio.position" = [
-                        "FL"
-                        "FR"
-                      ];
                       "media.class" = "Audio/Sink";
                       "node.name" = "Voice";
+                      "node.description" = "Voice";
                     };
                     "playback.props" = {
-                      "node.name" = "Voice";
+                      "node.name" = "Voice_m";
+                      "node.description" = "Voice";
                     };
                   };
                 }
