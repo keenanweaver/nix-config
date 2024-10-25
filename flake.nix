@@ -237,7 +237,7 @@
                   };
                   sharedModules = with inputs; [
                     catppuccin.homeManagerModules.catppuccin
-                    hyprland.homeManagerModules.default
+                    #hyprland.homeManagerModules.default
                     nix-colors.homeManagerModules.default
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.hmModules.nix-index
