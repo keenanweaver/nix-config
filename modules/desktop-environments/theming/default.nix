@@ -103,7 +103,7 @@ in
 
           cursorTheme = {
             name = lib.mkDefault "${cursor-theme}";
-            size = 32;
+            size = 24;
           };
 
           font = {
@@ -254,7 +254,7 @@ in
             GSETTINGS_BACKEND = "keyfile";
             GTK_USE_PORTAL = "1";
             LS_COLORS = "$(vivid generate catppuccin-${flavor-lower})";
-            XCURSOR_SIZE = "32";
+            XCURSOR_SIZE = "24";
           };
         };
         programs = {
@@ -417,7 +417,7 @@ in
               # Cursors
               # plasma-apply-cursortheme --list-themes
               cursor = {
-                size = 32;
+                size = 24;
                 theme = "${cursor-theme}";
               };
               # System sounds
@@ -470,7 +470,7 @@ in
           };
           xsettingsd = {
             settings = {
-              "Gtk/CursorThemeSize" = 32;
+              "Gtk/CursorThemeSize" = 24;
               "Gtk/CursorThemeName" = "${cursor-theme}";
               "Gtk/FontName" = "${sans-font},  12";
               "Net/IconThemeName" = "Papirus-Dark";
@@ -481,7 +481,7 @@ in
 
         xresources = {
           properties = {
-            "Xcursor.size" = 32;
+            "Xcursor.size" = 24;
             "Xcursor.theme" = "${cursor-theme}";
             "Xft.autohint" = 1;
             "Xft.lcdfilter" = "lcddefault";
