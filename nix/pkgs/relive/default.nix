@@ -41,7 +41,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   meta = {
-    description = "Re-implementation of Oddworld: Abe's Exoddus and Oddworld: Abe's Oddysee ";
+    description = "Re-implementation of Oddworld: Abe's Exoddus and Oddworld: Abe's Oddysee";
     homepage = "https://github.com/AliveTeam/alive_reversing";
     maintainers = with lib.maintainers; [ ByteSudoer ];
     license = lib.licenses.mit;

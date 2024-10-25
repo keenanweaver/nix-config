@@ -80,7 +80,7 @@ let
       openjk # Jedi Academy
       openloco # Locomotion
       # openxray # STALKER
-      relive # Oddworld
+      #relive # Oddworld
       wipeout-rewrite # Wipeout
       vvvvvv
     ];
