@@ -1,5 +1,5 @@
 {
-  disks ? [ "/dev/nvme0n1" ],
+  disks ? [ "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB" ],
   ...
 }:
 {

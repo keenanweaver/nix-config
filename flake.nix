@@ -214,7 +214,7 @@
               inputs.chaotic.nixosModules.default
               inputs.disko.nixosModules.disko
               ./hosts/desktop/disko.nix
-              { _module.args.disks = [ "/dev/nvme0n1" ]; }
+              { _module.args.disks = [ "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB" ]; }
               inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.nixosModules.nur
