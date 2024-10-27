@@ -2,6 +2,9 @@
 
 This is to quickly set up games for nix, Flatpak, and distrobox that require extra data files.
 
+## From bare-metal
+1. Run `script-game-stuff`
+
 ## Set up directories
 ``` bash
     mkdir -p /home/keenan/Games/{daikatana,descent/descent-1,descent/descent-2,quake/quake-1,quake/quake-3,RCT,morrowind,blake-stone/aog,blake-stone/ps,jagged-alliance-2/ja2,jagged-alliance-2/unfinished-business,jagged-alliance-2/wildfire,loco,arx-fatalis}

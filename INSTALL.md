@@ -47,26 +47,18 @@ Prerequisites:
 
 1. Copy private SSH keys & secrets to ~/.ssh and ~/.config/sops/age respectively.
 2. Set up ~/.config/nix.conf with private GitHub token for nix-nonfree repo: `access-tokens = github.com=ghp_blahblahblah`
-3. Initialize ssh-agent: `ssh-add ~/.ssh/id_ed25519 && ssh-add -l`
-4. Run `nixos-rebuild switch`
+3. Uncomment out nix-nonfree flake input (optional)
+4. Initialize ssh-agent: `ssh-add ~/.ssh/id_ed25519 && ssh-add -l`
+5. Run `nixos-rebuild switch`
 
 ### Desktop/laptop
 Run `bootstrap-baremetal.sh`
 <br />or
 1. Set up distrobox containers:
     * `distrobox create assemble`
-    * `distrobox enter bazzite-arch-exodos -- bash -l -c "/home/keenan/.config/distrobox/bootstrap-bazzite-arch-exodos.sh"`
-    * `distrobox enter bazzite-arch-gaming -- bash -l -c "/home/keenan/.config/distrobox/bootstrap-bazzite-arch-gaming.sh"`
-2. Set up flatpaks:
-    * `flatpak-install-all.sh`
-    <br />or<br />
-    * `flatpak-install-sys.sh && flatpak-install.sh && flatpak-install-games.sh`
-3. Download other things:
-    * Conty:
-      * `xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | wget -i- -N -P /home/keenan/.local/bin`
-      * `chmod +x /home/keenan/.local/bin/conty_lite.sh`
-      * `conty_lite.sh -u`
-4. Set up games. See [GAMES.md](GAMES.md)
+    * `distrobox enter bazzite-arch-exodos -- bash -l -c "bootstrap-distrobox"`
+    * `distrobox enter bazzite-arch-gaming -- bash -l -c "bootstrap-distrobox"`
+2. Set up games. See [GAMES.md](GAMES.md)
 ### Server
 1. Log into GOG and Internet Archive
     * `lgogdownloader`

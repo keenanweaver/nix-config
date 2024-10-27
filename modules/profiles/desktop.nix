@@ -75,6 +75,8 @@ in
             ];
             text = ''
               distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
+              distrobox enter bazzite-arch-exodos -- bash -l -c "bootstrap-distrobox"
+              distrobox enter bazzite-arch-gaming -- bash -l -c "bootstrap-distrobox"
               ${lib.optionalString vars.gaming ''script-game-stuff''}
             '';
           })
