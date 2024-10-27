@@ -145,6 +145,7 @@ in
   config = lib.mkIf cfg.enable {
     # Custom modules
     cdemu.enable = true;
+    coolercontrol.enable = true;
     corectrl.enable = false;
     fluidsynth.enable = true;
     gamemode.enable = true;

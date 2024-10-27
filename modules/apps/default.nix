@@ -6,6 +6,7 @@
     ./boxxy
     ./btop
     ./cdemu
+    ./coolercontrol
     ./corectrl
     ./direnv
     ./distrobox
