@@ -26,7 +26,7 @@
       "zswap.enabled=0"
     ];
     lanzaboote = {
-      enable = true;
+      enable = false;
       pkiBundle = "/etc/secureboot";
     };
     loader = {
@@ -34,15 +34,10 @@
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
+      systemd-boot.enable = true;
       timeout = 1;
     };
     plymouth.enable = true;
-    /*
-      tmp = {
-         cleanOnBoot = true;
-         useTmpfs = true;
-       };
-    */
     supportedFilesystems = [
       "btrfs"
       "cifs"
