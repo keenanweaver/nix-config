@@ -19,6 +19,8 @@ let
         kconfigwidgets
         kirigami2
       ];
+      # klassy-settings doesn't exist for the Qt 5 build.
+      mainProgram = null;
     };
     "6" = {
       qtPackages = kdePackages;
@@ -33,7 +35,6 @@ let
         kirigami
         kwidgetsaddons
       ];
-      # klassy-settings doesn't exist for the Qt 5 build.
       mainProgram = "klassy-settings";
     };
   };
