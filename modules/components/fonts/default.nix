@@ -116,6 +116,7 @@ in
         source-han-sans-japanese
         source-han-serif-japanese
         ubuntu-sans
+        ultimate-oldschool-pc-font-pack
       ];
       fontconfig = {
         allowBitmaps = false;
