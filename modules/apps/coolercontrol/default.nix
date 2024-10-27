@@ -26,7 +26,7 @@ in
     programs = {
       coolercontrol = {
         enable = true;
-        nvidiaSupport = vars.nvidiaSupport;
+        nvidiaSupport = vars.nvidia;
       };
     };
 

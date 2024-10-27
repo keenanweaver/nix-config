@@ -352,7 +352,7 @@ in
             let
               dxvkConfig = pkgs.fetchurl {
                 url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
-                hash = "sha256-dt+IlHYw+IjjHNFDT9PgXft682uwB1pGv75SLZDvJcE=";
+                hash = "sha256-gUxx6oIUg7uCVQff02vgfoG7qBY0IBNMah8BR1hjN0w=";
               };
             in
             {
@@ -371,7 +371,7 @@ in
             let
               mangohudConfig = pkgs.fetchurl {
                 url = "https://raw.githubusercontent.com/flightlessmango/MangoHud/master/data/MangoHud.conf";
-                hash = "sha256-88y6x7xkxClrgETdXIelvywEeY71/Rk4xZ49qzgHWAg=";
+                hash = "sha256-BcZt5Ma5injmHmlT8BkgXVrEM8yAn6N/wQamm4x1m60=";
               };
             in
             {
