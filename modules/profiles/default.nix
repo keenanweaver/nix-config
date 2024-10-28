@@ -4,7 +4,7 @@
     ./desktop.nix
     ./gaming.nix
     ./hardening.nix
-    ./nonfree.nix
+    #./nonfree.nix
     ./office.nix
     ./packages.nix
     ./performance.nix

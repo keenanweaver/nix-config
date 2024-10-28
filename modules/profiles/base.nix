@@ -64,7 +64,7 @@ in
     packages.enable = true;
     performance.enable = true;
     pipewire.enable = true;
-    secrets.enable = true;
+   #secrets.enable = true;
     virtualization.enable = true;
     users.enable = true;
 

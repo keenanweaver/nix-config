@@ -153,7 +153,7 @@ in
     gsr.enable = true;
     lact.enable = true;
     mangohud.enable = true;
-    nonfree.enable = true;
+    #nonfree.enable = true;
     obs.enable = true;
     solaar.enable = false;
     steam.enable = true;
@@ -405,12 +405,14 @@ in
               '';
               target = "${config.xdg.dataHome}/templates/vkBasalt.desktop";
             };
-          roms-mt32-exodos = {
-            enable = true;
-            recursive = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
-            target = "${config.xdg.configHome}/dosbox/mt32-roms";
-          };
+          /*
+            roms-mt32-exodos = {
+                     enable = true;
+                     recursive = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
+                     target = "${config.xdg.configHome}/dosbox/mt32-roms";
+                   };
+          */
           wine-controller-proton = {
             # https://selfmadepenguin.wordpress.com/2024/02/14/how-i-solved-my-gamecontroller-problems/
             # Import with: wine start regedit.exe /home/keenan/.wine/controller-proton.reg
@@ -908,10 +910,10 @@ in
               "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/24.08"
-              #"org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08"
-              #"org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08"
-              #"org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
-              #"org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/23.08"
+              "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08"
+              "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08"
+              "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
+              "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/23.08"
               #"org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08"
               #"org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/22.08"
               #"org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/22.08"

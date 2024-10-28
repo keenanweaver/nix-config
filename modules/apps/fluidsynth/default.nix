@@ -33,16 +33,18 @@ in
       { inputs, config, ... }:
       {
         home.file = {
-          midi-soundfonts-default = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts/${soundfont}";
-            target = "Music/soundfonts/default.sf2";
-          };
-          midi-soundfonts-default-dosbox = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts/${soundfont}";
-            target = "${config.xdg.configHome}/dosbox/soundfonts/default.sf2";
-          };
+          /*
+            midi-soundfonts-default = {
+                     enable = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts/${soundfont}";
+                     target = "Music/soundfonts/default.sf2";
+                   };
+                   midi-soundfonts-default-dosbox = {
+                     enable = true;
+                     source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts/${soundfont}";
+                     target = "${config.xdg.configHome}/dosbox/soundfonts/default.sf2";
+                   };
+          */
         };
         home.sessionVariables = {
           SDL_SOUNDFONTS = "${cfg.soundFont}";

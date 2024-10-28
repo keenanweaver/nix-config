@@ -75,10 +75,12 @@
          flake = false;
        };
     */
-    nonfree = {
-      url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
-      flake = false;
-    };
+    /*
+      nonfree = {
+         url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
+         flake = false;
+       };
+    */
     nsearch = {
       url = "github:niksingh710/nsearch";
       inputs.nixpkgs.follows = "nixpkgs";

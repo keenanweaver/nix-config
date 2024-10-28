@@ -25,16 +25,18 @@
       "udev.log_priority=3"
       "zswap.enabled=0"
     ];
-    lanzaboote = {
-      enable = false;
-      pkiBundle = "/etc/secureboot";
-    };
+    /*
+      lanzaboote = {
+         enable = false;
+         pkiBundle = "/etc/secureboot";
+       };
+    */
     loader = {
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
-      systemd-boot.enable = true;
+      systemd-boot.enable = lib.mkForce true;
       timeout = 1;
     };
     plymouth.enable = true;

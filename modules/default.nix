@@ -11,6 +11,6 @@
     ./profiles
 
     # Secrets
-    ../secrets
+    #../secrets
   ];
 }

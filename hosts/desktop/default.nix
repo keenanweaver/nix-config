@@ -9,7 +9,7 @@
     # System
     ./disko.nix
     ./hardware-configuration.nix
-    ./impermanence.nix
+    #./impermanence.nix
     # Profiles
     ../../modules
     # Plasma
