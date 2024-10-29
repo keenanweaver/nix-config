@@ -32,8 +32,16 @@
 
   fileSystems."/home/${username}/Games" = {
     depends = [ "/home" ];
+    device = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S73WNJ0TB09290J-part1";
+    fsType = "btrfs";
+    options = [
+      "compress=zstd:1"
+    ];
+  };
+
+  fileSystems."/home/${username}/.local/share/games" = {
+    depends = [ "/home" ];
     device = "/dev/disk/by-id/ata-Samsung_SSD_870_EVO_2TB_S620NJ0R902825F-part1";
-    #device = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S73WNJ0TB09290J-part1";
     fsType = "btrfs";
     options = [
       "compress=zstd:1"

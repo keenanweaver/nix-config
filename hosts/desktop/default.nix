@@ -59,7 +59,7 @@
     beesd = {
       filesystems = {
         games = {
-          spec = "/home/${username}/Games";
+          spec = "/home/${username}/.local/share/games";
           verbosity = "crit";
           extraOptions = [
             "--loadavg-target"
