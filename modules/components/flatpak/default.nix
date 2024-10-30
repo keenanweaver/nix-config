@@ -136,7 +136,7 @@ in
               Context = {
                 filesystems = [
                   "/mnt/crusader/Media/Audio/Music"
-                  "~/Music"
+                  "${config.home.homeDirectory}/Music"
                 ];
               };
             };
@@ -146,7 +146,7 @@ in
                   "/mnt/crusader/Media/Audio/Music"
                   "!home"
                   "xdg-download"
-                  "~/Music"
+                  "${config.home.homeDirectory}/Music"
                 ];
               };
             };

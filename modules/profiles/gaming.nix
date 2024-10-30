@@ -541,10 +541,10 @@ in
               "com.github.mtkennerly.ludusavi" = {
                 Context = {
                   filesystems = [
-                    "~/.var/app/com.heroicgameslauncher.hgl"
-                    "~/.var/app/com.valvesoftware.Steam"
-                    "~/.var/app/com.usebottles.bottles"
-                    "~/.var/app/net.lutris.Lutris"
+                    "${config.home.homeDirectory}/.var/app/com.heroicgameslauncher.hgl"
+                    "${config.home.homeDirectory}/.var/app/com.valvesoftware.Steam"
+                    "${config.home.homeDirectory}/.var/app/com.usebottles.bottles"
+                    "${config.home.homeDirectory}/.var/app/net.lutris.Lutris"
                     "${config.home.homeDirectory}/Games"
                     "/mnt/crusader/Games/Saves"
                     "xdg-data/games"
@@ -596,8 +596,8 @@ in
                   filesystems = [
                     "${config.home.homeDirectory}/Games"
                     "/mnt/crusader/Games"
-                    "~/.var/app/com.valvesoftware.Steam"
-                    "~/.var/app/net.lutris.Lutris"
+                    "${config.home.homeDirectory}/.var/app/com.valvesoftware.Steam"
+                    "${config.home.homeDirectory}/.var/app/net.lutris.Lutris"
                     "xdg-data/applications"
                     "xdg-data/games"
                     "xdg-data/Steam"
@@ -713,8 +713,8 @@ in
               "net.mancubus.SLADE" = {
                 Context = {
                   filesystems = [
-                    "~/.slade3"
-                    "~/.slade"
+                    "${config.home.homeDirectory}/.slade3"
+                    "${config.home.homeDirectory}/.slade"
                     "${config.home.homeDirectory}/Games/doom"
                     "!home"
                   ];
@@ -733,6 +733,7 @@ in
                   filesystems = [
                     "/mnt/crusader/Games/Other/RPCS3"
                     "${config.home.homeDirectory}/Games/RPCS3"
+                    "xdg-data/games"
                     "!home"
                   ];
                 };
@@ -810,7 +811,9 @@ in
               "org.ryujinx.Ryujinx" = {
                 Context = {
                   filesystems = [
+                    "${config.home.homeDirectory}/Games"
                     "/mnt/crusader/Games/Rom/Other/Switch"
+                    "xdg-data/games"
                     "!home"
                   ];
                 };
@@ -822,7 +825,8 @@ in
                 Context = {
                   filesystems = [
                     "${config.home.homeDirectory}/Games/scummvm"
-                    "~/Music"
+                    "xdg-data/games"
+                    "${config.home.homeDirectory}/Music"
                     "!home"
                   ];
                 };
@@ -843,6 +847,7 @@ in
                   filesystems = [
                     "${config.home.homeDirectory}/Games"
                     "xdg-data/games"
+                    "xdg-data/steam"
                   ];
                 };
               };
@@ -869,14 +874,14 @@ in
               "com.supermodel3.Supermodel"
               "com.usebottles.bottles"
               "com.valvesoftware.Steam"
-              # "dev.goats.xivlauncher"
+              #"dev.goats.xivlauncher"
               "dev.opengoal.OpenGOAL"
               "eu.vcmi.VCMI"
               "info.cemu.Cemu"
               "info.urbanterror.UrbanTerror"
-              # "io.github.am2r_community_developers.AM2RLauncher"
+              #"io.github.am2r_community_developers.AM2RLauncher"
               "io.github.Foldex.AdwSteamGtk"
-              # "io.github.garglk.Gargoyle"
+              #"io.github.garglk.Gargoyle"
               "io.github.ihhub.Fheroes2"
               "io.github.ja2_stracciatella.JA2-Stracciatella"
               "io.github.lime3ds.Lime3DS"
@@ -914,10 +919,6 @@ in
               "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08"
               "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
               "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/23.08"
-              #"org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/22.08"
-              #"org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/22.08"
-              #"org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/22.08"
-              #"org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/22.08"
               "org.kartkrew.RingRacers"
               "org.libretro.RetroArch"
               "org.mamedev.MAME"
@@ -932,8 +933,6 @@ in
               "org.scummvm.ScummVM"
               "org.sonic3air.Sonic3AIR"
               "org.srb2.SRB2"
-              # "org.twinery.Twine"
-              # "org.zdoom.Raze"
               "page.kramo.Cartridges"
               "sh.fhs.KatawaShoujoReEngineered"
               "tk.deat.Jazz2Resurrection"
