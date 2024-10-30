@@ -18,7 +18,8 @@ let
   sans-font-pkg = pkgs.inter;
   #serif-font = "IBM Plex Serif";
   GTK-THEME = "Breeze-Dark";
-  cursor-theme = "Catppuccin-${flavor-upper}-${accent-upper}";
+  cursor-theme = "breeze_cursors";
+  #cursor-theme = "Catppuccin-${flavor-upper}-${accent-upper}";
 in
 {
   options = {
@@ -87,7 +88,7 @@ in
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
           pointerCursor = {
-            enable = true;
+            enable = false;
             accent = "${accent-lower}";
             flavor = "${flavor-lower}";
           };
