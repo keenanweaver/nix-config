@@ -6,7 +6,7 @@
 }:
 let
   cfg = config.mangohud;
-  cpu = if config.networking.hostName == "nixos-desktop" then "5800X" else "";
+  cpu = if config.networking.hostName == "nixos-desktop" then "7950X3D" else "";
   gpu = if config.networking.hostName == "nixos-desktop" then "7900XTX" else "";
 in
 {
