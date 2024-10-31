@@ -21,7 +21,7 @@
       "rd.systemd.show_status=false"
       "splash"
       #"systemd.unified_cgroup_hierarchy=1"
-      "udev.log_level=3"
+      "rd.udev.log_level=3"
       "udev.log_priority=3"
       "zswap.enabled=0"
     ];
@@ -36,7 +36,10 @@
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
-      systemd-boot.enable = lib.mkForce true;
+      systemd-boot = {
+        enable = true;
+        editor = false;
+      };
       timeout = 1;
     };
     plymouth.enable = true;
