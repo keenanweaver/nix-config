@@ -31,12 +31,10 @@ let
       dxx-rebirth
       knossosnet
       ## Marathon
-      /*
-        alephone
-           alephone-marathon
-           alephone-durandal
-           alephone-infinity
-      */
+      alephone
+      alephone-marathon
+      alephone-durandal
+      alephone-infinity
       ## N64
       /*
         _2s2h
@@ -109,6 +107,22 @@ let
       ## Modding
       # nexusmods-app-unfree
       r2modman
+      ## Other
+      ffmpeg
+      gst_all_1.gstreamer
+      gst_all_1.gstreamermm
+      gst_all_1.gst-plugins-rs
+      gst_all_1.gst-plugins-bad
+      gst_all_1.gst-plugins-base
+      gst_all_1.gst-plugins-good
+      gst_all_1.gst-plugins-ugly
+      gst_all_1.gst-plugins-viperfx
+      gst_all_1.gst-libav
+      gst_all_1.gst-vaapi
+      mpg123
+      x264
+      x265
+      xvidcore
       ## Wine
       # inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
       winetricks
