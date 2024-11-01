@@ -3,6 +3,7 @@
   lib,
   pkgs,
   username,
+  inputs,
   ...
 }:
 let
@@ -35,36 +36,16 @@ let
       alephone-marathon
       alephone-durandal
       alephone-infinity
-      ## N64
-      /*
-        _2s2h
-           shipwright
-           zelda64recomp
-      */
       ## Quake
-      /*
-        (ioquake3.overrideAttrs (attrs: {
-               version = "unstable-2024-05-20";
-               src = fetchFromGitHub {
-                 owner = "ioquake";
-                 repo = "ioq3";
-                 rev = "1fc83e4845b53a9b259f5980468c8db15fce8de7";
-                 hash = "sha256-qnIyNXPeSu/vJfURw7BG41qosAoKGS6NZR9cCb/9Cxw=";
-               };
-             }))
-      */
       ironwail
       # trenchbroom
       ## Arma
       arma3-unix-launcher
       # (arma3-unix-launcher.override { buildDayZLauncher = true; })
-      ## Duke3D
+      ## Duke
       eduke32
       raze
       rigel-engine
-      ## Star Citizen
-      # inputs.nix-citizen.packages.${system}.star-citizen
-      # inputs.nix-citizen.packages.${system}.star-citizen-helper
       ## Wolf
       bstone
       ecwolf
@@ -73,11 +54,11 @@ let
       arx-libertatis # Arx Fatalis
       clonehero # Guitar Hero
       exult # Ultima VII
-      # inputs.ow-mod-man.packages.${system}.owmods-cli
-      # inputs.ow-mod-man.packages.${system}.owmods-gui
+      inputs.ow-mod-man.packages.${system}.owmods-cli
+      inputs.ow-mod-man.packages.${system}.owmods-gui
       openjk # Jedi Academy
       openloco # Locomotion
-      # openxray # STALKER
+      openxray # STALKER
       #relive # Oddworld
       wipeout-rewrite # Wipeout
       vvvvvv
@@ -105,7 +86,7 @@ let
       # heroic
       # lutris
       ## Modding
-      # nexusmods-app-unfree
+      #nexusmods-app-unfree
       r2modman
       ## Other
       ffmpeg
