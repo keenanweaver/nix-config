@@ -760,14 +760,15 @@ in
                   filesystems = [
                     "${config.home.homeDirectory}/Music/soundfonts:ro"
                     "${config.home.homeDirectory}/Games/rpg-maker"
+                    "xdg-data/games/rpg-maker"
                     "!host"
                   ];
                   shared = "network"; # obs-gamecapture
                 };
                 Environment = {
                   PULSE_SINK = "Game";
-                  RPG2K_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2000";
-                  RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2003";
+                  RPG2K_RTP_PATH = "xdg-data/games/rpg-maker/RTP/2000";
+                  RPG2K3_RTP_PATH = "xdg-data/games/rpg-maker/RTP/2003";
                 };
               };
               "org.libretro.RetroArch" = {
