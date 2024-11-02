@@ -66,7 +66,7 @@
     gamemode = {
       settings = {
         cpu = {
-          park_cores = "yes";
+          park_cores = "16-31";
         };
       };
     };

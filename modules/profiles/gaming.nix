@@ -176,14 +176,14 @@ in
         "gcadapter_oc"
       ];
       kernelParams = [
-        "split_lock_detect=off"
+        #"split_lock_detect=off"
         "usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
         "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
         "amdgpu.mcbp=0"
       ];
       kernel = {
         sysctl = {
-          "kernel.split_lock_mitigate" = 0; # https://reddit.com/r/linux_gaming/comments/1bgqfuk/god_of_war_poor_performance/kv8xsae/?context=3
+          #"kernel.split_lock_mitigate" = 0; # https://reddit.com/r/linux_gaming/comments/1bgqfuk/god_of_war_poor_performance/kv8xsae/?context=3
           "vm.max_map_count" = 2147483642;
           "vm.mmap_min_addr" = 0; # SheepShaver
         };

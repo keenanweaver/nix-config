@@ -42,7 +42,15 @@ in
       settings = {
         general = {
           desiredgov = "performance";
+          disable_splitlock = 1;
           inhibit_screensaver = 1;
+          ioprio = 0;
+          renice = 10;
+          softrealtime = "auto";
+        };
+        gpu = {
+          apply_gpu_optimisations = "accept-responsibility";
+          amd_performance_level = "high";
         };
         custom = {
           # https://github.com/Electrostasy/dots/blob/master/hosts/terra/gaming.nix
