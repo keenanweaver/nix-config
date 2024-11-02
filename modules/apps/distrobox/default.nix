@@ -155,8 +155,8 @@ in
                   paru -S --needed --noconfirm \
                   sm64ex-nightly-git
                   # Download & place required data files
-                  xh -o "$HOME/mario64.zip" -d https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Super%20Mario%2064%20%28USA%29.zip
-                  ouch d "$HOME/mario64.zip" -y -d "$XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git"
+                  xh -o "$HOME/Games/mario64.zip" -d https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Super%20Mario%2064%20%28USA%29.zip
+                  ouch d "$HOME/Games/mario64.zip" -y -d "$XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git"
                   fd 'Mario' -e z64 $XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git -x mv {} "$XDG_CACHE_HOME/paru/clone/sm64ex-nightly-git/baserom.us.z64"
                   # Try again
                   paru -S --needed --noconfirm \
