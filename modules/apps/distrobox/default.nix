@@ -58,6 +58,7 @@ in
                   pull=false
                   replace=false
                   start_now=true
+                  unshare_netns=true
                   volume="/etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"
 
                   [bazzite-arch-gaming]
@@ -66,6 +67,7 @@ in
                   pull=false
                   replace=false
                   start_now=true
+                  unshare_netns=true
                   volume="/etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro"
                 ''
               else
@@ -191,6 +193,7 @@ in
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "${bin-export}" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                 	exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -225,6 +228,7 @@ in
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "archipelago-db" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                 	exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -242,6 +246,7 @@ in
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "${bin-export}" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -259,6 +264,7 @@ in
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "daikatana-db" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -277,6 +283,7 @@ in
               in
               writeShellScriptBin "${bin-export}" ''
                 export GTK_USE_PORTAL=0
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/sbin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -294,6 +301,7 @@ in
                 container = "bazzite-arch-exodos";
               in
               writeShellScriptBin "${bin-export}" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -311,6 +319,7 @@ in
                 container = "bazzite-arch-exodos";
               in
               writeShellScriptBin "${bin-export}" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/mnt/crusader/eXo/eXoDOS/exogui/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -330,6 +339,7 @@ in
               writeShellScriptBin "${bin-export}" ''
                 export GTK_USE_PORTAL=0
                 export GTK_THEME=Breeze-Dark
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -347,6 +357,7 @@ in
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "${bin-export}" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -364,6 +375,7 @@ in
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "${bin-export}" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -381,6 +393,7 @@ in
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "${bin-export}" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -415,6 +428,7 @@ in
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "${bin-export}" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -433,6 +447,7 @@ in
               in
               writeShellScriptBin "${bin-export}" ''
                 export GTK_THEME=Breeze-Dark
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -450,6 +465,7 @@ in
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "${bin-export}" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -467,6 +483,7 @@ in
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "${bin-export}" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -484,6 +501,7 @@ in
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "${bin-export}" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -501,6 +519,7 @@ in
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "${bin-export}" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -518,6 +537,7 @@ in
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "${bin-export}" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -535,6 +555,7 @@ in
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "${bin-export}" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -552,6 +573,7 @@ in
                 container = "bazzite-arch-gaming";
               in
               writeShellScriptBin "${bin-export}" ''
+                export PULSE_SINK="Game"
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
