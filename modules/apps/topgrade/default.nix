@@ -37,6 +37,7 @@ in
                 "clam_av_db"
                 "helix"
                 "home_manager"
+                "nix"
                 "vim"
                 "system"
               ];
