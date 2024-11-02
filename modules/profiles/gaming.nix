@@ -468,6 +468,22 @@ in
                 chmod +x ${config.home.homeDirectory}/.local/bin/conty_lite.sh
               '';
             })
+            # https://www.resetera.com/threads/linux-steamos-ot-its-a-linux-system%E2%80%A6-i-know-this.557173/page-36#post-130996374
+            (writeShellApplication {
+              name = "script-wine-cpu-topology";
+              runtimeInputs = [
+                coreutils
+              ];
+              text = ''
+                if [[ -z $1 || $1 -gt $(nproc) || $1 -lt 1 ]]; then
+                  args=$(nproc)
+                else
+                  args=$1
+                fi
+
+                grep "" /sys/devices/system/cpu/cpu*/cpufreq/amd_pstate_prefcore_ranking | sort -n -r -k2 -t: | head -n $args | awk -F'[u/]' -v ORS="," '{ print $8}' | head -c-1 | awk -v args="$args" '{printf "WINE_CPU_TOPOLOGY=%s:%s taskset -c %s\n",args, $0, $0}'
+              '';
+            })
             /*
               (writeShellApplication {
                          name = "script-pipewire-sink-helper";
