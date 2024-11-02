@@ -105,6 +105,7 @@
                     "KTailctl"
                     "opensnitch-ui"
                     "org.kde.plasma.addons.katesessions"
+                    "org.kde.plasma.brightness" # Night Light
                     "org.kde.plasma.networkmanagement"
                     "org.kde.plasma.clipboard"
                     "org.kde.kdeconnect"
