@@ -64,7 +64,8 @@ let
       vvvvvv
     ];
     tools = [
-      ## Emulators 
+      ## Emulators
+      _86Box-with-roms
       # archipelago
       # bizhawk
       # hypseus-singe
@@ -911,8 +912,6 @@ in
               "io.github.theforceengine.tfe"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
               "io.openrct2.OpenRCT2"
-              "net._86box._86Box"
-              "net._86box._86Box.ROMs"
               "net.darkradiant.DarkRadiant"
               "net.davidotek.pupgui2"
               "net.fsuae.FS-UAE"
