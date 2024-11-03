@@ -48,7 +48,7 @@
   environment = {
     sessionVariables = {
       # Prefer gaming cache on 7950X3D. Also use `taskset 00FF00FF %command%` for Proton games
-      WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23";
+      WINE_CPU_TOPOLOGY = "8:0,1,2,3,4,5,6,7";
     };
   };
 
@@ -76,7 +76,7 @@
     beesd = {
       filesystems = {
         games = {
-          spec = "/home/${username}/.local/share/games";
+          spec = "/home/${username}/Games";
           verbosity = "crit";
           extraOptions = [
             "--loadavg-target"

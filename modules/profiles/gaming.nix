@@ -589,7 +589,7 @@ in
                 };
                 Environment = {
                   PULSE_SINK = "Game";
-                  WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23";
+                  WINE_CPU_TOPOLOGY = "8:0,1,2,3,4,5,6,7";
                 };
               };
               "com.supermodel3.Supermodel" = {
@@ -618,7 +618,7 @@ in
                 };
                 Environment = {
                   PULSE_SINK = "Game";
-                  WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23";
+                  WINE_CPU_TOPOLOGY = "8:0,1,2,3,4,5,6,7";
                 };
               };
               "com.valvesoftware.Steam" = {
@@ -630,7 +630,7 @@ in
                 };
                 Environment = {
                   PULSE_SINK = "Game";
-                  WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23";
+                  WINE_CPU_TOPOLOGY = "8:0,1,2,3,4,5,6,7";
                 };
               };
               "dev.lizardbyte.app.Sunshine" = {
@@ -723,7 +723,7 @@ in
                 };
                 Environment = {
                   PULSE_SINK = "Game";
-                  WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23";
+                  WINE_CPU_TOPOLOGY = "8:0,1,2,3,4,5,6,7";
                 };
               };
               "net.mancubus.SLADE" = {
