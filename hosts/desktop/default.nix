@@ -48,6 +48,7 @@
   environment = {
     sessionVariables = {
       # Prefer gaming cache on 7950X3D. Also use `taskset 00FF00FF %command%` for Proton games
+      # https://github.com/ValveSoftware/Proton/issues/7154
       WINE_CPU_TOPOLOGY = "8:0,1,2,3,4,5,6,7";
     };
   };
