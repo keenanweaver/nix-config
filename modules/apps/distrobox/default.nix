@@ -169,6 +169,7 @@ in
                   aaru                         \
                   archipelagomw-bin            \
                   bizhawk-bin                  \
+                  faugus-launcher-git          \
                   jazzjackrabbit               \
                   lab3d-sdl                    \
                   mesen2-git                   \
@@ -181,6 +182,8 @@ in
                   zelda64recomp-bin            \
                   zeldalttp                    \
                   zeldaoot
+                  # Other steps
+                  sudo chown -R ${username} /opt/bizhawk
                 else 
                   echo "Container hostname not found"
                 fi
