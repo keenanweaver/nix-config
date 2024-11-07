@@ -25,12 +25,12 @@ in
     programs.java.enable = true;
     programs.steam = {
       enable = cfg.enableNative;
+      extest.enable = true;
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         # Chaotic packages
         luxtorpeda
         proton-ge-custom
-        #steamtinkerlaunch
       ];
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
@@ -39,7 +39,6 @@ in
         extraEnv = {
           PULSE_SINK = "Game";
         };
-        extraLibraries = pkgs: with pkgs; [ wqy_zenhei ];
       };
       protontricks.enable = true;
       remotePlay.openFirewall = true;

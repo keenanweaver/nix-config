@@ -117,6 +117,7 @@ in
         source-han-serif-japanese
         ubuntu-sans
         ultimate-oldschool-pc-font-pack
+        wqy_zenhei
       ];
       fontconfig = {
         allowBitmaps = false;
