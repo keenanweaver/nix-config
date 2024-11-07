@@ -76,11 +76,11 @@ in
                 Service = {
                   Environment = [
                     "WINDOW=DP-1" # Primary monitor
-                    "CONTAINER=mkv"
-                    "QUALITY=very_high"
+                    "CONTAINER=mp4"
+                    "QUALITY=50000"
                     "FRAMERATE=60"
                     "FRAMERATE_MODE=vfr"
-                    "BITRATE_MODE=qp"
+                    "BITRATE_MODE=cbr"
                     "CODEC=av1"
                     "AUDIO_CODEC=opus"
                     "AUDIO_DEVICE_DEFAUlT=${cfg.defaultAudioDevice}"
