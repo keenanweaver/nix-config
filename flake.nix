@@ -91,7 +91,7 @@
     };
 
     # Hyprland
-    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland";
 
     # Theming
     catppuccin = {
@@ -297,7 +297,7 @@
                   };
                   sharedModules = [
                     inputs.catppuccin.homeManagerModules.catppuccin
-                    inputs.hyprland.homeManagerModules.default
+                    #inputs.hyprland.homeManagerModules.default
                     inputs.nix-colors.homeManagerModules.default
                     inputs.nix-flatpak.homeManagerModules.nix-flatpak
                     inputs.nix-index-database.hmModules.nix-index
@@ -413,7 +413,7 @@
                   };
                   sharedModules = [
                     inputs.catppuccin.homeManagerModules.catppuccin
-                    inputs.hyprland.homeManagerModules.default
+                    #inputs.hyprland.homeManagerModules.default
                     inputs.nix-colors.homeManagerModules.default
                     inputs.nix-flatpak.homeManagerModules.nix-flatpak
                     inputs.nix-index-database.hmModules.nix-index
