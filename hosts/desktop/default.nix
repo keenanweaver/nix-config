@@ -43,6 +43,15 @@
       "amd_iommu=on"
       "amd_pstate=guided"
     ];
+    loader = {
+      systemd-boot.windows = {
+        "11" = {
+          title = "Windows 11";
+          efiDeviceHandle = "HD2b";
+          sortKey = "o";
+        };
+      };
+    };
   };
 
   environment = {
