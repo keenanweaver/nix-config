@@ -40,7 +40,7 @@ let
       ironwail
       # trenchbroom
       ## Arma
-      arma3-unix-launcher
+      #arma3-unix-launcher
       # (arma3-unix-launcher.override { buildDayZLauncher = true; })
       ## Duke
       eduke32
@@ -85,7 +85,8 @@ let
       # bottles
       # cartridges
       # heroic
-      # lutris
+      lutris
+      inputs.umu.packages.${system}.umu
       ## Modding
       #nexusmods-app-unfree
       r2modman
@@ -435,7 +436,7 @@ in
           wine-links-protonge-lutris = {
             enable = true;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
-            target = "${config.home.homeDirectory}/.var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-ge-custom";
+            target = "${config.xdg.dataHome}/lutris/runners/wine/proton-ge-custom";
           };
         };
         home.packages =
@@ -560,6 +561,7 @@ in
                     "${config.home.homeDirectory}/Games"
                     "/mnt/crusader/Games/Saves"
                     "xdg-data/games"
+                    "xdg-data/lutris"
                   ];
                 };
               };
@@ -589,7 +591,7 @@ in
                 };
                 Environment = {
                   PULSE_SINK = "Game";
-                  WINE_CPU_TOPOLOGY = "8:0,1,2,3,4,5,6,7";
+                  WINE_CPU_TOPOLOGY = "16:8,10,13,9,11,12,14,15,0,1,4,5,7,3,2,6";
                 };
               };
               "com.supermodel3.Supermodel" = {
@@ -613,12 +615,13 @@ in
                     "${config.home.homeDirectory}/.var/app/net.lutris.Lutris"
                     "xdg-data/applications"
                     "xdg-data/games"
+                    "xdg-data/lutris"
                     "xdg-data/Steam"
                   ];
                 };
                 Environment = {
                   PULSE_SINK = "Game";
-                  WINE_CPU_TOPOLOGY = "8:0,1,2,3,4,5,6,7";
+                  WINE_CPU_TOPOLOGY = "16:8,10,13,9,11,12,14,15,0,1,4,5,7,3,2,6";
                 };
               };
               "com.valvesoftware.Steam" = {
@@ -630,7 +633,7 @@ in
                 };
                 Environment = {
                   PULSE_SINK = "Game";
-                  WINE_CPU_TOPOLOGY = "8:0,1,2,3,4,5,6,7";
+                  WINE_CPU_TOPOLOGY = "16:8,10,13,9,11,12,14,15,0,1,4,5,7,3,2,6";
                 };
               };
               "dev.lizardbyte.app.Sunshine" = {
@@ -723,7 +726,7 @@ in
                 };
                 Environment = {
                   PULSE_SINK = "Game";
-                  WINE_CPU_TOPOLOGY = "8:0,1,2,3,4,5,6,7";
+                  WINE_CPU_TOPOLOGY = "16:8,10,13,9,11,12,14,15,0,1,4,5,7,3,2,6";
                 };
               };
               "net.mancubus.SLADE" = {
@@ -890,7 +893,7 @@ in
               "com.spacestation14.Launcher"
               "com.supermodel3.Supermodel"
               "com.usebottles.bottles"
-              "com.valvesoftware.Steam"
+              #"com.valvesoftware.Steam"
               #"dev.goats.xivlauncher"
               "dev.opengoal.OpenGOAL"
               "eu.vcmi.VCMI"
@@ -915,7 +918,7 @@ in
               "net.darkradiant.DarkRadiant"
               "net.davidotek.pupgui2"
               "net.fsuae.FS-UAE"
-              "net.lutris.Lutris"
+              #"net.lutris.Lutris"
               "net.mancubus.SLADE"
               "net.pcsx2.PCSX2"
               "net.rpcs3.RPCS3"
