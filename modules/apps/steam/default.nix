@@ -15,6 +15,10 @@ in
       type = lib.types.bool;
       default = true;
     };
+    enableSteamBeta = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+    };
     # https://reddit.com/r/linux_gaming/comments/16e1l4h/slow_steam_downloads_try_this/
     fixDownloadSpeed = lib.mkOption {
       type = lib.types.bool;
@@ -48,6 +52,11 @@ in
       {
         home = {
           file = {
+            steam-beta = {
+              enable = cfg.enableSteamBeta;
+              text = "publicbeta";
+              target = "${config.xdg.dataHome}/Steam/package/beta";
+            };
             steam-slow-fix = {
               enable = cfg.fixDownloadSpeed;
               text = ''
