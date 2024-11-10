@@ -432,7 +432,7 @@ in
           vscode = {
             extensions = with inputs.nix-vscode-extensions.extensions.x86_64-linux.vscode-marketplace; [
               catppuccin.catppuccin-vsc-icons
-              catppuccin.catppuccin-vsc
+              #catppuccin.catppuccin-vsc
             ];
             userSettings = {
               "catppuccin.accentColor" = "${accent-lower}";
