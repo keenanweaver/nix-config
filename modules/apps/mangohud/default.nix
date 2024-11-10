@@ -46,6 +46,8 @@ in
               procmem
               fps
               fps_color_change
+              fps_limit=357,237,141,117,60,0
+              toggle_fps_limit=Shift_L+F2
               fps_value=30,60
               frametime
               engine_version
