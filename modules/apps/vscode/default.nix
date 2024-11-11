@@ -51,7 +51,6 @@ in
         nixpkgs = {
           overlays = [ inputs.nix-vscode-extensions.overlays.default ];
         };
-
         programs.vscode = {
           enable = true;
           enableExtensionUpdateCheck = false;
@@ -77,14 +76,17 @@ in
             "git.confirmSync" = false;
             "git.enableCommitSigning" = true;
             "gopls"."ui.semanticTokens" = true;
-            #"isort.args" = [ "--profile black" ];
             "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
-            #"[nix]"."editor.formatOnSave" = true;
             "nix.enableLanguageServer" = true;
             "nix.formatterPath" = "nixfmt";
             "nix.serverPath" = "nixd";
             "nix.serverSettings"."nixd"."formatting"."command" = [ "nixfmt" ];
-            "nix.serverSettings"."nixd"."formatting"."options"."enable" = [ true ];
+            "nix.serverSettings"."nixd"."formatting"."options" = {
+              "enable" = [ true ];
+              "nixos" = {
+                "expr" = "(builtins.getFlake \"github:keenanweaver/nix-config\").nixosConfigurations.${config.networking.hostName}.options";
+              };
+            };
             "powershell.powerShellAdditionalExePaths"."exePath" = "${pkgs.powershell}/bin/pwsh";
             "powershell.integratedConsole.focusConsoleOnExecute" = false;
             "powershell.integratedConsole.showOnStartup" = false;
@@ -93,7 +95,6 @@ in
             "[powershell]"."files.autoGuessEncoding" = true;
             "[powershell]"."files.trimTrailingWhitespace" = true;
             "[python]"."editor.defaultFormatter" = "charliermarsh.ruff";
-            #"[python]"."editor.codeActionsOnSave"."source.organizeImports" = true;
             "redhat.telemetry.enabled" = false;
             "rust-analyzer.server.path" = "rust-analyzer";
             "security.workspace.trust.enabled" = false;

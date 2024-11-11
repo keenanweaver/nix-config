@@ -116,6 +116,18 @@ in
                 nixd = {
                   enable = true;
                   autostart = true;
+                  extraOptions.settings = {
+                    nixd = {
+                      nixpkgs = {
+                        expr = "import <nixpkgs> { }";
+                      };
+                    };
+                    options = {
+                      nixos = {
+                        expr = ''(builtins.getFlake \"github:keenanweaver/nix-config\").nixosConfigurations.${config.networking.hostName}.options'';
+                      };
+                    };
+                  };
                 };
                 ruff_lsp = {
                   enable = true;

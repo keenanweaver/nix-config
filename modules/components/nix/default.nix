@@ -33,6 +33,7 @@ in
         dates = "weekly";
         options = "--delete-older-than 30d";
       };
+      nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
       settings = {
         auto-optimise-store = true;
         connect-timeout = 5;

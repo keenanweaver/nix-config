@@ -310,19 +310,6 @@ in
                 ];
               };
               true-color = true;
-              /*
-                whitespace = {
-                             render = "all";
-                             characters = {
-                               space = "·";
-                               nbsp = "⍽";
-                               nnbsp = "␣";
-                               tab = "→";
-                               newline = "⏎";
-                               tabpad = "·";
-                             };
-                           };
-              */
             };
             keys = {
               insert = {
