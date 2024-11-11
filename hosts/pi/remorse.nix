@@ -162,6 +162,12 @@ in
       enable = true;
       passwordFile = config.sops.secrets.unraid.ntfy.password.path;
     };
+    /*
+      # Relies on https://github.com/NixOS/nixpkgs/pull/353616
+      fusion = {
+         enable = true;
+       };
+    */
     home-assistant = {
       enable = true;
       extraComponents = [
