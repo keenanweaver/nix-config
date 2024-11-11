@@ -74,16 +74,6 @@
     wireless.enable = false;
   };
 
-  programs = {
-    gamemode = {
-      settings = {
-        cpu = {
-          park_cores = "16-31";
-        };
-      };
-    };
-  };
-
   services = {
     beesd = {
       filesystems = {
