@@ -12,10 +12,6 @@
   copyDesktopItems,
 }:
 
-let
-  buildScript = if stdenv.isAarch64 then "build_aarch64.sh" else "build.sh";
-in
-
 stdenv.mkDerivation (finalAttrs: {
   pname = "doom64ex-plus";
   version = "3.6.5.9";
@@ -40,21 +36,25 @@ stdenv.mkDerivation (finalAttrs: {
     SDL2_net
   ];
 
-  env.NIX_CFLAGS_COMPILE = toString [
+  cmakeFlags = [
     "-DDOOM_UNIX_INSTALL" # Needed for config to be placed in ~/.local/share/doom64ex-plus
   ];
 
   sourceRoot = "${finalAttrs.src.name}/src/engine";
 
-  buildPhase = ''
-    sh ${buildScript}
-  '';
+  buildPhase =
+    let
+      buildScript = if stdenv.isAarch64 then "build_aarch64.sh" else "build.sh";
+    in
+    ''
+      sh ${buildScript}
+    '';
 
   desktopItems = [
     (makeDesktopItem {
       name = "DOOM64EX-Plus";
       exec = "DOOM64EX-Plus";
-      icon = "DOOM64EX-Plus";
+      icon = "doom64ex-plus";
       desktopName = "DOOM 64 EX+";
       comment = "An improved, modern version of Doom64EX";
       categories = [ "Game" ];
@@ -63,7 +63,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   installPhase = ''
     runHook preInstall
-    install -Dm644 -t $out/share/icons/hicolor/256x256/apps/DOOM64EX-Plus.png $src/src/engine/doom64ex-plus.png
+    install -Dm644 -t $out/share/icons/hicolor/256x256/apps $src/src/engine/doom64ex-plus.png
     install -Dm444 -t $out/bin $src/doom64ex-plus.wad $src/doomsnd.sf2
     install -Dm755 -t $out/bin DOOM64EX-Plus
     runHook postInstall
