@@ -657,15 +657,22 @@ in
                 "Emulator"
               ];
             };
-            portproton = lib.mkIf cfg.gaming {
-              name = "PortProton";
-              comment = "Proton launcher";
-              exec = "portproton-db";
-              icon = "${config.xdg.dataHome}/PortProton/data/img/w.png";
-              categories = [ "Game" ];
-              noDisplay = false;
-              startupNotify = true;
-            };
+            portproton =
+              let
+                icon = pkgs.fetchurl {
+                  url = "https://raw.githubusercontent.com/Castro-Fidel/PortWINE/refs/heads/devel/data_from_portwine/img/w.png";
+                  hash = "sha256-oC18xU2utU6Yoh3sZBsz/kkAeE2ZdQeet87eM3j7VWw=";
+                };
+              in
+              lib.mkIf cfg.gaming {
+                name = "PortProton";
+                comment = "Proton launcher";
+                exec = "portproton-db";
+                icon = "${icon}";
+                categories = [ "Game" ];
+                noDisplay = false;
+                startupNotify = true;
+              };
           };
         };
       };
