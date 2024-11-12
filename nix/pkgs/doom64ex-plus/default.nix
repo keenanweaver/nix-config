@@ -36,7 +36,7 @@ stdenv.mkDerivation (finalAttrs: {
     SDL2_net
   ];
 
-  cmakeFlags = [
+  env.NIX_CFLAGS_COMPILE = toString [
     "-DDOOM_UNIX_INSTALL" # Needed for config to be placed in ~/.local/share/doom64ex-plus
   ];
 
