@@ -19,8 +19,8 @@ let
   #serif-font = "IBM Plex Serif";
   GTK-THEME = "Breeze-Dark";
   cursor-theme = "breeze_cursors";
-  #cursor-theme = "Catppuccin-${flavor-upper}-${accent-upper}";
 in
+#cursor-theme = "Catppuccin-${flavor-upper}-${accent-upper}";
 {
   options = {
     catppuccinTheming = {
@@ -214,22 +214,60 @@ in
             klassy-config = {
               enable = true;
               text = ''
-                [Global]
-                LookAndFeelSet=Catppuccin-${flavor-upper}-${accent-upper}
+                [ButtonBehaviour]
+                ShowCloseOutlineOnHoverActive=false
+                ShowCloseOutlineOnHoverInactive=false
+                ShowCloseOutlineOnPressActive=false
+                ShowCloseOutlineOnPressInactive=false
+                ShowOutlineOnHoverActive=false
+                ShowOutlineOnHoverInactive=false
+                ShowOutlineOnPressActive=false
+                ShowOutlineOnPressInactive=false
 
-                [SystemIconGeneration]
-                KlassyDarkIconThemeInherits=Papirus-Dark
-                KlassyIconThemeInherits=Papirus
+                [ButtonColors]
+                ButtonBackgroundColorsActive=TitleBarTextNegativeClose
+                ButtonBackgroundColorsInactive=TitleBarTextNegativeClose
+                ButtonBackgroundOpacityActive=10
+                ButtonBackgroundOpacityInactive=10
+                ButtonOverrideColorsActiveClose={"BackgroundHover":["NegativeFullySaturated"],"BackgroundPress":["NegativeSaturated",80]}
+                ButtonOverrideColorsInactiveClose={"BackgroundHover":["NegativeFullySaturated"],"BackgroundPress":["NegativeSaturated",80]}
+                OnPoorIconContrastActive=Nothing
+                OnPoorIconContrastInactive=Nothing
+
+                [ButtonSizing]
+                ButtonCornerRadius=Custom
+                ButtonCustomCornerRadius=0
+                FullHeightButtonSpacingLeft=0
+                FullHeightButtonSpacingRight=0
+                FullHeightButtonWidthMarginRight=14
+                IntegratedRoundedRectangleBottomPadding=0.5
+
+                [ShadowStyle]
+                ShadowSize=ShadowSmall
 
                 [TitleBarOpacity]
-                ActiveTitleBarOpacity=70
-                InactiveTitleBarOpacity=70
+                ActiveTitleBarOpacity=75
+
+                [TitleBarSpacing]
+                LockTitleBarLeftRightMargins=false
+                PercentMaximizedTopBottomMargins=50
+                TitleAlignment=AlignLeft
+                TitleBarBottomMargin=2.25
+                TitleBarLeftMargin=2
+                TitleBarTopMargin=2.25
 
                 [Windeco]
+                BoldButtonIcons=BoldIconsFine
                 ButtonIconStyle=StyleSystemIconTheme
+                ButtonShape=ShapeFullHeightRectangle
+                ColorizeThinWindowOutlineWithButton=false
+                IconSize=IconMedium
+                WindowCornerRadius=8
 
                 [WindowOutlineStyle]
-                ThinWindowOutlineThickness=1
+                LockThinWindowOutlineStyleActiveInactive=true
+                ThinWindowOutlineStyleActive=WindowOutlineContrast
+                ThinWindowOutlineStyleInactive=WindowOutlineContrast
               '';
               target = "${config.xdg.configHome}/klassy/klassyrc";
             };
