@@ -56,14 +56,6 @@
     };
   };
 
-  environment = {
-    sessionVariables = {
-      # Prefer gaming cache on 7950X3D. Also use `taskset 00FF00FF %command%` for Proton games
-      # https://github.com/ValveSoftware/Proton/issues/7154
-      WINE_CPU_TOPOLOGY = "16:8,10,13,9,11,12,14,15,0,1,4,5,7,3,2,6";
-    };
-  };
-
   hardware = {
     amdgpu.initrd.enable = true;
     cpu.amd.updateMicrocode = true;
