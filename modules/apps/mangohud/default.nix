@@ -54,7 +54,7 @@ in
               vulkan_driver
               wine
               winesync
-              frametime
+              frame_timing
               histogram
               arch
               gamemode
