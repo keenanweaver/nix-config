@@ -49,7 +49,7 @@ in
           softrealtime = "auto";
         };
         cpu = {
-          park_cores = "no";
+          park_cores = "yes";
           pin_cores = "yes";
         };
         gpu = {
