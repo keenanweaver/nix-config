@@ -54,8 +54,9 @@ in
               vulkan_driver
               wine
               winesync
-              frame_timing
+              frametime
               histogram
+              arch
               gamemode
               vkbasalt
               fsr
@@ -63,6 +64,8 @@ in
               refresh_rate
               show_fps_limit
               resolution
+              display_server
+              present_mode
               vsync=2 # https://gitlab.freedesktop.org/drm/amd/-/issues/3166#note_2277578
               custom_text=Distro
               exec=${pkgs.ripgrep}/bin/rg -w PRETTY_NAME /etc/os-release | ${pkgs.coreutils}/bin/cut -d '=' -f2 | ${pkgs.coreutils}/bin/tr -d '"'
@@ -75,6 +78,7 @@ in
               no_display
               width=450
               background_alpha=0.5
+              round_corners=10.0
               toggle_hud=Shift_R
               legacy_layout=0 # For scripts that rely on the new layout
               font_file=${pkgs.lexend}/share/fonts/truetype/lexend/lexend/Lexend-Bold.ttf
