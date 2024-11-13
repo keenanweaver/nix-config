@@ -43,6 +43,18 @@ in
         extraEnv = {
           PULSE_SINK = "Game";
         };
+        extraLibraries =
+          pkgs: with pkgs; [
+            libGL
+            SDL2
+            SDL2_gfx
+            SDL2_image
+            SDL2_mixer
+            SDL2_net
+            SDL2_sound
+            SDL2_ttf
+            xorg.libX11
+          ];
       };
       protontricks.enable = true;
       remotePlay.openFirewall = true;
