@@ -105,7 +105,11 @@ in
     services = {
       cron.enable = true;
       dbus.implementation = "broker";
-      earlyoom.enable = true;
+      earlyoom = {
+        enable = true;
+        freeMemThreshold = 5;
+        enableNotifications = if vars.desktop then true else false;
+      };
       fstrim.enable = true;
       logrotate.enable = true;
     };

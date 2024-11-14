@@ -56,6 +56,10 @@ in
       };
       devmon.enable = true;
       fwupd.enable = true;
+      geoclue2 = {
+        enable = true;
+        geoProviderUrl = "https://beacondb.net/v1/geolocate";
+      };
       power-profiles-daemon.enable = true;
       udisks2 = {
         enable = true;

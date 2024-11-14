@@ -28,8 +28,6 @@ in
         with pkgs.kdePackages;
         [
           akregator
-          colord-kde
-          discover
           ffmpegthumbnailer
           filelight
           haruna
@@ -37,17 +35,15 @@ in
           kcron
           kdesu
           kdialog
-          kio-extras
           kirigami-addons
           kjournald
           krita
-          ksshaskpass
           inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
           isoimagewriter
           neochat
           okteta
           packagekit-qt # Discover store
-          plasma-browser-integration
+          qt6.qtwebengine
           qtimageformats
           qtsvg # https://github.com/NixOS/nixpkgs/issues/325225
           sddm-kcm
