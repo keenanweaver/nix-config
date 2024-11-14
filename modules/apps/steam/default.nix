@@ -45,6 +45,7 @@ in
         };
         extraLibraries =
           pkgs: with pkgs; [
+            alsa-lib
             libGL
             SDL
             SDL2

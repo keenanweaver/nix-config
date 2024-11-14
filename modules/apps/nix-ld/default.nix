@@ -21,6 +21,7 @@ in
         with pkgs;
         (steam-run.args.multiPkgs pkgs)
         ++ [
+          alsa-lib
           libGL
           SDL
           SDL2
