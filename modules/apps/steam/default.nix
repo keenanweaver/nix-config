@@ -48,13 +48,13 @@ in
             alsa-lib
             libGL
             SDL
+            SDL_image
+            SDL_mixer
+            SDL_ttf
             SDL2
             SDL2_image
             SDL2_mixer
             SDL2_ttf
-            SDL_image
-            SDL_mixer
-            SDL_ttf
             xorg.libX11
           ];
       };

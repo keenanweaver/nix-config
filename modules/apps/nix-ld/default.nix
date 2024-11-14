@@ -20,18 +20,19 @@ in
       libraries =
         with pkgs;
         (steam-run.args.multiPkgs pkgs)
+        ++ (heroic.args.multiPkgs pkgs)
+        ++ (lutris.args.multiPkgs pkgs)
         ++ [
-          alsa-lib
           libGL
-          SDL
-          SDL2
-          SDL2_image
-          SDL2_mixer
-          SDL2_ttf
           SDL_image
           SDL_mixer
           SDL_ttf
-          xorg.libX11
+          SDL2_image
+          SDL2_mixer
+          SDL2_ttf
+          # Game-specific libraries
+          # Project Zomboid
+          xorg.libSM
         ];
     };
     home-manager.users.${username} = { };
