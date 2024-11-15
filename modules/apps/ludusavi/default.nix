@@ -20,6 +20,13 @@ in
 
   options.services.ludusavi = {
     enable = lib.mkEnableOption "Ludusavi game backup tool";
+    backupNotification = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = ''
+        Send a notification message after a successful backup.
+      '';
+    };
     configFile = lib.mkOption {
       type = with lib.types; nullOr path;
       default = null;
@@ -67,11 +74,14 @@ in
     systemd.user = {
       services.ludusavi = {
         Unit.Description = "Run a game save backup with Ludusavi";
-        Service = {
-          Type = "oneshot";
-          ExecStart = "${pkgs.ludusavi}/bin/ludusavi backup --force";
-          ExecStartPost = "${lib.getBin pkgs.libnotify}/bin/notify-send -t 3000 -u low 'Ludusavi' 'Backup completed' -i com.github.mtkennerly.ludusavi -a 'Ludusavi'";
-        };
+        Service =
+          {
+            Type = "oneshot";
+            ExecStart = "${pkgs.ludusavi}/bin/ludusavi backup --force";
+          }
+          // lib.optionalAttrs cfg.backupNotification {
+            ExecStartPost = "${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'Ludusavi' 'Backup completed' -i com.github.mtkennerly.ludusavi -a 'Ludusavi'";
+          };
       };
       timers.ludusavi = {
         Unit.Description = "Run a game save backup with Ludusavi, daily";

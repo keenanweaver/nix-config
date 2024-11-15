@@ -952,6 +952,7 @@ in
           };
           ludusavi = {
             enable = true;
+            backupNotification = true;
             settings = {
               backup = {
                 path = "${config.home.homeDirectory}/Games/games/ludusavi";
