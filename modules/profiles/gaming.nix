@@ -326,6 +326,9 @@ in
         ...
       }:
       {
+        imports = [
+          ../apps/ludusavi
+        ];
         home.file = {
           autostart-nuked = {
             enable = true;
@@ -946,6 +949,77 @@ in
               "tk.deat.Jazz2Resurrection"
               "vet.rsc.OpenRSC.Launcher"
             ];
+          };
+          ludusavi = {
+            enable = true;
+            settings = {
+              backup = {
+                path = "${config.home.homeDirectory}/Games/games/ludusavi";
+                format = {
+                  chosen = "zip";
+                  zip.compression = "bzip2";
+                };
+              };
+              customGames = [
+                {
+                  name = "OpenMW";
+                  files = [
+                    "${config.home.homeDirectory}/.var/app/org.openmw.OpenMW/data/openmw/saves"
+                  ];
+                }
+                {
+                  name = "Doom";
+                  files = [
+                    "${config.xdg.configHome}/gzdoom/savegames"
+                    "${config.xdg.dataHome}/cherry-doom/savegames"
+                    "${config.xdg.dataHome}/nugget-doom/savegames"
+                    "${config.xdg.dataHome}/woof/savegames"
+                  ];
+                }
+              ];
+              restore = {
+                path = "${config.home.homeDirectory}/Games/games/ludusavi";
+              };
+              roots = [
+                {
+                  path = "${config.home.homeDirectory}/.var/app/com.heroicgameslauncher.hgl/config/heroic";
+                  store = "heroic";
+                }
+                {
+                  path = "${config.home.homeDirectory}/Games/Heroic";
+                  store = "heroic";
+                }
+                {
+                  path = "${config.xdg.dataHome}/lutris";
+                  store = "lutris";
+                }
+                {
+                  path = "${config.home.homeDirectory}/.var/app/net.lutris.Lutris/data/lutris";
+                  store = "lutris";
+                }
+                {
+                  path = "${config.home.homeDirectory}/Games/Bottles/GOG-Galaxy";
+                  store = "otherWine";
+                }
+                {
+                  path = "${config.home.homeDirectory}/Games/Bottles/itch.io";
+                  store = "otherWine";
+                }
+                {
+                  path = "${config.xdg.dataHome}/Steam";
+                  store = "steam";
+                }
+                {
+                  path = "${config.home.homeDirectory}/Games/Steam";
+                  store = "steam";
+                }
+                {
+                  path = "${config.home.homeDirectory}/Games/games/SteamLibrary";
+                  store = "steam";
+                }
+              ];
+              theme = "dark";
+            };
           };
         };
         xdg = {
