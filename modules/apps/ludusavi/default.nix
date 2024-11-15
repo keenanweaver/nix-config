@@ -70,6 +70,7 @@ in
         Service = {
           Type = "oneshot";
           ExecStart = "${pkgs.ludusavi}/bin/ludusavi backup --force";
+          ExecStartPost = "${lib.getBin pkgs.libnotify}/bin/notify-send -t 3000 -u low 'Ludusavi' 'Backup completed' -i com.github.mtkennerly.ludusavi -a 'Ludusavi'";
         };
       };
       timers.ludusavi = {
