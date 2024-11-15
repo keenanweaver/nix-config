@@ -1,6 +1,6 @@
 # Keenan's Nix config
 
-![Screenshot_20240523_165314](https://github.com/keenanweaver/nix-config/assets/37268985/c42757f5-b08d-4d46-ac24-74b3b2bcb96e)
+![Screenshot_20241115_105544](https://github.com/user-attachments/assets/c682e3e6-807b-437f-8b6e-c5bbdb23823c)
 
 See [INSTALL.MD](INSTALL.md) for installation instructions.
 
