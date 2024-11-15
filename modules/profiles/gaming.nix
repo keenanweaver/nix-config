@@ -872,7 +872,7 @@ in
               "com.etlegacy.ETLegacy"
               "com.fightcade.Fightcade"
               "com.fightcade.Fightcade.Wine"
-              "com.github.mtkennerly.ludusavi"
+              #"com.github.mtkennerly.ludusavi"
               "com.github.keriew.augustus"
               "com.github.opentyrian.OpenTyrian"
               "com.github.optyfr.JRomManager"
