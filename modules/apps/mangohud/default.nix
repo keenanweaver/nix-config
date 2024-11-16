@@ -47,7 +47,7 @@ in
               fps
               fps_color_change
               fps_limit=357,237,141,117,60,0
-              toggle_fps_limit=Shift_L+F1
+              toggle_fps_limit=Shift_R+F1
               fps_value=30,60
               frametime
               engine_version
@@ -79,7 +79,7 @@ in
               width=450
               background_alpha=0.5
               round_corners=10.0
-              toggle_hud=Shift_R
+              toggle_hud=End
               legacy_layout=0 # For scripts that rely on the new layout
               font_file=${pkgs.lexend}/share/fonts/truetype/lexend/lexend/Lexend-Bold.ttf
               ${lib.optionalString config.catppuccin.enable ''
