@@ -80,12 +80,15 @@ in
             ExecStart = "${pkgs.ludusavi}/bin/ludusavi backup --force";
           }
           // lib.optionalAttrs cfg.backupNotification {
-            ExecStartPost = "${pkgs.libnotify}/bin/notify-send -t 3000 -u low 'Ludusavi' 'Backup completed' -i com.github.mtkennerly.ludusavi -a 'Ludusavi'";
+            ExecStartPost = "${pkgs.libnotify}/bin/notify-send 'Ludusavi' 'Backup completed' -i ludusavi -a 'Ludusavi'";
           };
       };
       timers.ludusavi = {
-        Unit.Description = "Run a game save backup with Ludusavi, daily";
-        Timer.OnCalendar = "daily";
+        Unit.Description = "Run a game save backup with Ludusavi";
+        Timer = {
+          OnBootSec = "2min";
+          OnUnitActiveSec = "24h";
+        };
         Install.WantedBy = [ "timers.target" ];
       };
     };
