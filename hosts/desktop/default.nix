@@ -54,6 +54,7 @@
         };
       };
     };
+    tmp.tmpfsSize = "100%";
   };
 
   hardware = {
@@ -132,22 +133,13 @@
     };
   };
 
-  # https://discourse.nixos.org/t/how-to-properly-turn-off-wifi-on-boot-or-before-shutdown-or-reboot-in-nixos/38712/4
-  systemd.services."disable-wifi-on-boot" = {
-    restartIfChanged = false;
-    description = "Disable wifi on boot via nmcli";
-    after = [ "NetworkManager.service" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.networkmanager}/bin/nmcli radio wifi off";
-      Type = "oneshot";
-      RemainAfterExit = "true";
-    };
+  systemd.targets = {
+    hibernate.enable = false;
+    hybrid-sleep.enable = false;
   };
 
   zramSwap = {
     enable = true;
-    memoryPercent = 25;
   };
 
   home-manager.users.${username} = { };
