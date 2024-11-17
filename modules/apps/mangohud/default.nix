@@ -32,6 +32,7 @@ in
               gpu_fan
               gpu_voltage
               gpu_text=${gpu}
+              custom_text=---
               cpu_stats
               cpu_temp
               cpu_power
@@ -40,22 +41,24 @@ in
               cpu_load_change
               cpu_load_value=60,90
               core_load_change
+              custom_text=---
               vram
               ram
               swap
               procmem
+              custom_text=---
               fps
               fps_color_change
               fps_limit=357,237,141,117,60,0
               toggle_fps_limit=Shift_R+F1
               fps_value=30,60
-              frametime
-              engine_version
+              custom_text=---
               vulkan_driver
               wine
               winesync
               frame_timing
-              histogram
+              throttling_status_graph
+              engine_version
               arch
               gamemode
               vkbasalt
@@ -64,8 +67,9 @@ in
               refresh_rate
               show_fps_limit
               resolution
-              display_server
               present_mode
+              display_server # Doesn't work when legacy_layout=0
+              gl_vsync=1
               vsync=2 # https://gitlab.freedesktop.org/drm/amd/-/issues/3166#note_2277578
               custom_text=Distro
               exec=${pkgs.ripgrep}/bin/rg -w PRETTY_NAME /etc/os-release | ${pkgs.coreutils}/bin/cut -d '=' -f2 | ${pkgs.coreutils}/bin/tr -d '"'
@@ -74,13 +78,14 @@ in
               custom_text=Kernel
               exec=${pkgs.coreutils}/bin/uname -r
               text_outline
+              text_outline_thickness=2.0
               position=bottom-right
+              background_alpha=0.2
+              round_corners=10
               no_display
-              width=450
-              background_alpha=0.5
-              round_corners=10.0
               toggle_hud=End
               legacy_layout=0 # For scripts that rely on the new layout
+              upload_logs=false
               font_file=${pkgs.lexend}/share/fonts/truetype/lexend/lexend/Lexend-Bold.ttf
               ${lib.optionalString config.catppuccin.enable ''
                 # Catppuccin theming
