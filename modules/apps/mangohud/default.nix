@@ -32,7 +32,6 @@ in
               gpu_fan
               gpu_voltage
               gpu_text=${gpu}
-              custom_text=---
               cpu_stats
               cpu_temp
               cpu_power
@@ -41,25 +40,22 @@ in
               cpu_load_change
               cpu_load_value=60,90
               core_load_change
-              custom_text=---
               vram
               ram
               swap
               procmem
-              custom_text=---
               fps
               fps_color_change
               fps_limit=357,237,141,117,60,0
               toggle_fps_limit=Shift_R+F1
               fps_value=30,60
-              custom_text=---
-              vulkan_driver
-              wine
-              winesync
               frame_timing
               throttling_status_graph
               engine_version
               arch
+              vulkan_driver
+              wine
+              winesync
               gamemode
               vkbasalt
               fsr
