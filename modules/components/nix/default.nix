@@ -34,6 +34,10 @@ in
         options = "--delete-older-than 30d";
       };
       nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+      optimise = {
+        automatic = true;
+        dates = [ "10:00" ];
+      };
       settings = {
         auto-optimise-store = true;
         connect-timeout = 5;
