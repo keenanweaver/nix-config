@@ -704,7 +704,7 @@ in
               };
               "io.openrct2.OpenRCT2" = {
                 Context = {
-                  filesystems = [ "${config.home.homeDirectory}/Games/RCT" ];
+                  filesystems = [ "${config.home.homeDirectory}/Games/rollercoaster-tycoon" ];
                 };
                 Environment = {
                   PULSE_SINK = "Game";
