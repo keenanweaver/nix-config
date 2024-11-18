@@ -71,6 +71,7 @@ let
       # hypseus-singe
       # mesen
       nuked-sc55
+      scummvm
       ## Input
       joystickwake
       # makima
@@ -941,7 +942,7 @@ in
               "org.ppsspp.PPSSPP"
               "org.prismlauncher.PrismLauncher"
               "org.ryujinx.Ryujinx"
-              "org.scummvm.ScummVM"
+              #"org.scummvm.ScummVM"
               "org.sonic3air.Sonic3AIR"
               "org.srb2.SRB2"
               "page.kramo.Cartridges"
@@ -963,18 +964,24 @@ in
               };
               customGames = [
                 {
-                  name = "OpenMW";
-                  files = [
-                    "${config.home.homeDirectory}/.var/app/org.openmw.OpenMW/data/openmw/saves"
-                  ];
-                }
-                {
                   name = "Doom";
                   files = [
                     "${config.xdg.configHome}/gzdoom/savegames"
                     "${config.xdg.dataHome}/cherry-doom/savegames"
                     "${config.xdg.dataHome}/nugget-doom/savegames"
                     "${config.xdg.dataHome}/woof/savegames"
+                  ];
+                }
+                {
+                  name = "OpenMW";
+                  files = [
+                    "${config.home.homeDirectory}/.var/app/org.openmw.OpenMW/data/openmw/saves"
+                  ];
+                }
+                {
+                  name = "ScummVM";
+                  files = [
+                    "${config.xdg.dataHome}/scummvm/saves"
                   ];
                 }
               ];
