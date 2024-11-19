@@ -81,7 +81,6 @@ in
               no_display
               toggle_hud=End
               legacy_layout=0 # For scripts that rely on the new layout
-              upload_logs=false
               font_file=${pkgs.lexend}/share/fonts/truetype/lexend/lexend/Lexend-Bold.ttf
               ${lib.optionalString config.catppuccin.enable ''
                 # Catppuccin theming
