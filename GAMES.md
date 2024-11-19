@@ -7,7 +7,7 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
 
 ## Set up directories
 ``` bash
-    mkdir -p /home/keenan/Games/{daikatana,descent/descent-1,descent/descent-2,quake/quake-1,quake/quake-3,RCT,morrowind,blake-stone/aog,blake-stone/ps,jagged-alliance-2/ja2,jagged-alliance-2/unfinished-business,jagged-alliance-2/wildfire,loco,arx-fatalis}
+    mkdir -p /home/keenan/Games/{daikatana,descent/descent-1,descent/descent-2,quake/quake-1,quake/quake-3,RCT,morrowind,blake-stone/aog,blake-stone/ps,jagged-alliance-2/ja2,jagged-alliance-2/unfinished-business,jagged-alliance-2/wildfire,loco,the-force-engine,arx-fatalis}
     mkdir -p /home/keenan/.var/app/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/openjkdf2
     mkdir -p '/home/keenan/.var/app/tk.deat.Jazz2Resurrection/data/Jazz² Resurrection/Source'
     mkdir -p /home/keenan/.var/app/io.itch.tx00100xt.SeriousSamClassic-VK/data/Serious-Engine/{serioussam,serioussamse}
@@ -30,28 +30,31 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
     xh get -d -o /home/keenan/Games/blake-stone/ps/lingstrike.zip https://bibendovsky.github.io/bstone/files/community/ps/lingstrike.zip
     fd . -e zip /home/keenan/Games/blake-stone/ps -x ouch d {} -d /home/keenan/Games/blake-stone/ps
     ## Caesar 3
-    , innoextract -g '/mnt/crusader/Games/Other/GOG/caesar_3/setup_caesartm_3_1.0.1.0_(76354).exe' -d /home/keenan/Games/caesar-3 && mv /home/keenan/Games/caesar-3/app/* /home/keenan/Games/caesar-3 && rm -rf /home/keenan/Games/caesar-3/app /home/keenan/Games/caesar-3/tmp
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/caesar_3/setup_caesartm_3_1.0.1.0_(76354).exe' -d /home/keenan/Games/caesar-3 && mv /home/keenan/Games/caesar-3/app/* /home/keenan/Games/caesar-3 && rm -rf /home/keenan/Games/caesar-3/{app,tmp}
     ## Daikatana
     , innoextract -g '/mnt/crusader/Games/Other/GOG/daikatana/setup_daikatana_1.0_(22142).exe' -d /home/keenan/Games/daikatana
     wget -nc https://bitbucket.org/daikatana13/daikatana/downloads/Daikatana-Linux-2023-08-17-x64.tar.bz2 -P /home/keenan/Games/daikatana
     wget -nc https://bitbucket.org/daikatana13/daikatana/downloads/pak6-2022-12-22.zip -P /home/keenan/Games/daikatana
     ## Dark Forces
-    , innoextract -g '/mnt/crusader/Games/Other/GOG/star_wars_dark_forces/setup_star_warstm_dark_forces_1.0.2_(20338).exe' -d /home/keenan/.var/app/io.github.theforceengine.tfe/data
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/star_wars_dark_forces/setup_star_warstm_dark_forces_1.0.2_(20338).exe' -d /home/keenan/Games/the-force-engine/df
     , innoextract -g '/mnt/crusader/Games/Other/GOG/star_wars_jedi_knight_dark_forces_ii_copy3/setup_star_wars_jedi_knight_-_mysteries_of_the_sith_1.0_(17966).exe' -d /home/keenan/.var/app/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/openjkdf2 && mv /home/keenan/.var/app/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/openjkdf2/app/* /home/keenan/.var/app/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/openjkdf2 && , innoextract -g '/mnt/crusader/Games/Other/GOG/star_wars_republic_commando_copy3/setup_star_wars_jedi_knight_-_dark_forces_2_1.01_(17966).exe' -d /home/keenan/.var/app/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/openjkmots && mv /home/keenan/.var/app/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/openjkmots/app/* /home/keenan/.var/app/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/openjkmots
     ## Descent
-    , innoextract -g '/mnt/crusader/Games/Other/GOG/descent/setup_descent_1.4a_(16596).exe' -d /home/keenan/Games/descent/descent-1 && mv /home/keenan/Games/descent/descent-1/app/* /home/keenan/Games/descent/descent-1 && rm -rf /home/keenan/Games/descent/descent-1/app /home/keenan/Games/descent/descent-1/tmp
-    , innoextract -g '/mnt/crusader/Games/Other/GOG/descent_2/setup_descent_2_1.1_(16596).exe' -d /home/keenan/Games/descent/descent-2 && mv /home/keenan/Games/descent/descent-2/app/* /home/keenan/Games/descent/descent-2 && rm -rf /home/keenan/Games/descent/descent-2/app /home/keenan/Games/descent/descent-2/tmp
-    , innoextract -g '/mnt/crusader/Games/Other/GOG/descent_3_expansion/setup_descent_3_1.4_(16598).exe' -d /home/keenan/Games/descent/descent-3 && mv /home/keenan/Games/descent/descent-3/app/* /home/keenan/Games/descent/descent-3 && rm -rf /home/keenan/Games/descent/descent-3/app /home/keenan/Games/descent/descent-3/tmp
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/descent/setup_descent_1.4a_(16596).exe' -d /home/keenan/Games/descent/descent-1 && mv /home/keenan/Games/descent/descent-1/app/* /home/keenan/Games/descent/descent-1 && rm -rf /home/keenan/Games/descent/descent-1/{app,tmp}
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/descent_2/setup_descent_2_1.1_(16596).exe' -d /home/keenan/Games/descent/descent-2 && mv /home/keenan/Games/descent/descent-2/app/* /home/keenan/Games/descent/descent-2 && rm -rf /home/keenan/Games/descent/descent-2/{app,tmp}
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/descent_3_expansion/setup_descent_3_1.4_(16598).exe' -d /home/keenan/Games/descent/descent-3 && mv /home/keenan/Games/descent/descent-3/app/* /home/keenan/Games/descent/descent-3 && rm -rf /home/keenan/Games/descent/descent-3/{app,tmp}
     ## Diablo
-    , innoextract -g '/mnt/crusader/Games/Other/GOG/diablo/setup_diablo_1.09_hellfire_v2_(30037).exe' -I 'DIABDAT.MPQ' -I 'hellfire.mpq' -I 'hfmonk.mpq' -I 'hfmusic.mpq' -I 'hfvoice.mpq' -d /home/keenan/.var/app/org.diasurgical.DevilutionX/data/diasurgical/devilution && mv /home/keenan/.var/app/org.diasurgical.DevilutionX/data/diasurgical/devilution/hellfire/* /home/keenan/.var/app/org.diasurgical.DevilutionX/data/diasurgical/devilution && rm -rf /home/keenan/.var/app/org.diasurgical.DevilutionX/data/diasurgical/devilution/hellfire
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/diablo/setup_diablo_1.09_hellfire_v2_(30037).exe' -I 'DIABDAT.MPQ' -I 'hellfire.mpq' -I 'hfmonk.mpq' -I 'hfmusic.mpq' -I 'hfvoice.mpq' -d /home/keenan/.local/share/diasurgical/devilution && mv /home/keenan/.local/share/diasurgical/devilution/hellfire/* /home/keenan/.local/share/diasurgical/devilution && rm -rf /home/keenan/.local/share/diasurgical/devilution/hellfire
     ## Doom 3
-    , innoextract -g '/mnt/crusader/Games/Other/GOG/doom_3_classic/setup_doom_3_1.3.1_(62814).exe' -d '/home/keenan/.var/app/org.dhewm3.Dhewm3/data/dhewm3'
-    , innoextract -g '/mnt/crusader/Games/Other/GOG/doom_3_bfg_edition_game/setup_doom_3_bfg_1.14_(13452).exe' -d /home/keenan/.var/app/io.github.RobertBeckebans.RBDoom3BFG-GL/data/rbdoom3bfg && mv /home/keenan/.var/app/io.github.RobertBeckebans.RBDoom3BFG-GL/data/rbdoom3bfg/app/* /home/keenan/.var/app/io.github.RobertBeckebans.RBDoom3BFG-GL/data/rbdoom3bfg && rm -rf /home/keenan/.var/app/io.github.RobertBeckebans.RBDoom3BFG-GL/data/rbdoom3bfg/tmp /home/keenan/.var/app/io.github.RobertBeckebans.RBDoom3BFG-GL/data/rbdoom3bfg/app
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/doom_3_classic/setup_doom_3_1.3.1_(62814).exe' -d '/home/keenan/.local/share/dhewm3'
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/doom_3_bfg_edition_game/setup_doom_3_bfg_1.14_(13452).exe' -d /home/keenan/.local/share/rbdoom3bfg && mv /home/keenan/.local/share/rbdoom3bfg/app/* /home/keenan/.local/share/rbdoom3bfg && rm -rf /home/keenan/.local/share/rbdoom3bfg/{tmp,app}
     ## DOOM 64
     , innoextract -g '/mnt/crusader/Games/Other/GOG/doom_64/setup_doom_64_20220523_(56385).exe' -I 'DOOM64.WAD' -d '/home/keenan/.local/share/doom64ex-plus'
     ## Fallout
     , innoextract -g '/mnt/crusader/Games/Other/GOG/fallout_game/setup_fallout_1.2_(27130).exe' -d /home/keenan/.local/share/fallout-ce && cd /home/keenan/.local/share/fallout-ce && rm -rf __redist __support app commonappdata Extras tmp goggame* && pwsh -c 'dir . -r | % { if ($_.Name -cne $_.Name.ToLower()) { ren $_.FullName $_.Name.ToLower() } }' && cd /home/keenan/.local/share/fallout-ce/data/sound/music && pwsh -c 'dir . -r | % { if ($_.Name -cne $_.Name.ToUpper()) { ren $_.FullName $_.Name.ToUpper() } }' && gamescope -f -w 2560 -h 1440 -- fallout-ce && sleep 3 && sd 'music_path1=sound\\music\\' 'music_path1=data\\sound\\music\\' /home/keenan/.local/share/fallout-ce/fallout.cfg && sd 'music_path2=sound\\music\\' 'music_path2=data\\sound\\music\\' /home/keenan/.local/share/fallout-ce/fallout.cfg
     , innoextract -g /mnt/crusader/Games/Other/GOG/fallout_2_game/setup_fallout2_2.1.0.18.exe -d /home/keenan/.local/share/fallout2-ce && cd /home/keenan/.local/share/fallout2-ce && mv -f app/* . && rm -rf __redist __support app commonappdata Extras tmp goggame* && mv -f sound/ data/ && pwsh -c 'dir . -r | % { if ($_.Name -cne $_.Name.ToLower()) { ren $_.FullName $_.Name.ToLower() } }' && cd /home/keenan/.local/share/fallout2-ce/data/sound/music && pwsh -c 'dir . -r | % { if ($_.Name -cne $_.Name.ToUpper()) { ren $_.FullName $_.Name.ToUpper() } }' && gamescope -f -w 2560 -h 1440 -- fallout2-ce && sleep 3 && sd 'music_path1=sound\\music\\' 'music_path1=data\\sound\\music\\' /home/keenan/.local/share/fallout2-ce/fallout2.cfg && sd 'music_path2=sound\\music\\' 'music_path2=data\\sound\\music\\' /home/keenan/.local/share/fallout2-ce/fallout2.cfg
+    ## HOMM
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/heroes_of_might_and_magic_2_gold_edition/setup_heroes_of_might_and_magic_2_gold_1.01_(2.1)_(33438).exe' -d /home/keenan/.local/share/fheroes2
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/heroes_of_might_and_magic_3_complete_edition/setup_heroes_of_might_and_magic_3_complete_4.0_(3.2)_gog_0.1_(77075).exe' -d /home/keenan/.local/share/vcmi
     ## Jagged Alliance 2
     , innoextract -g '/mnt/crusader/Games/Other/GOG/jagged_alliance_2/setup_jagged_alliance_2_1.12_(17794).exe' -d /home/keenan/Games/jagged-alliance-2/ja2
     , innoextract -g '/mnt/crusader/Games/Other/GOG/jagged_alliance_2_unfinished_business/setup_ja2_-_unfinished_business_1.01_(17724).exe' -d /home/keenan/Games/jagged-alliance-2/unfinished-business
@@ -67,7 +70,9 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
     ## Morrowind
     , innoextract -g '/mnt/crusader/Games/Other/GOG/the_elder_scrolls_iii_morrowind_goty_edition_game/setup_the_elder_scrolls_iii_morrowind_goty_1.6.0.1820_gog_0.1_(77582).exe' -d /home/keenan/Games/morrowind
     ## Nox
-    , innoextract -g '/mnt/crusader/Games/Other/GOG/nox/setup_nox_2.0.0.20.exe' -d /home/keenan/Games/nox && mv /home/keenan/Games/nox/app/* /home/keenan/Games/nox && rm -rf /home/keenan/Games/nox/app /home/keenan/Games/nox/tmp
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/nox/setup_nox_2.0.0.20.exe' -d /home/keenan/Games/nox && mv /home/keenan/Games/nox/app/* /home/keenan/Games/nox && rm -rf /home/keenan/Games/nox/{app,tmp}
+    ## Outlaws
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/outlaws_a_handful_of_missions/setup_outlaws_2.0_hotfix_(18728).exe' -d /home/keenan/Games/the-force-engine/ol && mv /home/keenan/Games/the-force-engine/ol/app/* /home/keenan/Games/the-force-engine/ol && rm -rf /home/keenan/Games/the-force-engine/ol/{app,tmp}
     ## Perfect Dark
     xh https://api.github.com/repos/fgsfdsfgs/perfect_dark/releases/latest | jq -r '.assets[] | select(.name | test("flatpak")).browser_download_url' | xargs xh get -d -o /home/keenan/.local/bin/perfectdark.flatpak
     flatpak install --user /home/keenan/.local/bin/perfectdark.flatpak

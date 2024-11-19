@@ -14,14 +14,16 @@ let
       cherry-doom
       # chocolate-doom
       crispy-doom
+      dhewm3
       doom64ex-plus
       doomrunner
       doomseeker
       dsda-doom
       gzdoom
       nugget-doom
+      # odamex
       prboom-plus
-      # rbdoom-3-bfg
+      rbdoom-3-bfg
       woof-doom
       zandronum
       zandronum-server
@@ -31,6 +33,9 @@ let
       ## Freespace
       dxx-rebirth
       knossosnet
+      ## HOMM
+      fheroes2
+      vcmi
       ## Marathon
       alephone
       alephone-marathon
@@ -49,16 +54,30 @@ let
       ## Wolf
       bstone
       ecwolf
+      etlegacy
       iortcw
       ## Other
+      abuse
       arx-libertatis # Arx Fatalis
+      augustus
       clonehero # Guitar Hero
+      corsix-th
+      devilutionx
       exult # Ultima VII
       inputs.ow-mod-man.packages.${system}.owmods-cli
       inputs.ow-mod-man.packages.${system}.owmods-gui
+      # ja2-stracciatella
       openjk # Jedi Academy
       openloco # Locomotion
+      # opennox
+      # openrct2
+      openttd
+      opentyrian
       openxray # STALKER
+      theforceengine
+      ringracers
+      runelite # RuneScape
+      srb2
       #relive # Oddworld
       wipeout-rewrite # Wipeout
       vvvvvv
@@ -68,10 +87,22 @@ let
       _86Box-with-roms
       # archipelago
       # bizhawk
+      cemu
+      dolphin-emu
+      duckstation
+      # easyrpg-player
+      fsuae-launcher
       # hypseus-singe
+      lime3ds
+      mame
       # mesen
       nuked-sc55
+      pcsx2
+      ppsspp
+      retroarchFull
+      rpcs3
       scummvm
+      xemu
       ## Input
       joystickwake
       # makima
@@ -86,10 +117,11 @@ let
       # bottles
       # cartridges
       # heroic
+      # limo
       lutris
       inputs.umu.packages.${system}.umu
       ## Modding
-      #nexusmods-app-unfree
+      # nexusmods-app-unfree
       r2modman
       ## Other
       ffmpeg
@@ -549,37 +581,43 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "com.github.mtkennerly.ludusavi" = {
-                Context = {
-                  filesystems = [
-                    "${config.home.homeDirectory}/.var/app/com.heroicgameslauncher.hgl"
-                    "${config.home.homeDirectory}/.var/app/com.valvesoftware.Steam"
-                    "${config.home.homeDirectory}/.var/app/com.usebottles.bottles"
-                    "${config.home.homeDirectory}/.var/app/net.lutris.Lutris"
-                    "${config.home.homeDirectory}/Games"
-                    "/mnt/crusader/Games/Saves"
-                    "xdg-data/games"
-                    "xdg-data/lutris"
-                  ];
-                };
-              };
-              "com.github.keriew.augustus" = {
-                Context = {
-                  filesystems = [ "${config.home.homeDirectory}/Games/caesar-3" ];
-                  shared = "network"; # obs-gamecapture
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
-              "com.github.Xenoveritas.abuse" = {
-                Context = {
-                  shared = "network"; # obs-gamecapture
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
+              /*
+                "com.github.mtkennerly.ludusavi" = {
+                             Context = {
+                               filesystems = [
+                                 "${config.home.homeDirectory}/.var/app/com.heroicgameslauncher.hgl"
+                                 "${config.home.homeDirectory}/.var/app/com.valvesoftware.Steam"
+                                 "${config.home.homeDirectory}/.var/app/com.usebottles.bottles"
+                                 "${config.home.homeDirectory}/.var/app/net.lutris.Lutris"
+                                 "${config.home.homeDirectory}/Games"
+                                 "/mnt/crusader/Games/Saves"
+                                 "xdg-data/games"
+                                 "xdg-data/lutris"
+                               ];
+                             };
+                           };
+              */
+              /*
+                "com.github.keriew.augustus" = {
+                             Context = {
+                               filesystems = [ "${config.home.homeDirectory}/Games/caesar-3" ];
+                               shared = "network"; # obs-gamecapture
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
+              /*
+                "com.github.Xenoveritas.abuse" = {
+                             Context = {
+                               shared = "network"; # obs-gamecapture
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
               "com.heroicgameslauncher.hgl" = {
                 Context = {
                   filesystems = [
@@ -631,14 +669,16 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "dev.lizardbyte.app.Sunshine" = {
-                Context = {
-                  filesystems = [ "!home" ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
+              /*
+                "dev.lizardbyte.app.Sunshine" = {
+                             Context = {
+                               filesystems = [ "!home" ];
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
               "dev.opengoal.OpenGOAL" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/opengoal" ];
@@ -647,27 +687,33 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "info.cemu.Cemu" = {
-                Context = {
-                  filesystems = [ "/mnt/crusader/Games/Rom/Other/Wii U" ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
-              "io.github.antimicrox.antimicrox" = {
-                Context = {
-                  filesystems = [ "!home" ];
-                };
-              };
-              "io.github.ihhub.Fheroes2" = {
-                Context = {
-                  shared = "network"; # obs-gamecapture
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
+              /*
+                "info.cemu.Cemu" = {
+                             Context = {
+                               filesystems = [ "/mnt/crusader/Games/Rom/Other/Wii U" ];
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
+              /*
+                "io.github.antimicrox.antimicrox" = {
+                             Context = {
+                               filesystems = [ "!home" ];
+                             };
+                           };
+              */
+              /*
+                "io.github.ihhub.Fheroes2" = {
+                             Context = {
+                               shared = "network"; # obs-gamecapture
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
               "io.github.ja2_stracciatella.JA2-Stracciatella" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/jagged-alliance-2/ja2" ];
@@ -684,14 +730,16 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "io.github.theforceengine.tfe" = {
-                Context = {
-                  shared = "network"; # obs-gamecapture
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
+              /*
+                "io.github.theforceengine.tfe" = {
+                             Context = {
+                               shared = "network"; # obs-gamecapture
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
               "io.github.noxworld_dev.OpenNox" = {
                 Context = {
                   filesystems = [
@@ -733,46 +781,54 @@ in
                   ];
                 };
               };
-              "net.pcsx2.PCSX2" = {
-                Context = {
-                  filesystems = [ "/mnt/crusader/Games/Rom/Redump/Sony Playstation 2" ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
-              "net.rpcs3.RPCS3" = {
-                Context = {
-                  filesystems = [
-                    "/mnt/crusader/Games/Other/RPCS3"
-                    "${config.home.homeDirectory}/Games/RPCS3"
-                    "xdg-data/games"
-                    "!home"
-                  ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
-              "org.DolphinEmu.dolphin-emu" = {
-                Context = {
-                  filesystems = [
-                    "/mnt/crusader/Games/Rom/Redump/Nintendo Wii"
-                    "/mnt/crusader/Games/Rom/Redump/Nintendo GameCube"
-                  ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
-              "org.duckstation.DuckStation" = {
-                Context = {
-                  filesystems = [ "/mnt/crusader/Mister/PSX" ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
+              /*
+                "net.pcsx2.PCSX2" = {
+                             Context = {
+                               filesystems = [ "/mnt/crusader/Games/Rom/Redump/Sony Playstation 2" ];
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
+              /*
+                "net.rpcs3.RPCS3" = {
+                             Context = {
+                               filesystems = [
+                                 "/mnt/crusader/Games/Other/RPCS3"
+                                 "${config.home.homeDirectory}/Games/RPCS3"
+                                 "xdg-data/games"
+                                 "!home"
+                               ];
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
+              /*
+                "org.DolphinEmu.dolphin-emu" = {
+                             Context = {
+                               filesystems = [
+                                 "/mnt/crusader/Games/Rom/Redump/Nintendo Wii"
+                                 "/mnt/crusader/Games/Rom/Redump/Nintendo GameCube"
+                               ];
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
+              /*
+                "org.duckstation.DuckStation" = {
+                             Context = {
+                               filesystems = [ "/mnt/crusader/Mister/PSX" ];
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
               "org.easyrpg.player" = {
                 Context = {
                   filesystems = [
@@ -789,29 +845,33 @@ in
                   RPG2K3_RTP_PATH = "xdg-data/games/rpg-maker/RTP/2003";
                 };
               };
-              "org.libretro.RetroArch" = {
-                Context = {
-                  filesystems = [
-                    "/mnt/crusader/Games/Rom"
-                    "/mnt/crusader/Mister/games"
-                  ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
-              "org.mamedev.MAME" = {
-                Context = {
-                  filesystems = [
-                    "${config.home.homeDirectory}/Games"
-                    "/mnt/crusader/Games/Rom/MAME"
-                    "!home"
-                  ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
+              /*
+                "org.libretro.RetroArch" = {
+                             Context = {
+                               filesystems = [
+                                 "/mnt/crusader/Games/Rom"
+                                 "/mnt/crusader/Mister/games"
+                               ];
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
+              /*
+                "org.mamedev.MAME" = {
+                             Context = {
+                               filesystems = [
+                                 "${config.home.homeDirectory}/Games"
+                                 "/mnt/crusader/Games/Rom/MAME"
+                                 "!home"
+                               ];
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
               "org.openmw.OpenMW" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/morrowind" ];
@@ -835,19 +895,21 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "org.scummvm.ScummVM" = {
-                Context = {
-                  filesystems = [
-                    "${config.home.homeDirectory}/Games/scummvm"
-                    "xdg-data/games"
-                    "${config.home.homeDirectory}/Music"
-                    "!home"
-                  ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
+              /*
+                "org.scummvm.ScummVM" = {
+                             Context = {
+                               filesystems = [
+                                 "${config.home.homeDirectory}/Games/scummvm"
+                                 "xdg-data/games"
+                                 "${config.home.homeDirectory}/Music"
+                                 "!home"
+                               ];
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
               "org.zdoom.Raze" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/duke3d" ];
@@ -867,17 +929,17 @@ in
               };
             };
             packages = [
-              "app.xemu.xemu"
+              #"app.xemu.xemu"
               "ca.parallel_launcher.ParallelLauncher"
-              "com.corsixth.corsixth"
-              "com.etlegacy.ETLegacy"
+              #"com.corsixth.corsixth"
+              #"com.etlegacy.ETLegacy"
               "com.fightcade.Fightcade"
               "com.fightcade.Fightcade.Wine"
               #"com.github.mtkennerly.ludusavi"
-              "com.github.keriew.augustus"
-              "com.github.opentyrian.OpenTyrian"
+              #"com.github.keriew.augustus"
+              #"com.github.opentyrian.OpenTyrian"
               "com.github.optyfr.JRomManager"
-              "com.github.Xenoveritas.abuse"
+              #"com.github.Xenoveritas.abuse"
               "com.heroicgameslauncher.hgl"
               "com.obsproject.Studio.Plugin.InputOverlay"
               "com.obsproject.Studio.Plugin.OBSVkCapture"
@@ -890,38 +952,38 @@ in
               #"com.valvesoftware.Steam"
               #"dev.goats.xivlauncher"
               "dev.opengoal.OpenGOAL"
-              "eu.vcmi.VCMI"
-              "info.cemu.Cemu"
+              #"eu.vcmi.VCMI"
+              #"info.cemu.Cemu"
               "info.urbanterror.UrbanTerror"
               #"io.github.am2r_community_developers.AM2RLauncher"
               "io.github.Foldex.AdwSteamGtk"
               #"io.github.garglk.Gargoyle"
-              "io.github.ihhub.Fheroes2"
+              #"io.github.ihhub.Fheroes2"
               "io.github.ja2_stracciatella.JA2-Stracciatella"
-              "io.github.lime3ds.Lime3DS"
+              #"io.github.lime3ds.Lime3DS"
               "io.github.limo_app.limo"
               "io.github.lxndr.gswatcher"
               "io.github.noxworld_dev.OpenNox"
-              "io.github.RobertBeckebans.RBDoom3BFG-GL"
+              #"io.github.RobertBeckebans.RBDoom3BFG-GL"
               "io.github.santiagocezar.maniatic-launcher"
               "io.github.simple64.simple64"
               "io.github.streetpea.Chiaki4deck"
-              "io.github.theforceengine.tfe"
+              #"io.github.theforceengine.tfe"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
               "io.openrct2.OpenRCT2"
               "net.darkradiant.DarkRadiant"
               "net.davidotek.pupgui2"
-              "net.fsuae.FS-UAE"
+              #"net.fsuae.FS-UAE"
               #"net.lutris.Lutris"
               "net.mancubus.SLADE"
-              "net.pcsx2.PCSX2"
-              "net.rpcs3.RPCS3"
-              "net.runelite.RuneLite"
+              #"net.pcsx2.PCSX2"
+              #"net.rpcs3.RPCS3"
+              #"net.runelite.RuneLite"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
-              "org.dhewm3.Dhewm3"
-              "org.diasurgical.DevilutionX"
-              "org.DolphinEmu.dolphin-emu"
-              "org.duckstation.DuckStation"
+              #"org.dhewm3.Dhewm3"
+              #"org.diasurgical.DevilutionX"
+              #"org.DolphinEmu.dolphin-emu"
+              #"org.duckstation.DuckStation"
               "org.easyrpg.player"
               "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08"
@@ -931,20 +993,20 @@ in
               "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08"
               "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
               "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/23.08"
-              "org.kartkrew.RingRacers"
-              "org.libretro.RetroArch"
-              "org.mamedev.MAME"
+              #"org.kartkrew.RingRacers"
+              #"org.libretro.RetroArch"
+              #"org.mamedev.MAME"
               "org.openfodder.OpenFodder"
               "org.openjkdf2.OpenJKDF2"
               "org.openmw.OpenMW"
-              "org.openttd.OpenTTD"
+              # "org.openttd.OpenTTD"
               "org.pegasus_frontend.Pegasus"
-              "org.ppsspp.PPSSPP"
+              #"org.ppsspp.PPSSPP"
               "org.prismlauncher.PrismLauncher"
               "org.ryujinx.Ryujinx"
               #"org.scummvm.ScummVM"
               "org.sonic3air.Sonic3AIR"
-              "org.srb2.SRB2"
+              #"org.srb2.SRB2"
               "page.kramo.Cartridges"
               "sh.fhs.KatawaShoujoReEngineered"
               "tk.deat.Jazz2Resurrection"
@@ -954,6 +1016,15 @@ in
           ludusavi = {
             enable = true;
             backupNotification = true;
+            /*
+              schedule = {
+                         frequency = "10:00";
+                         onBoot.enable = true;
+                       };
+                       service = {
+                         notification.enable = true;
+                       };
+            */
             settings = {
               backup = {
                 path = "${config.home.homeDirectory}/Games/games/ludusavi";
