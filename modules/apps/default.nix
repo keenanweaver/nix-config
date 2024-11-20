@@ -41,6 +41,7 @@
     ./nushell
     ./nvim
     ./obs
+    ./pay-respects
     ./ripgrep
     ./solaar
     ./ssh
