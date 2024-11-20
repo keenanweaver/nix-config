@@ -83,6 +83,7 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
     fd . -e z64 '/home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/perfectdark/data' -x mv {} /home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/perfectdark/data/pd.ntsc-final.z64
     ## Quake
     , innoextract -g '/mnt/crusader/Games/Other/GOG/quake_the_offering_game/setup_quake_the_offering_2.0.0.6.exe' -d /home/keenan/Games/quake/quake-1
+    , innoextract -g '/mnt/crusader/Games/Other/GOG/quake_ii_quad_damage_game/setup_quake2_quad_damage_2.0.0.3.exe' -d /home/keenan/.q2pro && cp -r /home/keenan/.q2pro/app/* /home/keenan/.q2pro
     , innoextract -g '/mnt/crusader/Games/Other/GOG/quake_iii_arena_and_team_arena/setup_quake3_2.0.0.2.exe' -d /home/keenan/.q3a && mv /home/keenan/.q3a/app/* /home/keenan/.q3a && rm -rf /home/keenan/.q3a/tmp /home/keenan/.q3a/app
     mkdir -p /home/keenan/Games/quake/quake-3/base/{baseq3,cpma}
     wget -nc https://cdn.playmorepromode.com/files/cpma/cpma-1.53-nomaps.zip -P /home/keenan/Games/quake/quake-3

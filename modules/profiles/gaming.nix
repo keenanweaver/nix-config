@@ -43,6 +43,7 @@ let
       alephone-infinity
       ## Quake
       ironwail
+      q2pro
       # trenchbroom
       ## Arma
       #arma3-unix-launcher
@@ -240,7 +241,7 @@ in
     };
 
     hardware = {
-      new-lg4ff.enable = true;
+      #new-lg4ff.enable = true;
       uinput.enable = true;
       #xone.enable = true;
       #xpadneo.enable = true;
