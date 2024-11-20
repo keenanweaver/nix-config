@@ -732,14 +732,16 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "io.github.lime3ds.Lime3DS" = {
-                Context = {
-                  filesystems = [ "/mnt/crusader/Games/Rom/Other/Nintendo 3DS" ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
+              /*
+                "io.github.lime3ds.Lime3DS" = {
+                             Context = {
+                               filesystems = [ "/mnt/crusader/Games/Rom/Other/Nintendo 3DS" ];
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
               /*
                 "io.github.theforceengine.tfe" = {
                              Context = {
@@ -769,18 +771,20 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "net.lutris.Lutris" = {
-                Context = {
-                  filesystems = [
-                    "${config.home.homeDirectory}/Games"
-                    "/mnt/crusader/Games"
-                    "xdg-data/games"
-                  ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
+              /*
+                "net.lutris.Lutris" = {
+                             Context = {
+                               filesystems = [
+                                 "${config.home.homeDirectory}/Games"
+                                 "/mnt/crusader/Games"
+                                 "xdg-data/games"
+                               ];
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
               "net.mancubus.SLADE" = {
                 Context = {
                   filesystems = [
