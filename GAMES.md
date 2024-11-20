@@ -47,6 +47,8 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
     ## Doom 3
     , innoextract -g '/mnt/crusader/Games/Other/GOG/doom_3_classic/setup_doom_3_1.3.1_(62814).exe' -d '/home/keenan/.local/share/dhewm3'
     , innoextract -g '/mnt/crusader/Games/Other/GOG/doom_3_bfg_edition_game/setup_doom_3_bfg_1.14_(13452).exe' -d /home/keenan/.local/share/rbdoom3bfg && mv /home/keenan/.local/share/rbdoom3bfg/app/* /home/keenan/.local/share/rbdoom3bfg && rm -rf /home/keenan/.local/share/rbdoom3bfg/{tmp,app}
+    xh https://api.github.com/repos/RobertBeckebans/RBDOOM-3-BFG/releases/latest | jq -r '.assets[] | select(.name | test("lite")).browser_download_url' | xargs xh get -d -o /home/keenan/.local/share/rbdoom3bfg/rbdoom3bfg.7z
+    fd . -e 7z /home/keenan/.local/share/rbdoom3bfg -x ouch d {} -y -d /home/keenan/.local/share/rbdoom3bfg && cp -r /home/keenan/.local/share/rbdoom3bfg/rbdoom3bfg/* /home/keenan/.local/share/rbdoom3bfg && rm -rf /home/keenan/.local/share/rbdoom3bfg/rbdoom3bfg /home/keenan/.local/share/rbdoom3bfg.7z
     ## DOOM 64
     , innoextract -g '/mnt/crusader/Games/Other/GOG/doom_64/setup_doom_64_20220523_(56385).exe' -I 'DOOM64.WAD' -d '/home/keenan/.local/share/doom64ex-plus'
     ## Fallout
