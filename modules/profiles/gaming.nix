@@ -74,9 +74,11 @@ let
       openttd
       opentyrian
       openxray # STALKER
+      prismlauncher
       theforceengine
       ringracers
       runelite # RuneScape
+      space-station-14-launcher
       srb2
       #relive # Oddworld
       wipeout-rewrite # Wipeout
@@ -98,10 +100,12 @@ let
       # mesen
       nuked-sc55
       pcsx2
+      pegasus-frontend
       ppsspp
       retroarchFull
       rpcs3
       scummvm
+      supermodel
       xemu
       ## Input
       joystickwake
@@ -124,6 +128,8 @@ let
       # nexusmods-app-unfree
       r2modman
       ## Other
+      adwsteamgtk
+      chiaki4deck
       ffmpeg
       gst_all_1.gstreamer
       gst_all_1.gstreamermm
@@ -573,14 +579,16 @@ in
         services = {
           flatpak = {
             overrides = {
-              "ca.parallel_launcher.ParallelLauncher" = {
-                Context = {
-                  filesystems = [ "/mnt/crusader/Games/Rom/No-Intro/roms" ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
+              /*
+                "ca.parallel_launcher.ParallelLauncher" = {
+                             Context = {
+                               filesystems = [ "/mnt/crusader/Games/Rom/No-Intro/roms" ];
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
               /*
                 "com.github.mtkennerly.ludusavi" = {
                              Context = {
@@ -629,18 +637,20 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "com.supermodel3.Supermodel" = {
-                Context = {
-                  filesystems = [
-                    "xdg-data/supermodel"
-                    "xdg-config/supermodel"
-                    "!home"
-                  ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
+              /*
+                "com.supermodel3.Supermodel" = {
+                             Context = {
+                               filesystems = [
+                                 "xdg-data/supermodel"
+                                 "xdg-config/supermodel"
+                                 "!home"
+                               ];
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
               "com.usebottles.bottles" = {
                 Context = {
                   filesystems = [
@@ -930,7 +940,7 @@ in
             };
             packages = [
               #"app.xemu.xemu"
-              "ca.parallel_launcher.ParallelLauncher"
+              #"ca.parallel_launcher.ParallelLauncher"
               #"com.corsixth.corsixth"
               #"com.etlegacy.ETLegacy"
               "com.fightcade.Fightcade"
@@ -946,8 +956,8 @@ in
               "com.parsecgaming.parsec"
               "com.qzandronum.Q-Zandronum"
               "com.richwhitehouse.BigPEmu"
-              "com.spacestation14.Launcher"
-              "com.supermodel3.Supermodel"
+              #"com.spacestation14.Launcher"
+              #"com.supermodel3.Supermodel"
               "com.usebottles.bottles"
               #"com.valvesoftware.Steam"
               #"dev.goats.xivlauncher"
@@ -966,13 +976,13 @@ in
               "io.github.noxworld_dev.OpenNox"
               #"io.github.RobertBeckebans.RBDoom3BFG-GL"
               "io.github.santiagocezar.maniatic-launcher"
-              "io.github.simple64.simple64"
-              "io.github.streetpea.Chiaki4deck"
+              #"io.github.simple64.simple64"
+              #"io.github.streetpea.Chiaki4deck"
               #"io.github.theforceengine.tfe"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
               "io.openrct2.OpenRCT2"
               "net.darkradiant.DarkRadiant"
-              "net.davidotek.pupgui2"
+              #"net.davidotek.pupgui2"
               #"net.fsuae.FS-UAE"
               #"net.lutris.Lutris"
               "net.mancubus.SLADE"
@@ -1000,9 +1010,9 @@ in
               "org.openjkdf2.OpenJKDF2"
               "org.openmw.OpenMW"
               # "org.openttd.OpenTTD"
-              "org.pegasus_frontend.Pegasus"
+              #"org.pegasus_frontend.Pegasus"
               #"org.ppsspp.PPSSPP"
-              "org.prismlauncher.PrismLauncher"
+              #"org.prismlauncher.PrismLauncher"
               "org.ryujinx.Ryujinx"
               #"org.scummvm.ScummVM"
               "org.sonic3air.Sonic3AIR"
