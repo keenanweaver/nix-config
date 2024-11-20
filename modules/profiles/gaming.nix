@@ -75,12 +75,12 @@ let
       opentyrian
       openxray # STALKER
       prismlauncher
-      theforceengine
+      #relive # Oddworld
       ringracers
       runelite # RuneScape
       space-station-14-launcher
       srb2
-      #relive # Oddworld
+      theforceengine
       wipeout-rewrite # Wipeout
       vvvvvv
     ];
