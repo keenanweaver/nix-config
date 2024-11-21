@@ -1066,7 +1066,7 @@ in
                 {
                   name = "OpenMW";
                   files = [
-                    "${config.home.homeDirectory}/openmw/saves"
+                    "${config.xdg.dataHome}/openmw/saves"
                   ];
                 }
                 {
