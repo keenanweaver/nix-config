@@ -24,6 +24,7 @@
     ./gpg
     ./helix
     ./home-manager
+    ./keyd
     ./kitty
     ./lazygit
     ./lact
@@ -41,7 +42,7 @@
     ./nushell
     ./nvim
     ./obs
-    ./pay-respects
+    #./pay-respects
     ./ripgrep
     ./solaar
     ./ssh
