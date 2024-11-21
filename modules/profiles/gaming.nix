@@ -67,7 +67,7 @@ let
       exult # Ultima VII
       inputs.ow-mod-man.packages.${system}.owmods-cli
       inputs.ow-mod-man.packages.${system}.owmods-gui
-      # ja2-stracciatella
+      ja2-stracciatella
       jazz2
       openjk # Jedi Academy
       openloco # Locomotion
@@ -95,6 +95,7 @@ let
       cemu
       dolphin-emu
       duckstation
+      easyrpg-player
       # easyrpg-player
       fsuae-launcher
       # hypseus-singe
@@ -239,6 +240,8 @@ in
         # https://reddit.com/r/linux_gaming/comments/1c2ey6u/vrr_newbie_questions_plasma_6_wayland_amd/kzasm0j/?context=3#kzasm0j
         KWIN_DRM_DELAY_VRR_CURSOR_UPDATES = "1";
         KWIN_FORCE_SW_CURSOR = "1";
+        RPG2K_RTP_PATH = "${config.xdg.dataHome}/games/rpg-maker/RTP/2000";
+        RPG2K3_RTP_PATH = "${config.xdg.dataHome}/games/rpg-maker/RTP/2003";
         # https://gitlab.com/OpenMW/openmw/-/issues/6185
         OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
       };
@@ -729,14 +732,16 @@ in
                              };
                            };
               */
-              "io.github.ja2_stracciatella.JA2-Stracciatella" = {
-                Context = {
-                  filesystems = [ "${config.home.homeDirectory}/Games/jagged-alliance-2/ja2" ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
+              /*
+                "io.github.ja2_stracciatella.JA2-Stracciatella" = {
+                             Context = {
+                               filesystems = [ "${config.home.homeDirectory}/Games/jagged-alliance-2/ja2" ];
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
               /*
                 "io.github.lime3ds.Lime3DS" = {
                              Context = {
@@ -848,22 +853,24 @@ in
                              };
                            };
               */
-              "org.easyrpg.player" = {
-                Context = {
-                  filesystems = [
-                    "${config.home.homeDirectory}/Music/soundfonts:ro"
-                    "${config.home.homeDirectory}/Games/rpg-maker"
-                    "xdg-data/games/rpg-maker"
-                    "!host"
-                  ];
-                  shared = "network"; # obs-gamecapture
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                  RPG2K_RTP_PATH = "xdg-data/games/rpg-maker/RTP/2000";
-                  RPG2K3_RTP_PATH = "xdg-data/games/rpg-maker/RTP/2003";
-                };
-              };
+              /*
+                "org.easyrpg.player" = {
+                             Context = {
+                               filesystems = [
+                                 "${config.home.homeDirectory}/Music/soundfonts:ro"
+                                 "${config.home.homeDirectory}/Games/rpg-maker"
+                                 "xdg-data/games/rpg-maker"
+                                 "!host"
+                               ];
+                               shared = "network"; # obs-gamecapture
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                               RPG2K_RTP_PATH = "xdg-data/games/rpg-maker/RTP/2000";
+                               RPG2K3_RTP_PATH = "xdg-data/games/rpg-maker/RTP/2003";
+                             };
+                           };
+              */
               /*
                 "org.libretro.RetroArch" = {
                              Context = {
@@ -980,7 +987,7 @@ in
               "io.github.Foldex.AdwSteamGtk"
               #"io.github.garglk.Gargoyle"
               #"io.github.ihhub.Fheroes2"
-              "io.github.ja2_stracciatella.JA2-Stracciatella"
+              #"io.github.ja2_stracciatella.JA2-Stracciatella"
               #"io.github.lime3ds.Lime3DS"
               "io.github.limo_app.limo"
               "io.github.lxndr.gswatcher"
@@ -1005,7 +1012,7 @@ in
               #"org.diasurgical.DevilutionX"
               #"org.DolphinEmu.dolphin-emu"
               #"org.duckstation.DuckStation"
-              "org.easyrpg.player"
+              #"org.easyrpg.player"
               "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08"
