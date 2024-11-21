@@ -70,6 +70,7 @@ let
       # ja2-stracciatella
       openjk # Jedi Academy
       openloco # Locomotion
+      openmw
       # opennox
       # openrct2
       openttd
@@ -237,6 +238,8 @@ in
         # https://reddit.com/r/linux_gaming/comments/1c2ey6u/vrr_newbie_questions_plasma_6_wayland_amd/kzasm0j/?context=3#kzasm0j
         KWIN_DRM_DELAY_VRR_CURSOR_UPDATES = "1";
         KWIN_FORCE_SW_CURSOR = "1";
+        # https://gitlab.com/OpenMW/openmw/-/issues/6185
+        OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
       };
     };
 
@@ -887,16 +890,18 @@ in
                              };
                            };
               */
-              "org.openmw.OpenMW" = {
-                Context = {
-                  filesystems = [ "${config.home.homeDirectory}/Games/morrowind" ];
-                  shared = "network"; # obs-gamecapture
-                };
-                Environment = {
-                  OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
-                  PULSE_SINK = "Game";
-                };
-              };
+              /*
+                "org.openmw.OpenMW" = {
+                             Context = {
+                               filesystems = [ "${config.home.homeDirectory}/Games/morrowind" ];
+                               shared = "network"; # obs-gamecapture
+                             };
+                             Environment = {
+                               OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
               "org.ryujinx.Ryujinx" = {
                 Context = {
                   filesystems = [
@@ -1013,7 +1018,7 @@ in
               #"org.mamedev.MAME"
               "org.openfodder.OpenFodder"
               "org.openjkdf2.OpenJKDF2"
-              "org.openmw.OpenMW"
+              #"org.openmw.OpenMW"
               # "org.openttd.OpenTTD"
               #"org.pegasus_frontend.Pegasus"
               #"org.ppsspp.PPSSPP"
@@ -1061,7 +1066,7 @@ in
                 {
                   name = "OpenMW";
                   files = [
-                    "${config.home.homeDirectory}/.var/app/org.openmw.OpenMW/data/openmw/saves"
+                    "${config.home.homeDirectory}/openmw/saves"
                   ];
                 }
                 {
