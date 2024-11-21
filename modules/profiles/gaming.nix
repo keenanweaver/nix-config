@@ -59,6 +59,7 @@ let
       iortcw
       ## Other
       abuse
+      am2rlauncher
       arx-libertatis # Arx Fatalis
       augustus
       clonehero # Guitar Hero
@@ -85,6 +86,7 @@ let
       srb2
       theforceengine
       wipeout-rewrite # Wipeout
+      xivlauncher
       vvvvvv
     ];
     tools = [
@@ -530,110 +532,11 @@ in
                 grep "" /sys/devices/system/cpu/cpu*/cpufreq/amd_pstate_prefcore_ranking | sort -n -r -k2 -t: | head -n "$args" | awk -F'[u/]' -v ORS="," '{ print $8}' | head -c-1 | awk -v args="$args" '{printf "WINE_CPU_TOPOLOGY=%s:%s taskset -c %s\n",args, $0, $0}'
               '';
             })
-            /*
-              (writeShellApplication {
-                         name = "script-pipewire-sink-helper";
-                         runtimeInputs = [
-                           coreutils
-                           perl
-                           pulseaudio
-                         ];
-                         text = ''
-                           # Compiled from
-                           # https://unix.stackexchange.com/questions/622987/send-music-from-specific-application-to-certain-sound-output-via-command-line
-                           # https://bbs.archlinux.org/viewtopic.php?pid=1693617#p1693617
-                           # https://forums.linuxmint.com/viewtopic.php?t=328616
-                           # Set switches
-                           app=$1
-                           out=$2
-
-                           # Collect all sinks
-                           sinkList=$(pactl list sinks | tr '\n' '\r' | perl -pe 's/Sink #([0-9]+).+?device\.description = "([^\r]+)"\r.+?(?=Sink #|$)/\1:"\2",/g' | tr '\r' '\n')
-                           IFS="," read -ra sinksArray <<< "$sinkList"
-
-                           # Is our Hi-fi sink available? → Use for loop with indexes to handle spaces in names
-                           for ((i = 0; i < ''${#sinksArray[@]}; i++)); do
-                             sink="''${sinksArray[$i]}"
-                             echo "sink found: $sink"
-
-                             # Search for this output device's name
-                             [[ "$sink" =~ "Game" ]] && hifiSinkIndex=$(echo "$sink" | cut -d':' -f1)
-                           done
-
-                           if [[ $hifiSinkIndex ]]; then
-                             echo "Game has index $hifiSinkIndex"
-
-                             # Collect all sound streams
-                             musicSourcesList=$(pactl list sink-inputs | tr '\n' '\r' | perl -pe 's/Sink Input #([0-9]+).+?application\.process\.binary = "([^\r]+)"\r.+?(?=Sink Input #|$)/\1:\2\r/g' | tr '\r' '\n')
-
-                             for soundSource in $musicSourcesList; do
-                               binary=$(echo "$soundSource" | cut -d':' -f2);
-                               index=$(echo "$soundSource" | cut -d':' -f1);
-                               echo "index: $index, binary: $binary";
-
-                               if [[ "$binary" == "wine64-preloader" ]]; then
-                                 echo "moving $binary output to $hifiSinkIndex"
-                                 pactl move-sink-input "$index" "$hifiSinkIndex"
-                               fi
-                             done
-                           else
-                             echo "Hi-fi sink was not found"
-                           fi
-                         '';
-                       })
-            */
           ]
           ++ lib.flatten (lib.attrValues p);
         services = {
           flatpak = {
             overrides = {
-              /*
-                "ca.parallel_launcher.ParallelLauncher" = {
-                             Context = {
-                               filesystems = [ "/mnt/crusader/Games/Rom/No-Intro/roms" ];
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
-              /*
-                "com.github.mtkennerly.ludusavi" = {
-                             Context = {
-                               filesystems = [
-                                 "${config.home.homeDirectory}/.var/app/com.heroicgameslauncher.hgl"
-                                 "${config.home.homeDirectory}/.var/app/com.valvesoftware.Steam"
-                                 "${config.home.homeDirectory}/.var/app/com.usebottles.bottles"
-                                 "${config.home.homeDirectory}/.var/app/net.lutris.Lutris"
-                                 "${config.home.homeDirectory}/Games"
-                                 "/mnt/crusader/Games/Saves"
-                                 "xdg-data/games"
-                                 "xdg-data/lutris"
-                               ];
-                             };
-                           };
-              */
-              /*
-                "com.github.keriew.augustus" = {
-                             Context = {
-                               filesystems = [ "${config.home.homeDirectory}/Games/caesar-3" ];
-                               shared = "network"; # obs-gamecapture
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
-              /*
-                "com.github.Xenoveritas.abuse" = {
-                             Context = {
-                               shared = "network"; # obs-gamecapture
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
               "com.heroicgameslauncher.hgl" = {
                 Context = {
                   filesystems = [
@@ -645,20 +548,6 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              /*
-                "com.supermodel3.Supermodel" = {
-                             Context = {
-                               filesystems = [
-                                 "xdg-data/supermodel"
-                                 "xdg-config/supermodel"
-                                 "!home"
-                               ];
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
               "com.usebottles.bottles" = {
                 Context = {
                   filesystems = [
@@ -687,16 +576,6 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              /*
-                "dev.lizardbyte.app.Sunshine" = {
-                             Context = {
-                               filesystems = [ "!home" ];
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
               "dev.opengoal.OpenGOAL" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/opengoal" ];
@@ -705,63 +584,6 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              /*
-                "info.cemu.Cemu" = {
-                             Context = {
-                               filesystems = [ "/mnt/crusader/Games/Rom/Other/Wii U" ];
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
-              /*
-                "io.github.antimicrox.antimicrox" = {
-                             Context = {
-                               filesystems = [ "!home" ];
-                             };
-                           };
-              */
-              /*
-                "io.github.ihhub.Fheroes2" = {
-                             Context = {
-                               shared = "network"; # obs-gamecapture
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
-              /*
-                "io.github.ja2_stracciatella.JA2-Stracciatella" = {
-                             Context = {
-                               filesystems = [ "${config.home.homeDirectory}/Games/jagged-alliance-2/ja2" ];
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
-              /*
-                "io.github.lime3ds.Lime3DS" = {
-                             Context = {
-                               filesystems = [ "/mnt/crusader/Games/Rom/Other/Nintendo 3DS" ];
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
-              /*
-                "io.github.theforceengine.tfe" = {
-                             Context = {
-                               shared = "network"; # obs-gamecapture
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
               "io.github.noxworld_dev.OpenNox" = {
                 Context = {
                   filesystems = [
@@ -781,20 +603,6 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              /*
-                "net.lutris.Lutris" = {
-                             Context = {
-                               filesystems = [
-                                 "${config.home.homeDirectory}/Games"
-                                 "/mnt/crusader/Games"
-                                 "xdg-data/games"
-                               ];
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
               "net.mancubus.SLADE" = {
                 Context = {
                   filesystems = [
@@ -805,111 +613,6 @@ in
                   ];
                 };
               };
-              /*
-                "net.pcsx2.PCSX2" = {
-                             Context = {
-                               filesystems = [ "/mnt/crusader/Games/Rom/Redump/Sony Playstation 2" ];
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
-              /*
-                "net.rpcs3.RPCS3" = {
-                             Context = {
-                               filesystems = [
-                                 "/mnt/crusader/Games/Other/RPCS3"
-                                 "${config.home.homeDirectory}/Games/RPCS3"
-                                 "xdg-data/games"
-                                 "!home"
-                               ];
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
-              /*
-                "org.DolphinEmu.dolphin-emu" = {
-                             Context = {
-                               filesystems = [
-                                 "/mnt/crusader/Games/Rom/Redump/Nintendo Wii"
-                                 "/mnt/crusader/Games/Rom/Redump/Nintendo GameCube"
-                               ];
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
-              /*
-                "org.duckstation.DuckStation" = {
-                             Context = {
-                               filesystems = [ "/mnt/crusader/Mister/PSX" ];
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
-              /*
-                "org.easyrpg.player" = {
-                             Context = {
-                               filesystems = [
-                                 "${config.home.homeDirectory}/Music/soundfonts:ro"
-                                 "${config.home.homeDirectory}/Games/rpg-maker"
-                                 "xdg-data/games/rpg-maker"
-                                 "!host"
-                               ];
-                               shared = "network"; # obs-gamecapture
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                               RPG2K_RTP_PATH = "xdg-data/games/rpg-maker/RTP/2000";
-                               RPG2K3_RTP_PATH = "xdg-data/games/rpg-maker/RTP/2003";
-                             };
-                           };
-              */
-              /*
-                "org.libretro.RetroArch" = {
-                             Context = {
-                               filesystems = [
-                                 "/mnt/crusader/Games/Rom"
-                                 "/mnt/crusader/Mister/games"
-                               ];
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
-              /*
-                "org.mamedev.MAME" = {
-                             Context = {
-                               filesystems = [
-                                 "${config.home.homeDirectory}/Games"
-                                 "/mnt/crusader/Games/Rom/MAME"
-                                 "!home"
-                               ];
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
-              /*
-                "org.openmw.OpenMW" = {
-                             Context = {
-                               filesystems = [ "${config.home.homeDirectory}/Games/morrowind" ];
-                               shared = "network"; # obs-gamecapture
-                             };
-                             Environment = {
-                               OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
               "org.ryujinx.Ryujinx" = {
                 Context = {
                   filesystems = [
@@ -923,21 +626,6 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              /*
-                "org.scummvm.ScummVM" = {
-                             Context = {
-                               filesystems = [
-                                 "${config.home.homeDirectory}/Games/scummvm"
-                                 "xdg-data/games"
-                                 "${config.home.homeDirectory}/Music"
-                                 "!home"
-                               ];
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
               "org.zdoom.Raze" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/duke3d" ];
@@ -957,62 +645,28 @@ in
               };
             };
             packages = [
-              #"app.xemu.xemu"
-              #"ca.parallel_launcher.ParallelLauncher"
-              #"com.corsixth.corsixth"
-              #"com.etlegacy.ETLegacy"
               "com.fightcade.Fightcade"
               "com.fightcade.Fightcade.Wine"
-              #"com.github.mtkennerly.ludusavi"
-              #"com.github.keriew.augustus"
-              #"com.github.opentyrian.OpenTyrian"
               "com.github.optyfr.JRomManager"
-              #"com.github.Xenoveritas.abuse"
               "com.heroicgameslauncher.hgl"
               "com.obsproject.Studio.Plugin.InputOverlay"
               "com.obsproject.Studio.Plugin.OBSVkCapture"
               "com.parsecgaming.parsec"
               "com.qzandronum.Q-Zandronum"
               "com.richwhitehouse.BigPEmu"
-              #"com.spacestation14.Launcher"
-              #"com.supermodel3.Supermodel"
               "com.usebottles.bottles"
-              #"com.valvesoftware.Steam"
-              #"dev.goats.xivlauncher"
               "dev.opengoal.OpenGOAL"
-              #"eu.vcmi.VCMI"
-              #"info.cemu.Cemu"
               "info.urbanterror.UrbanTerror"
-              #"io.github.am2r_community_developers.AM2RLauncher"
               "io.github.Foldex.AdwSteamGtk"
-              #"io.github.garglk.Gargoyle"
-              #"io.github.ihhub.Fheroes2"
-              #"io.github.ja2_stracciatella.JA2-Stracciatella"
-              #"io.github.lime3ds.Lime3DS"
               "io.github.limo_app.limo"
               "io.github.lxndr.gswatcher"
               "io.github.noxworld_dev.OpenNox"
-              #"io.github.RobertBeckebans.RBDoom3BFG-GL"
               "io.github.santiagocezar.maniatic-launcher"
-              #"io.github.simple64.simple64"
-              #"io.github.streetpea.Chiaki4deck"
-              #"io.github.theforceengine.tfe"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
               "io.openrct2.OpenRCT2"
               "net.darkradiant.DarkRadiant"
-              #"net.davidotek.pupgui2"
-              #"net.fsuae.FS-UAE"
-              #"net.lutris.Lutris"
               "net.mancubus.SLADE"
-              #"net.pcsx2.PCSX2"
-              #"net.rpcs3.RPCS3"
-              #"net.runelite.RuneLite"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
-              #"org.dhewm3.Dhewm3"
-              #"org.diasurgical.DevilutionX"
-              #"org.DolphinEmu.dolphin-emu"
-              #"org.duckstation.DuckStation"
-              #"org.easyrpg.player"
               "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08"
@@ -1021,23 +675,12 @@ in
               "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08"
               "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
               "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/23.08"
-              #"org.kartkrew.RingRacers"
-              #"org.libretro.RetroArch"
-              #"org.mamedev.MAME"
               "org.openfodder.OpenFodder"
               "org.openjkdf2.OpenJKDF2"
-              #"org.openmw.OpenMW"
-              # "org.openttd.OpenTTD"
-              #"org.pegasus_frontend.Pegasus"
-              #"org.ppsspp.PPSSPP"
-              #"org.prismlauncher.PrismLauncher"
               "org.ryujinx.Ryujinx"
-              #"org.scummvm.ScummVM"
               "org.sonic3air.Sonic3AIR"
-              #"org.srb2.SRB2"
               "page.kramo.Cartridges"
               "sh.fhs.KatawaShoujoReEngineered"
-              #"tk.deat.Jazz2Resurrection"
               "vet.rsc.OpenRSC.Launcher"
             ];
           };
