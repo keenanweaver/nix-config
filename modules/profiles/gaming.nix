@@ -242,10 +242,6 @@ in
         # https://reddit.com/r/linux_gaming/comments/1c2ey6u/vrr_newbie_questions_plasma_6_wayland_amd/kzasm0j/?context=3#kzasm0j
         KWIN_DRM_DELAY_VRR_CURSOR_UPDATES = "1";
         KWIN_FORCE_SW_CURSOR = "1";
-        RPG2K_RTP_PATH = "${config.xdg.dataHome}/games/rpg-maker/RTP/2000";
-        RPG2K3_RTP_PATH = "${config.xdg.dataHome}/games/rpg-maker/RTP/2003";
-        # https://gitlab.com/OpenMW/openmw/-/issues/6185
-        OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
       };
     };
 
@@ -534,6 +530,12 @@ in
             })
           ]
           ++ lib.flatten (lib.attrValues p);
+        home.sessionVariables = {
+          RPG2K_RTP_PATH = "${config.xdg.dataHome}/games/rpg-maker/RTP/2000";
+          RPG2K3_RTP_PATH = "${config.xdg.dataHome}/games/rpg-maker/RTP/2003";
+          # https://gitlab.com/OpenMW/openmw/-/issues/6185
+          OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
+        };
         services = {
           flatpak = {
             overrides = {
