@@ -68,6 +68,7 @@ let
       inputs.ow-mod-man.packages.${system}.owmods-cli
       inputs.ow-mod-man.packages.${system}.owmods-gui
       # ja2-stracciatella
+      jazz2
       openjk # Jedi Academy
       openloco # Locomotion
       openmw
@@ -1029,7 +1030,7 @@ in
               #"org.srb2.SRB2"
               "page.kramo.Cartridges"
               "sh.fhs.KatawaShoujoReEngineered"
-              "tk.deat.Jazz2Resurrection"
+              #"tk.deat.Jazz2Resurrection"
               "vet.rsc.OpenRSC.Launcher"
             ];
           };
