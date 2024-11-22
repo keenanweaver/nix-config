@@ -117,11 +117,6 @@ in
                 filesystems = [ "${config.home.homeDirectory}/.local/bin" ];
               };
             };
-            "one.ablaze.floorp" = {
-              Environment = {
-                MOZ_ENABLE_WAYLAND = "1";
-              };
-            };
             "org.atheme.audacious" = {
               Context = {
                 sockets = [
@@ -158,12 +153,6 @@ in
                   "!xdg-desktop"
                   "!xdg-documents"
                 ];
-                /*
-                  sockets = [
-                                 "wayland"
-                                 "x11"
-                               ];
-                */
               };
             };
           };
