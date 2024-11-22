@@ -125,10 +125,12 @@ in
             jiq
             jq
             lazydocker
+            losslesscut-bin
             mkvtoolnix-cli
             projectm
             rustdesk-flutter
             streamrip
+            (vesktop.override { withMiddleClickScroll = true; })
             yq
             ### unix alternatives ###
             choose # cut

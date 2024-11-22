@@ -49,7 +49,6 @@ in
             "io.github.zen_browser.zen"
             "it.mijorus.gearlever"
             "net.mullvad.MullvadBrowser"
-            "no.mifi.losslesscut"
             "org.atheme.audacious"
             "org.filezillaproject.Filezilla"
             "org.fooyin.fooyin"
@@ -59,7 +58,6 @@ in
             "org.rncbc.qpwgraph"
             "org.signal.Signal"
             "org.squidowl.halloy"
-            "xyz.armcord.ArmCord"
           ];
           remotes = [
             {
@@ -93,7 +91,6 @@ in
                   ]
                   ++ lib.optionals vars.gaming [
                     "xdg-config/MangoHud:ro"
-                    "xdg-run/.flatpak/com.xyz.armcord.ArmCord:create"
                     "xdg-run/discord-ipc-*"
                   ];
                 /*

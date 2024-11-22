@@ -161,13 +161,6 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${pkgs.kdePackages.breeze-gtk}/share/themes/${GTK-THEME}";
               target = "${config.xdg.dataHome}/themes/${GTK-THEME}";
             };
-            catppuccin-armcord = {
-              enable = true;
-              text = ''
-                @import url("https://catppuccin.github.io/discord/dist/catppuccin-${flavor-lower}-${accent-lower}.theme.css");
-              '';
-              target = ".var/app/xyz.armcord.ArmCord/config/ArmCord/themes/${flavor-lower}.theme.css";
-            };
             catppuccin-ghostwriter = {
               enable = true;
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-ghostwriter}/colours/Catppuccin-Latte-${flavor-upper}-${accent-upper}.json";
@@ -199,6 +192,13 @@ in
               recursive = true;
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-powershell}";
               target = "${config.xdg.dataHome}/powershell/Modules/Catppuccin";
+            };
+            catppuccin-vesktop = {
+              enable = true;
+              text = ''
+                @import url("https://catppuccin.github.io/discord/dist/catppuccin-${flavor-lower}-${accent-lower}.theme.css");
+              '';
+              target = "${config.xdg.configHome}/vesktop/themes/${flavor-lower}.theme.css";
             };
             catppuccin-zen-flatpak = {
               enable = true;

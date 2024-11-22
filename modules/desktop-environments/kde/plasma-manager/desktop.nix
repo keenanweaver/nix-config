@@ -111,7 +111,6 @@
                     "org.kde.kdeconnect"
                     "indicator-solaar"
                     "tray-id" # Sunshine
-                    #"chrome_status_icon_1" # Armcord
                   ];
                   shown = [
                     "Akregator"
@@ -168,7 +167,7 @@
                 };
                 launchers = [
                   "applications:org.wezfurlong.wezterm.desktop"
-                  "applications:xyz.armcord.ArmCord.desktop"
+                  "applications:vesktop.desktop"
                   "applications:org.signal.Signal.desktop"
                   "applications:info.mumble.Mumble.desktop"
                   "applications:qobuz.desktop"
@@ -244,11 +243,11 @@
           };
         }
         {
-          description = "armcord";
+          description = "vesktop";
           match = {
             window-class = {
-              value = "armcord";
-              type = "regex";
+              value = "electron vesktop";
+              type = "exact";
             };
           };
           apply = {
