@@ -125,8 +125,8 @@ let
       vulkan-tools
       ## Launchers & utils
       # bottles
-      # cartridges
-      # heroic
+      cartridges
+      heroic
       # limo
       lutris
       inputs.umu.packages.${system}.umu
@@ -473,7 +473,7 @@ in
           wine-links-protonge-heroic = {
             enable = true;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
-            target = "${config.home.homeDirectory}/.var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-ge-custom";
+            target = "${config.xdg.configHome}/heroic/tools/proton/proton-ge-custom";
           };
           wine-links-protonge-lutris = {
             enable = true;
@@ -539,17 +539,6 @@ in
         services = {
           flatpak = {
             overrides = {
-              "com.heroicgameslauncher.hgl" = {
-                Context = {
-                  filesystems = [
-                    "${config.home.homeDirectory}/Games"
-                    "xdg-data/games"
-                  ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
               "com.usebottles.bottles" = {
                 Context = {
                   filesystems = [
@@ -628,29 +617,11 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "org.zdoom.Raze" = {
-                Context = {
-                  filesystems = [ "${config.home.homeDirectory}/Games/duke3d" ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
-              "page.kramo.Cartridges" = {
-                Context = {
-                  filesystems = [
-                    "${config.home.homeDirectory}/Games"
-                    "xdg-data/games"
-                    "xdg-data/steam"
-                  ];
-                };
-              };
             };
             packages = [
               "com.fightcade.Fightcade"
               "com.fightcade.Fightcade.Wine"
               "com.github.optyfr.JRomManager"
-              "com.heroicgameslauncher.hgl"
               "com.obsproject.Studio.Plugin.InputOverlay"
               "com.obsproject.Studio.Plugin.OBSVkCapture"
               "com.parsecgaming.parsec"
@@ -681,7 +652,6 @@ in
               "org.openjkdf2.OpenJKDF2"
               "org.ryujinx.Ryujinx"
               "org.sonic3air.Sonic3AIR"
-              "page.kramo.Cartridges"
               "sh.fhs.KatawaShoujoReEngineered"
               "vet.rsc.OpenRSC.Launcher"
             ];
@@ -703,7 +673,7 @@ in
                 path = "${config.home.homeDirectory}/Games/games/ludusavi";
                 format = {
                   chosen = "zip";
-                  zip.compression = "bzip2";
+                  zip.compression = "deflate";
                 };
               };
               customGames = [
@@ -734,7 +704,7 @@ in
               };
               roots = [
                 {
-                  path = "${config.home.homeDirectory}/.var/app/com.heroicgameslauncher.hgl/config/heroic";
+                  path = "${config.xdg.configHome}/heroic";
                   store = "heroic";
                 }
                 {
@@ -743,10 +713,6 @@ in
                 }
                 {
                   path = "${config.xdg.dataHome}/lutris";
-                  store = "lutris";
-                }
-                {
-                  path = "${config.home.homeDirectory}/.var/app/net.lutris.Lutris/data/lutris";
                   store = "lutris";
                 }
                 {

@@ -7,7 +7,7 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
 
 ## Set up directories
 ``` bash
-    mkdir -p /home/keenan/Games/{daikatana,descent/descent-1,descent/descent-2,quake/quake-1,quake/quake-3,RCT,morrowind,blake-stone/aog,blake-stone/ps,jagged-alliance-2/ja2,jagged-alliance-2/unfinished-business,jagged-alliance-2/wildfire,loco,the-force-engine,arx-fatalis}
+    mkdir -p /home/keenan/Games/{daikatana,descent/descent-1,descent/descent-2,quake/quake-1,quake/quake-3,rollercoaster-tycoon,morrowind,blake-stone/aog,blake-stone/ps,jagged-alliance-2/ja2,jagged-alliance-2/unfinished-business,jagged-alliance-2/wildfire,loco,the-force-engine,arx-fatalis}
     mkdir -p /home/keenan/.var/app/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/openjkdf2
     mkdir -p /home/keenan/.var/app/io.itch.tx00100xt.SeriousSamClassic-VK/data/Serious-Engine/{serioussam,serioussamse}
 ```
