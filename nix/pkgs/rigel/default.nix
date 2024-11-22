@@ -6,7 +6,6 @@
   git,
   SDL2,
   SDL2_mixer,
-  unstableGitUpdater,
   buildOpenGLES ? false,
 }:
 
@@ -32,8 +31,6 @@ stdenv.mkDerivation (finalAttrs: {
   cmakeFlags = [
     "-Wno-dev"
   ] ++ lib.optional buildOpenGLES "-DUSE_GL_ES=ON";
-
-  passthru.updateScript = unstableGitUpdater { };
 
   meta = {
     description = "Modern re-implementation of the classic DOS game Duke Nukem II";
