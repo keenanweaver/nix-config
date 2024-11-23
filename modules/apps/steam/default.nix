@@ -76,13 +76,11 @@ in
               text = ''
                 @nClientDownloadEnableHTTP2PlatformLinux 0
                 @fDownloadRateImprovementToAddAnotherConnection 1.0
-                @cMaxInitialDownloadSources 15
-                unShaderBackgroundProcessingThreads 16
               '';
               target = "${config.xdg.dataHome}/Steam/steam_dev.cfg";
             };
             steam-slow-fix-flatpak = {
-              enable = cfg.fixDownloadSpeed;
+              enable = false;
               text = config.home.file.steam-slow-fix.text;
               target = ".var/app/com.valvesoftware.Steam/.steam/steam/steam_dev.cfg";
             };

@@ -630,7 +630,6 @@ in
               "com.usebottles.bottles"
               "dev.opengoal.OpenGOAL"
               "info.urbanterror.UrbanTerror"
-              "io.github.Foldex.AdwSteamGtk"
               "io.github.limo_app.limo"
               "io.github.lxndr.gswatcher"
               "io.github.noxworld_dev.OpenNox"
