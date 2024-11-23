@@ -77,7 +77,7 @@ in
                   Environment = [
                     "WINDOW=DP-1" # Primary monitor
                     "CONTAINER=mp4"
-                    "QUALITY=50000"
+                    "QUALITY=ultra"
                     "FRAMERATE=60"
                     "FRAMERATE_MODE=vfr"
                     "BITRATE_MODE=cbr"
