@@ -41,7 +41,10 @@ in
       "scanner"
     ];
     home-manager.users.${username} = {
-      home.packages = with pkgs.kdePackages; [ skanlite ];
+      home.packages = with pkgs; [
+        onlyoffice-desktopeditors
+        kdePackages.skanlite
+      ];
     };
   };
 }

@@ -168,8 +168,8 @@ in
             };
             catppuccin-halloy = {
               enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-halloy}/catppuccin-${flavor-lower}.toml";
-              target = ".var/app/org.squidowl.halloy/config/halloy/themes/catppuccin-${flavor-lower}.toml";
+              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-halloy}/themes/catppuccin-${flavor-lower}.toml";
+              target = "${config.xdg.configHome}/halloy/themes/catppuccin-${flavor-lower}.toml";
             };
             catppuccin-heroic = {
               enable = vars.gaming;

@@ -40,24 +40,13 @@ in
       {
         services.flatpak = {
           packages = [
-            "chat.revolt.RevoltDesktop"
             "com.github.tchx84.Flatseal"
             "com.obsproject.Studio"
-            "fr.romainvigier.MetadataCleaner"
-            "io.github.dvlv.boxbuddyrs"
             "io.github.ungoogled_software.ungoogled_chromium"
             "io.github.zen_browser.zen"
-            "it.mijorus.gearlever"
             "net.mullvad.MullvadBrowser"
-            "org.atheme.audacious"
-            "org.filezillaproject.Filezilla"
             "org.fooyin.fooyin"
-            "org.kde.kdenlive"
-            "org.musicbrainz.Picard"
-            "org.onlyoffice.desktopeditors"
-            "org.rncbc.qpwgraph"
             "org.signal.Signal"
-            "org.squidowl.halloy"
           ];
           remotes = [
             {
@@ -93,14 +82,6 @@ in
                     "xdg-config/MangoHud:ro"
                     "xdg-run/discord-ipc-*"
                   ];
-                /*
-                  sockets = [
-                                 # Force Wayland by default
-                                 "wayland"
-                                 "!x11"
-                                 "!fallback-x11"
-                               ];
-                */
               };
               Environment = {
                 # Wrong cursor in flatpaks fix
@@ -112,32 +93,10 @@ in
                 MOZ_ENABLE_WAYLAND = "1";
               };
             };
-            "it.mijorus.gearlever" = {
-              Context = {
-                filesystems = [ "${config.home.homeDirectory}/.local/bin" ];
-              };
-            };
-            "org.atheme.audacious" = {
-              Context = {
-                sockets = [
-                  "!wayland" # For Winamp skins
-                ];
-              };
-            };
             "org.fooyin.fooyin" = {
               Context = {
                 filesystems = [
                   "/mnt/crusader/Media/Audio/Music"
-                  "${config.home.homeDirectory}/Music"
-                ];
-              };
-            };
-            "org.musicbrainz.Picard" = {
-              Context = {
-                filesystems = [
-                  "/mnt/crusader/Media/Audio/Music"
-                  "!home"
-                  "xdg-download"
                   "${config.home.homeDirectory}/Music"
                 ];
               };

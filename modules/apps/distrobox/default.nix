@@ -36,7 +36,10 @@ in
   };
   config = lib.mkIf cfg.enable {
     environment = {
-      systemPackages = with pkgs; [ distrobox_git ];
+      systemPackages = with pkgs; [
+        boxbuddy
+        distrobox_git
+      ];
     };
     home-manager.users.${username} =
       {
