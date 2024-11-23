@@ -2,6 +2,7 @@
   cherry-doom = prev.callPackage ./cherry-doom { };
   doom64ex-plus = prev.callPackage ./doom64ex-plus { };
   gsr = prev.callPackage ./gpu-screen-recorder { };
+  hypseus-singe = prev.callPackage ./hypseus-singe { };
   klassy = prev.callPackage ./klassy { };
   nugget-doom = prev.callPackage ./nugget-doom { };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
@@ -16,6 +17,7 @@
       };
     }
   );
+  quake-injector = prev.quake-injector.callPackage ./quake-injector { };
   relive = prev.callPackage ./relive { };
   rigel-engine = prev.callPackage ./rigel { };
 })

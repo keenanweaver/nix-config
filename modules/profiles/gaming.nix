@@ -24,6 +24,7 @@ let
       # odamex
       prboom-plus
       rbdoom-3-bfg
+      # slade
       woof-doom
       zandronum
       zandronum-server
@@ -44,6 +45,7 @@ let
       ## Quake
       ironwail
       q2pro
+      quake-injector
       # trenchbroom
       ## Arma
       #arma3-unix-launcher
@@ -61,10 +63,10 @@ let
       abuse
       am2rlauncher
       arx-libertatis # Arx Fatalis
-      augustus
+      augustus # Caesar 3
       clonehero # Guitar Hero
-      corsix-th
-      devilutionx
+      corsix-th # Theme Hospital
+      devilutionx # Diablo
       exult # Ultima VII
       inputs.ow-mod-man.packages.${system}.owmods-cli
       inputs.ow-mod-man.packages.${system}.owmods-gui
@@ -78,15 +80,16 @@ let
       openttd
       opentyrian
       openxray # STALKER
-      prismlauncher
-      #relive # Oddworld
+      prismlauncher # MineCraft
+      relive # Oddworld
       ringracers
       runelite # RuneScape
       space-station-14-launcher
       srb2
-      theforceengine
+      theforceengine # Dark Forces / Outlaws
+      urbanterror
       wipeout-rewrite # Wipeout
-      xivlauncher
+      xivlauncher # FF XIV
       vvvvvv
     ];
     tools = [
@@ -98,9 +101,8 @@ let
       dolphin-emu
       duckstation
       easyrpg-player
-      # easyrpg-player
       fsuae-launcher
-      # hypseus-singe
+      hypseus-singe
       lime3ds
       mame
       # mesen
@@ -148,6 +150,7 @@ let
       gst_all_1.gst-libav
       gst_all_1.gst-vaapi
       mpg123
+      parsec-bin
       x264
       x265
       xvidcore
@@ -252,11 +255,11 @@ in
       #xpadneo.enable = true;
     };
 
-    # Trenchbroom
+    # Trenchbroom / SLADE
     /*
       nixpkgs.config.permittedInsecurePackages = [
-        "freeimage-unstable-2021-11-01"
-      ];
+         "freeimage-unstable-2021-11-01"
+       ];
     */
 
     networking = {
@@ -556,17 +559,6 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "com.valvesoftware.Steam" = {
-                Context = {
-                  filesystems = [
-                    "${config.home.homeDirectory}/Games"
-                    "xdg-data/games"
-                  ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
               "dev.opengoal.OpenGOAL" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/opengoal" ];
@@ -594,16 +586,6 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "net.mancubus.SLADE" = {
-                Context = {
-                  filesystems = [
-                    "${config.home.homeDirectory}/.slade3"
-                    "${config.home.homeDirectory}/.slade"
-                    "${config.home.homeDirectory}/Games/doom"
-                    "!home"
-                  ];
-                };
-              };
               "org.ryujinx.Ryujinx" = {
                 Context = {
                   filesystems = [
@@ -624,12 +606,10 @@ in
               "com.github.optyfr.JRomManager"
               "com.obsproject.Studio.Plugin.InputOverlay"
               "com.obsproject.Studio.Plugin.OBSVkCapture"
-              "com.parsecgaming.parsec"
               "com.qzandronum.Q-Zandronum"
               "com.richwhitehouse.BigPEmu"
               "com.usebottles.bottles"
               "dev.opengoal.OpenGOAL"
-              "info.urbanterror.UrbanTerror"
               "io.github.limo_app.limo"
               "io.github.lxndr.gswatcher"
               "io.github.noxworld_dev.OpenNox"
@@ -637,7 +617,6 @@ in
               "io.itch.tx00100xt.SeriousSamClassic-VK"
               "io.openrct2.OpenRCT2"
               "net.darkradiant.DarkRadiant"
-              "net.mancubus.SLADE"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
               "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08"
