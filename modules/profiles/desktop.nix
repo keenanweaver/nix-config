@@ -27,7 +27,7 @@ in
     vscode.enable = true;
     wezterm.enable = true;
     wireshark.enable = true;
-    zed.enable = true;
+    zed.enable = false;
 
     hardware = {
       bluetooth = {
@@ -76,6 +76,8 @@ in
       }:
       {
         home.packages = with pkgs; [
+          audacious
+
           (writeShellApplication {
             name = "bootstrap-baremetal";
             runtimeInputs = with pkgs; [
@@ -89,9 +91,17 @@ in
             '';
           })
           cyanrip
+          filezilla
+          gearlever
+          halloy
+          kdePackages.kdenlive
           mangareader
+          metadata-cleaner
           mousai
           neo
+          picard
+          qpwgraph
+          revolt-desktop
         ];
         xdg = {
           desktopEntries = {
