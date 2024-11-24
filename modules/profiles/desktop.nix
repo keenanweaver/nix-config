@@ -105,38 +105,52 @@ in
         ];
         xdg = {
           desktopEntries = {
-            foobar2000 = {
-              name = "foobar2000";
-              comment = "Launch foobar2000 using Bottles.";
-              exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p foobar2000 -b foobar2000";
-              icon = "${config.home.homeDirectory}/Games/Bottles/foobar2000/icons/foobar2000.png";
-              categories = [
-                "AudioVideo"
-                "Player"
-                "Audio"
-              ];
-              noDisplay = false;
-              startupNotify = true;
-              settings = {
-                StartupWMClass = "foobar2000";
+            foobar2000 =
+              let
+                icon = pkgs.fetchurl {
+                  url = "https://www.svgrepo.com/show/349365/foobar2000.svg";
+                  hash = "sha256-JoZPUnd9wM4N+i1MA369s46r9JZPjp0lJg7AGCmmMOQ=";
+                };
+              in
+              {
+                name = "foobar2000";
+                comment = "Launch foobar2000 using Bottles.";
+                exec = "bottles-cli run -p foobar2000 -b foobar2000";
+                icon = "${icon}";
+                categories = [
+                  "AudioVideo"
+                  "Player"
+                  "Audio"
+                ];
+                noDisplay = false;
+                startupNotify = true;
+                settings = {
+                  StartupWMClass = "foobar2000";
+                };
               };
-            };
-            qobuz = {
-              name = "Qobuz";
-              comment = "Launch Qobuz using Bottles.";
-              exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p Qobuz -b Qobuz";
-              icon = "${config.home.homeDirectory}/Games/Bottles/Qobuz/icons/Qobuz.png";
-              categories = [
-                "AudioVideo"
-                "Player"
-                "Audio"
-              ];
-              noDisplay = false;
-              startupNotify = true;
-              settings = {
-                StartupWMClass = "Qobuz";
+            qobuz =
+              let
+                icon = pkgs.fetchurl {
+                  url = "https://www.svgrepo.com/show/504778/qobuz.svg";
+                  hash = "sha256-JoZPUnd9wM4N+i1MA369s46r9JZPjp0lJg7AGCmmMOQ=";
+                };
+              in
+              {
+                name = "Qobuz";
+                comment = "Launch Qobuz using Bottles.";
+                exec = "bottles-cli run -p Qobuz -b Qobuz";
+                icon = "${icon}";
+                categories = [
+                  "AudioVideo"
+                  "Player"
+                  "Audio"
+                ];
+                noDisplay = false;
+                startupNotify = true;
+                settings = {
+                  StartupWMClass = "Qobuz";
+                };
               };
-            };
           };
           mimeApps =
             let
