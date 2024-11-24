@@ -131,8 +131,8 @@ in
             qobuz =
               let
                 icon = pkgs.fetchurl {
-                  url = "https://www.svgrepo.com/show/504778/qobuz.svg";
-                  hash = "sha256-hMEpTNjcwx9ydMlWeCzJzr1IxI4zHV8CsTSdea55xjg=";
+                  url = "https://img.icons8.com/ios/50/FFFFFF/qobuz.png";
+                  hash = "sha256-G7q/S8Svta+zd/ayv+GEE7luHQqnRDCxHe2uIuCecig=";
                 };
               in
               {
