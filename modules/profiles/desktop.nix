@@ -132,7 +132,7 @@ in
               let
                 icon = pkgs.fetchurl {
                   url = "https://www.svgrepo.com/show/504778/qobuz.svg";
-                  hash = "sha256-JoZPUnd9wM4N+i1MA369s46r9JZPjp0lJg7AGCmmMOQ=";
+                  hash = "sha256-hMEpTNjcwx9ydMlWeCzJzr1IxI4zHV8CsTSdea55xjg=";
                 };
               in
               {
