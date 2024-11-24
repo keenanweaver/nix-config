@@ -32,17 +32,19 @@ in
       extest.enable = true;
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
-        # Chaotic packages
         luxtorpeda
+        # proton-ge-bin # Pending https://github.com/NixOS/nixpkgs/pull/355066
         proton-ge-custom
       ];
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
       package = pkgs.steam.override {
         extraBwrapArgs = [ "--unsetenv TZ" ]; # https://github.com/NixOS/nixpkgs/issues/338266#issuecomment-2419568331
-        extraEnv = {
-          PULSE_SINK = "Game";
-        };
+        /*
+          extraEnv = {
+                 PULSE_SINK = "Game";
+               };
+        */
         extraLibraries =
           pkgs: with pkgs; [
             alsa-lib
