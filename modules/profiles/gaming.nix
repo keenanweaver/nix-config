@@ -126,7 +126,7 @@ let
       libstrangle
       vulkan-tools
       ## Launchers & utils
-      # bottles
+      bottles
       cartridges
       heroic
       # limo
@@ -155,7 +155,7 @@ let
       x265
       xvidcore
       ## Wine
-      # inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
+      inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
       winetricks
       wineWowPackages.stagingFull
       ## One-and-dones
@@ -471,7 +471,7 @@ in
           wine-links-protonge-bottles = {
             enable = true;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
-            target = "${config.home.homeDirectory}/.var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-custom";
+            target = "${config.xdg.dataHome}/bottles/runners/proton-ge-custom";
           };
           wine-links-protonge-heroic = {
             enable = true;
@@ -542,23 +542,6 @@ in
         services = {
           flatpak = {
             overrides = {
-              "com.usebottles.bottles" = {
-                Context = {
-                  filesystems = [
-                    "${config.home.homeDirectory}/Games"
-                    "/mnt/crusader/Games"
-                    "${config.home.homeDirectory}/.var/app/com.valvesoftware.Steam"
-                    "${config.home.homeDirectory}/.var/app/net.lutris.Lutris"
-                    "xdg-data/applications"
-                    "xdg-data/games"
-                    "xdg-data/lutris"
-                    "xdg-data/Steam"
-                  ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
               "dev.opengoal.OpenGOAL" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/opengoal" ];
@@ -608,7 +591,6 @@ in
               "com.obsproject.Studio.Plugin.OBSVkCapture"
               "com.qzandronum.Q-Zandronum"
               "com.richwhitehouse.BigPEmu"
-              "com.usebottles.bottles"
               "dev.opengoal.OpenGOAL"
               "io.github.limo_app.limo"
               "io.github.lxndr.gswatcher"
