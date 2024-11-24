@@ -502,11 +502,18 @@ in
               text = ''
                 ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
                 steamtinkerlaunch compat add
+                sd 'SKIPINTDEPCHECK="0"' 'SKIPINTDEPCHECK="1"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
+                sd 'USEGAMEMODERUN="0"' 'USEGAMEMODERUN="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                sd 'USEOBSCAP="0"' 'USEOBSCAP="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                sd 'USEMANGOHUD="0"' 'USEMANGOHUD="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                sd 'MAHUDLSYM="0"' 'MAHUDLSYM="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                sd 'USERAYTRACING="0"' 'USERAYTRACING="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                echo 'PULSE_SINK=Game' > ${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/customvars/global-custom-vars.conf
+                fd . '${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/id' -e .conf -x rm {}
                 ## DREAMM
-                xh get -d -o ${config.home.homeDirectory}/Games/dreamm.tgz https://aarongiles.com/dreamm/releases/dreamm-3.0.1-linux-x64.tgz
+                xh get -d -o ${config.home.homeDirectory}/Games/dreamm.tgz https://aarongiles.com/dreamm/releases/dreamm-3.0.3-linux-x64.tgz
                 fd dreamm -e tgz ${config.home.homeDirectory}/Games -x ouch d {} -d ${config.home.homeDirectory}/Games
                 ## SheepShaver
-                sd '-SKIPINTDEPCHECK="0"' '-SKIPINTDEPCHECK="1"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
                 xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/sheepshaver.appimage
                 ## MoonDeck Buddy
                 xh https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/moondeckbuddy.appimage
