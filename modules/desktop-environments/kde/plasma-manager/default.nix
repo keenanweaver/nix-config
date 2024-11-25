@@ -361,6 +361,7 @@
           };
           workspace = {
             clickItemTo = "select";
+            enableMiddleClickPaste = false;
             tooltipDelay = 300;
           };
         };
