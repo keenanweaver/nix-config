@@ -40,11 +40,6 @@ in
       localNetworkGameTransfers.openFirewall = true;
       package = pkgs.steam.override {
         extraBwrapArgs = [ "--unsetenv TZ" ]; # https://github.com/NixOS/nixpkgs/issues/338266#issuecomment-2419568331
-        /*
-          extraEnv = {
-                 PULSE_SINK = "Game";
-               };
-        */
         extraLibraries =
           pkgs: with pkgs; [
             alsa-lib
