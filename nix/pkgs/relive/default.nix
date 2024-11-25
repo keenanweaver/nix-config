@@ -40,10 +40,21 @@ stdenv.mkDerivation (finalAttrs: {
     zenity
   ];
 
+  postPatch = ''
+    substituteInPlace assets/relive-ao assets/relive-ae \
+      --replace-fail "zenity" "${lib.getExe' zenity "zenity"}" \
+      --replace-fail "  relive" "  $out/bin/relive"
+    substituteInPlace assets/relive-ao.desktop assets/relive-ae.desktop \
+      --replace-fail "/usr/bin" "$out/bin"
+  '';
+
   meta = {
     description = "Re-implementation of Oddworld: Abe's Exoddus and Oddworld: Abe's Oddysee";
     homepage = "https://github.com/AliveTeam/alive_reversing";
-    maintainers = with lib.maintainers; [ ByteSudoer ];
+    maintainers = with lib.maintainers; [
+      ByteSudoer
+      keenanweaver
+    ];
     license = lib.licenses.mit;
     mainProgram = "relive";
   };

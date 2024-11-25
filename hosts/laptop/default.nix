@@ -1,4 +1,8 @@
-{ lib, username, ... }:
+{
+  lib,
+  username,
+  ...
+}:
 {
   imports = [
     # System

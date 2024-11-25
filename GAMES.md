@@ -72,6 +72,9 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
     , innoextract -g '/mnt/crusader/Games/Other/GOG/the_elder_scrolls_iii_morrowind_goty_edition_game/setup_the_elder_scrolls_iii_morrowind_goty_1.6.0.1820_gog_0.1_(77582).exe' -d /home/keenan/Games/morrowind
     ## Nox
     , innoextract -g '/mnt/crusader/Games/Other/GOG/nox/setup_nox_2.0.0.20.exe' -d /home/keenan/Games/nox && mv /home/keenan/Games/nox/app/* /home/keenan/Games/nox && rm -rf /home/keenan/Games/nox/{app,tmp}
+    ## Oddworld
+    , innoextract "/mnt/crusader/Games/Other/Zoom/Oddworld-Abe's-Oddysee-English-Setup-1.5.exe" -d /home/keenan/Games/oddworld/ao && mv /home/keenan/Games/oddworld/ao/app/* /home/keenan/Games/oddworld/ao && rm -rf /home/keenan/Games/oddworld/ao/{app,tmp}
+    , innoextract "/mnt/crusader/Games/Other/Zoom/Oddworld-Abe's-Exoddus-English-Setup-1.3.exe" -d /home/keenan/Games/oddworld/ae && mv /home/keenan/Games/oddworld/ae/app/* /home/keenan/Games/oddworld/ae && rm -rf /home/keenan/Games/oddworld/ae/{app,tmp}
     ## Outlaws
     , innoextract -g '/mnt/crusader/Games/Other/GOG/outlaws_a_handful_of_missions/setup_outlaws_2.0_hotfix_(18728).exe' -d /home/keenan/Games/the-force-engine/ol && mv /home/keenan/Games/the-force-engine/ol/app/* /home/keenan/Games/the-force-engine/ol && rm -rf /home/keenan/Games/the-force-engine/ol/{app,tmp}
     ## Perfect Dark
