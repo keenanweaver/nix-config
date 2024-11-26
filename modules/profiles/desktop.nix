@@ -77,7 +77,7 @@ in
       {
         home.packages = with pkgs; [
           audacious
-
+          audacious-plugins
           (writeShellApplication {
             name = "bootstrap-baremetal";
             runtimeInputs = with pkgs; [
@@ -95,13 +95,17 @@ in
           gearlever
           halloy
           kdePackages.kdenlive
+          losslesscut-bin
           mangareader
           metadata-cleaner
           mousai
           neo
           picard
+          projectm
           qpwgraph
           revolt-desktop
+          rustdesk-flutter
+          (vesktop.override { withMiddleClickScroll = true; })
         ];
         xdg = {
           desktopEntries = {
