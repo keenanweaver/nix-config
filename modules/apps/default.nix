@@ -42,7 +42,7 @@
     ./nushell
     ./nvim
     ./obs
-    #./pay-respects
+    ./pay-respects
     ./ripgrep
     ./solaar
     ./ssh
