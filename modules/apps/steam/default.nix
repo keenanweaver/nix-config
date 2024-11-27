@@ -29,7 +29,6 @@ in
     programs.java.enable = true;
     programs.steam = {
       enable = cfg.enableNative;
-      extest.enable = true;
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         luxtorpeda
@@ -75,11 +74,6 @@ in
                 @fDownloadRateImprovementToAddAnotherConnection 1.0
               '';
               target = "${config.xdg.dataHome}/Steam/steam_dev.cfg";
-            };
-            steam-slow-fix-flatpak = {
-              enable = false;
-              text = config.home.file.steam-slow-fix.text;
-              target = ".var/app/com.valvesoftware.Steam/.steam/steam/steam_dev.cfg";
             };
           };
           packages = with pkgs; [
