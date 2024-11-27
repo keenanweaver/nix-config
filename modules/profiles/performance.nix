@@ -39,8 +39,7 @@ in
           SystemMaxUse=50M
         '';
       };
-      # Pending https://github.com/NixOS/nixpkgs/pull/352300
-      scx.enable = true;
+      # scx.enable = true;
       udev = {
         extraRules = ''
           # https://wiki.archlinux.org/title/Improving_performance#Changing_I/O_scheduler
