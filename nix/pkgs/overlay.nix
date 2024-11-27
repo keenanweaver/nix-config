@@ -19,6 +19,5 @@
   );
   quake-injector = prev.callPackage ./quake-injector { };
   relive = prev.callPackage ./relive { };
-  rigel-engine = prev.callPackage ./rigel { };
   woof-doom = prev.callPackage ./woof-doom { };
 })
