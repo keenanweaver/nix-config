@@ -1,6 +1,4 @@
 (final: prev: {
-  bottles = prev.callPackage ./bottles/bottles.nix { };
-  bottles-unwrapped = prev.callPackage ./bottles/bottles-unwrapped.nix { };
   cherry-doom = prev.callPackage ./cherry-doom { };
   doom64ex-plus = prev.callPackage ./doom64ex-plus { };
   gsr = prev.callPackage ./gpu-screen-recorder { };
