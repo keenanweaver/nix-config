@@ -6,6 +6,7 @@
   klassy = prev.callPackage ./klassy { };
   nugget-doom = prev.callPackage ./nugget-doom { };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
+  obs-input-overlay = prev.qt6.callPackage ./obs-input-overlay { };
   plymouth = prev.plymouth.overrideAttrs (
     { src, ... }:
     {
