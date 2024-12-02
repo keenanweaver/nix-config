@@ -97,16 +97,8 @@ in
         liberation_ttf
         material-design-icons
         monaspace
-        (nerdfonts.override {
-          fonts = [
-            "FiraCode"
-            "FiraMono"
-            "IBMPlexMono"
-            "Iosevka"
-            "IosevkaTerm"
-            "JetBrainsMono"
-          ];
-        })
+        nerd-fonts.iosevka
+        nerd-fonts.jetbrains-mono
         noto-fonts
         noto-fonts-cjk-sans
         noto-fonts-emoji
