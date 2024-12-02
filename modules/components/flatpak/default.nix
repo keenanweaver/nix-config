@@ -45,7 +45,6 @@ in
             "io.github.ungoogled_software.ungoogled_chromium"
             "io.github.zen_browser.zen"
             "net.mullvad.MullvadBrowser"
-            "org.fooyin.fooyin"
             "org.signal.Signal"
           ];
           remotes = [
@@ -91,14 +90,6 @@ in
             "io.github.zen_browser.zen" = {
               Environment = {
                 MOZ_ENABLE_WAYLAND = "1";
-              };
-            };
-            "org.fooyin.fooyin" = {
-              Context = {
-                filesystems = [
-                  "/mnt/crusader/Media/Audio/Music"
-                  "${config.home.homeDirectory}/Music"
-                ];
               };
             };
             "org.signal.Signal" = {

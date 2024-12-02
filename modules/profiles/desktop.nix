@@ -91,6 +91,7 @@ in
           })
           cyanrip
           filezilla
+          fooyin
           gearlever
           halloy
           kdePackages.kdenlive
