@@ -18,7 +18,5 @@
       };
     }
   );
-  quake-injector = prev.callPackage ./quake-injector { };
   relive = prev.callPackage ./relive { };
-  woof-doom = prev.callPackage ./woof-doom { };
 })
