@@ -14,6 +14,7 @@ let
       cherry-doom
       # chocolate-doom
       crispy-doom
+      # darkradiant
       dhewm3
       doom64ex-plus
       doomrunner
@@ -33,7 +34,7 @@ let
       fallout2-ce
       ## Freespace
       dxx-rebirth
-      knossosnet
+      #knossosnet
       ## HOMM
       fheroes2
       vcmi
@@ -61,7 +62,7 @@ let
       iortcw
       ## Other
       abuse
-      am2rlauncher
+      #am2rlauncher
       arx-libertatis # Arx Fatalis
       augustus # Caesar 3
       clonehero # Guitar Hero
@@ -72,6 +73,7 @@ let
       inputs.ow-mod-man.packages.${system}.owmods-gui
       ja2-stracciatella
       jazz2
+      katawa-shoujo-re-engineered
       openjk # Jedi Academy
       openloco # Locomotion
       openmw
@@ -84,7 +86,7 @@ let
       relive # Oddworld
       ringracers
       runelite # RuneScape
-      space-station-14-launcher
+      #space-station-14-launcher
       srb2
       theforceengine # Dark Forces / Outlaws
       urbanterror
@@ -110,7 +112,14 @@ let
       pcsx2
       pegasus-frontend
       ppsspp
-      retroarchFull
+      (retroarch.withCores (
+        cores: with cores; [
+          beetle-saturn
+          blastem
+          flycast
+          mgba
+        ]
+      ))
       rpcs3
       scummvm
       supermodel
@@ -123,14 +132,17 @@ let
       xboxdrv
       ## Graphics
       glxinfo
-      libstrangle
       vulkan-tools
       ## Launchers & utils
       bottles
       cartridges
       heroic
       # limo
-      lutris
+      (lutris.override {
+        extraPkgs = pkgs: [
+          libstrangle
+        ];
+      })
       inputs.umu.packages.${system}.umu
       ## Modding
       # nexusmods-app-unfree
@@ -149,6 +161,7 @@ let
       gst_all_1.gst-plugins-viperfx
       gst_all_1.gst-libav
       gst_all_1.gst-vaapi
+      gswatcher
       mpg123
       parsec-bin
       x264
@@ -255,12 +268,10 @@ in
       #xpadneo.enable = true;
     };
 
-    # Trenchbroom / SLADE
-    /*
-      nixpkgs.config.permittedInsecurePackages = [
-         "freeimage-unstable-2021-11-01"
-       ];
-    */
+    nixpkgs.config.permittedInsecurePackages = [
+      "dotnet-runtime-6.0.36" # AM2RLauncher / Knossos.NET / Space-Station 14
+      #"freeimage-unstable-2021-11-01" # Trenchbroom / SLADE
+    ];
 
     networking = {
       firewall = {
@@ -508,6 +519,7 @@ in
                 sd 'USEMANGOHUD="0"' 'USEMANGOHUD="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
                 sd 'MAHUDLSYM="0"' 'MAHUDLSYM="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
                 sd 'USERAYTRACING="0"' 'USERAYTRACING="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                sd 'USEPROTON="*"' 'USEPROTON="Proton-GE"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
                 echo 'PULSE_SINK=Game' > ${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/customvars/global-custom-vars.conf
                 fd . '${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/id' -e .conf -x rm {}
                 ## DREAMM
@@ -600,12 +612,10 @@ in
               "com.richwhitehouse.BigPEmu"
               "dev.opengoal.OpenGOAL"
               "io.github.limo_app.limo"
-              "io.github.lxndr.gswatcher"
               "io.github.noxworld_dev.OpenNox"
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
               "io.openrct2.OpenRCT2"
-              "net.darkradiant.DarkRadiant"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
               "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08"
@@ -619,7 +629,6 @@ in
               "org.openjkdf2.OpenJKDF2"
               "org.ryujinx.Ryujinx"
               "org.sonic3air.Sonic3AIR"
-              "sh.fhs.KatawaShoujoReEngineered"
               "vet.rsc.OpenRSC.Launcher"
             ];
           };
