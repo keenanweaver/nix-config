@@ -67,6 +67,8 @@
     wireless.enable = false;
   };
 
+  powerManagement.cpuFreqGovernor = "ondemand";
+
   services = {
     beesd = {
       filesystems = {
@@ -122,7 +124,11 @@
         };
       };
     };
-
+    scx = {
+      enable = true;
+      package = pkgs.scx.rustscheds;
+      scheduler = "scx_rusty";
+    };
     udev = {
       # TODO: Remove when Linux 6.13 is out: https://www.phoronix.com/news/AMDGPU-More-Aggressive-Power
       extraRules = ''
