@@ -32,8 +32,8 @@ in
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         luxtorpeda
-        # proton-ge-bin # Pending https://github.com/NixOS/nixpkgs/pull/355066
-        proton-ge-custom
+        proton-ge-bin
+        #proton-ge-custom
       ];
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
