@@ -67,6 +67,10 @@ in
               display_server # Doesn't work when legacy_layout=0
               gl_vsync=1
               vsync=2 # https://gitlab.freedesktop.org/drm/amd/-/issues/3166#note_2277578
+              custom_text=P-State
+              exec=${pkgs.coreutils}/bin/cat /sys/devices/system/cpu/amd_pstate/status
+              custom_text=P-State EPP
+              exec=${pkgs.coreutils}/bin/cat /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference
               custom_text=Distro
               exec=${pkgs.ripgrep}/bin/rg -w PRETTY_NAME /etc/os-release | ${pkgs.coreutils}/bin/cut -d '=' -f2 | ${pkgs.coreutils}/bin/tr -d '"'
               custom_text=Distrobox
