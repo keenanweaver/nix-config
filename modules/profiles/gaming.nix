@@ -401,6 +401,27 @@ in
             target = "${config.xdg.configHome}/autostart/nuked.desktop";
             executable = true;
           };
+          desktop-entry-86box = {
+            enable = true;
+            text = ''
+              [Desktop Entry]
+              Categories=System;Emulator;
+              Comment=An emulator for classic IBM PC clones
+              Exec=86Box
+              GenericName=Classic PC emulator
+              Icon=net.86box.86Box
+              Name=86Box
+              NoDisplay=false
+              Path=${config.home.homeDirectory}/Games/games/86box/win98se/
+              StartupNotify=true
+              Terminal=false
+              TerminalOptions=
+              Type=Application
+              X-KDE-SubstituteUID=false
+              X-KDE-Username=
+            '';
+            target = "${config.xdg.dataHome}/applications/net.86box.86Box.desktop";
+          };
           desktop-entry-dxvk =
             let
               dxvkConfig = pkgs.fetchurl {
