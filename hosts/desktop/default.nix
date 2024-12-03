@@ -1,7 +1,6 @@
 {
   lib,
   username,
-  pkgs,
   ...
 }:
 {
@@ -124,11 +123,6 @@
         };
       };
     };
-    scx = {
-      enable = true;
-      package = pkgs.scx.rustscheds;
-      scheduler = "scx_rusty";
-    };
     udev = {
       # TODO: Remove when Linux 6.13 is out: https://www.phoronix.com/news/AMDGPU-More-Aggressive-Power
       extraRules = ''
@@ -136,7 +130,6 @@
         # https://gitlab.freedesktop.org/drm/amd/-/issues/1500#note_1854170
         KERNEL=="card1", SUBSYSTEM=="drm", DRIVERS=="amdgpu", ATTR{device/power_dpm_force_performance_level}="manual", ATTR{device/pp_power_profile_mode}="1"
       '';
-      packages = with pkgs; [ android-udev-rules ];
     };
   };
 

@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  pkgs,
   ...
 }:
 let
@@ -39,7 +40,11 @@ in
           SystemMaxUse=50M
         '';
       };
-      # scx.enable = true;
+      scx = {
+        enable = true;
+        package = pkgs.scx.rustscheds;
+        scheduler = "scx_rusty";
+      };
       udev = {
         extraRules = ''
           # https://wiki.archlinux.org/title/Improving_performance#Changing_I/O_scheduler
@@ -52,6 +57,7 @@ in
           # NVMe SSD
           ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
         '';
+        packages = with pkgs; [ android-udev-rules ];
       };
     };
     systemd = {
