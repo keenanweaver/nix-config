@@ -32,8 +32,8 @@ in
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         luxtorpeda
-        proton-ge-bin
-        #proton-ge-custom
+        #proton-ge-bin
+        proton-ge-custom
       ];
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;

@@ -125,11 +125,11 @@ let
       supermodel
       xemu
       ## Input
-      joystickwake
+      #joystickwake
       # makima
       oversteer
       sc-controller
-      xboxdrv
+      #xboxdrv
       ## Graphics
       glxinfo
       vulkan-tools
@@ -547,18 +547,18 @@ in
           };
           wine-links-protonge-bottles = {
             enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin}/bin";
-            target = "${config.xdg.dataHome}/bottles/runners/proton-ge-bin";
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
+            target = "${config.xdg.dataHome}/bottles/runners/proton-ge-custom";
           };
           wine-links-protonge-heroic = {
             enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin}/bin";
-            target = "${config.xdg.configHome}/heroic/tools/proton/proton-ge-bin";
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
+            target = "${config.xdg.configHome}/heroic/tools/proton/proton-ge-custom";
           };
           wine-links-protonge-lutris = {
             enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin}/bin";
-            target = "${config.xdg.dataHome}/lutris/runners/wine/proton-ge-bin";
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
+            target = "${config.xdg.dataHome}/lutris/runners/wine/proton-ge-custom";
           };
         };
         home.packages =
