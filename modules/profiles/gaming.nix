@@ -458,14 +458,61 @@ in
               '';
               target = "${config.xdg.dataHome}/templates/vkBasalt.desktop";
             };
-
+          desktop-entry-obs-flatpak = {
+            enable = true;
+            text = ''
+              [Desktop Entry]
+              Categories=AudioVideo;Recorder;
+              Comment[en_US]=Free and Open Source Streaming/Recording Software
+              Comment=Free and Open Source Streaming/Recording Software
+              Exec=env QT_QPA_PLATFORM=xcb GDK_BACKEND=x11 flatpak run --branch=stable --arch=x86_64 --command=obs com.obsproject.Studio --disable-shutdown-check
+              GenericName[en_US]=Streaming/Recording Software
+              GenericName=Streaming/Recording Software
+              Icon=com.obsproject.Studio
+              MimeType=
+              Name[en_US]=OBS Studio
+              Name=OBS Studio
+              NoDisplay=false
+              Path=
+              StartupNotify=true
+              StartupWMClass=obs
+              Terminal=false
+              TerminalOptions=
+              Type=Application
+              Version=1.0
+              X-Flatpak=com.obsproject.Studio
+              X-KDE-SubstituteUID=false
+              X-KDE-Username=
+            '';
+            target = "${config.xdg.dataHome}/applications/com.obsproject.Studio.desktop";
+          };
+          desktop-entry-quakeinjector = {
+            enable = true;
+            text = ''
+              [Desktop Entry]
+              Categories=Game
+              Comment=Download, install and play quake singleplayer maps from the quaddicted.com archive
+              Exec=quake-injector
+              Icon=quake-injector
+              Name=Quake Injector
+              NoDisplay=false
+              Path=${config.home.homeDirectory}/games/quake/quake-1/injector/
+              StartupNotify=true
+              Terminal=false
+              TerminalOptions=
+              Type=Application
+              Version=1.4
+              X-KDE-SubstituteUID=false
+              X-KDE-Username=
+            '';
+            target = "${config.xdg.dataHome}/applications/quake-injector.desktop";
+          };
           roms-mt32-exodos = {
             enable = true;
             recursive = true;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
             target = "${config.xdg.configHome}/dosbox/mt32-roms";
           };
-
           wine-controller-proton = {
             # https://selfmadepenguin.wordpress.com/2024/02/14/how-i-solved-my-gamecontroller-problems/
             # Import with: wine start regedit.exe /home/keenan/.wine/controller-proton.reg
