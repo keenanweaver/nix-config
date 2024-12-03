@@ -67,7 +67,7 @@ in
       };
       overlays = [
         inputs.nur.overlay
-        (import ../../../nix/pkgs/overlay.nix)
+        (import ../../../packages/overlay.nix)
       ];
     };
 
