@@ -149,7 +149,7 @@ let
       r2modman
       ## Other
       adwsteamgtk
-      chiaki4deck
+      chiaki-ng
       ffmpeg
       gst_all_1.gstreamer
       gst_all_1.gstreamermm
@@ -239,14 +239,12 @@ in
         "gcadapter_oc"
       ];
       kernelParams = [
-        #"split_lock_detect=off"
-        "usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
+        #"usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
         "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
         "amdgpu.mcbp=0"
       ];
       kernel = {
         sysctl = {
-          #"kernel.split_lock_mitigate" = 0; # https://reddit.com/r/linux_gaming/comments/1bgqfuk/god_of_war_poor_performance/kv8xsae/?context=3
           "vm.max_map_count" = 2147483642;
           "vm.mmap_min_addr" = 0; # SheepShaver
         };
@@ -269,7 +267,7 @@ in
     };
 
     nixpkgs.config.permittedInsecurePackages = [
-      "dotnet-runtime-6.0.36" # AM2RLauncher / Knossos.NET / Space-Station 14
+      # "dotnet-runtime-6.0.36" # AM2RLauncher / Knossos.NET / Space-Station 14
       #"freeimage-unstable-2021-11-01" # Trenchbroom / SLADE
     ];
 
@@ -591,8 +589,8 @@ in
                 echo 'PULSE_SINK=Game' > ${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/customvars/global-custom-vars.conf
                 fd . '${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/id' -e .conf -x rm {}
                 ## DREAMM
-                xh get -d -o ${config.home.homeDirectory}/Games/dreamm.tgz https://aarongiles.com/dreamm/releases/dreamm-3.0.3-linux-x64.tgz
-                fd dreamm -e tgz ${config.home.homeDirectory}/Games -x ouch d {} -d ${config.home.homeDirectory}/Games
+                xh get -d -o ${config.home.homeDirectory}/Games/games/dreamm.tgz https://aarongiles.com/dreamm/releases/dreamm-3.0.3-linux-x64.tgz
+                fd dreamm -e tgz ${config.home.homeDirectory}/Games/games -x ouch d {} -d ${config.home.homeDirectory}/Games/games
                 ## SheepShaver
                 xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/sheepshaver.appimage
                 ## MoonDeck Buddy
@@ -689,10 +687,10 @@ in
               "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/24.08"
-              "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08"
-              "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08"
-              "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
-              "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/23.08"
+              #"org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08"
+              #"org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08"
+              #"org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
+              #"org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/23.08"
               "org.openfodder.OpenFodder"
               "org.openjkdf2.OpenJKDF2"
               "org.ryujinx.Ryujinx"
