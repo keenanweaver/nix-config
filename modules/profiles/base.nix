@@ -67,8 +67,8 @@ in
     performance.enable = true;
     pipewire.enable = true;
     secrets.enable = true;
-    virtualization.enable = true;
     users.enable = true;
+    virtualization.enable = true;
 
     console = {
       earlySetup = true;
