@@ -71,7 +71,7 @@ in
               exec=${pkgs.coreutils}/bin/cat /sys/devices/system/cpu/amd_pstate/status
               custom_text=P-State EPP
               exec=${pkgs.coreutils}/bin/cat /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference
-              custom_text=Distro
+              custom_text=OS
               exec=${pkgs.ripgrep}/bin/rg -w PRETTY_NAME /etc/os-release | ${pkgs.coreutils}/bin/cut -d '=' -f2 | ${pkgs.coreutils}/bin/tr -d '"'
               custom_text=Distrobox
               exec=${pkgs.bash}/bin/bash -c '[ -n "''${CONTAINER_ID}" ] && echo Yes || echo No'
@@ -83,7 +83,7 @@ in
               background_alpha=0.2
               round_corners=10
               no_display
-              toggle_hud=End
+              toggle_hud=Alt_R+End
               legacy_layout=0 # For scripts that rely on the new layout
               font_file=${pkgs.lexend}/share/fonts/truetype/lexend/lexend/Lexend-Bold.ttf
               ${lib.optionalString config.catppuccin.enable ''
