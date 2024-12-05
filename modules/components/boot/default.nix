@@ -25,12 +25,6 @@
       "udev.log_priority=3"
       "zswap.enabled=0"
     ];
-    /*
-      lanzaboote = {
-         enable = false;
-         pkiBundle = "/etc/secureboot";
-       };
-    */
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -50,11 +44,6 @@
       "fat"
       "ntfs"
     ];
-    /*
-      systemd.services.nix-daemon = {
-         environment.TMPDIR = "/var/tmp"; # https://github.com/NixOS/nixpkgs/issues/336089#issuecomment-2308353273
-       };
-    */
   };
   environment.systemPackages = with pkgs; [ sbctl ];
 }
