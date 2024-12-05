@@ -2,53 +2,45 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  SDL2,
-  SDL2_net,
+  sdl3,
   fluidsynth,
   libGLU,
   libpng,
+  zlib,
   pkg-config,
   makeDesktopItem,
   copyDesktopItems,
+  installShellFiles,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "doom64ex-plus";
-  version = "3.6.5.9";
+  version = "4.0.0.3.SDL.3.1.3";
 
   src = fetchFromGitHub {
     owner = "atsb";
     repo = "Doom64EX-Plus";
     rev = finalAttrs.version;
-    hash = "sha256-2s4rIfSLHNdbKQOefnQzK+RCQGrM01eNRyAzC8yP8EE=";
+    hash = "sha256-nowHhq36mMok5gmV5TiqqG+1JE4Q9kz9twAYW/1LJ9c=";
   };
 
   nativeBuildInputs = [
     libGLU
     pkg-config
     copyDesktopItems
+    installShellFiles
   ];
 
   buildInputs = [
     fluidsynth
     libpng
-    SDL2
-    SDL2_net
+    zlib
+    sdl3
   ];
 
   env.NIX_CFLAGS_COMPILE = toString [
     "-DDOOM_UNIX_INSTALL" # Needed for config to be placed in ~/.local/share/doom64ex-plus
   ];
-
-  sourceRoot = "${finalAttrs.src.name}/src/engine";
-
-  buildPhase =
-    let
-      buildScript = if stdenv.isAarch64 then "build_aarch64.sh" else "build.sh";
-    in
-    ''
-      sh ${buildScript}
-    '';
 
   desktopItems = [
     (makeDesktopItem {
@@ -69,8 +61,12 @@ stdenv.mkDerivation (finalAttrs: {
     runHook postInstall
   '';
 
+  postInstall = ''
+    installManPage $src/doom64ex-plus.6
+  '';
+
   meta = {
-    description = "An improved, modern version of Doom64EX";
+    description = "Improved, modern version of Doom64EX";
     homepage = "https://github.com/atsb/Doom64EX-Plus.git";
     license = lib.licenses.gpl2Only;
     longDescription = ''
