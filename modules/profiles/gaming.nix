@@ -12,7 +12,7 @@ let
     games = [
       ## Doom
       cherry-doom
-      # chocolate-doom
+      chocolate-doom
       crispy-doom
       # darkradiant
       dhewm3
@@ -87,11 +87,11 @@ let
       ringracers
       runelite # RuneScape
       #space-station-14-launcher
-      srb2
+      srb2 # Sonic Robo Blast 2
       theforceengine # Dark Forces / Outlaws
       urbanterror
-      wipeout-rewrite # Wipeout
-      xivlauncher # FF XIV
+      wipeout-rewrite
+      xivlauncher # FFXIV
       vvvvvv
     ];
     tools = [
@@ -103,6 +103,7 @@ let
       dolphin-emu
       duckstation
       easyrpg-player
+      flycast
       fsuae-launcher
       hypseus-singe
       lime3ds
@@ -116,7 +117,6 @@ let
         cores: with cores; [
           beetle-saturn
           blastem
-          flycast
           mgba
         ]
       ))
@@ -125,14 +125,11 @@ let
       supermodel
       xemu
       ## Input
-      #joystickwake
+      # joystickwake
       # makima
       oversteer
       sc-controller
-      #xboxdrv
-      ## Graphics
-      glxinfo
-      vulkan-tools
+      # xboxdrv
       ## Launchers & utils
       bottles
       cartridges
@@ -173,7 +170,8 @@ let
       wineWowPackages.stagingFull
       ## One-and-dones
       /*
-        igir
+        glxinfo
+           igir
            innoextract
            jpsxdec
            lgogdownloader
@@ -186,6 +184,7 @@ let
            vgmplay-libvgm
            vgmstream
            vgmtools
+           vulkan-tools
       */
     ];
   };
@@ -204,7 +203,6 @@ in
     # Custom modules
     cdemu.enable = true;
     coolercontrol.enable = true;
-    corectrl.enable = false;
     fluidsynth.enable = true;
     gamemode.enable = true;
     gamescope.enable = true;
@@ -213,10 +211,8 @@ in
     mangohud.enable = true;
     nonfree.enable = true;
     obs.enable = true;
-    solaar.enable = false;
     steam.enable = true;
     sunshine.enable = true;
-    timidity.enable = false;
     vkbasalt.enable = true;
     zerotier.enable = true;
 
@@ -268,7 +264,7 @@ in
 
     nixpkgs.config.permittedInsecurePackages = [
       # "dotnet-runtime-6.0.36" # AM2RLauncher / Knossos.NET / Space-Station 14
-      #"freeimage-unstable-2021-11-01" # Trenchbroom / SLADE
+      # "freeimage-unstable-2021-11-01" # Trenchbroom / SLADE
     ];
 
     networking = {
