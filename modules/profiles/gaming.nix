@@ -582,6 +582,7 @@ in
                 sd 'MAHUDLSYM="0"' 'MAHUDLSYM="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
                 sd 'USERAYTRACING="0"' 'USERAYTRACING="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
                 sd 'USEPROTON="*"' 'USEPROTON="Proton-GE"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                sd 'GAMESCOPE_ARGS="--"' 'GAMESCOPE_ARGS="-w 2560 -h 1440 -W 2560 -H 1440 -f --force-grab-cursor --"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
                 echo 'PULSE_SINK=Game' > ${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/customvars/global-custom-vars.conf
                 fd . '${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/id' -e .conf -x rm {}
                 ## DREAMM
