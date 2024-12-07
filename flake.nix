@@ -2,8 +2,7 @@
   description = "Keenan's Nix Flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     disko = {
@@ -43,7 +42,10 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur.url = "github:nix-community/NUR";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -93,9 +95,6 @@
       url = "git+https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging\/nix&submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # Hyprland
-    # hyprland.url = "github:hyprwm/Hyprland";
 
     # Theming
     catppuccin = {
@@ -163,7 +162,7 @@
               inputs.catppuccin.homeManagerModules.catppuccin
               inputs.nix-colors.homeManagerModules.default
               inputs.nix-flatpak.homeManagerModules.nix-flatpak
-              inputs.nur.hmModules.nur
+              inputs.nur.modules.homeManager.default
               inputs.plasma-manager.homeManagerModules.plasma-manager
               inputs.sops-nix.homeManagerModules.sops
             ];
@@ -216,9 +215,8 @@
               { _module.args.disks = [ "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB" ]; }
               inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
-              inputs.nur.nixosModules.nur
+              inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
-              #inputs.stylix.nixosModules.stylix
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
@@ -236,12 +234,11 @@
                   };
                   sharedModules = with inputs; [
                     catppuccin.homeManagerModules.catppuccin
-                    #hyprland.homeManagerModules.default
                     nix-colors.homeManagerModules.default
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.hmModules.nix-index
                     nixvim.homeManagerModules.nixvim
-                    nur.hmModules.nur
+                    nur.modules.homeManager.default
                     plasma-manager.homeManagerModules.plasma-manager
                     sops-nix.homeManagerModules.sops
                   ];
@@ -276,9 +273,8 @@
               { _module.args.disks = [ "/dev/nvme0n1" ]; }
               inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
-              inputs.nur.nixosModules.nur
+              inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
-              #inputs.stylix.nixosModules.stylix
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
@@ -299,16 +295,15 @@
                       stateVersion = "23.11";
                     };
                   };
-                  sharedModules = [
-                    inputs.catppuccin.homeManagerModules.catppuccin
-                    #inputs.hyprland.homeManagerModules.default
-                    inputs.nix-colors.homeManagerModules.default
-                    inputs.nix-flatpak.homeManagerModules.nix-flatpak
-                    inputs.nix-index-database.hmModules.nix-index
-                    inputs.nixvim.homeManagerModules.nixvim
-                    inputs.nur.hmModules.nur
-                    inputs.plasma-manager.homeManagerModules.plasma-manager
-                    inputs.sops-nix.homeManagerModules.sops
+                  sharedModules = with inputs; [
+                    catppuccin.homeManagerModules.catppuccin
+                    nix-colors.homeManagerModules.default
+                    nix-flatpak.homeManagerModules.nix-flatpak
+                    nix-index-database.hmModules.nix-index
+                    nixvim.homeManagerModules.nixvim
+                    nur.modules.homeManager.default
+                    plasma-manager.homeManagerModules.plasma-manager
+                    sops-nix.homeManagerModules.sops
                   ];
                 };
               }
@@ -335,7 +330,7 @@
               inputs.chaotic.nixosModules.default
               inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
-              inputs.nur.nixosModules.nur
+              inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
               {
@@ -361,7 +356,7 @@
                     inputs.nix-flatpak.homeManagerModules.nix-flatpak
                     inputs.nix-index-database.hmModules.nix-index
                     inputs.nixvim.homeManagerModules.nixvim
-                    inputs.nur.hmModules.nur
+                    inputs.nur.modules.homeManager.default
                     inputs.sops-nix.homeManagerModules.sops
                   ];
                 };
@@ -393,7 +388,7 @@
               { _module.args.disks = [ "/dev/disk/by-id/virtio-vdisk1" ]; }
               inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
-              inputs.nur.nixosModules.nur
+              inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
               {
@@ -417,12 +412,11 @@
                   };
                   sharedModules = [
                     inputs.catppuccin.homeManagerModules.catppuccin
-                    #inputs.hyprland.homeManagerModules.default
                     inputs.nix-colors.homeManagerModules.default
                     inputs.nix-flatpak.homeManagerModules.nix-flatpak
                     inputs.nix-index-database.hmModules.nix-index
                     inputs.nixvim.homeManagerModules.nixvim
-                    inputs.nur.hmModules.nur
+                    inputs.nur.modules.homeManager.default
                     inputs.plasma-manager.homeManagerModules.plasma-manager
                     inputs.sops-nix.homeManagerModules.sops
                   ];
