@@ -66,7 +66,6 @@ in
         allowUnfree = true;
       };
       overlays = [
-        inputs.nur.overlays.default
         (import ../../../packages/overlay.nix)
       ];
     };
