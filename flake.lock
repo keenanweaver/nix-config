@@ -203,11 +203,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1733503834,
-        "narHash": "sha256-mFZ8hD+T3doNzOLInjqc71Q2QiXo9gIRv/lbodf/8Es=",
+        "lastModified": 1733580619,
+        "narHash": "sha256-iNVR4d6J6srb4d8+Uf8I+xz1t4w/OJGbpP7XF3Up/xQ=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "2d26a760334cd3aa177049873312c94217f0800e",
+        "rev": "8b18bd2da34d17b13fc3e4345fbf554f888ef42f",
         "type": "github"
       },
       "original": {
@@ -644,11 +644,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1733175814,
-        "narHash": "sha256-zFOtOaqjzZfPMsm1mwu98syv3y+jziAq5DfWygaMtLg=",
+        "lastModified": 1733484277,
+        "narHash": "sha256-i5ay20XsvpW91N4URET/nOc0VQWOAd4c4vbqYtcH8Rc=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "bf23fe41082aa0289c209169302afd3397092f22",
+        "rev": "d00c6f6d0ad16d598bf7e2956f52c1d9d5de3c3a",
         "type": "github"
       },
       "original": {
@@ -750,11 +750,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1732739177,
-        "narHash": "sha256-iL32+TA/8geCzcL1r3uthrH/GPvbUak5QE++WJUkaiI=",
+        "lastModified": 1733491721,
+        "narHash": "sha256-n4fTKTYXeGRngeanNDxSxbuWSRCQ6l74IwOBlqp8dcw=",
         "owner": "Jovian-Experiments",
         "repo": "Jovian-NixOS",
-        "rev": "8d7b2149e618696d5100c2683af1ffa893f02a75",
+        "rev": "0f415721ee427270bc078ef3a5ba2a308d47461f",
         "type": "github"
       },
       "original": {
@@ -792,11 +792,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1733485224,
-        "narHash": "sha256-1W72eK7JC5d2Fl74O8xy3ZX1rseHfjMLda3fYBpCdeg=",
+        "lastModified": 1733586715,
+        "narHash": "sha256-qRwBwL6bI3ZIDHHaFgpOSYWhcVN102rsSvueHbyfxFs=",
         "owner": "taj-ny",
         "repo": "kwin-effects-forceblur",
-        "rev": "b92132bf5879d3b102c3a28d270beab4ea0ef1f1",
+        "rev": "6c5705e8f96d5d0cdd1fcbd48007740921fa7313",
         "type": "github"
       },
       "original": {
@@ -1152,11 +1152,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1733450215,
-        "narHash": "sha256-j5RQdK/7YBRVSyuh3ulNh3jwOUYsLSm8tNCllqHtFAo=",
+        "lastModified": 1733536536,
+        "narHash": "sha256-gTlpRSELDSHMRa1/BwZR7eX5mka5y3YQbb1efLuyovs=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "7c4dd5efb640e7298dedf7dcdf72b62de79f7aa4",
+        "rev": "7aa26ebccf778efe880fda1290db9c1da56ffa4f",
         "type": "github"
       },
       "original": {
@@ -1298,11 +1298,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1733498820,
-        "narHash": "sha256-88bZ85TNqaTiB9bAj5vX00QxDPvvAQUQEhm5RrgXw6Y=",
+        "lastModified": 1733566893,
+        "narHash": "sha256-FRArQLoQQxDWXe88zvRSRKgpyMVgZfcwRl3DH6hgFdI=",
         "owner": "nix-community",
         "repo": "nixpkgs-wayland",
-        "rev": "d4334fbe7f48d12920c48804d2cb65cd06282c19",
+        "rev": "e994ed0bc532a4fad8583092dd2d30b513b36400",
         "type": "github"
       },
       "original": {
@@ -1497,11 +1497,11 @@
         "treefmt-nix": "treefmt-nix_3"
       },
       "locked": {
-        "lastModified": 1733530998,
-        "narHash": "sha256-1P2rCr8FgbP1CN1H2XQOtuOFqjRNXkxHqZmvK/pbt7M=",
+        "lastModified": 1733589916,
+        "narHash": "sha256-ZHjk/6caiSypWWPeN0PhRhDpgwvB36f2aLZYOtfBlzo=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "b35bbebaf9637f6a10e7a368981fc9ff69d07374",
+        "rev": "8b6de353ee0f4cb1d12fae5abf0b3003c51677c0",
         "type": "github"
       },
       "original": {
@@ -1606,11 +1606,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1733410572,
+        "lastModified": 1733578387,
         "narHash": "sha256-XkMZGeqg0GCRoSXvMcaHP7bdvWPRZxCK1sw1ASsc16E=",
         "owner": "nix-community",
         "repo": "plasma-manager",
-        "rev": "92721d7402526599366d00e242813798e9914970",
+        "rev": "2a64e173f1effdcc86e25cba0601e8feedf89115",
         "type": "github"
       },
       "original": {
