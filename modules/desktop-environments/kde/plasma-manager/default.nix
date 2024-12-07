@@ -224,6 +224,10 @@
               "Windows"."RollOverDesktops" = true;
               "Xwayland"."XwaylandEavesdrops" = "Combinations";
             };
+            session = {
+              general.askForConfirmationOnLogout = true;
+              sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
+            };
             systemsettingsrc = {
               "KFileDialog Settings"."detailViewIconSize" = 16;
               "systemsettings_sidebar_mode"."HighlightNonDefaultSettings" = true;
