@@ -168,7 +168,7 @@
                 launchers = [
                   "applications:org.wezfurlong.wezterm.desktop"
                   "applications:vesktop.desktop"
-                  "applications:org.signal.Signal.desktop"
+                  "applications:signal-desktop.desktop"
                   "applications:info.mumble.Mumble.desktop"
                   "applications:qobuz.desktop"
                   "applications:foobar2000.desktop"

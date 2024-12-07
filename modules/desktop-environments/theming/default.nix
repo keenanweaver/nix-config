@@ -500,11 +500,6 @@ in
                   GTK_THEME = "${GTK-THEME}";
                 };
               };
-              "org.signal.Signal" = {
-                Environment = {
-                  GTK_THEME = "${GTK-THEME}";
-                };
-              };
             };
           };
           xsettingsd = {

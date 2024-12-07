@@ -105,6 +105,7 @@ in
           qpwgraph
           revolt-desktop
           rustdesk-flutter
+          signal-desktop
           (vesktop.override { withMiddleClickScroll = true; })
         ];
         xdg = {
