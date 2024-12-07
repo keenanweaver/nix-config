@@ -104,6 +104,7 @@ in
         noto-fonts-emoji
         noto-fonts-lgc-plus
         poppins
+        rubik
         source-han-sans
         source-han-sans-japanese
         source-han-serif-japanese

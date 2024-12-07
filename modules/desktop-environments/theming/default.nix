@@ -14,8 +14,8 @@ let
   flavor-upper = "Mocha";
   cfg = config.catppuccinTheming;
   mono-font = "JetBrainsMono Nerd Font";
-  sans-font = "Inter";
-  sans-font-pkg = pkgs.inter;
+  sans-font = "Rubik";
+  sans-font-pkg = pkgs.rubik;
   #serif-font = "IBM Plex Serif";
   GTK-THEME = "Breeze-Dark";
   cursor-theme = "breeze_cursors";
@@ -205,11 +205,11 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-zen}/themes/${flavor-upper}/${accent-upper}";
               target = ".var/app/io.github.zen_browser.zen/.zen/${username}/chrome";
             };
-            font-inter = {
+            font-rubik = {
               enable = true;
               recursive = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.inter}/share/fonts/truetype";
-              target = "${config.xdg.dataHome}/fonts/inter";
+              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.rubik}/share/fonts/truetype";
+              target = "${config.xdg.dataHome}/fonts/rubik";
             };
             klassy-config = {
               enable = true;
