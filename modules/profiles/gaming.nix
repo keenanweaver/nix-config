@@ -258,7 +258,7 @@ in
     };
 
     hardware = {
-      #new-lg4ff.enable = true;
+      new-lg4ff.enable = true;
       uinput.enable = true;
       #xone.enable = true;
       #xpadneo.enable = true;

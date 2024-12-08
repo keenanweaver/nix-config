@@ -27,8 +27,7 @@ in
       programs.obs-studio = {
         enable = true;
         plugins = with pkgs; [
-          obs-input-overlay
-          #obs-studio-plugins.input-overlay
+          obs-studio-plugins.input-overlay
           obs-studio-plugins.looking-glass-obs
           obs-studio-plugins.obs-gstreamer
           obs-studio-plugins.obs-pipewire-audio-capture
