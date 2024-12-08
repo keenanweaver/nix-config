@@ -238,6 +238,8 @@ in
         #"usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
         "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
         "amdgpu.mcbp=0"
+        "tsc=reliable"
+        "clocksource=tsc"
       ];
       kernel = {
         sysctl = {
@@ -314,11 +316,6 @@ in
     security = {
       pam = {
         loginLimits = [
-          # https://scribe.rip/@a.b.t./here-are-some-possibly-useful-tweaks-for-steamos-on-the-steam-deck-fcb6b571b577
-          # https://github.com/RPCS3/rpcs3/issues/9328#issuecomment-732390362
-          # https://github.com/CachyOS/CachyOS-Settings/tree/master/etc/security/limits.d
-          #{ domain = "*"; item = "nofile"; type = "-"; value = "unlimited"; }
-          # RPCS3
           {
             domain = "*";
             item = "memlock";

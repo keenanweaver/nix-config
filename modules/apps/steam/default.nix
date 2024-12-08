@@ -3,6 +3,7 @@
   config,
   username,
   pkgs,
+  inputs,
   ...
 }:
 let
@@ -32,6 +33,7 @@ in
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         luxtorpeda
+        #inputs.nix-proton-cachyos.packages.${system}.proton-cachyos
         #proton-ge-bin
         proton-ge-custom
       ];

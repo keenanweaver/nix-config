@@ -63,6 +63,7 @@
        };
     */
     nix-gaming.url = "github:fufexan/nix-gaming";
+    nix-proton-cachyos.url = "github:kimjongbing/nix-proton-cachyos";
 
     auto-cpufreq = {
       url = "github:AdnanHodzic/auto-cpufreq";
