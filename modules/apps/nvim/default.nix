@@ -75,6 +75,7 @@ in
             };
             codeium-nvim.enable = true; # AI assistant https://github.com/Exafunction/codeium.vim
             codeium-vim.enable = true; # AI assistant https://github.com/Exafunction/codeium.vim
+            colorizer.enable = true;
             comment.enable = true; # Toggle comments https://github.com/terrortylor/nvim-comment
             friendly-snippets.enable = true; # Snippets https://github.com/rafamadriz/friendly-snippets
             gitsigns.enable = true; # Git decorations https://github.com/lewis6991/gitsigns.nvim
@@ -150,14 +151,6 @@ in
               # Filesystem https://github.com/nvim-neo-tree/neo-tree.nvim
               enable = true;
               enableGitStatus = true;
-            };
-            nvim-colorizer = {
-              # Coloring https://github.com/norcalli/nvim-colorizer.lua
-              enable = true;
-              userDefaultOptions = {
-                css = true;
-                tailwind = "both";
-              };
             };
             rustaceanvim.enable = true; # https://github.com/mrcjkb/rustaceanvim
             todo-comments.enable = true; # Highlight todo comments https://github.com/folke/todo-comments.nvim
