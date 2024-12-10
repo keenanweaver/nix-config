@@ -69,8 +69,8 @@ let
       corsix-th # Theme Hospital
       devilutionx # Diablo
       exult # Ultima VII
-      inputs.ow-mod-man.packages.${system}.owmods-cli
-      inputs.ow-mod-man.packages.${system}.owmods-gui
+      #inputs.ow-mod-man.packages.${system}.owmods-cli
+      #inputs.ow-mod-man.packages.${system}.owmods-gui
       ja2-stracciatella
       jazz2
       katawa-shoujo-re-engineered
