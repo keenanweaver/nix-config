@@ -12,15 +12,12 @@ let
       arrterian.nix-env-selector
       ban.spellright
       charliermarsh.ruff
-      #codeium.codeium
+      codeium.codeium
       eamodio.gitlens
       formulahendry.code-runner
       foxundermoon.shell-format
-      #jetpack-io.devbox
       jnoortheen.nix-ide
       mkhl.direnv
-      #ms-python.black-formatter
-      #ms-python.isort
       ms-python.python
       ms-vscode.powershell
       ms-vscode-remote.remote-containers
@@ -55,7 +52,7 @@ in
           enable = true;
           enableExtensionUpdateCheck = false;
           enableUpdateCheck = false;
-          extensions = marketplace-extensions;
+          extensions = marketplace-extensions ++ [ pkgs.vscode-extensions.visualjj.visualjj ];
           package = pkgs.vscodium;
           userSettings = {
             "ansible.ansible.path" = "ansible";
@@ -84,7 +81,8 @@ in
             "nix.serverSettings"."nixd"."formatting"."options" = {
               "enable" = [ true ];
               "nixos" = {
-                "expr" = "(builtins.getFlake \"github:keenanweaver/nix-config\").nixosConfigurations.${config.networking.hostName}.options";
+                "expr" =
+                  "(builtins.getFlake \"github:keenanweaver/nix-config\").nixosConfigurations.${config.networking.hostName}.options";
               };
             };
             "powershell.powerShellAdditionalExePaths"."exePath" = "${pkgs.powershell}/bin/pwsh";

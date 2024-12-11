@@ -7,7 +7,6 @@
     ./btop
     ./cdemu
     ./coolercontrol
-    ./corectrl
     ./direnv
     ./distrobox
     ./envfs
@@ -15,7 +14,6 @@
     ./fd
     ./floorp
     ./fluidsynth
-    ./foot
     ./fzf
     ./gamemode
     ./gamescope
@@ -24,21 +22,18 @@
     ./gpg
     ./helix
     ./home-manager
+    ./jujutsu
     ./keyd
-    ./kitty
     ./lazygit
     ./lact
-    ./looking-glass
     ./lsd
     ./mangohud
-    ./micro
     ./mullvad
     ./mumble
     ./navi
     ./nh
     ./nix-index
     ./nix-ld
-    ./nnn
     ./nushell
     ./nvim
     ./obs
@@ -51,7 +46,6 @@
     ./sunshine
     ./tailscale
     ./tealdeer
-    ./timidity
     ./topgrade
     ./vkbasalt
     ./vscode
@@ -60,7 +54,6 @@
     ./yazi
     ./yt-dlp
     ./zed
-    ./zellij
     ./zen-browser
     ./zerotier
     ./zoxide

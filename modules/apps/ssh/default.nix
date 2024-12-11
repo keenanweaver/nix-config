@@ -108,7 +108,7 @@ in
               Port 6777
             Host steamdeck
               HostName steamdeck
-              User ${username}
+              User bazzite
           '';
         };
       };

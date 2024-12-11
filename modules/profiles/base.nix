@@ -33,6 +33,7 @@ in
     gpg.enable = true;
     helix.enable = true;
     home-managerConfig.enable = true;
+    jujutsu.enable = true;
     keyd.enable = false;
     lazygit.enable = true;
     lsd.enable = true;
