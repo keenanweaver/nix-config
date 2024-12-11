@@ -84,26 +84,26 @@ in
         apple-fonts
         #b612
         #barlow
-        caladea
-        carlito
+        #caladea
+        #carlito
         corefonts
-        fira-sans
+        #fira-sans
         #font-awesome
-        geist-font
+        #geist-font
         ibm-plex
         inter
-        lato
-        lexend
+        #lato
+        #lexend
         liberation_ttf
         material-design-icons
         monaspace
-        nerd-fonts.iosevka
+        #nerd-fonts.iosevka
         nerd-fonts.jetbrains-mono
         noto-fonts
         noto-fonts-cjk-sans
         noto-fonts-emoji
         noto-fonts-lgc-plus
-        poppins
+        #poppins
         rubik
         source-han-sans
         source-han-sans-japanese
