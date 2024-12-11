@@ -42,7 +42,7 @@ in
       pulse.enable = true;
       extraConfig = {
         pipewire = {
-          "10-loopback-devices" = {
+          "11-virtual-devices" = {
             "context.modules" =
               [ { } ]
               ++ lib.optionals vars.gaming [
@@ -140,24 +140,13 @@ in
               ];
           };
         };
-        /*
-          pipewire-pulse = {
-                 # Switch to device on connect https://wiki.archlinux.org/title/PipeWire#Sound_does_not_automatically_switch_when_connecting_a_new_device
-                 "switch-on-connect" = {
-                   "pulse.cmd" = [
-                     {
-                       "cmd" = "load-module";
-                       "args" = "module-always-sink";
-                       flags = [ ];
-                     }
-                     {
-                       "cmd" = "load-module";
-                       "args" = "module-switch-on-connect";
-                     }
-                   ];
-                 };
-               };
-        */
+        pipewire-pulse = {
+          "10-resample-quality" = {
+            "stream.properties" = {
+              "resample.quality" = 10;
+            };
+          };
+        };
       };
       wireplumber = {
         enable = true;

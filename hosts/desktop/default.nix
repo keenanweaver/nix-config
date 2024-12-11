@@ -84,7 +84,7 @@
     pipewire = {
       extraConfig = {
         pipewire = {
-          "10-clock-allowed-rates" = {
+          "10-clock-rate" = {
             "context.properties" = {
               # To make DAC properly work
               "default.clock.allowed-rates" = [
@@ -96,6 +96,9 @@
                 192000
               ];
             };
+            "default.clock.quantum" = 256;
+            "default.clock.min-quantum" = 16;
+            "default.clock.max-quantum" = 8192;
           };
           # Create mono-only microphone output
           "10-loopback-mono-mic" = {
@@ -107,7 +110,8 @@
                   "capture.props" = {
                     "node.name" = "capture.mono-microphone";
                     "audio.position" = [ "FL" ];
-                    "target.object" = "alsa_input.usb-Samson_Technologies_Samson_G-Track_Pro_D0B3381619112B00-00.analog-stereo";
+                    "target.object" =
+                      "alsa_input.usb-Samson_Technologies_Samson_G-Track_Pro_D0B3381619112B00-00.analog-stereo";
                     "stream.dont-remix" = true;
                     "node.passive" = true;
                   };
