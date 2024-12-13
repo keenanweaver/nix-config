@@ -127,6 +127,10 @@
         };
       };
     };
+    ucodenix = {
+      enable = true;
+      cpuModelId = "00A60F12";
+    };
     udev = {
       # TODO: Remove when Linux 6.13 is out: https://www.phoronix.com/news/AMDGPU-More-Aggressive-Power
       extraRules = ''
