@@ -33,8 +33,13 @@ in
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         ExecStart = "${pkgs.lact}/bin/lact daemon";
+        Type = "simple";
+        # Run as root since we need direct hardware access
+        User = "root";
+        Group = "root";
+        Restart = "on-failure";
+        RestartSec = "5";
       };
-      enable = true;
     };
   };
 }
