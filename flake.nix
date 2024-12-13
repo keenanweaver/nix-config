@@ -219,6 +219,7 @@
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
+              inputs.ucodenix.nixosModules.default
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
