@@ -102,6 +102,7 @@
                     };
                   };
                   hidden = [
+                    "Akregator"
                     "KTailctl"
                     "opensnitch-ui"
                     "org.kde.plasma.addons.katesessions"
@@ -111,9 +112,6 @@
                     "org.kde.kdeconnect"
                     "indicator-solaar"
                     "tray-id" # Sunshine
-                  ];
-                  shown = [
-                    "Akregator"
                   ];
                 };
               };
