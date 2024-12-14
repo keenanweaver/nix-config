@@ -10,18 +10,21 @@
   fluidsynth,
   alsa-lib,
   libxmp,
+  libebur128,
   python3,
+  yyjson,
+  nix-update-script,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "nugget-doom";
-  version = "3.3.0";
+  version = "4.0.0";
 
   src = fetchFromGitHub {
     owner = "MrAlaux";
     repo = "Nugget-Doom";
     rev = "nugget-doom-${finalAttrs.version}";
-    hash = "sha256-rrpLsz6QiYS32GVmooxX99c4BRqK80Bt/32C2LIu8uo=";
+    hash = "sha256-EtHW3nJ58U6GveOrGly3Lkmr1COzYpuLMXITpqcehVI=";
   };
 
   nativeBuildInputs = [
@@ -36,8 +39,12 @@ stdenv.mkDerivation (finalAttrs: {
     fluidsynth
     libsndfile
     libxmp
+    libebur128
     openal
+    yyjson
   ];
+
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     description = "Nugget Doom is a fork of Woof! with additional features";
