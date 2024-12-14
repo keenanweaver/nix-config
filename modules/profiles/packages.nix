@@ -133,6 +133,7 @@ in
             dogdns # dig
             dua # du
             duf # df
+            fuc # cp / rm
             ouch # compression
             pigz # gz
             procs # ps

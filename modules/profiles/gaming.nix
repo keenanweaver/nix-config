@@ -74,6 +74,7 @@ let
       ja2-stracciatella
       jazz2
       katawa-shoujo-re-engineered
+      nur.repos.Rhys-T.lix-game # Lemmings clone
       openjk # Jedi Academy
       openloco # Locomotion
       openmw
