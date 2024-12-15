@@ -96,9 +96,6 @@
                 192000
               ];
             };
-            "default.clock.quantum" = 256;
-            "default.clock.min-quantum" = 16;
-            "default.clock.max-quantum" = 8192;
           };
           # Create mono-only microphone output
           "10-loopback-mono-mic" = {
