@@ -38,6 +38,12 @@ in
     home-manager.users.${username} =
       { config, ... }:
       {
+        home = {
+          sessionpath = [
+            "/var/lib/flatpak/exports/bin"
+            "${config.xdg.dataHome}/flatpak/exports/bin"
+          ];
+        };
         services.flatpak = {
           packages = [
             "com.github.tchx84.Flatseal"

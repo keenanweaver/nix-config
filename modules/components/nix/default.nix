@@ -91,8 +91,6 @@ in
           sessionPath = [
             "${config.home.homeDirectory}/.bin"
             "${config.home.homeDirectory}/.local/bin"
-            "/var/lib/flatpak/exports/bin"
-            "${config.xdg.dataHome}/flatpak/exports/bin"
           ];
           sessionVariables = {
             NIXOS_OZONE_WL = "1";
@@ -114,7 +112,7 @@ in
             npr = "nix run nixpkgs#nixpkgs-review -- pr";
             psr = "plasmashell --replace & disown";
             rbn = "podman stop -a && systemctl reboot";
-            repw = "systemctl --user restart wireplumber pipewire pipewire-pulse pipewire-pulse.socket ${lib.optionalString vars.gaming "gpu-screen-recorder"}";
+            repw = "systemctl --user restart pipewire{,-pulse} wireplumber ${lib.optionalString vars.gaming "&& systemctl --user restart gpu-screen-recorder"}";
             sudo = "sudo ";
             up = "topgrade";
             wget = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
