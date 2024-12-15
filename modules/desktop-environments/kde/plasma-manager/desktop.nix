@@ -348,7 +348,7 @@
           };
           apply = {
             desktops = {
-              value = "913f595f-b9b9-46ac-9448-99b3a463d45e"; # Social desktop
+              value = "Desktop_2"; # Social desktop
             };
             position = {
               value = "1287,0";
@@ -444,7 +444,7 @@
           };
           apply = {
             desktops = {
-              value = "913f595f-b9b9-46ac-9448-99b3a463d45e"; # Social desktop
+              value = "Desktop_2"; # Social desktop
             };
             position = {
               value = "0,0";
