@@ -33,7 +33,7 @@ in
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         luxtorpeda
-        #inputs.nix-proton-cachyos.packages.${system}.proton-cachyos
+        inputs.nix-proton-cachyos.packages.${system}.proton-cachyos
         #proton-ge-bin
         proton-ge-custom
       ];
@@ -54,6 +54,20 @@ in
             SDL2_mixer
             SDL2_ttf
             xorg.libX11
+            xorg.libxcb
+            xorg.libXcursor
+            xorg.libXi
+            xorg.libXinerama
+            xorg.libXext
+            xorg.libXrandr
+            xorg.libXrender
+            xorg.libXScrnSaver
+            libpng
+            libpulseaudio
+            libvorbis
+            stdenv.cc.cc.lib
+            libkrb5
+            keyutils
           ];
       };
       protontricks.enable = true;
