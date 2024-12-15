@@ -39,7 +39,7 @@ in
       { config, ... }:
       {
         home = {
-          sessionpath = [
+          sessionPath = [
             "/var/lib/flatpak/exports/bin"
             "${config.xdg.dataHome}/flatpak/exports/bin"
           ];

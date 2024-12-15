@@ -130,7 +130,8 @@
               "MainWindow.Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
               "MainWindow/Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
               "PlacesPanel"."IconSize" = 32;
-              "PreviewSettings"."Plugins" = "appimagethumbnail,audiothumbnail,blenderthumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,mobithumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,ffmpegthumbs";
+              "PreviewSettings"."Plugins" =
+                "appimagethumbnail,audiothumbnail,blenderthumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,mobithumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,ffmpegthumbs";
               "Search"."Location" = "Everywhere";
               "Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
             };
@@ -239,8 +240,20 @@
               arrangement = "leftToRight";
               folderPreviewPopups = true;
               previewPlugins = [
+                "appimagethumbnail"
                 "audiothumbnail"
+                "directorythumbnail"
+                "ebookthumbnail"
+                "ffmpegthumbs"
+                "ffmpegthumbnailer"
                 "fontthumbnail"
+                "imagethumbnail"
+                "jpegthumbnail"
+                "windowsexethumbnail"
+                "windowsimagethumbnail"
+                "opendocumentthumbnail"
+                "svgthumbnail"
+                "textthumbnail"
               ];
               size = 3;
               sorting = {
