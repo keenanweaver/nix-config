@@ -135,6 +135,7 @@ in
                 vulkan-mesa-layers               \
                 obs-vkcapture-git                \
                 openal                           \
+                parui                            \
                 pipewire                         \
                 pipewire-pulse                   \
                 pipewire-alsa                    \

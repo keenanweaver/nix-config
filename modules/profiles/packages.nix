@@ -118,17 +118,25 @@ in
           ]
           ++ lib.optionals cfg.misc [
             angle-grinder
+            bandwhich
             binsider
+            csvlens
+            flawz
             glow
+            gping
             hexyl
             hyperfine
+            impala
             jiq
             jq
             lazydocker
             mkvtoolnix-cli
             streamrip
+            systemctl-tui
+            termscp
+            ttysvr
             yq
-            ### unix alternatives ###
+            ## unix alts ##
             choose # cut
             dogdns # dig
             dua # du
