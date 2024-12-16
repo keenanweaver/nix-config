@@ -18,6 +18,7 @@ in
   config = lib.mkIf cfg.enable {
     environment = {
       systemPackages = with pkgs; [
+        docker-compose
         quickemu
         spice
         spice-protocol
