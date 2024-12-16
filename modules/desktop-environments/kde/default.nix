@@ -28,6 +28,7 @@ in
         with pkgs.kdePackages;
         [
           akregator
+          breeze
           ffmpegthumbnailer
           filelight
           haruna

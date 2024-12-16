@@ -205,6 +205,14 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-zen}/themes/${flavor-upper}/${accent-upper}";
               target = ".var/app/io.github.zen_browser.zen/.zen/${username}/chrome";
             };
+            cursor-theme-default = {
+              enable = true;
+              text = ''
+                [Icon Theme]
+                Inherits=${cursor-theme}
+              '';
+              target = "${config.xdg.dataHome}/icons/default/index.theme";
+            };
             klassy-config = {
               enable = true;
               text = ''

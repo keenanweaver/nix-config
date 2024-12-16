@@ -33,6 +33,7 @@ let
       fallout-ce
       fallout2-ce
       ## Freespace
+      #descent3
       dxx-rebirth
       #knossosnet
       ## HOMM
@@ -134,7 +135,11 @@ let
       ## Launchers & utils
       bottles
       cartridges
-      heroic
+      (heroic.override {
+        extraPkgs = pkgs: [
+          inputs.umu.packages.${system}.umu
+        ];
+      })
       # limo
       (lutris.override {
         extraPkgs = pkgs: [

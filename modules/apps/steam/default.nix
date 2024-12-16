@@ -69,6 +69,11 @@ in
             libkrb5
             keyutils
           ];
+        extraPkgs =
+          pkgs: with pkgs; [
+            # Workaround xorg cursor issue
+            kdePackages.breeze
+          ];
       };
       protontricks.enable = true;
       remotePlay.openFirewall = true;
