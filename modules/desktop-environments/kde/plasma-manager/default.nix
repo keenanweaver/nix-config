@@ -131,7 +131,7 @@
               "MainWindow/Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
               "PlacesPanel"."IconSize" = 32;
               "PreviewSettings"."Plugins" =
-                "appimagethumbnail,audiothumbnail,blenderthumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,mobithumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,ffmpegthumbs";
+                "appimagethumbnail,audiothumbnail,blenderthumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,mobithumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,svgthumbnail,ffmpegthumbs,ffmpegthumbnailer";
               "Search"."Location" = "Everywhere";
               "Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
             };
