@@ -137,12 +137,14 @@ let
       cartridges
       (heroic.override {
         extraPkgs = pkgs: [
+          kdePackages.breeze
           inputs.umu.packages.${system}.umu
         ];
       })
       # limo
       (lutris.override {
         extraPkgs = pkgs: [
+          kdePackages.breeze
           libstrangle
         ];
       })
