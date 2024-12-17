@@ -5,26 +5,19 @@
   cmake,
   ninja,
   kdePackages,
-  libsForQt5,
-
-  # Could be either "5" or "6" for Qt 5 and 6 respectively.
-  qtMajorVersion ? "6",
+  qtPackages ? kdePackages,
 }:
 let
-  qtMajorVersions = {
-    "5" = {
-      qtPackages = libsForQt5;
-      extraBuildInputs = with libsForQt5; [
+  qtMajorVersion = lib.versions.major qtPackages.qtbase.version;
+  qtVersionSpecificBuildInputs =
+    with qtPackages;
+    {
+      "5" = [
         qtx11extras
         kconfigwidgets
         kirigami2
       ];
-      # klassy-settings doesn't exist for the Qt 5 build.
-      mainProgram = null;
-    };
-    "6" = {
-      qtPackages = kdePackages;
-      extraBuildInputs = with kdePackages; [
+      "6" = [
         qtsvg
         kcolorscheme
         kconfig
@@ -35,30 +28,25 @@ let
         kirigami
         kwidgetsaddons
       ];
-      mainProgram = "klassy-settings";
-    };
-  };
-
-  inherit (qtMajorVersions.${qtMajorVersion}) qtPackages extraBuildInputs mainProgram;
+    }
+    .${qtMajorVersion};
 in
-assert lib.assertOneOf "qtMajorVersion" qtMajorVersion (lib.attrNames qtMajorVersions);
-
 stdenv.mkDerivation (finalAttrs: {
-  pname = "klassy";
+  pname = "klassy-qt${qtMajorVersion}";
   version = "6.2.breeze6.2.1";
 
   src = fetchFromGitHub {
     owner = "paulmcauley";
     repo = "klassy";
-    rev = finalAttrs.version;
+    tag = finalAttrs.version;
     hash = "sha256-tFqze3xN1XECY74Gj0nScis7DVNOZO4wcfeA7mNZT5M=";
   };
 
-  nativeBuildInputs = with qtPackages; [
+  nativeBuildInputs = [
     cmake
     ninja
-    extra-cmake-modules
-    wrapQtAppsHook
+    qtPackages.extra-cmake-modules
+    qtPackages.wrapQtAppsHook
   ];
 
   buildInputs =
@@ -74,11 +62,12 @@ stdenv.mkDerivation (finalAttrs: {
       kiconthemes
       kwindowsystem
     ]
-    ++ extraBuildInputs;
+    ++ qtVersionSpecificBuildInputs;
 
-  cmakeFlags = map (v: lib.cmakeBool "BUILD_QT${v}" (qtMajorVersion == v)) (
-    lib.attrNames qtMajorVersions
-  );
+  cmakeFlags = map (v: lib.cmakeBool "BUILD_QT${v}" (v == qtMajorVersion)) [
+    "5"
+    "6"
+  ];
 
   meta =
     {
@@ -96,7 +85,7 @@ stdenv.mkDerivation (finalAttrs: {
       ];
       maintainers = with lib.maintainers; [ pluiedev ];
     }
-    // lib.optionalAttrs (mainProgram != null) {
-      inherit mainProgram;
+    // lib.optionalAttrs (qtMajorVersion == "6") {
+      mainProgram = "klassy-settings";
     };
 })

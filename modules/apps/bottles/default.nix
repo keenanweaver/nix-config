@@ -44,6 +44,7 @@ in
               Context = {
                 filesystems = [
                   "/mnt/crusader/Games"
+                  "/mnt/crusader/Media/Audio/Music"
                   "${config.home.homeDirectory}/Games"
                   "${config.xdg.dataHome}/applications"
                   "${config.xdg.dataHome}/games"

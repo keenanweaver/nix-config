@@ -117,7 +117,7 @@
               "DetailsMode"."PreviewSize" = 32;
               "DetailsMode"."SidePadding" = 0;
               "General"."FilterBar" = true;
-              "General"."GlobalViewProps" = false;
+              "General"."GlobalViewProps" = true;
               "General"."RememberOpenedTabs" = false;
               "General"."ShowFullPath" = true;
               "General"."ShowFullPathInTitlebar" = true;
@@ -135,18 +135,13 @@
               "Search"."Location" = "Everywhere";
               "Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
             };
-            kactivitymanagerdrc = {
-              "activities"."21bdfd7b-33e2-496a-bd6c-3c85c68aea44" = "Default";
-              "main"."currentActivity" = "21bdfd7b-33e2-496a-bd6c-3c85c68aea44";
-            };
             kcminputrc = {
               "Keyboard"."RepeatDelay" = 250;
-              "Libinput/1133/16543/Logitech G502 X LS"."PointerAccelerationProfile" = 1;
             };
             "kded5rc"."Module-device_automounter"."autoload" = false;
             kdeglobals = {
-              "General"."TerminalApplication" = "konsole";
-              "General"."TerminalService" = "org.kde.konsole.desktop";
+              #"General"."TerminalApplication" = "konsole";
+              #"General"."TerminalService" = "org.kde.konsole.desktop";
               "KDE"."AnimationDurationFactor" = 0.5;
               "KDE"."ShowDeleteCommand" = true;
               "KFileDialog Settings"."Allow Expansion" = true;
