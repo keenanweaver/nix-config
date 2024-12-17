@@ -3,6 +3,7 @@
     ./atuin
     ./bash
     ./bat
+    ./bottles
     ./boxxy
     ./btop
     ./cdemu

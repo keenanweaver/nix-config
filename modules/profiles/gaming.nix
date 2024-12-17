@@ -133,7 +133,6 @@ let
       sc-controller
       # xboxdrv
       ## Launchers & utils
-      #bottles
       cartridges
       (heroic.override {
         extraPkgs = pkgs: [
@@ -209,6 +208,7 @@ in
   };
   config = lib.mkIf cfg.enable {
     # Custom modules
+    bottles.enable = true;
     cdemu.enable = true;
     coolercontrol.enable = true;
     fluidsynth.enable = true;
@@ -546,11 +546,6 @@ in
             '';
             target = "${config.home.homeDirectory}/.wine/controller-proton.reg";
           };
-          wine-links-protonge-bottles = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
-            target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-custom";
-          };
           wine-links-protonge-heroic = {
             enable = true;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
@@ -629,20 +624,6 @@ in
         services = {
           flatpak = {
             overrides = {
-              "com.usebottles.bottles" = {
-                Context = {
-                  filesystems = [
-                    "/mnt/crusader/Games"
-                    "${config.home.homeDirectory}/Games"
-                    "${config.xdg.dataHome}/applications"
-                    "${config.xdg.dataHome}/games"
-                    "${config.xdg.dataHome}/Steam"
-                  ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
               "dev.opengoal.OpenGOAL" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/opengoal" ];
@@ -692,7 +673,6 @@ in
               "com.obsproject.Studio.Plugin.OBSVkCapture"
               "com.qzandronum.Q-Zandronum"
               "com.richwhitehouse.BigPEmu"
-              "com.usebottles.bottles"
               "dev.opengoal.OpenGOAL"
               "io.github.limo_app.limo"
               "io.github.noxworld_dev.OpenNox"
