@@ -3,6 +3,11 @@
   imports = [ ./default.nix ];
   home-manager.users.${username} = {
     programs.plasma = {
+      configFile = {
+        kcminputrc = {
+          "Libinput/1133/16543/Logitech G502 X LS"."PointerAccelerationProfile" = 1;
+        };
+      };
       #extraWidgets = [ ];
       input = {
         mice = [
