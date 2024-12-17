@@ -120,7 +120,7 @@ in
               {
                 name = "foobar2000";
                 comment = "Launch foobar2000 using Bottles.";
-                exec = "bottles-cli run -p foobar2000 -b foobar2000";
+                exec = "flatpak run --command=bottles-cli run -p foobar2000 -b foobar2000";
                 icon = "${icon}";
                 categories = [
                   "AudioVideo"
@@ -143,7 +143,7 @@ in
               {
                 name = "Qobuz";
                 comment = "Launch Qobuz using Bottles.";
-                exec = "bottles-cli run -p Qobuz -b Qobuz";
+                exec = "flatpak run --command=bottles-cli run -p Qobuz -b Qobuz";
                 icon = "${icon}";
                 categories = [
                   "AudioVideo"
