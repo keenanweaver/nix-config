@@ -32,6 +32,11 @@ in
       enable = true;
       accent = "${accent-lower}";
       flavor = "${flavor-lower}";
+      sddm = {
+        background = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
+        font = "${mono-font}";
+        fontSize = "11";
+      };
     };
     console = {
       packages = with pkgs; [ terminus_font ];
@@ -57,11 +62,6 @@ in
     services = {
       displayManager = {
         sddm = {
-          catppuccin = {
-            background = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
-            font = "${mono-font}";
-            fontSize = "11";
-          };
           settings = {
             Theme = {
               CursorTheme = "${cursor-theme}";
@@ -87,7 +87,7 @@ in
           enable = true;
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
-          pointerCursor = {
+          cursors = {
             enable = false;
             accent = "${accent-lower}";
             flavor = "${flavor-lower}";
@@ -96,17 +96,10 @@ in
 
         gtk = {
           enable = true;
-          catppuccin = {
-            enable = false;
-            size = "standard";
-            tweaks = [ "normal" ];
-          };
-
           cursorTheme = {
             name = lib.mkDefault "${cursor-theme}";
             size = 24;
           };
-
           font = {
             name = "${sans-font}";
             size = 12;
