@@ -127,7 +127,7 @@ let
       supermodel
       xemu
       ## Input
-      # joystickwake
+      joystickwake
       # makima
       oversteer
       sc-controller
@@ -515,7 +515,7 @@ in
               Icon=quake-injector
               Name=Quake Injector
               NoDisplay=false
-              Path=${config.home.homeDirectory}/games/quake/quake-1/injector/
+              Path=${config.home.homeDirectory}/Games/quake/quake-1/injector/
               StartupNotify=true
               Terminal=false
               TerminalOptions=
