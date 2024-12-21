@@ -56,12 +56,12 @@
       url = "github:Jovian-Experiments/Jovian-NixOS";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    /*
-      nix-citizen = {
-         url = "github:LovingMelody/nix-citizen";
-         inputs.nix-gaming.follows = "nix-gaming";
-       };
-    */
+
+    nix-citizen = {
+      url = "github:LovingMelody/nix-citizen";
+      inputs.nix-gaming.follows = "nix-gaming";
+    };
+
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-proton-cachyos.url = "github:kimjongbing/nix-proton-cachyos";
 

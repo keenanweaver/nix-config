@@ -70,6 +70,7 @@ let
       corsix-th # Theme Hospital
       devilutionx # Diablo
       exult # Ultima VII
+      inputs.nix-citizen.packages.${system}.star-citizen
       #inputs.ow-mod-man.packages.${system}.owmods-cli
       #inputs.ow-mod-man.packages.${system}.owmods-gui
       ja2-stracciatella
@@ -269,6 +270,17 @@ in
       uinput.enable = true;
       #xone.enable = true;
       #xpadneo.enable = true;
+    };
+
+    nix.settings = {
+      extra-substituters = [
+        "https://nix-gaming.cachix.org"
+        "https://nix-citizen.cachix.org"
+      ];
+      extra-trusted-public-keys = [
+        "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="
+        "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+      ];
     };
 
     nixpkgs.config.permittedInsecurePackages = [
