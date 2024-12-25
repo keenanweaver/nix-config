@@ -88,8 +88,8 @@ in
               HostName regretpi
               User ${username}
               Port 6777
-            Host MiSTer
-              HostName 192.168.1.29
+            Host mister
+              HostName mister
               User root
             Host Mumble
               HostName game-central.party
