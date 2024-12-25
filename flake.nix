@@ -14,10 +14,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    /*
+      lanzaboote = {
+         url = "github:nix-community/lanzaboote";
+         inputs.nixpkgs.follows = "nixpkgs";
+       };
+    */
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -215,7 +217,7 @@
               inputs.disko.nixosModules.disko
               ./hosts/desktop/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB" ]; }
-              inputs.lanzaboote.nixosModules.lanzaboote
+              #inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
@@ -274,7 +276,7 @@
               inputs.disko.nixosModules.disko
               ./hosts/desktop/disko.nix
               { _module.args.disks = [ "/dev/nvme0n1" ]; }
-              inputs.lanzaboote.nixosModules.lanzaboote
+              #inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
@@ -331,7 +333,7 @@
               ./hosts/pi/remorse.nix
 
               inputs.chaotic.nixosModules.default
-              inputs.lanzaboote.nixosModules.lanzaboote
+              #inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
@@ -389,7 +391,7 @@
               inputs.disko.nixosModules.disko
               ./hosts/vm/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/virtio-vdisk1" ]; }
-              inputs.lanzaboote.nixosModules.lanzaboote
+              #inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops

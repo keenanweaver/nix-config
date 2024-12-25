@@ -70,7 +70,6 @@ let
       corsix-th # Theme Hospital
       devilutionx # Diablo
       exult # Ultima VII
-      inputs.nix-citizen.packages.${system}.star-citizen
       #inputs.ow-mod-man.packages.${system}.owmods-cli
       #inputs.ow-mod-man.packages.${system}.owmods-gui
       ja2-stracciatella
@@ -352,6 +351,12 @@ in
             item = "nofile";
             type = "hard";
             value = "1048576";
+          }
+          {
+            domain = "*";
+            item = "nofile";
+            type = "soft";
+            value = "16777216";
           }
         ];
       };

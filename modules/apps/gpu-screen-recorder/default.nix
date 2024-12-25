@@ -78,7 +78,7 @@ in
                     "WINDOW=portal"
                     "FRAMERATE=60"
                     "FRAMERATE_MODE=content"
-                    "VIDEO_CODEC=av1_hdr"
+                    "VIDEO_CODEC=av1"
                     "VIDEO_CONTAINER=mp4"
                     "VIDEO_QUALITY=ultra"
                     "COLOR_RANGE=full"
