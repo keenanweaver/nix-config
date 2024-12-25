@@ -89,7 +89,7 @@ in
               User ${username}
               Port 6777
             Host MiSTer
-              HostName 10.20.1.29
+              HostName 192.168.1.29
               User root
             Host Mumble
               HostName game-central.party
@@ -98,14 +98,9 @@ in
             Host unifi-CKG2
               HostName unifi
               User keenanweaver
-            Host hellcatv.xyz
-              HostName hellcatv.xyz
-              User ${username}
-              Port 6777
             Host opnsense
               HostName opnsense
               User ${username}
-              Port 6777
             Host steamdeck
               HostName steamdeck
               User bazzite

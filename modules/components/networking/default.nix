@@ -21,12 +21,13 @@ in
     };
     networking = {
       extraHosts = ''
-        10.20.1.1 opnsense
-        10.20.1.7 unifi
-        10.20.1.13 crusader
-        10.20.1.30 remorsepi
-        10.20.1.31 regretpi
-        10.20.1.87 freshrss
+        192.168.1.1 opnsense
+        192.168.1.7 unifi
+        192.168.1.13 crusader
+        192.168.1.30 remorsepi
+        192.168.1.31 regretpi
+        192.168.1.111 bazzite
+        192.168.1.112 mister
       '';
       networkmanager = {
         enable = true;
