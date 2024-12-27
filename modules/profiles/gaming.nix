@@ -33,7 +33,7 @@ let
       fallout-ce
       fallout2-ce
       ## Freespace
-      #descent3
+      descent3
       dxx-rebirth
       #knossosnet
       ## HOMM
