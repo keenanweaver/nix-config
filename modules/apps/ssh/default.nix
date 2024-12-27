@@ -72,7 +72,7 @@ in
               HostName nixos-laptop
               User ${username}
               Port 6777
-            Host Unraid
+            Host unraid
               HostName crusader
               User root
               Port 6777
@@ -101,8 +101,8 @@ in
             Host opnsense
               HostName opnsense
               User ${username}
-            Host steamdeck
-              HostName steamdeck
+            Host bazzite
+              HostName bazzite
               User bazzite
           '';
         };
