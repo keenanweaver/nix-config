@@ -22,11 +22,11 @@ in
       extraHosts = ''
         192.168.1.1 opnsense
         192.168.1.7 UCK-G2
-        192.168.1.13 crusader
-        192.168.1.30 remorsepi
-        192.168.1.31 regretpi
-        192.168.1.11 bazzite
-        192.168.1.12 mister
+        192.168.20.13 crusader
+        192.168.20.30 remorsepi
+        192.168.20.31 regretpi
+        192.168.20.11 bazzite
+        192.168.20.29 MiSTer
       '';
       networkmanager = {
         enable = true;
