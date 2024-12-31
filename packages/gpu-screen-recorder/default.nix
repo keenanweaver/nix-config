@@ -22,15 +22,16 @@
   libXrandr,
   libXfixes,
   wrapperDir ? "/run/wrappers/bin",
+  gitUpdater,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "gpu-screen-recorder";
-  version = "4.3.5";
+  version = "5.0.0";
 
   src = fetchurl {
     url = "https://dec05eba.com/snapshot/gpu-screen-recorder.git.${finalAttrs.version}.tar.gz";
-    hash = "sha256-BD4IXvKyo53BTEBlN4aDAhdjUHXdD9Bu5zK4/KeSkXw=";
+    hash = "sha256-w1dtFLSY71UileoF4b1QLKIHYWPE5c2KmsHyRPtn+sA=";
   };
 
   sourceRoot = ".";
@@ -59,11 +60,12 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   mesonFlags = [
+    # Install the upstream systemd unit
+    (lib.mesonBool "systemd" true)
     # Enable Wayland support
     (lib.mesonBool "portal" true)
     # Handle by the module
     (lib.mesonBool "capabilities" false)
-    (lib.mesonBool "systemd" false)
     (lib.mesonBool "nvidia_suspend_fix" false)
   ];
 
@@ -80,6 +82,8 @@ stdenv.mkDerivation (finalAttrs: {
       --prefix PATH : "${wrapperDir}" \
       --suffix PATH : "$out/bin"
   '';
+
+  passthru.updateScript = gitUpdater { url = "https://repo.dec05eba.com/gpu-screen-recorder"; };
 
   meta = {
     description = "Screen recorder that has minimal impact on system performance by recording a window using the GPU only";
