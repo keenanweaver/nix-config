@@ -85,10 +85,6 @@
       url = "github:niksingh710/nsearch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ow-mod-man = {
-      url = "github:ow-mods/ow-mod-man";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     steamtinkerlaunch-master = {
       type = "git";
       url = "https://github.com/sonic2kk/steamtinkerlaunch.git";
