@@ -3,12 +3,6 @@
   imports = [ ./default.nix ];
   home-manager.users.${username} = {
     programs.plasma = {
-      configFile = {
-        kcminputrc = {
-          "Libinput/1133/16543/Logitech G502 X LS"."PointerAccelerationProfile" = 1;
-        };
-      };
-      #extraWidgets = [ ];
       input = {
         mice = [
           {
@@ -18,9 +12,16 @@
             productId = "409f";
             leftHanded = false;
             middleButtonEmulation = false;
+            acceleration = 0;
             accelerationProfile = "none";
             naturalScroll = false;
             scrollSpeed = 1;
+          }
+          {
+            enable = true;
+            name = "Logitech USB Receiver";
+            acceleration = 0;
+            accelerationProfile = "none";
           }
         ];
       };
@@ -76,7 +77,6 @@
                 launchers = [
                   "applications:org.kde.dolphin.desktop"
                   "preferred://browser"
-                  #"applications:one.ablaze.floorp.desktop"
                 ];
               };
             }
