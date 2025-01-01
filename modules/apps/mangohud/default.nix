@@ -24,6 +24,11 @@ in
             enable = true;
             text = ''
               pci_dev=0000:03:00.0
+              fps
+              fps_color_change
+              fps_limit=357,237,141,117,60,0
+              fps_value=30,60
+              frame_timing
               gpu_stats
               gpu_temp
               gpu_core_clock
@@ -41,17 +46,12 @@ in
               cpu_load_change
               cpu_load_value=60,90
               core_load_change
+              core_load
+              core_bars
               vram
               ram
               swap
               procmem
-              fps
-              fps_color_change
-              fps_limit=357,237,141,117,60,0
-              toggle_fps_limit=Shift_R+F1
-              fps_value=30,60
-              frame_timing
-              throttling_status_graph
               engine_version
               arch
               vulkan_driver
@@ -84,9 +84,12 @@ in
               background_alpha=0.2
               round_corners=10
               no_display
-              toggle_hud=Alt_R+End
               legacy_layout=0 # For scripts that rely on the new layout
               font_file=${pkgs.lexend}/share/fonts/truetype/lexend/lexend/Lexend-Bold.ttf
+              toggle_fps_limit=Shift_R+F1
+              toggle_hud=Alt_R+Shift_R
+              toggle_hud_position=Shift_R+F11
+              toggle_preset=Shift_R+F10
               ${lib.optionalString config.catppuccin.enable ''
                 # Catppuccin theming
                 background_color=1e1e2e
@@ -96,10 +99,11 @@ in
                 engine_color=cba6f7
                 fps_color=f38ba8,f9e2af,a6e3a1
                 frametime_color=a6e3a1
-                gpu_color=a6e3a1
+                gpu_color=cba6f7
                 gpu_load_color=a6e3a1,f9e2af,f38ba8
                 io_color=f9e2af
                 media_player_color=cdd6f4
+                ram_color=94e2d5
                 text_color=cdd6f4
                 text_outline_color=1e1e2e
                 vram_color=94e2d5
