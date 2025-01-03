@@ -20,6 +20,8 @@
           {
             enable = true;
             name = "Logitech USB Receiver";
+            vendorId = "046d";
+            productId = "c547";
             acceleration = 0;
             accelerationProfile = "none";
           }
