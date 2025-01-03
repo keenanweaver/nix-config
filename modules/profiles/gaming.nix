@@ -70,8 +70,6 @@ let
       corsix-th # Theme Hospital
       devilutionx # Diablo
       exult # Ultima VII
-      #inputs.ow-mod-man.packages.${system}.owmods-cli
-      #inputs.ow-mod-man.packages.${system}.owmods-gui
       ja2-stracciatella
       jazz2
       katawa-shoujo-re-engineered
@@ -88,6 +86,7 @@ let
       relive # Oddworld
       ringracers
       runelite # RuneScape
+      sm64ex
       #space-station-14-launcher
       srb2 # Sonic Robo Blast 2
       theforceengine # Dark Forces / Outlaws
@@ -150,6 +149,7 @@ let
       inputs.umu.packages.${system}.umu
       ## Modding
       # nexusmods-app-unfree
+      # owmods-gui
       r2modman
       ## Other
       adwsteamgtk
