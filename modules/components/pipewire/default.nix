@@ -28,8 +28,6 @@ in
     # https://github.com/NixOS/nixpkgs/issues/330606
     #hardware.alsa.enablePersistence = true;
 
-    hardware.pulseaudio.enable = false;
-
     security.rtkit.enable = true;
 
     services.pipewire = {
@@ -211,6 +209,8 @@ in
           };
       };
     };
+
+    services.pulseaudio.enable = false;
 
     home-manager.users.${username} = { };
   };
