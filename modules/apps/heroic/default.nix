@@ -6,19 +6,19 @@
   ...
 }:
 let
-  cfg = config.bottles;
+  cfg = config.heroic;
 in
 {
   options = {
-    bottles = {
-      enable = lib.mkEnableOption "Enable bottles in home-manager";
+    heroic = {
+      enable = lib.mkEnableOption "Enable heroic in home-manager";
       enableFlatpak = lib.mkOption {
         type = lib.types.bool;
-        default = true;
+        default = false;
       };
       enableNative = lib.mkOption {
         type = lib.types.bool;
-        default = false;
+        default = true;
       };
     };
   };
@@ -27,35 +27,41 @@ in
       { config, pkgs, ... }:
       {
         home.file = {
-          wine-links-proton-cachyos-bottles = {
+          wine-links-proton-cachyos-heroic = {
             enable = cfg.enableNative;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nix-proton-cachyos.packages.x86_64-linux.proton-cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
-            target = "${config.xdg.dataHome}/bottles/runners/proton-cachyos";
+            target = "${config.xdg.configHome}/heroic/tools/proton/proton-cachyos";
           };
-          wine-links-proton-cachyos-flatpak-bottles = {
+          wine-links-proton-cachyos-flatpak-heroic = {
             enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nix-proton-cachyos.packages.x86_64-linux.proton-cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
-            target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos";
+            target = ".var/app/com.heroicgameslauncher.hgl/data/heroic/runners/proton-cachyos";
           };
-          wine-links-protonge-bottles = {
+          wine-links-proton-ge-heroic = {
             enable = cfg.enableNative;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
-            target = "${config.xdg.dataHome}/bottles/runners/proton-ge-custom";
+            target = "${config.xdg.configHome}/heroic/tools/proton/proton-ge-custom";
           };
-          wine-links-protonge-flatpak-bottles = {
+          wine-links-proton-ge-flatpak-heroic = {
             enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
-            target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-custom";
+            target = ".var/app/com.heroicgameslauncher.hgl/data/heroic/runners/proton-ge-custom";
           };
         };
-        home.packages = lib.mkIf cfg.enableNative [ pkgs.bottles ];
+        home.packages = lib.mkIf cfg.enableNative [
+          (pkgs.heroic.override {
+            extraPkgs = pkgs: [
+              pkgs.kdePackages.breeze
+              #inputs.umu.packages.${system}.umu
+            ];
+          })
+        ];
         services.flatpak = lib.mkIf cfg.enableFlatpak {
           overrides = {
-            "com.usebottles.bottles" = {
+            "com.heroicgameslauncher.hgl" = {
               Context = {
                 filesystems = [
                   "/mnt/crusader/Games"
-                  "/mnt/crusader/Media/Audio/Music"
                   "${config.home.homeDirectory}/Games"
                   "${config.xdg.dataHome}/applications"
                   "${config.xdg.dataHome}/games"
@@ -68,7 +74,7 @@ in
             };
           };
           packages = [
-            "com.usebottles.bottles"
+            "com.heroicgameslauncher.hgl"
           ];
         };
       };

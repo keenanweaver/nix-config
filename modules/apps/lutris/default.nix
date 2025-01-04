@@ -6,19 +6,19 @@
   ...
 }:
 let
-  cfg = config.bottles;
+  cfg = config.lutris;
 in
 {
   options = {
-    bottles = {
-      enable = lib.mkEnableOption "Enable bottles in home-manager";
+    lutris = {
+      enable = lib.mkEnableOption "Enable lutris in home-manager";
       enableFlatpak = lib.mkOption {
         type = lib.types.bool;
-        default = true;
+        default = false;
       };
       enableNative = lib.mkOption {
         type = lib.types.bool;
-        default = false;
+        default = true;
       };
     };
   };
@@ -27,35 +27,41 @@ in
       { config, pkgs, ... }:
       {
         home.file = {
-          wine-links-proton-cachyos-bottles = {
+          wine-links-proton-cachyos-lutris = {
             enable = cfg.enableNative;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nix-proton-cachyos.packages.x86_64-linux.proton-cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
-            target = "${config.xdg.dataHome}/bottles/runners/proton-cachyos";
+            target = "${config.xdg.configHome}/lutris/runners/wine/proton-cachyos";
           };
-          wine-links-proton-cachyos-flatpak-bottles = {
+          wine-links-proton-cachyos-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nix-proton-cachyos.packages.x86_64-linux.proton-cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
-            target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos";
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-cachyos";
           };
-          wine-links-protonge-bottles = {
+          wine-links-proton-ge-lutris = {
             enable = cfg.enableNative;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
-            target = "${config.xdg.dataHome}/bottles/runners/proton-ge-custom";
+            target = "${config.xdg.configHome}/lutris/runners/wine/proton-ge-custom";
           };
-          wine-links-protonge-flatpak-bottles = {
+          wine-links-proton-ge-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
-            target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-custom";
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-ge-custom";
           };
         };
-        home.packages = lib.mkIf cfg.enableNative [ pkgs.bottles ];
+        home.packages = lib.mkIf cfg.enableNative [
+          (pkgs.lutris.override {
+            extraPkgs = pkgs: [
+              pkgs.kdePackages.breeze
+              pkgs.libstrangle
+            ];
+          })
+        ];
         services.flatpak = lib.mkIf cfg.enableFlatpak {
           overrides = {
-            "com.usebottles.bottles" = {
+            "net.lutris.Lutris" = {
               Context = {
                 filesystems = [
                   "/mnt/crusader/Games"
-                  "/mnt/crusader/Media/Audio/Music"
                   "${config.home.homeDirectory}/Games"
                   "${config.xdg.dataHome}/applications"
                   "${config.xdg.dataHome}/games"
@@ -68,7 +74,7 @@ in
             };
           };
           packages = [
-            "com.usebottles.bottles"
+            "net.lutris.Lutris"
           ];
         };
       };

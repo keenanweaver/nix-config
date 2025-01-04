@@ -22,12 +22,14 @@
     ./gpu-screen-recorder
     ./gpg
     ./helix
+    ./heroic
     ./home-manager
     ./jujutsu
     ./keyd
     ./lazygit
     ./lact
     ./lsd
+    ./lutris
     ./mangohud
     ./mullvad
     ./mumble
