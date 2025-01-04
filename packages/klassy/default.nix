@@ -6,30 +6,10 @@
   ninja,
   kdePackages,
   qtPackages ? kdePackages,
+  gitUpdater,
 }:
 let
   qtMajorVersion = lib.versions.major qtPackages.qtbase.version;
-  qtVersionSpecificBuildInputs =
-    with qtPackages;
-    {
-      "5" = [
-        qtx11extras
-        kconfigwidgets
-        kirigami2
-      ];
-      "6" = [
-        qtsvg
-        kcolorscheme
-        kconfig
-        kcoreaddons
-        kdecoration
-        kguiaddons
-        ki18n
-        kirigami
-        kwidgetsaddons
-      ];
-    }
-    .${qtMajorVersion};
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "klassy-qt${qtMajorVersion}";
@@ -55,19 +35,39 @@ stdenv.mkDerivation (finalAttrs: {
       qtbase
       qtdeclarative
       qttools
-
       frameworkintegration
       kcmutils
       kdecoration
       kiconthemes
       kwindowsystem
     ]
-    ++ qtVersionSpecificBuildInputs;
+    ++ lib.optionals (qtMajorVersion == "5") [
+      qtx11extras
+      kconfigwidgets
+      kirigami2
+    ]
+    ++ lib.optionals (qtMajorVersion == "6") [
+      qtsvg
+      kcolorscheme
+      kconfig
+      kcoreaddons
+      kdecoration
+      kguiaddons
+      ki18n
+      kirigami
+      kwidgetsaddons
+    ];
 
   cmakeFlags = map (v: lib.cmakeBool "BUILD_QT${v}" (v == qtMajorVersion)) [
     "5"
     "6"
   ];
+
+  patches = [
+    ./project-version.patch
+  ];
+
+  passthru.updateScript = gitUpdater { };
 
   meta =
     {
