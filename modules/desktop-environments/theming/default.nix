@@ -31,6 +31,7 @@ in
     catppuccin = {
       enable = true;
       accent = "${accent-lower}";
+      cache.enable = true;
       flavor = "${flavor-lower}";
       sddm = {
         background = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
