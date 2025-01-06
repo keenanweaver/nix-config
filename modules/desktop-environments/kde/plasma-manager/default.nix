@@ -117,7 +117,7 @@
               "DetailsMode"."PreviewSize" = 32;
               "DetailsMode"."SidePadding" = 0;
               "General"."FilterBar" = true;
-              "General"."GlobalViewProps" = true;
+              "General"."GlobalViewProps" = false;
               "General"."RememberOpenedTabs" = false;
               "General"."ShowFullPath" = true;
               "General"."ShowFullPathInTitlebar" = true;
