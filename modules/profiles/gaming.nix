@@ -86,6 +86,12 @@ let
       relive # Oddworld
       ringracers
       runelite # RuneScape
+      /*
+        xh -o "$HOME/Games/mario-64/mario64.zip" -d https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Super%20Mario%2064%20%28USA%29.zip
+        ouch d "$HOME/Games/mario-64/mario64.zip" -y -d "$HOME/Games/mario-64"
+        fd 'Mario' -e z64 $HOME/Games/mario-64 -x mv {} "$HOME/Games/mario-64/baserom.us.z64"
+        nix-store --add-fixed sha256 /home/keenan/Games/mario-64/baserom.us.z64
+      */
       sm64ex
       #space-station-14-launcher
       srb2 # Sonic Robo Blast 2
@@ -107,7 +113,7 @@ let
       flycast
       fsuae-launcher
       hypseus-singe
-      lime3ds
+      #lime3ds
       mame
       # mesen
       nuked-sc55
@@ -133,20 +139,8 @@ let
       # xboxdrv
       ## Launchers & utils
       cartridges
-      (heroic.override {
-        extraPkgs = pkgs: [
-          kdePackages.breeze
-          inputs.umu.packages.${system}.umu
-        ];
-      })
       # limo
-      (lutris.override {
-        extraPkgs = pkgs: [
-          kdePackages.breeze
-          libstrangle
-        ];
-      })
-      inputs.umu.packages.${system}.umu
+      #inputs.umu.packages.${system}.umu # https://github.com/NixOS/nixpkgs/issues/366359
       ## Modding
       # nexusmods-app-unfree
       # owmods-gui
@@ -172,6 +166,7 @@ let
       xvidcore
       ## Wine
       inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
+      #inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
       winetricks
       wineWowPackages.stagingFull
       ## One-and-dones
@@ -214,7 +209,9 @@ in
     gamemode.enable = true;
     gamescope.enable = true;
     gsr.enable = true;
+    heroic.enable = true;
     lact.enable = true;
+    lutris.enable = true;
     mangohud.enable = true;
     nonfree.enable = true;
     obs.enable = true;
@@ -562,15 +559,19 @@ in
             '';
             target = "${config.home.homeDirectory}/.wine/controller-proton.reg";
           };
-          wine-links-protonge-heroic = {
+          wine-mouse-acceleration = {
+            # https://reddit.com/r/linux_gaming/comments/1hs1685/windows_mouse_acceleration_seems_to_be_enabled_in/
+            # Import with: wine start regedit.exe /home/keenan/.wine/mouse-acceleration-proton.reg
             enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
-            target = "${config.xdg.configHome}/heroic/tools/proton/proton-ge-custom";
-          };
-          wine-links-protonge-lutris = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
-            target = "${config.xdg.dataHome}/lutris/runners/wine/proton-ge-custom";
+            text = ''
+              Windows Registry Editor Version 5.00
+
+              [HKEY_CURRENT_USER\Control Panel\Mouse]
+              "MouseSpeed"="0"
+              "MouseThreshold1"="0"
+              "MouseThreshold2"="0"
+            '';
+            target = "${config.home.homeDirectory}/.wine/mouse-acceleration-proton.reg";
           };
         };
         home.packages =
