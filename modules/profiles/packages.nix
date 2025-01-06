@@ -135,13 +135,14 @@ in
             systemctl-tui
             termscp
             ttysvr
+            wikiman
             yq
             ## unix alts ##
             choose # cut
             dogdns # dig
             dua # du
             duf # df
-            fuc # cp / rm
+            #fuc # cp / rm
             ouch # compression
             pigz # gz
             procs # ps
