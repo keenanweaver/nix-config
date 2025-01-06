@@ -17,8 +17,64 @@ in
     home-manager.users.${username} =
       { pkgs, ... }:
       {
-        programs.nixvim = {
+        programs.nvf = {
           enable = true;
+          enableManpages = true;
+          settings = {
+            vim = {
+              autocomplete.nvim-cmp.enable = true;
+              languages = {
+                enableLSP = true;
+                enableTreesitter = true;
+                bash.enable = true;
+                css.enable = true;
+                go.enable = true;
+                html.enable = true;
+                lua = {
+                  enable = true;
+                  lsp.neodev.enable = true;
+                };
+                markdown.enable = true;
+                nix.enable = true;
+                nu.enable = true;
+                python.enable = true;
+                rust = {
+                  enable = true;
+                  crates.enable = true;
+                };
+              };
+              lsp = {
+                enable = true;
+              };
+              minimap.codewindow.enable = true;
+              notify.nvim-notify.enable = true;
+              statusline.lualine.enable = true;
+              telescope.enable = true;
+              ui = {
+                colorizer.enable = true;
+                breadcrumbs = {
+                  enable = true;
+                  alwaysRender = true;
+                  navbuddy.enable = true;
+                };
+                illuminate.enable = true;
+                modes-nvim.enable = true;
+                noice.enable = true;
+              };
+              useSystemClipboard = true;
+              vimAlias = true;
+              visuals = {
+                cinnamon-nvim.enable = true;
+                cursorline.enable = true;
+                highlight-undo.enable = true;
+                indentBlankline.enable = true;
+                scrollBar.enable = true;
+              };
+            };
+          };
+        };
+        programs.nixvim = {
+          enable = false;
           extraConfigLua = ''
             local Terminal  = require('toggleterm.terminal').Terminal
             local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })

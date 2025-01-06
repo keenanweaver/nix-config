@@ -396,6 +396,18 @@ in
               };
             };
           };
+          nvf = {
+            settings = {
+              vim = {
+                theme = {
+                  enable = true;
+                  name = "catppuccin";
+                  style = "mocha";
+                  transparent = true;
+                };
+              };
+            };
+          };
           plasma = {
             configFile = {
               # Application Style

@@ -48,6 +48,7 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvf.url = "github:notashelf/nvf";
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -240,6 +241,7 @@
                     nix-index-database.hmModules.nix-index
                     nixvim.homeManagerModules.nixvim
                     nur.modules.homeManager.default
+                    nvf.homeManagerModules.default
                     plasma-manager.homeManagerModules.plasma-manager
                     sops-nix.homeManagerModules.sops
                   ];
@@ -303,6 +305,7 @@
                     nix-index-database.hmModules.nix-index
                     nixvim.homeManagerModules.nixvim
                     nur.modules.homeManager.default
+                    nvf.homeManagerModules.default
                     plasma-manager.homeManagerModules.plasma-manager
                     sops-nix.homeManagerModules.sops
                   ];
