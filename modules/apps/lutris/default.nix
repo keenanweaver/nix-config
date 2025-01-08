@@ -53,6 +53,7 @@ in
             extraPkgs = pkgs: [
               pkgs.kdePackages.breeze
               pkgs.libstrangle
+              inputs.umu.packages.${pkgs.system}.umu
             ];
           })
         ];

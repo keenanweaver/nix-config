@@ -52,7 +52,7 @@ in
           (pkgs.heroic.override {
             extraPkgs = pkgs: [
               pkgs.kdePackages.breeze
-              #inputs.umu.packages.${system}.umu
+              inputs.umu.packages.${pkgs.system}.umu
             ];
           })
         ];

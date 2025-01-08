@@ -50,7 +50,7 @@ let
       quake-injector
       # trenchbroom
       ## Arma
-      #arma3-unix-launcher
+      arma3-unix-launcher
       # (arma3-unix-launcher.override { buildDayZLauncher = true; })
       ## Duke
       eduke32
@@ -140,7 +140,7 @@ let
       ## Launchers & utils
       cartridges
       # limo
-      #inputs.umu.packages.${system}.umu # https://github.com/NixOS/nixpkgs/issues/366359
+      inputs.umu.packages.${pkgs.system}.umu # https://github.com/NixOS/nixpkgs/issues/366359
       ## Modding
       # nexusmods-app-unfree
       # owmods-gui
