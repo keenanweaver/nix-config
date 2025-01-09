@@ -542,7 +542,6 @@ in
           };
           roms-mt32-exodos = {
             enable = true;
-            recursive = true;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
             target = "${config.xdg.configHome}/dosbox/mt32-roms";
           };

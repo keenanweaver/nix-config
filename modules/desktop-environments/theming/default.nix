@@ -151,7 +151,6 @@ in
             # Flatpak theming issue workarounds
             catppuccin-gtk = {
               enable = true;
-              recursive = true;
               source = config.lib.file.mkOutOfStoreSymlink "${pkgs.kdePackages.breeze-gtk}/share/themes/${GTK-THEME}";
               target = "${config.xdg.dataHome}/themes/${GTK-THEME}";
             };
@@ -179,11 +178,10 @@ in
               enable = true;
               recursive = true;
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-obs}/themes";
-              target = ".var/app/com.obsproject.Studio/config/obs-studio/themes/";
+              target = ".var/app/com.obsproject.Studio/config/obs-studio/themes";
             };
             catppuccin-powershell = {
               enable = true;
-              recursive = true;
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-powershell}";
               target = "${config.xdg.dataHome}/powershell/Modules/Catppuccin";
             };
