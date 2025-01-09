@@ -64,10 +64,16 @@ in
 
     users = {
       users = {
-        ${username}.extraGroups = [
-          "docker"
-          "libvirtd"
-        ];
+        ${username} = {
+          extraGroups = [
+            "docker"
+            "libvirtd"
+          ];
+          # quadlets
+          autoSubUidGidRange = true;
+          linger = true;
+        };
+
         nixosvmtest = {
           isSystemUser = true;
           initialHashedPassword = "$y$j9T$cLVPJpZrtzdgCM732gQ3g/$4qBIUCoDSJ1frFNcvqYSL6ykQSOdjQyDVqRIANx.SRD";

@@ -242,7 +242,7 @@
                     nix-index-database.hmModules.nix-index
                     nixvim.homeManagerModules.nixvim
                     nur.modules.homeManager.default
-                    quadlet-nix.nixosModules.quadlet
+                    quadlet-nix.homeManagerModules.quadlet
                     nvf.homeManagerModules.default
                     plasma-manager.homeManagerModules.plasma-manager
                     sops-nix.homeManagerModules.sops
