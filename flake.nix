@@ -48,6 +48,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvf.url = "github:notashelf/nvf";
+    quadlet-nix = {
+      url = "github:SEIAROTg/quadlet-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -63,7 +67,6 @@
       url = "github:LovingMelody/nix-citizen";
       inputs.nix-gaming.follows = "nix-gaming";
     };
-
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-proton-cachyos.url = "github:kimjongbing/nix-proton-cachyos";
 
@@ -215,6 +218,7 @@
               #inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
+              inputs.quadlet-nix.nixosModules.quadlet
               inputs.sops-nix.nixosModules.sops
               inputs.ucodenix.nixosModules.default
               home-manager.nixosModules.home-manager
@@ -238,6 +242,7 @@
                     nix-index-database.hmModules.nix-index
                     nixvim.homeManagerModules.nixvim
                     nur.modules.homeManager.default
+                    quadlet-nix.nixosModules.quadlet
                     nvf.homeManagerModules.default
                     plasma-manager.homeManagerModules.plasma-manager
                     sops-nix.homeManagerModules.sops

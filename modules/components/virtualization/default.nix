@@ -19,6 +19,7 @@ in
     environment = {
       systemPackages = with pkgs; [
         docker-compose
+        podlet
         quickemu
         spice
         spice-protocol
