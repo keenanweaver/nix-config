@@ -591,6 +591,8 @@ in
               text = ''
                 ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
                 steamtinkerlaunch compat add
+                sd 'YAD="(.*?)"' 'YAD="/etc/profiles/per-user/${username}/bin/yad"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
+                sd 'STLEDITOR="(.*?)"' 'STLEDITOR="/etc/profiles/per-user/${username}/bin/kate"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
                 sd 'SKIPINTDEPCHECK="0"' 'SKIPINTDEPCHECK="1"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
                 sd 'USEGAMEMODERUN="0"' 'USEGAMEMODERUN="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
                 sd 'USEOBSCAP="0"' 'USEOBSCAP="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
