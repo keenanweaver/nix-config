@@ -140,7 +140,7 @@ let
       ## Launchers & utils
       cartridges
       # limo
-      inputs.umu.packages.${pkgs.system}.umu # https://github.com/NixOS/nixpkgs/issues/366359
+      #inputs.umu.packages.${pkgs.system}.umu
       ## Modding
       # nexusmods-app-unfree
       # owmods-gui
