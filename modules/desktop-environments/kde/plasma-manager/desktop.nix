@@ -475,7 +475,16 @@
           apply = {
             noborder = {
               value = true;
-              apply = "force";
+              apply = "initially";
+            };
+            position = {
+              value = "0,646";
+            };
+            screen = {
+              value = 1;
+            };
+            size = {
+              value = "1026,740";
             };
           };
         }

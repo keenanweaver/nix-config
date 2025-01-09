@@ -80,7 +80,6 @@ in
               mux.set_active_workspace 'Zsh'
               -- window:gui_window():maximize()
             end)
-              config.front_end = "WebGpu"
               config.color_scheme = 'Catppuccin Mocha'
               config.default_prog = { "zsh" }
               config.font_size = 14
