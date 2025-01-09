@@ -26,7 +26,6 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    nix-colors.url = "github:misterio77/nix-colors";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
@@ -161,7 +160,6 @@
             modules = [
               ./hosts/steamdeck/home.nix
               inputs.catppuccin.homeManagerModules.catppuccin
-              inputs.nix-colors.homeManagerModules.default
               inputs.nix-flatpak.homeManagerModules.nix-flatpak
               inputs.nur.modules.homeManager.default
               inputs.plasma-manager.homeManagerModules.plasma-manager
@@ -236,7 +234,6 @@
                   };
                   sharedModules = with inputs; [
                     catppuccin.homeManagerModules.catppuccin
-                    nix-colors.homeManagerModules.default
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.hmModules.nix-index
                     nixvim.homeManagerModules.nixvim
@@ -300,7 +297,6 @@
                   };
                   sharedModules = with inputs; [
                     catppuccin.homeManagerModules.catppuccin
-                    nix-colors.homeManagerModules.default
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.hmModules.nix-index
                     nixvim.homeManagerModules.nixvim
@@ -416,7 +412,6 @@
                   };
                   sharedModules = [
                     inputs.catppuccin.homeManagerModules.catppuccin
-                    inputs.nix-colors.homeManagerModules.default
                     inputs.nix-flatpak.homeManagerModules.nix-flatpak
                     inputs.nix-index-database.hmModules.nix-index
                     inputs.nixvim.homeManagerModules.nixvim
