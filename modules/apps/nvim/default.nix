@@ -54,7 +54,7 @@ in
                 colorizer.enable = true;
                 breadcrumbs = {
                   enable = true;
-                  alwaysRender = true;
+                  lualine.winbar.alwaysRender = true;
                   navbuddy.enable = true;
                 };
                 illuminate.enable = true;
@@ -65,10 +65,10 @@ in
               vimAlias = true;
               visuals = {
                 cinnamon-nvim.enable = true;
-                cursorline.enable = true;
+                nvim-cursorline.enable = true;
                 highlight-undo.enable = true;
-                indentBlankline.enable = true;
-                scrollBar.enable = true;
+                indent-blankline.enable = true;
+                nvim-scrollbar.enable = true;
               };
             };
           };
