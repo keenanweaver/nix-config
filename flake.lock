@@ -224,11 +224,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1736457656,
-        "narHash": "sha256-KkHvn9kia5vi5CSzw47GMN0hHY5bmO8Q3Zsa5p8UmDA=",
+        "lastModified": 1736461677,
+        "narHash": "sha256-bkMlK23uyCyBFEp4NDTrbZCXJPYJrsu5guq49Pabbz8=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "0e0eeb6c392503eaec846c6d7bdaede867027cb1",
+        "rev": "c682630b226161aaac7d800ba98e210cf0351ebb",
         "type": "github"
       },
       "original": {
@@ -877,11 +877,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736409493,
-        "narHash": "sha256-XezBEaGENmXgndx2gsVxQ0JoHUeQs9OSUZvVx/GDqyQ=",
+        "lastModified": 1736461356,
+        "narHash": "sha256-pGM1LVCaDDbtFDRjP1VseKywLf/f3f1h1B4z9WZlmCM=",
         "owner": "Jovian-Experiments",
         "repo": "Jovian-NixOS",
-        "rev": "9a958cc0aa5241ea3badf44a063a4b0389dc0110",
+        "rev": "e5a5906fbef7666508f7dba3c120fb6988ef99b3",
         "type": "github"
       },
       "original": {
@@ -1779,11 +1779,11 @@
         "treefmt-nix": "treefmt-nix_4"
       },
       "locked": {
-        "lastModified": 1736454817,
-        "narHash": "sha256-vDjeo0S3BtGX/7PWrDwIFOVglLrBY8QC2x5p+ciEUWs=",
+        "lastModified": 1736462812,
+        "narHash": "sha256-vX9lRHwwzuAEc30l0HZoF/PqgvdWMvuEtTFswUyRS+o=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "ab61a287c532898e090ae1c161498b4500a49c54",
+        "rev": "3a99f834968060bc549fb76a03fff9c89ff830c8",
         "type": "github"
       },
       "original": {
@@ -4047,6 +4047,26 @@
         "type": "github"
       }
     },
+    "quadlet-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1734736118,
+        "narHash": "sha256-40uV/6LzQUO1AegOZWaDo+ADbZcXBDJQx7xjrIVe4RQ=",
+        "owner": "SEIAROTg",
+        "repo": "quadlet-nix",
+        "rev": "03fc47a4775f7cc463fe62f8bddf698a255095f5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SEIAROTg",
+        "repo": "quadlet-nix",
+        "type": "github"
+      }
+    },
     "raspberry-pi-nix": {
       "inputs": {
         "libcamera-src": "libcamera-src",
@@ -4132,6 +4152,7 @@
         "nur": "nur",
         "nvf": "nvf",
         "plasma-manager": "plasma-manager",
+        "quadlet-nix": "quadlet-nix",
         "raspberry-pi-nix": "raspberry-pi-nix",
         "sops-nix": "sops-nix",
         "steamtinkerlaunch-master": "steamtinkerlaunch-master",
