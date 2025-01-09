@@ -12,6 +12,7 @@
   ibus,
   installShellFiles,
   libGL,
+  libayatana-appindicator,
   libdecor,
   libdrm,
   libjack2,
@@ -19,7 +20,6 @@
   libusb1,
   libxkbcommon,
   mesa,
-  nas,
   ninja,
   nix-update-script,
   nixosTests,
@@ -51,7 +51,7 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "sdl3";
-  version = "3.1.6";
+  version = "3.1.8";
 
   outputs = [
     "lib"
@@ -62,14 +62,20 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "libsdl-org";
     repo = "SDL";
-    rev = "refs/tags/preview-${finalAttrs.version}";
-    hash = "sha256-MItZt5QeEz13BeCoLyXVUbk10ZHNyubq7dztjDq4nt4=";
+    tag = "preview-${finalAttrs.version}";
+    hash = "sha256-yfnW5y99EegifRavvZWmXPH2NFPKWoe90RmGDGk6PI4=";
   };
 
-  postPatch = ''
-    substituteInPlace src/video/wayland/SDL_waylandmessagebox.c \
-      --replace-fail '"zenity"' '"${lib.getExe zenity}"'
-  '';
+  postPatch =
+    # Tests timeout on Darwin
+    lib.optionalString testSupport ''
+      substituteInPlace test/CMakeLists.txt \
+        --replace-fail 'set(noninteractive_timeout 10)' 'set(noninteractive_timeout 30)'
+    ''
+    + lib.optionalString waylandSupport ''
+      substituteInPlace src/video/wayland/SDL_waylandmessagebox.c \
+        --replace-fail '"zenity"' '"${lib.getExe zenity}"'
+    '';
 
   strictDeps = true;
 
@@ -96,8 +102,10 @@ stdenv.mkDerivation (finalAttrs: {
   dlopenBuildInputs =
     lib.optionals stdenv.hostPlatform.isLinux [
       libusb1
-      nas # libaudio
     ]
+    ++ lib.optional (
+      stdenv.hostPlatform.isUnix && !stdenv.hostPlatform.isDarwin
+    ) libayatana-appindicator
     ++ lib.optional alsaSupport alsa-lib
     ++ lib.optional dbusSupport dbus
     ++ lib.optionals drmSupport [
@@ -213,6 +221,7 @@ stdenv.mkDerivation (finalAttrs: {
   meta = {
     description = "Cross-platform development library (Preview version)";
     homepage = "https://libsdl.org";
+    changelog = "https://github.com/libsdl-org/SDL/releases/tag/${finalAttrs.src.tag}";
     license = lib.licenses.zlib;
     maintainers = with lib.maintainers; [ getchoo ];
     platforms = lib.platforms.unix;
