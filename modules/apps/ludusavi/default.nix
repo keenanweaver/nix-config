@@ -80,7 +80,7 @@ in
             ExecStart = "${pkgs.ludusavi}/bin/ludusavi backup --force";
           }
           // lib.optionalAttrs cfg.backupNotification {
-            ExecStartPost = "${pkgs.libnotify}/bin/notify-send 'Ludusavi' 'Backup completed' -i ludusavi -a 'Ludusavi'";
+            ExecStartPost = "${pkgs.libnotify}/bin/notify-send 'Ludusavi' 'Backup completed' -i com.mtkennerly.ludusavi -a 'Ludusavi'";
           };
       };
       timers.ludusavi = {
