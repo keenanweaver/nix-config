@@ -148,6 +148,12 @@ in
         };
         home = {
           file = {
+            # UMU cursor workaround
+            breeze-cursors = {
+              enable = true;
+              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.kdePackages.breeze}/share/icons/breeze_cursors";
+              target = "${config.xdg.dataHome}/icons/breeze_cursors";
+            };
             # Flatpak theming issue workarounds
             catppuccin-gtk = {
               enable = true;
@@ -287,6 +293,8 @@ in
             GSETTINGS_BACKEND = "keyfile";
             GTK_USE_PORTAL = "1";
             LS_COLORS = "$(vivid generate catppuccin-${flavor-lower})";
+            XCURSOR_NAME = "${cursor-theme}";
+            XCURSOR_PATH = "";
             XCURSOR_SIZE = "24";
           };
         };
