@@ -51,7 +51,6 @@ in
         home.packages = lib.mkIf cfg.enableNative [
           (pkgs.heroic.override {
             extraPkgs = pkgs: [
-              pkgs.kdePackages.breeze
               inputs.umu.packages.${pkgs.system}.umu
             ];
           })
