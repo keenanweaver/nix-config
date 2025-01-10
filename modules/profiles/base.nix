@@ -65,7 +65,6 @@ in
     networking.enable = true;
     nixConfig.enable = true;
     packages.enable = true;
-    performance.enable = true;
     pipewire.enable = true;
     secrets.enable = true;
     users.enable = true;
@@ -114,7 +113,19 @@ in
         enableNotifications = if vars.desktop then true else false;
       };
       fstrim.enable = true;
+      journald = {
+        extraConfig = ''
+          SystemMaxUse=50M
+        '';
+      };
       logrotate.enable = true;
+    };
+
+    systemd = {
+      extraConfig = ''
+        DefaultTimeoutStartSec=15s
+        DefaultTimeoutStopSec=10s
+      '';
     };
 
     system.stateVersion = "23.11";

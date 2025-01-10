@@ -10,6 +10,7 @@
     kernel = {
       sysctl = {
         "kernel.sysrq" = 4;
+        "kernel.nmi_watchdog" = 0;
         "net.core.default_qdisc" = "cake";
         "net.ipv4.tcp_congestion_control" = "bbr";
         "vm.swappiness" = 10;
@@ -17,13 +18,17 @@
     };
     kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
     kernelParams = [
-      "quiet"
-      "rd.systemd.show_status=false"
-      "splash"
+      "nowatchdog"
       #"systemd.unified_cgroup_hierarchy=1"
+      "zswap.enabled=0"
+      # Quiet boot
+      "quiet"
+      "splash"
+      "systemd.show_status=false"
+      "rd.systemd.show_status=false"
+      "loglevel=0"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
-      "zswap.enabled=0"
     ];
     loader = {
       efi = {

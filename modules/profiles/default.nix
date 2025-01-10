@@ -7,7 +7,6 @@
     ./nonfree.nix
     ./office.nix
     ./packages.nix
-    ./performance.nix
     ./server.nix
   ];
 }

@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  pkgs,
   ...
 }:
 let
@@ -61,6 +62,7 @@ in
         geoProviderUrl = "https://beacondb.net/v1/geolocate";
       };
       power-profiles-daemon.enable = true;
+      udev.packages = with pkgs; [ android-udev-rules ];
       udisks2 = {
         enable = true;
       };
