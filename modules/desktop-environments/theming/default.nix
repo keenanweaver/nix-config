@@ -294,7 +294,6 @@ in
             GTK_USE_PORTAL = "1";
             LS_COLORS = "$(vivid generate catppuccin-${flavor-lower})";
             XCURSOR_NAME = "${cursor-theme}";
-            XCURSOR_PATH = "";
             XCURSOR_SIZE = "24";
           };
         };
