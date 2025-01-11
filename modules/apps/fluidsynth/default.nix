@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  pkgs,
   ...
 }:
 let
@@ -13,7 +14,7 @@ in
     enable = lib.mkEnableOption "Enable Fluidsynth in home-manager";
     extraOptions = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [ "--gain 1.0" ];
+      default = [ "-g 1.0" ];
     };
     soundFont = lib.mkOption {
       type = lib.types.path;
@@ -33,6 +34,18 @@ in
       { inputs, config, ... }:
       {
         home.file = {
+          autostart-fluidsynth = {
+            enable = true;
+            text = ''
+              [Desktop Entry]
+              Exec=${pkgs.fluidsynth}/bin/fluidsynth -a pulseaudio -siq -g 1.0 /home/${username}/Music/soundfonts/default.sf2
+              Name=fluidsynth
+              Terminal=false
+              Type=Application
+            '';
+            target = "${config.xdg.configHome}/autostart/fluidsynth.desktop";
+            executable = true;
+          };
           midi-soundfonts-default = {
             enable = true;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts/${soundfont}";
@@ -48,7 +61,7 @@ in
           SDL_SOUNDFONTS = "${cfg.soundFont}";
         };
         services.fluidsynth = {
-          enable = true;
+          enable = false;
           extraOptions = cfg.extraOptions;
           soundFont = cfg.soundFont;
           soundService = cfg.soundService;
