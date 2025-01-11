@@ -18,7 +18,7 @@
   # Custom modules
   desktop.enable = true;
   gaming.enable = true;
-  gsr.defaultAudioDevice = "alsa_output.usb-Schiit_Audio_Schiit_Modi_-00.analog-stereo.monitor";
+  gsr.defaultAudioDevice = "alsa_output.usb-Generic_USB_Audio-00.analog-stereo.monitor"; # alsa_output.usb-Schiit_Audio_Schiit_Modi_-00.analog-stereo.monitor
 
   boot = {
     initrd = {
@@ -90,11 +90,14 @@
               "default.clock.allowed-rates" = [
                 44100
                 48000
-                88200
-                96000
-                176400
-                192000
+                #88200
+                #96000
+              #176400
+              #192000
               ];
+              "default.clock.quantum" = 1024;
+              "default.clock.min-quantum" = 1024;
+              "default.clock.max-quantum" = 1024;
             };
           };
           # Create mono-only microphone output

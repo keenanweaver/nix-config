@@ -24,7 +24,7 @@
       # Quiet boot
       "quiet"
       "splash"
-      "systemd.show_status=false"
+      #"systemd.show_status=false"
       "rd.systemd.show_status=false"
       "loglevel=0"
       "rd.udev.log_level=3"

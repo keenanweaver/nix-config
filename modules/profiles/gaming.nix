@@ -248,14 +248,14 @@ in
       ];
       kernel = {
         sysctl = {
-          "kernel.sched_cfs_bandwidth_slice_us" = 3000;
-          "net.ipv4.tcp_fin_timeout" = 5;
+          # "kernel.sched_cfs_bandwidth_slice_us" = 3000;
+          # "net.ipv4.tcp_fin_timeout" = 5;
           "vm.max_map_count" = 2147483642;
           "vm.mmap_min_addr" = 0; # SheepShaver
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/sysctl.d/99-cachyos-settings.conf
           "fs.file-max" = 2097152;
           "fs.inotify.max_user_watches" = 524288;
-          "net.core.netdev_max_backlog" = 4096;
+          "net.core.netdev_max_backlog" = 16384;
           "net.core.somaxconn" = 8192;
           "net.ipv4.tcp_slow_start_after_idle" = 0;
         };
