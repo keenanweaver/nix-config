@@ -21,3 +21,7 @@ If you fork this and try to use it without modifying anything, you will have a b
 My suggestion is to just take the bits and pieces you like and morph them into your own config.
 
 I'm always looking to simplify or make things better. Please let me know if you have suggestions.
+
+
+TODO:
+* Fix Fluidsynth breaking Game virtual sink

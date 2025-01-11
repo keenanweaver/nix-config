@@ -205,7 +205,7 @@ in
     bottles.enable = true;
     cdemu.enable = true;
     coolercontrol.enable = true;
-    fluidsynth.enable = true;
+    fluidsynth.enable = false;
     gamemode.enable = true;
     gamescope.enable = true;
     gsr.enable = true;
