@@ -105,6 +105,7 @@ let
       ## Emulators
       _86Box-with-roms
       # archipelago
+      ares
       # bizhawk
       cemu
       dolphin-emu
@@ -115,7 +116,7 @@ let
       hypseus-singe
       #lime3ds
       mame
-      # mesen
+      mesen
       nuked-sc55
       pcsx2
       pegasus-frontend

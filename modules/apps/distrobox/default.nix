@@ -168,7 +168,6 @@ in
                   faugus-launcher-git          \
                   jazzjackrabbit               \
                   lab3d-sdl                    \
-                  mesen2-git                   \
                   openxcom-extended            \
                   portproton                   \
                   sonicthehedgehog             \
@@ -370,24 +369,6 @@ in
               let
                 args = "gamemoderun obs-gamecapture mangohud --dlsym";
                 bin = "lab3d-sdl";
-                bin-export = "${bin}-db";
-                container = "bazzite-arch-gaming";
-              in
-              writeShellScriptBin "${bin-export}" ''
-                export PULSE_SINK="Game"
-                if [ -z "''${CONTAINER_ID}" ]; then
-                  exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  exec distrobox-host-exec '${bin-export}' "$@"
-                else
-                  exec '/usr/bin/${bin}' "$@"
-                fi
-              ''
-            )
-            (
-              let
-                args = "gamemoderun obs-gamecapture";
-                bin = "mesen2";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
               in
@@ -625,16 +606,6 @@ in
                 icon = "${icon}";
                 categories = [ "Game" ];
               };
-            mesen2 = lib.mkIf cfg.gaming {
-              name = "Mesen2";
-              comment = "Multi-system emulator";
-              exec = "mesen2-db";
-              icon = "mesen";
-              categories = [
-                "Game"
-                "Emulator"
-              ];
-            };
             portproton =
               let
                 icon = pkgs.fetchurl {
