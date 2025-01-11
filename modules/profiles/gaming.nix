@@ -820,6 +820,18 @@ in
               theme = "dark";
             };
           };
+          wayland-pipewire-idle-inhibit = {
+            enable = true;
+            settings = {
+              verbosity = "INFO";
+              media_minimum_duration = 5;
+              idle_inhibitor = "wayland";
+              sink_whitelist = [
+                { name = "Game"; }
+                { name = "Music"; }
+              ];
+            };
+          };
         };
         xdg = {
           desktopEntries = {

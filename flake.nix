@@ -62,7 +62,11 @@
       url = "github:Jovian-Experiments/Jovian-NixOS";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    wayland-pipewire-idle-inhibit = {
+      url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  
     nix-citizen = {
       url = "github:LovingMelody/nix-citizen";
       inputs.nix-gaming.follows = "nix-gaming";
@@ -246,6 +250,7 @@
                     nvf.homeManagerModules.default
                     plasma-manager.homeManagerModules.plasma-manager
                     sops-nix.homeManagerModules.sops
+                    wayland-pipewire-idle-inhibit.homeModules.default
                   ];
                 };
               }
