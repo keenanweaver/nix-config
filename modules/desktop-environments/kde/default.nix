@@ -4,6 +4,7 @@
   config,
   pkgs,
   username,
+  vars,
   ...
 }:
 let
@@ -50,6 +51,9 @@ in
           sddm-kcm
           syntax-highlighting
           tokodon
+        ]
+        ++ lib.optionals vars.gaming [
+          inputs.rom-properties.packages.${pkgs.system}.rp_kde6
         ];
     };
     # Neochat

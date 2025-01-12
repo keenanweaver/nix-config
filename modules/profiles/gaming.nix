@@ -114,7 +114,7 @@ let
       flycast
       fsuae-launcher
       hypseus-singe
-      #lime3ds
+      lime3ds
       mame
       mesen
       nuked-sc55
@@ -147,8 +147,10 @@ let
       # owmods-gui
       r2modman
       ## Other
+      inputs.aaru.packages.${pkgs.system}.default
       adwsteamgtk
       chiaki-ng
+      inputs.nix-game-preservation.packages.${pkgs.system}.discimagecreator
       ffmpeg
       gst_all_1.gstreamer
       gst_all_1.gstreamermm
@@ -161,7 +163,9 @@ let
       gst_all_1.gst-vaapi
       gswatcher
       mpg123
+      inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt
       parsec-bin
+      inputs.nix-game-preservation.packages.${pkgs.system}.redumper
       x264
       x265
       xvidcore
@@ -176,7 +180,7 @@ let
            igir
            innoextract
            jpsxdec
-           lgogdownloader
+           lgogdownloader 
            mame.tools
            mmv
            nsz
@@ -828,8 +832,7 @@ in
               media_minimum_duration = 5;
               idle_inhibitor = "wayland";
               sink_whitelist = [
-                { name = "Game"; }
-                { name = "Music"; }
+                { name = "USB Audio Analog Stereo"; }
               ];
             };
           };

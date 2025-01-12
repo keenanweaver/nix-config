@@ -58,6 +58,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    aaru = {
+      url = "github:Whovian9369/aaru-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-game-preservation = {
+      url = "github:Whovian9369/nix-game-preservation";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rom-properties = {
+      url = "github:Whovian9369/rom-properties-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     jovian = {
       url = "github:Jovian-Experiments/Jovian-NixOS";
       inputs.nixpkgs.follows = "nixpkgs";
