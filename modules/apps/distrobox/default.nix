@@ -115,37 +115,37 @@ in
               ## Set up containers
               ${lib.optionalString vars.gaming ''
                 ## Base packages
-                paru -Syu --needed --noconfirm   \
-                gamemode                         \
-                gamescope-git                    \
-                kdialog                          \
-                lib32-gamemode                   \
-                lib32-libpulse                   \
-                lib32-mangohud                   \
-                lib32-obs-vkcapture-git          \
-                lib32-vkbasalt                   \
-                lib32-vulkan-mesa-layers         \
-                lib32-vulkan-radeon              \
-                lib32-openal                     \
-                lib32-pipewire                   \
-                lib32-pipewire-jack              \
-                libva-mesa-driver                \
-                mangohud                         \
-                vkbasalt                         \
-                vulkan-mesa-layers               \
-                obs-vkcapture-git                \
-                openal                           \
-                parui                            \
-                pipewire                         \
-                pipewire-pulse                   \
-                pipewire-alsa                    \
-                pipewire-jack                    \
-                wireplumber                      \
+                paru -Syu --needed --noconfirm \
+                gamemode                       \
+                gamescope-git                  \
+                kdialog                        \
+                lib32-gamemode                 \
+                lib32-libpulse                 \
+                lib32-mangohud                 \
+                lib32-obs-vkcapture-git        \
+                lib32-vkbasalt                 \
+                lib32-vulkan-mesa-layers       \
+                lib32-vulkan-radeon            \
+                lib32-openal                   \
+                lib32-pipewire                 \
+                lib32-pipewire-jack            \
+                libva-mesa-driver              \
+                mangohud                       \
+                vkbasalt                       \
+                vulkan-mesa-layers             \
+                obs-vkcapture-git              \
+                openal                         \
+                parui                          \
+                pipewire                       \
+                pipewire-pulse                 \
+                pipewire-alsa                  \
+                pipewire-jack                  \
+                wireplumber                    \
                 xdg-desktop-portal-kde
                 ## Install necessary packages
-                paru -S --needed --noconfirm     \
-                archlinux-keyring                \
-                base-devel                       \
+                paru -S --needed --noconfirm   \
+                archlinux-keyring              \
+                base-devel                     \
                 yay
                 if [[ "$CONTAINER_ID" =~ ^bazzite-arch-exodos ]]; then
                   # Games/emulators/tools
@@ -162,7 +162,6 @@ in
                   # Games/emulators/tools
                   paru -S --needed --noconfirm \
                   2s2h-bin                     \
-                  aaru                         \
                   archipelagomw-bin            \
                   bizhawk-bin                  \
                   faugus-launcher-git          \
@@ -196,23 +195,6 @@ in
                 	exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
                 	exec distrobox-host-exec '${bin-export}' "$@"
-                else
-                	exec '/usr/bin/${bin}' "$@"
-                fi
-              ''
-            )
-            (
-              let
-                args = "";
-                bin = "aaru";
-                bin-export = "${bin}-db";
-                container = "bazzite-arch-gaming";
-              in
-              writeShellScriptBin "${bin-export}" ''
-                if [ -z "''${CONTAINER_ID}" ]; then
-                	exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                	exec distrobox-host-exec ${bin-export} "$@"
                 else
                 	exec '/usr/bin/${bin}' "$@"
                 fi
