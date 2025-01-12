@@ -50,6 +50,7 @@
     ./tailscale
     ./tealdeer
     ./topgrade
+    ./vhs-decode
     ./vkbasalt
     ./vscode
     ./wezterm
