@@ -112,22 +112,22 @@
               "Basic Settings"."Indexing-Enabled" = false;
             };
             dolphinrc = {
+              "ContentDisplay"."UsePermissionsFormat" = "CombinedFormat";
               "Desktop Entry"."DefaultProfile" = "${username}.profile";
               "DetailsMode"."HighlightEntireRow" = false;
-              "DetailsMode"."PreviewSize" = 32;
+              "DetailsMode"."PreviewSize" = 48;
               "DetailsMode"."SidePadding" = 0;
               "General"."FilterBar" = true;
               "General"."GlobalViewProps" = false;
-              "General"."RememberOpenedTabs" = false;
               "General"."ShowFullPath" = true;
               "General"."ShowFullPathInTitlebar" = true;
+              "General"."ShowToolTips" = true;
               "General"."SplitView" = true;
               "General"."UseTabForSwitchingSplitView" = true;
               "IconsMode"."PreviewSize" = 112;
               "KFileDialog Settings"."Places Icons Auto-resize" = false;
-              "KFileDialog Settings"."Places Icons Static Size" = 32;
-              "KFileDialog Settings"."detailViewIconSize" = 16;
-              "MainWindow.Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
+              "KFileDialog Settings"."Places Icons Static Size" = 22;
+              "MainWindow"."ToolBarsMovable" = "Disabled";
               "MainWindow/Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
               "PlacesPanel"."IconSize" = 32;
               "PreviewSettings"."Plugins" =
@@ -140,8 +140,6 @@
             };
             "kded5rc"."Module-device_automounter"."autoload" = false;
             kdeglobals = {
-              #"General"."TerminalApplication" = "konsole";
-              #"General"."TerminalService" = "org.kde.konsole.desktop";
               "KDE"."AnimationDurationFactor" = 0.5;
               "KDE"."ShowDeleteCommand" = true;
               "KFileDialog Settings"."Allow Expansion" = true;
