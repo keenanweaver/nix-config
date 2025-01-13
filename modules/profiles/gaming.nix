@@ -827,11 +827,12 @@ in
           wayland-pipewire-idle-inhibit = {
             enable = true;
             settings = {
-              verbosity = "INFO";
+              verbosity = "WARN";
               media_minimum_duration = 5;
-              idle_inhibitor = "wayland";
+              idle_inhibitor = "d-bus";
               sink_whitelist = [
-                { name = "USB Audio Analog Stereo"; }
+                # { name = "Game"; } # nuked-sc55 & fluidsynth will interfere with screensaver
+                { name = "Music"; }
               ];
             };
           };
