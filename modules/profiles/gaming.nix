@@ -585,7 +585,7 @@ in
               "DisableHidraw"=dword:00000001
               "Enable SDL"=dword:00000001
             '';
-            target = "${config.home.homeDirectory}/.wine/controller-proton.reg";
+            target = "${config.home.homeDirectory}/Games/wine-controller.reg";
           };
           wine-mouse-acceleration = {
             # https://reddit.com/r/linux_gaming/comments/1hs1685/windows_mouse_acceleration_seems_to_be_enabled_in/
@@ -599,7 +599,7 @@ in
               "MouseThreshold1"="0"
               "MouseThreshold2"="0"
             '';
-            target = "${config.home.homeDirectory}/.wine/mouse-acceleration-proton.reg";
+            target = "${config.home.homeDirectory}/Games/wine-mouse-acceleration.reg";
           };
         };
         home.packages =
