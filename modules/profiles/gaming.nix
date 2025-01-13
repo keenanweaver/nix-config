@@ -831,6 +831,7 @@ in
               media_minimum_duration = 5;
               idle_inhibitor = "d-bus";
               sink_whitelist = [
+                { name = "Browser"; }
                 # { name = "Game"; } # nuked-sc55 & fluidsynth will interfere with screensaver
                 { name = "Music"; }
               ];
