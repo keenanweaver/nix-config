@@ -19,16 +19,15 @@
     kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
     kernelParams = [
       "nowatchdog"
-      #"systemd.unified_cgroup_hierarchy=1"
       "zswap.enabled=0"
       # Quiet boot
       "quiet"
-      "splash"
-      #"systemd.show_status=false"
-      "rd.systemd.show_status=false"
+      "splash" # Plymouth
       "loglevel=0"
       "rd.udev.log_level=3"
+      "systemd.show_status=auto"
       "udev.log_priority=3"
+      "vt.global_cursor_default=0"
     ];
     loader = {
       efi = {
