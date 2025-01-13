@@ -140,11 +140,11 @@ let
       # xboxdrv
       ## Launchers & utils
       cartridges
-      # limo
+      limo
       #inputs.umu.packages.${pkgs.system}.umu
       ## Modding
-      # nexusmods-app-unfree
-      # owmods-gui
+      nexusmods-app-unfree
+      owmods-gui
       r2modman
       ## Other
       inputs.aaru.packages.${pkgs.system}.default
@@ -725,7 +725,6 @@ in
               "com.qzandronum.Q-Zandronum"
               "com.richwhitehouse.BigPEmu"
               "dev.opengoal.OpenGOAL"
-              "io.github.limo_app.limo"
               "io.github.noxworld_dev.OpenNox"
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
