@@ -201,7 +201,7 @@ in
             catppuccin-zen-flatpak = {
               enable = true;
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-zen}/themes/${flavor-upper}/${accent-upper}";
-              target = ".var/app/io.github.zen_browser.zen/.zen/${username}/chrome";
+              target = ".var/app/app.zen_browser.zen/.zen/${username}/chrome";
             };
             cursor-theme-default = {
               enable = true;
@@ -508,7 +508,7 @@ in
                   GTK_THEME = "${GTK-THEME}";
                 };
               };
-              "io.github.zen_browser.zen" = {
+              "app.zen_browser.zen" = {
                 Environment = {
                   GTK_THEME = "${GTK-THEME}";
                 };

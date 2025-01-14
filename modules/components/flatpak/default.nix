@@ -49,7 +49,7 @@ in
             "com.github.tchx84.Flatseal"
             "com.obsproject.Studio"
             "io.github.ungoogled_software.ungoogled_chromium"
-            "io.github.zen_browser.zen"
+            "app.zen_browser.zen"
             "net.mullvad.MullvadBrowser"
           ];
           remotes = [
@@ -88,7 +88,7 @@ in
                 XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
               };
             };
-            "io.github.zen_browser.zen" = {
+            "app.zen_browser.zen" = {
               Environment = {
                 MOZ_ENABLE_WAYLAND = "1";
               };

@@ -162,7 +162,7 @@ in
           mimeApps =
             let
               audioPlayer = "org.fooyin.fooyin.desktop";
-              browser = "io.github.zen_browser.zen.desktop";
+              browser = "app.zen_browser.zen.desktop";
               editor = "org.kde.kate.desktop";
               imageViewer = "org.kde.gwenview.desktop";
               pdfViewer = "org.kde.okular.desktop";

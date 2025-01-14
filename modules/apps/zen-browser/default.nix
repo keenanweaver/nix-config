@@ -60,7 +60,7 @@ in
             user_pref("browser.eme.ui.enabled", true);
             user_pref("media.eme.enabled", true);
           '';
-          target = ".var/app/io.github.zen_browser.zen/.zen/${username}/user.js";
+          target = ".var/app/app.zen_browser.zen/.zen/${username}/user.js";
         };
       };
     };
