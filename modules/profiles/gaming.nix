@@ -14,7 +14,7 @@ let
       cherry-doom
       chocolate-doom
       crispy-doom
-      # darkradiant
+      darkradiant
       dhewm3
       doom64ex-plus
       doomrunner
@@ -44,6 +44,9 @@ let
       alephone-marathon
       alephone-durandal
       alephone-infinity
+      ## Morrowind
+      openmw
+      inputs.openmw-nix.packages.${pkgs.system}.umo
       ## Quake
       ironwail
       q2pro
@@ -76,7 +79,6 @@ let
       nur.repos.Rhys-T.lix-game # Lemmings clone
       openjk # Jedi Academy
       openloco # Locomotion
-      openmw
       # opennox
       # openrct2
       openttd
@@ -106,6 +108,7 @@ let
       _86Box-with-roms
       # archipelago
       ares
+      bigpemu
       # bizhawk
       cemu
       dolphin-emu
@@ -162,6 +165,9 @@ let
       gst_all_1.gst-libav
       gst_all_1.gst-vaapi
       gswatcher
+      igir
+      innoextract
+      lgogdownloader
       mpg123
       inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt
       parsec-bin
@@ -170,26 +176,22 @@ let
       x265
       xvidcore
       ## Wine
-      inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
       inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
       winetricks
       # wineWowPackages.stagingFull
       ## One-and-dones
       /*
         glxinfo
-           igir
-           innoextract
            jpsxdec
-           lgogdownloader 
            mame.tools
            mmv
            nsz
-           oxyromon
            ps3-disc-dumper
            renderdoc
            vgmplay-libvgm
            vgmstream
            vgmtools
+           vgmtrans
            vulkan-tools
       */
     ];
@@ -723,7 +725,6 @@ in
               "com.obsproject.Studio.Plugin.InputOverlay"
               "com.obsproject.Studio.Plugin.OBSVkCapture"
               "com.qzandronum.Q-Zandronum"
-              "com.richwhitehouse.BigPEmu"
               "dev.opengoal.OpenGOAL"
               "io.github.noxworld_dev.OpenNox"
               "io.github.santiagocezar.maniatic-launcher"
