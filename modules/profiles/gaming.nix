@@ -101,6 +101,7 @@ let
       urbanterror
       wipeout-rewrite
       xivlauncher # FFXIV
+      xlink-kai
       vvvvvv
     ];
     tools = [

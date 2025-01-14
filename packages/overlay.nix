@@ -19,4 +19,5 @@
   );
   relive = prev.callPackage ./relive { };
   sdl3 = prev.callPackage ./sdl3 { };
+  xlink-kai = prev.callPackage ./xlink-kai { }; 
 })
