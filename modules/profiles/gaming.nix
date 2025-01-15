@@ -155,6 +155,7 @@ let
       chiaki-ng
       inputs.nix-game-preservation.packages.${pkgs.system}.discimagecreator
       ffmpeg
+      flips
       gst_all_1.gstreamer
       gst_all_1.gstreamermm
       gst_all_1.gst-plugins-rs
@@ -857,7 +858,7 @@ in
           desktopEntries = {
             gog-galaxy =
               let
-                galaxyIcon = pkgs.fetchurl {
+                icon = pkgs.fetchurl {
                   url = "https://docs.gog.com/_assets/galaxy_icon_rgb.svg";
                   hash = "sha256-SpaFaSK05Uq534qPYV7s7/vzexZmMnpJiVtOsbCtjvg=";
                 };
@@ -866,7 +867,7 @@ in
                 name = "GOG Galaxy";
                 comment = "Launch GOG Galaxy using Bottles.";
                 exec = "flatpak run --command=bottles-cli run -p \"GOG Galaxy\" -b \"GOG Galaxy\" -- %u";
-                icon = "${galaxyIcon}";
+                icon = "${icon}";
                 categories = [ "Game" ];
                 noDisplay = false;
                 startupNotify = true;

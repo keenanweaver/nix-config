@@ -99,7 +99,7 @@
               lgogdownloader
             ];
             text = ''
-              cd ${unraid}/Games/Other/GOG
+              cd ${unraid}/Games/Backups/GOG
               for i in $(ls -d */)
               do 
                 echo "Rp /''${i%%}.*"
@@ -296,7 +296,7 @@
                   "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user.path}:${config.sops.secrets.unraid.ntfy.password.path} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url.path} '[Start] lgogdownloader'"
                 ];
                 ExecStart = [
-                  "${pkgs.lgogdownloader}/bin/lgogdownloader --directory=${unraid}/Games/Other/GOG --download --platform=w+l --language=en --save-serials --exclude l,p --threads 1 --info-threads 1 --retries 6 --report"
+                  "${pkgs.lgogdownloader}/bin/lgogdownloader --directory=${unraid}/Games/Backups/GOG --download --platform=w+l --language=en --save-serials --exclude l,p --threads 1 --info-threads 1 --retries 6 --report"
                 ];
                 ExecStartPost = [
                   "${pkgs.bash}/bin/bash /home/${config.sops.secrets.unraid.ntfy.user.path}/.local/bin/lgogdownloader-blacklist.sh"
@@ -312,8 +312,8 @@
               Service = {
                 ExecStartPre = [
                   "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user.path}:${config.sops.secrets.unraid.ntfy.password.path} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url.path} '[Start] lgogdownloader-cleanup'"
-                  "${pkgs.lgogdownloader}/bin/lgogdownloader --directory=${unraid}/Games/Other/GOG --update-cache --threads 1 --info-threads 1"
-                  "${pkgs.lgogdownloader}/bin/lgogdownloader --directory=${unraid}/Games/Other/GOG --use-cache --check-orphans > /home/${config.sops.secrets.unraid.ntfy.user.path}/orphans.txt"
+                  "${pkgs.lgogdownloader}/bin/lgogdownloader --directory=${unraid}/Games/Backups/GOG --update-cache --threads 1 --info-threads 1"
+                  "${pkgs.lgogdownloader}/bin/lgogdownloader --directory=${unraid}/Games/Backups/GOG --use-cache --check-orphans > /home/${config.sops.secrets.unraid.ntfy.user.path}/orphans.txt"
                 ];
                 ExecStart = [
                   "${pkgs.bash}/bin/bash /home/${config.sops.secrets.unraid.ntfy.user.path}/.local/bin/lgogdownloader-cleanup.sh"

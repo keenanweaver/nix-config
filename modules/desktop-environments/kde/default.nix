@@ -33,6 +33,7 @@ in
           ffmpegthumbnailer
           filelight
           haruna
+          k3b
           kcalc
           kcron
           kdesu
