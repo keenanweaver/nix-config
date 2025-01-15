@@ -101,7 +101,6 @@ let
       urbanterror
       wipeout-rewrite
       xivlauncher # FFXIV
-      xlink-kai
       vvvvvv
     ];
     tools = [
@@ -175,6 +174,7 @@ let
       inputs.nix-game-preservation.packages.${pkgs.system}.redumper
       x264
       x265
+      xlink-kai
       xvidcore
       ## Wine
       inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
@@ -705,6 +705,18 @@ in
                   PULSE_SINK = "Game";
                 };
               };
+              "net.shadps4.shadPS4" = {
+                Context = {
+                  filesystems = [
+                    "${config.home.homeDirectory}/Games"
+                    "xdg-data/games"
+                    "!home"
+                  ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
               "org.ryujinx.Ryujinx" = {
                 Context = {
                   filesystems = [
@@ -731,6 +743,7 @@ in
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
               "io.openrct2.OpenRCT2"
+              "net.shadps4.shadPS4"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
               "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08"

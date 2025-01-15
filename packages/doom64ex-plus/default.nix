@@ -48,7 +48,7 @@ stdenv.mkDerivation (finalAttrs: {
       exec = "DOOM64EX-Plus";
       icon = "doom64ex-plus";
       desktopName = "DOOM 64 EX+";
-      comment = "An improved, modern version of Doom64EX";
+      comment = "Improved, modern version of Doom64EX";
       categories = [ "Game" ];
     })
   ];
