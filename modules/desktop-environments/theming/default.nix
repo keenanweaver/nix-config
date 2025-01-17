@@ -56,6 +56,7 @@ in
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
         })
+        kde-rounded-corners
         klassy
         utterly-round-plasma-style
       ];
