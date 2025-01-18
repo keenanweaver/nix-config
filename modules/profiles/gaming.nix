@@ -173,6 +173,8 @@ let
       inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt
       parsec-bin
       inputs.nix-game-preservation.packages.${pkgs.system}.redumper
+      inputs.nix-game-preservation.packages.${pkgs.system}.sabretools
+      inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp
       x264
       x265
       xlink-kai
