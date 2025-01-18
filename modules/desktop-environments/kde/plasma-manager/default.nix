@@ -207,6 +207,8 @@
               "Plugins"."kwin4_effect_shapecornersEnabled" = false;
               "Plugins"."kwin4_effect_squashEnabled" = false;
               "Plugins"."restoreToScreenEnabled" = true;
+              "Round-Corners"."InactiveShadowSize" = 10;
+              "Round-Corners"."ShadowSize" = 10;
               #"Script-alwaysopenonprimaryscreen"."classList" = "steam\nsteamwebhelper\nmumble\ninfo.mumble.Mumble\nstrawberry\nobs\narmcord\nsignal";
               "Script-forceblur"."blurExceptMatching" = true;
               "Script-forceblur"."blurMatching" = false;
