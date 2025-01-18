@@ -81,6 +81,7 @@ in
         zsh
       ];
       systemPackages = with pkgs; [
+        lm_sensors
         pciutils
         sops
         ssh-to-age
