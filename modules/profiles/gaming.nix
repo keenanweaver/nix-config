@@ -172,6 +172,7 @@ let
       mpg123
       inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt
       parsec-bin
+      python313Packages.lnkparse3
       inputs.nix-game-preservation.packages.${pkgs.system}.redumper
       inputs.nix-game-preservation.packages.${pkgs.system}.sabretools
       inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp
