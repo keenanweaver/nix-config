@@ -72,7 +72,6 @@ in
                     ["api.alsa.period-size"] = 512,
                     -- api.alsa.disable-batch: USB audio interface typically use the batch mode
                     ["api.alsa.disable-batch"] = false,
-                    ["resample.quality"] = 4,
                     ["resample.disable"] = false,
                     ["session.suspend-timeout-seconds"] = 0,
                   },
@@ -85,9 +84,9 @@ in
           pipewire = {
             "92-low-latency" = {
               "context.properties" = {
-                "default.clock.quantum" = lib.mkForce 64;
-                "default.clock.min-quantum" = lib.mkForce 64;
-                "default.clock.max-quantum" = lib.mkForce 64;
+                "default.clock.quantum" = lib.mkForce 128;
+                "default.clock.min-quantum" = lib.mkForce 128;
+                "default.clock.max-quantum" = lib.mkForce 128;
               };
               "context.modules" = [
                 {
