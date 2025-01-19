@@ -137,17 +137,6 @@
    </metadata>
   </info>
  </bookmark>
- <bookmark href="ftp://ftp.myrient.erista.me/">
-  <title>ftp.myrient.erista.me</title>
-  <info>
-   <metadata owner="http://freedesktop.org">
-    <bookmark:icon name="folder-remote"/>
-   </metadata>
-   <metadata owner="http://www.kde.org">
-    <ID>1699307330/0</ID>
-   </metadata>
-  </info>
- </bookmark>
  <bookmark href="remote:/">
   <title>Network</title>
   <info>
