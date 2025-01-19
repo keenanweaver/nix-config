@@ -19,6 +19,7 @@
   desktop.enable = true;
   gaming.enable = true;
   gsr.defaultAudioDevice = "alsa_output.usb-Schiit_Audio_Schiit_Modi_-00.analog-stereo.monitor"; # alsa_output.usb-Generic_USB_Audio-00.analog-stereo.monitor
+  low-latency.enable = true;
   vhs-decode.enable = true;
 
   boot = {
@@ -96,9 +97,9 @@
                 176400
                 192000
               ];
-              "default.clock.quantum" = 1024;
-              "default.clock.min-quantum" = 1024;
-              "default.clock.max-quantum" = 1024;
+              "default.clock.quantum" = 256;
+              "default.clock.min-quantum" = 256;
+              "default.clock.max-quantum" = 256;
             };
           };
           # Create mono-only microphone output

@@ -16,6 +16,9 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
+    imports = [
+      ./low-latency.nix
+    ];
     environment.systemPackages = with pkgs; [
       alsa-firmware
       alsa-lib
