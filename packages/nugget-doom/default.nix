@@ -18,13 +18,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "nugget-doom";
-  version = "4.0.0";
+  version = "4.1.0";
 
   src = fetchFromGitHub {
     owner = "MrAlaux";
     repo = "Nugget-Doom";
     rev = "nugget-doom-${finalAttrs.version}";
-    hash = "sha256-EtHW3nJ58U6GveOrGly3Lkmr1COzYpuLMXITpqcehVI=";
+    hash = "sha256-zvmFfQOzDX5ghSB0vr8hIATWbzEuH4yIAXKNC6q7y2s=";
   };
 
   nativeBuildInputs = [
@@ -53,6 +53,6 @@ stdenv.mkDerivation (finalAttrs: {
     license = lib.licenses.gpl2Only;
     maintainers = with lib.maintainers; [ keenanweaver ];
     mainProgram = "nugget-doom";
-    platforms = with lib.platforms; darwin ++ linux ++ windows;
+    platforms = lib.platforms.all;
   };
 })

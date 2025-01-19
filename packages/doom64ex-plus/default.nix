@@ -15,13 +15,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "doom64ex-plus";
-  version = "4.0.0.3.SDL.3.1.3";
+  version = "unstable-2025-01-15";
 
   src = fetchFromGitHub {
     owner = "atsb";
     repo = "Doom64EX-Plus";
-    rev = finalAttrs.version;
-    hash = "sha256-nowHhq36mMok5gmV5TiqqG+1JE4Q9kz9twAYW/1LJ9c=";
+    rev = "c233706f6e509c8fcf6ded8ba1b86823b41c9512";
+    hash = "sha256-/0iLbd834itRsmoYhOxPgEObl15jchzZxCIh1Jur4fE=";
   };
 
   nativeBuildInputs = [

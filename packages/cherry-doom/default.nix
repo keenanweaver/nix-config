@@ -46,6 +46,6 @@ stdenv.mkDerivation (finalAttrs: {
     license = lib.licenses.gpl2Only;
     maintainers = with lib.maintainers; [ keenanweaver ];
     mainProgram = "cherry-doom";
-    platforms = with lib.platforms; darwin ++ linux ++ windows;
+    platforms = lib.platforms.all;
   };
 })
