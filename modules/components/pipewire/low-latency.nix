@@ -84,9 +84,9 @@ in
           pipewire = {
             "92-low-latency" = {
               "context.properties" = {
-                "default.clock.quantum" = lib.mkForce 128;
-                "default.clock.min-quantum" = lib.mkForce 128;
-                "default.clock.max-quantum" = lib.mkForce 128;
+                "default.clock.quantum" = lib.mkForce 512;
+                "default.clock.min-quantum" = lib.mkForce 512;
+                "default.clock.max-quantum" = lib.mkForce 512;
               };
               "context.modules" = [
                 {
