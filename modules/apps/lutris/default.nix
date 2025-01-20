@@ -50,9 +50,9 @@ in
         };
         home.packages = lib.mkIf cfg.enableNative [
           (pkgs.lutris.override {
-            extraPkgs = pkgs: [
-              pkgs.libstrangle
-              inputs.umu.packages.${pkgs.system}.umu
+            extraPkgs = pkgs: with pkgs; [
+              libstrangle
+              # umu-launcher
             ];
           })
         ];

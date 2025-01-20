@@ -143,9 +143,9 @@ let
       # xboxdrv
       ## Launchers & utils
       cartridges
-      limo
-      #inputs.umu.packages.${pkgs.system}.umu
+      # umu-launcher
       ## Modding
+      limo
       nexusmods-app-unfree
       owmods-gui
       r2modman
@@ -181,6 +181,7 @@ let
       xlink-kai
       xvidcore
       ## Wine
+      inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
       inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
       winetricks
       # wineWowPackages.stagingFull
@@ -238,6 +239,7 @@ in
       '';
       extraModulePackages = with config.boot.kernelPackages; [
         gcadapter-oc-kmod
+        universal-pidff
         v4l2loopback
       ];
       initrd = {

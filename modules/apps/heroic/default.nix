@@ -50,8 +50,8 @@ in
         };
         home.packages = lib.mkIf cfg.enableNative [
           (pkgs.heroic.override {
-            extraPkgs = pkgs: [
-              inputs.umu.packages.${pkgs.system}.umu
+            extraPkgs = pkgs: with pkgs; [
+              # umu-launcher
             ];
           })
         ];
