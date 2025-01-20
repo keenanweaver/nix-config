@@ -65,6 +65,20 @@ in
       };
 
     home-manager.users.${username} = {
+      home.file = {
+        autostart-ktailctl = {
+          enable = true;
+          text = ''
+            [Desktop Entry]
+            Exec=ktailctl
+            Name=ktailctl
+            Terminal=false
+            Type=Application
+          '';
+          target = "${config.xdg.configHome}/autostart/ktailctl.desktop";
+          executable = true;
+        };
+      };
       home.packages = with pkgs; [ ktailctl ];
     };
   };
