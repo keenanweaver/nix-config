@@ -124,10 +124,6 @@ in
       };
       # use `lspci -nn`
       udev.extraRules = ''
-        # Remove AMD Audio devices; if present
-        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x1002", ATTR{class}=="0xab28", ATTR{power/control}="auto", ATTR{remove}="1"
-        # Remove NVIDIA Audio devices; if present
-        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{power/control}="auto", ATTR{remove}="1"
         # Expose important timers the members of the audio group
         # Inspired by musnix: https://github.com/musnix/musnix/blob/master/modules/base.nix#L94
         KERNEL=="rtc0", GROUP="audio"
