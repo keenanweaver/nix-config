@@ -151,6 +151,7 @@
       url = "github:IAmJafeth/zen-browser";
       flake = false;
     };
+    lightly.url = "github:Bali10050/Darkly";
     #stylix.url = "github:danth/stylix";
 
     # KDE
