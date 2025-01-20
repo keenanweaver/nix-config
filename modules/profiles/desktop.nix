@@ -105,6 +105,7 @@ in
           picard
           projectm
           qpwgraph
+          qtscrcpy
           revolt-desktop
           rustdesk-flutter
           signal-desktop

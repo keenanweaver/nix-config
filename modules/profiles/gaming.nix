@@ -245,8 +245,6 @@ in
       initrd = {
         kernelModules = [
           "hid-nintendo"
-          "snd-seq"
-          "snd-rawmidi"
         ];
       };
       kernelModules = [
@@ -305,16 +303,6 @@ in
     nixpkgs.config.permittedInsecurePackages = [
       # "freeimage-unstable-2021-11-01" # Trenchbroom / SLADE
     ];
-
-    networking = {
-      firewall = {
-        # Outer Wilds Quantum Space Buddies KCP
-        /*
-          allowedTCPPorts = [ 7777 ];
-               allowedUDPPorts = [ 7777 ];
-        */
-      };
-    };
 
     services = {
       hardware = {
@@ -529,34 +517,6 @@ in
               '';
               target = "${config.xdg.dataHome}/templates/vkBasalt.desktop";
             };
-          desktop-entry-obs-flatpak = {
-            enable = true;
-            text = ''
-              [Desktop Entry]
-              Categories=AudioVideo;Recorder;
-              Comment[en_US]=Free and Open Source Streaming/Recording Software
-              Comment=Free and Open Source Streaming/Recording Software
-              Exec=env QT_QPA_PLATFORM=xcb GDK_BACKEND=x11 flatpak run --branch=stable --arch=x86_64 --command=obs com.obsproject.Studio --disable-shutdown-check
-              GenericName[en_US]=Streaming/Recording Software
-              GenericName=Streaming/Recording Software
-              Icon=com.obsproject.Studio
-              MimeType=
-              Name[en_US]=OBS Studio
-              Name=OBS Studio
-              NoDisplay=false
-              Path=
-              StartupNotify=true
-              StartupWMClass=obs
-              Terminal=false
-              TerminalOptions=
-              Type=Application
-              Version=1.0
-              X-Flatpak=com.obsproject.Studio
-              X-KDE-SubstituteUID=false
-              X-KDE-Username=
-            '';
-            target = "${config.xdg.dataHome}/applications/com.obsproject.Studio.desktop";
-          };
           desktop-entry-quakeinjector = {
             enable = true;
             text = ''
@@ -741,8 +701,6 @@ in
               "com.fightcade.Fightcade"
               "com.fightcade.Fightcade.Wine"
               "com.github.optyfr.JRomManager"
-              "com.obsproject.Studio.Plugin.InputOverlay"
-              "com.obsproject.Studio.Plugin.OBSVkCapture"
               "com.qzandronum.Q-Zandronum"
               "dev.opengoal.OpenGOAL"
               "io.github.noxworld_dev.OpenNox"
@@ -752,7 +710,6 @@ in
               "net.shadps4.shadPS4"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
               "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
-              "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/24.08"
               "org.openfodder.OpenFodder"
