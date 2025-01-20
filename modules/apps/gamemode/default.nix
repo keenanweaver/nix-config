@@ -15,6 +15,7 @@ let
       ];
       text = ''
         notify-send -t 3000 -u low 'GameMode' 'GameMode started' -i applications-games -a 'GameMode'
+        kscreen-doctor output.DP-1.wcg.enable output.DP-1.hdr.enable output.DP-1.brightness.100;
       '';
     }
   );
@@ -26,6 +27,7 @@ let
       ];
       text = ''
         notify-send -t 3000 -u low 'GameMode' 'GameMode stopped' -i applications-games -a 'GameMode'
+        kscreen-doctor output.DP-1.wcg.disable output.DP-1.hdr.disable output.DP-1.brightness.100;
       '';
     }
   );
