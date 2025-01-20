@@ -47,7 +47,6 @@ in
         services.flatpak = {
           packages = [
             "com.github.tchx84.Flatseal"
-            "com.obsproject.Studio"
             "io.github.ungoogled_software.ungoogled_chromium"
             "app.zen_browser.zen"
             "net.mullvad.MullvadBrowser"

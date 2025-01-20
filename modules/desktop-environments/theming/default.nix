@@ -182,7 +182,7 @@ in
               target = "${config.xdg.dataHome}/konsole/catppuccin-${flavor-lower}.colorscheme";
             };
             catppuccin-obs-flatpak = {
-              enable = true;
+              enable = config.obs.enableFlatpak;
               recursive = true;
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-obs}/themes";
               target = ".var/app/com.obsproject.Studio/config/obs-studio/themes";
