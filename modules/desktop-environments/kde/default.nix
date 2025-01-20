@@ -41,7 +41,6 @@ in
           kirigami-addons
           kjournald
           krita
-          inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
           isoimagewriter
           neochat
           okteta

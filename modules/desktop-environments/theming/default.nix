@@ -56,6 +56,7 @@ in
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
         })
+        inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
         inputs.lightly.packages.${pkgs.system}.darkly-qt5
         inputs.lightly.packages.${pkgs.system}.darkly-qt6
         kde-rounded-corners
