@@ -40,7 +40,7 @@ in
           "obs" = {
             name = "OBS Studio";
             comment = "Free and Open Source Streaming/Recording Software";
-            exec = "env QT_QPA_PLATFORM=xcb GDK_BACKEND=x11 obs --disable-shutdown-check"; # Run with XWayland compatibility for docks
+            exec = "obs --disable-shutdown-check";
             terminal = false;
             icon = "com.obsproject.Studio";
             type = "Application";
