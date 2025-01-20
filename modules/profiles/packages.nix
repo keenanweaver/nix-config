@@ -133,6 +133,7 @@ in
             mkvtoolnix-cli
             streamrip
             systemctl-tui
+            television
             termscp
             ttysvr
             wikiman
