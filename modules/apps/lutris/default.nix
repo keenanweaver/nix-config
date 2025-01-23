@@ -52,7 +52,7 @@ in
           (pkgs.lutris.override {
             extraPkgs = pkgs: with pkgs; [
               libstrangle
-              # umu-launcher
+              umu-launcher
             ];
           })
         ];
