@@ -169,6 +169,7 @@ let
       igir
       innoextract
       lgogdownloader
+      # moondeck-buddy # Pending https://github.com/NixOS/nixpkgs/pull/375287
       mpg123
       inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt
       parsec-bin
@@ -238,7 +239,6 @@ in
         options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
       '';
       extraModulePackages = with config.boot.kernelPackages; [
-        gcadapter-oc-kmod
         universal-pidff
         v4l2loopback
       ];
@@ -247,9 +247,6 @@ in
           "hid-nintendo"
         ];
       };
-      kernelModules = [
-        "gcadapter_oc"
-      ];
       kernelParams = [
         # "usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
         "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
@@ -287,6 +284,28 @@ in
       uinput.enable = true;
       # xone.enable = true;
       # xpadneo.enable = true;
+    };
+
+    networking = {
+      firewall = {
+        allowedUDPPorts = [
+          # MoonDeck Buddy
+          59999
+          # Moonlight
+          5353
+          47998
+          47999
+          48000
+          48002
+          48010
+        ];
+        allowedTCPPorts = [ 
+          # Moonlight
+          47984
+          47989
+          48010
+        ];
+      };
     };
 
     nix.settings = {
@@ -602,7 +621,7 @@ in
                   sd 'MAHUDLSYM="(.*?)"' 'MAHUDLSYM="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
                   sd 'USERAYTRACING="(.*?)"' 'USERAYTRACING="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
                   sd 'USEPROTON="(.*?)"' 'USEPROTON="Proton-GE"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                  sd 'GAMESCOPE_ARGS="(.*?)"' 'GAMESCOPE_ARGS="-w 2560 -h 1440 -W 2560 -H 1440 -f --force-grab-cursor --"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                  sd 'GAMESCOPE_ARGS="(.*?)"' 'GAMESCOPE_ARGS="-W 2560 -H 1440 -f -r 360 --hdr-enabled --force-grab-cursor --"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
                   echo 'PULSE_SINK=Game' > ${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/customvars/global-custom-vars.conf
                   fd . '${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/id' -e .conf -x rm {}
                   ## DREAMM
