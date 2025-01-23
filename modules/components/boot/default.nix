@@ -2,6 +2,11 @@
 {
 
   boot = {
+    binfmt = {
+      emulatedSystems = [
+        "aarch64-linux"
+      ];
+    };
     consoleLogLevel = 0;
     initrd = {
       systemd.enable = true; # Plymouth login screen
@@ -22,7 +27,7 @@
       "zswap.enabled=0"
       # Quiet boot
       "quiet"
-      "splash" # Plymouth
+      # "splash" # Plymouth
       "loglevel=0"
       "rd.udev.log_level=3"
       "systemd.show_status=auto"
@@ -40,7 +45,7 @@
       };
       timeout = 1;
     };
-    plymouth.enable = true;
+    plymouth.enable = false;
     supportedFilesystems = [
       "btrfs"
       "cifs"
