@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   username,
   pkgs,
@@ -56,7 +57,7 @@ in
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
         })
-        inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
+        #inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
         inputs.lightly.packages.${pkgs.system}.darkly-qt5
         inputs.lightly.packages.${pkgs.system}.darkly-qt6
         kde-rounded-corners
@@ -185,7 +186,7 @@ in
               target = "${config.xdg.dataHome}/konsole/catppuccin-${flavor-lower}.colorscheme";
             };
             catppuccin-obs-flatpak = {
-              enable = config.obs.enableFlatpak;
+              enable = true;
               recursive = true;
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-obs}/themes";
               target = ".var/app/com.obsproject.Studio/config/obs-studio/themes";

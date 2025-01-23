@@ -195,7 +195,7 @@
               "Plugins"."MoveWindowToCenterEnabled" = true;
               #"Plugins"."alwaysopenonprimaryscreen" = "Enabled";
               #"Plugins"."center-new-windowsEnabled" = true;
-              "Plugins"."forceblurEnabled" = true;
+              "Plugins"."forceblurEnabled" = false;
               "Plugins"."kinetic_fadingpopupsEnabled" = true;
               "Plugins"."kinetic_scaleEnabled" = true;
               "Plugins"."kinetic_squashEnabled" = true;
