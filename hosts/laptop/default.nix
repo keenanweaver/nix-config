@@ -30,7 +30,7 @@
     kernelModules = lib.mkDefault [
       "tcp_bbr"
       "kvm-amd"
-    ]; # "v4l2loopback"
+    ];
     kernelParams = lib.mkDefault [
       "amd_iommu=on"
       "amd_pstate=guided"

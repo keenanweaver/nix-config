@@ -132,14 +132,16 @@
       enable = true;
       cpuModelId = "00A60F12";
     };
-    udev = {
-      # TODO: Remove when Linux 6.13 is out: https://www.phoronix.com/news/AMDGPU-More-Aggressive-Power
-      extraRules = ''
-        # https://reddit.com/r/linux_gaming/comments/196tz6v/psa_amdgpu_power_management_may_fix_your/khxs3q3/?context=3 https://gitlab.freedesktop.org/drm/amd/-/issues/1500#note_825883
-        # https://gitlab.freedesktop.org/drm/amd/-/issues/1500#note_1854170
-        KERNEL=="card1", SUBSYSTEM=="drm", DRIVERS=="amdgpu", ATTR{device/power_dpm_force_performance_level}="manual", ATTR{device/pp_power_profile_mode}="1"
-      '';
-    };
+    /*
+      udev = {
+         # TODO: Remove when Linux 6.13 is out: https://www.phoronix.com/news/AMDGPU-More-Aggressive-Power
+         extraRules = ''
+           # https://reddit.com/r/linux_gaming/comments/196tz6v/psa_amdgpu_power_management_may_fix_your/khxs3q3/?context=3 https://gitlab.freedesktop.org/drm/amd/-/issues/1500#note_825883
+           # https://gitlab.freedesktop.org/drm/amd/-/issues/1500#note_1854170
+           KERNEL=="card1", SUBSYSTEM=="drm", DRIVERS=="amdgpu", ATTR{device/power_dpm_force_performance_level}="manual", ATTR{device/pp_power_profile_mode}="1"
+         '';
+       };
+    */
   };
 
   systemd.targets = {
