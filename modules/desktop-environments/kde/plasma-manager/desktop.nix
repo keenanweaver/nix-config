@@ -111,6 +111,7 @@
                   hidden = [
                     "Akregator"
                     "KTailctl"
+                    "MoonDeckBuddy"
                     "opensnitch-ui"
                     "org.kde.plasma.addons.katesessions"
                     "org.kde.plasma.brightness" # Night Light
@@ -119,6 +120,7 @@
                     "org.kde.kdeconnect"
                     "indicator-solaar"
                     "tray-id" # Sunshine
+                    "xdg-desktop-portal-kde" # Portal
                   ];
                 };
               };
