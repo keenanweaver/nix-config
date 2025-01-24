@@ -33,6 +33,7 @@ in
       };
       printing = {
         enable = true;
+        drivers = with pkgs; [ brlaser ];
         openFirewall = true;
       };
     };

@@ -167,8 +167,8 @@ in
             };
             catppuccin-ghostwriter = {
               enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-ghostwriter}/colours/Catppuccin-Latte-${flavor-upper}-${accent-upper}.json";
-              target = "${config.xdg.dataHome}/ghostwriter/themes/Catppuccin-Latte-${flavor-upper}-${accent-upper}.json";
+              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-ghostwriter}/themes/catppuccin-${flavor-lower}-${accent-lower}.json";
+              target = "${config.xdg.dataHome}/ghostwriter/themes/catppuccin-${flavor-lower}-${accent-lower}.json";
             };
             catppuccin-halloy = {
               enable = true;

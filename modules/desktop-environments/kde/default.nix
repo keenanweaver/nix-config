@@ -28,29 +28,43 @@ in
         with pkgs;
         with pkgs.kdePackages;
         [
+          # https://github.com/shvedes/awesome-kde
           akregator
+          arianna
           breeze
           ffmpegthumbnailer
           filelight
           haruna
+          icoutils
+          isoimagewriter
           k3b
           kcalc
           kcron
+          kdenetwork-filesharing
           kdesu
           kdialog
+          kfind
+          kget
+          kgpg
           kirigami-addons
           kjournald
+          kmousetool
+          kompare
           krita
-          isoimagewriter
+          ksystemlog
+          markdownpart
           neochat
           okteta
+          orca
           packagekit-qt # Discover store
           qt6.qtwebengine
           qtimageformats
           qtsvg # https://github.com/NixOS/nixpkgs/issues/325225
           sddm-kcm
+          svgpart
           syntax-highlighting
           tokodon
+          xwaylandvideobridge
         ]
         ++ lib.optionals vars.gaming [
           inputs.rom-properties.packages.${pkgs.system}.rp_kde6
