@@ -37,33 +37,6 @@ in
       };
     };
 
-    systemd.services.tailscale-optimal =
-      let
-        tailscale-optimize = (
-          pkgs.writeShellApplication {
-            name = "tailscale-optimize";
-            runtimeInputs = with pkgs; [
-              ethtool
-              iproute2
-            ];
-            text = ''
-              NETDEV=$(ip -o route get 9.9.9.9 | cut -f 5 -d " ")
-              ethtool -K "$NETDEV" rx-udp-gro-forwarding on rx-gro-list off;
-            '';
-          }
-        );
-      in
-      {
-        # https://tailscale.com/kb/1320/performance-best-practices#ethtool-configuration
-        description = "Optimize tailscale exit node performance";
-        after = [ "network.target" ];
-        serviceConfig = {
-          Type = "oneshot";
-          ExecStart = "${lib.getBin tailscale-optimize}/bin/tailscale-optimize";
-        };
-        wantedBy = [ "default.target" ];
-      };
-
     home-manager.users.${username} =
       { config, ... }:
       {
