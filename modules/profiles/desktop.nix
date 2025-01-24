@@ -96,6 +96,7 @@ in
           fooyin
           gearlever
           halloy
+          handbrake
           kdePackages.kdenlive
           losslesscut-bin
           mangareader
