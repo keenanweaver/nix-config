@@ -295,9 +295,9 @@
             edgeBarrier = 0;
             effects = {
               blur = {
-                enable = false;
-                strength = 12;
-                noiseStrength = 8;
+                enable = true;
+                strength = 6;
+                noiseStrength = 6;
               };
               cube.enable = true;
               desktopSwitching.animation = "slide";
