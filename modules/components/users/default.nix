@@ -25,6 +25,7 @@ in
           isNormalUser = true;
           initialHashedPassword = "$y$j9T$B1obD.4xOr/6gJ6FCsu1v/$7axAjbaqRpFR3zGZVbOuCRGUNGJXyRxdavAHIyOdyK.";
           extraGroups = [
+            "adbusers"
             "audio"
             "input"
             "networkmanager"
