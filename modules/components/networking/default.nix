@@ -25,6 +25,7 @@ in
         192.168.20.13 crusader
         192.168.20.30 remorsepi
         192.168.20.31 regretpi
+        192.168.20.17 nixos-unraid
         192.168.20.11 bazzite
         192.168.20.29 MiSTer
       '';
