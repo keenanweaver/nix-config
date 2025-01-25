@@ -97,7 +97,7 @@
             ];
             text = ''
               cd ${unraid}/Games/Backups/GOG
-              for i in $(ls -d */)
+              for i in ./*
               do 
                 echo "Rp /''${i%%}.*"
               done > ${config.xdg.configHome}/lgogdownloader/blacklist.txt
@@ -107,9 +107,9 @@
             name = "lgogdownloader-cleanup";
             runtimeInputs = [ coreutils ];
             text = ''
-              for orphan in $(cat ${config.home.homeDirectory}/orphans.txt)
+              grep -v '^ *#' ${config.home.homeDirectory}/orphans.txt | while IFS= read -r orphan
               do
-                rm $orphan
+                rm "$orphan"
               done
             '';
           })
