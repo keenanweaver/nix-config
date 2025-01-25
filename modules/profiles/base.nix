@@ -53,7 +53,6 @@ in
     topgrade.enable = true;
     yazi.enable = true;
     yt-dlp.enable = true;
-    zen-browser.enable = true;
     zoxide.enable = true;
     zsh.enable = true;
 

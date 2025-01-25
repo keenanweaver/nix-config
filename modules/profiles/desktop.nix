@@ -28,6 +28,7 @@ in
     wezterm.enable = true;
     wireshark.enable = true;
     zed.enable = false;
+    zen-browser.enable = true;
 
     hardware = {
       bluetooth = {
