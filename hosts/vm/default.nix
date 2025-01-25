@@ -25,9 +25,6 @@
       ];
     };
     kernelModules = [ "kvm-intel" ];
-    lanzaboote = {
-      enable = lib.mkForce false;
-    };
     loader = {
       efi = {
         canTouchEfiVariables = true;
