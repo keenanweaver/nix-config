@@ -156,20 +156,11 @@ let
       inputs.nix-game-preservation.packages.${pkgs.system}.discimagecreator
       ffmpeg
       flips
-      gst_all_1.gstreamer
-      gst_all_1.gstreamermm
-      gst_all_1.gst-plugins-rs
-      gst_all_1.gst-plugins-bad
-      gst_all_1.gst-plugins-base
-      gst_all_1.gst-plugins-good
-      gst_all_1.gst-plugins-ugly
-      gst_all_1.gst-libav
-      gst_all_1.gst-vaapi
       gswatcher
       igir
       innoextract
       lgogdownloader
-      # moondeck-buddy # Pending https://github.com/NixOS/nixpkgs/pull/375287
+      moondeck-buddy # Pending https://github.com/NixOS/nixpkgs/pull/375287
       mpg123
       inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt
       parsec-bin
@@ -239,7 +230,7 @@ in
         options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
       '';
       extraModulePackages = with config.boot.kernelPackages; [
-        universal-pidff
+        #universal-pidff
         v4l2loopback
       ];
       initrd = {
@@ -289,8 +280,6 @@ in
     networking = {
       firewall = {
         allowedUDPPorts = [
-          # MoonDeck Buddy
-          59999
           # Moonlight
           5353
           47998
@@ -299,7 +288,9 @@ in
           48002
           48010
         ];
-        allowedTCPPorts = [ 
+        allowedTCPPorts = [
+          # MoonDeck Buddy
+          59999
           # Moonlight
           47984
           47989
@@ -446,6 +437,18 @@ in
           ../apps/ludusavi
         ];
         home.file = {
+          autostart-moondeckbuddy = {
+            enable = true;
+            text = ''
+              [Desktop Entry]
+              Exec=MoonDeckBuddy
+              Name=moondeckbuddy
+              Terminal=false
+              Type=Application
+            '';
+            target = "${config.xdg.configHome}/autostart/moondeckbuddy.desktop";
+            executable = true;
+          };
           autostart-nuked = {
             enable = true;
             text = ''
@@ -621,6 +624,7 @@ in
                   sd 'MAHUDLSYM="(.*?)"' 'MAHUDLSYM="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
                   sd 'USERAYTRACING="(.*?)"' 'USERAYTRACING="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
                   sd 'USEPROTON="(.*?)"' 'USEPROTON="Proton-GE"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                  sd 'DXVK_HDR="(.*?)"' 'DXVK_HDR="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
                   sd 'GAMESCOPE_ARGS="(.*?)"' 'GAMESCOPE_ARGS="-W 2560 -H 1440 -f -r 360 --hdr-enabled --force-grab-cursor --"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
                   echo 'PULSE_SINK=Game' > ${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/customvars/global-custom-vars.conf
                   fd . '${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/id' -e .conf -x rm {}

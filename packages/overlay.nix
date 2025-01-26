@@ -4,6 +4,7 @@
   gsr = prev.callPackage ./gpu-screen-recorder { };
   hypseus-singe = prev.callPackage ./hypseus-singe { };
   klassy = prev.callPackage ./klassy { };
+  moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nugget-doom = prev.callPackage ./nugget-doom { };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
   plymouth = prev.plymouth.overrideAttrs (
