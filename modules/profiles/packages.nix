@@ -69,6 +69,7 @@ in
             codeium
             devbox
             just
+            gh
             powershell
             ### Ansible ###
             ansible
@@ -132,6 +133,7 @@ in
             jq
             lazydocker
             mkvtoolnix-cli
+            podman-tui
             streamrip
             systemctl-tui
             television
