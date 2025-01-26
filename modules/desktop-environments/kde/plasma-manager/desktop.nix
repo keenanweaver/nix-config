@@ -374,11 +374,14 @@
           description = "obs-studio";
           match = {
             window-class = {
-              value = "obsproject";
+              value = "obs";
               type = "regex";
             };
           };
           apply = {
+            ignoregeometry = {
+              value = true;
+            };
             position = {
               value = "1026,646";
             };
