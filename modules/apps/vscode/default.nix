@@ -55,9 +55,9 @@ in
           extensions = marketplace-extensions ++ [ pkgs.vscode-extensions.visualjj.visualjj ];
           package = pkgs.vscodium;
           userSettings = {
-            "ansible.ansible.path" = "ansible";
+            "ansible.ansible.path" = "${pkgs.ansible}/bin/ansible";
             "ansible.python.interpreterPath" = "python";
-            "ansible.validation.lint.path" = "ansible-lint";
+            "ansible.validation.lint.path" = "${pkgs.ansible-lint}/bin/ansible-lint";
             "codeium.enableConfig"."*" = true;
             "codeium.enableConfig"."nix" = true;
             "editor.formatOnSave" = false;
@@ -75,8 +75,8 @@ in
             "gopls"."ui.semanticTokens" = true;
             "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
             "nix.enableLanguageServer" = true;
-            "nix.formatterPath" = "nixfmt";
-            "nix.serverPath" = "nixd";
+            "nix.formatterPath" = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+            "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
             "nix.serverSettings"."nixd"."formatting"."command" = [ "nixfmt" ];
             "nix.serverSettings"."nixd"."formatting"."options" = {
               "enable" = [ true ];
@@ -94,7 +94,6 @@ in
             "[powershell]"."files.trimTrailingWhitespace" = true;
             "[python]"."editor.defaultFormatter" = "charliermarsh.ruff";
             "redhat.telemetry.enabled" = false;
-            "rust-analyzer.server.path" = "rust-analyzer";
             "security.workspace.trust.enabled" = false;
             "terminal.integrated.minimumContrastRatio" = 1;
             "terminal.integrated.shellIntegration.enabled" = true;
