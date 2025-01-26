@@ -25,7 +25,7 @@ in
     btop.enable = true;
     direnv.enable = true;
     distrobox.enable = true;
-    envfs.enable = true;
+    envfs.enable = false; # Currently breaks my systems
     fastfetch.enable = true;
     fd.enable = true;
     fzf.enable = true;
