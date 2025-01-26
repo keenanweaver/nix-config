@@ -117,7 +117,7 @@ let
       flycast
       fsuae-launcher
       hypseus-singe
-      lime3ds
+      #lime3ds
       mame
       mesen
       nuked-sc55
@@ -162,12 +162,12 @@ let
       lgogdownloader
       moondeck-buddy # Pending https://github.com/NixOS/nixpkgs/pull/375287
       mpg123
-      inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt
+      #inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt
       parsec-bin
       python313Packages.lnkparse3
       inputs.nix-game-preservation.packages.${pkgs.system}.redumper
       inputs.nix-game-preservation.packages.${pkgs.system}.sabretools
-      inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp
+      #inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp
       x264
       x265
       xlink-kai
