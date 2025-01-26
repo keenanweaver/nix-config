@@ -28,32 +28,38 @@ in
       {
         home.file = {
           wine-links-proton-cachyos-lutris = {
-            enable = false;
+            enable = cfg.enableNative;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nix-proton-cachyos.packages.x86_64-linux.proton-cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
             target = "${config.xdg.dataHome}/lutris/runners/wine/proton-cachyos";
           };
           wine-links-proton-cachyos-flatpak-lutris = {
-            enable = false;
+            enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nix-proton-cachyos.packages.x86_64-linux.proton-cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-cachyos";
           };
           wine-links-proton-ge-lutris = {
-            enable = false;
+            enable = cfg.enableNative;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
             target = "${config.xdg.dataHome}/lutris/runners/wine/proton-ge-custom";
           };
           wine-links-proton-ge-flatpak-lutris = {
-            enable = false;
+            enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-ge-custom";
+          };
+          wine-links-umu = {
+            enable = cfg.enableNative;
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.umu-launcher}/bin";
+            target = "${config.xdg.dataHome}/lutris/runtime/umu";
           };
         };
         home.packages = lib.mkIf cfg.enableNative [
           (pkgs.lutris.override {
-            extraPkgs = pkgs: with pkgs; [
-              libstrangle
-              umu-launcher
-            ];
+            extraPkgs =
+              pkgs: with pkgs; [
+                libstrangle
+                umu-launcher
+              ];
           })
         ];
         services.flatpak = lib.mkIf cfg.enableFlatpak {
