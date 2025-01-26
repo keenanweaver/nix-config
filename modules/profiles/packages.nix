@@ -127,6 +127,7 @@ in
             hexyl
             hyperfine
             impala
+            inputs.isd.packages.${pkgs.system}.default
             jiq
             jq
             lazydocker
