@@ -104,6 +104,7 @@
       flake = false;
     };
 
+    isd.url = "github:isd-project/isd";
     nsearch = {
       url = "github:niksingh710/nsearch";
       inputs.nixpkgs.follows = "nixpkgs";
