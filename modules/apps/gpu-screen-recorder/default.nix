@@ -85,6 +85,7 @@ in
                     "AUDIO_CODEC=opus"
                     "REPLAY_DURATION=900"
                     "RESTORE_PORTAL_SESSION=yes"
+                    "OUTPUT=no"
                     "OUTPUTDIR=${outputDir}"
                     "AUDIO_DEVICE_DEFAUlT=${cfg.defaultAudioDevice}"
                     "AUDIO_DEVICE_BROWSER=Browser.monitor"
@@ -95,7 +96,7 @@ in
                     "AUDIO_DEVICE_MUSIC=Music.monitor"
                   ];
                   ExecStartPre = "${lib.getBin pkgs.libnotify}/bin/notify-send -t 3000 -u low 'GPU Screen Recorder' 'Replay started' -i com.dec05eba.gpu_screen_recorder -a 'GPU Screen Recorder'";
-                  ExecStart = "${lib.getBin pkgs.gsr}/bin/gpu-screen-recorder -w $WINDOW -c $VIDEO_CONTAINER -q $VIDEO_QUALITY -cr $COLOR_RANGE -f $FRAMERATE -fm $FRAMERATE_MODE -k $VIDEO_CODEC -r $REPLAY_DURATION -restore-portal-session $RESTORE_PORTAL_SESSION -o $OUTPUTDIR -a $AUDIO_DEVICE_DEFAUlT -a $AUDIO_DEVICE_GAME -a $AUDIO_DEVICE_MIC -a $AUDIO_DEVICE_BROWSER -a $AUDIO_DEVICE_VOICE -a $AUDIO_DEVICE_MUSIC -a $AUDIO_DEVICE_LIVE";
+                  ExecStart = "${lib.getBin pkgs.gsr}/bin/gpu-screen-recorder -w $WINDOW -c $VIDEO_CONTAINER -q $VIDEO_QUALITY -cr $COLOR_RANGE -f $FRAMERATE -fm $FRAMERATE_MODE -k $VIDEO_CODEC -r $REPLAY_DURATION -restore-portal-session $RESTORE_PORTAL_SESSION -v $OUTPUT -o $OUTPUTDIR -a $AUDIO_DEVICE_DEFAUlT -a $AUDIO_DEVICE_GAME -a $AUDIO_DEVICE_MIC -a $AUDIO_DEVICE_BROWSER -a $AUDIO_DEVICE_VOICE -a $AUDIO_DEVICE_MUSIC -a $AUDIO_DEVICE_LIVE";
                   KillSignal = "SIGINT";
                   Restart = "on-failure";
                   RestartSec = "5";
