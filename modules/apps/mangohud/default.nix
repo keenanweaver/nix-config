@@ -69,9 +69,7 @@ in
               gl_vsync=1
               vsync=2 # https://gitlab.freedesktop.org/drm/amd/-/issues/3166#note_2277578
               custom_text=P-State
-              exec=${pkgs.bat}/bin/bat --plain /sys/devices/system/cpu/amd_pstate/status
-              custom_text=P-State EPP
-              exec=${pkgs.bat}/bin/bat --plain /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference
+              exec=echo $(${pkgs.bat}/bin/bat --plain /sys/devices/system/cpu/amd_pstate/status /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference)
               custom_text=OS
               exec=${pkgs.ripgrep}/bin/rg -w PRETTY_NAME /etc/os-release | ${pkgs.coreutils}/bin/cut -d '=' -f2 | ${pkgs.coreutils}/bin/tr -d '"'
               custom_text=Distrobox
