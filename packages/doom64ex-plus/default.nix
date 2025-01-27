@@ -15,13 +15,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "doom64ex-plus";
-  version = "unstable-2025-01-15";
+  version = "unstable-2025-01-18";
 
   src = fetchFromGitHub {
     owner = "atsb";
     repo = "Doom64EX-Plus";
-    rev = "c233706f6e509c8fcf6ded8ba1b86823b41c9512";
-    hash = "sha256-/0iLbd834itRsmoYhOxPgEObl15jchzZxCIh1Jur4fE=";
+    rev = "3fb15c40147f39573c676df35b6c92e6a0b82d77";
+    hash = "sha256-me9rjCBNqQYFhmBsiuNko2RkVmqEs5RZoDUFshdWb6k=";
   };
 
   nativeBuildInputs = [
@@ -34,12 +34,13 @@ stdenv.mkDerivation (finalAttrs: {
   buildInputs = [
     fluidsynth
     libpng
-    zlib
     sdl3
+    zlib
   ];
 
+  # Can't use cmakeFlags for DOOM_UNIX_INSTALL for some reason
   env.NIX_CFLAGS_COMPILE = toString [
-    "-DDOOM_UNIX_INSTALL" # Needed for config to be placed in ~/.local/share/doom64ex-plus
+    "-DDOOM_UNIX_INSTALL"
   ];
 
   desktopItems = [
@@ -70,9 +71,7 @@ stdenv.mkDerivation (finalAttrs: {
     homepage = "https://github.com/atsb/Doom64EX-Plus.git";
     license = lib.licenses.gpl2Only;
     longDescription = ''
-      Copy doomsnd.sf2 and doom64ex-plus.wad from the
-      nix store to ~/.local/share/doom64ex-plus
-      You will also need DOOM64.WAD from Nightdive Studios'
+      You will need DOOM64.WAD from Nightdive Studios'
       DOOM 64 Remastered release. To extract it from the GOG
       installer, run:
       ``` bash
@@ -83,6 +82,6 @@ stdenv.mkDerivation (finalAttrs: {
     '';
     maintainers = with lib.maintainers; [ keenanweaver ];
     mainProgram = "DOOM64EX-Plus";
-    platforms = [ "x86_64-linux" ]; # TODO: Darwin & aarch64 builds
+    platforms = lib.platforms.all;
   };
 })
