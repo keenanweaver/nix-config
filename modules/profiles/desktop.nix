@@ -196,7 +196,9 @@ in
                   "x-scheme-handler/terminal" = "org.wezfurlong.wezterm.desktop";
                 }
                 // lib.optionalAttrs vars.gaming {
+                  "application/x-alcohol" = "cdemu-client.desktop";
                   "application/x-cue" = "cdemu-client.desktop";
+                  "application/x-gd-rom-cue" = "cdemu-client.desktop";
                   "application/x-msdownload" = "wine.desktop";
                   "x-scheme-handler/ror2mm" = "r2modman.desktop";
                 };
