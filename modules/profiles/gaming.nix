@@ -119,6 +119,9 @@ let
       hypseus-singe
       #lime3ds
       mame
+      mednafen
+      mednaffe
+      melonDS
       mesen
       nuked-sc55
       pcsx2
@@ -134,6 +137,7 @@ let
       rpcs3
       scummvm
       supermodel
+      nur.repos.novel2430.vita3k
       xemu
       ## Input
       joystickwake
