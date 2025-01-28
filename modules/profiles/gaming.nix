@@ -269,8 +269,8 @@ in
     environment = {
       sessionVariables = {
         # https://reddit.com/r/linux_gaming/comments/1c2ey6u/vrr_newbie_questions_plasma_6_wayland_amd/kzasm0j/?context=3#kzasm0j
-        KWIN_DRM_DELAY_VRR_CURSOR_UPDATES = "1";
-        KWIN_FORCE_SW_CURSOR = "1";
+        # KWIN_DRM_DELAY_VRR_CURSOR_UPDATES = "1";
+        # KWIN_FORCE_SW_CURSOR = "1";
       };
     };
 
@@ -714,7 +714,6 @@ in
                 Context = {
                   filesystems = [
                     "${config.home.homeDirectory}/Games"
-                    "/mnt/crusader/Games/Rom/Other/Switch"
                     "xdg-data/games"
                     "!home"
                   ];
