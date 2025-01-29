@@ -106,6 +106,7 @@ in
           neo
           picard
           projectm
+          puddletag
           qpwgraph
           qtscrcpy
           revolt-desktop
