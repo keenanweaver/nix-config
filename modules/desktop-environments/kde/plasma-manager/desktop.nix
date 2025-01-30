@@ -371,31 +371,6 @@
           };
         }
         {
-          description = "obs-studio";
-          match = {
-            window-class = {
-              value = "obs";
-              type = "regex";
-            };
-          };
-          apply = {
-            ignoregeometry = {
-              value = true;
-            };
-            position = {
-              value = "1026,646";
-            };
-            screen = {
-              value = 1;
-              apply = "initially";
-            };
-            size = {
-              value = "1534,740";
-              apply = "initially";
-            };
-          };
-        }
-        {
           description = "qobuz";
           match = {
             window-class = {
