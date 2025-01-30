@@ -33,7 +33,6 @@ in
       spice-vdagentd.enable = true;
     };
     virtualisation = {
-      # (Make sure you run this once: "sudo virsh net-autostart default")
       podman = {
         enable = true;
         autoPrune = {
@@ -41,11 +40,12 @@ in
           dates = "weekly";
         };
         defaultNetwork.settings.dns_enabled = true;
-        dockerCompat = true;
-        dockerSocket.enable = true;
+        #dockerCompat = true;
+        #dockerSocket.enable = true;
         enableNvidia = if vars.nvidia then true else false;
       };
       libvirtd = {
+        # Make sure you run this once: "sudo virsh net-autostart default"
         enable = true;
         qemu = {
           swtpm.enable = true;
@@ -68,6 +68,7 @@ in
           extraGroups = [
             "docker"
             "libvirtd"
+            "podman"
           ];
           # quadlets
           autoSubUidGidRange = true;
