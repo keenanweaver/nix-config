@@ -122,9 +122,8 @@ in
                 lib32-gamemode                 \
                 lib32-libpulse                 \
                 lib32-mangohud                 \
-                lib32-obs-vkcapture-git        \
+                lib32-obs-vkcapture            \
                 lib32-vkbasalt                 \
-                lib32-vulkan-mesa-layers       \
                 lib32-vulkan-radeon            \
                 lib32-openal                   \
                 lib32-pipewire                 \
@@ -132,8 +131,7 @@ in
                 libva-mesa-driver              \
                 mangohud                       \
                 vkbasalt                       \
-                vulkan-mesa-layers             \
-                obs-vkcapture-git              \
+                obs-vkcapture                  \
                 openal                         \
                 parui                          \
                 pipewire                       \
@@ -150,12 +148,7 @@ in
                 if [[ "$CONTAINER_ID" =~ ^bazzite-arch-exodos ]]; then
                   # Games/emulators/tools
                   paru -S --needed --noconfirm \
-                  dbgl                         \
-                  fluidsynth                   \
-                  gwenview                     \
-                  innoextract                  \
-                  konsole                      \
-                  okular
+                  dbgl
                 elif [[ "$CONTAINER_ID" =~ ^bazzite-arch-gaming ]]; then
                   # Packages that will initially fail
                   paru -S --needed --noconfirm \
@@ -293,13 +286,14 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
+                args = "obs-gamecapture mangohud --dlsym";
                 bin = "exogui";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-exodos";
               in
               writeShellScriptBin "${bin-export}" ''
                 export PULSE_SINK="Game"
+                cd /mnt/crusader/eXo/eXoDOS/exogui
                 if [ -z "''${CONTAINER_ID}" ]; then
                   exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/mnt/crusader/eXo/eXoDOS/exogui/${bin}' "$@"
                 elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
@@ -581,7 +575,7 @@ in
               };
             };
             exogui = lib.mkIf cfg.gaming {
-              name = "exogui";
+              name = "eXoDOS";
               comment = "eXoDOS Launcher";
               exec = "exogui-db";
               icon = "distributor-logo-ms-dos";
