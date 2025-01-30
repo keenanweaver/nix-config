@@ -115,6 +115,7 @@
       flake = false;
     };
     ucodenix.url = "github:e-tho/ucodenix";
+    umu.url = "github:MattSturgeon/umu-launcher?dir=packaging/nix";
 
     # Theming
     catppuccin = {

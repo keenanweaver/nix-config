@@ -47,18 +47,13 @@ in
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-ge-custom";
           };
-          wine-links-umu = {
-            enable = cfg.enableNative;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.umu-launcher}/bin";
-            target = "${config.xdg.dataHome}/lutris/runtime/umu";
-          };
         };
         home.packages = lib.mkIf cfg.enableNative [
           (pkgs.lutris.override {
             extraPkgs =
               pkgs: with pkgs; [
                 libstrangle
-                umu-launcher
+                inputs.umu.packages.${pkgs.system}.umu-launcher
               ];
           })
         ];
