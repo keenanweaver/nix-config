@@ -316,6 +316,7 @@ in
 
     nixpkgs.config.permittedInsecurePackages = [
       # "freeimage-unstable-2021-11-01" # Trenchbroom / SLADE
+      "SDL_ttf-2.0.11" # Archpelago / appimage-run / losslesscut-bin / protonup-qt
     ];
 
     services = {
@@ -569,6 +570,11 @@ in
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
             target = "${config.xdg.configHome}/dosbox/mt32-roms";
           };
+          roms-mt32-exodos-flatpak = {
+            enable = true;
+            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
+            target = ".var/app/com.retro_exo.dosbox-staging-082-0/config/dosbox/mt32-roms";
+          };
           wine-controller-proton = {
             # https://selfmadepenguin.wordpress.com/2024/02/14/how-i-solved-my-gamecontroller-problems/
             # Import with: wine start regedit.exe /home/keenan/.wine/controller-proton.reg
@@ -671,6 +677,11 @@ in
         services = {
           flatpak = {
             overrides = {
+              "com.fightcade.Fightcade" = {
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
               "dev.opengoal.OpenGOAL" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/opengoal" ];
@@ -710,7 +721,7 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "org.ryujinx.Ryujinx" = {
+              "io.github.ryubing.Ryujinx" = {
                 Context = {
                   filesystems = [
                     "${config.home.homeDirectory}/Games"
@@ -718,6 +729,21 @@ in
                     "!home"
                   ];
                 };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
+              "net.sourceforge.uqm_mods.UQM-MegaMod" = {
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
+              "org.openjkdf2.OpenJKDF2" = {
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
+              "org.sonic3air.Sonic3AIR" = {
                 Environment = {
                   PULSE_SINK = "Game";
                 };
@@ -730,6 +756,7 @@ in
               "com.qzandronum.Q-Zandronum"
               "dev.opengoal.OpenGOAL"
               "io.github.noxworld_dev.OpenNox"
+              "io.github.ryubing.Ryujinx"
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
               "io.openrct2.OpenRCT2"
@@ -740,7 +767,6 @@ in
               "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/24.08"
               "org.openfodder.OpenFodder"
               "org.openjkdf2.OpenJKDF2"
-              "org.ryujinx.Ryujinx"
               "org.sonic3air.Sonic3AIR"
               "vet.rsc.OpenRSC.Launcher"
             ];

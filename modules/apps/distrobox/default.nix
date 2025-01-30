@@ -574,18 +574,6 @@ in
                 Keywords = "dosbox;dos";
               };
             };
-            exogui = lib.mkIf cfg.gaming {
-              name = "eXoDOS";
-              comment = "eXoDOS Launcher";
-              exec = "exogui-db";
-              icon = "distributor-logo-ms-dos";
-              categories = [ "Game" ];
-              noDisplay = false;
-              startupNotify = true;
-              settings = {
-                Keywords = "exodos;dos";
-              };
-            };
             faugus =
               let
                 icon = pkgs.fetchurl {
