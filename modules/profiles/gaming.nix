@@ -607,6 +607,16 @@ in
           with pkgs;
           [
             (writeShellApplication {
+              name = "script-exodos-nuked";
+              runtimeInputs = with pkgs; [
+                fd
+                sd
+              ];
+              text = ''
+                fd run.bat /mnt/crusader/eXo/eXoDOS/eXo/eXoDOS -x sd 'CONFIG -set "mididevice=fluidsynth"' 'CONFIG -set "mididevice=alsa"' {}
+              '';
+            })
+            (writeShellApplication {
               name = "script-game-stuff";
               runtimeInputs = [
                 coreutils
