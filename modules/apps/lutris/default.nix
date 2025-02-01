@@ -54,6 +54,7 @@ in
               pkgs: with pkgs; [
                 libstrangle
                 inputs.umu.packages.${pkgs.system}.umu-launcher
+                #umu-launcher
               ];
           })
         ];
@@ -71,6 +72,9 @@ in
               };
               Environment = {
                 PULSE_SINK = "Game";
+              };
+              "Session Bus Policy" = {
+                "org.freedesktop.Flatpak" = "talk";
               };
             };
           };

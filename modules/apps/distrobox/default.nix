@@ -177,7 +177,7 @@ in
               ''}'')
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
+                args = "gamemoderun obs-gamecapture mangohud";
                 bin = "2s2h";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -195,7 +195,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
+                args = "gamemoderun obs-gamecapture mangohud";
                 bin = "/opt/Archipelago/ArchipelagoLauncher";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -213,7 +213,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
+                args = "gamemoderun obs-gamecapture mangohud";
                 bin = "bizhawk";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -231,7 +231,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
+                args = "gamemoderun obs-gamecapture mangohud";
                 bin = "${config.home.homeDirectory}/Games/daikatana/daikatana";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -249,7 +249,7 @@ in
             )
             (
               let
-                args = "obs-gamecapture mangohud --dlsym";
+                args = "obs-gamecapture mangohud";
                 bin = "dbgl";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-exodos";
@@ -268,7 +268,7 @@ in
             )
             (
               let
-                args = "obs-gamecapture mangohud --dlsym";
+                args = "obs-gamecapture mangohud";
                 bin = "dosbox";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-exodos";
@@ -286,7 +286,7 @@ in
             )
             (
               let
-                args = "obs-gamecapture mangohud --dlsym";
+                args = "obs-gamecapture mangohud";
                 bin = "exogui";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-exodos";
@@ -325,7 +325,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
+                args = "gamemoderun obs-gamecapture mangohud";
                 bin = "jazzjackrabbit";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -343,7 +343,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
+                args = "gamemoderun obs-gamecapture mangohud";
                 bin = "lab3d-sdl";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -378,7 +378,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
+                args = "gamemoderun obs-gamecapture mangohud";
                 bin = "openxcom";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -415,7 +415,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
+                args = "gamemoderun obs-gamecapture mangohud";
                 bin = "sonic";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -433,7 +433,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
+                args = "gamemoderun obs-gamecapture mangohud";
                 bin = "sonic2";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -451,7 +451,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
+                args = "gamemoderun obs-gamecapture mangohud";
                 bin = "supermarioworld";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -469,7 +469,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
+                args = "gamemoderun obs-gamecapture mangohud";
                 bin = "xash3d";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -487,7 +487,7 @@ in
             )
             (
               let
-                args = "obs-gamecapture mangohud --dlsym";
+                args = "obs-gamecapture mangohud";
                 bin = "zelda64recomp";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -505,7 +505,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
+                args = "gamemoderun obs-gamecapture mangohud";
                 bin = "zeldalttp";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";
@@ -523,7 +523,7 @@ in
             )
             (
               let
-                args = "gamemoderun obs-gamecapture mangohud --dlsym";
+                args = "gamemoderun obs-gamecapture mangohud";
                 bin = "zeldaoot";
                 bin-export = "${bin}-db";
                 container = "bazzite-arch-gaming";

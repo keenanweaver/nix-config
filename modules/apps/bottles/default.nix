@@ -65,6 +65,9 @@ in
               Environment = {
                 PULSE_SINK = "Game";
               };
+              "Session Bus Policy" = {
+                "org.freedesktop.Flatpak" = "talk";
+              };
             };
           };
           packages = [

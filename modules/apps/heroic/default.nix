@@ -50,9 +50,11 @@ in
         };
         home.packages = lib.mkIf cfg.enableNative [
           (pkgs.heroic.override {
-            extraPkgs = pkgs: with pkgs; [
-              inputs.umu.packages.${pkgs.system}.umu-launcher
-            ];
+            extraPkgs =
+              pkgs: with pkgs; [
+                inputs.umu.packages.${pkgs.system}.umu-launcher
+                #umu-launcher
+              ];
           })
         ];
         services.flatpak = lib.mkIf cfg.enableFlatpak {
@@ -69,6 +71,9 @@ in
               };
               Environment = {
                 PULSE_SINK = "Game";
+              };
+              "Session Bus Policy" = {
+                "org.freedesktop.Flatpak" = "talk";
               };
             };
           };
