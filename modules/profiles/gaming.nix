@@ -442,32 +442,11 @@ in
           ../apps/ludusavi
         ];
         home.file = {
-          desktop-entry-86box = {
-            enable = true;
-            text = ''
-              [Desktop Entry]
-              Categories=System;Emulator;
-              Comment=An emulator for classic IBM PC clones
-              Exec=86Box
-              GenericName=Classic PC emulator
-              Icon=net.86box.86Box
-              Name=86Box
-              NoDisplay=false
-              Path=${config.home.homeDirectory}/Games/games/86box/win98se/
-              StartupNotify=true
-              Terminal=false
-              TerminalOptions=
-              Type=Application
-              X-KDE-SubstituteUID=false
-              X-KDE-Username=
-            '';
-            target = "${config.xdg.dataHome}/applications/net.86box.86Box.desktop";
-          };
           desktop-entry-dxvk =
             let
               configFile = pkgs.fetchurl {
                 url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
-                hash = "sha256-gUxx6oIUg7uCVQff02vgfoG7qBY0IBNMah8BR1hjN0w=";
+                hash = "sha256-OydD9rHfPQlsKs+889mQ6DJ14aBePdQ/RWvTiEMQij4=";
               };
             in
             {
@@ -475,7 +454,7 @@ in
               text = ''
                 [Desktop Entry]
                 Comment=Create a new DXVK config from template
-                Icon=text-x-makefile
+                Icon=text-plain
                 Name=DXVK Config...
                 Type=Link
                 URL[$e]=file:${configFile}
@@ -486,7 +465,7 @@ in
             let
               configFile = pkgs.fetchurl {
                 url = "https://raw.githubusercontent.com/flightlessmango/MangoHud/master/data/MangoHud.conf";
-                hash = "sha256-BcZt5Ma5injmHmlT8BkgXVrEM8yAn6N/wQamm4x1m60=";
+                hash = "sha256-hAZePm8o5/55IlSghWKhBJBi63JtKJQzGYDUn69u1oM=";
               };
             in
             {
@@ -494,7 +473,7 @@ in
               text = ''
                 [Desktop Entry]
                 Comment=Create a new MangoHud config from template
-                Icon=text-x-makefile
+                Icon=io.github.flightlessmango.mangohud
                 Name=MangoHud Config...
                 Type=Link
                 URL[$e]=file:${configFile}
@@ -513,34 +492,13 @@ in
               text = ''
                 [Desktop Entry]
                 Comment=Create a new vkBasalt config from template
-                Icon=text-x-makefile
+                Icon=text-plain
                 Name=vkBasalt Config...
                 Type=Link
                 URL[$e]=file:${configFile}
               '';
               target = "${config.xdg.dataHome}/templates/vkBasalt.desktop";
             };
-          desktop-entry-quakeinjector = {
-            enable = true;
-            text = ''
-              [Desktop Entry]
-              Categories=Game
-              Comment=Download, install and play quake singleplayer maps from the quaddicted.com archive
-              Exec=quake-injector
-              Icon=quake-injector
-              Name=Quake Injector
-              NoDisplay=false
-              Path=${config.home.homeDirectory}/Games/quake/quake-1/injector/
-              StartupNotify=true
-              Terminal=false
-              TerminalOptions=
-              Type=Application
-              Version=1.4
-              X-KDE-SubstituteUID=false
-              X-KDE-Username=
-            '';
-            target = "${config.xdg.dataHome}/applications/quake-injector.desktop";
-          };
           roms-mt32-exodos = {
             enable = true;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
@@ -860,6 +818,18 @@ in
             "${pkgs.nuked-sc55}/share/applications/Nuked-SC55 (silent).desktop"
           ];
           desktopEntries = {
+            _86box = {
+              name = "86Box";
+              exec = "86Box";
+              icon = "net.86box.86Box";
+              categories = [
+                "Game"
+                "Emulator"
+              ];
+              settings = {
+                Path = "${config.home.homeDirectory}/Games/games/86box/win98se";
+              };
+            };
             gog-galaxy =
               let
                 icon = pkgs.fetchurl {
@@ -879,6 +849,70 @@ in
                   StartupWMClass = "GOG Galaxy";
                 };
               };
+            quake-injector = {
+              name = "Quake Injector";
+              exec = "quake-injector";
+              icon = "quake-injector";
+              categories = [ "Game" ];
+              settings = {
+                Path = "${config.home.homeDirectory}/Games/quake/quake-1/injector";
+              };
+            };
+            # Links broken: https://github.com/nix-community/home-manager/issues/4987
+            /*
+              dxvk-template =
+                         let
+                           configFile = pkgs.fetchurl {
+                             url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
+                             hash = "sha256-OydD9rHfPQlsKs+889mQ6DJ14aBePdQ/RWvTiEMQij4=";
+                           };
+                         in
+                         {
+                           name = "DXVK Config...";
+                           icon = "text-plain";
+                           comment = "Create a new DXVK config from template";
+                           type = "Link";
+                           settings = {
+                             URL = "file:${configFile}";
+                           };
+                         };
+            */
+            /*
+              mangohud-template =
+                         let
+                           configFile = pkgs.fetchurl {
+                             url = "https://raw.githubusercontent.com/flightlessmango/MangoHud/master/data/MangoHud.conf";
+                             hash = "sha256-hAZePm8o5/55IlSghWKhBJBi63JtKJQzGYDUn69u1oM=";
+                           };
+                         in
+                         {
+                           name = "MangoHud Config...";
+                           icon = "io.github.flightlessmango.mangohud";
+                           comment = "Create a new MangoHud config from template";
+                           type = "Link";
+                           settings = {
+                             URL = "file:${configFile}";
+                           };
+                         };
+            */
+            /*
+              vkbasalt-template =
+                         let
+                           configFile = pkgs.fetchurl {
+                             url = "https://raw.githubusercontent.com/DadSchoorse/vkBasalt/master/config/vkBasalt.conf";
+                             hash = "sha256-IN/Kuc17EZfzRoo8af1XoBX2/48/bCdyOxw/Tl463Mg=";
+                           };
+                         in
+                         {
+                           name = "vkBasalt Config...";
+                           icon = "text-plain";
+                           comment = "Create a new vkBasalt config from template";
+                           type = "Link";
+                           settings = {
+                             URL = "file:${configFile}";
+                           };
+                         };
+            */
           };
         };
       };
