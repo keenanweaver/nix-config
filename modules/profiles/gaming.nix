@@ -96,7 +96,7 @@ let
       */
       sm64ex
       space-station-14-launcher
-      srb2 # Sonic Robo Blast 2
+      srb2
       theforceengine # Dark Forces / Outlaws
       urbanterror
       wipeout-rewrite
@@ -442,30 +442,6 @@ in
           ../apps/ludusavi
         ];
         home.file = {
-          autostart-moondeckbuddy = {
-            enable = true;
-            text = ''
-              [Desktop Entry]
-              Exec=MoonDeckBuddy
-              Name=moondeckbuddy
-              Terminal=false
-              Type=Application
-            '';
-            target = "${config.xdg.configHome}/autostart/moondeckbuddy.desktop";
-            executable = true;
-          };
-          autostart-nuked = {
-            enable = true;
-            text = ''
-              [Desktop Entry]
-              Exec=nuked-sc55 -i
-              Name=nuked-sc55
-              Terminal=false
-              Type=Application
-            '';
-            target = "${config.xdg.configHome}/autostart/nuked.desktop";
-            executable = true;
-          };
           desktop-entry-86box = {
             enable = true;
             text = ''
@@ -879,6 +855,10 @@ in
           };
         };
         xdg = {
+          autostart.entries = [
+            "${pkgs.moondeck-buddy}/share/applications/MoonDeckBuddy.desktop"
+            "${pkgs.nuked-sc55}/share/applications/Nuked-SC55 (silent).desktop"
+          ];
           desktopEntries = {
             gog-galaxy =
               let

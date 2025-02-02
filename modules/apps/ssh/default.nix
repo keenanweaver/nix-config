@@ -48,18 +48,6 @@ in
     home-manager.users.${username} =
       { config, pkgs, ... }:
       {
-        home.file = {
-          desktop-entry-ssh-add = {
-            enable = true;
-            text = ''
-              [Desktop Entry]
-              Exec=ssh-add -q .ssh/id_ed25519
-              Name=ssh-add
-              Type=Application
-            '';
-            target = "${config.xdg.configHome}/autostart/ssh-add.desktop";
-          };
-        };
         home.packages = with pkgs; [ sshs ];
         programs.ssh = {
           enable = true;
@@ -106,6 +94,22 @@ in
               User bazzite
           '';
         };
+        xdg.autostart.entries =
+          let
+            desktopEntry = (
+              pkgs.makeDesktopItem {
+                name = "ssh-add";
+                desktopName = "ssh-add";
+                exec = "ssh-add -q ${config.home.homeDirectory}/.ssh/id_ed25519";
+                comment = "Run ssh-add";
+                terminal = false;
+                startupNotify = false;
+              }
+            );
+          in
+          [
+            "${desktopEntry}/share/applications/${desktopEntry.name}"
+          ];
       };
   };
 }

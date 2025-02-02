@@ -37,24 +37,11 @@ in
       };
     };
 
-    home-manager.users.${username} =
-      { config, ... }:
-      {
-        home.file = {
-          autostart-ktailctl = {
-            enable = true;
-            text = ''
-              [Desktop Entry]
-              Exec=ktailctl
-              Name=ktailctl
-              Terminal=false
-              Type=Application
-            '';
-            target = "${config.xdg.configHome}/autostart/ktailctl.desktop";
-            executable = true;
-          };
-        };
-        home.packages = with pkgs; [ ktailctl ];
-      };
+    home-manager.users.${username} = {
+      home.packages = with pkgs; [ ktailctl ];
+      xdg.autostart.entries = [
+        "${pkgs.ktailctl}/share/applications/org.fkoehler.KTailctl.desktop"
+      ];
+    };
   };
 }

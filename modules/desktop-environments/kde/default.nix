@@ -73,6 +73,7 @@ in
     # Neochat
     nixpkgs.config.permittedInsecurePackages = [
       "olm-3.2.16"
+      "SDL_ttf-2.0.11" # Archipelago / appimage-run / losslesscut-bin / protonup-qt
     ];
     programs = {
       fuse.userAllowOther = true;
@@ -114,25 +115,27 @@ in
         xdgOpenUsePortal = true;
       };
     };
-    home-manager.users.${username} =
-      { config, ... }:
-      {
-        home.file = {
-          desktop-entry-akregator = {
-            enable = true;
-            text = ''
-              [Desktop Entry]
-              Exec=akregator %u --hide-mainwindow
-              Name=akregator
-              Type=Application
-            '';
-            target = "${config.xdg.configHome}/autostart/akregator.desktop";
-          };
-        };
-        services.kdeconnect = {
-          enable = true;
-          package = pkgs.kdePackages.kdeconnect-kde;
-        };
+    home-manager.users.${username} = {
+      services.kdeconnect = {
+        enable = true;
+        package = pkgs.kdePackages.kdeconnect-kde;
       };
+      xdg.autostart.entries =
+        let
+          akregator = (
+            pkgs.makeDesktopItem {
+              name = "akregator";
+              desktopName = "akregator";
+              exec = "akregator %u --hide-mainwindow";
+              comment = "Run akregator";
+              terminal = false;
+              startupNotify = false;
+            }
+          );
+        in
+        [
+          "${akregator}/share/applications/${akregator.name}"
+        ];
+    };
   };
 }

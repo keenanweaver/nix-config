@@ -27,23 +27,11 @@ in
     };
 
     home-manager.users.${username} =
-      { config, ... }:
+      { pkgs, ... }:
       {
-        home.file = {
-          autostart-solaar = {
-            enable = cfg.autostart;
-            text = ''
-              [Desktop Entry]
-              Exec=solaar --window=hide
-              Icon=solaar
-              Name=solaar
-              Terminal=false
-              Type=Application
-            '';
-            target = "${config.xdg.configHome}/autostart/solaar.desktop";
-            executable = true;
-          };
-        };
+        xdg.autostart.entries = lib.mkIf cfg.autostart [
+          "${pkgs.solaar}/share/applications/solaar.desktop"
+        ];
       };
   };
 }

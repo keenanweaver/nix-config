@@ -56,6 +56,13 @@ stdenv.mkDerivation (finalAttrs: {
       comment = "Roland SC-55 series emulation";
       categories = [ "Game" ];
     })
+    (makeDesktopItem {
+      name = "Nuked-SC55 (silent)";
+      exec = "nuked-sc55 -i";
+      desktopName = "Nuked-SC55";
+      comment = "Roland SC-55 series emulation";
+      categories = [ "Game" ];
+    })
   ];
 
   meta = {
