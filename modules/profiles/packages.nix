@@ -133,6 +133,7 @@ in
             jq
             lazydocker
             mkvtoolnix-cli
+            play
             podman-tui
             streamrip
             systemctl-tui
