@@ -49,14 +49,7 @@ in
           };
         };
         home.packages = lib.mkIf cfg.enableNative [
-          (pkgs.lutris.override {
-            extraPkgs =
-              pkgs: with pkgs; [
-                libstrangle
-                inputs.umu.packages.${pkgs.system}.default
-                #umu-launcher
-              ];
-          })
+          pkgs.lutris
         ];
         services.flatpak = lib.mkIf cfg.enableFlatpak {
           overrides = {

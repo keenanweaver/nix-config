@@ -49,13 +49,7 @@ in
           };
         };
         home.packages = lib.mkIf cfg.enableNative [
-          (pkgs.heroic.override {
-            extraPkgs =
-              pkgs: with pkgs; [
-                inputs.umu.packages.${pkgs.system}.default
-                #umu-launcher
-              ];
-          })
+          pkgs.heroic
         ];
         services.flatpak = lib.mkIf cfg.enableFlatpak {
           overrides = {
