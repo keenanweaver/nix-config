@@ -117,7 +117,7 @@ let
       flycast
       fsuae-launcher
       hypseus-singe
-      #lime3ds
+      lime3ds
       mame
       mednafen
       mednaffe
@@ -141,13 +141,10 @@ let
       xemu
       ## Input
       joystickwake
-      # makima
       oversteer
       sc-controller
-      # xboxdrv
       ## Launchers & utils
       cartridges
-      # umu-launcher
       ## Modding
       limo
       nexusmods-app-unfree
@@ -165,20 +162,20 @@ let
       innoextract
       lgogdownloader
       moondeck-buddy # Pending https://github.com/NixOS/nixpkgs/pull/375287
-      mpg123
-      #inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt
+      #mpg123
+      inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt
       parsec-bin
-      python313Packages.lnkparse3
       inputs.nix-game-preservation.packages.${pkgs.system}.redumper
       inputs.nix-game-preservation.packages.${pkgs.system}.sabretools
-      #inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp
-      x264
-      x265
+      inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp
+      #x264
+      #x265
       xlink-kai
       xvidcore
       ## Wine
       inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
       inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
+      inputs.umu.packages.${pkgs.system}.default
       winetricks
       # wineWowPackages.stagingFull
       ## One-and-dones
@@ -189,6 +186,7 @@ let
            mmv
            nsz
            ps3-disc-dumper
+           python313Packages.lnkparse3
            renderdoc
            vgmplay-libvgm
            vgmstream

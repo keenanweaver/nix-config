@@ -53,7 +53,7 @@ in
             extraPkgs =
               pkgs: with pkgs; [
                 libstrangle
-                inputs.umu.packages.${pkgs.system}.umu-launcher
+                inputs.umu.packages.${pkgs.system}.default
                 #umu-launcher
               ];
           })

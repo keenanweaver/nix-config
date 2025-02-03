@@ -52,7 +52,7 @@ in
           (pkgs.heroic.override {
             extraPkgs =
               pkgs: with pkgs; [
-                inputs.umu.packages.${pkgs.system}.umu-launcher
+                inputs.umu.packages.${pkgs.system}.default
                 #umu-launcher
               ];
           })
