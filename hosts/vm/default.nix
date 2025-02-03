@@ -169,38 +169,34 @@
               };
                 };
             */
-            /*
-              "chd_psx" = {
+            "chd_psx" = {
               Unit = {
                 Description = "Download 'chd_psx' from Internet Archive";
               };
               Service = {
                 ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user.path}:${config.sops.secrets.unraid.ntfy.password.path} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url.path} '[Start] chd_psx'";
                 ExecStart = [
-                  "${pkgs.internetarchive}/bin/ia download chd_psx --destdir='${unraid}/Games/Rom/Redump/Sony Playstation/CHD' --no-directories"
-                  "${pkgs.internetarchive}/bin/ia download chd_psx_eur --destdir='${unraid}/Games/Rom/Redump/Sony Playstation/CHD' --no-directories"
-                  "${pkgs.internetarchive}/bin/ia download chd_psx_jap --destdir='${unraid}/Games/Rom/Redump/Sony Playstation/CHD' --no-directories"
-                  "${pkgs.internetarchive}/bin/ia download chd_psx_jap_p2 --destdir='${unraid}/Games/Rom/Redump/Sony Playstation/CHD' --no-directories"
-                  "${pkgs.internetarchive}/bin/ia download chd_psx_misc --destdir='${unraid}/Games/Rom/Redump/Sony Playstation/CHD' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download chd_psx --destdir='${unraid}/Mister/PSX' --no-directories"
+                  #"${pkgs.internetarchive}/bin/ia download chd_psx_eur --destdir='${unraid}/Mister/PSX' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download chd_psx_jap --destdir='${unraid}/Mister/PSX' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download chd_psx_jap_p2 --destdir='${unraid}/Mister/PSX' --no-directories"
+                  "${pkgs.internetarchive}/bin/ia download chd_psx_misc --destdir='${unraid}/Mister/PSX' --no-directories"
                 ];
                 ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user.path}:${config.sops.secrets.unraid.ntfy.password.path} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url.path} '[End] chd_psx'";
                 Type = "oneshot";
               };
-                };
-            */
-            /*
-              "chd_saturn" = {
+            };
+            "chd_saturn" = {
               Unit = {
                 Description = "Download 'chd_saturn' from Internet Archive";
               };
               Service = {
                 ExecStartPre = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user.path}:${config.sops.secrets.unraid.ntfy.password.path} --tags=grey_exclamation ${config.sops.secrets.unraid.ntfy.url.path} '[Start] chd_saturn'";
-                ExecStart = "${pkgs.internetarchive}/bin/ia download chd_saturn --destdir='${unraid}/Games/Rom/Redump/Sega Saturn/CHD' --no-directories";
+                ExecStart = "${pkgs.internetarchive}/bin/ia download chd_saturn --destdir='${unraid}/Mister/Saturn' --no-directories";
                 ExecStartPost = "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user.path}:${config.sops.secrets.unraid.ntfy.password.path} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url.path} '[End] chd_saturn'";
                 Type = "oneshot";
               };
-                };
-            */
+            };
             /*
               "chd_segacd" = {
               Unit = {
@@ -516,14 +512,18 @@
               };
                 };
             */
-            /*
-              "chd_saturn" = {
+            "chd_psx" = {
               Install.WantedBy = [ "timers.target" ];
               Timer = {
                 OnCalendar = "*-*-* 6:26:00 America/Chicago";
               };
-                };
-            */
+            };
+            "chd_saturn" = {
+              Install.WantedBy = [ "timers.target" ];
+              Timer = {
+                OnCalendar = "*-*-* 6:26:00 America/Chicago";
+              };
+            };
             /*
               "chd_segacd" = {
               Install.WantedBy = [ "timers.target" ];
