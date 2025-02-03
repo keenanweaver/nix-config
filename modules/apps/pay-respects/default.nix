@@ -14,9 +14,15 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    programs.pay-respects = {
-      enable = true;
+    /*
+      programs.pay-respects = {
+         enable = true;
+       };
+    */
+    home-manager.users.${username} = {
+      programs.pay-respects = {
+        enable = true;
+      };
     };
-    home-manager.users.${username} = { };
   };
 }

@@ -23,6 +23,7 @@ in
         decompressFonts = true;
       };
       packages = with pkgs; [
+        #adwaita-fonts
         corefonts
         inter
         lato
