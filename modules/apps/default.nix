@@ -10,7 +10,6 @@
     ./coolercontrol
     ./direnv
     ./distrobox
-    ./envfs
     ./fastfetch
     ./fd
     ./floorp
