@@ -383,28 +383,6 @@ in
               };
             };
           };
-          nixvim = {
-            colorschemes.catppuccin = {
-              enable = true;
-              settings = {
-                background.dark = "${flavor-lower}";
-                flavor = "${flavor-lower}";
-                integrations = {
-                  cmp = true;
-                  coc_nvim = true;
-                  gitsigns = true;
-                  markdown = true;
-                  neotree = true;
-                  overseer = true;
-                  treesitter = true;
-                  treesitter_context = true;
-                  which_key = true;
-                };
-                term_colors = true;
-                transparentBackground = true;
-              };
-            };
-          };
           nvf = {
             settings = {
               vim = {

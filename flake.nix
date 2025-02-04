@@ -14,12 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
-    /*
-      lanzaboote = {
-         url = "github:nix-community/lanzaboote";
-         inputs.nixpkgs.follows = "nixpkgs";
-       };
-    */
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,10 +33,6 @@
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -104,7 +94,6 @@
       flake = false;
     };
 
-    isd.url = "github:isd-project/isd";
     nsearch = {
       url = "github:niksingh710/nsearch";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -154,7 +143,6 @@
       flake = false;
     };
     lightly.url = "github:Bali10050/Darkly";
-    #stylix.url = "github:danth/stylix";
 
     # KDE
     kwin-effects-forceblur = {
@@ -234,7 +222,6 @@
               inputs.disko.nixosModules.disko
               ./hosts/desktop/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB" ]; }
-              #inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
               inputs.quadlet-nix.nixosModules.quadlet
@@ -259,7 +246,6 @@
                     catppuccin.homeManagerModules.catppuccin
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.hmModules.nix-index
-                    nixvim.homeManagerModules.nixvim
                     nur.modules.homeManager.default
                     quadlet-nix.homeManagerModules.quadlet
                     nvf.homeManagerModules.default
@@ -296,7 +282,6 @@
               inputs.disko.nixosModules.disko
               ./hosts/desktop/disko.nix
               { _module.args.disks = [ "/dev/nvme0n1" ]; }
-              #inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
@@ -324,7 +309,6 @@
                     catppuccin.homeManagerModules.catppuccin
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.hmModules.nix-index
-                    nixvim.homeManagerModules.nixvim
                     nur.modules.homeManager.default
                     nvf.homeManagerModules.default
                     plasma-manager.homeManagerModules.plasma-manager
@@ -353,7 +337,6 @@
               ./hosts/pi/remorse.nix
 
               inputs.chaotic.nixosModules.default
-              #inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
@@ -380,7 +363,6 @@
                   sharedModules = [
                     inputs.nix-flatpak.homeManagerModules.nix-flatpak
                     inputs.nix-index-database.hmModules.nix-index
-                    inputs.nixvim.homeManagerModules.nixvim
                     inputs.nur.modules.homeManager.default
                     inputs.sops-nix.homeManagerModules.sops
                   ];
@@ -411,7 +393,6 @@
               inputs.disko.nixosModules.disko
               ./hosts/vm/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/virtio-vdisk1" ]; }
-              #inputs.lanzaboote.nixosModules.lanzaboote
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
@@ -439,7 +420,6 @@
                     inputs.catppuccin.homeManagerModules.catppuccin
                     inputs.nix-flatpak.homeManagerModules.nix-flatpak
                     inputs.nix-index-database.hmModules.nix-index
-                    inputs.nixvim.homeManagerModules.nixvim
                     inputs.nur.modules.homeManager.default
                     inputs.nvf.homeManagerModules.default
                     inputs.plasma-manager.homeManagerModules.plasma-manager
