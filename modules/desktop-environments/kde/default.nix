@@ -46,6 +46,7 @@ in
           kfind
           kget
           kgpg
+          kio-fuse
           kirigami-addons
           kjournald
           kmousetool
