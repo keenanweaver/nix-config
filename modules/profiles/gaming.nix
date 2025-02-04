@@ -104,6 +104,7 @@ let
       */
       sm64ex
       space-station-14-launcher
+      inputs.nix-citizen.packages.${system}.star-citizen
       srb2
       theforceengine # Dark Forces / Outlaws
       urbanterror
