@@ -1267,11 +1267,11 @@
         "umu": "umu"
       },
       "locked": {
-        "lastModified": 1738460253,
-        "narHash": "sha256-ksCksa9r66Abrk2UWQac0QLV8hUmlr3zdhLlSKvHj3k=",
+        "lastModified": 1738633089,
+        "narHash": "sha256-awMsAhuhPctQ0v4fbNX0aRNqQTL1qDLgVjOJJHQ4y4M=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "5542800ed394225b5560a25e7fb92455bdcf5b85",
+        "rev": "3c83a677771fea8b55724f2d5cde0ca878c65712",
         "type": "github"
       },
       "original": {
@@ -1411,11 +1411,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1738547248,
-        "narHash": "sha256-ALPkA9L4G0j7piorEyeQ7zf6fW4vii4ULxRZBXmeKYM=",
+        "lastModified": 1738633599,
+        "narHash": "sha256-EXZoqWNfwBGrlrSNB5Vz5AL+pYc5p8keM35mglYw6j4=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "bfacd5e2786caf61da0ad956728559dd6c1e8037",
+        "rev": "615f991fb42739207e7f71138e03b1b9bbe45e72",
         "type": "github"
       },
       "original": {
@@ -1819,11 +1819,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1738584851,
-        "narHash": "sha256-QY/NOH4rnDxmDc7JqOtcawS9irq8T0ADZWWR629bN38=",
+        "lastModified": 1738622717,
+        "narHash": "sha256-XSFbbhN8xdr4qKRFbubXJ3vkSusKSnALf69G9fdGPXE=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "e77af9f81b220e46a5dc1f1faa592c10753a46a6",
+        "rev": "6288354d43ada972480cbd10dc7102637eeafc1e",
         "type": "github"
       },
       "original": {
