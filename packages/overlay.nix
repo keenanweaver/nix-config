@@ -1,6 +1,7 @@
 (final: prev: {
   cherry-doom = prev.callPackage ./cherry-doom { };
   doom64ex-plus = prev.callPackage ./doom64ex-plus { };
+  doomrunner = prev.callPackage ./doomrunner { };
   gsr = prev.callPackage ./gpu-screen-recorder { };
   hypseus-singe = prev.callPackage ./hypseus-singe { };
   klassy = prev.callPackage ./klassy { };
