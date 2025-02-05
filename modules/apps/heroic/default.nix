@@ -73,6 +73,7 @@ in
           };
           packages = [
             "com.heroicgameslauncher.hgl"
+            "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
           ];
         };
       };
