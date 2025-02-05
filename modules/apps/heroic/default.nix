@@ -14,11 +14,11 @@ in
       enable = lib.mkEnableOption "Enable heroic in home-manager";
       enableFlatpak = lib.mkOption {
         type = lib.types.bool;
-        default = true;
+        default = false;
       };
       enableNative = lib.mkOption {
         type = lib.types.bool;
-        default = false;
+        default = true;
       };
     };
   };
@@ -74,6 +74,7 @@ in
           packages = [
             "com.heroicgameslauncher.hgl"
             "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/23.08"
+            "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08"
           ];
         };
       };
