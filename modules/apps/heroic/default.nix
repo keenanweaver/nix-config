@@ -14,11 +14,11 @@ in
       enable = lib.mkEnableOption "Enable heroic in home-manager";
       enableFlatpak = lib.mkOption {
         type = lib.types.bool;
-        default = false;
+        default = true;
       };
       enableNative = lib.mkOption {
         type = lib.types.bool;
-        default = true;
+        default = false;
       };
     };
   };
@@ -35,7 +35,7 @@ in
           wine-links-proton-cachyos-flatpak-heroic = {
             enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nix-proton-cachyos.packages.x86_64-linux.proton-cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
-            target = ".var/app/com.heroicgameslauncher.hgl/data/heroic/runners/proton-cachyos";
+            target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-cachyos";
           };
           wine-links-proton-ge-heroic = {
             enable = cfg.enableNative;
@@ -45,7 +45,7 @@ in
           wine-links-proton-ge-flatpak-heroic = {
             enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
-            target = ".var/app/com.heroicgameslauncher.hgl/data/heroic/runners/proton-ge-custom";
+            target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-ge-custom";
           };
         };
         home.packages = lib.mkIf cfg.enableNative [
