@@ -19,9 +19,9 @@ let
   sans-font-pkg = pkgs.inter;
   #serif-font = "IBM Plex Serif";
   GTK-THEME = "Breeze-Dark";
-  cursor-theme = "breeze_cursors";
+  #cursor-theme = "breeze_cursors";
+  cursor-theme = "catppuccin-${flavor-lower}-${accent-lower}-cursors";
 in
-#cursor-theme = "Catppuccin-${flavor-upper}-${accent-upper}";
 {
   options = {
     catppuccinTheming = {
@@ -93,7 +93,7 @@ in
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
           cursors = {
-            enable = false;
+            enable = true;
             accent = "${accent-lower}";
             flavor = "${flavor-lower}";
           };
@@ -208,7 +208,7 @@ in
               target = ".var/app/app.zen_browser.zen/.zen/${username}/chrome";
             };
             cursor-theme-default = {
-              enable = true;
+              enable = false;
               text = ''
                 [Icon Theme]
                 Inherits=${cursor-theme}
