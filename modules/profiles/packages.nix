@@ -85,9 +85,9 @@ in
             docker-compose-language-service
             dockerfile-language-server-nodejs
             ### Go ###
-            gofumpt
-            gopls
-            gotools
+            #gofumpt
+            #gopls
+            #gotools
             #go
             delve
             ### HTML / CSS / JSON ###
@@ -128,7 +128,7 @@ in
             hexyl
             hyperfine
             impala
-            inputs.isd.packages.${pkgs.system}.default
+            isd
             jiq
             jq
             lazydocker
