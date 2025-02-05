@@ -30,22 +30,22 @@ in
           wine-links-proton-cachyos-lutris = {
             enable = cfg.enableNative;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nix-proton-cachyos.packages.x86_64-linux.proton-cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
-            target = "${config.xdg.dataHome}/lutris/runners/wine/proton-cachyos";
+            target = "${config.xdg.dataHome}/lutris/runners/proton/proton-cachyos";
           };
           wine-links-proton-cachyos-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${inputs.nix-proton-cachyos.packages.x86_64-linux.proton-cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
-            target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-cachyos";
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-cachyos";
           };
           wine-links-proton-ge-lutris = {
             enable = cfg.enableNative;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
-            target = "${config.xdg.dataHome}/lutris/runners/wine/proton-ge-custom";
+            target = "${config.xdg.dataHome}/lutris/runners/proton/proton-ge-custom";
           };
           wine-links-proton-ge-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-custom}/bin";
-            target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-ge-custom";
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-ge-custom";
           };
         };
         home.packages = lib.mkIf cfg.enableNative [
