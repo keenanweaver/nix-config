@@ -119,8 +119,8 @@ in
             foobar2000 =
               let
                 icon = pkgs.fetchurl {
-                  url = "https://www.svgrepo.com/show/349365/foobar2000.svg";
-                  hash = "sha256-JoZPUnd9wM4N+i1MA369s46r9JZPjp0lJg7AGCmmMOQ=";
+                  url = "https://cdn2.steamgriddb.com/logo/ab2481c9f93d0ed3033a3281d865ccb2.png";
+                  hash = "sha256-aPf8MLBDPh9Q6WdtY0tnfgKKHLJNtndYI6D3VHnrHls=";
                 };
               in
               {
