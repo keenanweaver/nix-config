@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  pkgs,
   vars,
   ...
 }:
@@ -22,6 +23,8 @@ in
 
     # Allow for overclocking
     boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
+
+    environment.systemPackages = with pkgs; [ liquidctl ];
 
     programs = {
       coolercontrol = {
