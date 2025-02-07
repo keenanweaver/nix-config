@@ -826,7 +826,7 @@ in
           ];
           desktopEntries = {
             _86box = {
-              name = "86Box";
+              name = "86Box (Win98SE)";
               exec = "86Box";
               icon = "net.86box.86Box";
               categories = [
