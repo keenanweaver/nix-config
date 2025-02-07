@@ -2,6 +2,8 @@
   cherry-doom = prev.callPackage ./cherry-doom { };
   doom64ex-plus = prev.callPackage ./doom64ex-plus { };
   doomrunner = prev.callPackage ./doomrunner { };
+  gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui { };
+  gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif { };
   gsr = prev.callPackage ./gpu-screen-recorder { };
   hypseus-singe = prev.callPackage ./hypseus-singe { };
   klassy = prev.callPackage ./klassy { };

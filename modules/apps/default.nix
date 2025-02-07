@@ -19,6 +19,7 @@
     ./gamescope
     ./git
     ./gpu-screen-recorder
+    ./gpu-screen-recorder/module.nix
     ./gpg
     ./helix
     ./heroic
