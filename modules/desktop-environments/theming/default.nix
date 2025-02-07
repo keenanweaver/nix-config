@@ -58,8 +58,8 @@ in
           flavor = "${flavor-lower}";
         })
         #inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
-        inputs.lightly.packages.${pkgs.system}.darkly-qt5
-        inputs.lightly.packages.${pkgs.system}.darkly-qt6
+        inputs.lightly.packages.${system}.darkly-qt5
+        inputs.lightly.packages.${system}.darkly-qt6
         klassy
         utterly-round-plasma-style
       ];
@@ -153,8 +153,8 @@ in
         home = {
           file = {
             # UMU cursor workaround
-            breeze-cursors = {
-              enable = true;
+            umu-breeze-cursors = {
+              enable = false;
               source = config.lib.file.mkOutOfStoreSymlink "${pkgs.kdePackages.breeze}/share/icons/breeze_cursors";
               target = "${config.xdg.dataHome}/icons/breeze_cursors";
             };

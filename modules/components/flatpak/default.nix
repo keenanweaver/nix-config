@@ -48,7 +48,6 @@ in
           packages = [
             "com.github.tchx84.Flatseal"
             "io.github.ungoogled_software.ungoogled_chromium"
-            "app.zen_browser.zen"
             "net.mullvad.MullvadBrowser"
           ];
           remotes = [
@@ -85,11 +84,6 @@ in
               Environment = {
                 # Wrong cursor in flatpaks fix
                 XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
-              };
-            };
-            "app.zen_browser.zen" = {
-              Environment = {
-                MOZ_ENABLE_WAYLAND = "1";
               };
             };
           };

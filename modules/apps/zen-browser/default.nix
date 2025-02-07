@@ -11,13 +11,33 @@ in
   options = {
     zen-browser = {
       enable = lib.mkEnableOption "Enable zen in NixOS";
+      enableFlatpak = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+      };
+      enableNative = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+      };
     };
   };
   config = lib.mkIf cfg.enable {
+    services.flatpak = lib.mkIf cfg.enableFlatpak {
+      packages = [
+        "app.zen_browser.zen"
+      ];
+      overrides = {
+        "app.zen_browser.zen" = {
+          Environment = {
+            MOZ_ENABLE_WAYLAND = "1";
+          };
+        };
+      };
+    };
     home-manager.users.${username} = {
       home.file = {
         userjs-flatpak = {
-          enable = true;
+          enable = cfg.enableFlatpak;
           text = ''
             /* KDE integration */
             user_pref("widget.use-xdg-desktop-portal.mime-handler", 1);
