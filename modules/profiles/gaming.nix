@@ -171,14 +171,11 @@ let
       innoextract
       lgogdownloader
       moondeck-buddy # Pending https://github.com/NixOS/nixpkgs/pull/375287
-      #mpg123
       inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt
       parsec-bin
       inputs.nix-game-preservation.packages.${pkgs.system}.redumper
       inputs.nix-game-preservation.packages.${pkgs.system}.sabretools
       inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp
-      #x264
-      #x265
       xlink-kai
       xvidcore
       ## Wine
@@ -250,7 +247,7 @@ in
         ];
       };
       kernelParams = [
-        # "usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
+        "usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
         "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
         "amdgpu.mcbp=0"
         "tsc=reliable"
@@ -259,8 +256,6 @@ in
       ];
       kernel = {
         sysctl = {
-          # "kernel.sched_cfs_bandwidth_slice_us" = 3000;
-          # "net.ipv4.tcp_fin_timeout" = 5;
           "vm.max_map_count" = 2147483642;
           "vm.mmap_min_addr" = 0; # SheepShaver
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/sysctl.d/99-cachyos-settings.conf
@@ -273,19 +268,9 @@ in
       };
     };
 
-    environment = {
-      sessionVariables = {
-        # https://reddit.com/r/linux_gaming/comments/1c2ey6u/vrr_newbie_questions_plasma_6_wayland_amd/kzasm0j/?context=3#kzasm0j
-        # KWIN_DRM_DELAY_VRR_CURSOR_UPDATES = "1";
-        # KWIN_FORCE_SW_CURSOR = "1";
-      };
-    };
-
     hardware = {
       new-lg4ff.enable = true;
       uinput.enable = true;
-      # xone.enable = true;
-      # xpadneo.enable = true;
     };
 
     networking = {
@@ -333,8 +318,6 @@ in
           package = pkgs.openrgb-with-all-plugins;
         };
       };
-      # joycond.enable = true;
-      # ratbagd.enable = true;
       scx = {
         enable = true;
         package = pkgs.scx.rustscheds;
@@ -410,7 +393,6 @@ in
     services = {
       input-remapper = {
         enable = true;
-        # enableUdevRules = true;
       };
     };
 
@@ -725,15 +707,6 @@ in
           ludusavi = {
             enable = true;
             backupNotification = true;
-            /*
-              schedule = {
-                         frequency = "10:00";
-                         onBoot.enable = true;
-                       };
-                       service = {
-                         notification.enable = true;
-                       };
-            */
             settings = {
               backup = {
                 path = "${config.home.homeDirectory}/Games/games/ludusavi";
