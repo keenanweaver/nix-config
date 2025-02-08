@@ -25,14 +25,12 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-inspect.url = "github:bluskript/nix-inspect";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
