@@ -22,19 +22,19 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    services.flatpak = lib.mkIf cfg.enableFlatpak {
-      packages = [
-        "app.zen_browser.zen"
-      ];
-      overrides = {
-        "app.zen_browser.zen" = {
-          Environment = {
-            MOZ_ENABLE_WAYLAND = "1";
+    home-manager.users.${username} = {
+      services.flatpak = lib.mkIf cfg.enableFlatpak {
+        packages = [
+          "app.zen_browser.zen"
+        ];
+        overrides = {
+          "app.zen_browser.zen" = {
+            Environment = {
+              MOZ_ENABLE_WAYLAND = "1";
+            };
           };
         };
       };
-    };
-    home-manager.users.${username} = {
       home.file = {
         userjs-flatpak = {
           enable = cfg.enableFlatpak;
