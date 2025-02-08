@@ -31,7 +31,6 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    programs.java.enable = true;
     programs.steam = {
       enable = cfg.enableNative;
       dedicatedServer.openFirewall = true;
@@ -42,37 +41,6 @@ in
       ];
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
-      package = pkgs.steam.override {
-        extraBwrapArgs = [ "--unsetenv TZ" ]; # https://github.com/NixOS/nixpkgs/issues/338266#issuecomment-2419568331
-        extraLibraries =
-          pkgs: with pkgs; [
-            alsa-lib
-            libGL
-            SDL
-            SDL_image
-            SDL_mixer
-            SDL_ttf
-            SDL2
-            SDL2_image
-            SDL2_mixer
-            SDL2_ttf
-            xorg.libX11
-            xorg.libxcb
-            xorg.libXcursor
-            xorg.libXi
-            xorg.libXinerama
-            xorg.libXext
-            xorg.libXrandr
-            xorg.libXrender
-            xorg.libXScrnSaver
-            libpng
-            libpulseaudio
-            libvorbis
-            stdenv.cc.cc.lib
-            libkrb5
-            keyutils
-          ];
-      };
       protontricks.enable = true;
       remotePlay.openFirewall = true;
     };
