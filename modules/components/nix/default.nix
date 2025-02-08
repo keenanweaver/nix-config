@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   config,
   username,
@@ -18,32 +17,20 @@ in
   config = lib.mkIf cfg.enable {
     documentation = {
       man = {
-        man-db.enable = true;
         generateCaches = true;
       };
     };
     nix = {
-      extraOptions = ''
-        builders-use-substitutes = true
-        keep-outputs = true
-        keep-derivations = true
-      '';
-      gc = {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 30d";
-      };
-      nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
       optimise = {
         automatic = true;
         dates = [ "10:00" ];
       };
       settings = {
         auto-optimise-store = true;
-        connect-timeout = 5;
+        builders-use-substitutes = true;
         experimental-features = [
-          "nix-command"
           "flakes"
+          "nix-command"
         ];
         extra-substituters = [
           "https://nix-community.cachix.org"
@@ -53,9 +40,15 @@ in
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           "nyx.chaotic.cx-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
         ];
-        log-lines = lib.mkDefault 25;
-        trusted-users = [ "${username}" ];
+        keep-derivations = true;
+        keep-outputs = true;
+        log-lines = lib.mkDefault 50;
+        trusted-users = [
+          "${username}"
+          "@wheel"
+        ];
         use-xdg-base-directories = false;
+        warn-dirty = false;
       };
     };
     nixpkgs = {
@@ -68,14 +61,18 @@ in
       ];
     };
 
-    system.autoUpgrade = {
-      enable = false;
-      dates = "04:00:00";
-      allowReboot = if vars.server then true else false;
-      rebootWindow = {
-        lower = "04:00";
-        upper = "06:00";
+    system = {
+      autoUpgrade = {
+        enable = false;
+        allowReboot = if vars.server then true else false;
+        dates = "04:00:00";
+        rebootWindow = {
+          lower = "04:00";
+          upper = "06:00";
+        };
       };
+      rebuild.enableNg = true;
+      switch.enableNg = true;
     };
 
     home-manager.users.${username} =
@@ -115,13 +112,6 @@ in
             sudo = "sudo ";
             up = "topgrade";
             wget = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
-          };
-        };
-        nix = {
-          gc = {
-            automatic = true;
-            frequency = "weekly";
-            options = "--delete-older-than 30d";
           };
         };
         xdg = {
