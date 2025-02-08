@@ -65,7 +65,6 @@ in
           svgpart
           syntax-highlighting
           tokodon
-          xwaylandvideobridge
         ]
         ++ lib.optionals vars.gaming [
           inputs.rom-properties.packages.${pkgs.system}.rp_kde6
