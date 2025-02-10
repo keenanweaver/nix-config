@@ -55,20 +55,6 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  programs.auto-cpufreq = {
-    enable = true;
-    settings = {
-      charger = {
-        governor = "performance";
-        turbo = "auto";
-      };
-      battery = {
-        governor = "powersave";
-        turbo = "auto";
-      };
-    };
-  };
-
   # https://discourse.nixos.org/t/how-to-disable-networkmanager-wait-online-service-in-the-configuration-file/19963
   systemd.services.NetworkManager-wait-online.enable = false;
 
