@@ -26,6 +26,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-yazi-plugins = {
+      url = "github:lordkekz/nix-yazi-plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,6 +50,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    cd-ls = {
+      url = "github:zshzoo/cd-ls";
+      flake = false;
+    };
+    nsearch = {
+      url = "github:niksingh710/nsearch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    ucodenix.url = "github:e-tho/ucodenix";
+
+    # Gaming
     aaru = {
       url = "github:Whovian9369/aaru-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -66,34 +81,18 @@
       url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-  
     nix-citizen = {
       url = "github:LovingMelody/nix-citizen";
       inputs.nix-gaming.follows = "nix-gaming";
     };
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-proton-cachyos.url = "github:kimjongbing/nix-proton-cachyos";
-    openmw-nix = {
-      url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    auto-cpufreq = {
-      url = "github:AdnanHodzic/auto-cpufreq";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    cd-ls = {
-      url = "github:zshzoo/cd-ls";
-      flake = false;
-    };
-
     nonfree = {
       url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
       flake = false;
     };
-
-    nsearch = {
-      url = "github:niksingh710/nsearch";
+    openmw-nix = {
+      url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     steamtinkerlaunch-master = {
@@ -101,7 +100,6 @@
       url = "https://github.com/sonic2kk/steamtinkerlaunch.git";
       flake = false;
     };
-    ucodenix.url = "github:e-tho/ucodenix";
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
 
     # Theming
