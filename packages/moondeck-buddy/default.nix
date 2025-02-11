@@ -3,7 +3,6 @@
   stdenv,
   fetchFromGitHub,
   nix-update-script,
-  pkg-config,
   kdePackages,
   cmake,
   ninja,
@@ -11,12 +10,10 @@
   procps,
   xorg,
   steam,
+  useNixSteam ? true,
 }:
 
 let
-  pname = "moondeck-buddy";
-  version = "1.6.3";
-
   inherit (kdePackages) qtbase wrapQtAppsHook;
   qtEnv =
     with qt6;
@@ -25,39 +22,33 @@ let
       qtwebsockets
     ];
 in
-stdenv.mkDerivation {
-  inherit pname version;
+stdenv.mkDerivation (finalAttrs: {
+  pname = "moondeck-buddy";
+  version = "1.6.3";
 
   src = fetchFromGitHub {
     owner = "FrogTheFrog";
-    repo = pname;
-    tag = "v${version}";
+    repo = "moondeck-buddy";
+    tag = "v${finalAttrs.version}";
     fetchSubmodules = true;
     hash = "sha256-CcORcojz3jh1UZpq5qjDv+YktXC+F8t+r7E1SFyFkmw=";
   };
 
   buildInputs = [
-    cmake
-    ninja
     procps
     xorg.libXrandr
     qtbase
     qtEnv
   ];
   nativeBuildInputs = [
-    pkg-config
+    cmake
+    ninja
     wrapQtAppsHook
   ];
 
-  cmakeFlags = [
-    "-DCMAKE_BUILD_TYPE:STRING=Release"
-    "-G"
-    "Ninja"
-  ];
-
-  postPatch = ''
+  postPatch = lib.optionalString useNixSteam ''
     substituteInPlace src/lib/os/linux/steamregistryobserver.cpp \
-        --replace-fail /usr/bin/steam ${lib.getExe steam};
+      --replace-fail /usr/bin/steam ${lib.getExe steam};
   '';
 
   passthru.updateScript = nix-update-script { };
@@ -65,10 +56,10 @@ stdenv.mkDerivation {
   meta = {
     mainProgram = "MoonDeckBuddy";
     description = "Helper to work with moonlight on a steamdeck";
-    homepage = "https://github.com/FrogTheFrog/${pname}";
-    changelog = "https://github.com/FrogTheFrog/${pname}/releases/tag/v${version}";
-    license = lib.licenses.mit;
+    homepage = "https://github.com/FrogTheFrog/moondeck-buddy";
+    changelog = "https://github.com/FrogTheFrog/moondeck-buddy/releases/tag/v${finalAttrs.version}";
+    license = lib.licenses.lgpl3Only;
     maintainers = with lib.maintainers; [ redxtech ];
-    platforms = [ "x86_64-linux" ];
+    platforms = lib.platforms.linux;
   };
-}
+})
