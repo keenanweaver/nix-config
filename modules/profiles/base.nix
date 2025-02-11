@@ -78,6 +78,7 @@ in
         bashInteractive
         zsh
       ];
+      stub-ld.enable = true;
       systemPackages = with pkgs; [
         lm_sensors
         pciutils
