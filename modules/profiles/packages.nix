@@ -78,6 +78,7 @@ in
             ## Bash ###
             bash-language-server
             shellcheck
+            shfmt
             ### C ###
             clang-tools
             cmake-language-server
