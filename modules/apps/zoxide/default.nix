@@ -15,7 +15,12 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} = {
-      programs.zoxide.enable = true;
+      programs.zoxide = {
+        enable = true;
+        enableBashIntegration = true;
+        enableNushellIntegration = true;
+        enableZshIntegration = true;
+      };
     };
   };
 }

@@ -17,6 +17,8 @@ in
     home-manager.users.${username} = {
       programs.navi = {
         enable = true;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
       };
     };
   };

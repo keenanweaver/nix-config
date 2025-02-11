@@ -22,6 +22,9 @@ in
         };
         services.gpg-agent = {
           enable = true;
+          enableBashIntegration = true;
+          enableNushellIntegration = true;
+          enableZshIntegration = true;
           enableExtraSocket = true;
           enableSshSupport = true;
           defaultCacheTtl = 43200; # 12h

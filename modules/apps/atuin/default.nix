@@ -17,6 +17,9 @@ in
     home-manager.users.${username} = {
       programs.atuin = {
         enable = true;
+        enableBashIntegration = true;
+        enableNushellIntegration = true;
+        enableZshIntegration = true;
         settings = {
           history_filter = [
             "^btop$"

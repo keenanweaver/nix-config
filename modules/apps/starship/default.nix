@@ -17,6 +17,9 @@ in
     home-manager.users.${username} = {
       programs.starship = {
         enable = true;
+        enableBashIntegration = true;
+        enableNushellIntegration = true;
+        enableZshIntegration = true;
         settings = {
           add_newline = false;
           character = {

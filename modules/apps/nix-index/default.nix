@@ -15,7 +15,11 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} = {
-      programs.nix-index.enable = true;
+      programs.nix-index = {
+        enable = true;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
+      };
     };
   };
 }

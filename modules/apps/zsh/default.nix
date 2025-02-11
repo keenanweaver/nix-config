@@ -28,8 +28,6 @@ in
         programs.zsh = {
           enable = true;
           autosuggestion.enable = true;
-          enableCompletion = true;
-          syntaxHighlighting.enable = true;
           dotDir = ".config/zsh";
           history = {
             path = "${config.xdg.dataHome}/zsh/zsh_history";
@@ -37,11 +35,6 @@ in
             extended = true;
             ignoreSpace = true;
           };
-          /*
-            initExtra = ''
-                     export GITHUB_TOKEN="$(cat ${config.sops.secrets."github_token".path})"
-                   '';
-          */
           oh-my-zsh = {
             enable = true;
             custom = "${config.xdg.configHome}/zsh/.zsh_custom";
@@ -50,6 +43,7 @@ in
               "direnv"
               "git"
               "sudo"
+              "zsh-interactive-cd"
             ];
           };
           plugins = [

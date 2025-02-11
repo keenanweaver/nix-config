@@ -80,10 +80,6 @@ in
             "nix.serverSettings"."nixd"."formatting"."command" = [ "nixfmt" ];
             "nix.serverSettings"."nixd"."formatting"."options" = {
               "enable" = [ true ];
-              "nixos" = {
-                "expr" =
-                  "(builtins.getFlake \"github:keenanweaver/nix-config\").nixosConfigurations.${config.networking.hostName}.options";
-              };
             };
             "powershell.powerShellAdditionalExePaths"."exePath" = "${pkgs.powershell}/bin/pwsh";
             "powershell.integratedConsole.focusConsoleOnExecute" = false;

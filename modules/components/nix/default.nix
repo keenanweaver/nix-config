@@ -91,8 +91,6 @@ in
             MANPAGER = "batman";
             NIXOS_OZONE_WL = "1"; # Electron apps
             NIXPKGS_ALLOW_UNFREE = "1";
-            #RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
-            #WLR_NO_HARDWARE_CURSOR = "1";
             XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
           };
           shellAliases = {
@@ -105,7 +103,7 @@ in
             nv = "nvim";
             ngc = "nh clean all";
             nor = "nh os switch";
-            npr = "nix run nixpkgs#nixpkgs-review -- pr";
+            npr = "nixpkgs-review --eval local pr";
             psr = "plasmashell --replace & disown";
             rbn = "podman stop -a && systemctl reboot";
             repw = "${lib.optionalString vars.gaming "systemctl --user stop gpu-screen-recorder &&"} systemctl --user restart pipewire{,-pulse} wireplumber ${lib.optionalString vars.gaming "&& systemctl --user start gpu-screen-recorder"}";

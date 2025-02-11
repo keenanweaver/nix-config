@@ -65,7 +65,6 @@ in
           };
           packages = with pkgs; [
             steamcmd
-            steam-tui
             # SteamTinkerLaunch tools
             steamtinkerlaunch
             gawk
