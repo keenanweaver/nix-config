@@ -26,7 +26,7 @@ in
               pci_dev=0000:03:00.0
               fps
               fps_color_change
-              fps_limit=357,237,141,117,60,0
+              fps_limit=357,237,141,117,60,30,0
               fps_value=30,60
               frame_timing
               gpu_stats
@@ -66,10 +66,12 @@ in
               resolution
               present_mode
               display_server # Doesn't work when legacy_layout=0
-              gl_vsync=1
-              vsync=2 # https://gitlab.freedesktop.org/drm/amd/-/issues/3166#note_2277578
+              #gl_vsync=1
+              #vsync=2 # https://gitlab.freedesktop.org/drm/amd/-/issues/3166#note_2277578
               custom_text=P-State
               exec=echo $(${pkgs.bat}/bin/bat --plain /sys/devices/system/cpu/amd_pstate/status /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference)
+              custom_text=V-Cache
+              exec=echo $(${pkgs.bat}/bin/bat --plain /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode)
               custom_text=OS
               exec=${pkgs.ripgrep}/bin/rg -w PRETTY_NAME /etc/os-release | ${pkgs.coreutils}/bin/cut -d '=' -f2 | ${pkgs.coreutils}/bin/tr -d '"'
               custom_text=Distrobox
