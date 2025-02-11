@@ -52,7 +52,6 @@ in
         };
         cpu = {
           park_cores = "yes";
-          pin_cores = "yes";
         };
         gpu = {
           apply_gpu_optimisations = "accept-responsibility";
