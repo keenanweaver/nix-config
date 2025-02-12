@@ -98,7 +98,7 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
 
 ## Set up directories
 ``` bash
-    mkdir -p /home/keenan/Games/{daikatana,descent/descent-1,descent/descent-2,quake/quake-1,quake/quake-3,rollercoaster-tycoon,morrowind,blake-stone/aog,blake-stone/ps,jagged-alliance-2/ja2,jagged-alliance-2/unfinished-business,jagged-alliance-2/wildfire,loco,the-force-engine,arx-fatalis}
+    mkdir -p /home/keenan/Games/{daikatana,descent/descent-1,descent/descent-2,quake/quake-1,quake/quake-3,rollercoaster-tycoon,morrowind,openmw,blake-stone/aog,blake-stone/ps,jagged-alliance-2/ja2,jagged-alliance-2/unfinished-business,jagged-alliance-2/wildfire,loco,the-force-engine,arx-fatalis}
     mkdir -p /home/keenan/.var/app/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/openjkdf2
     mkdir -p /home/keenan/.var/app/io.itch.tx00100xt.SeriousSamClassic-VK/data/Serious-Engine/{serioussam,serioussamse}
 ```
@@ -161,6 +161,15 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
     , innoextract -g '/mnt/crusader/Games/Backups/GOG/chris_sawyers_locomotion/setup_chris_sawyers_locomotion_4.02.176_(22259).exe' -d /home/keenan/Games/loco
     ## Morrowind
     , innoextract -g '/mnt/crusader/Games/Backups/GOG/the_elder_scrolls_iii_morrowind_goty_edition_game/setup_the_elder_scrolls_iii_morrowind_goty_1.6.0.1820_gog_0.1_(77582).exe' -d /home/keenan/Games/morrowind
+    # https://modding-openmw.com/guides/auto/i-heart-vanilla-directors-cut/
+    xh get -d https://gitlab.com/api/v4/projects/modding-openmw%2Fmomw-tools-pack/jobs/artifacts/master/raw/momw-tools-pack-linux.tar.gz?job=make -o /home/keenan/Games/openmw/momw-tools-pack-linux.tar.gz
+    ouch d --yes /home/keenan/Games/openmw/momw-tools-pack-linux.tar.gz -d /home/keenan/Games/openmw
+    fd . -e tar.gz '/home/keenan/Games/openmw' -x rm {}
+    cd /home/keenan/Games/openmw/momw-tools-pack-linux
+    steam-run ./umo setup
+    steam-run ./umo cache sync i-heart-vanilla-directors-cut
+    steam-run ./umo install i-heart-vanilla-directors-cut
+    steam-run ./momw-configurator-linux-amd64 config i-heart-vanilla-directors-cut --run-navmeshtool --run-validator --verbose
     ## Nox
     , innoextract -g '/mnt/crusader/Games/Backups/GOG/nox/setup_nox_2.0.0.20.exe' -d /home/keenan/Games/nox && mv /home/keenan/Games/nox/app/* /home/keenan/Games/nox && rm -rf /home/keenan/Games/nox/{app,tmp}
     ## Oddworld
