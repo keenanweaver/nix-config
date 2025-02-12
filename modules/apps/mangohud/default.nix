@@ -27,6 +27,7 @@ in
               fps
               fps_color_change
               fps_limit=357,237,141,117,60,30,0
+              fps_metrics=avg,0.01
               fps_value=30,60
               frame_timing
               gpu_stats
@@ -47,7 +48,6 @@ in
               cpu_load_value=60,90
               core_load_change
               core_load
-              core_bars
               vram
               ram
               swap
