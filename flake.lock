@@ -1435,17 +1435,17 @@
         "snowfall-lib": "snowfall-lib"
       },
       "locked": {
-        "lastModified": 1736707830,
-        "narHash": "sha256-mqTtthMIaf0MuDgazLu4nzUVmQOTLyZHdsNRUMO3Cm4=",
-        "ref": "refs/heads/main",
-        "rev": "896cb5abae5ccce62531352c13a61acad972c98d",
-        "revCount": 45,
-        "type": "git",
-        "url": "https://codeberg.org/PopeRigby/openmw-nix.git"
+        "lastModified": 1737608195,
+        "narHash": "sha256-ukzTuoNsm1VAgf+u8p8fMfdgkj6/diXnRSxji0WIKE8=",
+        "owner": "syhretsit",
+        "repo": "openmw-nix",
+        "rev": "429bae40160792f1085aec6c3fdd0400438e60c1",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "https://codeberg.org/PopeRigby/openmw-nix.git"
+        "owner": "syhretsit",
+        "repo": "openmw-nix",
+        "type": "github"
       }
     },
     "plasma-manager": {
