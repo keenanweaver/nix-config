@@ -92,7 +92,7 @@
       flake = false;
     };
     openmw-nix = {
-      url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
+      url = "github:syhretsit/openmw-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     steamtinkerlaunch-master = {
