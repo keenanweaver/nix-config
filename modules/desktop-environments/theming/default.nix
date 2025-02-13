@@ -215,8 +215,28 @@ in
               '';
               target = "${config.xdg.dataHome}/icons/default/index.theme";
             };
-            klassy-config = {
+            darkly-config = {
               enable = true;
+              text = ''
+                [Common]
+                OutlineCloseButton=false
+                ShadowSize=ShadowMedium
+
+                [Style]
+                DolphinSidebarOpacity=70
+                MenuBarOpacity=70
+                MenuItemDrawStrongFocus=false
+                MenuOpacity=70
+                ToolBarOpacity=70
+                renderThinSeperatorBetweenTheScrollBar=true
+                [Windeco]
+
+                DrawBackgroundGradient=false
+              '';
+              target = "${config.xdg.configHome}/darklyrc";
+            };
+            klassy-config = {
+              enable = false;
               text = ''
                 [ButtonBehaviour]
                 ShowCloseOutlineOnHoverActive=false
@@ -398,7 +418,7 @@ in
           plasma = {
             configFile = {
               # Application Style
-              "kdeglobals"."KDE"."widgetStyle" = "Klassy";
+              "kdeglobals"."KDE"."widgetStyle" = "Darkly";
             };
             fonts = {
               general = {
@@ -443,8 +463,8 @@ in
               theme = "Utterly-Round";
               # Window decorations
               windowDecorations = {
-                library = "org.kde.klassy";
-                theme = "Klassy";
+                library = "org.kde.darkly";
+                theme = "Darkly";
               };
               # Icons
               iconTheme = "Papirus-Dark";
