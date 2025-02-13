@@ -60,7 +60,6 @@ in
         #inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
         inputs.lightly.packages.${system}.darkly-qt5
         inputs.lightly.packages.${system}.darkly-qt6
-        klassy
         utterly-round-plasma-style
       ];
     };
