@@ -26,15 +26,7 @@ let
       prboom-plus
       rbdoom-3-bfg
       # slade
-      (woof-doom.overrideAttrs (attrs: {
-        version = "15.2.0";
-        src = fetchFromGitHub {
-          owner = "fabiangreffrath";
-          repo = "woof";
-          rev = "woof_15.2.0";
-          hash = "sha256-U1JxdWKSIbIbPMipnjY2SJ5lOP9AFMLNjyplK0mFhxE=";
-        };
-      }))
+      woof-doom
       zandronum
       zandronum-server
       ## Fallout
@@ -53,8 +45,8 @@ let
       alephone-durandal
       alephone-infinity
       ## Morrowind
+      #inputs.openmw-nix.packages.${pkgs.system}.openmw-dev
       openmw
-      inputs.openmw-nix.packages.${pkgs.system}.umo
       ## Quake
       ironwail
       q2pro
@@ -173,6 +165,7 @@ let
       moondeck-buddy # Pending https://github.com/NixOS/nixpkgs/pull/375287
       inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt
       parsec-bin
+      (python3.withPackages (p: with p; [ lnkparse3 ]))
       inputs.nix-game-preservation.packages.${pkgs.system}.redumper
       inputs.nix-game-preservation.packages.${pkgs.system}.sabretools
       inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp
@@ -207,10 +200,6 @@ in
   options = {
     gaming = {
       enable = lib.mkEnableOption "Enable Gaming module in NixOS";
-      copyROMS = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-      };
     };
   };
   config = lib.mkIf cfg.enable {
@@ -240,10 +229,13 @@ in
       extraModulePackages = with config.boot.kernelPackages; [
         universal-pidff
         v4l2loopback
+        zenergy
       ];
       initrd = {
         kernelModules = [
           "hid-nintendo"
+          "hid-playstation"
+          "zenergy"
         ];
       };
       kernelParams = [
@@ -402,6 +394,8 @@ in
       '';
       tmpfiles = {
         rules = [
+          # AMD V-Cache
+          "w /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode - - - - cache"
           # https://wiki.archlinux.org/title/Gaming#Make_the_changes_permanent
           "w /proc/sys/vm/compaction_proactiveness - - - - 0"
           "w /proc/sys/vm/watermark_boost_factor - - - - 1"
@@ -427,9 +421,6 @@ in
         ...
       }:
       {
-        imports = [
-          ../apps/ludusavi
-        ];
         home.file = {
           desktop-entry-dxvk =
             let
@@ -693,6 +684,7 @@ in
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
               "io.openrct2.OpenRCT2"
+              "net.nmlgc.rec98.sh01"
               "net.shadps4.shadPS4"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
               "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
@@ -704,82 +696,84 @@ in
               "vet.rsc.OpenRSC.Launcher"
             ];
           };
-          ludusavi = {
-            enable = true;
-            backupNotification = true;
-            settings = {
-              backup = {
-                path = "${config.home.homeDirectory}/Games/games/ludusavi";
-                format = {
-                  chosen = "zip";
-                  zip.compression = "deflate";
-                };
-              };
-              customGames = [
-                {
-                  name = "Doom";
-                  files = [
-                    "${config.xdg.configHome}/gzdoom/savegames"
-                    "${config.xdg.dataHome}/cherry-doom/savegames"
-                    "${config.xdg.dataHome}/nugget-doom/savegames"
-                    "${config.xdg.dataHome}/woof/savegames"
-                  ];
-                }
-                {
-                  name = "OpenMW";
-                  files = [
-                    "${config.xdg.dataHome}/openmw/saves"
-                  ];
-                }
-                {
-                  name = "ScummVM";
-                  files = [
-                    "${config.xdg.dataHome}/scummvm/saves"
-                  ];
-                }
-              ];
-              restore = {
-                path = "${config.home.homeDirectory}/Games/games/ludusavi";
-              };
-              roots = [
-                {
-                  path = "${config.xdg.configHome}/heroic";
-                  store = "heroic";
-                }
-                {
-                  path = "${config.home.homeDirectory}/Games/Heroic";
-                  store = "heroic";
-                }
-                {
-                  path = "${config.xdg.dataHome}/lutris";
-                  store = "lutris";
-                }
-                {
-                  path = "${config.home.homeDirectory}/Games/Bottles/GOG-Galaxy";
-                  store = "otherWine";
-                }
-                {
-                  path = "${config.home.homeDirectory}/Games/Bottles/itch.io";
-                  store = "otherWine";
-                }
-                {
-                  path = "${config.xdg.dataHome}/Steam";
-                  store = "steam";
-                }
-                {
-                  path = "${config.home.homeDirectory}/Games/Steam";
-                  store = "steam";
-                }
-                {
-                  path = "${config.home.homeDirectory}/Games/games/SteamLibrary";
-                  store = "steam";
-                }
-              ];
-              theme = "dark";
-            };
-          };
+          /*
+            ludusavi = {
+                     enable = true;
+                     backupNotification = true;
+                     settings = {
+                       backup = {
+                         path = "${config.home.homeDirectory}/Games/games/ludusavi";
+                         format = {
+                           chosen = "zip";
+                           zip.compression = "deflate";
+                         };
+                       };
+                       customGames = [
+                         {
+                           name = "Doom";
+                           files = [
+                             "${config.xdg.configHome}/gzdoom/savegames"
+                             "${config.xdg.dataHome}/cherry-doom/savegames"
+                             "${config.xdg.dataHome}/nugget-doom/savegames"
+                             "${config.xdg.dataHome}/woof/savegames"
+                           ];
+                         }
+                         {
+                           name = "OpenMW";
+                           files = [
+                             "${config.xdg.dataHome}/openmw/saves"
+                           ];
+                         }
+                         {
+                           name = "ScummVM";
+                           files = [
+                             "${config.xdg.dataHome}/scummvm/saves"
+                           ];
+                         }
+                       ];
+                       restore = {
+                         path = "${config.home.homeDirectory}/Games/games/ludusavi";
+                       };
+                       roots = [
+                         {
+                           path = "${config.xdg.configHome}/heroic";
+                           store = "heroic";
+                         }
+                         {
+                           path = "${config.home.homeDirectory}/Games/Heroic";
+                           store = "heroic";
+                         }
+                         {
+                           path = "${config.xdg.dataHome}/lutris";
+                           store = "lutris";
+                         }
+                         {
+                           path = "${config.home.homeDirectory}/Games/Bottles/GOG-Galaxy";
+                           store = "otherWine";
+                         }
+                         {
+                           path = "${config.home.homeDirectory}/Games/Bottles/itch.io";
+                           store = "otherWine";
+                         }
+                         {
+                           path = "${config.xdg.dataHome}/Steam";
+                           store = "steam";
+                         }
+                         {
+                           path = "${config.home.homeDirectory}/Games/Steam";
+                           store = "steam";
+                         }
+                         {
+                           path = "${config.home.homeDirectory}/Games/games/SteamLibrary";
+                           store = "steam";
+                         }
+                       ];
+                       theme = "dark";
+                     };
+                   };
+          */
           wayland-pipewire-idle-inhibit = {
-            enable = true;
+            enable = false;
             settings = {
               verbosity = "WARN";
               media_minimum_duration = 5;
