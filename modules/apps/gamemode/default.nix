@@ -46,6 +46,9 @@ in
           desiredgov = "performance";
           disable_splitlock = 1;
           inhibit_screensaver = 1;
+          ioprio = 0;
+          renice = 10;
+          softrealtime = "auto";
         };
         cpu = {
           park_cores = "yes";
