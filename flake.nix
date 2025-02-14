@@ -138,7 +138,7 @@
       url = "github:IAmJafeth/zen-browser";
       flake = false;
     };
-    lightly.url = "github:Bali10050/Darkly";
+    lightly.url = "github:Bali10050/Darkly/ad9fda5e0833df92e1d42a52863feba89b238b33";
 
     # KDE
     kwin-effects-forceblur = {
