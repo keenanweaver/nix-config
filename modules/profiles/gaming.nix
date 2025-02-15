@@ -80,20 +80,16 @@ let
       openjk # Jedi Academy
       openloco # Locomotion
       # opennox
+      openomf
       # openrct2
       openttd
       opentyrian
       openxray # STALKER
+      perfect_dark
       prismlauncher # MineCraft
       relive # Oddworld
       ringracers
       runelite # RuneScape
-      /*
-        xh -o "$HOME/Games/mario-64/mario64.zip" -d https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Super%20Mario%2064%20%28USA%29.zip
-        ouch d "$HOME/Games/mario-64/mario64.zip" -y -d "$HOME/Games/mario-64"
-        fd 'Mario' -e z64 $HOME/Games/mario-64 -x mv {} "$HOME/Games/mario-64/baserom.us.z64"
-        nix-store --add-fixed sha256 /home/keenan/Games/mario-64/baserom.us.z64
-      */
       sm64ex
       space-station-14-launcher
       inputs.nix-citizen.packages.${system}.star-citizen
@@ -118,7 +114,7 @@ let
       flycast
       fsuae-launcher
       hypseus-singe
-      lime3ds
+      #lime3ds
       mame
       mednafen
       mednaffe
@@ -696,80 +692,82 @@ in
               "vet.rsc.OpenRSC.Launcher"
             ];
           };
-          ludusavi = {
-            enable = true;
-            backupNotification = true;
-            settings = {
-              backup = {
-                path = "${config.home.homeDirectory}/Games/games/ludusavi";
-                format = {
-                  chosen = "zip";
-                  zip.compression = "deflate";
-                };
-              };
-              customGames = [
-                {
-                  name = "Doom";
-                  files = [
-                    "${config.xdg.configHome}/gzdoom/savegames"
-                    "${config.xdg.dataHome}/cherry-doom/savegames"
-                    "${config.xdg.dataHome}/nugget-doom/savegames"
-                    "${config.xdg.dataHome}/woof/savegames"
-                  ];
-                }
-                {
-                  name = "OpenMW";
-                  files = [
-                    "${config.xdg.dataHome}/openmw/saves"
-                  ];
-                }
-                {
-                  name = "ScummVM";
-                  files = [
-                    "${config.xdg.dataHome}/scummvm/saves"
-                  ];
-                }
-              ];
-              restore = {
-                path = "${config.home.homeDirectory}/Games/games/ludusavi";
-              };
-              roots = [
-                {
-                  path = "${config.xdg.configHome}/heroic";
-                  store = "heroic";
-                }
-                {
-                  path = "${config.home.homeDirectory}/Games/Heroic";
-                  store = "heroic";
-                }
-                {
-                  path = "${config.xdg.dataHome}/lutris";
-                  store = "lutris";
-                }
-                {
-                  path = "${config.home.homeDirectory}/Games/Bottles/GOG-Galaxy";
-                  store = "otherWine";
-                }
-                {
-                  path = "${config.home.homeDirectory}/Games/Bottles/itch.io";
-                  store = "otherWine";
-                }
-                {
-                  path = "${config.xdg.dataHome}/Steam";
-                  store = "steam";
-                }
-                {
-                  path = "${config.home.homeDirectory}/Games/Steam";
-                  store = "steam";
-                }
-                {
-                  path = "${config.home.homeDirectory}/Games/games/SteamLibrary";
-                  store = "steam";
-                }
-              ];
-              theme = "dark";
-            };
-          };
+          /*
+            ludusavi = {
+                     enable = true;
+                     backupNotification = true;
+                     settings = {
+                       backup = {
+                         path = "${config.home.homeDirectory}/Games/games/ludusavi";
+                         format = {
+                           chosen = "zip";
+                           zip.compression = "deflate";
+                         };
+                       };
+                       customGames = [
+                         {
+                           name = "Doom";
+                           files = [
+                             "${config.xdg.configHome}/gzdoom/savegames"
+                             "${config.xdg.dataHome}/cherry-doom/savegames"
+                             "${config.xdg.dataHome}/nugget-doom/savegames"
+                             "${config.xdg.dataHome}/woof/savegames"
+                           ];
+                         }
+                         {
+                           name = "OpenMW";
+                           files = [
+                             "${config.xdg.dataHome}/openmw/saves"
+                           ];
+                         }
+                         {
+                           name = "ScummVM";
+                           files = [
+                             "${config.xdg.dataHome}/scummvm/saves"
+                           ];
+                         }
+                       ];
+                       restore = {
+                         path = "${config.home.homeDirectory}/Games/games/ludusavi";
+                       };
+                       roots = [
+                         {
+                           path = "${config.xdg.configHome}/heroic";
+                           store = "heroic";
+                         }
+                         {
+                           path = "${config.home.homeDirectory}/Games/Heroic";
+                           store = "heroic";
+                         }
+                         {
+                           path = "${config.xdg.dataHome}/lutris";
+                           store = "lutris";
+                         }
+                         {
+                           path = "${config.home.homeDirectory}/Games/Bottles/GOG-Galaxy";
+                           store = "otherWine";
+                         }
+                         {
+                           path = "${config.home.homeDirectory}/Games/Bottles/itch.io";
+                           store = "otherWine";
+                         }
+                         {
+                           path = "${config.xdg.dataHome}/Steam";
+                           store = "steam";
+                         }
+                         {
+                           path = "${config.home.homeDirectory}/Games/Steam";
+                           store = "steam";
+                         }
+                         {
+                           path = "${config.home.homeDirectory}/Games/games/SteamLibrary";
+                           store = "steam";
+                         }
+                       ];
+                       theme = "dark";
+                     };
+                   };
+          */
           wayland-pipewire-idle-inhibit = {
             enable = false;
             settings = {
