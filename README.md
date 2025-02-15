@@ -99,6 +99,7 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
 ## Set up directories
 ``` bash
     mkdir -p /home/keenan/Games/{daikatana,descent/descent-1,descent/descent-2,quake/quake-1,quake/quake-3,rollercoaster-tycoon,morrowind,openmw,blake-stone/aog,blake-stone/ps,jagged-alliance-2/ja2,jagged-alliance-2/unfinished-business,jagged-alliance-2/wildfire,loco,the-force-engine,arx-fatalis}
+    mkdir -p /home/keenan/.local/share/perfectdark/data
     mkdir -p /home/keenan/.var/app/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/openjkdf2
     mkdir -p /home/keenan/.var/app/io.itch.tx00100xt.SeriousSamClassic-VK/data/Serious-Engine/{serioussam,serioussamse}
 ```
@@ -165,11 +166,12 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
     xh get -d https://gitlab.com/api/v4/projects/modding-openmw%2Fmomw-tools-pack/jobs/artifacts/master/raw/momw-tools-pack-linux.tar.gz?job=make -o /home/keenan/Games/openmw/momw-tools-pack-linux.tar.gz
     ouch d --yes /home/keenan/Games/openmw/momw-tools-pack-linux.tar.gz -d /home/keenan/Games/openmw
     fd . -e tar.gz '/home/keenan/Games/openmw' -x rm {}
-    cd /home/keenan/Games/openmw/momw-tools-pack-linux
+    pushd /home/keenan/Games/openmw/momw-tools-pack-linux
     steam-run ./umo setup
     steam-run ./umo cache sync i-heart-vanilla-directors-cut
     steam-run ./umo install i-heart-vanilla-directors-cut
     steam-run ./momw-configurator-linux-amd64 config i-heart-vanilla-directors-cut --run-navmeshtool --run-validator --verbose
+    popd
     ## Nox
     , innoextract -g '/mnt/crusader/Games/Backups/GOG/nox/setup_nox_2.0.0.20.exe' -d /home/keenan/Games/nox && mv /home/keenan/Games/nox/app/* /home/keenan/Games/nox && rm -rf /home/keenan/Games/nox/{app,tmp}
     ## Oddworld
@@ -178,11 +180,10 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
     ## Outlaws
     , innoextract -g '/mnt/crusader/Games/Backups/GOG/outlaws_a_handful_of_missions/setup_outlaws_2.0_hotfix_(18728).exe' -d /home/keenan/Games/the-force-engine/ol && mv /home/keenan/Games/the-force-engine/ol/app/* /home/keenan/Games/the-force-engine/ol && rm -rf /home/keenan/Games/the-force-engine/ol/{app,tmp}
     ## Perfect Dark
-    xh https://api.github.com/repos/fgsfdsfgs/perfect_dark/releases/latest | jq -r '.assets[] | select(.name | test("flatpak")).browser_download_url' | xargs xh get -d -o /home/keenan/.local/bin/perfectdark.flatpak
-    flatpak install --user /home/keenan/.local/bin/perfectdark.flatpak
-    xh get -d https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Perfect%20Dark%20%28USA%29%20%28Rev%201%29.zip -o /home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/perfectdark/data/perfectdark.zip
-    ouch d --yes /home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/perfectdark/data/perfectdark.zip -d /home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/perfectdark/data
-    fd . -e z64 '/home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/perfectdark/data' -x mv {} /home/keenan/.var/app/io.github.fgsfdsfgs.perfect_dark/data/perfectdark/data/pd.ntsc-final.z64
+    xh get -d https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Perfect%20Dark%20%28USA%29%20%28Rev%201%29.zip -o /home/keenan/.local/share/perfectdark/data/perfectdark.zip
+    ouch d -y /home/keenan/.local/share/perfectdark/data/perfectdark.zip -d /home/keenan/.local/share/perfectdark/data
+    fd . -e z64 '/home/keenan/.local/share/perfectdark/data' -x mv {} /home/keenan/.local/share/perfectdark/data/pd.ntsc-final.z64
+    fd . -e zip '/home/keenan/.local/share/perfectdark/data' -x rm {}
     ## Quake
     , innoextract -g '/mnt/crusader/Games/Backups/GOG/quake_the_offering_game/setup_quake_the_offering_2.0.0.6.exe' -d /home/keenan/Games/quake/quake-1
     , innoextract -g '/mnt/crusader/Games/Backups/GOG/quake_ii_quad_damage_game/setup_quake2_quad_damage_2.0.0.3.exe' -d /home/keenan/.q2pro && cp -r /home/keenan/.q2pro/app/* /home/keenan/.q2pro
@@ -209,6 +210,11 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
     , innoextract -g '/mnt/crusader/Games/Backups/GOG/rollercoaster_tycoon_2/setup_rollercoaster_tycoon_2_triple_thrill_pack_2.01.043_wacky_worlds_patch_(76932).exe' -d /home/keenan/Games/rollercoaster-tycoon/rct-2
     ## RTCW
     , innoextract -g '/mnt/crusader/Games/Backups/GOG/return_to_castle_wolfenstein_game/setup_return_to_castle_wolfenstein_2.0.0.2.exe' -d '/home/keenan/.wolf' && mv /home/keenan/.wolf/app/* /home/keenan/.wolf && mv /home/keenan/.wolf/Main /home/keenan/.wolf/main
+    ## Super Mario 64
+    xh -o "/home/keenan/Games/mario-64/mario64.zip" -d https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Super%20Mario%2064%20%28USA%29.zip
+    ouch d -y "/home/keenan/Games/mario-64/mario64.zip" -d "/home/keenan/Games/mario-64"
+    fd 'Mario' -e z64 /home/keenan/Games/mario-64 -x mv {} "/home/keenan/Games/mario-64/baserom.us.z64"
+    nix-store --add-fixed sha256 /home/keenan/Games/mario-64/baserom.us.z64
     ## STALKER
     , innoextract -L -g '/mnt/crusader/Games/Backups/GOG/stalker_call_of_pripyat/setup_stalker_cop_2.1.0.17.exe' -d '/home/keenan/.local/share/GSC Game World/S.T.A.L.K.E.R. - Call of Pripyat' && mv '/home/keenan/.local/share/GSC Game World/S.T.A.L.K.E.R. - Call of Pripyat/game/'* '/home/keenan/.local/share/GSC Game World/S.T.A.L.K.E.R. - Call of Pripyat' && rm -rf '/home/keenan/.local/share/GSC Game World/S.T.A.L.K.E.R. - Call of Pripyat/'{__unpacker,app,DirectX,Foxit,support,tmp}
     , innoextract -L -g '/mnt/crusader/Games/Backups/GOG/stalker_clear_sky/setup_stalker_cs_2.1.0.10.exe' -d '/home/keenan/.local/share/GSC Game World/S.T.A.L.K.E.R. - Clear Sky' && mv '/home/keenan/.local/share/GSC Game World/S.T.A.L.K.E.R. - Clear Sky/game/'* '/home/keenan/.local/share/GSC Game World/S.T.A.L.K.E.R. - Clear Sky' && rm -rf '/home/keenan/.local/share/GSC Game World/S.T.A.L.K.E.R. - Clear Sky/'{__unpacker,app,DirectX,Foxit,support,tmp}
