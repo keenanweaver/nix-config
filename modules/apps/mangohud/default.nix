@@ -48,6 +48,7 @@ in
               cpu_load_value=60,90
               core_load_change
               core_load
+              core_bars
               vram
               ram
               swap
