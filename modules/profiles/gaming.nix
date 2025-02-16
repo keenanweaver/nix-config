@@ -90,6 +90,7 @@ let
       relive # Oddworld
       ringracers
       runelite # RuneScape
+      shipwright
       sm64ex
       space-station-14-launcher
       inputs.nix-citizen.packages.${system}.star-citizen
@@ -769,7 +770,7 @@ in
                    };
           */
           wayland-pipewire-idle-inhibit = {
-            enable = false;
+            enable = true;
             settings = {
               verbosity = "WARN";
               media_minimum_duration = 5;
