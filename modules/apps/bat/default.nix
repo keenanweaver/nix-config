@@ -20,10 +20,10 @@ in
         programs.bat = {
           enable = true;
           extraPackages = with pkgs.bat-extras; [
-            #batdiff
-            #batgrep
-            #batman
-            #batpipe
+            batdiff
+            batgrep
+            batman
+            batpipe
           ];
         };
       };
