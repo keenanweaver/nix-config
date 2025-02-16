@@ -27,11 +27,11 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "gpu-screen-recorder";
-  version = "5.1.0";
+  version = "5.1.1";
 
   src = fetchurl {
     url = "https://dec05eba.com/snapshot/gpu-screen-recorder.git.${finalAttrs.version}.tar.gz";
-    hash = "sha256-TNYenrfBGENyPof/ckZ4rYd4VDirlw/rYp3ZhWIfwRA=";
+    hash = "sha256-k6sUWQo7aS02D07dcYkGX8NucKcfOKC2S+aCg2gGsWc=";
   };
 
   sourceRoot = ".";
