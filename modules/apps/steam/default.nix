@@ -37,7 +37,7 @@ in
       extraCompatPackages = with pkgs; [
         luxtorpeda
         inputs.nix-proton-cachyos.packages.${system}.proton-cachyos
-        proton-ge-custom
+        inputs.chaotic.packages.${system}.proton-ge-custom
       ];
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;

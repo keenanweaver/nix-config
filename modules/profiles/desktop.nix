@@ -74,6 +74,7 @@ in
         pkgs,
         config,
         vars,
+        inputs,
         ...
       }:
       {
@@ -82,8 +83,8 @@ in
           audacious-plugins
           (writeShellApplication {
             name = "bootstrap-baremetal";
-            runtimeInputs = with pkgs; [
-              distrobox_git
+            runtimeInputs = [
+              inputs.chaotic.packages.${pkgs.system}.distrobox_git
             ];
             text = ''
               distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini

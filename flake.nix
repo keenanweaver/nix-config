@@ -227,7 +227,7 @@
               {
                 home-manager = {
                   backupFileExtension = "hmbak";
-                  useGlobalPkgs = true;
+                  #useGlobalPkgs = true;
                   useUserPackages = true;
                   extraSpecialArgs = {
                     inherit inputs; # Experiment with config and other attributes
@@ -272,7 +272,6 @@
 
               ./hosts/laptop
 
-              inputs.auto-cpufreq.nixosModules.default
               inputs.catppuccin.nixosModules.catppuccin
               inputs.chaotic.nixosModules.default
               inputs.disko.nixosModules.disko
@@ -293,7 +292,7 @@
                       gaming = false;
                     };
                   };
-                  useGlobalPkgs = true;
+                  #useGlobalPkgs = true;
                   useUserPackages = true;
                   users.${username} = {
                     home = {

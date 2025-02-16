@@ -3,6 +3,7 @@
   config,
   username,
   pkgs,
+  inputs,
   vars,
   ...
 }:
@@ -13,7 +14,7 @@ let
       name = "distrobox-autostart";
       runtimeInputs = with pkgs; [
         coreutils
-        distrobox_git
+        inputs.chaotic.packages.${pkgs.system}.distrobox_git
       ];
       text = ''
         boxes=$(distrobox list | cut -d "|" -f 2 | tail +2 | xargs)
@@ -38,7 +39,7 @@ in
     environment = {
       systemPackages = with pkgs; [
         boxbuddy
-        distrobox_git
+        inputs.chaotic.packages.${pkgs.system}.distrobox_git
       ];
     };
     home-manager.users.${username} =
@@ -88,7 +89,7 @@ in
         };
         home.packages =
           let
-            db-package = pkgs.distrobox_git;
+            db-package = inputs.chaotic.packages.${pkgs.system}.distrobox_git;
           in
           with pkgs;
           [

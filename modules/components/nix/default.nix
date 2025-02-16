@@ -60,7 +60,6 @@ in
         (import ../../../packages/overlay.nix)
       ];
     };
-
     system = {
       autoUpgrade = {
         enable = false;
@@ -110,6 +109,15 @@ in
             up = "topgrade";
             wget = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
           };
+        };
+        nixpkgs = {
+          config = {
+            allowBroken = false;
+            allowUnfree = true;
+          };
+          overlays = [
+            (import ../../../packages/overlay.nix)
+          ];
         };
         xdg = {
           enable = true;

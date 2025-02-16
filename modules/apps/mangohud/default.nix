@@ -17,7 +17,7 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} =
-      { config, pkgs, ... }:
+      { config, pkgs, inputs, ... }:
       {
         home.file = {
           mangohud-config = {
@@ -120,7 +120,7 @@ in
         };
         programs.mangohud = {
           enable = true;
-          package = pkgs.mangohud_git; # Chaotic package
+          package = inputs.chaotic.packages.${pkgs.system}.mangohud_git;
         };
       };
   };

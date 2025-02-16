@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  inputs,
   ...
 }:
 let
@@ -20,7 +21,7 @@ in
         home.packages = with pkgs; [ media-downloader ];
         programs.yt-dlp = {
           enable = true;
-          package = pkgs.yt-dlp_git; # Chaotic Nyx package
+          package = inputs.chaotic.packages.${pkgs.system}.yt-dlp_git;
         };
       };
   };
