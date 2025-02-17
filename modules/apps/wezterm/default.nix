@@ -140,6 +140,7 @@ in
                 config.window_close_confirmation = "NeverPrompt"
                 config.scrollback_lines = 50000
                 config.tab_max_width = 9999
+                config.warn_about_missing_glyphs=false
                 config.window_padding = { left = '10pt', right = '10pt', top = '10pt', bottom = '10pt' }
                 config.window_background_opacity = 0.7
                 config.enable_tab_bar = true

@@ -78,6 +78,7 @@ in
             ## Bash ###
             bash-language-server
             shellcheck
+            shellharden
             shfmt
             ### C ###
             clang-tools
@@ -167,18 +168,20 @@ in
             nixfmt-rfc-style
             nixpkgs-review
             nixos-shell
-            (writeShellApplication {
-              name = "nos";
-              runtimeInputs = [
-                coreutils
-                fzf
-                optinix
-                ripgrep
-              ];
-              text = ''
-                optinix get --no-tui | rg 'Name: ' | cut -d' ' -f2 | fzf --preview='optinix get --no-tui "{}"'
-              '';
-            })
+            /*
+              (writeShellApplication {
+                         name = "nos";
+                         runtimeInputs = [
+                           coreutils
+                           fzf
+                           optinix
+                           ripgrep
+                         ];
+                         text = ''
+                           optinix get --no-tui | rg 'Name: ' | cut -d' ' -f2 | fzf --preview='optinix get --no-tui "{}"'
+                         '';
+                       })
+            */
             (writeShellApplication {
               name = "nps";
               runtimeInputs = [
@@ -191,7 +194,7 @@ in
               '';
             })
             nvd
-            optinix
+            #optinix
             statix
           ]
           ++ lib.optionals cfg.system [

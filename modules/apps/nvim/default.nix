@@ -58,6 +58,19 @@ in
             git = {
               enable = true;
             };
+            keymaps = [
+              {
+                key = "<C-s>";
+                mode = [
+                  "i"
+                  "x"
+                  "n"
+                  "s"
+                ];
+                desc = "Save File";
+                action = "<cmd>w<cr><esc>";
+              }
+            ];
             languages = {
               enableDAP = true;
               enableExtraDiagnostics = true;
@@ -98,11 +111,9 @@ in
               php = {
                 enable = true;
               };
-              /*
-                python = {
-                               enable = true;
-                             };
-              */
+              python = {
+                enable = true;
+              };
               rust = {
                 enable = true;
                 crates = {
@@ -117,13 +128,11 @@ in
               };
               ts = {
                 enable = true;
-                /*
-                  extensions = {
-                                   ts-error-translator = {
-                                     enable = true;
-                                   };
-                                 };
-                */
+                extensions = {
+                  ts-error-translator = {
+                    enable = true;
+                  };
+                };
               };
               zig = {
                 enable = true;
@@ -143,19 +152,18 @@ in
               lspconfig = {
                 enable = true;
               };
-              /*
-                lspkind = {
-                             enable = true;
-                           };
-              */
+              lspkind = {
+                enable = true;
+              };
               lsplines = {
                 enable = true;
               };
-              /*
-                lspsaga = {
-                             enable = true;
-                           };
-              */
+              mappings = {
+                format = "<C-f>";
+              };
+              lspsaga = {
+                enable = true;
+              };
               null-ls = {
                 enable = true;
               };
@@ -174,11 +182,9 @@ in
               neorg = {
                 enable = true;
               };
-              /*
-                orgmode = {
-                             enable = true;
-                           };
-              */
+              orgmode = {
+                enable = true;
+              };
               todo-comments = {
                 enable = true;
               };
@@ -198,13 +204,11 @@ in
                 enable = true;
               };
             };
-            /*
-              session = {
-                         nvim-session-manager = {
-                           enable = true;
-                         };
-                       };
-            */
+            session = {
+              nvim-session-manager = {
+                enable = true;
+              };
+            };
             snippets = {
               luasnip = {
                 enable = true;
@@ -213,6 +217,12 @@ in
             spellcheck = {
               enable = true;
             };
+            options = {
+              tabstop = 2;
+              shiftwidth = 2;
+              softtabstop = 2;
+            };
+            preventJunkFiles = true;
             statusline.lualine.enable = true;
             syntaxHighlighting = true;
             telescope.enable = true;
@@ -271,11 +281,9 @@ in
             viAlias = true;
             vimAlias = true;
             visuals = {
-              /*
-                cellular-automaton = {
-                               enable = true;
-                             };
-              */
+              cellular-automaton = {
+                enable = true;
+              };
               cinnamon-nvim = {
                 enable = true;
               };
@@ -301,7 +309,7 @@ in
                 enable = true;
               };
             };
-            #withPython3 = true;
+            withPython3 = true;
           };
         };
       };
