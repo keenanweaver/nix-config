@@ -82,7 +82,6 @@
                 launchers = [
                   "applications:org.kde.dolphin.desktop"
                   "preferred://browser"
-                  #"applications:one.ablaze.floorp.desktop"
                 ];
               };
             }
@@ -115,15 +114,12 @@
             {
               systemTray.items = {
                 hidden = [
+                  "Akregator"
                   "KTailctl"
-                  "opensnitch-ui"
                   "org.kde.plasma.addons.katesessions"
                   "org.kde.plasma.networkmanagement"
                   "org.kde.plasma.clipboard"
                   "org.kde.kdeconnect"
-                ];
-                shown = [
-                  "Akregator"
                 ];
               };
             }

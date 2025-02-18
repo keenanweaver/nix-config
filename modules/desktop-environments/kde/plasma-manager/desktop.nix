@@ -112,7 +112,6 @@
                     "Akregator"
                     "KTailctl"
                     "MoonDeckBuddy"
-                    "opensnitch-ui"
                     "org.kde.plasma.addons.katesessions"
                     "org.kde.plasma.brightness" # Night Light
                     "org.kde.plasma.networkmanagement"
