@@ -519,16 +519,22 @@ in
           [
             (writeShellApplication {
               name = "script-exodos-nuked";
+              runtimeEnv = {
+                EXODOS = "/mnt/crusader/eXo/eXoDOS/eXo/eXoDOS";
+              };
               runtimeInputs = with pkgs; [
                 fd
                 sd
               ];
               text = ''
-                fd run.bat /mnt/crusader/eXo/eXoDOS/eXo/eXoDOS -x sd 'CONFIG -set "mididevice=fluidsynth"' 'CONFIG -set "mididevice=alsa"' {}
+                fd run.bat $EXODOS -x sd 'CONFIG -set "mididevice=fluidsynth"' 'CONFIG -set "mididevice=alsa"' {}
               '';
             })
             (writeShellApplication {
               name = "script-game-stuff";
+              runtimeEnv = {
+                DREAMM = "https://aarongiles.com/dreamm/releases/dreamm-3.0.3-linux-x64.tgz";
+              };
               runtimeInputs = [
                 coreutils
                 findutils
@@ -539,11 +545,7 @@ in
                 }))
                 xh
               ];
-              text =
-                let
-                  dreamm = "https://aarongiles.com/dreamm/releases/dreamm-3.0.3-linux-x64.tgz";
-                in
-                ''
+              text = ''
                   ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
                   steamtinkerlaunch compat add
                   sd 'YAD="(.*?)"' 'YAD="/etc/profiles/per-user/${username}/bin/yad"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
@@ -560,7 +562,7 @@ in
                   echo 'PULSE_SINK=Game' > ${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/customvars/global-custom-vars.conf
                   fd . '${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/id' -e .conf -x rm {}
                   ## DREAMM
-                  xh get -d -o ${config.home.homeDirectory}/Games/games/dreamm.tgz ${dreamm}
+                  xh get -d -o ${config.home.homeDirectory}/Games/games/dreamm.tgz $DREAMM
                   fd dreamm -e tgz ${config.home.homeDirectory}/Games/games -x ouch d {} -d ${config.home.homeDirectory}/Games/games
                   ## SheepShaver
                   xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/sheepshaver.appimage
