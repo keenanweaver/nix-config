@@ -227,7 +227,6 @@
               {
                 home-manager = {
                   backupFileExtension = "hmbak";
-                  #useGlobalPkgs = true;
                   useUserPackages = true;
                   extraSpecialArgs = {
                     inherit inputs; # Experiment with config and other attributes
@@ -292,7 +291,6 @@
                       gaming = false;
                     };
                   };
-                  #useGlobalPkgs = true;
                   useUserPackages = true;
                   users.${username} = {
                     home = {
