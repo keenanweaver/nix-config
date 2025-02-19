@@ -67,7 +67,7 @@ in
           [ ]
           ++ lib.optionals cfg.dev [
             codeium
-            devbox
+            devenv
             just
             gh
             powershell
@@ -96,13 +96,10 @@ in
             vscode-langservers-extracted
             ### Javascript ###
             nodePackages.typescript-language-server
-            #nodePackages.vscode-json-languageserver
             ### Lua ###
             lua-language-server
             ### Python ###
             black
-            #python3
-            #python311Packages.python-lsp-server
             ruff
             ruff-lsp
             ### Rust ###
