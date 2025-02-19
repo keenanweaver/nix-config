@@ -27,6 +27,7 @@ in
           extraGroups = [
             "adbusers"
             "audio"
+            "i2c"
             "input"
             "networkmanager"
             "plugdev"
