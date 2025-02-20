@@ -146,7 +146,7 @@ let
       ## Modding
       limo
       nexusmods-app-unfree
-      owmods-gui
+      #owmods-gui
       r2modman
       ## Other
       inputs.aaru.packages.${pkgs.system}.default
@@ -683,6 +683,7 @@ in
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
               "io.openrct2.OpenRCT2"
+              "me.amankhanna.opendeck"
               "net.nmlgc.rec98.sh01"
               "net.shadps4.shadPS4"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
