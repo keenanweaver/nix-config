@@ -20,7 +20,7 @@ in
     # Custom modules
     base.enable = true;
     catppuccinTheming.enable = true;
-    floorp.enable = true;
+    floorp.enable = false;
     kde.enable = true;
     mumble.enable = true;
     office.enable = true;
