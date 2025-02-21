@@ -18,6 +18,10 @@ in
   config = lib.mkIf cfg.enable {
     users = {
       defaultUserShell = pkgs.zsh;
+      groups = {
+        adbusers = { };
+        plugdev = { };
+      };
       mutableUsers = true;
       users = {
         "${username}" = {
