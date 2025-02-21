@@ -324,27 +324,40 @@ in
           # NVMe SSD
           ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
         '';
-        packages = with pkgs; [
-          game-devices-udev-rules
-          # https://wiki.archlinux.org/title/Gamepad#Motion_controls_taking_over_joypad_controls_and/or_causing_unintended_input_with_joypad_controls
-          (writeTextFile {
-            name = "51-disable-DS3-and-DS4-motion-controls.rules";
-            text = ''
-              SUBSYSTEM=="input", ATTRS{name}=="*Controller Motion Sensors", RUN+="${pkgs.coreutils}/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
-            '';
-            destination = "/etc/udev/rules.d/51-disable-DS3-and-DS4-motion-controls.rules";
-          })
-          # https://reddit.com/r/linux_gaming/comments/1fu4ggk/can_someone_explain_dualsense_to_me/lpwxv12/?context=3#lpwxv12
-          (writeTextFile {
-            name = "51-disable-dualsense-sound-and-vibration.rules";
-            text = ''
-              KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", MODE="0660", TAG+="uaccess"
-              KERNEL=="hidraw*", KERNELS=="*054C:0CE6*", MODE="0660", TAG+="uaccess"
-              ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", ENV{PULSE_IGNORE}="1", ENV{ACP_IGNORE}="1"
-            '';
-            destination = "/etc/udev/rules.d/51-disable-dualsense-sound-and-vibration.rules";
-          })
-        ];
+        packages =
+          with pkgs;
+          let
+            stream-deck-rules = builtins.readFile (builtins.fetchurl {
+              url = "https://raw.githubusercontent.com/streamduck-org/elgato-streamdeck/main/40-streamdeck.rules";
+              sha256 = "sha256-qTgDnriWTPRCr8j0HTjiQY9+g0yI/VY5im4ABW9nPOc=";
+            });
+          in
+          [
+            game-devices-udev-rules
+            (writeTextFile {
+              name = "40-streamdeck.rules";
+              text = stream-deck-rules;
+              destination = "/etc/udev/rules.d/40-streamdeck.rules";
+            })
+            # https://wiki.archlinux.org/title/Gamepad#Motion_controls_taking_over_joypad_controls_and/or_causing_unintended_input_with_joypad_controls
+            (writeTextFile {
+              name = "51-disable-DS3-and-DS4-motion-controls.rules";
+              text = ''
+                SUBSYSTEM=="input", ATTRS{name}=="*Controller Motion Sensors", RUN+="${pkgs.coreutils}/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
+              '';
+              destination = "/etc/udev/rules.d/51-disable-DS3-and-DS4-motion-controls.rules";
+            })
+            # https://reddit.com/r/linux_gaming/comments/1fu4ggk/can_someone_explain_dualsense_to_me/lpwxv12/?context=3#lpwxv12
+            (writeTextFile {
+              name = "51-disable-dualsense-sound-and-vibration.rules";
+              text = ''
+                KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", MODE="0660", TAG+="uaccess"
+                KERNEL=="hidraw*", KERNELS=="*054C:0CE6*", MODE="0660", TAG+="uaccess"
+                ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", ENV{PULSE_IGNORE}="1", ENV{ACP_IGNORE}="1"
+              '';
+              destination = "/etc/udev/rules.d/51-disable-dualsense-sound-and-vibration.rules";
+            })
+          ];
       };
     };
 
@@ -546,32 +559,32 @@ in
                 xh
               ];
               text = ''
-                  ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
-                  steamtinkerlaunch compat add
-                  sd 'YAD="(.*?)"' 'YAD="/etc/profiles/per-user/${username}/bin/yad"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
-                  sd 'STLEDITOR="(.*?)"' 'STLEDITOR="/etc/profiles/per-user/${username}/bin/kate"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
-                  sd 'SKIPINTDEPCHECK="(.*?)"' 'SKIPINTDEPCHECK="1"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
-                  sd 'USEGAMEMODERUN="(.*?)"' 'USEGAMEMODERUN="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                  sd 'USEOBSCAP="(.*?)"' 'USEOBSCAP="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                  sd 'USEMANGOHUD="(.*?)"' 'USEMANGOHUD="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                  sd 'MAHUDLSYM="(.*?)"' 'MAHUDLSYM="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                  sd 'USERAYTRACING="(.*?)"' 'USERAYTRACING="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                  sd 'USEPROTON="(.*?)"' 'USEPROTON="Proton-GE"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                  sd 'DXVK_HDR="(.*?)"' 'DXVK_HDR="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                  sd 'GAMESCOPE_ARGS="(.*?)"' 'GAMESCOPE_ARGS="-W 2560 -H 1440 -f -r 360 --hdr-enabled --force-grab-cursor --"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                  echo 'PULSE_SINK=Game' > ${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/customvars/global-custom-vars.conf
-                  fd . '${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/id' -e .conf -x rm {}
-                  ## DREAMM
-                  xh get -d -o ${config.home.homeDirectory}/Games/games/dreamm.tgz $DREAMM
-                  fd dreamm -e tgz ${config.home.homeDirectory}/Games/games -x ouch d {} -d ${config.home.homeDirectory}/Games/games
-                  ## SheepShaver
-                  xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/sheepshaver.appimage
-                  ## MoonDeck Buddy
-                  xh https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/moondeckbuddy.appimage
-                  ## Conty
-                  xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/conty_lite.sh
-                  chmod +x ${config.home.homeDirectory}/.local/bin/conty_lite.sh
-                '';
+                ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
+                steamtinkerlaunch compat add
+                sd 'YAD="(.*?)"' 'YAD="/etc/profiles/per-user/${username}/bin/yad"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
+                sd 'STLEDITOR="(.*?)"' 'STLEDITOR="/etc/profiles/per-user/${username}/bin/kate"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
+                sd 'SKIPINTDEPCHECK="(.*?)"' 'SKIPINTDEPCHECK="1"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
+                sd 'USEGAMEMODERUN="(.*?)"' 'USEGAMEMODERUN="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                sd 'USEOBSCAP="(.*?)"' 'USEOBSCAP="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                sd 'USEMANGOHUD="(.*?)"' 'USEMANGOHUD="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                sd 'MAHUDLSYM="(.*?)"' 'MAHUDLSYM="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                sd 'USERAYTRACING="(.*?)"' 'USERAYTRACING="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                sd 'USEPROTON="(.*?)"' 'USEPROTON="Proton-GE"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                sd 'DXVK_HDR="(.*?)"' 'DXVK_HDR="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                sd 'GAMESCOPE_ARGS="(.*?)"' 'GAMESCOPE_ARGS="-W 2560 -H 1440 -f -r 360 --hdr-enabled --force-grab-cursor --"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
+                echo 'PULSE_SINK=Game' > ${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/customvars/global-custom-vars.conf
+                fd . '${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/id' -e .conf -x rm {}
+                ## DREAMM
+                xh get -d -o ${config.home.homeDirectory}/Games/games/dreamm.tgz $DREAMM
+                fd dreamm -e tgz ${config.home.homeDirectory}/Games/games -x ouch d {} -d ${config.home.homeDirectory}/Games/games
+                ## SheepShaver
+                xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/sheepshaver.appimage
+                ## MoonDeck Buddy
+                xh https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/moondeckbuddy.appimage
+                ## Conty
+                xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/conty_lite.sh
+                chmod +x ${config.home.homeDirectory}/.local/bin/conty_lite.sh
+              '';
             })
             # https://www.resetera.com/threads/linux-steamos-ot-its-a-linux-system%E2%80%A6-i-know-this.557173/page-36#post-130996374
             (writeShellApplication {
