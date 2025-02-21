@@ -28,7 +28,7 @@ in
               name = "Brother_HL-L2460DW";
               description = "Brother HL-L2460DW";
               deviceUri = "dnssd://Brother%20HL-L2460DW._ipp._tcp.local/?uuid=${uuid}";
-              model = "everywhere";
+              model = "drv:///brlaser.drv/brl2405.ppd";
               location = "Office";
             }
           ];
