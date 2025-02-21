@@ -165,6 +165,7 @@ let
       (python3.withPackages (p: with p; [ lnkparse3 ]))
       inputs.nix-game-preservation.packages.${pkgs.system}.redumper
       inputs.nix-game-preservation.packages.${pkgs.system}.sabretools
+      streamcontroller
       inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp
       xlink-kai
       xvidcore
@@ -324,40 +325,37 @@ in
           # NVMe SSD
           ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
         '';
-        packages =
-          with pkgs;
-          let
-            stream-deck-rules = builtins.readFile (builtins.fetchurl {
-              url = "https://raw.githubusercontent.com/streamduck-org/elgato-streamdeck/main/40-streamdeck.rules";
-              sha256 = "sha256-qTgDnriWTPRCr8j0HTjiQY9+g0yI/VY5im4ABW9nPOc=";
-            });
-          in
-          [
-            game-devices-udev-rules
-            (writeTextFile {
-              name = "40-streamdeck.rules";
-              text = stream-deck-rules;
-              destination = "/etc/udev/rules.d/40-streamdeck.rules";
-            })
-            # https://wiki.archlinux.org/title/Gamepad#Motion_controls_taking_over_joypad_controls_and/or_causing_unintended_input_with_joypad_controls
-            (writeTextFile {
-              name = "51-disable-DS3-and-DS4-motion-controls.rules";
-              text = ''
-                SUBSYSTEM=="input", ATTRS{name}=="*Controller Motion Sensors", RUN+="${pkgs.coreutils}/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
-              '';
-              destination = "/etc/udev/rules.d/51-disable-DS3-and-DS4-motion-controls.rules";
-            })
-            # https://reddit.com/r/linux_gaming/comments/1fu4ggk/can_someone_explain_dualsense_to_me/lpwxv12/?context=3#lpwxv12
-            (writeTextFile {
-              name = "51-disable-dualsense-sound-and-vibration.rules";
-              text = ''
-                KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", MODE="0660", TAG+="uaccess"
-                KERNEL=="hidraw*", KERNELS=="*054C:0CE6*", MODE="0660", TAG+="uaccess"
-                ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", ENV{PULSE_IGNORE}="1", ENV{ACP_IGNORE}="1"
-              '';
-              destination = "/etc/udev/rules.d/51-disable-dualsense-sound-and-vibration.rules";
-            })
-          ];
+        packages = with pkgs; [
+          game-devices-udev-rules
+          (writeTextFile {
+            name = "40-streamdeck.rules";
+            text = builtins.readFile (
+              builtins.fetchurl {
+                url = "https://raw.githubusercontent.com/streamduck-org/elgato-streamdeck/main/40-streamdeck.rules";
+                sha256 = "sha256-qTgDnriWTPRCr8j0HTjiQY9+g0yI/VY5im4ABW9nPOc=";
+              }
+            );
+            destination = "/etc/udev/rules.d/40-streamdeck.rules";
+          })
+          # https://wiki.archlinux.org/title/Gamepad#Motion_controls_taking_over_joypad_controls_and/or_causing_unintended_input_with_joypad_controls
+          (writeTextFile {
+            name = "51-disable-DS3-and-DS4-motion-controls.rules";
+            text = ''
+              SUBSYSTEM=="input", ATTRS{name}=="*Controller Motion Sensors", RUN+="${pkgs.coreutils}/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
+            '';
+            destination = "/etc/udev/rules.d/51-disable-DS3-and-DS4-motion-controls.rules";
+          })
+          # https://reddit.com/r/linux_gaming/comments/1fu4ggk/can_someone_explain_dualsense_to_me/lpwxv12/?context=3#lpwxv12
+          (writeTextFile {
+            name = "51-disable-dualsense-sound-and-vibration.rules";
+            text = ''
+              KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", MODE="0660", TAG+="uaccess"
+              KERNEL=="hidraw*", KERNELS=="*054C:0CE6*", MODE="0660", TAG+="uaccess"
+              ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", ENV{PULSE_IGNORE}="1", ENV{ACP_IGNORE}="1"
+            '';
+            destination = "/etc/udev/rules.d/51-disable-dualsense-sound-and-vibration.rules";
+          })
+        ];
       };
     };
 
@@ -696,7 +694,6 @@ in
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
               "io.openrct2.OpenRCT2"
-              "me.amankhanna.opendeck"
               "net.nmlgc.rec98.sh01"
               "net.shadps4.shadPS4"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
