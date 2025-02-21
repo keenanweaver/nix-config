@@ -31,6 +31,7 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
+    # Also run: steam steam://unlockh264/
     programs.steam = {
       enable = cfg.enableNative;
       dedicatedServer.openFirewall = true;
