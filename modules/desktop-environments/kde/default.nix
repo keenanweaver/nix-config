@@ -38,6 +38,7 @@ in
           icoutils
           isoimagewriter
           k3b
+          kaccounts-providers
           kcalc
           kcron
           kdenetwork-filesharing
@@ -51,6 +52,7 @@ in
           kjournald
           kmousetool
           kompare
+          krfb
           krita
           ksystemlog
           markdownpart
@@ -64,6 +66,7 @@ in
           sddm-kcm
           svgpart
           syntax-highlighting
+          systemdgenie
           tokodon
         ]
         ++ lib.optionals vars.gaming [
