@@ -352,6 +352,7 @@
                 "Meta+C"
                 "Meta+."
               ];
+              "Window No Border" = "Meta+Shift+B";
             };
           };
           hotkeys = {
