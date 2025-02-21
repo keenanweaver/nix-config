@@ -80,41 +80,28 @@ in
             shellcheck
             shellharden
             shfmt
-            ### C ###
-            clang-tools
-            cmake-language-server
             ### Docker ###
-            docker-compose-language-service
-            dockerfile-language-server-nodejs
-            ### Go ###
-            #gofumpt
-            #gopls
-            #gotools
-            #go
-            delve
+            #docker-compose-language-service
+            #dockerfile-language-server-nodejs
             ### HTML / CSS / JSON ###
-            vscode-langservers-extracted
-            ### Javascript ###
-            nodePackages.typescript-language-server
+            #vscode-langservers-extracted
             ### Lua ###
-            lua-language-server
+            #lua-language-server
             ### Python ###
-            black
-            ruff
-            ruff-lsp
-            ### Rust ###
-            rustup
+            #black
+            #ruff
+            #ruff-lsp
             ### Markdown ###
             marksman
             ### Terraform ###
-            terraform-ls
+            #terraform-ls
             ### TOML ###
-            taplo-lsp
+            #taplo-lsp
             ### YAML ###
-            nodePackages.yaml-language-server
-            yamllint
+            #nodePackages.yaml-language-server
+            #yamllint
             ### XML ###
-            lemminx
+            #lemminx
           ]
           ++ lib.optionals cfg.misc [
             angle-grinder
