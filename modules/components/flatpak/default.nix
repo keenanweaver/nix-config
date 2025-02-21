@@ -62,7 +62,7 @@ in
                 filesystems =
                   [
                     "/nix/store:ro"
-                    "/run/current-system/sw:ro"
+                    "/run/current-system/sw/bin:ro"
                     "/run/media/${username}:ro"
                     # Theming
                     "${config.home.homeDirectory}/.icons:ro"
