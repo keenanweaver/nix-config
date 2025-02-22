@@ -301,12 +301,46 @@ in
       "SDL_ttf-2.0.11" # Archpelago / appimage-run / losslesscut-bin / protonup-qt
     ];
 
+    security = {
+      pam = {
+        loginLimits = [
+          {
+            domain = "*";
+            item = "memlock";
+            type = "hard";
+            value = "unlimited";
+          }
+          {
+            domain = "*";
+            item = "memlock";
+            type = "soft";
+            value = "unlimited";
+          }
+          {
+            domain = "*";
+            item = "nofile";
+            type = "hard";
+            value = "1048576";
+          }
+          {
+            domain = "*";
+            item = "nofile";
+            type = "soft";
+            value = "16777216";
+          }
+        ];
+      };
+    };
+
     services = {
       hardware = {
         openrgb = {
           enable = true;
           package = pkgs.openrgb-with-all-plugins;
         };
+      };
+      input-remapper = {
+        enable = true;
       };
       scx = {
         enable = true;
@@ -359,43 +393,6 @@ in
       };
     };
 
-    security = {
-      pam = {
-        loginLimits = [
-          {
-            domain = "*";
-            item = "memlock";
-            type = "hard";
-            value = "unlimited";
-          }
-          {
-            domain = "*";
-            item = "memlock";
-            type = "soft";
-            value = "unlimited";
-          }
-          {
-            domain = "*";
-            item = "nofile";
-            type = "hard";
-            value = "1048576";
-          }
-          {
-            domain = "*";
-            item = "nofile";
-            type = "soft";
-            value = "16777216";
-          }
-        ];
-      };
-    };
-
-    services = {
-      input-remapper = {
-        enable = true;
-      };
-    };
-
     systemd = {
       extraConfig = ''
         DefaultLimitNOFILE=1048576
@@ -429,6 +426,11 @@ in
         ...
       }:
       {
+
+        imports = [
+          ../apps/ludusavi
+        ];
+
         home.file = {
           desktop-entry-dxvk =
             let
@@ -706,82 +708,80 @@ in
               "vet.rsc.OpenRSC.Launcher"
             ];
           };
-          /*
-            ludusavi = {
-                     enable = true;
-                     backupNotification = true;
-                     settings = {
-                       backup = {
-                         path = "${config.home.homeDirectory}/Games/games/ludusavi";
-                         format = {
-                           chosen = "zip";
-                           zip.compression = "deflate";
-                         };
-                       };
-                       customGames = [
-                         {
-                           name = "Doom";
-                           files = [
-                             "${config.xdg.configHome}/gzdoom/savegames"
-                             "${config.xdg.dataHome}/cherry-doom/savegames"
-                             "${config.xdg.dataHome}/nugget-doom/savegames"
-                             "${config.xdg.dataHome}/woof/savegames"
-                           ];
-                         }
-                         {
-                           name = "OpenMW";
-                           files = [
-                             "${config.xdg.dataHome}/openmw/saves"
-                           ];
-                         }
-                         {
-                           name = "ScummVM";
-                           files = [
-                             "${config.xdg.dataHome}/scummvm/saves"
-                           ];
-                         }
-                       ];
-                       restore = {
-                         path = "${config.home.homeDirectory}/Games/games/ludusavi";
-                       };
-                       roots = [
-                         {
-                           path = "${config.xdg.configHome}/heroic";
-                           store = "heroic";
-                         }
-                         {
-                           path = "${config.home.homeDirectory}/Games/Heroic";
-                           store = "heroic";
-                         }
-                         {
-                           path = "${config.xdg.dataHome}/lutris";
-                           store = "lutris";
-                         }
-                         {
-                           path = "${config.home.homeDirectory}/Games/Bottles/GOG-Galaxy";
-                           store = "otherWine";
-                         }
-                         {
-                           path = "${config.home.homeDirectory}/Games/Bottles/itch.io";
-                           store = "otherWine";
-                         }
-                         {
-                           path = "${config.xdg.dataHome}/Steam";
-                           store = "steam";
-                         }
-                         {
-                           path = "${config.home.homeDirectory}/Games/Steam";
-                           store = "steam";
-                         }
-                         {
-                           path = "${config.home.homeDirectory}/Games/games/SteamLibrary";
-                           store = "steam";
-                         }
-                       ];
-                       theme = "dark";
-                     };
-                   };
-          */
+          ludusavi = {
+            enable = true;
+            backupNotification = true;
+            settings = {
+              backup = {
+                path = "${config.home.homeDirectory}/Games/games/ludusavi";
+                format = {
+                  chosen = "zip";
+                  zip.compression = "deflate";
+                };
+              };
+              customGames = [
+                {
+                  name = "Doom";
+                  files = [
+                    "${config.xdg.configHome}/gzdoom/savegames"
+                    "${config.xdg.dataHome}/cherry-doom/savegames"
+                    "${config.xdg.dataHome}/nugget-doom/savegames"
+                    "${config.xdg.dataHome}/woof/savegames"
+                  ];
+                }
+                {
+                  name = "OpenMW";
+                  files = [
+                    "${config.xdg.dataHome}/openmw/saves"
+                  ];
+                }
+                {
+                  name = "ScummVM";
+                  files = [
+                    "${config.xdg.dataHome}/scummvm/saves"
+                  ];
+                }
+              ];
+              restore = {
+                path = "${config.home.homeDirectory}/Games/games/ludusavi";
+              };
+              roots = [
+                {
+                  path = "${config.xdg.configHome}/heroic";
+                  store = "heroic";
+                }
+                {
+                  path = "${config.home.homeDirectory}/Games/Heroic";
+                  store = "heroic";
+                }
+                {
+                  path = "${config.xdg.dataHome}/lutris";
+                  store = "lutris";
+                }
+                {
+                  path = "${config.home.homeDirectory}/Games/Bottles/GOG-Galaxy";
+                  store = "otherWine";
+                }
+                {
+                  path = "${config.home.homeDirectory}/Games/Bottles/itch.io";
+                  store = "otherWine";
+                }
+                {
+                  path = "${config.xdg.dataHome}/Steam";
+                  store = "steam";
+                }
+                {
+                  path = "${config.home.homeDirectory}/Games/Steam";
+                  store = "steam";
+                }
+                {
+                  path = "${config.home.homeDirectory}/Games/games/SteamLibrary";
+                  store = "steam";
+                }
+              ];
+              theme = "dark";
+            };
+          };
           wayland-pipewire-idle-inhibit = {
             enable = true;
             settings = {
