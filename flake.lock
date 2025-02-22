@@ -590,11 +590,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740145731,
-        "narHash": "sha256-foYErxD5YuRCkRGUd5AcQjCrX7ELdPJr3+eYMfNmI4U=",
+        "lastModified": 1740208222,
+        "narHash": "sha256-FqgPcK5BK+Mc4cGBCGz555UsVd/TQK9FvmuamBWu+ZY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "3c82285348bc811b723014cf4dba2f87e7ffc885",
+        "rev": "f4a07823a298deff0efb0db30f9318511de7c232",
         "type": "github"
       },
       "original": {
@@ -648,11 +648,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740136455,
-        "narHash": "sha256-8zQS7Xze5MoD1utD8MvgRTxXvgIdZkR11alijrYJ3DU=",
+        "lastModified": 1740208852,
+        "narHash": "sha256-V5fJ9ilbPDroLLftzVw1uWniE7GmE0QzrAbD8Xak6Og=",
         "owner": "Jovian-Experiments",
         "repo": "Jovian-NixOS",
-        "rev": "853fa6c627c568ef1452083fdc917a43f52cb6e0",
+        "rev": "b555a7faa4831d47b3e11c78195d339f5ae58b3b",
         "type": "github"
       },
       "original": {
@@ -874,11 +874,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1740102075,
-        "narHash": "sha256-4ZFfFwcPTWVVxZKcfouAVx8eDBDTaHUSySHJCe+xQus=",
+        "lastModified": 1740188262,
+        "narHash": "sha256-Lud4scstZhNyvKQm2r8yTqAtO/nsE0gHM2fr1FEd+mo=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "e319f4c8f0082f2b69cf7580b41cf577211f3742",
+        "rev": "98d916077d100f8e220dad75c70a61382747b609",
         "type": "github"
       },
       "original": {
@@ -998,11 +998,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1740102704,
-        "narHash": "sha256-Gs3BREQKsFcfkFyes2PTq1tNAkMHq8Tq0bYME7ZhyjY=",
+        "lastModified": 1740188781,
+        "narHash": "sha256-3FDg6k9kQXq5M6ZHc2f9KsPydvWBtqacU9lWA7nIFYI=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "1262db8fa5e165ed5da3d91ec8202bfe640264ef",
+        "rev": "ba52a14c907e0cece9734e0ff59c3c742b6b1075",
         "type": "github"
       },
       "original": {
@@ -1373,11 +1373,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1740148905,
-        "narHash": "sha256-iiZQAMq3UGgf9Qv5Pr1xEXnanPKkW+esoREVbHNwlx0=",
+        "lastModified": 1740232047,
+        "narHash": "sha256-xrcnfuvqDP3ajx9WcQQCSoW3tEZQGKGScNj5AFsXDzg=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "db9cfde6b65fa112bd70f4de2541f05e0b542684",
+        "rev": "e0e6e20e8c3232c853079d1f510a09833de94c4c",
         "type": "github"
       },
       "original": {
@@ -1486,15 +1486,14 @@
         "rpi-linux-6_12_11-src": "rpi-linux-6_12_11-src",
         "rpi-linux-6_6_67-src": "rpi-linux-6_6_67-src",
         "rpi-linux-stable-src": "rpi-linux-stable-src",
-        "rpicam-apps-src": "rpicam-apps-src",
-        "u-boot-src": "u-boot-src"
+        "rpicam-apps-src": "rpicam-apps-src"
       },
       "locked": {
-        "lastModified": 1738949424,
-        "narHash": "sha256-w+OitboChUZUZAn2lFA3YGxUBSz4F5TLqBwEkkEtN+0=",
+        "lastModified": 1740187527,
+        "narHash": "sha256-thcUeJlXJ6lD5s1UDKE3jYyzdSRxMjcE/mSWf5Y0KHU=",
         "owner": "nix-community",
         "repo": "raspberry-pi-nix",
-        "rev": "f3171167258766def0851915685b9a6e7ca7e96e",
+        "rev": "4f6706677c4adeca591ada531fc4d7b7b68c0414",
         "type": "github"
       },
       "original": {
@@ -1775,11 +1774,11 @@
     "steamtinkerlaunch-master": {
       "flake": false,
       "locked": {
-        "lastModified": 1739378757,
-        "narHash": "sha256-QWpimxn6zuBmD3pwybB9gvGC9H9DlJRRFXaIm+kUC+s=",
+        "lastModified": 1740162911,
+        "narHash": "sha256-I7Aa7bZ6WB5LfCxyZUbl7fshyr2YWlZTMZDJKCODvhY=",
         "ref": "refs/heads/master",
-        "rev": "a00c8d2fac3f9e3b9660c9efdab1032aa4d93225",
-        "revCount": 1453,
+        "rev": "36e917c383a333caa43e187c06c0aed0c30c0421",
+        "revCount": 1454,
         "type": "git",
         "url": "https://github.com/sonic2kk/steamtinkerlaunch.git"
       },
@@ -1969,19 +1968,6 @@
         "owner": "numtide",
         "repo": "treefmt-nix",
         "type": "github"
-      }
-    },
-    "u-boot-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1719857238,
-        "narHash": "sha256-mJ2TBy0Y5ZtcGFgtU5RKr0UDUp5FWzojbFb+o/ebRJU=",
-        "type": "tarball",
-        "url": "https://ftp.denx.de/pub/u-boot/u-boot-2024.07.tar.bz2"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://ftp.denx.de/pub/u-boot/u-boot-2024.07.tar.bz2"
       }
     },
     "ucodenix": {
