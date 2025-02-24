@@ -56,6 +56,7 @@ in
         gpu = {
           apply_gpu_optimisations = "accept-responsibility";
           amd_performance_level = "high";
+          gpu_device = "1"; # Set when integrated GPU is unavailable
         };
         custom = {
           # https://github.com/Electrostasy/dots/blob/master/hosts/terra/gaming.nix
