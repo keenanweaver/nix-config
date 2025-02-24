@@ -20,7 +20,7 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "atsb";
     repo = "Doom64EX-Plus";
-    rev = "3fb15c40147f39573c676df35b6c92e6a0b82d77";
+    tag = "3fb15c40147f39573c676df35b6c92e6a0b82d77";
     hash = "sha256-me9rjCBNqQYFhmBsiuNko2RkVmqEs5RZoDUFshdWb6k=";
   };
 
@@ -68,7 +68,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   meta = {
     description = "Improved, modern version of Doom64EX";
-    homepage = "https://github.com/atsb/Doom64EX-Plus.git";
+    homepage = "https://github.com/atsb/Doom64EX-Plus";
     license = lib.licenses.gpl2Only;
     longDescription = ''
       You will need DOOM64.WAD from Nightdive Studios'
