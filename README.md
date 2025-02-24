@@ -96,13 +96,6 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
 ## From bare-metal
 1. Run `script-game-stuff`
 
-## Set up directories
-``` bash
-    mkdir -p $GAMESDIR/{daikatana,descent/descent-1,descent/descent-2,quake/quake-1,quake/quake-3,rollercoaster-tycoon,morrowind,openmw,blake-stone/aog,blake-stone/ps,jagged-alliance-2/ja2,jagged-alliance-2/unfinished-business,jagged-alliance-2/wildfire,loco,the-force-engine,arx-fatalis}
-    mkdir -p $XDG_DATA_HOME/perfectdark/data
-    mkdir -p $FLATPAKDIR/io.itch.tx00100xt.SeriousSamClassic-VK/data/Serious-Engine/{serioussam,serioussamse}
-```
-
 ## Set up games
 
 Enter a nix shell:
@@ -223,7 +216,7 @@ Run the commands:
     steam-run ./umo setup
     steam-run ./umo cache sync i-heart-vanilla-directors-cut
     steam-run ./umo install i-heart-vanilla-directors-cut
-    steam-run ./momw-configurator-linux-amd64 config i-heart-vanilla-directors-cut --run-navmeshtool --run-validator --verbose
+    distrobox-enter bazzite-arch-gaming -- ./momw-configurator-linux-amd64 config i-heart-vanilla-directors-cut --run-navmeshtool --run-validator --verbose
     popd
     ## Nox
     mkdir -p "$GAMESDIR"/nox
