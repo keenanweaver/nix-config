@@ -17,15 +17,7 @@ in
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} = {
       home.packages = with pkgs; [
-        (lazyjj.overrideAttrs {
-          version = "0.4.3-unstable-2025-01-04";
-          src = fetchFromGitHub {
-            owner = "misaelaguayo";
-            repo = "lazyjj";
-            rev = "update-snapshots-jj25";
-            hash = "sha256-XRPDs4TwoDgOypLfv5H4V8YdD04Em8xJ3l+ALRngihQ=";
-          };
-        })
+        lazyjj
       ];
       programs.jujutsu = {
         enable = true;
