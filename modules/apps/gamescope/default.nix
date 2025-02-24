@@ -21,6 +21,12 @@ in
       package = inputs.chaotic.packages.${pkgs.system}.gamescope_git;
       capSysNice = false; # 'true' breaks gamescope for Steam https://github.com/NixOS/nixpkgs/issues/292620#issuecomment-2143529075
     };
-    home-manager.users.${username} = { };
+    home-manager.users.${username} = {
+      services.flatpak = {
+        packages = [
+          "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08"
+        ];
+      };
+    };
   };
 }

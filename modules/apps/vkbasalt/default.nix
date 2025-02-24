@@ -66,6 +66,11 @@ in
             #ENABLE_VKBASALT = "1";
           };
         };
+        services.flatpak = {
+          packages = [
+            "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/24.08"
+          ];
+        };
       };
   };
 }

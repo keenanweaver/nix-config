@@ -17,7 +17,12 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} =
-      { config, pkgs, inputs, ... }:
+      {
+        config,
+        pkgs,
+        inputs,
+        ...
+      }:
       {
         home.file = {
           mangohud-config = {
@@ -121,6 +126,20 @@ in
         programs.mangohud = {
           enable = true;
           package = inputs.chaotic.packages.${pkgs.system}.mangohud_git;
+        };
+        services.flatpak = {
+          overrides = {
+            global = {
+              Context = {
+                filesystems = [
+                  "xdg-config/MangoHud:ro"
+                ];
+              };
+            };
+          };
+          packages = [
+            "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
+          ];
         };
       };
   };

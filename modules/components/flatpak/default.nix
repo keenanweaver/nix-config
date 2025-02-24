@@ -77,7 +77,6 @@ in
                     "xdg-data/icons:ro"
                   ]
                   ++ lib.optionals vars.gaming [
-                    "xdg-config/MangoHud:ro"
                     "xdg-run/discord-ipc-*"
                   ];
               };
