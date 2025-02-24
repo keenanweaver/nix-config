@@ -2,15 +2,30 @@
 * ASRock X870E Taichi
 * AMD Ryzen 9 7950X3D
 * XFX Speedster MERC310 AMD Radeon RX 7900XTX
-* CORSAIR VENGEANCE DDR5 RAM 64GB (2x32GB) 6400MHz
+* CORSAIR VENGEANCE DDR5 RAM 128GB (4x32GB) 6400MHz
 * NZXT Kraken Elite 360mm AIO CPU Cooler
 * Corsair RM850e (2023) PSU
-* WD_BLACK 250GB SN770 NVMe
 * Crucial T700 2TB Gen5 NVMe M.2 SSD
+* Samsung 990 PRO 2TB SSD NVMe M.2 PCIe Gen4
 * GIGABYTE - AORUS FO27Q3 - 27" QD OLED Gaming Monitor
 * Lenovo Legion Y27q-20 Gaming Monitor, 27”
 * Fractal Design North XL ATX mATX Mid Tower PC Case
-
+# Peripherals
+### Keyboard & mouse
+* 8BitDo Retro Mechanical Keyboard N Edition
+* Logitech G502X
+### Audio
+* Schiit Modi+ DAC
+* Rolls MX51s Mini-Mix 2
+* Edifier R1850DB Bookshelf Speakers
+* Audiotechnica ATH-AD700X
+* Beyerdynamic DT 880 Premium 600 OHM Headphones
+### Game
+* 8BitDo Ultimate 2.4G Controller
+* 8BitDo Arcade Stick for Xbox
+* Junkfood Snack Box MICRO XL
+* Sony Dualsense
+* Elgato Stream Deck MK.2
 # BIOS settings
 * OC Tweaker -> Gaming Mode: **Disabled** (Wrong cores are parked when enabled)
 * OC Tweaker -> DRAM Frequency: **DDR5-6400**

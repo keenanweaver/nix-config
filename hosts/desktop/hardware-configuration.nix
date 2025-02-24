@@ -4,7 +4,7 @@
     fsType = "tmpfs";
     options = [
       "mode=755"
-      "size=16G"
+      "size=32G"
     ];
   };
 
