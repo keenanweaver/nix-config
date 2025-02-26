@@ -109,6 +109,13 @@ Run the commands:
     ## Arx Fatalis
     mkdir -p "$GAMESDIR"/arx-fatalis
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/arx_fatalis" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/arx-fatalis
+    ## ASCII Sector
+    mkdir -p "$GAMESDIR/ascii-sector"
+    wget -P "$GAMESDIR/ascii-sector" https://s3.amazonaws.com/asciisector/asciisec0.7.2-linux64.tar.gz
+    fd -e tar.gz . "$GAMESDIR/ascii-sector" -x ouch d {} -d "$GAMESDIR"/ascii-sector
+    mv "$GAMESDIR"/ascii-sector/asciisec "$GAMESDIR"/ascii-sector/asciisec2
+    mv "$GAMESDIR"/ascii-sector/asciisec2/* "$GAMESDIR"/ascii-sector
+    rm -rf "$GAMESDIR"/ascii-sector/asciisec2
     ## Blake Stone
     mkdir -p "$GAMESDIR"/blake-stone/{aliens-of-gold,planet-strike}
     fd Aliens-of-Gold -a -d 1 -e exe . "$MNTDIR/Backups/Zoom" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/blake-stone/aliens-of-gold
@@ -173,6 +180,12 @@ Run the commands:
     ## DOOM 64
     mkdir -p "$XDG_DATA_HOME"/doom64ex-plus
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/doom_64" -x ls -t | head -n1 | xargs innoextract -I 'DOOM64.WAD' -d "$XDG_DATA_HOME"/doom64ex-plus
+    ## Duke Nukem
+    mkdir -p "$GAMESDIR"/duke/{duke-nukem-ii,duke-nukem-3d/atomic-edition}
+    fd Duke-Nukem-II -a -d 1 -e exe . "$MNTDIR/Backups/Zoom" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/duke/duke-nukem-ii -I nukem2.cmp -I nukem2.f1 -I nukem2.f2 -I nukem2.f3 -I nukem2.f4 -I nukem2.f5
+    mv "$GAMESDIR"/duke/duke-nukem-ii/app/* "$GAMESDIR"/duke/duke-nukem-ii
+    fd Duke-Nukem-3D-Atomic-Edition -a -d 1 -e exe . "$MNTDIR/Backups/Zoom" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/duke/duke-nukem-3d/atomic-edition
+    mv "$GAMESDIR"/duke/duke-nukem-3d/atomic-edition/app/* "$GAMESDIR"/duke/duke-nukem-3d/atomic-edition
     ## Fallout
     mkdir -p "$XDG_DATA_HOME"/{fallout-ce,fallout2-ce}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/fallout_game" -x ls -t | head -n1 | xargs innoextract -d "$XDG_DATA_HOME"/fallout-ce -g
