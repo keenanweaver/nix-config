@@ -93,7 +93,7 @@ let
       shipwright
       sm64ex
       space-station-14-launcher
-      inputs.nix-citizen.packages.${system}.star-citizen
+      #inputs.nix-citizen.packages.${system}.star-citizen
       srb2
       theforceengine # Dark Forces / Outlaws
       urbanterror
@@ -111,7 +111,7 @@ let
       cemu
       dolphin-emu
       duckstation
-      easyrpg-player
+      #easyrpg-player
       flycast
       fsuae-launcher
       hypseus-singe
@@ -143,6 +143,7 @@ let
       sc-controller
       ## Launchers & utils
       cartridges
+      itch
       ## Modding
       limo
       nexusmods-app-unfree
@@ -152,7 +153,7 @@ let
       inputs.aaru.packages.${pkgs.system}.default
       adwsteamgtk
       chiaki-ng
-      inputs.nix-game-preservation.packages.${pkgs.system}.discimagecreator
+      inputs.nix-game-preservation.packages.${pkgs.system}.dic-git-full
       ffmpeg
       flips
       gswatcher
@@ -160,13 +161,13 @@ let
       innoextract
       lgogdownloader
       moondeck-buddy # Pending https://github.com/NixOS/nixpkgs/pull/375287
-      inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt
+      #inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt-git
       parsec-bin
       (python3.withPackages (p: with p; [ lnkparse3 ]))
-      inputs.nix-game-preservation.packages.${pkgs.system}.redumper
-      inputs.nix-game-preservation.packages.${pkgs.system}.sabretools
+      inputs.nix-game-preservation.packages.${pkgs.system}.redumper-git
+      #inputs.nix-game-preservation.packages.${pkgs.system}.sabretools-git
       streamcontroller
-      inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp
+      #inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp-git
       xlink-kai
       xvidcore
       ## Wine
@@ -242,6 +243,7 @@ in
         "amdgpu.mcbp=0"
         "tsc=reliable"
         "clocksource=tsc"
+        "mitigations=off"
         "preempt=full" # https://reddit.com/r/linux_gaming/comments/1g0g7i0/god_of_war_ragnarok_crackling_audio/lr8j475/?context=3#lr8j475
       ];
       kernel = {
@@ -298,7 +300,7 @@ in
 
     nixpkgs.config.permittedInsecurePackages = [
       # "freeimage-unstable-2021-11-01" # Trenchbroom / SLADE
-      "SDL_ttf-2.0.11" # Archpelago / appimage-run / losslesscut-bin / protonup-qt
+      # "SDL_ttf-2.0.11" # Archipelago / appimage-run / losslesscut-bin / protonup-qt
     ];
 
     security = {
@@ -366,7 +368,7 @@ in
             text = builtins.readFile (
               builtins.fetchurl {
                 url = "https://raw.githubusercontent.com/streamduck-org/elgato-streamdeck/main/40-streamdeck.rules";
-                sha256 = "sha256-qTgDnriWTPRCr8j0HTjiQY9+g0yI/VY5im4ABW9nPOc=";
+                sha256 = "sha256:1889vvyq8y2fbfnh359gi8pyaqpnbhfyp3ydrpfqx07p4c9qivpp";
               }
             );
             destination = "/etc/udev/rules.d/40-streamdeck.rules";
@@ -699,9 +701,6 @@ in
               "net.nmlgc.rec98.sh01"
               "net.shadps4.shadPS4"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
-              "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
-              "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08"
-              "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/24.08"
               "org.openfodder.OpenFodder"
               "org.openjkdf2.OpenJKDF2"
               "org.sonic3air.Sonic3AIR"
