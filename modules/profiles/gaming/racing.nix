@@ -35,7 +35,7 @@ in
         };
       };
       systemPackages = with pkgs; [
-        #boxflat
+        boxflat
         oversteer
         usb-modeswitch
         usb-modeswitch-data
@@ -47,13 +47,8 @@ in
     services = {
       udev = {
         packages = with pkgs; [
-          (writeTextFile {
-            name = "70-logitech-g920.rules";
-            text = ''
-              ATTR{idVendor}=="046d", ATTR{idProduct}=="c261", RUN+="${pkgs.usb-modeswitch}/bin/usb_modeswitch -c '/etc/usb_modeswitch.d/046d:c261'"
-            '';
-            destination = "/etc/udev/rules.d/70-logitech-g920.rules";
-          })
+          boxflat
+          oversteer
         ];
       };
     };
