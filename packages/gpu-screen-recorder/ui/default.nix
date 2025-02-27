@@ -15,18 +15,19 @@
   libXi,
   libXcursor,
   libglvnd,
+  libpulseaudio,
   wrapperDir ? "/run/wrappers/bin",
   gitUpdater,
 }:
 
 stdenv.mkDerivation rec {
   pname = "gpu-screen-recorder-ui";
-  version = "1.1.7";
+  version = "1.2.0";
 
   src = fetchgit {
     url = "https://repo.dec05eba.com/${pname}";
-    rev = version;
-    hash = "sha256-8KBBuZhb5e/Xh2MwxHSVXLETQz9Koi+0IEdp2adp0aM=";
+    tag = version;
+    hash = "sha256-dgT+hDnRFgv02RH7Z2fAMwEIOdgz+bSgU1cMv20TL4w=";
   };
 
   postPatch = ''
@@ -54,6 +55,7 @@ stdenv.mkDerivation rec {
     libXi
     libXcursor
     libglvnd
+    libpulseaudio
   ];
 
   mesonFlags = [
