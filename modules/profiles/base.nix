@@ -75,7 +75,7 @@ in
       homeBinInPath = true;
       localBinInPath = true;
       shells = with pkgs; [
-        bashInteractive
+        bash
         zsh
       ];
       stub-ld.enable = true;
