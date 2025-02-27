@@ -27,11 +27,11 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "gpu-screen-recorder";
-  version = "5.1.3";
+  version = "5.2.0";
 
   src = fetchurl {
     url = "https://dec05eba.com/snapshot/gpu-screen-recorder.git.${finalAttrs.version}.tar.gz";
-    hash = "sha256-GksUkyw8BOxLKrBD7q9rcs7IhvoujioFBJkma2vESdw=";
+    hash = "sha256-7aUW0WhoTpkJhj9WjjI2lnq+vOCG53vl/4DckHmLPBo=";
   };
 
   sourceRoot = ".";
@@ -69,6 +69,11 @@ stdenv.mkDerivation (finalAttrs: {
     (lib.mesonBool "nvidia_suspend_fix" false)
   ];
 
+  postPatch = ''
+    substituteInPlace extra/gpu-screen-recorder.service \
+      --replace-fail "ExecStart=gpu-screen-recorder" "ExecStart=$out/bin/gpu-screen-recorder"
+  '';
+
   postInstall = ''
     mkdir $out/bin/.wrapped
     mv $out/bin/gpu-screen-recorder $out/bin/.wrapped/
@@ -83,7 +88,7 @@ stdenv.mkDerivation (finalAttrs: {
       --suffix PATH : "$out/bin"
   '';
 
-  passthru.updateScript = gitUpdater { url = "https://repo.dec05eba.com/gpu-screen-recorder"; };
+  passthru.updateScript = gitUpdater { };
 
   meta = {
     description = "Screen recorder that has minimal impact on system performance by recording a window using the GPU only";

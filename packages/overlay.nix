@@ -4,7 +4,7 @@
   doomrunner = prev.callPackage ./doomrunner { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui { };
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif { };
-  gsr = prev.callPackage ./gpu-screen-recorder { };
+  gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder { };
   hypseus-singe = prev.callPackage ./hypseus-singe { };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nugget-doom = prev.callPackage ./nugget-doom { };
