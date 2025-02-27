@@ -2,7 +2,7 @@
   imports = [
     ./base.nix
     ./desktop.nix
-    ./gaming.nix
+    ./gaming
     ./hardening.nix
     ./nonfree.nix
     ./office.nix

@@ -443,7 +443,7 @@ in
       {
 
         imports = [
-          ../apps/ludusavi
+          ../../apps/ludusavi
         ];
 
         home.file = {

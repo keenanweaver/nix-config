@@ -9,7 +9,6 @@
 
     # Profiles
     ./profiles
-    ./profiles/gaming
 
     # Secrets
     ../secrets
