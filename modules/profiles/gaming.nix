@@ -139,7 +139,6 @@ let
       xemu
       ## Input
       joystickwake
-      oversteer
       sc-controller
       ## Launchers & utils
       cartridges
@@ -216,6 +215,7 @@ in
     mangohud.enable = true;
     nonfree.enable = true;
     obs.enable = true;
+    racing.enable = true;
     steam.enable = true;
     sunshine.enable = true;
     vkbasalt.enable = true;
@@ -226,7 +226,6 @@ in
         options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
       '';
       extraModulePackages = with config.boot.kernelPackages; [
-        universal-pidff
         v4l2loopback
         zenergy
       ];
@@ -261,7 +260,6 @@ in
     };
 
     hardware = {
-      new-lg4ff.enable = true;
       uinput.enable = true;
     };
 
@@ -363,6 +361,21 @@ in
         '';
         packages = with pkgs; [
           game-devices-udev-rules
+          (writeTextFile {
+            name = "70-8bitdo.rules";
+            text = ''
+              # 8BitDo Arcade Stick; Bluetooth (X-mode)
+              SUBSYSTEM=="input", ATTRS{name}=="8BitDo Arcade Stick", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
+              # 8BitDo Ultimate 2.4G Wireless  Controller; USB/2.4Ghz
+              # X-mode
+              SUBSYSTEM=="usb", ATTR{idProduct}=="3106", ATTR{idVendor}=="2dc8", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
+              # D-mode
+              SUBSYSTEM=="usb", ATTR{idProduct}=="3012", ATTR{idVendor}=="2dc8", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
+              # 8BitDo Ultimate 2C Wireless Controller; USB/2.4GHz
+              SUBSYSTEM=="usb", ATTR{idProduct}=="310a", ATTR{idVendor}=="2dc8", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
+            '';
+            destination = "/etc/udev/rules.d/70-8bitdo.rules";
+          })
           (writeTextFile {
             name = "40-streamdeck.rules";
             text = builtins.readFile (
