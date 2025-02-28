@@ -16,6 +16,7 @@
   freetype,
   gbenchmark,
   icu,
+  innoextract,
   jansson,
   libGLU,
   libiconv,
@@ -25,12 +26,12 @@
   libvorbis,
   libzip,
   nlohmann_json,
-  rapidjson,
   openssl,
   pkg-config,
   speexdsp,
   zlib,
 }:
+
 let
   openrct2-version = "0.4.20";
 
@@ -60,7 +61,7 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "openrct2";
-  version = "0.4.20";
+  version = openrct2-version;
 
   src = fetchFromGitHub {
     owner = "OpenRCT2";
@@ -86,6 +87,7 @@ stdenv.mkDerivation (finalAttrs: {
     freetype
     gbenchmark
     icu
+    innoextract
     jansson
     libGLU
     libiconv
@@ -95,17 +97,16 @@ stdenv.mkDerivation (finalAttrs: {
     libvorbis
     libzip
     nlohmann_json
-    rapidjson
     openssl
     speexdsp
     zlib
   ];
 
   cmakeFlags = [
-    (lib.cmakeBool "DOWNLOAD_OBJECTS" false)
-    (lib.cmakeBool "DOWNLOAD_OPENMSX" false)
-    (lib.cmakeBool "DOWNLOAD_OPENSFX" false)
-    (lib.cmakeBool "DOWNLOAD_TITLE_SEQUENCES" false)
+    "-DDOWNLOAD_OBJECTS=OFF"
+    "-DDOWNLOAD_OPENMSX=OFF"
+    "-DDOWNLOAD_OPENSFX=OFF"
+    "-DDOWNLOAD_TITLE_SEQUENCES=OFF"
   ];
 
   postUnpack = ''
@@ -114,6 +115,12 @@ stdenv.mkDerivation (finalAttrs: {
     unzip -o ${openmsx} -d $sourceRoot/data
     unzip -o ${opensfx} -d $sourceRoot/data
     unzip -o ${title-sequences} -d $sourceRoot/data/sequence
+  '';
+
+  # Fix blank changelog & contributors screen. See https://github.com/OpenRCT2/OpenRCT2/issues/16988
+  postPatch = ''
+    substituteInPlace src/openrct2/platform/Platform.Linux.cpp \
+      --replace-fail "/usr/share/doc/openrct2" "$out/share/doc/openrct2"
   '';
 
   preConfigure =
@@ -131,18 +138,15 @@ stdenv.mkDerivation (finalAttrs: {
       + (versionCheck "TITLE_SEQUENCE" title-sequences-version)
     );
 
-  # Fix blank changelog & contributors screen. See https://github.com/OpenRCT2/OpenRCT2/issues/16988
-  postPatch = ''
-    substituteInPlace src/openrct2/platform/Platform.Linux.cpp \
-      --replace-fail "/usr/share/doc/openrct2" "$out/share/doc/openrct2"
-  '';
-
   meta = {
     description = "Open source re-implementation of RollerCoaster Tycoon 2 (original game required)";
     homepage = "https://openrct2.io/";
     downloadPage = "https://github.com/OpenRCT2/OpenRCT2/releases";
     license = lib.licenses.gpl3Only;
-    platforms = lib.platforms.linux;
-    maintainers = with lib.maintainers; [ oxzi ];
+    platforms = lib.platforms.all;
+    maintainers = with lib.maintainers; [
+      oxzi
+      keenanweaver
+    ];
   };
 })
