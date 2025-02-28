@@ -81,7 +81,7 @@ let
       openloco # Locomotion
       # opennox
       openomf
-      # openrct2
+      openrct2
       openttd
       opentyrian
       openxray # STALKER
@@ -652,14 +652,16 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "io.openrct2.OpenRCT2" = {
-                Context = {
-                  filesystems = [ "${config.home.homeDirectory}/Games/rollercoaster-tycoon" ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
+              /*
+                "io.openrct2.OpenRCT2" = {
+                             Context = {
+                               filesystems = [ "${config.home.homeDirectory}/Games/rollercoaster-tycoon" ];
+                             };
+                             Environment = {
+                               PULSE_SINK = "Game";
+                             };
+                           };
+              */
               "net.shadps4.shadPS4" = {
                 Context = {
                   filesystems = [
@@ -710,7 +712,7 @@ in
               "io.github.ryubing.Ryujinx"
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
-              "io.openrct2.OpenRCT2"
+              #"io.openrct2.OpenRCT2"
               "net.nmlgc.rec98.sh01"
               "net.shadps4.shadPS4"
               "net.sourceforge.uqm_mods.UQM-MegaMod"

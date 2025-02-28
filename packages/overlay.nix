@@ -10,6 +10,7 @@
   nugget-doom = prev.callPackage ./nugget-doom { };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
   openomf = prev.callPackage ./openomf { };
+  openrct2 = prev.callPackage ./openrct2 { };
   perfect_dark = prev.callPackage ./perfect_dark { };
   plymouth = prev.plymouth.overrideAttrs (
     { src, ... }:
