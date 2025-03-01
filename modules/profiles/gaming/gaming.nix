@@ -111,7 +111,7 @@ let
       cemu
       dolphin-emu
       duckstation
-      #easyrpg-player
+      easyrpg-player
       flycast
       fsuae-launcher
       hypseus-singe

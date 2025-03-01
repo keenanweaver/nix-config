@@ -6,6 +6,7 @@
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif { };
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder { };
   hypseus-singe = prev.callPackage ./hypseus-singe { };
+  liblcf = prev.callPackage ./rpg-maker/liblcf.nix { };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nugget-doom = prev.callPackage ./nugget-doom { };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
