@@ -91,7 +91,7 @@ in
               round_corners=10
               no_display
               legacy_layout=0 # For scripts that rely on the new layout
-              font_file=${pkgs.lexend}/share/fonts/truetype/lexend/lexend/Lexend-Bold.ttf
+              font_file=${pkgs.atkinson-hyperlegible-next}/share/fonts/opentype/AtkinsonHyperlegibleNext-Bold.otf
               toggle_fps_limit=Shift_R+F1
               toggle_hud=Alt_R+Shift_R
               toggle_hud_position=Shift_R+F11

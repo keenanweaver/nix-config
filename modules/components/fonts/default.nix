@@ -26,7 +26,7 @@ in
         #adwaita-fonts
         corefonts
         inter
-        lato
+        #lato
         liberation_ttf
         material-design-icons
         nerd-fonts.jetbrains-mono
@@ -34,12 +34,12 @@ in
         noto-fonts-cjk-sans
         noto-fonts-emoji
         noto-fonts-lgc-plus
-        rubik
+        #rubik
         source-han-sans
         source-han-sans-japanese
         source-han-serif-japanese
         ubuntu-sans
-        ultimate-oldschool-pc-font-pack
+        #ultimate-oldschool-pc-font-pack
         wqy_zenhei
       ];
       fontconfig = {
