@@ -16,8 +16,14 @@ in
   };
   config = lib.mkIf cfg.enable {
     boot = {
+      blacklistedKernelModules = [ "hid-thrustmaster" ];
       extraModulePackages = with config.boot.kernelPackages; [
+        hid-tmff2
         universal-pidff
+      ];
+      kernelModules = [
+        "hid-tmff2"
+        "universal-pidff"
       ];
     };
     environment = {

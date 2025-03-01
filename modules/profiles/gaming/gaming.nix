@@ -222,20 +222,18 @@ in
     zerotier.enable = true;
 
     boot = {
-      extraModprobeConfig = ''
-        options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
-      '';
       extraModulePackages = with config.boot.kernelPackages; [
-        v4l2loopback
+        gcadapter-oc-kmod
         zenergy
       ];
       initrd = {
         kernelModules = [
-          "hid-nintendo"
-          "hid-playstation"
           "zenergy"
         ];
       };
+      kernelModules = [
+        "gcadapter_oc"
+      ];
       kernelParams = [
         "usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
         "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
