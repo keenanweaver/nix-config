@@ -489,6 +489,21 @@
             };
           };
         }
+        {
+          description = "spectacle";
+          match = {
+            window-class = {
+              value = "spectacle";
+              type = "regex";
+            };
+          };
+          apply = {
+            adaptivesync = {
+              value = false;
+              apply = "force";
+            };
+          };
+        }
       ];
     };
   };
