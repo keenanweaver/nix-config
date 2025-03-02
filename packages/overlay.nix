@@ -5,6 +5,7 @@
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui { };
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif { };
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder { };
+  heroic-unwrapped = prev.callPackage ./heroic { };
   hypseus-singe = prev.callPackage ./hypseus-singe { };
   liblcf = prev.callPackage ./rpg-maker/liblcf.nix { };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
