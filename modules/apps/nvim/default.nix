@@ -208,9 +208,6 @@ in
                 neorg = {
                   enable = true;
                 };
-                orgmode = {
-                  enable = true;
-                };
                 todo-comments = {
                   enable = true;
                 };
