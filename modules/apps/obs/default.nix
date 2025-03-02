@@ -49,17 +49,15 @@ in
       };
       services.flatpak = {
         # Somehow makes frametimes worse in games when set to non-Wayland
-        /*
-          overrides = lib.mkIf cfg.enableFlatpak {
-                 "com.obsproject.Studio" = {
-                   Context = {
-                     sockets = [
-                       "!wayland" # Disable Wayland so it shows Twitch panels
-                     ];
-                   };
-                 };
-               };
-        */
+        overrides = lib.mkIf cfg.enableFlatpak {
+          "com.obsproject.Studio" = {
+            Context = {
+              sockets = [
+                "!wayland" # Disable Wayland so it shows Twitch panels / mouse cursor capture in games
+              ];
+            };
+          };
+        };
         packages = lib.mkIf cfg.enableFlatpak [
           "com.obsproject.Studio"
           "com.obsproject.Studio.Plugin.InputOverlay"
