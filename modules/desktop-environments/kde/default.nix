@@ -76,7 +76,6 @@ in
     # Neochat
     nixpkgs.config.permittedInsecurePackages = [
       "olm-3.2.16"
-      "SDL_ttf-2.0.11" # Archipelago / appimage-run / losslesscut-bin / protonup-qt
     ];
     programs = {
       fuse.userAllowOther = true;

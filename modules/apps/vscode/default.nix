@@ -20,7 +20,7 @@ let
       mkhl.direnv
       #ms-python.python
       ms-vscode.powershell
-      ms-vscode-remote.remote-containers
+      #ms-vscode-remote.remote-containers
       #ms-vscode-remote.remote-ssh
       #redhat.ansible
       redhat.vscode-xml

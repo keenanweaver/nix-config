@@ -299,9 +299,6 @@ in
         # "freeimage-unstable-2021-11-01" # Trenchbroom / SLADE
         # "SDL_ttf-2.0.11" # Archipelago / appimage-run / losslesscut-bin / protonup-qt
       ];
-      overlays = [
-        inputs.umu.overlays.default
-      ];
     };
 
     security = {
@@ -627,6 +624,11 @@ in
           RPG2K3_RTP_PATH = "${config.xdg.dataHome}/games/rpg-maker/RTP/2003";
           # https://gitlab.com/OpenMW/openmw/-/issues/6185
           OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
+        };
+        nixpkgs = {
+          overlays = [
+            inputs.umu.overlays.default
+          ];
         };
         services = {
           flatpak = {
