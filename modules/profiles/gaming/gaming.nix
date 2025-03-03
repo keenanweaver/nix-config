@@ -172,7 +172,7 @@ let
       ## Wine
       inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
       inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
-      inputs.umu.packages.${pkgs.system}.default
+      umu-launcher
       winetricks
       # wineWowPackages.stagingFull
       ## One-and-dones
@@ -294,10 +294,15 @@ in
       ];
     };
 
-    nixpkgs.config.permittedInsecurePackages = [
-      # "freeimage-unstable-2021-11-01" # Trenchbroom / SLADE
-      # "SDL_ttf-2.0.11" # Archipelago / appimage-run / losslesscut-bin / protonup-qt
-    ];
+    nixpkgs = {
+      config.permittedInsecurePackages = [
+        # "freeimage-unstable-2021-11-01" # Trenchbroom / SLADE
+        # "SDL_ttf-2.0.11" # Archipelago / appimage-run / losslesscut-bin / protonup-qt
+      ];
+      overlays = [
+        inputs.umu.overlays.default
+      ];
+    };
 
     security = {
       pam = {
