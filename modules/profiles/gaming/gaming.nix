@@ -259,6 +259,7 @@ in
 
     hardware = {
       uinput.enable = true;
+      xpadneo.enable = true;
     };
 
     networking = {
