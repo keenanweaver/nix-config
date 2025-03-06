@@ -186,6 +186,7 @@ Run the commands:
     mv "$GAMESDIR"/duke/duke-nukem-ii/app/* "$GAMESDIR"/duke/duke-nukem-ii
     fd Duke-Nukem-3D-Atomic-Edition -a -d 1 -e exe . "$MNTDIR/Backups/Zoom" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/duke/duke-nukem-3d/atomic-edition
     mv "$GAMESDIR"/duke/duke-nukem-3d/atomic-edition/app/* "$GAMESDIR"/duke/duke-nukem-3d/atomic-edition
+    fd 'Duke-Nukem-3D-DLC-Pack' -a -d 1 -e tar.xz . "$MNTDIR/Backups/Zoom" -x tar xf {} --directory="$GAMESDIR"/duke/duke-3d/
     ## Fallout
     mkdir -p "$XDG_DATA_HOME"/{fallout-ce,fallout2-ce}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/fallout_game" -x ls -t | head -n1 | xargs innoextract -d "$XDG_DATA_HOME"/fallout-ce -g
@@ -205,6 +206,9 @@ Run the commands:
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/jagged_alliance_2" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/jagged-alliance-2/ja2
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/jagged_alliance_2_unfinished_business" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/jagged-alliance-2/unfinished-business
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/jagged_alliance_2_wildfire" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/jagged-alliance-2/wildfire
+    mv "$GAMESDIR"/jagged-alliance-2/ja2/app/* "$GAMESDIR"/jagged-alliance-2/ja2
+    mv "$GAMESDIR"/jagged-alliance-2/unfinished-business/app/* "$GAMESDIR"/jagged-alliance-2/unfinished-business
+    mv "$GAMESDIR"/jagged-alliance-2/wildfire/app/* "$GAMESDIR"/jagged-alliance-2/wildfire
     ## Jazz Jackrabbit 2
     mkdir -p "$XDG_DATA_HOME"/Jazz² Resurrection/Source
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/jazz_jackrabbit_2_secret_files" -x ls -t | head -n1 | xargs innoextract -g -d "$XDG_DATA_HOME"/Jazz² Resurrection/Source
