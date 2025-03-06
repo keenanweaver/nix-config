@@ -2,7 +2,7 @@
 * ASRock X870E Taichi
 * AMD Ryzen 9 7950X3D
 * XFX Speedster MERC310 AMD Radeon RX 7900XTX
-* CORSAIR VENGEANCE DDR5 RAM 128GB (4x32GB) 6400MHz
+* CORSAIR VENGEANCE DDR5 RAM 64GB (2x32GB) 6400MHz
 * NZXT Kraken Elite 360mm AIO CPU Cooler
 * Corsair RM850e (2023) PSU
 * Crucial T700 2TB Gen5 NVMe M.2 SSD
@@ -21,9 +21,12 @@
 * Audiotechnica ATH-AD700X
 * Beyerdynamic DT 880 Premium 600 OHM Headphones
 ### Game
+* 8BitDo Ultimate 2 Wireless Controller
 * 8BitDo Ultimate 2.4G Controller
+* 8BitDo Ultimate 2C Wireless Controller
 * 8BitDo Arcade Stick for Xbox
 * Junkfood Snack Box MICRO XL
+* Logitech G920 Racing Wheel
 * Sony Dualsense
 * Elgato Stream Deck MK.2
 # BIOS settings
