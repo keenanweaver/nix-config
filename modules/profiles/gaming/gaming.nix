@@ -226,13 +226,9 @@ in
         gcadapter-oc-kmod
         zenergy
       ];
-      initrd = {
-        kernelModules = [
-          "zenergy"
-        ];
-      };
       kernelModules = [
         "gcadapter_oc"
+        "zenergy"
       ];
       kernelParams = [
         "usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
@@ -292,13 +288,6 @@ in
       extra-trusted-public-keys = [
         "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-      ];
-    };
-
-    nixpkgs = {
-      config.permittedInsecurePackages = [
-        # "freeimage-unstable-2021-11-01" # Trenchbroom / SLADE
-        # "SDL_ttf-2.0.11" # Archipelago / appimage-run / losslesscut-bin / protonup-qt
       ];
     };
 
@@ -380,9 +369,9 @@ in
           (writeTextFile {
             name = "40-streamdeck.rules";
             text = builtins.readFile (
-              builtins.fetchurl {
+              pkgs.fetchurl {
                 url = "https://raw.githubusercontent.com/streamduck-org/elgato-streamdeck/main/40-streamdeck.rules";
-                sha256 = "sha256:0bagnv3lmxklsh7yll2jdj9bdrfa341kj7p66why8ybg9i7i3mji";
+                hash = "sha256-UdYRT0xveeQhN+YeOQMZyuW2kmxSUOoP1HT2Sse2Ty0=";
               }
             );
             destination = "/etc/udev/rules.d/40-streamdeck.rules";
@@ -556,13 +545,19 @@ in
                 sd
               ];
               text = ''
-                fd run.bat $EXODOS -x sd 'CONFIG -set "mididevice=fluidsynth"' 'CONFIG -set "mididevice=alsa"' {}
+                fd -t file "run.bat" $EXODOS -x sd 'CONFIG -set "mididevice=fluidsynth"' 'CONFIG -set "mididevice=alsa"' {}
               '';
             })
             (writeShellApplication {
               name = "script-game-stuff";
               runtimeEnv = {
                 DREAMM = "https://aarongiles.com/dreamm/releases/dreamm-3.0.3-linux-x64.tgz";
+                GAMES_DIR = "${config.home.homeDirectory}/Games";
+                LOCAL_BIN = "${config.home.homeDirectory}/.local/bin";
+                STL_DEFAULT = "${config.xdg.configHome}/steamtinkerlaunch/default_template.conf";
+                STL_GAMECFGS = "${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/id";
+                STL_GLOBAL = "${config.xdg.configHome}/steamtinkerlaunch/global.conf";
+                STL_GLOBAL_CUSTOM_VARS = "${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/customvars/global-custom-vars.conf";
               };
               runtimeInputs = [
                 coreutils
@@ -577,29 +572,29 @@ in
               text = ''
                 ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
                 steamtinkerlaunch compat add
-                sd 'YAD="(.*?)"' 'YAD="/etc/profiles/per-user/${username}/bin/yad"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
-                sd 'STLEDITOR="(.*?)"' 'STLEDITOR="/etc/profiles/per-user/${username}/bin/kate"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
-                sd 'SKIPINTDEPCHECK="(.*?)"' 'SKIPINTDEPCHECK="1"' ${config.xdg.configHome}/steamtinkerlaunch/global.conf
-                sd 'USEGAMEMODERUN="(.*?)"' 'USEGAMEMODERUN="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                sd 'USEOBSCAP="(.*?)"' 'USEOBSCAP="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                sd 'USEMANGOHUD="(.*?)"' 'USEMANGOHUD="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                sd 'MAHUDLSYM="(.*?)"' 'MAHUDLSYM="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                sd 'USERAYTRACING="(.*?)"' 'USERAYTRACING="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                sd 'USEPROTON="(.*?)"' 'USEPROTON="Proton-GE"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                sd 'DXVK_HDR="(.*?)"' 'DXVK_HDR="1"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                sd 'GAMESCOPE_ARGS="(.*?)"' 'GAMESCOPE_ARGS="-W 2560 -H 1440 -f -r 360 --hdr-enabled --force-grab-cursor --"' ${config.xdg.configHome}/steamtinkerlaunch/default_template.conf
-                echo 'PULSE_SINK=Game' > ${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/customvars/global-custom-vars.conf
-                fd . '${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/id' -e .conf -x rm {}
+                sd 'YAD="(.*?)"' 'YAD="/etc/profiles/per-user/${username}/bin/yad"' $STL_GLOBAL
+                sd 'STLEDITOR="(.*?)"' 'STLEDITOR="/etc/profiles/per-user/${username}/bin/kate"' $STL_GLOBAL
+                sd 'SKIPINTDEPCHECK="(.*?)"' 'SKIPINTDEPCHECK="1"' $STL_GLOBAL
+                sd 'USEGAMEMODERUN="(.*?)"' 'USEGAMEMODERUN="1"' $STL_DEFAULT
+                sd 'USEOBSCAP="(.*?)"' 'USEOBSCAP="1"' $STL_DEFAULT
+                sd 'USEMANGOHUD="(.*?)"' 'USEMANGOHUD="1"' $STL_DEFAULT
+                sd 'MAHUDLSYM="(.*?)"' 'MAHUDLSYM="1"' $STL_DEFAULT
+                sd 'USERAYTRACING="(.*?)"' 'USERAYTRACING="1"' $STL_DEFAULT
+                sd 'USEPROTON="(.*?)"' 'USEPROTON="Proton-GE"' $STL_DEFAULT
+                sd 'DXVK_HDR="(.*?)"' 'DXVK_HDR="1"' $STL_DEFAULT
+                sd 'GAMESCOPE_ARGS="(.*?)"' 'GAMESCOPE_ARGS="-W 2560 -H 1440 -f -r 360 --hdr-enabled --force-grab-cursor --"' $STL_DEFAULT
+                echo 'PULSE_SINK=Game' > "$STL_CUSTOM_VARS"
+                fd . $STL_GAMECFGS -e .conf -x rm {}
                 ## DREAMM
-                xh get -d -o ${config.home.homeDirectory}/Games/games/dreamm.tgz $DREAMM
-                fd dreamm -e tgz ${config.home.homeDirectory}/Games/games -x ouch d {} -d ${config.home.homeDirectory}/Games/games
+                xh get -d -o "$GAMES_DIR"/games/dreamm.tgz $DREAMM
+                fd dreamm -e tgz "$GAMES_DIR"/games -x ouch d {} -d "$GAMES_DIR"/games
                 ## SheepShaver
-                xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/sheepshaver.appimage
+                xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o $LOCAL_BIN/sheepshaver.appimage
                 ## MoonDeck Buddy
-                xh https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/moondeckbuddy.appimage
+                xh https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o $LOCAL_BIN/moondeckbuddy.appimage
                 ## Conty
-                xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o ${config.home.homeDirectory}/.local/bin/conty_lite.sh
-                chmod +x ${config.home.homeDirectory}/.local/bin/conty_lite.sh
+                xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o $LOCAL_BIN/.local/bin/conty_lite.sh
+                chmod +x $LOCAL_BIN/.local/bin/conty_lite.sh
               '';
             })
             # https://www.resetera.com/threads/linux-steamos-ot-its-a-linux-system%E2%80%A6-i-know-this.557173/page-36#post-130996374
@@ -658,16 +653,6 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              /*
-                "io.openrct2.OpenRCT2" = {
-                             Context = {
-                               filesystems = [ "${config.home.homeDirectory}/Games/rollercoaster-tycoon" ];
-                             };
-                             Environment = {
-                               PULSE_SINK = "Game";
-                             };
-                           };
-              */
               "net.shadps4.shadPS4" = {
                 Context = {
                   filesystems = [
@@ -718,7 +703,6 @@ in
               "io.github.ryubing.Ryujinx"
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
-              #"io.openrct2.OpenRCT2"
               "net.nmlgc.rec98.sh01"
               "net.shadps4.shadPS4"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
@@ -779,11 +763,19 @@ in
                   store = "lutris";
                 }
                 {
+                  path = "${config.home.homeDirectory}/Games/Bottles/Battle.net";
+                  store = "otherWine";
+                }
+                {
                   path = "${config.home.homeDirectory}/Games/Bottles/GOG-Galaxy";
                   store = "otherWine";
                 }
                 {
                   path = "${config.home.homeDirectory}/Games/Bottles/itch.io";
+                  store = "otherWine";
+                }
+                {
+                  path = "${config.home.homeDirectory}/Games/Bottles/Uplay";
                   store = "otherWine";
                 }
                 {
