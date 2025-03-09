@@ -30,6 +30,14 @@ in
     zed.enable = false;
     zen-browser.enable = true;
 
+    boot = {
+      binfmt = {
+        emulatedSystems = [
+          "aarch64-linux"
+        ];
+      };
+    };
+
     hardware = {
       bluetooth = {
         enable = true;

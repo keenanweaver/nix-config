@@ -34,7 +34,7 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:nixos/nixos-hardware";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -312,7 +312,7 @@
             ];
           };
           # Pi
-          remorse = nixpkgs.lib.nixosSystem {
+          remorsepi = nixpkgs.lib.nixosSystem {
             system = "aarch64-linux";
 
             specialArgs = {
@@ -331,6 +331,7 @@
 
               inputs.chaotic.nixosModules.default
               inputs.nix-flatpak.nixosModules.nix-flatpak
+              inputs.nixos-hardware.nixosModules.raspberry-pi-4
               inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
@@ -345,7 +346,6 @@
                       gaming = false;
                     };
                   };
-                  useGlobalPkgs = true;
                   useUserPackages = true;
                   users.${username} = {
                     home = {
@@ -358,6 +358,58 @@
                     inputs.nix-index-database.hmModules.nix-index
                     inputs.nur.modules.homeManager.default
                     inputs.sops-nix.homeManagerModules.sops
+                  ];
+                };
+              }
+            ];
+          };
+          regretpi = nixpkgs.lib.nixosSystem {
+            system = "aarch64-linux";
+
+            specialArgs = {
+              inherit inputs;
+              inherit fullname username dotfiles;
+
+              vars = {
+                desktop = false;
+                gaming = false;
+              };
+            };
+
+            modules = [
+
+              ./hosts/pi/regret.nix
+
+              inputs.catppuccin.nixosModules.catppuccin
+              inputs.chaotic.nixosModules.default
+              inputs.nix-flatpak.nixosModules.nix-flatpak
+              inputs.nixos-hardware.nixosModules.raspberry-pi-4
+              inputs.nur.modules.nixos.default
+              inputs.quadlet-nix.nixosModules.quadlet
+              inputs.sops-nix.nixosModules.sops
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  backupFileExtension = "hmbak";
+                  useUserPackages = true;
+                  extraSpecialArgs = {
+                    inherit inputs; # Experiment with config and other attributes
+                    inherit fullname username dotfiles;
+
+                    vars = {
+                      desktop = false;
+                      gaming = false;
+                    };
+                  };
+                  sharedModules = with inputs; [
+                    catppuccin.homeManagerModules.catppuccin
+                    nix-flatpak.homeManagerModules.nix-flatpak
+                    nix-index-database.hmModules.nix-index
+                    nur.modules.homeManager.default
+                    quadlet-nix.homeManagerModules.quadlet
+                    nvf.homeManagerModules.default
+                    plasma-manager.homeManagerModules.plasma-manager
+                    sops-nix.homeManagerModules.sops
                   ];
                 };
               }

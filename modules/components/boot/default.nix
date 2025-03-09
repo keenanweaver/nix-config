@@ -2,11 +2,6 @@
 {
 
   boot = {
-    binfmt = {
-      emulatedSystems = [
-        "aarch64-linux"
-      ];
-    };
     consoleLogLevel = 0;
     initrd = {
       systemd.enable = true; # Plymouth login screen

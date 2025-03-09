@@ -67,8 +67,8 @@ in
     };
     system = {
       autoUpgrade = {
-        enable = false;
-        allowReboot = if vars.server then true else false;
+        enable = if vars.desktop then false else true;
+        allowReboot = if vars.desktop then false else true;
         dates = "04:00:00";
         rebootWindow = {
           lower = "04:00";
@@ -107,6 +107,7 @@ in
             nv = "nvim";
             ngc = "nh clean all";
             nor = "nh os switch";
+            npr = "nixpkgs-review pr --print-result";
             psr = "plasmashell --replace & disown";
             rbn = "podman stop -a && systemctl reboot";
             repw = "${lib.optionalString vars.gaming "systemctl --user stop gpu-screen-recorder &&"} systemctl --user restart pipewire{,-pulse} wireplumber ${lib.optionalString vars.gaming "&& systemctl --user start gpu-screen-recorder"}";

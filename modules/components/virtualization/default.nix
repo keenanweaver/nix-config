@@ -30,7 +30,7 @@ in
       ];
     };
     services = {
-      spice-vdagentd.enable = true;
+      spice-vdagentd.enable = vars.desktop;
     };
     virtualisation = {
       podman = {
@@ -42,11 +42,10 @@ in
         defaultNetwork.settings.dns_enabled = true;
         #dockerCompat = true;
         #dockerSocket.enable = true;
-        enableNvidia = if vars.nvidia then true else false;
       };
       libvirtd = {
         # Make sure you run this once: "sudo virsh net-autostart default"
-        enable = true;
+        enable = vars.desktop;
         qemu = {
           swtpm.enable = true;
           ovmf.enable = true;

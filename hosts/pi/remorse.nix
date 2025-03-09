@@ -129,11 +129,11 @@ in
   swapDevices = [ ];
 
   networking = {
-    hostName = "remorse";
+    hostName = "remorsepi";
     interfaces.end0 = {
       ipv4.addresses = [
         {
-          address = "192.168.1.95";
+          address = "192.168.20.30";
           prefixLength = 24;
         }
       ];
