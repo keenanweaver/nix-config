@@ -69,9 +69,6 @@ in
             "libvirtd"
             "podman"
           ];
-          # quadlets
-          autoSubUidGidRange = true;
-          linger = true;
         };
 
         nixosvmtest = {

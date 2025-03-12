@@ -40,10 +40,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvf.url = "github:notashelf/nvf";
-    quadlet-nix = {
-      url = "github:SEIAROTg/quadlet-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     raspberry-pi-nix.url = "github:nix-community/raspberry-pi-nix";
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -220,7 +216,6 @@
               { _module.args.disks = [ "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB" ]; }
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
-              inputs.quadlet-nix.nixosModules.quadlet
               inputs.sops-nix.nixosModules.sops
               inputs.ucodenix.nixosModules.default
               home-manager.nixosModules.home-manager
@@ -242,7 +237,6 @@
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.hmModules.nix-index
                     nur.modules.homeManager.default
-                    quadlet-nix.homeManagerModules.quadlet
                     nvf.homeManagerModules.default
                     plasma-manager.homeManagerModules.plasma-manager
                     sops-nix.homeManagerModules.sops
@@ -385,7 +379,6 @@
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nixos-hardware.nixosModules.raspberry-pi-4
               inputs.nur.modules.nixos.default
-              inputs.quadlet-nix.nixosModules.quadlet
               inputs.sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
               {
@@ -406,7 +399,6 @@
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.hmModules.nix-index
                     nur.modules.homeManager.default
-                    quadlet-nix.homeManagerModules.quadlet
                     nvf.homeManagerModules.default
                     plasma-manager.homeManagerModules.plasma-manager
                     sops-nix.homeManagerModules.sops
