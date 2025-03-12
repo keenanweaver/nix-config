@@ -105,6 +105,7 @@ in
           filezilla
           fooyin
           gearlever
+          hacompanion
           halloy
           handbrake
           kdePackages.kdenlive
@@ -114,7 +115,7 @@ in
           mousai
           neo
           picard
-          projectm
+          projectm-sdl-cpp
           puddletag
           qpwgraph
           qtscrcpy
