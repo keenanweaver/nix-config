@@ -375,7 +375,7 @@
             captureActiveWindow = "Meta+Print";
             captureCurrentMonitor = "Print";
             captureEntireDesktop = "Shift+Print";
-            #captureRectangularRegion = "Meta+Shift+S";
+            captureRectangularRegion = "Meta+Shift+S";
             captureWindowUnderCursor = "Meta+Ctrl+Print";
             launch = "Meta+S";
             launchWithoutCapturing = "Meta+Alt+S";
