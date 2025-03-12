@@ -282,7 +282,7 @@ in
                 Color=205,214,244
 
                 [General]
-                Blur=true
+                Blur=false
                 ColorRandomization=false
                 Description=Catppuccin Mocha (transparent)
                 Opacity=0.7
