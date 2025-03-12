@@ -34,6 +34,14 @@ in
     # Also run: steam steam://unlockh264/
     programs.steam = {
       enable = cfg.enableNative;
+      package = pkgs.steam.override {
+        extraPkgs = (
+          pkgs: with pkgs; [
+            gamemode
+          ]
+        );
+        #privateTmp = false; # Pending https://github.com/NixOS/nixpkgs/pull/387186
+      };
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         luxtorpeda

@@ -160,13 +160,13 @@ let
       innoextract
       lgogdownloader
       moondeck-buddy # Pending https://github.com/NixOS/nixpkgs/pull/375287
-      #inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt-git
+      inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt-git
       parsec-bin
       (python3.withPackages (p: with p; [ lnkparse3 ]))
       inputs.nix-game-preservation.packages.${pkgs.system}.redumper-git
-      #inputs.nix-game-preservation.packages.${pkgs.system}.sabretools-git
+      inputs.nix-game-preservation.packages.${pkgs.system}.sabretools-git
       streamcontroller
-      #inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp-git
+      inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp-git
       xlink-kai
       xvidcore
       ## Wine
