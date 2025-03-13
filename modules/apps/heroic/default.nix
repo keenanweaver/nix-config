@@ -59,7 +59,13 @@ in
         home.packages =
           with pkgs;
           lib.mkIf cfg.enableNative [
-            heroic
+            (heroic.override {
+              extraPkgs = (
+                pkgs: [
+                  gamemode
+                ]
+              );
+            })
           ];
         services.flatpak = lib.mkIf cfg.enableFlatpak {
           overrides = {
