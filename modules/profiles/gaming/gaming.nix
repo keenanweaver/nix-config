@@ -245,10 +245,12 @@ in
           "vm.mmap_min_addr" = 0; # SheepShaver
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/sysctl.d/99-cachyos-settings.conf
           "fs.file-max" = 2097152;
-          "fs.inotify.max_user_watches" = 524288;
-          "net.core.netdev_max_backlog" = 16384;
-          "net.core.somaxconn" = 8192;
-          "net.ipv4.tcp_slow_start_after_idle" = 0;
+          "net.core.netdev_max_backlog" = 4096;
+          "vm.dirty_background_bytes" = 67108864;
+          "vm.dirty_bytes" = 268435456;
+          "vm.dirty_writeback_centisecs" = 1500;
+          "vm.page-cluster" = 0;
+          "vm.vfs_cache_pressure" = 50;
         };
       };
     };
@@ -297,26 +299,14 @@ in
           {
             domain = "*";
             item = "memlock";
-            type = "hard";
-            value = "unlimited";
-          }
-          {
-            domain = "*";
-            item = "memlock";
-            type = "soft";
+            type = "-";
             value = "unlimited";
           }
           {
             domain = "*";
             item = "nofile";
-            type = "hard";
-            value = "1048576";
-          }
-          {
-            domain = "*";
-            item = "nofile";
-            type = "soft";
-            value = "16777216";
+            type = "-";
+            value = "2097152";
           }
         ];
       };

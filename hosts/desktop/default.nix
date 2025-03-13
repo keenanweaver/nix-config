@@ -41,7 +41,7 @@
     ];
     kernelParams = lib.mkDefault [
       "amd_iommu=on"
-      "amd_pstate=active"
+      "amd_pstate=guided"
     ];
     loader = {
       systemd-boot = {
