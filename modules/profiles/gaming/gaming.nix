@@ -171,10 +171,19 @@ let
       xvidcore
       ## Wine
       inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
-      inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
+      #inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
       umu-launcher
       winetricks
-      # wineWowPackages.stagingFull
+      (wineWowPackages.unstableFull.overrideAttrs (o: {
+        pname = "wine-tkg-full";
+
+        src = fetchFromGitHub {
+          owner = "Kron4ek";
+          repo = "wine-tkg";
+          rev = "10.3";
+          hash = "sha256-k/poF7UTafHG8Tx9T/lJNQ832vuxsrBB5vx2qScrXA4=";
+        };
+      }))
       ## One-and-dones
       /*
         glxinfo
