@@ -165,25 +165,14 @@ let
       (python3.withPackages (p: with p; [ lnkparse3 ]))
       inputs.nix-game-preservation.packages.${pkgs.system}.redumper-git
       inputs.nix-game-preservation.packages.${pkgs.system}.sabretools-git
-      streamcontroller
       inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp-git
       xlink-kai
       xvidcore
       ## Wine
       inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
-      #inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
+      inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
       umu-launcher
       winetricks
-      (wineWowPackages.unstableFull.overrideAttrs (o: {
-        pname = "wine-tkg-full";
-
-        src = fetchFromGitHub {
-          owner = "Kron4ek";
-          repo = "wine-tkg";
-          rev = "10.3";
-          hash = "sha256-k/poF7UTafHG8Tx9T/lJNQ832vuxsrBB5vx2qScrXA4=";
-        };
-      }))
       ## One-and-dones
       /*
         glxinfo
@@ -300,6 +289,10 @@ in
         "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       ];
+    };
+
+    programs = {
+      streamcontroller.enable = true;
     };
 
     security = {

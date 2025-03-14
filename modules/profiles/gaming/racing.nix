@@ -18,11 +18,11 @@ in
     boot = {
       blacklistedKernelModules = [ "hid-thrustmaster" ];
       extraModulePackages = with config.boot.kernelPackages; [
-        #hid-tmff2
+        hid-tmff2
         universal-pidff
       ];
       kernelModules = [
-        #"hid-tmff2"
+        "hid-tmff2"
         "hid_universal_pidff"
       ];
     };
