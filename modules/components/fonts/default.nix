@@ -17,29 +17,19 @@ in
 
   config = lib.mkIf cfg.enable {
     fonts = {
-      enableDefaultPackages = false;
       fontDir = {
         enable = true;
-        decompressFonts = true;
       };
       packages = with pkgs; [
         adwaita-fonts
         corefonts
-        inter
-        #lato
         liberation_ttf
         material-design-icons
         nerd-fonts.jetbrains-mono
-        noto-fonts
-        noto-fonts-cjk-sans
-        noto-fonts-emoji
-        noto-fonts-lgc-plus
-        #rubik
         source-han-sans
         source-han-sans-japanese
         source-han-serif-japanese
         ubuntu-sans
-        #ultimate-oldschool-pc-font-pack
         wqy_zenhei
       ];
       fontconfig = {
@@ -50,18 +40,13 @@ in
             "Liberation Mono"
           ];
           sansSerif = [
-            "Inter"
+            "Adwaita Sans"
             "Liberation Sans"
           ];
           serif = [
-            "Inter"
             "Liberation Serif"
+            "Adwaita Sans"
           ];
-          emoji = [ "Noto Color Emoji" ];
-        };
-        hinting = {
-          enable = true;
-          style = "slight";
         };
         subpixel.rgba = "rgb";
       };
