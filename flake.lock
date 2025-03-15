@@ -804,11 +804,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1741924180,
-        "narHash": "sha256-9ZoZdBk7IypkQSUF+CoeXU6mVbHVhyfgvO6hZARUivs=",
+        "lastModified": 1742052505,
+        "narHash": "sha256-iaVmq77vt6L7/6ErPWwgYmt4VEUJrKDT0pfmKkWMFxc=",
         "owner": "LovingMelody",
         "repo": "nix-citizen",
-        "rev": "994b68fd8d9c1d026d3412e8bf325e5bae57f5df",
+        "rev": "9bd9557b409b50fe354fc77542227ae51a6f5ead",
         "type": "github"
       },
       "original": {
@@ -1316,10 +1316,10 @@
     "nonfree": {
       "flake": false,
       "locked": {
-        "lastModified": 1733665913,
-        "narHash": "sha256-08n2FSLbRQ5/vNit8aO1YYdKvrjHb3oCOJRrAIahB+c=",
+        "lastModified": 1742054435,
+        "narHash": "sha256-W9bjkdIuFMSxuQIK+W8tEKrhkj0VqKB61BwzkB3jQOY=",
         "ref": "refs/heads/main",
-        "rev": "5a656bbd67924baf53e200553019c4eb503b0d30",
+        "rev": "90b862a9c351b65436f94324877e57400db2b63d",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/keenanweaver/nix-nonfree.git"
@@ -1360,11 +1360,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1742039093,
-        "narHash": "sha256-hu+f1IV6joPX3eUoUeSkNrnFvoJlcuVv8ZzGW1cC6qk=",
+        "lastModified": 1742053504,
+        "narHash": "sha256-3cdNXi+o6syNwJ+ktZLXeuMTnwOOk4HSrNIJtfx0+3U=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "7887073e8a73588c4450a190af4c648aa2ec3cd1",
+        "rev": "0b2a3fadd7505123e37158bd702f618a2c8f011b",
         "type": "github"
       },
       "original": {
