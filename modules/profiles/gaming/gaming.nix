@@ -133,6 +133,7 @@ let
         ]
       ))
       rpcs3
+      ryubing
       scummvm
       supermodel
       nur.repos.novel2430.vita3k
@@ -643,18 +644,6 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "io.github.ryubing.Ryujinx" = {
-                Context = {
-                  filesystems = [
-                    "${config.home.homeDirectory}/Games"
-                    "xdg-data/games"
-                    "!home"
-                  ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
               "net.sourceforge.uqm_mods.UQM-MegaMod" = {
                 Environment = {
                   PULSE_SINK = "Game";
@@ -678,7 +667,6 @@ in
               "com.qzandronum.Q-Zandronum"
               "dev.opengoal.OpenGOAL"
               "io.github.noxworld_dev.OpenNox"
-              "io.github.ryubing.Ryujinx"
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
               "net.nmlgc.rec98.sh01"
