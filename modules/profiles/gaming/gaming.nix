@@ -576,8 +576,8 @@ in
                 sd 'USEPROTON="(.*?)"' 'USEPROTON="Proton-GE"' $STL_DEFAULT
                 sd 'DXVK_HDR="(.*?)"' 'DXVK_HDR="1"' $STL_DEFAULT
                 sd 'GAMESCOPE_ARGS="(.*?)"' 'GAMESCOPE_ARGS="-W 2560 -H 1440 -f -r 360 --hdr-enabled --force-grab-cursor --"' $STL_DEFAULT
-                echo 'PULSE_SINK=Game' > "$STL_CUSTOM_VARS"
-                echo 'WINE_CPU_TOPOLOGY="16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"' >> "$STL_CUSTOM_VARS"
+                echo 'PULSE_SINK=Game' > "$STL_GLOBAL_CUSTOM_VARS"
+                echo 'WINE_CPU_TOPOLOGY="16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"' >> "$STL_GLOBAL_CUSTOM_VARS"
                 fd . $STL_GAMECFGS -e .conf -x rm {}
                 ## DREAMM
                 xh get -d -o "$GAMES_DIR"/games/dreamm.tgz $DREAMM
