@@ -397,7 +397,8 @@ in
       tmpfiles = {
         rules = [
           # AMD V-Cache
-          "w /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode - - - - cache"
+          # https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
+          #"w /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode - - - - cache"
           # https://wiki.archlinux.org/title/Gaming#Make_the_changes_permanent
           "w /proc/sys/vm/compaction_proactiveness - - - - 0"
           "w /proc/sys/vm/watermark_boost_factor - - - - 1"
@@ -576,6 +577,7 @@ in
                 sd 'DXVK_HDR="(.*?)"' 'DXVK_HDR="1"' $STL_DEFAULT
                 sd 'GAMESCOPE_ARGS="(.*?)"' 'GAMESCOPE_ARGS="-W 2560 -H 1440 -f -r 360 --hdr-enabled --force-grab-cursor --"' $STL_DEFAULT
                 echo 'PULSE_SINK=Game' > "$STL_CUSTOM_VARS"
+                echo 'WINE_CPU_TOPOLOGY="16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"' >> "$STL_CUSTOM_VARS"
                 fd . $STL_GAMECFGS -e .conf -x rm {}
                 ## DREAMM
                 xh get -d -o "$GAMES_DIR"/games/dreamm.tgz $DREAMM
@@ -587,22 +589,6 @@ in
                 ## Conty
                 xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o $LOCAL_BIN/.local/bin/conty_lite.sh
                 chmod +x $LOCAL_BIN/.local/bin/conty_lite.sh
-              '';
-            })
-            # https://www.resetera.com/threads/linux-steamos-ot-its-a-linux-system%E2%80%A6-i-know-this.557173/page-36#post-130996374
-            (writeShellApplication {
-              name = "script-wine-cpu-topology";
-              runtimeInputs = [
-                coreutils
-              ];
-              text = ''
-                if [[ -z $1 || $1 -gt $(nproc) || $1 -lt 1 ]]; then
-                  args=$(nproc)
-                else
-                  args=$1
-                fi
-
-                grep "" /sys/devices/system/cpu/cpu*/cpufreq/amd_pstate_prefcore_ranking | sort -n -r -k2 -t: | head -n "$args" | awk -F'[u/]' -v ORS="," '{ print $8}' | head -c-1 | awk -v args="$args" '{printf "WINE_CPU_TOPOLOGY=%s:%s taskset -c %s\n",args, $0, $0}'
               '';
             })
           ]
@@ -837,6 +823,13 @@ in
                   StartupWMClass = "GOG Galaxy";
                 };
               };
+            itch = {
+              name = "itch";
+              comment = "Install and play itch.io games easily";
+              exec = "PULSE_SINK=Game obs-gamecapture gamemoderun mangohud itch";
+              icon = "itch";
+              categories = [ "Game" ];
+            };
             quake-injector = {
               name = "Quake Injector";
               exec = "quake-injector";
