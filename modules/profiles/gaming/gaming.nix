@@ -599,6 +599,7 @@ in
           RPG2K3_RTP_PATH = "${config.xdg.dataHome}/games/rpg-maker/RTP/2003";
           # https://gitlab.com/OpenMW/openmw/-/issues/6185
           OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
+          WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"; # 7950X3D
         };
         nixpkgs = {
           overlays = [
