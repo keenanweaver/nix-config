@@ -39,7 +39,6 @@ in
             gamemode
           ]
         );
-        #privateTmp = false; # Pending https://github.com/NixOS/nixpkgs/pull/387186
       };
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [

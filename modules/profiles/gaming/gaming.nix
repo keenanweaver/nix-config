@@ -578,18 +578,18 @@ in
                 sd 'DXVK_HDR="(.*?)"' 'DXVK_HDR="1"' $STL_DEFAULT
                 sd 'GAMESCOPE_ARGS="(.*?)"' 'GAMESCOPE_ARGS="-W 2560 -H 1440 -f -r 360 --hdr-enabled --force-grab-cursor --"' $STL_DEFAULT
                 echo 'PULSE_SINK=Game' > "$STL_GLOBAL_CUSTOM_VARS"
-                echo 'WINE_CPU_TOPOLOGY="16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"' >> "$STL_GLOBAL_CUSTOM_VARS"
+                echo 'WINE_CPU_TOPOLOGY=16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23' >> "$STL_GLOBAL_CUSTOM_VARS"
                 fd . $STL_GAMECFGS -e .conf -x rm {}
                 ## DREAMM
                 xh get -d -o "$GAMES_DIR"/games/dreamm.tgz $DREAMM
                 fd dreamm -e tgz "$GAMES_DIR"/games -x ouch d {} -d "$GAMES_DIR"/games
                 ## SheepShaver
-                xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o $LOCAL_BIN/sheepshaver.appimage
+                xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/sheepshaver.appimage
                 ## MoonDeck Buddy
-                xh https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o $LOCAL_BIN/moondeckbuddy.appimage
+                xh https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/moondeckbuddy.appimage
                 ## Conty
-                xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o $LOCAL_BIN/.local/bin/conty_lite.sh
-                chmod +x $LOCAL_BIN/.local/bin/conty_lite.sh
+                xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/conty_lite.sh
+                chmod +x "$LOCAL_BIN"/conty_lite.sh
               '';
             })
           ]
