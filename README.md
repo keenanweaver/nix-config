@@ -257,7 +257,8 @@ Run the commands:
     fd -a -d 1 -e zip . "$XDG_DATA_HOME"/perfectdark/data -x rm {}
     ## Quake
     mkdir -p "$GAMESDIR"/quake/quake-1 "$HOME"/.q2pro "$HOME"/.q3a
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/quake_the_offering_game" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/quake/quake-1
+    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/quake_the_offering_game" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/quake/quake-1/original
+    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/quake_enhanced" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/quake/quake-1/enhanced
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/quake_ii_quad_damage_game" -x ls -t | head -n1 | xargs innoextract -g -d "$HOME"/.q2pro
     mv -f "$HOME"/.q2pro/app/* "$HOME"/.q2pro
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/quake_iii_arena_and_team_arena" -x ls -t | head -n1 | xargs innoextract -g -d "$HOME"/.q3a
