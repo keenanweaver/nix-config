@@ -258,6 +258,7 @@ Run the commands:
     ## Quake
     mkdir -p "$GAMESDIR"/quake/quake-1 "$HOME"/.q2pro "$HOME"/.q3a
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/quake_the_offering_game" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/quake/quake-1/original
+    mv "$GAMESDIR"/quake/quake-1/original/app/* "$GAMESDIR"/quake/quake-1/original && rm -rf "$GAMESDIR"/quake/quake-1/original/{app,tmp}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/quake_enhanced" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/quake/quake-1/enhanced
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/quake_ii_quad_damage_game" -x ls -t | head -n1 | xargs innoextract -g -d "$HOME"/.q2pro
     mv -f "$HOME"/.q2pro/app/* "$HOME"/.q2pro
