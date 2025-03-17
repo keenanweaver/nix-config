@@ -208,17 +208,17 @@
     "cpu-microcodes": {
       "flake": false,
       "locked": {
-        "lastModified": 1741558119,
-        "narHash": "sha256-bZfqV9kzuMnzpgQfiXRRtYy/rgtSmaRzGG/v42Tzczc=",
+        "lastModified": 1742056935,
+        "narHash": "sha256-6N7W7rg4AsbgEG/1jByWPJAy9yKaDJ15bfcFWLtzUug=",
         "owner": "platomav",
         "repo": "CPUMicrocodes",
-        "rev": "6f9895d708ee55588cfed9ec66f470eb3c05fb7c",
+        "rev": "8ed9541b297a15ba15f8896d2643db33f5524c54",
         "type": "github"
       },
       "original": {
         "owner": "platomav",
         "repo": "CPUMicrocodes",
-        "rev": "6f9895d708ee55588cfed9ec66f470eb3c05fb7c",
+        "rev": "8ed9541b297a15ba15f8896d2643db33f5524c54",
         "type": "github"
       }
     },
@@ -1041,11 +1041,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740947705,
-        "narHash": "sha256-Co2kAD2SZalOm+5zoxmzEVZNvZ17TyafuFsD46BwSdY=",
+        "lastModified": 1742217219,
+        "narHash": "sha256-pLRjj0jTL1TloB0ptEwVF51IJJX8a17dSxg+gqiWb30=",
         "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "507911df8c35939050ae324caccc7cf4ffb76565",
+        "rev": "83900d5154d840dfae1e0367c5290f59b9dccf03",
         "type": "github"
       },
       "original": {
@@ -1056,11 +1056,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1742216490,
-        "narHash": "sha256-Xy281V/xe/BVrppQVfcgPEgrzyCJOau4Ivj0Ns0ypvc=",
+        "lastModified": 1742217307,
+        "narHash": "sha256-3fwpN7KN226ghLlpO9TR0/WpgQOmOj1e8bieUxpIYSk=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "36d0027ef4a2d23476a5e29bc7f76c8861912b57",
+        "rev": "4f4d97d7b7be387286cc9c988760a7ebaa5be1f1",
         "type": "github"
       },
       "original": {
@@ -1363,11 +1363,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1742215246,
-        "narHash": "sha256-DPvV6F/Rnuw+qiTbyTWXcBSkAreEl4ey02si4n8Qvbk=",
+        "lastModified": 1742226367,
+        "narHash": "sha256-lNnLojSMmgUAcJXEeFzYKE6xuLRl571UHYqMhm5LbeA=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "522ecbc39cb583aff53bffa35d987ab1f98067af",
+        "rev": "9e8f7694a740a12cf3e1697bb8b6d3d27c1f403f",
         "type": "github"
       },
       "original": {
@@ -1459,11 +1459,11 @@
         "rpicam-apps-src": "rpicam-apps-src"
       },
       "locked": {
-        "lastModified": 1740928520,
-        "narHash": "sha256-NL5qZi0iEEvQK9kMF6r48FOk5WMdQExCqodRH3kEr0g=",
+        "lastModified": 1742223591,
+        "narHash": "sha256-ZNTz8r5jlJ1jvpqf5+aUYgpnYJSVX0iP14doOc1Hm0E=",
         "owner": "nix-community",
         "repo": "raspberry-pi-nix",
-        "rev": "3bfda6add79c55f9bf143fac928f54484d450e87",
+        "rev": "3e8100d5e976a6a2be363015cb33463af9ef441a",
         "type": "github"
       },
       "original": {
@@ -1944,11 +1944,11 @@
         "cpu-microcodes": "cpu-microcodes"
       },
       "locked": {
-        "lastModified": 1741610329,
-        "narHash": "sha256-QzNd/La5KSgP+GtjlzRZDGGbs7kkzzz+DapqXcPMyvk=",
+        "lastModified": 1742223551,
+        "narHash": "sha256-b4oU0vU/qNE0t9QsV9ZnstYEGh22wjWO4DBxEDaioY8=",
         "owner": "e-tho",
         "repo": "ucodenix",
-        "rev": "84d7cf2437026e0623a3040a276731871a6af03f",
+        "rev": "cb4306937c25858c61cdbbcd134c131498001e26",
         "type": "github"
       },
       "original": {
