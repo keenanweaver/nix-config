@@ -10,24 +10,34 @@ let
   gamemode-start = (
     pkgs.writeShellApplication {
       name = "gamemode-start";
+      runtimeEnv = {
+        gamemodeStatus = "started";
+        vcacheMode = "cache";
+        vcachePath = "/sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode";
+      };
       runtimeInputs = with pkgs; [
         libnotify
       ];
       text = ''
-        notify-send -t 3000 -u low 'GameMode' 'GameMode started' -i applications-games -a 'GameMode'
-        #kscreen-doctor output.DP-1.wcg.enable output.DP-1.hdr.enable output.DP-1.brightness.100;
+        notify-send -t 3000 -u low "GameMode" "GameMode $gamemodeStatus" -i applications-games -a "GameMode"
+        echo $vcacheMode | sudo tee $vcachePath
       '';
     }
   );
   gamemode-end = (
     pkgs.writeShellApplication {
       name = "gamemode-end";
+      runtimeEnv = {
+        gamemodeStatus = "stopped";
+        vcacheMode = "frequency";
+        vcachePath = "/sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode";
+      };
       runtimeInputs = with pkgs; [
         libnotify
       ];
       text = ''
-        notify-send -t 3000 -u low 'GameMode' 'GameMode stopped' -i applications-games -a 'GameMode'
-        #kscreen-doctor output.DP-1.wcg.disable output.DP-1.hdr.disable output.DP-1.brightness.100;
+        notify-send -t 3000 -u low "GameMode" "GameMode $gamemodeStatus" -i applications-games -a "GameMode"
+        echo $vcacheMode | sudo tee $vcachePath
       '';
     }
   );
