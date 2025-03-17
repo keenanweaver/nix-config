@@ -23,6 +23,7 @@ in
       packages = with pkgs; [
         adwaita-fonts
         corefonts
+        geist-font
         liberation_ttf
         material-design-icons
         nerd-fonts.jetbrains-mono
