@@ -52,9 +52,12 @@
     device = "/dev/disk/by-id/nvme-WDS250G2X0C-00L350_182012421668_1-part3";
     fsType = "ntfs";
     options = [
-      "nofail"
       "uid=1000"
       "gid=100"
+      "rw"
+      "user"
+      "exec"
+      "umask=000"
     ];
   };
 
