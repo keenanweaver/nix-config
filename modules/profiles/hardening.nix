@@ -166,7 +166,7 @@ in
       };
       sudo = {
         execWheelOnly = true;
-        extraConfig = ''Defaults env_reset,pwfeedback '';
+        extraConfig = ''Defaults env_reset,pwfeedback'';
         extraRules = [
           {
             commands =
@@ -183,7 +183,7 @@ in
                   "shutdown"
                   "systemctl"
                 ];
-            groups = [ "wheel" ];
+            users = [ "${username}" ];
           }
         ];
       };
