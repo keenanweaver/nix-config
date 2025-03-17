@@ -73,7 +73,7 @@ let
       corsix-th # Theme Hospital
       devilutionx # Diablo
       exult # Ultima VII
-      ja2-stracciatella
+      #ja2-stracciatella
       jazz2
       katawa-shoujo-re-engineered
       nur.repos.Rhys-T.lix-game # Lemmings clone
@@ -399,7 +399,7 @@ in
         rules = [
           # AMD V-Cache
           # https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
-          #"w /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode - - - - cache"
+          "w /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode - - - - cache"
           # https://wiki.archlinux.org/title/Gaming#Make_the_changes_permanent
           "w /proc/sys/vm/compaction_proactiveness - - - - 0"
           "w /proc/sys/vm/watermark_boost_factor - - - - 1"
