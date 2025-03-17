@@ -67,7 +67,7 @@
     wireless.enable = false;
   };
 
-  powerManagement.cpuFreqGovernor = "ondemand";
+  powerManagement.cpuFreqGovernor = "schedutil";
 
   services = {
     beesd = {
