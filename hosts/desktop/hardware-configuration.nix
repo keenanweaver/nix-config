@@ -53,7 +53,7 @@
     fsType = "ntfs";
     options = [
       "uid=1000"
-      "gid=100"
+      "gid=1000"
       "rw"
       "user"
       "exec"
