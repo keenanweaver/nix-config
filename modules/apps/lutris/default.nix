@@ -27,6 +27,16 @@ in
       { config, pkgs, ... }:
       {
         home.file = {
+          wine-links-kron4ek-lutris = {
+            enable = cfg.enableNative;
+            source = config.lib.file.mkOutOfStoreSymlink inputs.nix-gaming.packages.${pkgs.system}.wine-tkg;
+            target = "${config.xdg.dataHome}/lutris/runners/wine/kron4ek";
+          };
+          wine-links-kron4ek-lutris-flatpak = {
+            enable = cfg.enableFlatpak;
+            source = config.lib.file.mkOutOfStoreSymlink inputs.nix-gaming.packages.${pkgs.system}.wine-tkg;
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/kron4ek";
+          };
           wine-links-proton-cachyos-lutris = {
             enable = cfg.enableNative;
             source = config.lib.file.mkOutOfStoreSymlink "${
