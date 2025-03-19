@@ -16,13 +16,10 @@ in
   };
   config = lib.mkIf cfg.enable {
     boot = {
-      blacklistedKernelModules = [ "hid-thrustmaster" ];
       extraModulePackages = with config.boot.kernelPackages; [
-        hid-tmff2
         universal-pidff
       ];
       kernelModules = [
-        "hid-tmff2"
         "hid_universal_pidff"
       ];
     };
@@ -41,7 +38,6 @@ in
         };
       };
       systemPackages = with pkgs; [
-        boxflat
         oversteer
         usb-modeswitch
         usb-modeswitch-data
@@ -53,8 +49,13 @@ in
     services = {
       udev = {
         packages = with pkgs; [
-          boxflat
-          oversteer
+          (writeTextFile {
+            name = "40-logitech-g920.rules";
+            text = ''
+              ATTR{idVendor}=="046d", ATTR{idProduct}=="c261", RUN+="${pkgs.usb-modeswitch}/bin/usb_modeswitch -c '/etc/usb_modeswitch.d/046d:c261'"
+            '';
+            destination = "/etc/udev/rules.d/40-logitech-g920.rules";
+          })
         ];
       };
     };
