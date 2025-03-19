@@ -22,6 +22,7 @@ I'm always looking to simplify or make things better. Please let me know if you 
 
 TODO:
 * Fix Fluidsynth breaking Game virtual sink
+* Linking Kron4ek Wine breaks [Bottles](modules/apps/bottles/default.nix)
 
 # Installation instructions
 
