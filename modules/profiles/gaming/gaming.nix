@@ -345,6 +345,14 @@ in
         packages = with pkgs; [
           game-devices-udev-rules
           (writeTextFile {
+            name = "70-easysmx.rules";
+            text = ''
+              # EasySMX X05
+              SUBSYSTEM=="usb", ATTR{idProduct}=="0091", ATTR{idVendor}=="2f24", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
+            '';
+            destination = "/etc/udev/rules.d/70-easysmx.rules";
+          })
+          (writeTextFile {
             name = "70-8bitdo.rules";
             text = ''
               # 8BitDo Arcade Stick; Bluetooth (X-mode)

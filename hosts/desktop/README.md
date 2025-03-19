@@ -25,6 +25,7 @@
 * 8BitDo Ultimate 2.4G Controller
 * 8BitDo Ultimate 2C Wireless Controller
 * 8BitDo Arcade Stick for Xbox
+* EasySMX Wireless Gaming Controller
 * Junkfood Snack Box MICRO XL
 * Logitech G920 Racing Wheel
 * Sony Dualsense
