@@ -607,7 +607,6 @@ in
           RPG2K3_RTP_PATH = "${config.xdg.dataHome}/games/rpg-maker/RTP/2003";
           # https://gitlab.com/OpenMW/openmw/-/issues/6185
           OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
-          WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"; # 7950X3D
         };
         nixpkgs = {
           overlays = [
@@ -836,61 +835,6 @@ in
                 Path = "${config.home.homeDirectory}/Games/quake/quake-1/injector";
               };
             };
-            # Links broken: https://github.com/nix-community/home-manager/issues/4987
-            /*
-              dxvk-template =
-                         let
-                           configFile = pkgs.fetchurl {
-                             url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
-                             hash = "sha256-OydD9rHfPQlsKs+889mQ6DJ14aBePdQ/RWvTiEMQij4=";
-                           };
-                         in
-                         {
-                           name = "DXVK Config...";
-                           icon = "text-plain";
-                           comment = "Create a new DXVK config from template";
-                           type = "Link";
-                           settings = {
-                             URL = "file:${configFile}";
-                           };
-                         };
-            */
-            /*
-              mangohud-template =
-                         let
-                           configFile = pkgs.fetchurl {
-                             url = "https://raw.githubusercontent.com/flightlessmango/MangoHud/master/data/MangoHud.conf";
-                             hash = "sha256-hAZePm8o5/55IlSghWKhBJBi63JtKJQzGYDUn69u1oM=";
-                           };
-                         in
-                         {
-                           name = "MangoHud Config...";
-                           icon = "io.github.flightlessmango.mangohud";
-                           comment = "Create a new MangoHud config from template";
-                           type = "Link";
-                           settings = {
-                             URL = "file:${configFile}";
-                           };
-                         };
-            */
-            /*
-              vkbasalt-template =
-                         let
-                           configFile = pkgs.fetchurl {
-                             url = "https://raw.githubusercontent.com/DadSchoorse/vkBasalt/master/config/vkBasalt.conf";
-                             hash = "sha256-IN/Kuc17EZfzRoo8af1XoBX2/48/bCdyOxw/Tl463Mg=";
-                           };
-                         in
-                         {
-                           name = "vkBasalt Config...";
-                           icon = "text-plain";
-                           comment = "Create a new vkBasalt config from template";
-                           type = "Link";
-                           settings = {
-                             URL = "file:${configFile}";
-                           };
-                         };
-            */
           };
         };
       };
