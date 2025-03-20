@@ -83,6 +83,7 @@
     };
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-proton-cachyos.url = "github:kimjongbing/nix-proton-cachyos";
+    nix-reshade.url = "github:LovingMelody/nix-reshade";
     nonfree = {
       url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
       flake = false;
