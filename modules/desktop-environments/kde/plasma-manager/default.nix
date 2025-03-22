@@ -140,7 +140,7 @@
             };
             "kded5rc"."Module-device_automounter"."autoload" = false;
             kdeglobals = {
-              "KDE"."AnimationDurationFactor" = 0.5;
+              "KDE"."AnimationDurationFactor" = 0.25;
               "KDE"."ShowDeleteCommand" = true;
               "KFileDialog Settings"."Allow Expansion" = true;
               "KFileDialog Settings"."Automatically select filename extension" = true;
