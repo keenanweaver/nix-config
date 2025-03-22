@@ -591,22 +591,13 @@ in
           vscode = {
             profiles = {
               default = {
-                extensions = with inputs.nix-vscode-extensions.extensions.x86_64-linux.vscode-marketplace; [
-                  catppuccin.catppuccin-vsc-icons
-                  #catppuccin.catppuccin-vsc
-                ];
                 userSettings = {
-                  "catppuccin.accentColor" = "${accent-lower}";
-                  "catppuccin.customUIColors"."${flavor-lower}"."statusBar.foreground" = "accent";
                   "editor.fontFamily" = "'${mono-font}', 'monospace', monospace";
                   "editor.fontLigatures" = true;
                   "editor.fontSize" = 18;
-                  "glassit.alpha" = 210;
                   "terminal.integrated.fontFamily" = "${mono-font}";
                   "terminal.integrated.fontSize" = 14;
                   "terminal.integrated.fontWeight" = "normal";
-                  "workbench.colorTheme" = "Catppuccin ${flavor-upper}";
-                  "workbench.iconTheme" = "catppuccin-${flavor-lower}";
                 };
               };
             };

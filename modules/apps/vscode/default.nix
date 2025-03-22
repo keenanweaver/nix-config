@@ -55,16 +55,15 @@ in
             default = {
               enableExtensionUpdateCheck = false;
               enableUpdateCheck = false;
-              extensions = marketplace-extensions ++ [
-                pkgs.vscode-extensions.visualjj.visualjj
-                pkgs.vscode-extensions.editorconfig.editorconfig
-              ];
+              extensions =
+                with pkgs.vscode-extensions;
+                marketplace-extensions
+                ++ [
+                  visualjj.visualjj
+                  editorconfig.editorconfig
+                ];
               userSettings = {
-                "ansible.ansible.path" = "${pkgs.ansible}/bin/ansible";
-                "ansible.python.interpreterPath" = "python";
-                "ansible.validation.lint.path" = "${pkgs.ansible-lint}/bin/ansible-lint";
                 "codeium.enableConfig"."*" = true;
-                "codeium.enableConfig"."nix" = true;
                 "editor.formatOnSave" = false;
                 "editor.inlineSuggest.enabled" = true;
                 "editor.minimap.enabled" = true;
@@ -77,10 +76,9 @@ in
                 "git.autofetch" = true;
                 "git.confirmSync" = false;
                 "git.enableCommitSigning" = true;
-                "gopls"."ui.semanticTokens" = true;
                 "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
                 "nix.enableLanguageServer" = true;
-                "nix.formatterPath" = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+                "nix.formatterPath" = "nixfmt";
                 "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
                 "nix.serverSettings"."nixd"."formatting"."command" = [ "nixfmt" ];
                 "nix.serverSettings"."nixd"."formatting"."options" = {
@@ -93,7 +91,6 @@ in
                 "[powershell]"."editor.renderWhitespace" = "all";
                 "[powershell]"."files.autoGuessEncoding" = true;
                 "[powershell]"."files.trimTrailingWhitespace" = true;
-                "[python]"."editor.defaultFormatter" = "charliermarsh.ruff";
                 "redhat.telemetry.enabled" = false;
                 "security.workspace.trust.enabled" = false;
                 "terminal.integrated.minimumContrastRatio" = 1;
