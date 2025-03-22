@@ -71,7 +71,7 @@ let
       augustus # Caesar 3
       clonehero # Guitar Hero
       corsix-th # Theme Hospital
-      devilutionx # Diablo
+      #devilutionx # Diablo
       exult # Ultima VII
       #ja2-stracciatella
       jazz2
@@ -153,7 +153,7 @@ let
       inputs.aaru.packages.${pkgs.system}.default
       adwsteamgtk
       chiaki-ng
-      inputs.nix-game-preservation.packages.${pkgs.system}.dic-git-full
+      #inputs.nix-game-preservation.packages.${pkgs.system}.dic-git-full
       ffmpeg
       flips
       gswatcher
@@ -161,12 +161,12 @@ let
       innoextract
       lgogdownloader
       moondeck-buddy # Pending https://github.com/NixOS/nixpkgs/pull/375287
-      inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt-git
+      #inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt-git
       parsec-bin
       (python3.withPackages (p: with p; [ lnkparse3 ]))
       inputs.nix-game-preservation.packages.${pkgs.system}.redumper-git
-      inputs.nix-game-preservation.packages.${pkgs.system}.sabretools-git
-      inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp-git
+      #inputs.nix-game-preservation.packages.${pkgs.system}.sabretools-git
+      #inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp-git
       xlink-kai
       xvidcore
       ## Wine
@@ -229,6 +229,7 @@ in
         "gcadapter_oc"
         "zenergy"
       ];
+      #kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos; # Kernel modules do not load
       kernelParams = [
         "usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
         "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
@@ -438,176 +439,209 @@ in
           ../../apps/ludusavi
         ];
 
-        home.file = {
-          desktop-entry-dxvk =
-            let
-              configFile = pkgs.fetchurl {
-                url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
-                hash = "sha256-OydD9rHfPQlsKs+889mQ6DJ14aBePdQ/RWvTiEMQij4=";
+        home = {
+          file = {
+            desktop-entry-dxvk =
+              let
+                configFile = pkgs.fetchurl {
+                  url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
+                  hash = "sha256-OydD9rHfPQlsKs+889mQ6DJ14aBePdQ/RWvTiEMQij4=";
+                };
+              in
+              {
+                enable = true;
+                text = ''
+                  [Desktop Entry]
+                  Comment=Create a new DXVK config from template
+                  Icon=text-plain
+                  Name=DXVK Config...
+                  Type=Link
+                  URL[$e]=file:${configFile}
+                '';
+                target = "${config.xdg.dataHome}/templates/dxvk.desktop";
               };
-            in
-            {
+            desktop-entry-mangohud =
+              let
+                configFile = pkgs.fetchurl {
+                  url = "https://raw.githubusercontent.com/flightlessmango/MangoHud/master/data/MangoHud.conf";
+                  hash = "sha256-hAZePm8o5/55IlSghWKhBJBi63JtKJQzGYDUn69u1oM=";
+                };
+              in
+              {
+                enable = true;
+                text = ''
+                  [Desktop Entry]
+                  Comment=Create a new MangoHud config from template
+                  Icon=io.github.flightlessmango.mangohud
+                  Name=MangoHud Config...
+                  Type=Link
+                  URL[$e]=file:${configFile}
+                '';
+                target = "${config.xdg.dataHome}/templates/mangohud.desktop";
+              };
+            desktop-entry-vkBasalt =
+              let
+                configFile = pkgs.fetchurl {
+                  url = "https://raw.githubusercontent.com/DadSchoorse/vkBasalt/master/config/vkBasalt.conf";
+                  hash = "sha256-IN/Kuc17EZfzRoo8af1XoBX2/48/bCdyOxw/Tl463Mg=";
+                };
+              in
+              {
+                enable = true;
+                text = ''
+                  [Desktop Entry]
+                  Comment=Create a new vkBasalt config from template
+                  Icon=text-plain
+                  Name=vkBasalt Config...
+                  Type=Link
+                  URL[$e]=file:${configFile}
+                '';
+                target = "${config.xdg.dataHome}/templates/vkBasalt.desktop";
+              };
+            roms-mt32-exodos = {
+              enable = true;
+              source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
+              target = "${config.xdg.configHome}/dosbox/mt32-roms";
+            };
+            roms-mt32-exodos-flatpak = {
+              enable = true;
+              source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
+              target = ".var/app/com.retro_exo.dosbox-staging-082-0/config/dosbox/mt32-roms";
+            };
+            vrr-off = {
+              enable = true;
+              source =
+                with pkgs;
+                lib.getExe (writeShellApplication {
+                  name = "vrr-off";
+                  runtimeInputs = [
+                    kdePackages.libkscreen
+                  ];
+                  text = ''
+                    kscreen-doctor output.DP-1.vrrpolicy.never
+                  '';
+                });
+              target = "${config.home.homeDirectory}/Games/vrr-off.sh";
+            };
+            vrr-on = {
+              enable = true;
+              source =
+                with pkgs;
+                lib.getExe (writeShellApplication {
+                  name = "vrr-on";
+                  runtimeInputs = [
+                    kdePackages.libkscreen
+                  ];
+                  text = ''
+                    kscreen-doctor output.DP-1.vrrpolicy.automatic
+                  '';
+                });
+              target = "${config.home.homeDirectory}/Games/vrr-on.sh";
+            };
+            wine-controller-proton = {
+              # https://selfmadepenguin.wordpress.com/2024/02/14/how-i-solved-my-gamecontroller-problems/
+              # Import with: wine start regedit.exe /home/keenan/.wine/controller-proton.reg
               enable = true;
               text = ''
-                [Desktop Entry]
-                Comment=Create a new DXVK config from template
-                Icon=text-plain
-                Name=DXVK Config...
-                Type=Link
-                URL[$e]=file:${configFile}
-              '';
-              target = "${config.xdg.dataHome}/templates/dxvk.desktop";
-            };
-          desktop-entry-mangohud =
-            let
-              configFile = pkgs.fetchurl {
-                url = "https://raw.githubusercontent.com/flightlessmango/MangoHud/master/data/MangoHud.conf";
-                hash = "sha256-hAZePm8o5/55IlSghWKhBJBi63JtKJQzGYDUn69u1oM=";
-              };
-            in
-            {
-              enable = true;
-              text = ''
-                [Desktop Entry]
-                Comment=Create a new MangoHud config from template
-                Icon=io.github.flightlessmango.mangohud
-                Name=MangoHud Config...
-                Type=Link
-                URL[$e]=file:${configFile}
-              '';
-              target = "${config.xdg.dataHome}/templates/mangohud.desktop";
-            };
-          desktop-entry-vkBasalt =
-            let
-              configFile = pkgs.fetchurl {
-                url = "https://raw.githubusercontent.com/DadSchoorse/vkBasalt/master/config/vkBasalt.conf";
-                hash = "sha256-IN/Kuc17EZfzRoo8af1XoBX2/48/bCdyOxw/Tl463Mg=";
-              };
-            in
-            {
-              enable = true;
-              text = ''
-                [Desktop Entry]
-                Comment=Create a new vkBasalt config from template
-                Icon=text-plain
-                Name=vkBasalt Config...
-                Type=Link
-                URL[$e]=file:${configFile}
-              '';
-              target = "${config.xdg.dataHome}/templates/vkBasalt.desktop";
-            };
-          roms-mt32-exodos = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
-            target = "${config.xdg.configHome}/dosbox/mt32-roms";
-          };
-          roms-mt32-exodos-flatpak = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
-            target = ".var/app/com.retro_exo.dosbox-staging-082-0/config/dosbox/mt32-roms";
-          };
-          wine-controller-proton = {
-            # https://selfmadepenguin.wordpress.com/2024/02/14/how-i-solved-my-gamecontroller-problems/
-            # Import with: wine start regedit.exe /home/keenan/.wine/controller-proton.reg
-            enable = true;
-            text = ''
-              Windows Registry Editor Version 5.00
+                Windows Registry Editor Version 5.00
 
-              [HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\winebus]
-              "DisableHidraw"=dword:00000001
-              "Enable SDL"=dword:00000001
-            '';
-            target = "${config.home.homeDirectory}/Games/wine-controller.reg";
-          };
-          wine-mouse-acceleration = {
-            # https://reddit.com/r/linux_gaming/comments/1hs1685/windows_mouse_acceleration_seems_to_be_enabled_in/
-            # Import with: wine start regedit.exe /home/keenan/.wine/mouse-acceleration-proton.reg
-            enable = true;
-            text = ''
-              Windows Registry Editor Version 5.00
+                [HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\winebus]
+                "DisableHidraw"=dword:00000001
+                "Enable SDL"=dword:00000001
+              '';
+              target = "${config.home.homeDirectory}/Games/wine-controller.reg";
+            };
+            wine-mouse-acceleration = {
+              # https://reddit.com/r/linux_gaming/comments/1hs1685/windows_mouse_acceleration_seems_to_be_enabled_in/
+              # Import with: wine start regedit.exe /home/keenan/.wine/mouse-acceleration-proton.reg
+              enable = true;
+              text = ''
+                Windows Registry Editor Version 5.00
 
-              [HKEY_CURRENT_USER\Control Panel\Mouse]
-              "MouseSpeed"="0"
-              "MouseThreshold1"="0"
-              "MouseThreshold2"="0"
-            '';
-            target = "${config.home.homeDirectory}/Games/wine-mouse-acceleration.reg";
+                [HKEY_CURRENT_USER\Control Panel\Mouse]
+                "MouseSpeed"="0"
+                "MouseThreshold1"="0"
+                "MouseThreshold2"="0"
+              '';
+              target = "${config.home.homeDirectory}/Games/wine-mouse-acceleration.reg";
+            };
+          };
+          packages =
+            with pkgs;
+            [
+              (writeShellApplication {
+                name = "script-exodos-nuked";
+                runtimeEnv = {
+                  EXODOS = "/mnt/crusader/eXo/eXoDOS/eXo/eXoDOS";
+                };
+                runtimeInputs = with pkgs; [
+                  fd
+                  sd
+                ];
+                text = ''
+                  fd -t file "run.bat" $EXODOS -x sd 'CONFIG -set "mididevice=fluidsynth"' 'CONFIG -set "mididevice=alsa"' {}
+                '';
+              })
+              (writeShellApplication {
+                name = "script-game-stuff";
+                runtimeEnv = {
+                  DREAMM = "https://aarongiles.com/dreamm/releases/dreamm-3.0.3-linux-x64.tgz";
+                  GAMES_DIR = "${config.home.homeDirectory}/Games";
+                  LOCAL_BIN = "${config.home.homeDirectory}/.local/bin";
+                  STL_DEFAULT = "${config.xdg.configHome}/steamtinkerlaunch/default_template.conf";
+                  STL_GAMECFGS = "${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/id";
+                  STL_GLOBAL = "${config.xdg.configHome}/steamtinkerlaunch/global.conf";
+                  STL_GLOBAL_CUSTOM_VARS = "${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/customvars/global-custom-vars.conf";
+                };
+                runtimeInputs = [
+                  coreutils
+                  findutils
+                  jq
+                  sd
+                  (steamtinkerlaunch.overrideAttrs (o: {
+                    src = inputs.steamtinkerlaunch-master;
+                  }))
+                  xh
+                ];
+                text = ''
+                  ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
+                  steamtinkerlaunch compat add
+                  sd 'YAD="(.*?)"' 'YAD="/etc/profiles/per-user/${username}/bin/yad"' $STL_GLOBAL
+                  sd 'STLEDITOR="(.*?)"' 'STLEDITOR="/etc/profiles/per-user/${username}/bin/kate"' $STL_GLOBAL
+                  sd 'SKIPINTDEPCHECK="(.*?)"' 'SKIPINTDEPCHECK="1"' $STL_GLOBAL
+                  sd 'USEGAMEMODERUN="(.*?)"' 'USEGAMEMODERUN="1"' $STL_DEFAULT
+                  sd 'USEOBSCAP="(.*?)"' 'USEOBSCAP="1"' $STL_DEFAULT
+                  sd 'USEMANGOHUD="(.*?)"' 'USEMANGOHUD="1"' $STL_DEFAULT
+                  sd 'MAHUDLSYM="(.*?)"' 'MAHUDLSYM="1"' $STL_DEFAULT
+                  sd 'USERAYTRACING="(.*?)"' 'USERAYTRACING="1"' $STL_DEFAULT
+                  sd 'USEPROTON="(.*?)"' 'USEPROTON="Proton-GE"' $STL_DEFAULT
+                  sd 'DXVK_HDR="(.*?)"' 'DXVK_HDR="1"' $STL_DEFAULT
+                  sd 'GAMESCOPE_ARGS="(.*?)"' 'GAMESCOPE_ARGS="-W 2560 -H 1440 -f -r 360 --hdr-enabled --force-grab-cursor --"' $STL_DEFAULT
+                  echo 'PULSE_SINK=Game' > "$STL_GLOBAL_CUSTOM_VARS"
+                  echo 'WINE_CPU_TOPOLOGY=16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23' >> "$STL_GLOBAL_CUSTOM_VARS"
+                  fd . $STL_GAMECFGS -e .conf -x rm {}
+                  ## DREAMM
+                  xh get -d -o "$GAMES_DIR"/games/dreamm.tgz $DREAMM
+                  fd dreamm -e tgz "$GAMES_DIR"/games -x ouch d {} -d "$GAMES_DIR"/games
+                  ## SheepShaver
+                  xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/sheepshaver.appimage
+                  ## MoonDeck Buddy
+                  xh https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/moondeckbuddy.appimage
+                  ## Conty
+                  xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/conty_lite.sh
+                  chmod +x "$LOCAL_BIN"/conty_lite.sh
+                '';
+              })
+            ]
+            ++ lib.flatten (lib.attrValues p);
+          sessionVariables = {
+            RPG2K_RTP_PATH = "${config.xdg.dataHome}/games/rpg-maker/RTP/2000";
+            RPG2K3_RTP_PATH = "${config.xdg.dataHome}/games/rpg-maker/RTP/2003";
+            # https://gitlab.com/OpenMW/openmw/-/issues/6185
+            OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
           };
         };
-        home.packages =
-          with pkgs;
-          [
-            (writeShellApplication {
-              name = "script-exodos-nuked";
-              runtimeEnv = {
-                EXODOS = "/mnt/crusader/eXo/eXoDOS/eXo/eXoDOS";
-              };
-              runtimeInputs = with pkgs; [
-                fd
-                sd
-              ];
-              text = ''
-                fd -t file "run.bat" $EXODOS -x sd 'CONFIG -set "mididevice=fluidsynth"' 'CONFIG -set "mididevice=alsa"' {}
-              '';
-            })
-            (writeShellApplication {
-              name = "script-game-stuff";
-              runtimeEnv = {
-                DREAMM = "https://aarongiles.com/dreamm/releases/dreamm-3.0.3-linux-x64.tgz";
-                GAMES_DIR = "${config.home.homeDirectory}/Games";
-                LOCAL_BIN = "${config.home.homeDirectory}/.local/bin";
-                STL_DEFAULT = "${config.xdg.configHome}/steamtinkerlaunch/default_template.conf";
-                STL_GAMECFGS = "${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/id";
-                STL_GLOBAL = "${config.xdg.configHome}/steamtinkerlaunch/global.conf";
-                STL_GLOBAL_CUSTOM_VARS = "${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/customvars/global-custom-vars.conf";
-              };
-              runtimeInputs = [
-                coreutils
-                findutils
-                jq
-                sd
-                (steamtinkerlaunch.overrideAttrs (o: {
-                  src = inputs.steamtinkerlaunch-master;
-                }))
-                xh
-              ];
-              text = ''
-                ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
-                steamtinkerlaunch compat add
-                sd 'YAD="(.*?)"' 'YAD="/etc/profiles/per-user/${username}/bin/yad"' $STL_GLOBAL
-                sd 'STLEDITOR="(.*?)"' 'STLEDITOR="/etc/profiles/per-user/${username}/bin/kate"' $STL_GLOBAL
-                sd 'SKIPINTDEPCHECK="(.*?)"' 'SKIPINTDEPCHECK="1"' $STL_GLOBAL
-                sd 'USEGAMEMODERUN="(.*?)"' 'USEGAMEMODERUN="1"' $STL_DEFAULT
-                sd 'USEOBSCAP="(.*?)"' 'USEOBSCAP="1"' $STL_DEFAULT
-                sd 'USEMANGOHUD="(.*?)"' 'USEMANGOHUD="1"' $STL_DEFAULT
-                sd 'MAHUDLSYM="(.*?)"' 'MAHUDLSYM="1"' $STL_DEFAULT
-                sd 'USERAYTRACING="(.*?)"' 'USERAYTRACING="1"' $STL_DEFAULT
-                sd 'USEPROTON="(.*?)"' 'USEPROTON="Proton-GE"' $STL_DEFAULT
-                sd 'DXVK_HDR="(.*?)"' 'DXVK_HDR="1"' $STL_DEFAULT
-                sd 'GAMESCOPE_ARGS="(.*?)"' 'GAMESCOPE_ARGS="-W 2560 -H 1440 -f -r 360 --hdr-enabled --force-grab-cursor --"' $STL_DEFAULT
-                echo 'PULSE_SINK=Game' > "$STL_GLOBAL_CUSTOM_VARS"
-                echo 'WINE_CPU_TOPOLOGY=16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23' >> "$STL_GLOBAL_CUSTOM_VARS"
-                fd . $STL_GAMECFGS -e .conf -x rm {}
-                ## DREAMM
-                xh get -d -o "$GAMES_DIR"/games/dreamm.tgz $DREAMM
-                fd dreamm -e tgz "$GAMES_DIR"/games -x ouch d {} -d "$GAMES_DIR"/games
-                ## SheepShaver
-                xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/sheepshaver.appimage
-                ## MoonDeck Buddy
-                xh https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/moondeckbuddy.appimage
-                ## Conty
-                xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/conty_lite.sh
-                chmod +x "$LOCAL_BIN"/conty_lite.sh
-              '';
-            })
-          ]
-          ++ lib.flatten (lib.attrValues p);
-        home.sessionVariables = {
-          RPG2K_RTP_PATH = "${config.xdg.dataHome}/games/rpg-maker/RTP/2000";
-          RPG2K3_RTP_PATH = "${config.xdg.dataHome}/games/rpg-maker/RTP/2003";
-          # https://gitlab.com/OpenMW/openmw/-/issues/6185
-          OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
-        };
+
         nixpkgs = {
           overlays = [
             inputs.umu.overlays.default
