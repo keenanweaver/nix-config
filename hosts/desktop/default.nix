@@ -64,7 +64,6 @@
 
   networking = {
     hostName = "nixos-desktop";
-    wireless.enable = false;
   };
 
   powerManagement.cpuFreqGovernor = "ondemand";

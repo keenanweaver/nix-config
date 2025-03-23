@@ -196,7 +196,7 @@ Run the commands:
     cd "$XDG_DATA_HOME"/fallout-ce && rm -rf __redist __support app commonappdata Extras tmp goggame*
     pwsh -c "dir . -r | % { if ($_.Name -cne $_.Name.ToLower()) { ren $_.FullName $_.Name.ToLower() } }" && cd "$XDG_DATA_HOME"/fallout-ce/data/sound/music && pwsh -c "dir . -r | % { if ($_.Name -cne $_.Name.ToUpper()) { ren $_.FullName $_.Name.ToUpper() } }"
     gamescope -f -w 2560 -h 1440 -- fallout-ce && sleep 3 && sd 'music_path1=sound\\music\\' 'music_path1=data\\sound\\music\\' "$XDG_DATA_HOME"/fallout-ce/fallout.cfg && sd 'music_path2=sound\\music\\' 'music_path2=data\\sound\\music\\' "$XDG_DATA_HOME"/fallout-ce/fallout.cfg
-    cd "$XDG_DATA_HOME"/fallout2-ce && mv -f app/* . && rm -rf __redist __support app commonappdata Extras tmp goggame* && mv -f sound/ data/
+    cd "$XDG_DATA_HOME"/fallout2-ce && mv -f app/* . && rm -rf __redist __support app commonappdata Extras tmp goggame*
     pwsh -c "dir . -r | % { if ($_.Name -cne $_.Name.ToLower()) { ren $_.FullName $_.Name.ToLower() } }" && cd "$XDG_DATA_HOME"/fallout2-ce/data/sound/music && pwsh -c "dir . -r | % { if ($_.Name -cne $_.Name.ToUpper()) { ren $_.FullName $_.Name.ToUpper() } }"
     gamescope -f -w 2560 -h 1440 -- fallout2-ce && sleep 3 && sd 'music_path1=sound\\music\\' 'music_path1=data\\sound\\music\\' $XDG_DATA_HOME/fallout2-ce/fallout2.cfg && sd 'music_path2=sound\\music\\' 'music_path2=data\\sound\\music\\' "$XDG_DATA_HOME"/fallout2-ce/fallout2.cfg
     ## HOMM

@@ -150,10 +150,8 @@ let
       #owmods-gui
       r2modman
       ## Other
-      inputs.aaru.packages.${pkgs.system}.default
       adwsteamgtk
       chiaki-ng
-      #inputs.nix-game-preservation.packages.${pkgs.system}.dic-git-full
       ffmpeg
       flips
       gswatcher
@@ -161,12 +159,8 @@ let
       innoextract
       lgogdownloader
       moondeck-buddy # Pending https://github.com/NixOS/nixpkgs/pull/375287
-      #inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt-git
       parsec-bin
       (python3.withPackages (p: with p; [ lnkparse3 ]))
-      inputs.nix-game-preservation.packages.${pkgs.system}.redumper-git
-      #inputs.nix-game-preservation.packages.${pkgs.system}.sabretools-git
-      #inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp-git
       xlink-kai
       xvidcore
       ## Wine
@@ -176,13 +170,19 @@ let
       winetricks
       ## One-and-dones
       /*
-        glxinfo
+        inputs.aaru.packages.${pkgs.system}.default
+           inputs.nix-game-preservation.packages.${pkgs.system}.dic-git-full
+           glxinfo
            jpsxdec
            mame.tools
            mmv
+           inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt-git
            nsz
+           inputs.nix-game-preservation.packages.${pkgs.system}.sabretools-git
+           inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp-git
            ps3-disc-dumper
            python313Packages.lnkparse3
+           inputs.nix-game-preservation.packages.${pkgs.system}.redumper-git
            renderdoc
            vgmplay-libvgm
            vgmstream

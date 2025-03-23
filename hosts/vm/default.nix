@@ -80,6 +80,22 @@
       ...
     }:
     let
+      lgogdownloader-blacklist = (
+        pkgs.writeShellApplication {
+          name = "lgogdownloader-blacklist";
+          runtimeInputs = with pkgs; [
+            coreutils
+            lgogdownloader
+          ];
+          text = ''
+            cd ${unraid}/Games/Backups/GOG
+            for i in ./*
+            do 
+              echo "Rp /''${i%%}.*"
+            done > ${config.xdg.configHome}/lgogdownloader/blacklist.txt
+          '';
+        }
+      );
       unraid = "/mnt/crusader";
     in
     {
@@ -89,20 +105,7 @@
         packages = with pkgs; [
           internetarchive
           lgogdownloader
-          (writeShellApplication {
-            name = "lgogdownloader-blacklist";
-            runtimeInputs = [
-              coreutils
-              lgogdownloader
-            ];
-            text = ''
-              cd ${unraid}/Games/Backups/GOG
-              for i in ./*
-              do 
-                echo "Rp /''${i%%}.*"
-              done > ${config.xdg.configHome}/lgogdownloader/blacklist.txt
-            '';
-          })
+          lgogdownloader-blacklist
           (writeShellApplication {
             name = "lgogdownloader-cleanup";
             runtimeInputs = [ coreutils ];
@@ -292,7 +295,7 @@
                   "${pkgs.lgogdownloader}/bin/lgogdownloader --directory=${unraid}/Games/Backups/GOG --download --platform=w+l --language=en --save-serials --exclude l,p --threads 1 --info-threads 1 --retries 6 --report"
                 ];
                 ExecStartPost = [
-                  "${pkgs.bash}/bin/bash /home/${config.sops.secrets.unraid.ntfy.user.path}/.local/bin/lgogdownloader-blacklist.sh"
+                  "${pkgs.bash}/bin/bash ${lib.getBin lgogdownloader-blacklist}/bin/lgogdownloader-blacklist"
                   "${pkgs.ntfy-sh}/bin/ntfy pub -u ${config.sops.secrets.unraid.ntfy.user.path}:${config.sops.secrets.unraid.ntfy.password.path} --tags=heavy_check_mark ${config.sops.secrets.unraid.ntfy.url.path} '[End] lgogdownloader'"
                 ];
                 Type = "oneshot";
