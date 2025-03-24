@@ -124,6 +124,7 @@
                       "Akregator"
                       "KTailctl"
                       "MoonDeckBuddy"
+                      "com.core447.StreamController.TrayIcon"
                       "org.kde.plasma.addons.katesessions"
                       "org.kde.plasma.brightness" # Night Light
                       "org.kde.plasma.networkmanagement"
