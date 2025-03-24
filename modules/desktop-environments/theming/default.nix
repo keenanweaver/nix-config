@@ -21,6 +21,7 @@ let
   GTK-THEME = "Breeze-Dark";
   #cursor-theme = "breeze_cursors";
   cursor-theme = "catppuccin-${flavor-lower}-${accent-lower}-cursors";
+  icon-theme = "Papirus-Dark";
 in
 {
   options = {
@@ -110,8 +111,7 @@ in
             package = sans-font-pkg;
           };
           gtk2 = {
-            configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-            # force = true; # https://github.com/nix-community/home-manager/pull/5263
+            configLocation = "${config.xdg.configHome}/.gtkrc-2.0"; # https://github.com/nix-community/plasma-manager/issues/472#issuecomment-2709114898
           };
           gtk3 = {
             extraConfig = {
@@ -573,7 +573,7 @@ in
                 theme = "Darkly";
               };
               # Icons
-              iconTheme = "Papirus-Dark";
+              iconTheme = "${icon-theme}";
               # Cursors
               # plasma-apply-cursortheme --list-themes
               cursor = {
@@ -623,7 +623,7 @@ in
               "Gtk/CursorThemeSize" = 24;
               "Gtk/CursorThemeName" = "${cursor-theme}";
               "Gtk/FontName" = "${sans-font},  12";
-              "Net/IconThemeName" = "Papirus-Dark";
+              "Net/IconThemeName" = "${icon-theme}";
               "Net/ThemeName" = "${GTK-THEME}";
             };
           };
