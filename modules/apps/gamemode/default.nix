@@ -46,7 +46,7 @@ in
                   libnotify
                 ];
                 text = ''
-                  notify-send -t 3000 -u low "GameMode" "GameMode $gamemodeStatus" -i applications-games -a "GameMode"
+                  notify-send -t 3000 -u low "GameMode" "GameMode $gamemodeStatus" -i input-gamepad -a "GameMode"
                 '';
               }
             );
@@ -60,7 +60,7 @@ in
                   libnotify
                 ];
                 text = ''
-                  notify-send -t 3000 -u low "GameMode" "GameMode $gamemodeStatus" -i applications-games -a "GameMode"
+                  notify-send -t 3000 -u low "GameMode" "GameMode $gamemodeStatus" -i input-gamepad -a "GameMode"
                 '';
               }
             );
