@@ -346,8 +346,8 @@
             kwin = {
               "Kill Window" = "Alt+Shift+F4";
               "Toggle Night Color" = "Meta+Shift+N";
-              "Window Maximize" = "Meta+Shift+PgUp";
-              "Window Minimize" = "Meta+Shift+PgDown";
+              "Window Maximize" = "Meta+PgUp";
+              "Window Minimize" = "Meta+PgDown";
               "Window Move Center" = [
                 "Meta+C"
                 "Meta+."
