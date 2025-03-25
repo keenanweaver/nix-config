@@ -255,6 +255,8 @@ in
       };
     };
 
+    chaotic.mesa-git.enable = true;
+
     hardware = {
       uinput.enable = true;
       xpadneo.enable = true;
@@ -650,6 +652,11 @@ in
         services = {
           flatpak = {
             overrides = {
+              global = {
+                Environment = {
+                  FLATPAK_GL_DRIVERS = "mesa-git";
+                };
+              };
               "com.fightcade.Fightcade" = {
                 Environment = {
                   PULSE_SINK = "Game";
@@ -705,6 +712,14 @@ in
             packages = [
               "com.fightcade.Fightcade"
               "com.fightcade.Fightcade.Wine"
+              {
+                appId = "org.freedesktop.Platform.GL.mesa-git/x86_64/24.08";
+                origin = "flathub-beta";
+              }
+              {
+                appId = "org.freedesktop.Platform.GL32.mesa-git/x86_64/24.08";
+                origin = "flathub-beta";
+              }
               "com.github.optyfr.JRomManager"
               "com.qzandronum.Q-Zandronum"
               "dev.opengoal.OpenGOAL"
