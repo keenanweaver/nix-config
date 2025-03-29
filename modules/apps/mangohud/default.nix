@@ -28,13 +28,31 @@ in
           mangohud-config = {
             enable = true;
             text = ''
+              ###############
+              ##  Display  ##
+              ###############
+              #gl_vsync=1
+              #vsync=2 # https://gitlab.freedesktop.org/drm/amd/-/issues/3166#note_2277578
+              fps_limit=357,237,141,117,60,30,0
+
+              ###########
+              ## Binds ##
+              ###########
+              toggle_fps_limit=Shift_R+F1
+              toggle_hud=Alt_R+Shift_R
+              toggle_hud_position=Shift_R+F11
+              toggle_preset=Shift_R+F10
+
+              #########
+              ## GPU ##
+              #########
               pci_dev=0000:03:00.0
               fps
               fps_color_change
-              fps_limit=357,237,141,117,60,30,0
               fps_metrics=avg,0.01
               fps_value=30,60
               frame_timing
+              frame_timing_detailed
               gpu_stats
               gpu_temp
               gpu_core_clock
@@ -44,21 +62,35 @@ in
               gpu_fan
               gpu_voltage
               gpu_text=${gpu}
+              throttling_status_graph
+
+              #########
+              ## CPU ##
+              #########
               cpu_stats
               cpu_temp
               cpu_power
               cpu_mhz
               cpu_text=${cpu}
               cpu_load_change
-              cpu_load_value=60,90
+              cpu_load_value=50,90
               core_load_change
               core_load
               core_bars
+
+              #########
+              ## RAM ##
+              #########
               vram
-              ram
+              gpu_mem_temp
               swap
+              ram
               procmem
-              engine_version
+
+              ##########
+              ## Info ##
+              ##########
+              exec_name
               arch
               vulkan_driver
               wine
@@ -72,8 +104,10 @@ in
               resolution
               present_mode
               display_server # Doesn't work when legacy_layout=0
-              #gl_vsync=1
-              #vsync=2 # https://gitlab.freedesktop.org/drm/amd/-/issues/3166#note_2277578
+
+              ############
+              ## Custom ##
+              ############
               custom_text=P-State
               exec=echo $(${pkgs.bat}/bin/bat --plain /sys/devices/system/cpu/amd_pstate/status /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference)
               custom_text=V-Cache
@@ -84,18 +118,19 @@ in
               exec=${pkgs.bash}/bin/bash -c '[ -n "''${CONTAINER_ID}" ] && echo Yes || echo No'
               custom_text=Kernel
               exec=${pkgs.coreutils}/bin/uname -r
+
+              ########
+              ## UI ##
+              ########
               text_outline
               text_outline_thickness=2.0
               position=bottom-right
-              background_alpha=0.2
+              background_alpha=0.5
               round_corners=10
               no_display
               legacy_layout=0 # For scripts that rely on the new layout
               font_file=${pkgs.atkinson-hyperlegible-next}/share/fonts/opentype/AtkinsonHyperlegibleNext-Bold.otf
-              toggle_fps_limit=Shift_R+F1
-              toggle_hud=Alt_R+Shift_R
-              toggle_hud_position=Shift_R+F11
-              toggle_preset=Shift_R+F10
+              font_size=30
               ${lib.optionalString config.catppuccin.enable ''
                 # Catppuccin theming
                 background_color=1e1e2e
