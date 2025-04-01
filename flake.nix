@@ -162,7 +162,7 @@
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
             modules = [
               ./hosts/steamdeck/home.nix
-              inputs.catppuccin.homeManagerModules.catppuccin
+              inputs.catppuccin.homeModules.catppuccin
               inputs.nix-flatpak.homeManagerModules.nix-flatpak
               inputs.nur.modules.homeManager.default
               inputs.plasma-manager.homeManagerModules.plasma-manager
@@ -234,7 +234,7 @@
                     };
                   };
                   sharedModules = with inputs; [
-                    catppuccin.homeManagerModules.catppuccin
+                    catppuccin.homeModules.catppuccin
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.hmModules.nix-index
                     nur.modules.homeManager.default
@@ -294,7 +294,7 @@
                     };
                   };
                   sharedModules = with inputs; [
-                    catppuccin.homeManagerModules.catppuccin
+                    catppuccin.homeModules.catppuccin
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.hmModules.nix-index
                     nur.modules.homeManager.default
@@ -396,7 +396,7 @@
                     };
                   };
                   sharedModules = with inputs; [
-                    catppuccin.homeManagerModules.catppuccin
+                    catppuccin.homeModules.catppuccin
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.hmModules.nix-index
                     nur.modules.homeManager.default
@@ -455,7 +455,7 @@
                     };
                   };
                   sharedModules = [
-                    inputs.catppuccin.homeManagerModules.catppuccin
+                    inputs.catppuccin.homeModules.catppuccin
                     inputs.nix-flatpak.homeManagerModules.nix-flatpak
                     inputs.nix-index-database.hmModules.nix-index
                     inputs.nur.modules.homeManager.default
