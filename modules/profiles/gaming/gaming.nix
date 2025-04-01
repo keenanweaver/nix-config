@@ -356,6 +356,14 @@ in
             destination = "/etc/udev/rules.d/70-easysmx.rules";
           })
           (writeTextFile {
+            name = "70-gamesir.rules";
+            text = ''
+              # GameSir Cyclone 2 Wireless Controller
+              SUBSYSTEM=="usb", ATTR{idProduct}=="0575", ATTR{idVendor}=="3537", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
+            '';
+            destination = "/etc/udev/rules.d/70-gamesir.rules";
+          })
+          (writeTextFile {
             name = "70-8bitdo.rules";
             text = ''
               # 8BitDo Arcade Stick; Bluetooth (X-mode)
