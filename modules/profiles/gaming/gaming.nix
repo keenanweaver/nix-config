@@ -842,7 +842,7 @@ in
         xdg = {
           autostart.entries = [
             "${pkgs.moondeck-buddy}/share/applications/MoonDeckBuddy.desktop"
-            "${pkgs.nuked-sc55}/share/applications/Nuked-SC55 (silent).desktop"
+            "${pkgs.nuked-sc55}/share/applications/Nuked-SC55_silent.desktop"
           ];
           desktopEntries = {
             _86box = {
