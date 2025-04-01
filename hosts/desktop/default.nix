@@ -42,6 +42,7 @@
     kernelParams = lib.mkDefault [
       "amd_iommu=on"
       "amd_pstate=guided"
+      "microcode.amd_sha_check=off"
     ];
     loader = {
       systemd-boot = {
