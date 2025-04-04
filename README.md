@@ -289,6 +289,11 @@ Run the commands:
     mkdir -p "$FLATPAKDIR"/io.itch.tx00100xt.SeriousSamClassic-VK/data/Serious-Engine/{serioussam,serioussamse}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/serious_sam_the_first_encounter" -x ls -t | head -n1 | xargs innoextract -g -d "$FLATPAKDIR"/io.itch.tx00100xt.SeriousSamClassic-VK/data/Serious-Engine/serioussam
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/serious_sam_the_second_encounter" -x ls -t | head -n1 | xargs innoextract -g -d "$FLATPAKDIR"/io.itch.tx00100xt.SeriousSamClassic-VK/data/Serious-Engine/serioussamse
+    ## Starfox 64
+    mkdir -p "$GAMESDIR"/starfox-64
+    wget -P "$GAMESDIR"/starfox-64 https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Star%20Fox%2064%20%28USA%29%20%28Rev%201%29.zip
+    fd 'Star Fox' -a -d 1 -e zip "$GAMESDIR"/starfox-64 -x ouch d -y {} -d "$GAMESDIR"/starfox-64
+    fd -a -d 1 -e zip . "$GAMESDIR"/starfox-64 -x rm {}
     ## Theme Hospital
     mkdir -p "$GAMESDIR"/theme-hospital
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/theme_hospital" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/theme-hospital
