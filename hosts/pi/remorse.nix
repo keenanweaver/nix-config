@@ -103,9 +103,6 @@ in
     ./impermanence.nix
     # Profiles
     ../../modules
-    # Raspberry Pi
-    inputs.raspberry-pi-nix.nixosModules.raspberry-pi
-    basic-config
   ];
 
   # Custom modules
