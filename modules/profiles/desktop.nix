@@ -122,6 +122,7 @@ in
           revolt-desktop
           rustdesk-flutter
           signal-desktop
+          varia
           (vesktop.override { withMiddleClickScroll = true; })
         ];
         xdg = {
