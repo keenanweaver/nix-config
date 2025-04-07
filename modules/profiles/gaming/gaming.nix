@@ -383,7 +383,7 @@ in
             text = builtins.readFile (
               pkgs.fetchurl {
                 url = "https://raw.githubusercontent.com/streamduck-org/elgato-streamdeck/main/40-streamdeck.rules";
-                hash = "sha256-UdYRT0xveeQhN+YeOQMZyuW2kmxSUOoP1HT2Sse2Ty0=";
+                hash = "sha256-hY0HHNQple+utWRfczQuvlcYWH0wt+zLk0h883lPpJY=";
               }
             );
             destination = "/etc/udev/rules.d/40-streamdeck.rules";
