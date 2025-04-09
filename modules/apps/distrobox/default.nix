@@ -105,12 +105,11 @@ in
                   ## Base packages
                   paru -Syu --needed --noconfirm \
                   gamemode                       \
-                  gamescope-git                  \
                   kdialog                        \
+                  konsole                        \
                   lib32-gamemode                 \
                   lib32-libpulse                 \
                   lib32-mangohud                 \
-                  lib32-obs-vkcapture            \
                   lib32-vkbasalt                 \
                   lib32-vulkan-radeon            \
                   lib32-openal                   \
@@ -119,7 +118,6 @@ in
                   libva-mesa-driver              \
                   mangohud                       \
                   vkbasalt                       \
-                  obs-vkcapture                  \
                   openal                         \
                   parui                          \
                   pipewire                       \
@@ -138,8 +136,6 @@ in
                     paru -S --needed --noconfirm \
                     dbgl
                   elif [[ "$CONTAINER_ID" =~ ^bazzite-arch-gaming ]]; then
-                    # Packages that will initially fail
-                    paru -S --needed --noconfirm \
                     # Games/emulators/tools
                     paru -S --needed --noconfirm \
                     2s2h-bin                     \
