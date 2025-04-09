@@ -135,6 +135,7 @@ let
       rpcs3
       ryubing
       scummvm
+      shadps4
       supermodel
       nur.repos.novel2430.vita3k
       xemu
@@ -689,18 +690,6 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "net.shadps4.shadPS4" = {
-                Context = {
-                  filesystems = [
-                    "${config.home.homeDirectory}/Games"
-                    "xdg-data/games"
-                    "!home"
-                  ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
               "net.sourceforge.uqm_mods.UQM-MegaMod" = {
                 Environment = {
                   PULSE_SINK = "Game";
@@ -735,7 +724,6 @@ in
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
               "net.nmlgc.rec98.sh01"
-              "net.shadps4.shadPS4"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
               "org.openfodder.OpenFodder"
               "org.openjkdf2.OpenJKDF2"
