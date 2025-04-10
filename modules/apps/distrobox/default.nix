@@ -86,19 +86,6 @@ in
             in
             with pkgs;
             [
-              (writeShellApplication {
-                name = "distrobox-autostart";
-                runtimeInputs = with pkgs; [
-                  coreutils
-                  inputs.chaotic.packages.${pkgs.system}.distrobox_git
-                ];
-                text = ''
-                  boxes=$(distrobox list | cut -d "|" -f 2 | tail +2 | xargs)
-                  for box in "''${boxes[@]}"; do
-                    distrobox-enter -n "$box" -T -- bash -l -c "exit"
-                  done
-                '';
-              })
               boxbuddy
             ]
             ++ lib.optionals cfg.gaming [
