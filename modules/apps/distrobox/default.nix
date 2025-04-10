@@ -50,6 +50,24 @@ in
               unshare_netns = true;
               volume = "/etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro";
             };
+            /*
+              bazzite-arch-exodos-nh = lib.mkIf cfg.gaming {
+                         image = "ghcr.io/ublue-os/bazzite-arch:latest";
+                         init = true;
+                         pull = false;
+                         replace = false;
+                         start_now = true;
+                         home = "${config.xdg.dataHome}/distrobox/bazzite-arch-exodos";
+                       };
+                       bazzite-arch-gaming-nh = lib.mkIf cfg.gaming {
+                         image = "ghcr.io/ublue-os/bazzite-arch:latest";
+                         init = true;
+                         pull = false;
+                         replace = false;
+                         start_now = true;
+                         home = "${config.xdg.dataHome}/distrobox/bazzite-arch-gaming";
+                       };
+            */
           };
         };
         home = {
