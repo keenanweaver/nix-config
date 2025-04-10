@@ -76,9 +76,11 @@ in
                   enable = true;
                 };
               };
-              fzf-lua = {
-                enable = true;
-              };
+              /*
+                fzf-lua = {
+                             enable = true;
+                           };
+              */
               gestures = {
                 gesture-nvim = {
                   enable = true;
@@ -179,9 +181,6 @@ in
                   enable = true;
                 };
                 lspkind = {
-                  enable = true;
-                };
-                lsplines = {
                   enable = true;
                 };
                 mappings = {

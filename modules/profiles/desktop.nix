@@ -120,7 +120,7 @@ in
           qpwgraph
           qtscrcpy
           revolt-desktop
-          rustdesk-flutter
+          #rustdesk-flutter
           signal-desktop
           varia
           (vesktop.override { withMiddleClickScroll = true; })
