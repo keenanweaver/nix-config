@@ -12,6 +12,7 @@
   dbus,
   ffmpeg,
   wayland,
+  wayland-scanner,
   vulkan-headers,
   pipewire,
   libdrm,
@@ -27,11 +28,11 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "gpu-screen-recorder";
-  version = "5.3.5";
+  version = "5.3.8";
 
   src = fetchurl {
     url = "https://dec05eba.com/snapshot/gpu-screen-recorder.git.${finalAttrs.version}.tar.gz";
-    hash = "sha256-3GgP97iJVV6XcswBqlZU3ZkyacgYfPkVZVC1p7Uy4OI=";
+    hash = "sha256-SBW+B57bSKqQFuF7TK3PiRT+zODVlAnq0+sjv3/rsP0=";
   };
 
   sourceRoot = ".";
@@ -50,6 +51,7 @@ stdenv.mkDerivation (finalAttrs: {
     ffmpeg
     pipewire
     wayland
+    wayland-scanner
     vulkan-headers
     libdrm
     libva
