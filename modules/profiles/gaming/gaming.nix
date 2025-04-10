@@ -84,6 +84,15 @@ let
       openrct2
       openttd
       opentyrian
+      (openxcom.overrideAttrs {
+        version = "unstable-2025-04-08";
+        src = fetchFromGitHub {
+          owner = "MeridianOXC";
+          repo = "OpenXcom";
+          tag = "7e92e10507913b37eaec7530c91d8ba3f74390ed";
+          hash = "sha256-xiHKPu23VO894eJrghbzIaBzZpHcDhRFYc6atCKbpGA=";
+        };
+      })
       openxray # STALKER
       perfect_dark
       prismlauncher # MineCraft
