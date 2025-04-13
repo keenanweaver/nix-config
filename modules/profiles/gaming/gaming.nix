@@ -26,7 +26,15 @@ let
       prboom-plus
       rbdoom-3-bfg
       # slade
-      woof-doom
+      (woof-doom.overrideAttrs {
+        version = "unstable-2025-04-09";
+        src = fetchFromGitHub {
+          owner = "fabiangreffrath";
+          repo = "woof";
+          rev = "6db48e1506e533550dd635bad2e7fd5beb8e2cae";
+          hash = "sha256-3El2i3Wkmp+R5/2rBYOzhkeTk+9o518gAD1plJ/Acuw=";
+        };
+      })
       zandronum
       zandronum-server
       ## Fallout
@@ -215,7 +223,7 @@ in
     cdemu.enable = true;
     coolercontrol.enable = true;
     fluidsynth.enable = true;
-    gamemode.enable = true;
+    gamemode.enable = false;
     gamescope.enable = true;
     gsr.enable = true;
     heroic.enable = true;
@@ -255,6 +263,7 @@ in
           "vm.mmap_min_addr" = 0; # SheepShaver
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/sysctl.d/99-cachyos-settings.conf
           "fs.file-max" = 2097152;
+          "kernel.split_lock_mitigate" = 0;
           "net.core.netdev_max_backlog" = 4096;
           "vm.dirty_background_bytes" = 67108864;
           "vm.dirty_bytes" = 268435456;
