@@ -873,7 +873,7 @@ in
               {
                 name = "GOG Galaxy";
                 comment = "Launch GOG Galaxy using Bottles.";
-                exec = "flatpak run --command=bottles-cli run -p \"GOG Galaxy\" -b \"GOG Galaxy\" -- %u";
+                exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p \"GOG Galaxy\" -b \"GOG Galaxy\" -- %u";
                 icon = "${icon}";
                 categories = [ "Game" ];
                 noDisplay = false;
