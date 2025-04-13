@@ -95,7 +95,22 @@ in
           cursors = {
             enable = true;
             accent = "${accent-lower}";
-            flavor = "${flavor-lower}";
+          };
+          fzf = {
+            accent = "${accent-lower}";
+          };
+          lazygit = {
+            accent = "${accent-lower}";
+          };
+          micro = {
+            transparent = true;
+          };
+          vscode = {
+            accent = "${accent-lower}";
+            settings.accent = "${accent-lower}";
+          };
+          yazi = {
+            accent = "${accent-lower}";
           };
         };
 
@@ -598,6 +613,7 @@ in
                   "terminal.integrated.fontFamily" = "${mono-font}";
                   "terminal.integrated.fontSize" = 14;
                   "terminal.integrated.fontWeight" = "normal";
+                  "workbench.iconTheme" = "catppuccin-${flavor-lower}";
                 };
               };
             };
