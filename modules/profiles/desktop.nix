@@ -121,7 +121,7 @@ in
           qtscrcpy
           revolt-desktop
           #rustdesk-flutter
-          signal-desktop
+          signal-desktop-bin
           varia
           (vesktop.override { withMiddleClickScroll = true; })
         ];
