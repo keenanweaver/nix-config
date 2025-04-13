@@ -104,7 +104,6 @@ in
                 if ! rg "chaotic" /etc/pacman.conf; then
                   echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf
                 fi
-                ## TODO: atuin
                 ## Set up containers
                 ${lib.optionalString vars.gaming ''
                   ## Base packages

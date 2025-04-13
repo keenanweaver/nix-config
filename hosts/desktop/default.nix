@@ -67,7 +67,7 @@
     hostName = "nixos-desktop";
   };
 
-  powerManagement.cpuFreqGovernor = "ondemand";
+  powerManagement.cpuFreqGovernor = "performance";
 
   services = {
     beesd = {
