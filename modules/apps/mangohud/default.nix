@@ -31,8 +31,8 @@ in
               ###############
               ##  Display  ##
               ###############
-              #gl_vsync=1
-              #vsync=2 # https://gitlab.freedesktop.org/drm/amd/-/issues/3166#note_2277578
+              gl_vsync=1
+              vsync=2 # https://gitlab.freedesktop.org/drm/amd/-/issues/3166#note_2277578
               fps_limit=357,237,141,117,60,30,0
 
               ###########
