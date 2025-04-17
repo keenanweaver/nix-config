@@ -163,7 +163,7 @@ in
                 ''}'')
               (
                 let
-                  args = "gamemoderun obs-gamecapture mangohud";
+                  args = "obs-gamecapture mangohud";
                   bin = "2s2h";
                   bin-export = "${bin}-db";
                   container = "bazzite-arch-gaming";
@@ -181,7 +181,7 @@ in
               )
               (
                 let
-                  args = "gamemoderun obs-gamecapture mangohud";
+                  args = "obs-gamecapture mangohud";
                   bin = "/opt/Archipelago/ArchipelagoLauncher";
                   bin-export = "${bin}-db";
                   container = "bazzite-arch-gaming";
@@ -199,7 +199,7 @@ in
               )
               (
                 let
-                  args = "gamemoderun obs-gamecapture mangohud";
+                  args = "obs-gamecapture mangohud";
                   bin = "bizhawk";
                   bin-export = "${bin}-db";
                   container = "bazzite-arch-gaming";
@@ -217,7 +217,7 @@ in
               )
               (
                 let
-                  args = "gamemoderun obs-gamecapture mangohud";
+                  args = "obs-gamecapture mangohud";
                   bin = "${config.home.homeDirectory}/Games/daikatana/daikatana";
                   bin-export = "${bin}-db";
                   container = "bazzite-arch-gaming";
@@ -312,7 +312,7 @@ in
               )
               (
                 let
-                  args = "gamemoderun obs-gamecapture mangohud";
+                  args = "obs-gamecapture mangohud";
                   bin = "jazzjackrabbit";
                   bin-export = "${bin}-db";
                   container = "bazzite-arch-gaming";
@@ -330,7 +330,7 @@ in
               )
               (
                 let
-                  args = "gamemoderun obs-gamecapture mangohud";
+                  args = "obs-gamecapture mangohud";
                   bin = "lab3d-sdl";
                   bin-export = "${bin}-db";
                   container = "bazzite-arch-gaming";
@@ -384,7 +384,7 @@ in
               )
               (
                 let
-                  args = "gamemoderun obs-gamecapture mangohud";
+                  args = "obs-gamecapture mangohud";
                   bin = "sonic";
                   bin-export = "${bin}-db";
                   container = "bazzite-arch-gaming";
@@ -402,7 +402,7 @@ in
               )
               (
                 let
-                  args = "gamemoderun obs-gamecapture mangohud";
+                  args = "obs-gamecapture mangohud";
                   bin = "sonic2";
                   bin-export = "${bin}-db";
                   container = "bazzite-arch-gaming";
@@ -420,7 +420,7 @@ in
               )
               (
                 let
-                  args = "gamemoderun obs-gamecapture mangohud";
+                  args = "obs-gamecapture mangohud";
                   bin = "supermarioworld";
                   bin-export = "${bin}-db";
                   container = "bazzite-arch-gaming";
@@ -438,7 +438,7 @@ in
               )
               (
                 let
-                  args = "gamemoderun obs-gamecapture mangohud";
+                  args = "obs-gamecapture mangohud";
                   bin = "xash3d";
                   bin-export = "${bin}-db";
                   container = "bazzite-arch-gaming";
@@ -464,9 +464,9 @@ in
                 writeShellScriptBin "${bin-export}" ''
                   export PULSE_SINK="Game"
                   if [ -z "''${CONTAINER_ID}" ]; then
-                    gamemoderun "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
+                    "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
                   elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                    gamemoderun distrobox-host-exec '${bin-export}' "$@"
+                    distrobox-host-exec '${bin-export}' "$@"
                   else
                     '/usr/bin/${bin}' "$@"
                   fi
@@ -474,7 +474,7 @@ in
               )
               (
                 let
-                  args = "gamemoderun obs-gamecapture mangohud";
+                  args = "obs-gamecapture mangohud";
                   bin = "zeldalttp";
                   bin-export = "${bin}-db";
                   container = "bazzite-arch-gaming";
