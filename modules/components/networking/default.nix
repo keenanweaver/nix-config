@@ -20,14 +20,14 @@ in
     };
     networking = {
       extraHosts = ''
-        192.168.1.1 opnsense
-        192.168.1.7 UCK-G2
-        192.168.20.13 crusader
-        192.168.20.30 remorsepi
-        192.168.20.31 regretpi
-        192.168.20.17 nixos-unraid
-        192.168.20.11 bazzite
-        192.168.20.29 MiSTer
+        10.20.1.1 opnsense
+        10.20.1.7 UCK-G2
+        10.20.20.13 crusader
+        10.20.20.30 remorsepi
+        10.20.20.31 regretpi
+        10.20.20.17 nixos-unraid
+        10.20.20.11 bazzite
+        10.20.20.29 MiSTer
       '';
       networkmanager = {
         enable = true;
