@@ -46,7 +46,6 @@ in
         };
         services.flatpak = {
           packages = [
-            "com.github.tchx84.Flatseal"
             "io.github.ungoogled_software.ungoogled_chromium"
             "net.mullvad.MullvadBrowser"
           ];
