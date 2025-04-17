@@ -26,15 +26,7 @@ let
       prboom-plus
       rbdoom-3-bfg
       # slade
-      (woof-doom.overrideAttrs {
-        version = "unstable-2025-04-09";
-        src = fetchFromGitHub {
-          owner = "fabiangreffrath";
-          repo = "woof";
-          rev = "6db48e1506e533550dd635bad2e7fd5beb8e2cae";
-          hash = "sha256-3El2i3Wkmp+R5/2rBYOzhkeTk+9o518gAD1plJ/Acuw=";
-        };
-      })
+      woof-doom
       zandronum
       zandronum-server
       ## Fallout

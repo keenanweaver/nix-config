@@ -214,15 +214,7 @@ in
       };
     };
 
-    services.pulseaudio.enable = false;
-
-    /* services.udev.extraRules = ''
-        # Disable AMD audio devices
-        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x1002", ATTR{class}=="0xab28", ATTR{power/control}="auto", ATTR{remove}="1"
-      '' + lib.optionalString vars.nvidia ''
-        # Disable NVIDIA audio devices
-        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{power/control}="auto", ATTR{remove}="1"
-      ''; */
+    services.pulseaudio.enable = lib.mkForce false;
 
     home-manager.users.${username} = { };
   };
