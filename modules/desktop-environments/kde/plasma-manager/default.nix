@@ -84,19 +84,14 @@
         konsole = {
           enable = true;
           defaultProfile = "${username}";
-          extraConfig = ''
-            [KonsoleWindow]
-            RemoveWindowTitleBarAndFrame=true
-
-            [MainWindow]
-            MenuBar=Disabled
-
-            [MainWindow][Toolbar mainToolBar]
-            ToolButtonStyle=IconOnly
-            
-            [MainWindow][Toolbar sessionToolbar]
-            ToolButtonStyle=IconOnly
-          '';
+          extraConfig = {
+            KonsoleWindow = {
+              RemoveWindowTitleBarAndFrame = true;
+            };
+            MainWindow = {
+              MenuBar = "Disabled";
+            };
+          };
           profiles = {
             "${username}" = {
               command = "${pkgs.zsh}/bin/zsh";
