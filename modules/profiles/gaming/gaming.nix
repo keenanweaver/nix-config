@@ -40,10 +40,9 @@ let
       fheroes2
       vcmi
       ## Marathon
-      alephone
-      alephone-marathon
-      alephone-durandal
-      alephone-infinity
+      #alephone-marathon
+      #alephone-durandal
+      #alephone-infinity
       ## Morrowind
       #inputs.openmw-nix.packages.${pkgs.system}.openmw-dev
       openmw
@@ -71,14 +70,16 @@ let
       augustus # Caesar 3
       clonehero # Guitar Hero
       corsix-th # Theme Hospital
-      #devilutionx # Diablo
+      devilutionx # Diablo
       exult # Ultima VII
       #ja2-stracciatella
       jazz2
       katawa-shoujo-re-engineered
       nur.repos.Rhys-T.lix-game # Lemmings clone
       openjk # Jedi Academy
-      openloco # Locomotion
+      (openloco.overrideAttrs (oldAttrs: {
+        buildInputs = oldAttrs.buildInputs ++ [ xorg.libX11 ];
+      })) # Locomotion
       # opennox
       openomf
       openrct2
@@ -93,14 +94,18 @@ let
           hash = "sha256-xiHKPu23VO894eJrghbzIaBzZpHcDhRFYc6atCKbpGA=";
         };
       })
-      openxray # STALKER
-      perfect_dark
+      #openxray # STALKER
+      (perfect_dark.overrideAttrs (oldAttrs: {
+        buildInputs = oldAttrs.buildInputs ++ [ libGL ];
+      }))
       prismlauncher # MineCraft
       relive # Oddworld
       ringracers
       runelite # RuneScape
       shipwright
-      sm64ex
+      (sm64ex.overrideAttrs (oldAttrs: {
+        buildInputs = oldAttrs.buildInputs ++ [ libGL ];
+      }))
       space-station-14-launcher
       #inputs.nix-citizen.packages.${system}.star-citizen
       srb2
@@ -123,13 +128,15 @@ let
       #easyrpg-player
       flycast
       fsuae-launcher
-      hypseus-singe
+      (hypseus-singe.overrideAttrs (oldAttrs: {
+        buildInputs = oldAttrs.buildInputs ++ [ xorg.libX11 ];
+      }))
       #lime3ds
       mame
       mednafen
       mednaffe
       melonDS
-      mesen
+      #mesen
       nuked-sc55
       pcsx2
       pegasus-frontend
@@ -141,12 +148,14 @@ let
           mgba
         ]
       ))
-      rpcs3
+      #rpcs3
       ryubing
       scummvm
       shadps4
-      supermodel
-      nur.repos.novel2430.vita3k
+      (supermodel.overrideAttrs (oldAttrs: {
+        buildInputs = oldAttrs.buildInputs ++ [ xorg.libX11 ];
+      }))
+      #nur.repos.novel2430.vita3k
       xemu
       ## Input
       joystickwake
