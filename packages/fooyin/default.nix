@@ -17,6 +17,7 @@
   libopenmpt,
   game-music-emu,
   SDL2,
+  fetchpatch,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -65,9 +66,14 @@ stdenv.mkDerivation (finalAttrs: {
     (lib.cmakeBool "INSTALL_FHS" true)
   ];
 
-  patchPhase = ''
-    find src -type f -print0 | xargs -0 sed -i 's/opt.backgroundBrush = {};/opt.backgroundBrush = Qt::NoBrush;/g'
-  '';
+  # Remove after next release
+  patches = [
+    (fetchpatch {
+      name = "qbrush.patch";
+      url = "https://github.com/fooyin/fooyin/commit/e44e08abb33f01fe85cc896170c55dbf732ffcc9.patch";
+      hash = "sha256-soDj/SFctxxsnkePv4dZgyDHYD2eshlEziILOZC4ddM=";
+    })
+  ];
 
   env.LANG = "C.UTF-8";
 
