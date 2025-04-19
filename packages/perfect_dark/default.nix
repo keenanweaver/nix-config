@@ -12,6 +12,7 @@
   pkg-config,
   cmake,
   python3,
+  libGL,
 }:
 let
   roms = [
@@ -23,17 +24,18 @@ in
 assert lib.assertOneOf "romID" romID roms;
 stdenv.mkDerivation rec {
   pname = "perfect_dark";
-  version = "0-unstable-2025-01-05";
+  version = "0-unstable-2025-03-30";
 
   src = fetchFromGitHub {
     owner = "fgsfdsfgs";
     repo = "perfect_dark";
-    rev = "4f7817a0ca83a893ee515854ff4f93415810810a";
-    hash = "sha256-J5dNkA8xXk5HgKpF+PMGSbH6Hj4M6dKp599C0PnaLT0=";
+    rev = "0ac5fdd5c3ffc13b453e52dceef6beb219606cc3";
+    hash = "sha256-+d4N6A00nVViQlzjOq5Ey6aUOQHEhWJhOY8FmIuTkHo=";
   };
 
   buildInputs = [
     SDL2
+    libGL
     zlib
   ];
 
