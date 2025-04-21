@@ -4,7 +4,6 @@
   lib,
   username,
   pkgs,
-  dotfiles,
   vars,
   ...
 }:
@@ -36,7 +35,7 @@ in
       cache.enable = true;
       flavor = "${flavor-lower}";
       sddm = {
-        background = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
+        background = ./wallpapers/lavender-wave-haikei.png;
         font = "${mono-font}";
         fontSize = "11";
       };
@@ -305,6 +304,11 @@ in
               '';
               target = "${config.xdg.dataHome}/konsole/catppuccin-${flavor-lower}-transparent.colorscheme";
             };
+            catppuccin-krita = {
+              enable = true;
+              text = builtins.readFile ./krita/CatppuccinMochaLavender.colors;
+              target = "${config.xdg.dataHome}/krita/color-schemes/Catppuccin${flavor-upper}${accent-upper}.colors";
+            };
             catppuccin-obs-flatpak = {
               enable = true;
               recursive = true;
@@ -355,6 +359,26 @@ in
                 DrawBackgroundGradient=false
               '';
               target = "${config.xdg.configHome}/darklyrc";
+            };
+            gtk3-config-colors = {
+              enable = true;
+              text = builtins.readFile ./gtk-3.0/colors.css;
+              target = "${config.xdg.configHome}/gtk-3.0/colors.css";
+            };
+            gtk3-config-gtk = {
+              enable = true;
+              text = builtins.readFile ./gtk-3.0/gtk.css;
+              target = "${config.xdg.configHome}/gtk-3.0/gtk.css";
+            };
+            gtk4-config-colors = {
+              enable = true;
+              text = builtins.readFile ./gtk-4.0/colors.css;
+              target = "${config.xdg.configHome}/gtk-4.0/colors.css";
+            };
+            gtk4-config-gtk = {
+              enable = true;
+              text = builtins.readFile ./gtk-4.0/gtk.css;
+              target = "${config.xdg.configHome}/gtk-4.0/gtk.css";
             };
             klassy-config = {
               enable = false;
@@ -569,7 +593,7 @@ in
             };
             kscreenlocker = {
               appearance = {
-                wallpaper = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
+                wallpaper = ./wallpapers/lavender-wave-haikei.png;
               };
             };
             workspace = {
@@ -600,7 +624,7 @@ in
               # Splash Screen
               splashScreen.theme = "Catppuccin-${flavor-upper}-${accent-upper}";
               # Wallpaper
-              wallpaper = "${dotfiles}/Pictures/wallpapers/lavender-wave-haikei.png";
+              wallpaper = ./wallpapers/lavender-wave-haikei.png;
             };
           };
           vscode = {

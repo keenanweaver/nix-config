@@ -10,10 +10,6 @@ let
   cfg = config.pipewire;
 in
 {
-  imports = [
-    ./low-latency.nix
-  ];
-
   options = {
     pipewire = {
       enable = lib.mkEnableOption "Enable pipewire in NixOS & home-manager";

@@ -3,7 +3,6 @@
   config,
   username,
   pkgs,
-  vars,
   ...
 }:
 let
@@ -29,7 +28,6 @@ in
     programs = {
       coolercontrol = {
         enable = true;
-        nvidiaSupport = vars.nvidia;
       };
     };
 

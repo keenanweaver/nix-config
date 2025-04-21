@@ -11,6 +11,11 @@
     {
       home = {
         file = {
+          dolphinui = {
+            enable = true;
+            text = builtins.readFile ./dolphinui.rc;
+            target = "${config.xdg.dataHome}/kxmlgui5/dolphin/dolphinui.rc";
+          };
           kinetic-effects = {
             enable = true;
             recursive = true;

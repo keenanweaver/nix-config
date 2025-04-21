@@ -151,10 +151,8 @@
     {
       homeConfigurations =
         let
-          fullname = "Keenan Weaver";
           username = "deck";
           home = "/home/deck";
-          dotfiles = ./dotfiles;
         in
         {
           steamdeck = home-manager.lib.homeManagerConfiguration {
@@ -201,7 +199,6 @@
               vars = {
                 desktop = true;
                 gaming = true;
-                nvidia = false;
               };
             };
 
@@ -257,7 +254,6 @@
               vars = {
                 desktop = true;
                 gaming = false;
-                nvidia = false;
               };
             };
 
