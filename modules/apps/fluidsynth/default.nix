@@ -7,7 +7,7 @@
 }:
 let
   cfg = config.fluidsynth;
-  soundfont = "SC-55 SoundFont.v1.2b [Trevor0402].sf2";
+  soundfont = "GeneralUser-GS.sf2";
 in
 {
   options.fluidsynth = {
