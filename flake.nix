@@ -184,8 +184,6 @@
         let
           fullname = "Keenan Weaver";
           username = "keenan";
-
-          dotfiles = ./dotfiles;
         in
         {
           # Desktop
@@ -194,7 +192,7 @@
 
             specialArgs = {
               inherit inputs;
-              inherit fullname username dotfiles;
+              inherit fullname username;
 
               vars = {
                 desktop = true;
@@ -222,7 +220,7 @@
                   useUserPackages = true;
                   extraSpecialArgs = {
                     inherit inputs; # Experiment with config and other attributes
-                    inherit fullname username dotfiles;
+                    inherit fullname username;
 
                     vars = {
                       desktop = true;
@@ -249,7 +247,7 @@
 
             specialArgs = {
               inherit inputs;
-              inherit fullname username dotfiles;
+              inherit fullname username;
 
               vars = {
                 desktop = true;
@@ -274,7 +272,7 @@
                 home-manager = {
                   extraSpecialArgs = {
                     inherit inputs;
-                    inherit fullname username dotfiles;
+                    inherit fullname username;
 
                     vars = {
                       desktop = true;
@@ -307,7 +305,7 @@
 
             specialArgs = {
               inherit inputs;
-              inherit fullname username dotfiles;
+              inherit fullname username;
 
               vars = {
                 desktop = false;
@@ -329,7 +327,7 @@
                 home-manager = {
                   extraSpecialArgs = {
                     inherit inputs; # Experiment with config and other attributes
-                    inherit fullname username dotfiles;
+                    inherit fullname username;
 
                     vars = {
                       desktop = false;
@@ -358,7 +356,7 @@
 
             specialArgs = {
               inherit inputs;
-              inherit fullname username dotfiles;
+              inherit fullname username;
 
               vars = {
                 desktop = false;
@@ -383,7 +381,7 @@
                   useUserPackages = true;
                   extraSpecialArgs = {
                     inherit inputs; # Experiment with config and other attributes
-                    inherit fullname username dotfiles;
+                    inherit fullname username;
 
                     vars = {
                       desktop = false;
@@ -409,7 +407,7 @@
 
             specialArgs = {
               inherit inputs;
-              inherit fullname username dotfiles;
+              inherit fullname username;
 
               vars = {
                 desktop = false;
@@ -434,7 +432,7 @@
                 home-manager = {
                   extraSpecialArgs = {
                     inherit inputs; # Experiment with config and other attributes
-                    inherit fullname username dotfiles;
+                    inherit fullname username;
 
                     vars = {
                       desktop = false;
