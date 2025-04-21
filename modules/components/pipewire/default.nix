@@ -154,29 +154,11 @@ in
         enable = true;
         extraConfig =
           {
-            # Webcam battery drain https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/2669
-            "10-disable-camera" = {
-              "wireplumber.profiles" = {
-                main."monitor.libcamera" = "disabled";
-              };
-            };
-            # Disable HDMI audio
-            "51-disable-hdmi-audio" = {
-              "monitor.alsa.rules" = [
-                {
-                  matches = [ { "device.name" = "~hdmi-stereo.*"; } ];
-                  actions.update-props = {
-                    "device.disabled" = true;
-                  };
-                }
-              ];
-            };
             # Static/crackling fix https://wiki.archlinux.org/title/PipeWire#Noticeable_audio_delay_or_audible_pop/crack_when_starting_playback
             "51-disable-suspension" = {
               "monitor.alsa.rules" = [
                 {
                   matches = [
-                    #{ "node.name" = "~alsa_input.*"; }
                     { "node.name" = "~alsa_output.*"; }
                   ];
                   actions.update-props = {

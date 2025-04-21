@@ -14,10 +14,6 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-
-    environment = {
-      systemPackages = [ ];
-    };
     networking = {
       extraHosts = ''
         10.20.1.1 opnsense
