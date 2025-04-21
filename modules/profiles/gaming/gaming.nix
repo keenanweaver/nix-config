@@ -86,18 +86,16 @@ let
       openttd
       opentyrian
       (openxcom.overrideAttrs {
-        version = "unstable-2025-04-08";
+        version = "unstable-2025-04-16";
         src = fetchFromGitHub {
           owner = "MeridianOXC";
           repo = "OpenXcom";
-          tag = "7e92e10507913b37eaec7530c91d8ba3f74390ed";
-          hash = "sha256-xiHKPu23VO894eJrghbzIaBzZpHcDhRFYc6atCKbpGA=";
+          tag = "5403e2e6fa16059449d97887f2e6ff37d2723760";
+          hash = "sha256-chp77iSbx5cn3GIHsfMi2PX8Arr4u3qZ7fObdQIlN74=";
         };
       })
       #openxray # STALKER
-      (perfect_dark.overrideAttrs (oldAttrs: {
-        buildInputs = oldAttrs.buildInputs ++ [ libGL ];
-      }))
+      perfect_dark
       prismlauncher # MineCraft
       relive # Oddworld
       ringracers
@@ -128,9 +126,7 @@ let
       #easyrpg-player
       flycast
       fsuae-launcher
-      (hypseus-singe.overrideAttrs (oldAttrs: {
-        buildInputs = oldAttrs.buildInputs ++ [ xorg.libX11 ];
-      }))
+      #hypseus-singe
       #lime3ds
       mame
       mednafen
@@ -164,6 +160,7 @@ let
       cartridges
       itch
       ## Modding
+      #hedgemodmanager
       limo
       nexusmods-app-unfree
       #owmods-gui
@@ -183,7 +180,7 @@ let
       xlink-kai
       xvidcore
       ## Wine
-      inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
+      #inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
       inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
       umu-launcher
       winetricks
