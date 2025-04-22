@@ -40,9 +40,9 @@ let
       fheroes2
       vcmi
       ## Marathon
-      #alephone-marathon
-      #alephone-durandal
-      #alephone-infinity
+      alephone-marathon
+      alephone-durandal
+      alephone-infinity
       ## Morrowind
       #inputs.openmw-nix.packages.${pkgs.system}.openmw-dev
       openmw
@@ -77,9 +77,7 @@ let
       katawa-shoujo-re-engineered
       nur.repos.Rhys-T.lix-game # Lemmings clone
       openjk # Jedi Academy
-      (openloco.overrideAttrs (oldAttrs: {
-        buildInputs = oldAttrs.buildInputs ++ [ xorg.libX11 ];
-      })) # Locomotion
+      openloco
       # opennox
       openomf
       openrct2
@@ -94,7 +92,7 @@ let
           hash = "sha256-chp77iSbx5cn3GIHsfMi2PX8Arr4u3qZ7fObdQIlN74=";
         };
       })
-      #openxray # STALKER
+      openxray # STALKER
       perfect_dark
       prismlauncher # MineCraft
       relive # Oddworld
@@ -126,7 +124,7 @@ let
       #easyrpg-player
       flycast
       fsuae-launcher
-      #hypseus-singe
+      hypseus-singe
       #lime3ds
       mame
       mednafen

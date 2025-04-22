@@ -121,7 +121,7 @@ in
             mkvtoolnix-cli
             play
             podman-tui
-            #streamrip
+            streamrip
             systemctl-tui
             television
             termscp

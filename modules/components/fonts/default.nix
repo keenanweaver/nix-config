@@ -41,7 +41,7 @@ in
             "Liberation Mono"
           ];
           sansSerif = [
-            "Adwaita Sans"
+            "Inter"
             "Liberation Sans"
           ];
           serif = [
