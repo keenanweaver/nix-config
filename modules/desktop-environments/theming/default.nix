@@ -21,6 +21,7 @@ let
   #cursor-theme = "breeze_cursors";
   cursor-theme = "catppuccin-${flavor-lower}-${accent-lower}-cursors";
   icon-theme = "Papirus-Dark";
+  wallpaper = "lavender-wave-haikei.png";  
 in
 {
   options = {
@@ -35,7 +36,7 @@ in
       cache.enable = true;
       flavor = "${flavor-lower}";
       sddm = {
-        background = ./wallpapers/lavender-wave-haikei.png;
+        background = "/home/${username}/Pictures/wallpapers/${wallpaper}";
         font = "${mono-font}";
         fontSize = "11";
       };
@@ -448,6 +449,12 @@ in
               '';
               target = "${config.xdg.configHome}/powershell/Microsoft.PowerShell_profile.ps1";
             };
+            wallpapers = {
+              enable = true;
+              recursive = true;
+              source = ./wallpapers;
+              target = "${config.home.homeDirectory}/Pictures/wallpapers";
+            };
           };
           packages = with pkgs; [
             hicolor-icon-theme
@@ -593,7 +600,7 @@ in
             };
             kscreenlocker = {
               appearance = {
-                wallpaper = ./wallpapers/lavender-wave-haikei.png;
+                wallpaper = "${config.home.homeDirectory}/Pictures/wallpapers/${wallpaper}";
               };
             };
             workspace = {
@@ -624,7 +631,7 @@ in
               # Splash Screen
               splashScreen.theme = "Catppuccin-${flavor-upper}-${accent-upper}";
               # Wallpaper
-              wallpaper = ./wallpapers/lavender-wave-haikei.png;
+              wallpaper = "${config.home.homeDirectory}/Pictures/wallpapers/${wallpaper}";
             };
           };
           vscode = {
