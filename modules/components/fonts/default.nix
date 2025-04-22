@@ -21,9 +21,9 @@ in
         enable = true;
       };
       packages = with pkgs; [
-        adwaita-fonts
         corefonts
         geist-font
+        inter
         liberation_ttf
         material-design-icons
         nerd-fonts.jetbrains-mono

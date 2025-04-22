@@ -14,8 +14,8 @@ let
   flavor-upper = "Mocha";
   cfg = config.catppuccinTheming;
   mono-font = "JetBrainsMono Nerd Font";
-  sans-font = "Adwaita Sans";
-  sans-font-pkg = pkgs.adwaita-fonts;
+  sans-font = "Inter Sans";
+  sans-font-pkg = pkgs.inter;
   #serif-font = "IBM Plex Serif";
   GTK-THEME = "Breeze-Dark";
   #cursor-theme = "breeze_cursors";
@@ -171,12 +171,6 @@ in
               enable = false;
               source = config.lib.file.mkOutOfStoreSymlink "${pkgs.kdePackages.breeze}/share/icons/breeze_cursors";
               target = "${config.xdg.dataHome}/icons/breeze_cursors";
-            };
-            # Flatpak theming issue workarounds
-            adwaita-font = {
-              enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.adwaita-fonts}/share/fonts/Adwaita";
-              target = "${config.xdg.dataHome}/fonts/Adwaita";
             };
             catppuccin-gtk = {
               enable = true;
@@ -360,6 +354,12 @@ in
                 DrawBackgroundGradient=false
               '';
               target = "${config.xdg.configHome}/darklyrc";
+            };
+            # Flatpak theming issue workarounds
+            flatpak-font = {
+              enable = true;
+              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.inter}/share/fonts/opentype";
+              target = "${config.xdg.dataHome}/fonts/inter";
             };
             gtk3-config-colors = {
               enable = true;

@@ -6,6 +6,7 @@
   gpu-screen-recorder-gtk = prev.callPackage ./gpu-screen-recorder/gtk { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui { };
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif { };
+  inter = prev.callPackage ./inter { };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nugget-doom = prev.callPackage ./nugget-doom { };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
