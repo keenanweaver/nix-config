@@ -2,6 +2,8 @@
   lib,
   stdenvNoCC,
   fetchzip,
+  withOTF ? true,
+  withTTF ? false,
 }:
 
 stdenvNoCC.mkDerivation rec {
@@ -17,8 +19,15 @@ stdenvNoCC.mkDerivation rec {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/share/fonts/opentype
-    cp extras/otf/*.otf $out/share/fonts/opentype
+    ${lib.optionalString withTTF ''
+      mkdir -p $out/share/fonts/truetype
+      cp Inter.ttc InterVariable*.ttf $out/share/fonts/truetype
+    ''}
+
+    ${lib.optionalString withOTF ''
+      mkdir -p $out/share/fonts/opentype
+      cp extras/otf/*.otf $out/share/fonts/opentype
+    ''}
 
     runHook postInstall
   '';
