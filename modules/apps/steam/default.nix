@@ -45,6 +45,7 @@ in
         luxtorpeda
         inputs.nix-proton-cachyos.packages.${system}.proton-cachyos
         inputs.chaotic.packages.${system}.proton-ge-custom
+        steamtinkerlaunch
       ];
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
@@ -72,16 +73,7 @@ in
           };
           packages = with pkgs; [
             steamcmd
-            # SteamTinkerLaunch tools
             steamtinkerlaunch
-            gawk
-            procps
-            unixtools.xxd
-            xdotool
-            xorg.xprop
-            xorg.xrandr
-            xorg.xwininfo
-            yad
           ];
         };
         services.flatpak = lib.mkIf cfg.enableFlatpak {

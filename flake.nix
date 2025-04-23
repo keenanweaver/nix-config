@@ -91,11 +91,6 @@
       url = "github:syhretsit/openmw-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    steamtinkerlaunch-master = {
-      type = "git";
-      url = "https://github.com/sonic2kk/steamtinkerlaunch.git";
-      flake = false;
-    };
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
 
     # Theming

@@ -623,9 +623,7 @@ in
                   findutils
                   jq
                   sd
-                  (steamtinkerlaunch.overrideAttrs (o: {
-                    src = inputs.steamtinkerlaunch-master;
-                  }))
+                  steamtinkerlaunch
                   xh
                 ];
                 text = ''
