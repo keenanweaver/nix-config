@@ -50,7 +50,7 @@ in
             post_commands =
               { }
               // lib.optionalAttrs vars.gaming {
-                "Check SteamTinkerLaunch compat" = "steamtinkerlaunch compat add";
+                "SteamTinkerLaunch configure" = "script-stl-configure";
               };
           };
         };

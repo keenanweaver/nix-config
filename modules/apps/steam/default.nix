@@ -74,6 +74,40 @@ in
           packages = with pkgs; [
             steamcmd
             steamtinkerlaunch
+            (writeShellApplication {
+              name = "script-stl-configure";
+              runtimeEnv = {
+                STL_DEFAULT = "${config.xdg.configHome}/steamtinkerlaunch/default_template.conf";
+                STL_GAMECFGS = "${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/id";
+                STL_GLOBAL = "${config.xdg.configHome}/steamtinkerlaunch/global.conf";
+                STL_GLOBAL_CUSTOM_VARS = "${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/customvars/global-custom-vars.conf";
+              };
+              runtimeInputs = [
+                coreutils
+                findutils
+                jq
+                sd
+                steamtinkerlaunch
+                xh
+              ];
+              text = ''
+                ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
+                steamtinkerlaunch compat add
+                sd 'YAD="(.*?)"' 'YAD="${pkgs.yad}/bin/yad"' $STL_GLOBAL
+                sd 'STLEDITOR="(.*?)"' 'STLEDITOR="${pkgs.kdePackages.kate}/bin/kate"' $STL_GLOBAL
+                sd 'SKIPINTDEPCHECK="(.*?)"' 'SKIPINTDEPCHECK="1"' $STL_GLOBAL
+                sd 'USEGAMEMODERUN="(.*?)"' 'USEGAMEMODERUN="0"' $STL_DEFAULT
+                sd 'USEOBSCAP="(.*?)"' 'USEOBSCAP="1"' $STL_DEFAULT
+                sd 'USEMANGOHUD="(.*?)"' 'USEMANGOHUD="1"' $STL_DEFAULT
+                sd 'MAHUDLSYM="(.*?)"' 'MAHUDLSYM="1"' $STL_DEFAULT
+                sd 'USERAYTRACING="(.*?)"' 'USERAYTRACING="1"' $STL_DEFAULT
+                sd 'USEPROTON="(.*?)"' 'USEPROTON="Proton-GE"' $STL_DEFAULT
+                sd 'DXVK_HDR="(.*?)"' 'DXVK_HDR="1"' $STL_DEFAULT
+                sd 'GAMESCOPE_ARGS="(.*?)"' 'GAMESCOPE_ARGS="-W 2560 -H 1440 -f -r 360 --hdr-enabled --force-grab-cursor --"' $STL_DEFAULT
+                echo 'PULSE_SINK=Game' > "$STL_GLOBAL_CUSTOM_VARS"
+                echo 'WINE_CPU_TOPOLOGY=16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23' >> "$STL_GLOBAL_CUSTOM_VARS"
+              '';
+            })
           ];
         };
         services.flatpak = lib.mkIf cfg.enableFlatpak {
