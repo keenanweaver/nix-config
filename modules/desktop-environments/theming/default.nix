@@ -14,7 +14,7 @@ let
   flavor-upper = "Mocha";
   cfg = config.catppuccinTheming;
   mono-font = "JetBrainsMono Nerd Font";
-  sans-font = "Inter Sans";
+  sans-font = "Inter";
   sans-font-pkg = pkgs.inter;
   #serif-font = "IBM Plex Serif";
   GTK-THEME = "Breeze-Dark";
