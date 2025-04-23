@@ -21,7 +21,7 @@ let
   #cursor-theme = "breeze_cursors";
   cursor-theme = "catppuccin-${flavor-lower}-${accent-lower}-cursors";
   icon-theme = "Papirus-Dark";
-  wallpaper = "lavender-wave-haikei.png";  
+  wallpaper = "lavender-wave-haikei.png";
 in
 {
   options = {
@@ -510,12 +510,6 @@ in
           };
           kate = {
             editor = {
-              brackets = {
-                automaticallyAddClosing = true;
-                flashMatching = true;
-                highlightMatching = true;
-                highlightRangeBetween = true;
-              };
               font = {
                 family = "${mono-font}";
                 pointSize = 14;
