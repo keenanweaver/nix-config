@@ -310,8 +310,8 @@ Run the commands:
     ## Zelda 64
     mkdir -p "$GAMESDIR"/zelda-64
     wget -P "$GAMESDIR"/zelda-64 https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Legend%20of%20Zelda%2C%20The%20-%20Majora%27s%20Mask%20%28USA%29.zip
-    wget -P "$GAMESDIR"/zelda-64 https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Legend%20of%20Zelda%2C%20The%20-%20Ocarina%20of%20Time%20%28Europe%29%20%28En%2CFr%2CDe%29%20%28Rev%201%29.zip
-    fd 'Zelda' -a -d 1 -e zip "$GAMESDIR"/zelda-64 -x ouch d -y {} -d "$GAMESDIR"/zelda-64
+    wget -P "$GAMESDIR"/zelda-64 https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Legend%20of%20Zelda%2C%20The%20-%20Ocarina%20of%20Time%20%28USA%29%20%28Rev%202%29.zip
+    fd Ocarina -a -d 1 -e zip "$GAMESDIR"/zelda-64 -x ouch d -y {} -d "$GAMESDIR"/zelda-64
     fd Majora -a -d 1 -e z64 . "$GAMESDIR"/zelda-64 -x mv {} "$GAMESDIR"/zelda-64/mm.us.rev1.rom.z64
     nix-store --add-fixed sha256 "$GAMESDIR"/zelda-64/mm.us.rev1.rom.z64
     fd -a -d 1 -e zip . "$GAMESDIR"/zelda-64 -x rm {}
