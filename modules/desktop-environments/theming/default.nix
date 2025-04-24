@@ -13,7 +13,7 @@ let
   flavor-lower = "mocha";
   flavor-upper = "Mocha";
   cfg = config.catppuccinTheming;
-  mono-font = "JetBrainsMono Nerd Font";
+  mono-font = "FiraMono Nerd Font";
   sans-font = "Inter";
   sans-font-pkg = pkgs.inter;
   #serif-font = "IBM Plex Serif";

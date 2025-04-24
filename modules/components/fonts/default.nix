@@ -21,23 +21,20 @@ in
         enable = true;
       };
       packages = with pkgs; [
-        corefonts
-        geist-font
         inter
         liberation_ttf
         material-design-icons
-        nerd-fonts.jetbrains-mono
+        nerd-fonts.fira-mono
         source-han-sans
         source-han-sans-japanese
         source-han-serif-japanese
-        ubuntu-sans
         wqy_zenhei
       ];
       fontconfig = {
         allowBitmaps = false;
         defaultFonts = {
           monospace = [
-            "JetBrainsMono Nerd Font"
+            "FiraMono Nerd Font"
             "Liberation Mono"
           ];
           sansSerif = [
