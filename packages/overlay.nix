@@ -1,7 +1,6 @@
 (final: prev: {
   cherry-doom = prev.callPackage ./cherry-doom { };
   doom64ex-plus = prev.callPackage ./doom64ex-plus { };
-  fooyin = prev.callPackage ./fooyin { };
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder { };
   gpu-screen-recorder-gtk = prev.callPackage ./gpu-screen-recorder/gtk { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui { };
@@ -23,7 +22,7 @@
       };
     }
   );
-  steamtinkerlaunch = prev.callPackage ./steamtinkerlaunch { };
   relive = prev.callPackage ./relive { };
+  steamtinkerlaunch = prev.callPackage ./steamtinkerlaunch { };
   xlink-kai = prev.callPackage ./xlink-kai { };
 })

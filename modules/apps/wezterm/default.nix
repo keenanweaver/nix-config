@@ -85,7 +85,7 @@ in
               config.color_scheme = 'Catppuccin Mocha'
               config.default_prog = { "zsh" }
               config.font_size = 14
-              config.font = wezterm.font_with_fallback { { family = 'FiraMono Nerd Font' }, 'Noto Color Emoji' }
+              config.font = wezterm.font_with_fallback { { family = 'JetBrainsMono Nerd Font' } }
               config.unzoom_on_switch_pane = true
               config.check_for_updates = false
               config.line_height = 1.0

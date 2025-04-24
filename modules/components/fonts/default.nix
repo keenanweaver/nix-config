@@ -24,7 +24,7 @@ in
         inter
         liberation_ttf
         material-design-icons
-        nerd-fonts.fira-mono
+        nerd-fonts.jetbrains-mono
         source-han-sans
         source-han-sans-japanese
         source-han-serif-japanese
@@ -34,7 +34,7 @@ in
         allowBitmaps = false;
         defaultFonts = {
           monospace = [
-            "FiraMono Nerd Font"
+            "JetBrainsMono Nerd Font"
             "Liberation Mono"
           ];
           sansSerif = [
