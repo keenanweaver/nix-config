@@ -2,7 +2,6 @@
   lib,
   config,
   username,
-  inputs,
   vars,
   ...
 }:
@@ -24,50 +23,20 @@ in
       {
         config,
         pkgs,
-        vars,
         ...
       }:
       {
         programs.distrobox = {
           enable = true;
-          package = inputs.chaotic.packages.${pkgs.system}.distrobox_git;
           containers = {
             bazzite-arch-exodos = lib.mkIf cfg.gaming {
-              image = "ghcr.io/ublue-os/bazzite-arch:latest";
               init = true;
-              pull = false;
-              replace = false;
-              start_now = true;
-              unshare_netns = true;
-              volume = "/etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro";
+              replace = true;
             };
             bazzite-arch-gaming = lib.mkIf cfg.gaming {
-              image = "ghcr.io/ublue-os/bazzite-arch:latest";
               init = true;
-              pull = false;
-              replace = false;
-              start_now = true;
-              unshare_netns = true;
-              volume = "/etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro";
+              replace = true;
             };
-            /*
-              bazzite-arch-exodos-nh = lib.mkIf cfg.gaming {
-                         image = "ghcr.io/ublue-os/bazzite-arch:latest";
-                         init = true;
-                         pull = false;
-                         replace = false;
-                         start_now = true;
-                         home = "${config.xdg.dataHome}/distrobox/bazzite-arch-exodos";
-                       };
-                       bazzite-arch-gaming-nh = lib.mkIf cfg.gaming {
-                         image = "ghcr.io/ublue-os/bazzite-arch:latest";
-                         init = true;
-                         pull = false;
-                         replace = false;
-                         start_now = true;
-                         home = "${config.xdg.dataHome}/distrobox/bazzite-arch-gaming";
-                       };
-            */
           };
         };
         home = {
@@ -75,7 +44,8 @@ in
             config-distrobox-config-file = {
               enable = true;
               text = ''
-                ${pkgs.xorg.xhost}/bin/xhost +si:localuser:$USER >/dev/null
+                container_additional_volumes="/nix/store:/nix/store:ro /etc/static/profiles/per-user:/etc/profiles/per-user:ro"
+                container_image_default="ghcr.io/ublue-os/bazzite-arch:latest"
               '';
               target = "${config.xdg.configHome}/distrobox/distrobox.conf";
             };
@@ -87,6 +57,7 @@ in
             with pkgs;
             [
               boxbuddy
+              distrobox-tui
             ]
             ++ lib.optionals cfg.gaming [
               (writeShellScriptBin "bootstrap-distrobox" ''
@@ -128,6 +99,7 @@ in
                   pipewire-pulse                 \
                   pipewire-alsa                  \
                   pipewire-jack                  \
+                  ttf-jetbrains-mono-nerd        \
                   wireplumber                    \
                   xdg-desktop-portal-kde
                   ## Install necessary packages

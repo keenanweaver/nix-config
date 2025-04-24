@@ -82,7 +82,6 @@ in
         pkgs,
         config,
         vars,
-        inputs,
         ...
       }:
       {
@@ -92,7 +91,7 @@ in
           (writeShellApplication {
             name = "bootstrap-baremetal";
             runtimeInputs = [
-              inputs.chaotic.packages.${pkgs.system}.distrobox_git
+              distrobox
             ];
             text = ''
               distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
