@@ -82,7 +82,7 @@ in
           "obs" = lib.mkIf cfg.enableNative {
             name = "OBS Studio";
             comment = "Free and Open Source Streaming/Recording Software";
-            exec = "obs --disable-shutdown-check";
+            exec = "GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb obs --disable-shutdown-check";
             terminal = false;
             icon = "com.obsproject.Studio";
             type = "Application";
