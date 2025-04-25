@@ -15,14 +15,6 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    boot = {
-      extraModulePackages = with config.boot.kernelPackages; [
-        universal-pidff
-      ];
-      kernelModules = [
-        "hid_universal_pidff"
-      ];
-    };
     environment = {
       etc = {
         logitech-g920 = {
