@@ -62,8 +62,8 @@ in
             ++ lib.optionals cfg.gaming [
               (writeShellScriptBin "bootstrap-distrobox" ''
                 ## Set paru settings
-                if grep -L "^SudoLoop" "$XDG_CONFIG_HOME"/paru/paru.conf; then
-                  wget -P "$XDG_CONFIG_HOME"/paru https://raw.githubusercontent.com/Morganamilo/paru/master/paru.conf
+                if ! grep -q "^SudoLoop" "$XDG_CONFIG_HOME/paru/paru.conf"; then
+                  wget -O "$XDG_CONFIG_HOME/paru/paru.conf" https://raw.githubusercontent.com/Morganamilo/paru/master/paru.conf
                   sd '#SudoLoop' 'SudoLoop' "$XDG_CONFIG_HOME/paru/paru.conf"
                   sd '#CleanAfter' 'CleanAfter' "$XDG_CONFIG_HOME/paru/paru.conf"
                   sd '#BottomUp' 'BottomUp' "$XDG_CONFIG_HOME/paru/paru.conf"
