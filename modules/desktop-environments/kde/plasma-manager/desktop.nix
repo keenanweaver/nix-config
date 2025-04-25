@@ -383,6 +383,28 @@
             };
           }
           {
+            description = "obs";
+            match = {
+              window-class = {
+                value = "obs";
+                type = "exact";
+              };
+            };
+            apply = {
+              position = {
+                value = "1026,646";
+              };
+              screen = {
+                value = 1;
+                apply = "initially";
+              };
+              size = {
+                value = "1534,740";
+                apply = "initially";
+              };
+            };
+          }
+          {
             description = "qobuz";
             match = {
               window-class = {
