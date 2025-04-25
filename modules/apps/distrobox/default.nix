@@ -108,7 +108,8 @@ in
                   if [[ "$CONTAINER_ID" =~ ^bazzite-arch-exodos ]]; then
                     # Games/emulators/tools
                     paru -S --needed --noconfirm \
-                    dbgl
+                    dbgl                         \
+                    dosbox-staging
                   elif [[ "$CONTAINER_ID" =~ ^bazzite-arch-gaming ]]; then
                     # Games/emulators/tools
                     paru -S --needed --noconfirm \
