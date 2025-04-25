@@ -62,22 +62,23 @@ in
             ++ lib.optionals cfg.gaming [
               (writeShellScriptBin "bootstrap-distrobox" ''
                 ## Set paru settings
-                mkdir -p "$XDG_CONFIG_HOME"/paru
-                wget -P "$XDG_CONFIG_HOME"/paru https://raw.githubusercontent.com/Morganamilo/paru/master/paru.conf
-                sd '#SudoLoop' 'SudoLoop' "$XDG_CONFIG_HOME/paru/paru.conf"
-                sd '#CleanAfter' 'CleanAfter' "$XDG_CONFIG_HOME/paru/paru.conf"
-                sd '#BottomUp' 'BottomUp' "$XDG_CONFIG_HOME/paru/paru.conf"
-                if [[ ! grep "chaotic" /etc/pacman.conf ]]; then
-                  ## Add Chaotic AUR
+                if grep -L "^SudoLoop" "$XDG_CONFIG_HOME"/paru/paru.conf; then
+                  wget -P "$XDG_CONFIG_HOME"/paru https://raw.githubusercontent.com/Morganamilo/paru/master/paru.conf
+                  sd '#SudoLoop' 'SudoLoop' "$XDG_CONFIG_HOME/paru/paru.conf"
+                  sd '#CleanAfter' 'CleanAfter' "$XDG_CONFIG_HOME/paru/paru.conf"
+                  sd '#BottomUp' 'BottomUp' "$XDG_CONFIG_HOME/paru/paru.conf"
+                fi
+                ## Add Chaotic AUR
+                if grep -L "chaotic" /etc/pacman.conf; then
                   sudo pacman-key --init
                   sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
                   sudo pacman-key --lsign-key 3056513887B78AEB
                   sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-                  echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf
+                  echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf;
                 fi
                 ## Set up containers
                 ${lib.optionalString vars.gaming ''
-                  ## Base packages
+                  ### Base packages
                   paru -Syu --needed --noconfirm \
                   kdialog                        \
                   konsole                        \
