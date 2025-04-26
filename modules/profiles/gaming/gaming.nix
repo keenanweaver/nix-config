@@ -84,12 +84,12 @@ let
       openttd
       opentyrian
       (openxcom.overrideAttrs {
-        version = "unstable-2025-04-16";
+        version = "OXCE-8.2.5";
         src = fetchFromGitHub {
           owner = "MeridianOXC";
           repo = "OpenXcom";
-          tag = "5403e2e6fa16059449d97887f2e6ff37d2723760";
-          hash = "sha256-chp77iSbx5cn3GIHsfMi2PX8Arr4u3qZ7fObdQIlN74=";
+          tag = "161bb23d89ecb19c6ed9e913d15c14ca81ddaf97";
+          hash = "sha256-g+3OIMgDgYjTdE/sKVMMI19ezUaiZBLhcqrSXUJMaWM=";
         };
       })
       openxray # STALKER
@@ -99,9 +99,7 @@ let
       ringracers
       runelite # RuneScape
       shipwright
-      (sm64ex.overrideAttrs (oldAttrs: {
-        buildInputs = oldAttrs.buildInputs ++ [ libGL ];
-      }))
+      sm64ex
       space-station-14-launcher
       #inputs.nix-citizen.packages.${system}.star-citizen
       srb2
@@ -142,14 +140,12 @@ let
           mgba
         ]
       ))
-      #rpcs3
+      rpcs3
       ryubing
       scummvm
       shadps4
-      (supermodel.overrideAttrs (oldAttrs: {
-        buildInputs = oldAttrs.buildInputs ++ [ xorg.libX11 ];
-      }))
-      #nur.repos.novel2430.vita3k
+      supermodel
+      nur.repos.novel2430.vita3k
       xemu
       ## Input
       joystickwake
