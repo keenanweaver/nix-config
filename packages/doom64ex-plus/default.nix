@@ -5,7 +5,6 @@
   sdl3,
   fluidsynth,
   libGL,
-  libGLU,
   libpng,
   zlib,
   pkg-config,
@@ -16,13 +15,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "doom64ex-plus";
-  version = "0-unstable-2025-01-18";
+  version = "4.0.0.3";
 
   src = fetchFromGitHub {
     owner = "atsb";
     repo = "Doom64EX-Plus";
-    rev = "3fb15c40147f39573c676df35b6c92e6a0b82d77";
-    hash = "sha256-me9rjCBNqQYFhmBsiuNko2RkVmqEs5RZoDUFshdWb6k=";
+    tag = "4.0.0.3.SDL.3.2.10";
+    hash = "sha256-/mc6baboBgtAqcNdckMuqwrHF3L8PDusx9dsK7XxQpo=";
   };
 
   strictDeps = true;
@@ -36,11 +35,10 @@ stdenv.mkDerivation (finalAttrs: {
 
   buildInputs = [
     fluidsynth
+    libGL
     libpng
     sdl3
     zlib
-    libGL
-    libGLU
   ];
 
   desktopItems = [
