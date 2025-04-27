@@ -110,7 +110,7 @@ in
                     # Games/emulators/tools
                     paru -S --needed --noconfirm \
                     dbgl                         \
-                    dosbox-staging
+                    dosbox-staging-git
                   elif [[ "$CONTAINER_ID" =~ ^bazzite-arch-gaming ]]; then
                     # Games/emulators/tools
                     paru -S --needed --noconfirm \
