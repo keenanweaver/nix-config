@@ -114,6 +114,7 @@ let
       _86Box-with-roms
       # archipelago
       ares
+      azahar
       bigpemu
       # bizhawk
       cemu
@@ -123,7 +124,6 @@ let
       flycast
       fsuae-launcher
       hypseus-singe
-      #lime3ds
       mame
       mednafen
       mednaffe
@@ -145,7 +145,7 @@ let
       scummvm
       shadps4
       supermodel
-      nur.repos.novel2430.vita3k
+      #nur.repos.novel2430.vita3k
       xemu
       ## Input
       joystickwake
