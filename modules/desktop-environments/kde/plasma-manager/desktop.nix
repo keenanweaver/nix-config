@@ -341,6 +341,19 @@
             };
           }
           {
+            description = "heroic icon";
+            match = {
+              window-class = {
+                value = "heroic";
+                type = "exact";
+              };
+            };
+            apply = {
+              desktopfile = "com.heroicgameslauncher.hgl";
+              apply = "force";
+            };
+          }
+          {
             description = "mumble";
             match = {
               window-class = {

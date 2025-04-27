@@ -377,6 +377,21 @@
           windows = {
             allowWindowsToRememberPositions = true;
           };
+          window-rules = [
+            {
+              description = "signal icon";
+              match = {
+                window-class = {
+                  value = "signal";
+                  type = "regex";
+                };
+              };
+              apply = {
+                desktopfile = "signal-desktop";
+                apply = "force";
+              };
+            }
+          ];
           workspace = {
             clickItemTo = "select";
             enableMiddleClickPaste = false;
