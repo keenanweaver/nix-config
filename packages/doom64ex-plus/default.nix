@@ -5,6 +5,7 @@
   sdl3,
   fluidsynth,
   libGL,
+  libGLU,
   libpng,
   zlib,
   pkg-config,
@@ -36,6 +37,7 @@ stdenv.mkDerivation (finalAttrs: {
   buildInputs = [
     fluidsynth
     libGL
+    libGLU
     libpng
     sdl3
     zlib
