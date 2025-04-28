@@ -345,7 +345,7 @@
             match = {
               window-class = {
                 value = "heroic";
-                type = "exact";
+                type = "regex";
               };
             };
             apply = {
