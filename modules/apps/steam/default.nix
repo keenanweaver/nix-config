@@ -76,12 +76,8 @@ in
                 STL_GLOBAL_CUSTOM_VARS = "${config.xdg.configHome}/steamtinkerlaunch/gamecfgs/customvars/global-custom-vars.conf";
               };
               runtimeInputs = [
-                coreutils
-                findutils
-                jq
                 sd
                 steamtinkerlaunch
-                xh
               ];
               text = ''
                 ## SteamTinkerLaunch https://gist.github.com/jakehamilton/632edeb9d170a2aedc9984a0363523d3
