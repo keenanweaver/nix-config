@@ -109,7 +109,7 @@ in
               ## Custom ##
               ############
               custom_text=VRR
-              exec=echo $(${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor --outputs | ${pkgs.ripgrep}/bin/rg 'Vrr' | ${pkgs.coreutils}/bin/head -1 | ${pkgs.gnused}/bin/sed 's/^[^:]*: //')
+              exec=if (${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor --outputs | ${pkgs.ripgrep}/bin/rg Vrr | ${pkgs.coreutils}/bin/head -1 | ${pkgs.ripgrep}/bin/rg -q Automatic); then echo "Yes"; else echo "No"; fi
               custom_text=P-State
               exec=echo $(${pkgs.bat}/bin/bat --plain /sys/devices/system/cpu/amd_pstate/status /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference)
               custom_text=V-Cache
