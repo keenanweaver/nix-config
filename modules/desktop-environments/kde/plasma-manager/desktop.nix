@@ -341,7 +341,33 @@
             };
           }
           {
-            description = "heroic icon";
+            description = "icon: azahar";
+            match = {
+              window-class = {
+                value = "azahar";
+                type = "regex";
+              };
+            };
+            apply = {
+              desktopfile = "org.azahar_emu.Azahar";
+              apply = "force";
+            };    
+          }
+          {
+            description = "icon: doomseeker";
+            match = {
+              window-class = {
+                value = "azahar";
+                type = "regex";
+              };
+            };
+            apply = {
+              desktopfile = "org.drdteam.Doomseeker";
+              apply = "force";
+            };    
+          }
+          {
+            description = "icon: heroic";
             match = {
               window-class = {
                 value = "heroic";

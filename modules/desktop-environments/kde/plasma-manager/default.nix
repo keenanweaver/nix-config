@@ -379,7 +379,7 @@
           };
           window-rules = [
             {
-              description = "signal icon";
+              description = "icon: signal";
               match = {
                 window-class = {
                   value = "signal";
