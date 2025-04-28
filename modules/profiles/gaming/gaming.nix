@@ -84,12 +84,13 @@ let
       openttd
       opentyrian
       (openxcom.overrideAttrs {
-        version = "OXCE-8.2.5";
+        pname = "openxcom-extended";
+        version = "8.2.6";
         src = fetchFromGitHub {
           owner = "MeridianOXC";
           repo = "OpenXcom";
-          tag = "161bb23d89ecb19c6ed9e913d15c14ca81ddaf97";
-          hash = "sha256-g+3OIMgDgYjTdE/sKVMMI19ezUaiZBLhcqrSXUJMaWM=";
+          tag = "3e504329ee3b12e9d4c93b6c8e3ab2611d0baa37";
+          hash = "sha256-G4ibyFOVQovvStEGLtX/7tcO2b6iZNmmzEdPFAUiIQo=";
         };
       })
       openxray # STALKER
@@ -128,7 +129,7 @@ let
       mednafen
       mednaffe
       melonDS
-      #mesen
+      mesen
       nuked-sc55
       pcsx2
       pegasus-frontend
@@ -162,7 +163,7 @@ let
       ## Other
       adwsteamgtk
       chiaki-ng
-      ffmpeg
+      #ffmpeg
       flips
       gswatcher
       igir
@@ -170,7 +171,6 @@ let
       lgogdownloader
       moondeck-buddy # Pending https://github.com/NixOS/nixpkgs/pull/375287
       parsec-bin
-      (python3.withPackages (p: with p; [ lnkparse3 ]))
       xlink-kai
       xvidcore
       ## Wine
@@ -191,7 +191,7 @@ let
            inputs.nix-game-preservation.packages.${pkgs.system}.sabretools-git
            inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp-git
            ps3-disc-dumper
-           python313Packages.lnkparse3
+           #(python3.withPackages (p: with p; [ lnkparse3 ]))
            inputs.nix-game-preservation.packages.${pkgs.system}.redumper-git
            renderdoc
            vgmplay-libvgm
