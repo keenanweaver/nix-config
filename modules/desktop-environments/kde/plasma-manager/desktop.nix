@@ -357,7 +357,7 @@
             description = "icon: doomseeker";
             match = {
               window-class = {
-                value = "azahar";
+                value = "doomseeker";
                 type = "regex";
               };
             };
