@@ -56,17 +56,7 @@ in
             target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-ge-custom";
           };
         };
-        home.packages =
-          with pkgs;
-          lib.mkIf cfg.enableNative [
-            (heroic.override {
-              extraPkgs = (
-                pkgs: [
-                  gamemode
-                ]
-              );
-            })
-          ];
+        home.packages = with pkgs; lib.mkIf cfg.enableNative [ heroic ];
         services.flatpak = lib.mkIf cfg.enableFlatpak {
           overrides = {
             "com.heroicgameslauncher.hgl" = {

@@ -854,7 +854,7 @@ in
             itch = {
               name = "itch";
               comment = "Install and play itch.io games easily";
-              exec = "PULSE_SINK=Game obs-gamecapture gamemoderun mangohud itch";
+              exec = "PULSE_SINK=Game obs-gamecapture mangohud itch";
               icon = "itch";
               categories = [ "Game" ];
             };

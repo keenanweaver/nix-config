@@ -33,13 +33,6 @@ in
   config = lib.mkIf cfg.enable {
     programs.steam = {
       enable = cfg.enableNative;
-      package = pkgs.steam.override {
-        extraPkgs = (
-          pkgs: with pkgs; [
-            gamemode
-          ]
-        );
-      };
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         luxtorpeda

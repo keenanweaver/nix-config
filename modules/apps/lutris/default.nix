@@ -72,7 +72,6 @@ in
             (lutris.override {
               extraPkgs = (
                 pkgs: [
-                  gamemode
                   umu-launcher
                 ]
               );
