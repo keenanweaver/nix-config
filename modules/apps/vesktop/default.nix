@@ -19,11 +19,26 @@ in
       programs.vesktop = {
         enable = true;
         package = (pkgs.vesktop.override { withMiddleClickScroll = true; });
+        settings = {
+          appBadge = false;
+          arRPC = true;
+          checkUpdates = false;
+          customTitleBar = false;
+          disableMinSize = true;
+          discordBranch = "stable";
+          hardwareAcceleration = true;
+          minimizeToTray = false;
+          tray = false;
+          splashTheming = true;
+          staticTitle = true;
+        };
         vencord = {
           settings = {
             autoUpdate = false;
             autoUpdateNotification = false;
+            enabledThemes = [ "mocha.theme.css" ];
             notifyAboutUpdates = false;
+            transparent = true;
           };
         };
       };
