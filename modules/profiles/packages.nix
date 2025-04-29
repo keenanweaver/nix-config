@@ -68,8 +68,8 @@ in
           ++ lib.optionals cfg.dev [
             codeium
             devenv
-            just
             gh
+            just
             powershell
             ### Ansible ###
             ansible
@@ -123,7 +123,6 @@ in
             podman-tui
             streamrip
             systemctl-tui
-            television
             termscp
             ttysvr
             wikiman
@@ -133,7 +132,7 @@ in
             dogdns # dig
             dua # du
             duf # df
-            #fuc # cp / rm
+            fuc # cp / rm
             ouch # compression
             pigz # gz
             procs # ps

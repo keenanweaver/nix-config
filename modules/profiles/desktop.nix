@@ -20,14 +20,13 @@ in
     # Custom modules
     base.enable = true;
     catppuccinTheming.enable = true;
-    floorp.enable = false;
     kde.enable = true;
     mumble.enable = true;
     office.enable = true;
+    vesktop.enable = true;
     vscode.enable = true;
     wezterm.enable = true;
     wireshark.enable = true;
-    zed.enable = false;
     zen-browser.enable = true;
 
     boot = {
@@ -122,7 +121,6 @@ in
           rustdesk-flutter
           signal-desktop-bin
           varia
-          (vesktop.override { withMiddleClickScroll = true; })
         ];
         xdg = {
           desktopEntries = {

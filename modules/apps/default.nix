@@ -12,7 +12,6 @@
     ./distrobox
     ./fastfetch
     ./fd
-    ./floorp
     ./fluidsynth
     ./fzf
     ./gamemode
@@ -49,7 +48,9 @@
     ./sunshine
     ./tailscale
     ./tealdeer
+    ./television
     ./topgrade
+    ./vesktop
     ./vhs-decode
     ./vkbasalt
     ./vscode
@@ -57,7 +58,6 @@
     ./wireshark
     ./yazi
     ./yt-dlp
-    ./zed
     ./zen-browser
     ./zerotier
     ./zoxide
