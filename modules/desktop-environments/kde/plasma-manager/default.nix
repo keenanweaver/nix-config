@@ -391,6 +391,19 @@
                 apply = "force";
               };
             }
+            {
+              description = "icon: virt-manager";
+              match = {
+                window-class = {
+                  value = "virt-manager";
+                  type = "regex";
+                };
+              };
+              apply = {
+                desktopfile = "virt-manager";
+                apply = "force";
+              };
+            }
           ];
           workspace = {
             clickItemTo = "select";
