@@ -25,7 +25,7 @@ in
           historyFile = "${config.xdg.dataHome}/bash/.bash_history";
           initExtra = ''
             function cdd {
-              builtin cd "$@" && ls
+              builtin cd "$@" && ls -l
             }
           '';
         };
