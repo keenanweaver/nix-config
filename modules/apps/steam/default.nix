@@ -33,12 +33,19 @@ in
   config = lib.mkIf cfg.enable {
     programs.steam = {
       enable = cfg.enableNative;
+      package = pkgs.steam.override {
+        extraEnv = {
+          MANGOHUD = true;
+          OBS_VKCAPTURE = true;
+          PULSE_SINK = "Game";
+        };
+      };
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         luxtorpeda
         inputs.nix-proton-cachyos.packages.${system}.proton-cachyos
-        inputs.chaotic.packages.${system}.proton-ge-custom
-        steamtinkerlaunch
+        proton-ge-bin
+        #steamtinkerlaunch
       ];
       gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
@@ -66,7 +73,7 @@ in
           };
           packages = with pkgs; [
             steamcmd
-            steamtinkerlaunch
+            #steamtinkerlaunch
             (writeShellApplication {
               name = "script-stl-configure";
               runtimeEnv = {

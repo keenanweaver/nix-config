@@ -23,6 +23,5 @@
     }
   );
   relive = prev.callPackage ./relive { };
-  steamtinkerlaunch = prev.callPackage ./steamtinkerlaunch { };
   xlink-kai = prev.callPackage ./xlink-kai { };
 })
