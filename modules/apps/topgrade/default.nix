@@ -50,7 +50,7 @@ in
             post_commands =
               { }
               // lib.optionalAttrs vars.gaming {
-                "SteamTinkerLaunch configure" = "script-stl-configure";
+                #"SteamTinkerLaunch configure" = "script-stl-configure";
               };
           };
         };
