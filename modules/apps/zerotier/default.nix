@@ -6,6 +6,9 @@
 let
   cfg = config.zerotier;
   adapter = "ztmosnophz";
+  networks = [
+    "60ee7c034aab3fb3" # Vagabond Gaming Network
+  ];
 in
 {
   options = {
@@ -39,9 +42,22 @@ in
     services = {
       zerotierone = {
         enable = true;
-        joinNetworks = [
-          "60ee7c034aab3fb3" # Vagabond Gaming Network
+        joinNetworks = networks;
+      };
+    };
+    # Fix long boot
+    systemd.services = {
+      "network-addresses-${adapter}" = {
+        before = lib.mkForce [ ];
+        wantedBy = lib.mkForce [
+          "network-link-${adapter}.service"
+          "zerotierone.service"
+          "multi-user.target"
         ];
+      };
+      "network-link-${adapter}" = {
+        before = lib.mkForce [ ];
+        wantedBy = lib.mkForce [ "multi-user.target" ];
       };
     };
   };
