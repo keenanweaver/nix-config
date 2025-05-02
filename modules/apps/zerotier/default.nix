@@ -17,14 +17,11 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
+    # https://github.com/gomaaz/Zerotier_Gaming_Fix#-considerations-for-gaming-with-linux-and-mac-friends
+    # https://discuss.zerotier.com/t/lan-game-server-not-visible-through-zerotier-local-lan-works/12166/7
     networking = {
-      firewall = {
-        allowedUDPPorts = [ 9993 ];
-      };
-      # https://github.com/gomaaz/Zerotier_Gaming_Fix#-considerations-for-gaming-with-linux-and-mac-friends
-      # https://discuss.zerotier.com/t/lan-game-server-not-visible-through-zerotier-local-lan-works/12166/7
       interfaces = {
-        ${adapter} = {
+        adapter = {
           ipv4 = {
             routes = [
               {
