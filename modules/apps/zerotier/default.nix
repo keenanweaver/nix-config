@@ -21,7 +21,7 @@ in
     # https://discuss.zerotier.com/t/lan-game-server-not-visible-through-zerotier-local-lan-works/12166/7
     networking = {
       interfaces = {
-        adapter = {
+        ${adapter} = {
           ipv4 = {
             routes = [
               {
