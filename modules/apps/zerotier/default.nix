@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  username,
   ...
 }:
 let
@@ -10,10 +9,11 @@ in
 {
   options = {
     zerotier = {
-      enable = lib.mkEnableOption "Enable zerotier in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable zerotier in NixOS";
     };
   };
   config = lib.mkIf cfg.enable {
+    # See here for additional notes https://github.com/gomaaz/Zerotier_Gaming_Fix
     networking = {
       firewall = {
         allowedUDPPorts = [ 9993 ];
@@ -27,6 +27,5 @@ in
         ];
       };
     };
-    home-manager.users.${username} = { };
   };
 }
