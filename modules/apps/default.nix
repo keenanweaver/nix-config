@@ -40,6 +40,7 @@
     ./nvim
     ./obs
     ./pay-respects
+    ./rclone
     ./ripgrep
     ./solaar
     ./ssh

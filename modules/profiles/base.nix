@@ -44,6 +44,7 @@ in
     nushell.enable = true;
     nvim.enable = true;
     pay-respects.enable = true;
+    rclone.enable = true;
     ripgrep.enable = true;
     ssh.enable = true;
     starship.enable = true;
