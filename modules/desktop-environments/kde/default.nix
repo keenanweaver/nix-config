@@ -118,10 +118,6 @@ in
       };
     };
     home-manager.users.${username} = {
-      services.kdeconnect = {
-        enable = true;
-        package = pkgs.kdePackages.kdeconnect-kde;
-      };
       xdg.autostart.entries =
         let
           akregator = (
