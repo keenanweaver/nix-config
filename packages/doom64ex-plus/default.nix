@@ -16,13 +16,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "doom64ex-plus";
-  version = "4.0.0.3";
+  version = "4.0.0.3.1";
 
   src = fetchFromGitHub {
     owner = "atsb";
     repo = "Doom64EX-Plus";
-    tag = "4.0.0.3.SDL.3.2.10";
-    hash = "sha256-/mc6baboBgtAqcNdckMuqwrHF3L8PDusx9dsK7XxQpo=";
+    tag = "4.0.0.3.1";
+    hash = "sha256-WYA8JKOtqx53JrdpvBPUXNheeG3rZikpVHTwT0LBWl4=";
   };
 
   strictDeps = true;

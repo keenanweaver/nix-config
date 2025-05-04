@@ -34,7 +34,7 @@ in
         };
         vencord = {
           settings = {
-            autoUpdate = false;
+            autoUpdate = true;
             autoUpdateNotification = false;
             enabledThemes = [ "mocha.theme.css" ];
             notifyAboutUpdates = false;

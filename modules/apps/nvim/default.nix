@@ -76,11 +76,6 @@ in
                   enable = true;
                 };
               };
-              /*
-                fzf-lua = {
-                             enable = true;
-                           };
-              */
               gestures = {
                 gesture-nvim = {
                   enable = true;

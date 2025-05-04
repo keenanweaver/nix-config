@@ -18,14 +18,12 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-
     hardware.logitech = {
       wireless = {
         enable = true;
         enableGraphical = true;
       };
     };
-
     home-manager.users.${username} =
       { pkgs, ... }:
       {

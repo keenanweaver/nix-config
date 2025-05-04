@@ -15,7 +15,9 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} = {
-      programs.lazygit.enable = true;
+      programs.lazygit = {
+        enable = true;
+      };
     };
   };
 }
