@@ -17,6 +17,14 @@ in
     home-manager.users.${username} = {
       programs.rclone = {
         enable = true;
+        remotes = {
+          myrient = {
+            config = {
+              type = "http";
+              url = "https://myrient.erista.me";
+            };
+          };
+        };
       };
     };
   };
