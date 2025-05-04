@@ -64,6 +64,7 @@ let
       etlegacy
       iortcw
       ## Other
+      _2ship2harkinian
       abuse
       am2rlauncher
       arx-libertatis # Arx Fatalis
@@ -85,12 +86,12 @@ let
       opentyrian
       (openxcom.overrideAttrs {
         pname = "openxcom-extended";
-        version = "8.2.6";
+        version = "8.2.7";
         src = fetchFromGitHub {
           owner = "MeridianOXC";
           repo = "OpenXcom";
-          tag = "3e504329ee3b12e9d4c93b6c8e3ab2611d0baa37";
-          hash = "sha256-G4ibyFOVQovvStEGLtX/7tcO2b6iZNmmzEdPFAUiIQo=";
+          rev = "2c68684ee55e6305ac945771a23ae3ae8f6b3633";
+          hash = "sha256-IjUfmdrBPe1nvV2beoExs8ALlJTF3J2QXByH1Qz9Kf8=";
         };
       })
       openxray # STALKER
@@ -103,12 +104,14 @@ let
       sm64ex
       space-station-14-launcher
       #inputs.nix-citizen.packages.${system}.star-citizen
+      starship-sf64
       srb2
       theforceengine # Dark Forces / Outlaws
       urbanterror
       wipeout-rewrite
       xivlauncher # FFXIV
       vvvvvv
+      zelda64recomp
     ];
     tools = [
       ## Emulators

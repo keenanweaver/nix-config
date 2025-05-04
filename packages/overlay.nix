@@ -1,4 +1,5 @@
 (final: prev: {
+  _2ship2harkinian = prev.callPackage ./2ship2harkinian { };
   cherry-doom = prev.callPackage ./cherry-doom { };
   doom64ex-plus = prev.callPackage ./doom64ex-plus { };
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder { };
@@ -8,6 +9,7 @@
   inter = prev.callPackage ./inter { };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nugget-doom = prev.callPackage ./nugget-doom { };
+  n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
   openomf = prev.callPackage ./openomf { };
   perfect_dark = prev.callPackage ./perfect_dark { };
@@ -23,5 +25,8 @@
     }
   );
   relive = prev.callPackage ./relive { };
+  starship-sf64 = prev.callPackage ./starship-sf64 { };
   xlink-kai = prev.callPackage ./xlink-kai { };
+  z64decompress = prev.callPackage ./zelda64recomp/z64decompress.nix { };
+  zelda64recomp = prev.callPackage ./zelda64recomp/zelda64recomp.nix { };
 })
