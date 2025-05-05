@@ -88,7 +88,7 @@
       flake = false;
     };
     openmw-nix = {
-      url = "github:syhretsit/openmw-nix";
+      url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";

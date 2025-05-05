@@ -44,8 +44,8 @@ let
       alephone-durandal
       alephone-infinity
       ## Morrowind
-      #inputs.openmw-nix.packages.${pkgs.system}.openmw-dev
-      openmw
+      inputs.openmw-nix.packages.${pkgs.system}.openmw-dev
+      #openmw
       ## Quake
       ironwail
       q2pro
