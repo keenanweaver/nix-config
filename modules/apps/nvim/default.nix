@@ -129,6 +129,7 @@ in
                 nix = {
                   enable = true;
                   format.type = "nixfmt";
+                  lsp.server = "nixd";
                 };
                 nu = {
                   enable = true;
