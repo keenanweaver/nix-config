@@ -379,6 +379,25 @@
           };
           window-rules = [
             {
+              description = "haruna";
+              match = {
+                window-class = {
+                  value = "haruna";
+                  type = "regex";
+                };
+              };
+              apply = {
+                maximizehoriz = {
+                  value = true;
+                  apply = "initially";
+                };
+                maximizevert = {
+                  value = true;
+                  apply = "initially";
+                };
+              };
+            }
+            {
               description = "icon: signal";
               match = {
                 window-class = {
