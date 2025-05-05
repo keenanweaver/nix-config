@@ -26,8 +26,6 @@
   direnv.enable = lib.mkForce false;
   helix.enable = lib.mkForce false;
   jujutsu.enable = lib.mkForce false;
-  lazygit.enable = lib.mkForce false;
-  nushell.enable = lib.mkForce false;
   nvim.enable = lib.mkForce false;
   virtualization.enable = lib.mkForce false;
   # System
