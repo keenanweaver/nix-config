@@ -1,11 +1,4 @@
-# https://github.com/nix-community/impermanence#module-usage
-{ inputs, ... }:
 {
-
-  imports = [ "${inputs.impermanence}/nixos.nix" ];
-
-  #system.activationScripts.createPersist = "mkdir -p /nix/persist/{system,home}";
-
   environment = {
     persistence = {
       "/persist" = {

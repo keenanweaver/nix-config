@@ -1,9 +1,4 @@
-# https://github.com/nix-community/impermanence#module-usage
-{ inputs, ... }:
 {
-
-  imports = [ "${inputs.impermanence}/nixos.nix" ];
-
   environment = {
     persistence = {
       "/persist" = {

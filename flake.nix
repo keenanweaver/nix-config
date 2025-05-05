@@ -155,6 +155,7 @@
             modules = [
               ./hosts/steamdeck/home.nix
               inputs.catppuccin.homeModules.catppuccin
+              inputs.impermanence.homeManagerModules.impermanence
               inputs.nix-flatpak.homeManagerModules.nix-flatpak
               inputs.nur.modules.homeManager.default
               inputs.plasma-manager.homeManagerModules.plasma-manager
@@ -204,6 +205,7 @@
               inputs.disko.nixosModules.disko
               ./hosts/desktop/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB" ]; }
+              inputs.impermanence.nixosModules.impermanence
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
@@ -224,6 +226,7 @@
                   };
                   sharedModules = with inputs; [
                     catppuccin.homeModules.catppuccin
+                    impermanence.homeManagerModules.impermanence
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.hmModules.nix-index
                     nur.modules.homeManager.default
@@ -259,6 +262,7 @@
               inputs.disko.nixosModules.disko
               ./hosts/desktop/disko.nix
               { _module.args.disks = [ "/dev/nvme0n1" ]; }
+              inputs.impermanence.nixosModules.impermanence
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
@@ -283,6 +287,7 @@
                   };
                   sharedModules = with inputs; [
                     catppuccin.homeModules.catppuccin
+                    impermanence.homeManagerModules.impermanence
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.hmModules.nix-index
                     nur.modules.homeManager.default
@@ -313,6 +318,7 @@
               ./hosts/pi/remorse.nix
 
               inputs.chaotic.nixosModules.default
+              inputs.impermanence.nixosModules.impermanence
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nixos-hardware.nixosModules.raspberry-pi-4
               inputs.nur.modules.nixos.default
@@ -337,6 +343,7 @@
                     };
                   };
                   sharedModules = [
+                    inputs.impermanence.homeManagerModules.impermanence
                     inputs.nix-flatpak.homeManagerModules.nix-flatpak
                     inputs.nix-index-database.hmModules.nix-index
                     inputs.nur.modules.homeManager.default
@@ -365,6 +372,7 @@
 
               inputs.catppuccin.nixosModules.catppuccin
               inputs.chaotic.nixosModules.default
+              inputs.impermanence.nixosModules.impermanence
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nixos-hardware.nixosModules.raspberry-pi-4
               inputs.nur.modules.nixos.default
@@ -385,6 +393,7 @@
                   };
                   sharedModules = with inputs; [
                     catppuccin.homeModules.catppuccin
+                    impermanence.homeManagerModules.impermanence
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.hmModules.nix-index
                     nur.modules.homeManager.default
@@ -419,6 +428,7 @@
               inputs.disko.nixosModules.disko
               ./hosts/vm/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/virtio-vdisk1" ]; }
+              inputs.impermanence.nixosModules.impermanence
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
@@ -444,6 +454,7 @@
                   };
                   sharedModules = [
                     inputs.catppuccin.homeModules.catppuccin
+                    inputs.impermanence.homeManagerModules.impermanence
                     inputs.nix-flatpak.homeManagerModules.nix-flatpak
                     inputs.nix-index-database.hmModules.nix-index
                     inputs.nur.modules.homeManager.default
