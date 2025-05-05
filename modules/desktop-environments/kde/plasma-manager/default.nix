@@ -404,6 +404,19 @@
                 apply = "force";
               };
             }
+            {
+              description = "icon: zen browser";
+              match = {
+                window-class = {
+                  value = "zen";
+                  type = "regex";
+                };
+              };
+              apply = {
+                desktopfile = "app.zen_browser.zen";
+                apply = "force";
+              };
+            }
           ];
           workspace = {
             clickItemTo = "select";
