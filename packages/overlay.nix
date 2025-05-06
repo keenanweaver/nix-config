@@ -26,6 +26,7 @@
   );
   relive = prev.callPackage ./relive { };
   starship-sf64 = prev.callPackage ./starship-sf64 { };
+  soundfont-generaluser = prev.callPackage ./generaluser { };
   xlink-kai = prev.callPackage ./xlink-kai { };
   z64decompress = prev.callPackage ./zelda64recomp/z64decompress.nix { };
   zelda64recomp = prev.callPackage ./zelda64recomp/zelda64recomp.nix { };

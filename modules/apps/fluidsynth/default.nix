@@ -40,8 +40,8 @@ in
         home.file = {
           midi-soundfonts-default = {
             enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts/${soundfont}";
-            target = "Music/soundfonts/default.sf2";
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2";
+            target = "${config.home.homeDirectory}/Music/soundfonts/default.sf2";
           };
           midi-soundfonts-default-dosbox = {
             enable = true;
@@ -64,7 +64,7 @@ in
               pkgs.makeDesktopItem {
                 name = "fluidsynth";
                 desktopName = "fluidsynth";
-                exec = "${pkgs.fluidsynth}/bin/fluidsynth -a pulseaudio -siq -g 1.0 ${config.home.homeDirectory}/Music/soundfonts/default.sf2";
+                exec = "${pkgs.fluidsynth}/bin/fluidsynth -a pulseaudio -siq -g 1.0 ${cfg.soundFont}";
                 comment = "Run fluidsynth with my options";
                 terminal = false;
                 startupNotify = false;
