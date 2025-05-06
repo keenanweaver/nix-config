@@ -56,7 +56,6 @@ in
             in
             with pkgs;
             [
-              boxbuddy
               distrobox-tui
             ]
             ++ lib.optionals cfg.gaming [

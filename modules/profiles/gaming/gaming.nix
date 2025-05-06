@@ -123,7 +123,6 @@ let
       cemu
       dolphin-emu
       duckstation
-      # easyrpg-player
       flycast
       fsuae-launcher
       hypseus-singe
@@ -636,8 +635,6 @@ in
             ]
             ++ lib.flatten (lib.attrValues p);
           sessionVariables = {
-            RPG2K_RTP_PATH = "${config.xdg.dataHome}/games/rpg-maker/RTP/2000";
-            RPG2K3_RTP_PATH = "${config.xdg.dataHome}/games/rpg-maker/RTP/2003";
             # https://gitlab.com/OpenMW/openmw/-/issues/6185
             OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
           };
@@ -685,6 +682,21 @@ in
                   PULSE_SINK = "Game";
                 };
               };
+              "org.easyrpg.player" = {
+                Context = {
+                  filesystems = [
+                    "${config.home.homeDirectory}/Music/soundfonts:ro"
+                    "${config.home.homeDirectory}/Games/games/rpg-maker"
+                    "!host"
+                  ];
+                  shared = "network"; # obs-gamecapture
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
+                  RPG2K_RTP_PATH = "${config.home.homeDirectory}/Games/games/rpg-maker/RTP/2000";
+                  RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/games/rpg-maker/RTP/2003";
+                };
+              };
               "org.openjkdf2.OpenJKDF2" = {
                 Environment = {
                   PULSE_SINK = "Game";
@@ -710,11 +722,14 @@ in
               "com.github.optyfr.JRomManager"
               "com.qzandronum.Q-Zandronum"
               "dev.opengoal.OpenGOAL"
+              "io.github.hedge_dev.hedgemodmanager"
               "io.github.noxworld_dev.OpenNox"
+              "io.github.randovania.Randovania"
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
               "net.nmlgc.rec98.sh01"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
+              "org.easyrpg.player"
               "org.openfodder.OpenFodder"
               "org.openjkdf2.OpenJKDF2"
               "org.sonic3air.Sonic3AIR"

@@ -46,6 +46,7 @@ in
         };
         services.flatpak = {
           packages = [
+            "com.ranfdev.DistroShelf"
             "io.github.ungoogled_software.ungoogled_chromium"
             "net.mullvad.MullvadBrowser"
           ];
