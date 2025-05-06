@@ -51,7 +51,7 @@
                         - Audio CD*/*
                         - CD-ROM*/*
                         - DVD-ROM*/*
-                        - DVD-VIDEO*/*
+                        - DVD-Video*/*
                         - Google*/*
                         - HD DVD*/*
                         - IBM*/*

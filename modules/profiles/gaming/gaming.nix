@@ -28,7 +28,6 @@ let
       # slade
       woof-doom
       zandronum
-      zandronum-server
       ## Fallout
       fallout-ce
       fallout2-ce
@@ -64,7 +63,7 @@ let
       etlegacy
       iortcw
       ## Other
-      _2ship2harkinian
+      # _2ship2harkinian
       abuse
       am2rlauncher
       arx-libertatis # Arx Fatalis
@@ -73,9 +72,9 @@ let
       corsix-th # Theme Hospital
       devilutionx # Diablo
       exult # Ultima VII
-      #ja2-stracciatella
+      # ja2-stracciatella
       jazz2
-      katawa-shoujo-re-engineered
+      # katawa-shoujo-re-engineered
       nur.repos.Rhys-T.lix-game # Lemmings clone
       openjk # Jedi Academy
       openloco
@@ -124,7 +123,7 @@ let
       cemu
       dolphin-emu
       duckstation
-      #easyrpg-player
+      # easyrpg-player
       flycast
       fsuae-launcher
       hypseus-singe
@@ -165,7 +164,7 @@ let
       r2modman
       ## Other
       adwsteamgtk
-      chiaki-ng
+      #chiaki-ng
       #ffmpeg
       flips
       gswatcher
