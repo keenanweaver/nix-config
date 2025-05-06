@@ -7,7 +7,6 @@
 }:
 let
   cfg = config.fluidsynth;
-  soundfont = "GeneralUser-GS.sf2";
 in
 {
   options.fluidsynth = {
@@ -22,7 +21,7 @@ in
     };
     soundFont = lib.mkOption {
       type = lib.types.path;
-      default = "/home/${username}/Music/soundfonts/default.sf2";
+      default = "${pkgs.soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2";
     };
     soundService = lib.mkOption {
       type = lib.types.enum [
@@ -35,17 +34,17 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} =
-      { inputs, config, ... }:
+      { config, ... }:
       {
         home.file = {
           midi-soundfonts-default = {
             enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2";
+            source = config.lib.file.mkOutOfStoreSymlink cfg.soundFont;
             target = "${config.home.homeDirectory}/Music/soundfonts/default.sf2";
           };
           midi-soundfonts-default-dosbox = {
             enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/soundfonts/${soundfont}";
+            source = config.lib.file.mkOutOfStoreSymlink cfg.soundFont;
             target = "${config.xdg.configHome}/dosbox/soundfonts/default.sf2";
           };
         };
