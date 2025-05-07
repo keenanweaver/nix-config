@@ -7,6 +7,7 @@
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui { };
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif { };
   inter = prev.callPackage ./inter { };
+  klassy = prev.callPackage ./klassy { };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nugget-doom = prev.callPackage ./nugget-doom { };
   n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
