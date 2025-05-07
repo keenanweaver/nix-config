@@ -199,6 +199,9 @@ Run the commands:
     cd "$XDG_DATA_HOME"/fallout2-ce && mv -f app/* . && rm -rf __redist __support app commonappdata Extras tmp goggame*
     pwsh -c "dir . -r | % { if ($_.Name -cne $_.Name.ToLower()) { ren $_.FullName $_.Name.ToLower() } }" && cd "$XDG_DATA_HOME"/fallout2-ce/data/sound/music && pwsh -c "dir . -r | % { if ($_.Name -cne $_.Name.ToUpper()) { ren $_.FullName $_.Name.ToUpper() } }"
     gamescope -f -w 2560 -h 1440 -- fallout2-ce && sleep 3 && sd 'music_path1=sound\\music\\' 'music_path1=data\\sound\\music\\' $XDG_DATA_HOME/fallout2-ce/fallout2.cfg && sd 'music_path2=sound\\music\\' 'music_path2=data\\sound\\music\\' "$XDG_DATA_HOME"/fallout2-ce/fallout2.cfg
+    ## Freespace
+    mkdir -p "$GAMESDIR"/games/fs2
+    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/freespace_2" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/games/fs2/fs2
     ## HOMM
     mkdir -p "$XDG_DATA_HOME"/{fheroes2,vcmi}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/heroes_of_might_and_magic_2_gold_edition" -x ls -t | head -n1 | xargs innoextract -g -d "$XDG_DATA_HOME"/fheroes2
