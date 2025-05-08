@@ -293,6 +293,21 @@
             };
           }
           {
+            description = "dosbox";
+            match = {
+              window-class = {
+                value = "dosbox";
+                type = "regex";
+              };
+            };
+            apply = {
+              adaptivesync = {
+                value = false;
+                apply = "force";
+              };
+            };
+          }
+          {
             description = "foobar2000";
             match = {
               window-class = {
