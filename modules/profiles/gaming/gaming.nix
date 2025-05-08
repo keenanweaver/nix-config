@@ -81,7 +81,13 @@ let
       # opennox
       openomf
       openrct2
-      openttd
+      (openttd.overrideAttrs {
+        postPatch = ''
+          substituteInPlace src/music/fluidsynth.cpp \
+            --replace-fail "/usr/share/soundfonts/default.sf2" \
+                           "${pkgs.soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2"
+        '';
+      })
       opentyrian
       (openxcom.overrideAttrs {
         pname = "openxcom-extended";
