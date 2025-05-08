@@ -17,6 +17,8 @@ in
     home-manager.users.${username} = {
       programs.television = {
         enable = true;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
         settings = {
           tick_rate = 50;
           ui = {
