@@ -170,7 +170,7 @@ let
       ## Other
       adwsteamgtk
       #chiaki-ng
-      #ffmpeg
+      faugus-launcher
       flips
       gswatcher
       igir
