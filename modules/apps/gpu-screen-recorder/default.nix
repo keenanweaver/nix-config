@@ -16,9 +16,8 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [
-      pkgs.gpu-screen-recorder
-      pkgs.gpu-screen-recorder-gtk
+    environment.systemPackages = with pkgs; [
+      gpu-screen-recorder
     ];
 
     programs.gpu-screen-recorder = {
