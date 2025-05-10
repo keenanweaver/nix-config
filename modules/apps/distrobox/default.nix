@@ -438,20 +438,6 @@ in
                 Keywords = "dosbox;dos";
               };
             };
-            faugus =
-              let
-                icon = pkgs.fetchurl {
-                  url = "https://raw.githubusercontent.com/Faugus/faugus-launcher/refs/heads/main/faugus-launcher.png";
-                  hash = "sha256-NsoIm5jkFp8XVy3egzvRA5+PVISkDKMH5ocd44FOoVk=";
-                };
-              in
-              lib.mkIf cfg.gaming {
-                name = "Faugus Launcher";
-                comment = "Faugus Launcher";
-                exec = "faugus-launcher-db";
-                icon = "${icon}";
-                categories = [ "Game" ];
-              };
             portproton =
               let
                 icon = pkgs.fetchurl {
