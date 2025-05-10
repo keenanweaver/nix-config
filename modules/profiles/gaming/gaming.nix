@@ -3,212 +3,10 @@
   lib,
   pkgs,
   username,
-  inputs,
   ...
 }:
 let
   cfg = config.gaming;
-  p = with pkgs; {
-    games = [
-      ## Doom
-      cherry-doom
-      chocolate-doom
-      crispy-doom
-      darkradiant
-      dhewm3
-      doom64ex-plus
-      doomrunner
-      doomseeker
-      dsda-doom
-      gzdoom
-      nugget-doom
-      # odamex
-      prboom-plus
-      rbdoom-3-bfg
-      # slade
-      woof-doom
-      zandronum
-      ## Fallout
-      fallout-ce
-      fallout2-ce
-      ## Freespace
-      descent3
-      dxx-rebirth
-      knossosnet
-      ## HOMM
-      fheroes2
-      vcmi
-      ## Marathon
-      alephone-marathon
-      alephone-durandal
-      alephone-infinity
-      ## Morrowind
-      inputs.openmw-nix.packages.${pkgs.system}.openmw-dev
-      #openmw
-      ## Quake
-      ironwail
-      q2pro
-      quake-injector
-      # trenchbroom
-      ## Arma
-      arma3-unix-launcher
-      # (arma3-unix-launcher.override { buildDayZLauncher = true; })
-      ## Duke
-      eduke32
-      raze
-      rigel-engine
-      ## Wolf
-      bstone
-      ecwolf
-      etlegacy
-      iortcw
-      ## Other
-      # _2ship2harkinian
-      abuse
-      am2rlauncher
-      arx-libertatis # Arx Fatalis
-      augustus # Caesar 3
-      clonehero # Guitar Hero
-      corsix-th # Theme Hospital
-      devilutionx # Diablo
-      exult # Ultima VII
-      # ja2-stracciatella
-      jazz2
-      # katawa-shoujo-re-engineered
-      nur.repos.Rhys-T.lix-game # Lemmings clone
-      openjk # Jedi Academy
-      openloco
-      # opennox
-      openomf
-      openrct2
-      (openttd.overrideAttrs {
-        postPatch = ''
-          substituteInPlace src/music/fluidsynth.cpp \
-            --replace-fail "/usr/share/soundfonts/default.sf2" \
-                           "${pkgs.soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2"
-        '';
-      })
-      opentyrian
-      (openxcom.overrideAttrs {
-        pname = "openxcom-extended";
-        version = "8.2.7";
-        src = fetchFromGitHub {
-          owner = "MeridianOXC";
-          repo = "OpenXcom";
-          rev = "2c68684ee55e6305ac945771a23ae3ae8f6b3633";
-          hash = "sha256-IjUfmdrBPe1nvV2beoExs8ALlJTF3J2QXByH1Qz9Kf8=";
-        };
-      })
-      openxray # STALKER
-      perfect_dark
-      prismlauncher # MineCraft
-      relive # Oddworld
-      ringracers
-      runelite # RuneScape
-      shipwright
-      sm64ex
-      space-station-14-launcher
-      #inputs.nix-citizen.packages.${system}.star-citizen
-      starship-sf64
-      srb2
-      theforceengine # Dark Forces / Outlaws
-      urbanterror
-      wipeout-rewrite
-      xivlauncher # FFXIV
-      vvvvvv
-      zelda64recomp
-    ];
-    tools = [
-      ## Emulators
-      _86Box-with-roms
-      # archipelago
-      ares
-      azahar
-      bigpemu
-      # bizhawk
-      cemu
-      dolphin-emu
-      duckstation
-      flycast
-      fsuae-launcher
-      hypseus-singe
-      mame
-      mednafen
-      mednaffe
-      melonDS
-      mesen
-      nuked-sc55
-      pcsx2
-      pegasus-frontend
-      ppsspp
-      (retroarch.withCores (
-        cores: with cores; [
-          beetle-saturn
-          blastem
-          mgba
-        ]
-      ))
-      rpcs3
-      ryubing
-      scummvm
-      shadps4
-      supermodel
-      #nur.repos.novel2430.vita3k
-      xemu
-      ## Input
-      joystickwake
-      sc-controller
-      ## Launchers & utils
-      cartridges
-      itch
-      ## Modding
-      #hedgemodmanager
-      limo
-      nexusmods-app-unfree
-      #owmods-gui
-      r2modman
-      ## Other
-      adwsteamgtk
-      #chiaki-ng
-      faugus-launcher
-      flips
-      gswatcher
-      igir
-      innoextract
-      lgogdownloader
-      moondeck-buddy # Pending https://github.com/NixOS/nixpkgs/pull/375287
-      parsec-bin
-      xlink-kai
-      xvidcore
-      ## Wine
-      #inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
-      inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
-      umu-launcher
-      winetricks
-      ## One-and-dones
-      /*
-        inputs.aaru.packages.${pkgs.system}.default
-           inputs.nix-game-preservation.packages.${pkgs.system}.dic-git-full
-           glxinfo
-           jpsxdec
-           mame.tools
-           mmv
-           inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt-git
-           nsz
-           inputs.nix-game-preservation.packages.${pkgs.system}.sabretools-git
-           inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp-git
-           ps3-disc-dumper
-           #(python3.withPackages (p: with p; [ lnkparse3 ]))
-           inputs.nix-game-preservation.packages.${pkgs.system}.redumper-git
-           renderdoc
-           vgmplay-libvgm
-           vgmstream
-           vgmtools
-           vgmtrans
-           vulkan-tools
-      */
-    ];
-  };
 in
 {
   options = {
@@ -217,6 +15,13 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
+
+    imports = [
+      ./gamepad.nix
+      ./packages.nix
+      ./racing.nix
+    ];
+
     # Custom modules
     bottles.enable = true;
     cdemu.enable = true;
@@ -231,7 +36,6 @@ in
     mangohud.enable = true;
     nonfree.enable = true;
     obs.enable = true;
-    racing.enable = true;
     steam.enable = true;
     sunshine.enable = true;
     vkbasalt.enable = true;
@@ -239,14 +43,11 @@ in
 
     boot = {
       extraModulePackages = with config.boot.kernelPackages; [
-        gcadapter-oc-kmod
         zenergy
       ];
       kernelModules = [
-        "gcadapter_oc"
         "zenergy"
       ];
-      #kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos; # Kernel modules do not load
       kernelParams = [
         "usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
         "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
@@ -275,11 +76,6 @@ in
     };
 
     chaotic.mesa-git.enable = true;
-
-    hardware = {
-      uinput.enable = true;
-      xpadneo.enable = true;
-    };
 
     networking = {
       firewall = {
@@ -344,9 +140,6 @@ in
           package = pkgs.openrgb-with-all-plugins;
         };
       };
-      input-remapper = {
-        enable = true;
-      };
       scx = {
         enable = true;
         package = pkgs.scx.rustscheds;
@@ -365,38 +158,6 @@ in
           ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
         '';
         packages = with pkgs; [
-          game-devices-udev-rules
-          (writeTextFile {
-            name = "70-easysmx.rules";
-            text = ''
-              # EasySMX X05
-              SUBSYSTEM=="usb", ATTR{idProduct}=="0091", ATTR{idVendor}=="2f24", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-            '';
-            destination = "/etc/udev/rules.d/70-easysmx.rules";
-          })
-          (writeTextFile {
-            name = "70-gamesir.rules";
-            text = ''
-              # GameSir Cyclone 2 Wireless Controller
-              SUBSYSTEM=="usb", ATTR{idProduct}=="0575", ATTR{idVendor}=="3537", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-            '';
-            destination = "/etc/udev/rules.d/70-gamesir.rules";
-          })
-          (writeTextFile {
-            name = "70-8bitdo.rules";
-            text = ''
-              # 8BitDo Arcade Stick; Bluetooth (X-mode)
-              SUBSYSTEM=="input", ATTRS{name}=="8BitDo Arcade Stick", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-              # 8BitDo Ultimate 2.4G Wireless  Controller; USB/2.4Ghz
-              # X-mode
-              SUBSYSTEM=="usb", ATTR{idProduct}=="3106", ATTR{idVendor}=="2dc8", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-              # D-mode
-              SUBSYSTEM=="usb", ATTR{idProduct}=="3012", ATTR{idVendor}=="2dc8", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-              # 8BitDo Ultimate 2C Wireless Controller; USB/2.4GHz
-              SUBSYSTEM=="usb", ATTR{idProduct}=="310a", ATTR{idVendor}=="2dc8", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-            '';
-            destination = "/etc/udev/rules.d/70-8bitdo.rules";
-          })
           (writeTextFile {
             name = "40-streamdeck.rules";
             text = builtins.readFile (
@@ -406,24 +167,6 @@ in
               }
             );
             destination = "/etc/udev/rules.d/40-streamdeck.rules";
-          })
-          # https://wiki.archlinux.org/title/Gamepad#Motion_controls_taking_over_joypad_controls_and/or_causing_unintended_input_with_joypad_controls
-          (writeTextFile {
-            name = "51-disable-DS3-and-DS4-motion-controls.rules";
-            text = ''
-              SUBSYSTEM=="input", ATTRS{name}=="*Controller Motion Sensors", RUN+="${pkgs.coreutils}/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
-            '';
-            destination = "/etc/udev/rules.d/51-disable-DS3-and-DS4-motion-controls.rules";
-          })
-          # https://reddit.com/r/linux_gaming/comments/1fu4ggk/can_someone_explain_dualsense_to_me/lpwxv12/?context=3#lpwxv12
-          (writeTextFile {
-            name = "51-disable-dualsense-sound-and-vibration.rules";
-            text = ''
-              KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", MODE="0660", TAG+="uaccess"
-              KERNEL=="hidraw*", KERNELS=="*054C:0CE6*", MODE="0660", TAG+="uaccess"
-              ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", ENV{PULSE_IGNORE}="1", ENV{ACP_IGNORE}="1"
-            '';
-            destination = "/etc/udev/rules.d/51-disable-dualsense-sound-and-vibration.rules";
           })
         ];
       };
@@ -532,11 +275,6 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
               target = "${config.xdg.configHome}/dosbox/mt32-roms";
             };
-            roms-mt32-exodos-flatpak = {
-              enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
-              target = ".var/app/com.retro_exo.dosbox-staging-082-0/config/dosbox/mt32-roms";
-            };
             vrr-off = {
               enable = true;
               source =
@@ -595,51 +333,46 @@ in
               target = "${config.home.homeDirectory}/Games/wine-mouse-acceleration.reg";
             };
           };
-          packages =
-            with pkgs;
-            [
-              (writeShellApplication {
-                name = "script-exodos-nuked";
-                runtimeEnv = {
-                  EXODOS = "/mnt/crusader/eXo/eXoDOS/eXo/eXoDOS";
-                };
-                runtimeInputs = with pkgs; [
-                  fd
-                  sd
-                ];
-                text = ''
-                  fd -t file "run.bat" $EXODOS -x sd 'CONFIG -set "mididevice=fluidsynth"' 'CONFIG -set "mididevice=soundcanvas"' {}
-                '';
-              })
-              (writeShellApplication {
-                name = "script-game-stuff";
-                runtimeEnv = {
-                  DREAMM = "https://aarongiles.com/dreamm/releases/dreamm-3.0.3-linux-x64.tgz";
-                  GAMES_DIR = "${config.home.homeDirectory}/Games";
-                  LOCAL_BIN = "${config.home.homeDirectory}/.local/bin";
-                };
-                runtimeInputs = [
-                  coreutils
-                  findutils
-                  jq
-                  sd
-                  xh
-                ];
-                text = ''
-                  ## DREAMM
-                  xh get -d -o "$GAMES_DIR"/games/dreamm.tgz $DREAMM
-                  fd dreamm -e tgz "$GAMES_DIR"/games -x ouch d {} -d "$GAMES_DIR"/games
-                  ## SheepShaver
-                  xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/sheepshaver.appimage
-                  ## MoonDeck Buddy
-                  xh https://api.github.com/repos/FrogTheFrog/moondeck-buddy/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/moondeckbuddy.appimage
-                  ## Conty
-                  xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/conty_lite.sh
-                  chmod +x "$LOCAL_BIN"/conty_lite.sh
-                '';
-              })
-            ]
-            ++ lib.flatten (lib.attrValues p);
+          packages = with pkgs; [
+            (writeShellApplication {
+              name = "script-exodos-nuked";
+              runtimeEnv = {
+                EXODOS = "/mnt/crusader/eXo/eXoDOS/eXo/eXoDOS";
+              };
+              runtimeInputs = with pkgs; [
+                fd
+                sd
+              ];
+              text = ''
+                fd -t file "run.bat" $EXODOS -x sd 'CONFIG -set "mididevice=fluidsynth"' 'CONFIG -set "mididevice=soundcanvas"' {}
+              '';
+            })
+            (writeShellApplication {
+              name = "script-game-stuff";
+              runtimeEnv = {
+                DREAMM = "https://aarongiles.com/dreamm/releases/dreamm-3.0.3-linux-x64.tgz";
+                GAMES_DIR = "${config.home.homeDirectory}/Games";
+                LOCAL_BIN = "${config.home.homeDirectory}/.local/bin";
+              };
+              runtimeInputs = [
+                coreutils
+                findutils
+                jq
+                sd
+                xh
+              ];
+              text = ''
+                ## DREAMM
+                xh get -d -o "$GAMES_DIR"/games/dreamm.tgz $DREAMM
+                fd dreamm -e tgz "$GAMES_DIR"/games -x ouch d {} -d "$GAMES_DIR"/games
+                ## SheepShaver
+                xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/sheepshaver.appimage
+                ## Conty
+                xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/conty_lite.sh
+                chmod +x "$LOCAL_BIN"/conty_lite.sh
+              '';
+            })
+          ];
           sessionVariables = {
             # https://gitlab.com/OpenMW/openmw/-/issues/6185
             OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
@@ -835,61 +568,6 @@ in
                 # { name = "Game"; } # nuked-sc55 & fluidsynth will interfere with screensaver
                 { name = "Music"; }
               ];
-            };
-          };
-        };
-        xdg = {
-          autostart.entries = [
-            "${pkgs.moondeck-buddy}/share/applications/MoonDeckBuddy.desktop"
-            "${pkgs.nuked-sc55}/share/applications/Nuked-SC55_silent.desktop"
-          ];
-          desktopEntries = {
-            _86box = {
-              name = "86Box (Win98SE)";
-              exec = "86Box";
-              icon = "net.86box.86Box";
-              categories = [
-                "Game"
-                "Emulator"
-              ];
-              settings = {
-                Path = "${config.home.homeDirectory}/Games/games/86box/win98se";
-              };
-            };
-            gog-galaxy =
-              let
-                icon = pkgs.fetchurl {
-                  url = "https://docs.gog.com/_assets/galaxy_icon_rgb.svg";
-                  hash = "sha256-SpaFaSK05Uq534qPYV7s7/vzexZmMnpJiVtOsbCtjvg=";
-                };
-              in
-              {
-                name = "GOG Galaxy";
-                comment = "Launch GOG Galaxy using Bottles.";
-                exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p \"GOG Galaxy\" -b \"GOG Galaxy\" -- %u";
-                icon = "${icon}";
-                categories = [ "Game" ];
-                noDisplay = false;
-                startupNotify = true;
-                settings = {
-                  StartupWMClass = "GOG Galaxy";
-                };
-              };
-            itch = {
-              name = "itch";
-              comment = "Install and play itch.io games easily";
-              exec = "PULSE_SINK=Game obs-gamecapture mangohud itch";
-              icon = "itch";
-              categories = [ "Game" ];
-            };
-            quake-injector = {
-              name = "Quake Injector";
-              exec = "quake-injector";
-              icon = "quake-injector";
-              categories = [ "Game" ];
-              settings = {
-                Path = "${config.home.homeDirectory}/Games/quake/quake-1/injector";
-              };
             };
           };
         };
