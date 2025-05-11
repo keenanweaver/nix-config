@@ -110,10 +110,6 @@ in
       ];
     };
 
-    programs = {
-      streamcontroller.enable = true;
-    };
-
     security = {
       pam = {
         loginLimits = [
@@ -157,18 +153,6 @@ in
           # NVMe SSD
           ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
         '';
-        packages = with pkgs; [
-          (writeTextFile {
-            name = "40-streamdeck.rules";
-            text = builtins.readFile (
-              pkgs.fetchurl {
-                url = "https://raw.githubusercontent.com/streamduck-org/elgato-streamdeck/main/40-streamdeck.rules";
-                hash = "sha256-hY0HHNQple+utWRfczQuvlcYWH0wt+zLk0h883lPpJY=";
-              }
-            );
-            destination = "/etc/udev/rules.d/40-streamdeck.rules";
-          })
-        ];
       };
     };
 
@@ -351,24 +335,27 @@ in
               name = "script-game-stuff";
               runtimeEnv = {
                 DREAMM = "https://aarongiles.com/dreamm/releases/dreamm-3.0.3-linux-x64.tgz";
+                SHEEP_SHAVER = "https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest";
+                CONTY = "https://api.github.com/repos/Kron4ek/conty/releases/latest";
                 GAMES_DIR = "${config.home.homeDirectory}/Games";
                 LOCAL_BIN = "${config.home.homeDirectory}/.local/bin";
               };
               runtimeInputs = [
                 coreutils
-                findutils
+                curl
+                fd
                 jq
                 sd
-                xh
+                wget
               ];
               text = ''
                 ## DREAMM
-                xh get -d -o "$GAMES_DIR"/games/dreamm.tgz $DREAMM
-                fd dreamm -e tgz "$GAMES_DIR"/games -x ouch d {} -d "$GAMES_DIR"/games
+                wget -P "$GAMES_DIR"/games/dreamm $DREAMM
+                fd dreamm -e tgz "$GAMES_DIR"/games/dreamm -x tar xf {} -c "$GAMES_DIR"/games/dreamm
                 ## SheepShaver
-                xh https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest | jq -r '.assets[] | select(.name | test("x86_64.AppImage$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/sheepshaver.appimage
+                curl $SHEEP_SHAVER | jq -r '.assets[] | select(.name | test("SheepShaver-x86_64.AppImage$$")).browser_download_url' | xargs wget -P "$LOCAL_BIN"
                 ## Conty
-                xh https://api.github.com/repos/Kron4ek/conty/releases/latest | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs xh get -d -o "$LOCAL_BIN"/conty_lite.sh
+                curl $CONTY | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs wget -P "$LOCAL_BIN"
                 chmod +x "$LOCAL_BIN"/conty_lite.sh
               '';
             })

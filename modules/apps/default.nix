@@ -46,6 +46,7 @@
     ./ssh
     ./starship
     ./steam
+    ./streamcontroller
     ./sunshine
     ./tailscale
     ./tealdeer
