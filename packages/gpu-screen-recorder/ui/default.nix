@@ -14,9 +14,9 @@
   libXcomposite,
   libXi,
   libXcursor,
-  libdrm,
   libglvnd,
   libpulseaudio,
+  libdrm,
   wayland,
   wayland-scanner,
   wrapperDir ? "/run/wrappers/bin",
@@ -57,9 +57,9 @@ stdenv.mkDerivation rec {
     libXcomposite
     libXi
     libXcursor
-    libdrm
     libglvnd
     libpulseaudio
+    libdrm
     wayland
     wayland-scanner
   ];
@@ -89,7 +89,7 @@ stdenv.mkDerivation rec {
   passthru.updateScript = gitUpdater { };
 
   meta = {
-    description = "A fullscreen overlay UI for GPU Screen Recorder in the style of ShadowPlay";
+    description = "Fullscreen overlay UI for GPU Screen Recorder in the style of ShadowPlay";
     homepage = "https://git.dec05eba.com/${pname}/about/";
     license = lib.licenses.gpl3Only;
     mainProgram = "gsr-ui";

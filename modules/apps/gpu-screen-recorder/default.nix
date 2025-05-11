@@ -24,6 +24,13 @@ in
       enable = true;
     };
     programs.gpu-screen-recorder-ui.enable = true;
+    
+    security.wrappers."gpu-screen-recorder" = {
+      owner = "root";
+      group = "root";
+      capabilities = "cap_sys_nice+ep";
+      source = "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder";
+    };
 
     home-manager.users.${username} =
       { pkgs, ... }:

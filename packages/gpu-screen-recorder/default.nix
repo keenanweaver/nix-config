@@ -1,7 +1,7 @@
 {
   stdenv,
   lib,
-  fetchurl,
+  fetchgit,
   makeWrapper,
   meson,
   ninja,
@@ -26,16 +26,15 @@
   gitUpdater,
 }:
 
-stdenv.mkDerivation (finalAttrs: {
+stdenv.mkDerivation rec {
   pname = "gpu-screen-recorder";
-  version = "5.5.1";
+  version = "5.5.3";
 
-  src = fetchurl {
-    url = "https://dec05eba.com/snapshot/gpu-screen-recorder.git.${finalAttrs.version}.tar.gz";
-    hash = "sha256-BpO9bpSyvOhfijy7alQ0OE1OvrMAVZ7YgT7OEk7d3s0=";
+  src = fetchgit {
+    url = "https://repo.dec05eba.com/${pname}";
+    tag = version;
+    hash = "sha256-XXSHTS/WWqGblbBLuzHSYCY5FVTDSHBHfBWubmoNSy0=";
   };
-
-  sourceRoot = ".";
 
   nativeBuildInputs = [
     pkg-config
@@ -71,11 +70,6 @@ stdenv.mkDerivation (finalAttrs: {
     (lib.mesonBool "nvidia_suspend_fix" false)
   ];
 
-  postPatch = ''
-    substituteInPlace extra/gpu-screen-recorder.service \
-      --replace-fail "ExecStart=gpu-screen-recorder" "ExecStart=$out/bin/gpu-screen-recorder"
-  '';
-
   postInstall = ''
     mkdir $out/bin/.wrapped
     mv $out/bin/gpu-screen-recorder $out/bin/.wrapped/
@@ -97,7 +91,10 @@ stdenv.mkDerivation (finalAttrs: {
     homepage = "https://git.dec05eba.com/gpu-screen-recorder/about/";
     license = lib.licenses.gpl3Only;
     mainProgram = "gpu-screen-recorder";
-    maintainers = [ lib.maintainers.babbaj ];
+    maintainers = with lib.maintainers; [
+      babbaj
+      js6pak
+    ];
     platforms = [ "x86_64-linux" ];
   };
-})
+}

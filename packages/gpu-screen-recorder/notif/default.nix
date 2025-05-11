@@ -10,9 +10,9 @@
   libXrandr,
   libXext,
   libglvnd,
-  gitUpdater,
   wayland,
   wayland-scanner,
+  gitUpdater,
 }:
 
 stdenv.mkDerivation rec {
