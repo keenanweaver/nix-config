@@ -5,10 +5,12 @@
   ...
 }:
 let
-  p = with pkgs; [
-    joystickwake
-    sc-controller
-  ];
+  p = with pkgs; {
+    gamepad = [
+      joystickwake
+      sc-controller
+    ];
+  };
 in
 {
   boot = {
@@ -84,7 +86,9 @@ in
       ];
     };
   };
-  home-manager.users.${username} = {
-    home.packages = [ p ];
-  };
+  home-manager.users.${username} =
+    { lib, ... }:
+    {
+      home.packages = lib.flatten (lib.attrValues p);
+    };
 }

@@ -1,5 +1,5 @@
 {
-  config,
+  inputs,
   lib,
   pkgs,
   username,
@@ -89,12 +89,12 @@ let
       opentyrian
       (openxcom.overrideAttrs {
         pname = "openxcom-extended";
-        version = "8.2.7";
+        version = "8.2.8";
         src = fetchFromGitHub {
           owner = "MeridianOXC";
           repo = "OpenXcom";
-          rev = "2c68684ee55e6305ac945771a23ae3ae8f6b3633";
-          hash = "sha256-IjUfmdrBPe1nvV2beoExs8ALlJTF3J2QXByH1Qz9Kf8=";
+          rev = "63791bda02f2f2c6635ad8685ba1faf6ca424f78";
+          hash = "sha256-7+HLEBX9TeKMYjls6/H+aR244dbiYKExVDdNStNIDdg=";
         };
       })
       openxray # STALKER
@@ -172,12 +172,11 @@ let
       igir
       innoextract
       lgogdownloader
-      moondeck-buddy # Pending https://github.com/NixOS/nixpkgs/pull/375287
+      moondeck-buddy
       parsec-bin
       xlink-kai
       xvidcore
       ## Wine
-      #inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
       inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
       umu-launcher
       winetricks
@@ -207,152 +206,154 @@ let
   };
 in
 {
-  home-manager.users.${username} = {
-    home.packages = [ (lib.flatten (lib.attrValues p)) ];
-    services.flatpak = {
-      overrides = {
-        global = {
-          Environment = {
-            FLATPAK_GL_DRIVERS = "mesa-git";
-          };
-        };
-        "com.fightcade.Fightcade" = {
-          Environment = {
-            PULSE_SINK = "Game";
-          };
-        };
-        "dev.opengoal.OpenGOAL" = {
-          Context = {
-            filesystems = [ "${config.home.homeDirectory}/Games/opengoal" ];
-          };
-          Environment = {
-            PULSE_SINK = "Game";
-          };
-        };
-        "io.github.noxworld_dev.OpenNox" = {
-          Context = {
-            filesystems = [
-              "!home"
-              "${config.home.homeDirectory}/Games/nox"
-            ];
-          };
-          Environment = {
-            PULSE_SINK = "Game";
-          };
-        };
-        "net.sourceforge.uqm_mods.UQM-MegaMod" = {
-          Environment = {
-            PULSE_SINK = "Game";
-          };
-        };
-        "org.easyrpg.player" = {
-          Context = {
-            filesystems = [
-              "${config.home.homeDirectory}/Music/soundfonts:ro"
-              "${config.home.homeDirectory}/Games/games/rpg-maker"
-              "!host"
-            ];
-            shared = "network"; # obs-gamecapture
-          };
-          Environment = {
-            PULSE_SINK = "Game";
-            RPG2K_RTP_PATH = "${config.home.homeDirectory}/Games/games/rpg-maker/RTP/2000";
-            RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/games/rpg-maker/RTP/2003";
-          };
-        };
-        "org.openjkdf2.OpenJKDF2" = {
-          Environment = {
-            PULSE_SINK = "Game";
-          };
-        };
-        "org.sonic3air.Sonic3AIR" = {
-          Environment = {
-            PULSE_SINK = "Game";
-          };
-        };
-      };
-      packages = [
-        "com.fightcade.Fightcade"
-        "com.fightcade.Fightcade.Wine"
-        {
-          appId = "org.freedesktop.Platform.GL.mesa-git/x86_64/24.08";
-          origin = "flathub-beta";
-        }
-        {
-          appId = "org.freedesktop.Platform.GL32.mesa-git/x86_64/24.08";
-          origin = "flathub-beta";
-        }
-        "com.github.optyfr.JRomManager"
-        "com.qzandronum.Q-Zandronum"
-        "dev.opengoal.OpenGOAL"
-        "io.github.hedge_dev.hedgemodmanager"
-        "io.github.noxworld_dev.OpenNox"
-        "io.github.randovania.Randovania"
-        "io.github.santiagocezar.maniatic-launcher"
-        "io.itch.tx00100xt.SeriousSamClassic-VK"
-        "net.nmlgc.rec98.sh01"
-        "net.sourceforge.uqm_mods.UQM-MegaMod"
-        "org.easyrpg.player"
-        "org.openfodder.OpenFodder"
-        "org.openjkdf2.OpenJKDF2"
-        "org.sonic3air.Sonic3AIR"
-        "vet.rsc.OpenRSC.Launcher"
-      ];
-    };
-    xdg = {
-      autostart.entries = with pkgs; [
-        "${moondeck-buddy}/share/applications/MoonDeckBuddy.desktop"
-        "${nuked-sc55}/share/applications/Nuked-SC55_silent.desktop"
-      ];
-      desktopEntries = {
-        _86box = {
-          name = "86Box (Win98SE)";
-          exec = "86Box";
-          icon = "net.86box.86Box";
-          categories = [
-            "Game"
-            "Emulator"
-          ];
-          settings = {
-            Path = "${config.home.homeDirectory}/Games/games/86box/win98se";
-          };
-        };
-        gog-galaxy =
-          let
-            icon = pkgs.fetchurl {
-              url = "https://docs.gog.com/_assets/galaxy_icon_rgb.svg";
-              hash = "sha256-SpaFaSK05Uq534qPYV7s7/vzexZmMnpJiVtOsbCtjvg=";
+  home-manager.users.${username} =
+    { config, ... }:
+    {
+      home.packages = lib.flatten (lib.attrValues p);
+      services.flatpak = {
+        overrides = {
+          global = {
+            Environment = {
+              FLATPAK_GL_DRIVERS = "mesa-git";
             };
-          in
+          };
+          "com.fightcade.Fightcade" = {
+            Environment = {
+              PULSE_SINK = "Game";
+            };
+          };
+          "dev.opengoal.OpenGOAL" = {
+            Context = {
+              filesystems = [ "${config.home.homeDirectory}/Games/opengoal" ];
+            };
+            Environment = {
+              PULSE_SINK = "Game";
+            };
+          };
+          "io.github.noxworld_dev.OpenNox" = {
+            Context = {
+              filesystems = [
+                "!home"
+                "${config.home.homeDirectory}/Games/nox"
+              ];
+            };
+            Environment = {
+              PULSE_SINK = "Game";
+            };
+          };
+          "net.sourceforge.uqm_mods.UQM-MegaMod" = {
+            Environment = {
+              PULSE_SINK = "Game";
+            };
+          };
+          "org.easyrpg.player" = {
+            Context = {
+              filesystems = [
+                "${config.home.homeDirectory}/Music/soundfonts:ro"
+                "${config.home.homeDirectory}/Games/games/rpg-maker"
+                "!host"
+              ];
+              shared = "network"; # obs-gamecapture
+            };
+            Environment = {
+              PULSE_SINK = "Game";
+              RPG2K_RTP_PATH = "${config.home.homeDirectory}/Games/games/rpg-maker/RTP/2000";
+              RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/games/rpg-maker/RTP/2003";
+            };
+          };
+          "org.openjkdf2.OpenJKDF2" = {
+            Environment = {
+              PULSE_SINK = "Game";
+            };
+          };
+          "org.sonic3air.Sonic3AIR" = {
+            Environment = {
+              PULSE_SINK = "Game";
+            };
+          };
+        };
+        packages = [
+          "com.fightcade.Fightcade"
+          "com.fightcade.Fightcade.Wine"
           {
-            name = "GOG Galaxy";
-            comment = "Launch GOG Galaxy using Bottles.";
-            exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p \"GOG Galaxy\" -b \"GOG Galaxy\" -- %u";
-            icon = "${icon}";
-            categories = [ "Game" ];
-            noDisplay = false;
-            startupNotify = true;
+            appId = "org.freedesktop.Platform.GL.mesa-git/x86_64/24.08";
+            origin = "flathub-beta";
+          }
+          {
+            appId = "org.freedesktop.Platform.GL32.mesa-git/x86_64/24.08";
+            origin = "flathub-beta";
+          }
+          "com.github.optyfr.JRomManager"
+          "com.qzandronum.Q-Zandronum"
+          "dev.opengoal.OpenGOAL"
+          "io.github.hedge_dev.hedgemodmanager"
+          "io.github.noxworld_dev.OpenNox"
+          "io.github.randovania.Randovania"
+          "io.github.santiagocezar.maniatic-launcher"
+          "io.itch.tx00100xt.SeriousSamClassic-VK"
+          "net.nmlgc.rec98.sh01"
+          "net.sourceforge.uqm_mods.UQM-MegaMod"
+          "org.easyrpg.player"
+          "org.openfodder.OpenFodder"
+          "org.openjkdf2.OpenJKDF2"
+          "org.sonic3air.Sonic3AIR"
+          "vet.rsc.OpenRSC.Launcher"
+        ];
+      };
+      xdg = {
+        autostart.entries = with pkgs; [
+          "${moondeck-buddy}/share/applications/MoonDeckBuddy.desktop"
+          "${nuked-sc55}/share/applications/Nuked-SC55_silent.desktop"
+        ];
+        desktopEntries = {
+          _86box = {
+            name = "86Box (Win98SE)";
+            exec = "86Box";
+            icon = "net.86box.86Box";
+            categories = [
+              "Game"
+              "Emulator"
+            ];
             settings = {
-              StartupWMClass = "GOG Galaxy";
+              Path = "${config.home.homeDirectory}/Games/games/86box/win98se";
             };
           };
-        itch = {
-          name = "itch";
-          comment = "Install and play itch.io games easily";
-          exec = "PULSE_SINK=Game obs-gamecapture mangohud itch";
-          icon = "itch";
-          categories = [ "Game" ];
-        };
-        quake-injector = {
-          name = "Quake Injector";
-          exec = "quake-injector";
-          icon = "quake-injector";
-          categories = [ "Game" ];
-          settings = {
-            Path = "${config.home.homeDirectory}/Games/quake/quake-1/injector";
+          gog-galaxy =
+            let
+              icon = pkgs.fetchurl {
+                url = "https://docs.gog.com/_assets/galaxy_icon_rgb.svg";
+                hash = "sha256-SpaFaSK05Uq534qPYV7s7/vzexZmMnpJiVtOsbCtjvg=";
+              };
+            in
+            {
+              name = "GOG Galaxy";
+              comment = "Launch GOG Galaxy using Bottles.";
+              exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p \"GOG Galaxy\" -b \"GOG Galaxy\" -- %u";
+              icon = "${icon}";
+              categories = [ "Game" ];
+              noDisplay = false;
+              startupNotify = true;
+              settings = {
+                StartupWMClass = "GOG Galaxy";
+              };
+            };
+          itch = {
+            name = "itch";
+            comment = "Install and play itch.io games easily";
+            exec = "PULSE_SINK=Game obs-gamecapture mangohud itch";
+            icon = "itch";
+            categories = [ "Game" ];
+          };
+          quake-injector = {
+            name = "Quake Injector";
+            exec = "quake-injector";
+            icon = "quake-injector";
+            categories = [ "Game" ];
+            settings = {
+              Path = "${config.home.homeDirectory}/Games/quake/quake-1/injector";
+            };
           };
         };
       };
     };
-  };
 }

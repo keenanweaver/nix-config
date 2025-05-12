@@ -14,14 +14,14 @@ in
       enable = lib.mkEnableOption "Enable Gaming module in NixOS";
     };
   };
+
+  imports = [
+    ./gamepad.nix
+    ./packages.nix
+    ./racing.nix
+  ];
+
   config = lib.mkIf cfg.enable {
-
-    imports = [
-      ./gamepad.nix
-      ./packages.nix
-      ./racing.nix
-    ];
-
     # Custom modules
     bottles.enable = true;
     cdemu.enable = true;
