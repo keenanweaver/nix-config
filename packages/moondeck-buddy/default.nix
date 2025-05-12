@@ -24,14 +24,14 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "moondeck-buddy";
-  version = "1.6.3";
+  version = "1.8.2";
 
   src = fetchFromGitHub {
     owner = "FrogTheFrog";
     repo = "moondeck-buddy";
     tag = "v${finalAttrs.version}";
     fetchSubmodules = true;
-    hash = "sha256-OMgcxRpXhZNfvixq4PTeKfddCTzaqMGaaxaNFOWEnTw=";
+    hash = "sha256-FIb1e48SOlyJlDTIyh8HD6+veX2VfnhhQ60FMeGmOww=";
   };
 
   buildInputs = [
@@ -47,7 +47,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   postPatch = lib.optionalString useNixSteam ''
-    substituteInPlace src/lib/os/linux/steamregistryobserver.cpp \
+    substituteInPlace src/lib/shared/appmetadata.cpp \
       --replace-fail /usr/bin/steam ${lib.getExe steam};
   '';
 
