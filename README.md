@@ -173,7 +173,7 @@ Run the commands:
     mkdir -p "$GAMESDIR"/doom/{doom-3,doom-3-bfg}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/doom_3_classic" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/doom/doom-3
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/doom_3_bfg_edition_game" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/doom/doom-3-bfg
-    mv "$GAMESDIR"/doom/doom-3-bfg/app/* "$GAMESDIR"/doom/doom-3-bfg && rm -rf "$GAMESDIR"/doom/doom-3-bfg/{tmp,app}
+    mv "$GAMESDIR"/doom/doom-3-bfg/app/base/* "$GAMESDIR"/doom/doom-3-bfg && rm -rf "$GAMESDIR"/doom/doom-3-bfg/{tmp,app}
     curl https://api.github.com/repos/RobertBeckebans/RBDOOM-3-BFG/releases/latest | jq -r '.assets[] | select(.name | test("full")).browser_download_url' | xargs wget -P "$GAMESDIR"/doom/doom-3-bfg
     fd -a -d 1 -e 7z . "$GAMESDIR/doom/doom-3-bfg" -x ouch d {} -y -d "$GAMESDIR"/doom/doom-3-bfg
     ## DOOM 64
