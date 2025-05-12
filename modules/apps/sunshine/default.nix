@@ -42,6 +42,9 @@
           }
         ];
       };
+      settings = {
+        output_name = 1;
+      };
     };
     home-manager.users.${username} = { };
   };
