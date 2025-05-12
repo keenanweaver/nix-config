@@ -39,6 +39,10 @@ in
           OBS_VKCAPTURE = 1;
           PULSE_SINK = "Game";
         };
+        # https://github.com/NixOS/nixpkgs/issues/279893#issuecomment-2425213386
+        extraProfile = ''
+          unset TZ
+        '';
       };
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
