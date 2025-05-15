@@ -406,7 +406,7 @@
                 };
               };
               apply = {
-                desktopfile = "signal-desktop";
+                desktopfile = "signal";
                 apply = "force";
               };
             }
