@@ -56,6 +56,10 @@ in
                   enable = true;
                 };
               };
+              clipboard = {
+                enable = true;
+                registers = "unnamedplus";
+              };
               comments = {
                 comment-nvim = {
                   enable = true;
@@ -284,7 +288,6 @@ in
                   enable = true;
                 };
               };
-              useSystemClipboard = true;
               utility = {
                 diffview-nvim.enable = true;
                 preview = {

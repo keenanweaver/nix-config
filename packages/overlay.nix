@@ -13,7 +13,6 @@
   nugget-doom = prev.callPackage ./nugget-doom { };
   n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
-  openomf = prev.callPackage ./openomf { };
   perfect_dark = prev.callPackage ./perfect_dark { };
   plymouth = prev.plymouth.overrideAttrs (
     { src, ... }:
