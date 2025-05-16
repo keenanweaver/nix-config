@@ -43,8 +43,7 @@ python3Packages.buildPythonApplication rec {
   ];
 
   propagatedBuildInputs =
-    with python3Packages;
-    [
+    (with python3Packages; [
       filelock
       pillow
       psutil
@@ -52,7 +51,7 @@ python3Packages.buildPythonApplication rec {
       pynput
       requests
       vdf
-    ]
+    ])
     ++ [
       icoextract
       imagemagick
@@ -90,7 +89,8 @@ python3Packages.buildPythonApplication rec {
       --replace-fail '/usr/bin/umu-run' "${lib.getExe' umu-launcher "umu-run"}" \
       --replace-fail '/usr/bin/mangohud' "${lib.getExe' mangohud "mangohud"}" \
       --replace-fail '/usr/bin/gamemoderun' "${lib.getExe' gamemode "gamemoderun"}" \
-      --replace-fail 'shutil.copy(' 'shutil.copyfile('
+      --replace-fail 'shutil.copy(' 'shutil.copyfile(' \
+      --replace-fail 'Exec={faugus_run}' 'Exec=faugus-run'
 
     substituteInPlace faugus-run.py \
       --replace-fail '/usr/share' "$out/share" \

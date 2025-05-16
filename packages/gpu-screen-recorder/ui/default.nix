@@ -25,12 +25,12 @@
 
 stdenv.mkDerivation rec {
   pname = "gpu-screen-recorder-ui";
-  version = "1.6.1";
+  version = "1.6.3";
 
   src = fetchgit {
     url = "https://repo.dec05eba.com/${pname}";
     tag = version;
-    hash = "sha256-HKUbxX6EXLR4N/ag7gLIqitxBRU+1aLtlqDiSS7LK5I=";
+    hash = "sha256-6ewKwelIomij6a8PncZSYnjoO2wJGx7Bu+GbA98KWhQ=";
   };
 
   postPatch = ''
