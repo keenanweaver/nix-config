@@ -15,17 +15,6 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      ethtool
-      tailscale
-    ];
-
-    networking.firewall = {
-      trustedInterfaces = [ "tailscale0" ];
-      allowedUDPPorts = [ config.services.tailscale.port ];
-      allowedTCPPorts = [ config.services.tailscale.port ];
-    };
-
     services = {
       tailscale = {
         enable = true;
@@ -39,8 +28,8 @@ in
 
     home-manager.users.${username} = {
       home.packages = with pkgs; [ ktailctl ];
-      xdg.autostart.entries = [
-        "${pkgs.ktailctl}/share/applications/org.fkoehler.KTailctl.desktop"
+      xdg.autostart.entries = with pkgs; [
+        "${ktailctl}/share/applications/org.fkoehler.KTailctl.desktop"
       ];
     };
   };
