@@ -34,10 +34,11 @@
           };
           Service = {
             Type = "oneshot";
-            ExecStart = lib.getExe (
-              pkgs.writeShellApplication {
+            ExecStart =
+              with pkgs;
+              lib.getExe (writeShellApplication {
                 name = "rclone-myrient-nointro";
-                runtimeInputs = with pkgs; [
+                runtimeInputs = [
                   rclone
                 ];
                 text =
@@ -46,8 +47,8 @@
                       command = "copy";
                       source = "myrient:/files/No-Intro/";
                       destination = "/mnt/crusader/Games/Backups/Myrient/No-Intro/";
-                      args = "-vv --filter-from ${rcloneOpts.filter}";
-                      filter = pkgs.writeText "rclone-myrient-nointro-filter" ''
+                      args = "-v --filter-from ${rcloneOpts.filter}";
+                      filter = writeText "rclone-myrient-nointro-filter" ''
                         - Audio CD*/*
                         - CD-ROM*/*
                         - DVD-ROM*/*
@@ -78,8 +79,7 @@
                   ''
                     rclone ${rcloneOpts.command} ${rcloneOpts.source} ${rcloneOpts.destination} ${rcloneOpts.args}
                   '';
-              }
-            );
+              });
           };
         };
       };
