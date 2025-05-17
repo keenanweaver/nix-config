@@ -25,7 +25,12 @@
   };
 
   home-manager.users.${username} =
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      osConfig,
+      ...
+    }:
     {
       systemd.user = {
         services = {
@@ -131,14 +136,14 @@
           rclone-myrient-nointro = {
             Install.WantedBy = [ "multi-user.target" ];
             Timer = {
-              OnCalendar = "Thu *-*-1..7 02:00:00 America/Chicago";
+              OnCalendar = "Thu *-*-1..7 02:00:00 ${osConfig.time.timeZone}";
               Persistent = true;
             };
           };
           rclone-myrient-redump = {
             Install.WantedBy = [ "multi-user.target" ];
             Timer = {
-              OnCalendar = "Tue *-*-8..15 02:00:00 America/Chicago";
+              OnCalendar = "Tue *-*-8..15 02:00:00 ${osConfig.time.timeZone}";
               Persistent = true;
             };
           };
