@@ -81,8 +81,8 @@ in
                 ];
               };
               Environment = {
-                PROTON_ENABLE_WAYLAND = 1;
-                PROTON_ENABLE_HDR = 1;
+                PROTON_ENABLE_WAYLAND = "1";
+                PROTON_ENABLE_HDR = "1";
                 PULSE_SINK = "Game";
                 WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23";
               };
