@@ -40,6 +40,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvf.url = "github:notashelf/nvf";
+    quadlet-nix = {
+      url = "github:SEIAROTg/quadlet-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -322,6 +326,7 @@
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nixos-hardware.nixosModules.raspberry-pi-4
               inputs.nur.modules.nixos.default
+              inputs.quadlet-nix.nixosModules.quadlet
               inputs.sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
               {
@@ -342,12 +347,13 @@
                       stateVersion = "23.11";
                     };
                   };
-                  sharedModules = [
-                    inputs.impermanence.homeManagerModules.impermanence
-                    inputs.nix-flatpak.homeManagerModules.nix-flatpak
-                    inputs.nix-index-database.hmModules.nix-index
-                    inputs.nur.modules.homeManager.default
-                    inputs.sops-nix.homeManagerModules.sops
+                  sharedModules = with inputs; [
+                    impermanence.homeManagerModules.impermanence
+                    nix-flatpak.homeManagerModules.nix-flatpak
+                    nix-index-database.hmModules.nix-index
+                    nur.modules.homeManager.default
+                    quadlet-nix.homeManagerModules.quadlet
+                    sops-nix.homeManagerModules.sops
                   ];
                 };
               }
@@ -376,6 +382,7 @@
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nixos-hardware.nixosModules.raspberry-pi-4
               inputs.nur.modules.nixos.default
+              inputs.quadlet-nix.nixosModules.quadlet
               inputs.sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
               {
@@ -399,6 +406,7 @@
                     nur.modules.homeManager.default
                     nvf.homeManagerModules.default
                     plasma-manager.homeManagerModules.plasma-manager
+                    quadlet-nix.homeManagerModules.quadlet
                     sops-nix.homeManagerModules.sops
                   ];
                 };

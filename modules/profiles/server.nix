@@ -31,6 +31,11 @@ in
     pipewire.enable = lib.mkForce false;
     tailscale.enable = lib.mkForce false;
 
+    users.users.${username} = {
+      autoSubUidGidRange = true;
+      linger = true;
+    };
+
     home-manager.users.${username} = { };
   };
 }
