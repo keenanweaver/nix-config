@@ -17,6 +17,9 @@ in
     home-manager.users.${username} =
       { pkgs, ... }:
       {
+        home.sessionVariables = {
+          EDITOR = lib.mkForce "nvim";
+        };
         programs.nvf = {
           enable = true;
           enableManpages = true;
