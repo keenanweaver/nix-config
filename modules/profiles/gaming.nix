@@ -11,6 +11,7 @@ let
   p = with pkgs; {
     games = [
       ## Doom
+      acc
       cherry-doom
       chocolate-doom
       crispy-doom
