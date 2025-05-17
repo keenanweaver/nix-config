@@ -4,7 +4,6 @@
   fetchFromGitHub,
   cmake,
   installShellFiles,
-  unstableGitUpdater,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -14,7 +13,7 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "N64Recomp";
     repo = "N64Recomp";
-    rev = "989a86b36912403cd323de884bf834f2605ea770";
+    tag = "mod-tool-release";
     hash = "sha256-DlzqixK8qnKrwN5zAqaae2MoXLqIIIzIkReVSk2dDFg=";
     fetchSubmodules = true;
   };
@@ -29,13 +28,11 @@ stdenv.mkDerivation (finalAttrs: {
   installPhase = ''
     runHook preInstall
 
-    installBin {N64Recomp,RSPRecomp}
+    installBin {N64Recomp,RSPRecomp,RecompModTool}
     install -Dm644 -t $out/share/licenses/n64recomp ../LICENSE
 
     runHook postInstall
   '';
-
-  passthru.updateScript = unstableGitUpdater { };
 
   meta = {
     description = "Tool to statically recompile N64 games into native executables";
