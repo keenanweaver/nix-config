@@ -23,7 +23,7 @@ let
       # odamex
       prboom-plus
       rbdoom-3-bfg
-      # slade
+      sladeUnstable
       woof-doom
       zandronum
       ## Fallout
