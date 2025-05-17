@@ -58,9 +58,10 @@
                         - IBM*/*
                         - Microsoft - Xbox*/*
                         - Mobile*/*
+                        - Nintendo - **Encrypted**
+                        - Nintendo - Nintendo GameCube*/*
                         - Nintendo - Misc*/*
-                        - Nintendo - New*/*
-                        - Nintendo - Nintendo 3DS*/*
+                        - Nintendo - **3DS**
                         - Nintendo - SDKs*/*
                         - Nintendo - Wallpapers*/*
                         - Nintendo - Wii*/*
