@@ -4,7 +4,7 @@
     ./apps
 
     # System
-    ./components
+    ./core
     ./desktop-environments
 
     # Profiles

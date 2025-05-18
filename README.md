@@ -12,7 +12,7 @@ This setup utilizes the following:
 
 If you fork this and try to use it without modifying anything, you will have a bad time. Here is a list of things you _probably_ want to change if you go this route:
 * Username in [flake.nix](flake.nix)
-* initialHashedPassword and authorizedKeys in [modules/components/users/default.nix](modules/components/users/default.nix)
+* initialHashedPassword and authorizedKeys in [modules/core/users/default.nix](modules/core/users/default.nix)
 * All secrets in [secrets](/secrets/secrets.yaml) (see [sops-nix](https://github.com/Mic92/sops-nix) for instructions)
 * My specific stuff in all the modules. Have fun!
 
