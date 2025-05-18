@@ -119,8 +119,14 @@
                           - IBM**
                           - Microsoft**
                           - Nintendo**
+                          - Palm*/*
                           - Photo CD*/*
-                          - Sony**
+                          - Pocket PC*/*
+                          - Sega - Saturn/*{Europe,France,Germany,Italy,Korea,Spain,Beta,Demo,Proto}*
+                          - Sony - PlayStation/*{Australia,Europe,France,Germany,Italy,Korea,Spain,Sweden,Beta,Demo,Proto}*
+                          - Sony - PlayStation 2/*{Australia,Europe,France,Germany,Italy,Korea,Spain,Sweden,Beta,Demo,Proto}*
+                          - Sony - PlayStation 3*/*
+                          - Sony - PlayStation Portable*/*
                           - Video CD*/*
                         '';
                       };
