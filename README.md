@@ -1,6 +1,6 @@
 # Keenan's Nix config
 
-![image](https://github.com/user-attachments/assets/c45ed9f3-f6ff-46bc-a7bb-feb0efba416d)
+![Screenshot_20250519_100830](https://github.com/user-attachments/assets/37c62f35-fe9a-4fbb-ba36-2b269e9c93b1)
 
 This setup utilizes the following:
 * BTRFS with tmpfs root and impermanence, encrypted by LUKS
