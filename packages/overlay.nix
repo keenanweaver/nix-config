@@ -4,7 +4,6 @@
   doom64ex-plus = prev.callPackage ./doom64ex-plus { };
   faugus-launcher = prev.callPackage ./faugus-launcher { };
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder { };
-  gpu-screen-recorder-gtk = prev.callPackage ./gpu-screen-recorder/gtk { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui { };
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif { };
   inter = prev.callPackage ./inter { };
