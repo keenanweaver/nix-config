@@ -42,7 +42,6 @@
     nvf.url = "github:notashelf/nvf";
     quadlet-nix = {
       url = "github:SEIAROTg/quadlet-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
