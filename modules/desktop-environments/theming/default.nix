@@ -340,7 +340,7 @@ in
               enable = true;
               text = ''
                 [Common]
-                OutlineCloseButton=false
+                OutlineCloseButton=true
                 ShadowSize=ShadowMedium
 
                 [Style]
@@ -348,11 +348,17 @@ in
                 MenuBarOpacity=70
                 MenuItemDrawStrongFocus=false
                 MenuOpacity=70
+                TabBarAltStyle=true
+                TabDrawHighlight=true
+                TabUseHighlightColor=true
                 ToolBarOpacity=70
+                TransparentDolphinView=false
+                UnifiedTabBarKonsole=true
                 renderThinSeperatorBetweenTheScrollBar=true
-                [Windeco]
 
-                DrawBackgroundGradient=false
+                [Windeco]
+                DrawBackgroundGradient=true
+                TitleAlignment=AlignCenter
               '';
               target = "${config.xdg.configHome}/darklyrc";
             };
