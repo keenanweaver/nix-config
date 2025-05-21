@@ -21,7 +21,7 @@
 
 python3Packages.buildPythonApplication rec {
   pname = "faugus-launcher";
-  version = "1.5.1";
+  version = "1.5.4";
 
   pyproject = false;
 
@@ -29,7 +29,7 @@ python3Packages.buildPythonApplication rec {
     owner = "Faugus";
     repo = "faugus-launcher";
     tag = version;
-    hash = "sha256-gCU45Dw9v0RTejQCEHoaC9Vuu1lEU+Wjf+CrWDRvZ6U=";
+    hash = "sha256-0lGoaKzM6LzRViZBhDuv59L1pYelyUXU/xauojzezyk=";
   };
 
   nativeBuildInputs = [
@@ -89,7 +89,6 @@ python3Packages.buildPythonApplication rec {
       --replace-fail '/usr/bin/umu-run' "${lib.getExe' umu-launcher "umu-run"}" \
       --replace-fail '/usr/bin/mangohud' "${lib.getExe' mangohud "mangohud"}" \
       --replace-fail '/usr/bin/gamemoderun' "${lib.getExe' gamemode "gamemoderun"}" \
-      --replace-fail 'shutil.copy(' 'shutil.copyfile(' \
       --replace-fail 'Exec={faugus_run}' 'Exec=faugus-run'
 
     substituteInPlace faugus-run.py \
