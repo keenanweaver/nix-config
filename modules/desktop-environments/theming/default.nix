@@ -200,104 +200,7 @@ in
             };
             catppuccin-konsole-transparent = {
               enable = true;
-              text = ''
-                [Background]
-                Color=30,30,46
-
-                [BackgroundFaint]
-                Color=30,30,46
-
-                [BackgroundIntense]
-                Color=30,30,46
-
-                [Color0]
-                Color=108,112,134
-
-                [Color0Faint]
-                Color=108,112,134
-
-                [Color0Intense]
-                Color=108,112,134
-
-                [Color1]
-                Color=243,139,168
-
-                [Color1Faint]
-                Color=243,139,168
-
-                [Color1Intense]
-                Color=243,139,168
-
-                [Color2]
-                Color=166,227,161
-
-                [Color2Faint]
-                Color=166,227,161
-
-                [Color2Intense]
-                Color=166,227,161
-
-                [Color3]
-                Color=249,226,175
-
-                [Color3Faint]
-                Color=249,226,175
-
-                [Color3Intense]
-                Color=249,226,175
-
-                [Color4]
-                Color=137,180,250
-
-                [Color4Faint]
-                Color=137,180,250
-
-                [Color4Intense]
-                Color=137,180,250
-
-                [Color5]
-                Color=203,166,247
-
-                [Color5Faint]
-                Color=203,166,247
-
-                [Color5Intense]
-                Color=203,166,247
-
-                [Color6]
-                Color=137,220,235
-
-                [Color6Faint]
-                Color=137,220,235
-
-                [Color6Intense]
-                Color=137,220,235
-
-                [Color7]
-                Color=205,214,244
-
-                [Color7Faint]
-                Color=205,214,244
-
-                [Color7Intense]
-                Color=205,214,244
-
-                [Foreground]
-                Color=205,214,244
-
-                [ForegroundFaint]
-                Color=205,214,244
-
-                [ForegroundIntense]
-                Color=205,214,244
-
-                [General]
-                Blur=false
-                ColorRandomization=false
-                Description=Catppuccin Mocha (transparent)
-                Opacity=0.7
-                Wallpaper=
-              '';
+              text = builtins.readFile ./catppuccin-mocha-transparent.colorscheme;
               target = "${config.xdg.dataHome}/konsole/catppuccin-${flavor-lower}-transparent.colorscheme";
             };
             catppuccin-krita = {
@@ -338,28 +241,7 @@ in
             };
             darkly-config = {
               enable = true;
-              text = ''
-                [Common]
-                OutlineCloseButton=true
-                ShadowSize=ShadowMedium
-
-                [Style]
-                DolphinSidebarOpacity=70
-                MenuBarOpacity=70
-                MenuItemDrawStrongFocus=false
-                MenuOpacity=70
-                TabBarAltStyle=true
-                TabDrawHighlight=true
-                TabUseHighlightColor=true
-                ToolBarOpacity=70
-                TransparentDolphinView=false
-                UnifiedTabBarKonsole=true
-                renderThinSeperatorBetweenTheScrollBar=true
-
-                [Windeco]
-                DrawBackgroundGradient=true
-                TitleAlignment=AlignCenter
-              '';
+              text = builtins.readFile ./darklyrc;
               target = "${config.xdg.configHome}/darklyrc";
             };
             # Flatpak theming issue workarounds
@@ -390,62 +272,7 @@ in
             };
             klassy-config = {
               enable = false;
-              text = ''
-                [ButtonBehaviour]
-                ShowCloseOutlineOnHoverActive=false
-                ShowCloseOutlineOnHoverInactive=false
-                ShowCloseOutlineOnPressActive=false
-                ShowCloseOutlineOnPressInactive=false
-                ShowOutlineOnHoverActive=false
-                ShowOutlineOnHoverInactive=false
-                ShowOutlineOnPressActive=false
-                ShowOutlineOnPressInactive=false
-
-                [ButtonColors]
-                ButtonBackgroundColorsActive=TitleBarTextNegativeClose
-                ButtonBackgroundColorsInactive=TitleBarTextNegativeClose
-                ButtonBackgroundOpacityActive=10
-                ButtonBackgroundOpacityInactive=10
-                ButtonOverrideColorsActiveClose={"BackgroundHover":["NegativeFullySaturated"],"BackgroundPress":["NegativeSaturated",80]}
-                ButtonOverrideColorsInactiveClose={"BackgroundHover":["NegativeFullySaturated"],"BackgroundPress":["NegativeSaturated",80]}
-                OnPoorIconContrastActive=Nothing
-                OnPoorIconContrastInactive=Nothing
-
-                [ButtonSizing]
-                ButtonCornerRadius=Custom
-                ButtonCustomCornerRadius=0
-                FullHeightButtonSpacingLeft=0
-                FullHeightButtonSpacingRight=0
-                FullHeightButtonWidthMarginRight=14
-                IntegratedRoundedRectangleBottomPadding=0.5
-
-                [ShadowStyle]
-                ShadowSize=ShadowSmall
-
-                [TitleBarOpacity]
-                ActiveTitleBarOpacity=75
-
-                [TitleBarSpacing]
-                LockTitleBarLeftRightMargins=false
-                PercentMaximizedTopBottomMargins=50
-                TitleAlignment=AlignLeft
-                TitleBarBottomMargin=2.25
-                TitleBarLeftMargin=2
-                TitleBarTopMargin=2.25
-
-                [Windeco]
-                BoldButtonIcons=BoldIconsFine
-                ButtonIconStyle=StyleSystemIconTheme
-                ButtonShape=ShapeFullHeightRectangle
-                ColorizeThinWindowOutlineWithButton=false
-                IconSize=IconMedium
-                WindowCornerRadius=8
-
-                [WindowOutlineStyle]
-                LockThinWindowOutlineStyleActiveInactive=true
-                ThinWindowOutlineStyleActive=WindowOutlineContrast
-                ThinWindowOutlineStyleInactive=WindowOutlineContrast
-              '';
+              text = builtins.readFile ./klassyrc;
               target = "${config.xdg.configHome}/klassy/klassyrc";
             };
             powershell-profile = {
