@@ -1,5 +1,6 @@
 {
   lib,
+  inputs,
   config,
   username,
   ...
@@ -17,6 +18,7 @@ in
       {
         programs.helix = {
           enable = true;
+          package = inputs.chaotic.packages.${pkgs.system}.helix_git;
           extraPackages = with pkgs; [
             bash-language-server
             biome

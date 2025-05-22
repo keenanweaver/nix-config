@@ -152,7 +152,7 @@ let
       rpcs3
       ryubing
       scummvm
-      shadps4
+      inputs.chaotic.packages.${pkgs.system}.shadps4_git
       supermodel
       #nur.repos.novel2430.vita3k
       xemu
