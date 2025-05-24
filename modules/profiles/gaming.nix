@@ -401,8 +401,20 @@ in
           (writeTextFile {
             name = "70-gamesir.rules";
             text = ''
-              # GameSir Cyclone 2 Wireless Controller
-              SUBSYSTEM=="usb", ATTR{idProduct}=="0575", ATTR{idVendor}=="3537", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
+              # GameSir Cyclone 2 Wireless Controller; USB
+              # Nintendo Switch
+              SUBSYSTEM=="usb", ATTR{idProduct}=="2009", ATTR{idVendor}=="057e", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
+              # D-input/Sony
+              SUBSYSTEM=="usb", ATTR{idProduct}=="09cc", ATTR{idVendor}=="054c", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
+              # X-input/XBOX
+              SUBSYSTEM=="usb", ATTR{idProduct}=="1053", ATTR{idVendor}=="3537", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
+
+              # GameSir Cyclone 2 Wireless Controller; 2.4GHz
+              # X-input/XBOX
+              SUBSYSTEM=="usb", ATTR{idProduct}=="100b", ATTR{idVendor}=="3537", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
+
+              # GameSir Cyclone 2 Wireless Controller; Bluetooth
+              SUBSYSTEM=="input", ATTR{idProduct}=="8100", ATTR{idVendor}=="054c", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
             '';
             destination = "/etc/udev/rules.d/70-gamesir.rules";
           })
