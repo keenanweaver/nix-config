@@ -37,9 +37,9 @@ in
         extraEnv = {
           MANGOHUD = 1;
           OBS_VKCAPTURE = 1;
-          PULSE_SINK = "Game";
           PROTON_ENABLE_WAYLAND = 1;
           PROTON_ENABLE_HDR = 1;
+          PULSE_SINK = "Game";
         };
         # https://github.com/NixOS/nixpkgs/issues/279893#issuecomment-2425213386
         extraProfile = ''

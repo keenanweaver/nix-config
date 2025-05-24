@@ -206,9 +206,6 @@ in
               };
               minimap.codewindow.enable = true;
               notes = {
-                neorg = {
-                  enable = true;
-                };
                 todo-comments = {
                   enable = true;
                 };

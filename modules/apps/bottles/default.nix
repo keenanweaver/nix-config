@@ -66,7 +66,11 @@ in
             target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-custom";
           };
         };
-        home.packages = lib.mkIf cfg.enableNative [ pkgs.bottles ];
+        home.packages = lib.mkIf cfg.enableNative [
+          (pkgs.bottles.override {
+            removeWarningPopup = true;
+          })
+        ];
         services.flatpak = lib.mkIf cfg.enableFlatpak {
           overrides = {
             "com.usebottles.bottles" = {
@@ -94,6 +98,23 @@ in
           packages = [
             "com.usebottles.bottles"
           ];
+        };
+        xdg = {
+          desktopEntries = {
+            "bottles" = lib.mkIf cfg.enableNative {
+              name = "Bottles";
+              comment = "Run Windows software";
+              exec = "PROTON_ENABLE_WAYLAND=1 PROTON_ENABLE_HDR=1 PULSE_SINK=Game bottles %u";
+              terminal = false;
+              icon = "com.usebottles.bottles";
+              type = "Application";
+              startupNotify = true;
+              categories = [
+                "Utility"
+                "Game"
+              ];
+            };
+          };
         };
       };
   };

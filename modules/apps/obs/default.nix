@@ -47,7 +47,6 @@ in
         ];
       };
       services.flatpak = {
-        # Somehow makes frametimes worse in games when set to non-Wayland
         overrides = lib.mkIf cfg.enableFlatpak {
           "com.obsproject.Studio" = {
             Context = {
