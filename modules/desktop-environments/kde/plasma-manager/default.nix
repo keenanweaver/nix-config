@@ -398,6 +398,19 @@
               };
             }
             {
+              description = "icon: libreoffice";
+              match = {
+                window-class = {
+                  value = "libreoffice";
+                  type = "regex";
+                };
+              };
+              apply = {
+                desktopfile = "startcenter";
+                apply = "force";
+              };
+            }
+            {
               description = "icon: signal";
               match = {
                 window-class = {

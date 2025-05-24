@@ -60,7 +60,7 @@ in
     ];
     home-manager.users.${username} = {
       home.packages = with pkgs; [
-        onlyoffice-desktopeditors
+        libreoffice-qt
         kdePackages.skanlite
       ];
     };
