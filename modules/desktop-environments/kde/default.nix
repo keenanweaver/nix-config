@@ -55,6 +55,7 @@ in
           krfb
           krita
           ksystemlog
+          kzones
           markdownpart
           neochat
           okteta

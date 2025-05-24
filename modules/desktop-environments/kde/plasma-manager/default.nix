@@ -200,6 +200,7 @@
               "Plugins"."kwin4_effect_open_close_kineticEnabled" = true;
               "Plugins"."kwin4_effect_shapecornersEnabled" = false;
               "Plugins"."kwin4_effect_squashEnabled" = false;
+              "Plugins"."kzonesEnabled" = true;
               "Plugins"."restoreToScreenEnabled" = true;
               "Round-Corners"."ActiveOutlinePalette" = 4;
               "Round-Corners"."ActiveOutlineUseCustom" = false;
