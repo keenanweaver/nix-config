@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  vars,
   ...
 }:
 let
@@ -14,18 +15,26 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    home-manager.users.${username} = {
-      programs.rclone = {
-        enable = true;
-        remotes = {
-          myrient = {
-            config = {
-              type = "http";
-              url = "https://myrient.erista.me";
+    home-manager.users.${username} =
+      { config, ... }:
+      {
+        programs.rclone = {
+          enable = true;
+          remotes = {
+            myrient = {
+              config = {
+                type = "http";
+                url = "https://myrient.erista.me";
+              };
+              mounts = lib.mkIf vars.gaming {
+                "files" = {
+                  enable = true;
+                  mountPoint = "${config.home.homeDirectory}/Games/myrient";
+                };
+              };
             };
           };
         };
       };
-    };
   };
 }
