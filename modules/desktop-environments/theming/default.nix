@@ -127,7 +127,7 @@ in
             package = sans-font-pkg;
           };
           gtk2 = {
-            configLocation = "${config.xdg.configHome}/.gtkrc-2.0"; # https://github.com/nix-community/plasma-manager/issues/472#issuecomment-2709114898
+            force = true;
           };
           gtk3 = {
             extraConfig = {

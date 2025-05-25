@@ -43,7 +43,7 @@ in
               ];
             };
             pre_commands = {
-              "Delete conflicting HM files" = "${pkgs.coreutils}/bin/rm --force ${config.xdg.configHome}/gtk-2.0/gtkrc ${config.xdg.configHome}/.gtkrc-2.0.hmbak ${config.xdg.configHome}/mimeapps.list";
+              "Delete conflicting HM files" = "${config.xdg.configHome}/mimeapps.list";
               "NixOS Rebuild" = "${pkgs.nh}/bin/nh os switch --update";
             };
             commands = { };
