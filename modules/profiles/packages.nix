@@ -37,9 +37,14 @@ in
         in
         formatted;
     };
-    programs.appimage = {
-      enable = true;
-      binfmt = true;
+    programs = {
+      appimage = {
+        enable = true;
+        binfmt = true;
+      };
+      iotop = {
+        enable = true;
+      };
     };
     home-manager.users.${username} =
       {
@@ -109,6 +114,7 @@ in
             binsider
             csvlens
             flawz
+            glances
             glow
             gping
             hexyl
@@ -118,6 +124,7 @@ in
             jiq
             jq
             lazydocker
+            magic-wormhole-rs
             mkvtoolnix-cli
             play
             podman-tui

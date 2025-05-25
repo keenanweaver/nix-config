@@ -24,6 +24,8 @@ in
 
     users.users.${username}.extraGroups = [ "wireshark" ];
 
-    home-manager.users.${username} = { };
+    home-manager.users.${username} = {
+      home.packages = with pkgs; [ termshark ];
+    };
   };
 }
