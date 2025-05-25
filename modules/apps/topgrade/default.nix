@@ -16,11 +16,7 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} =
-      {
-        config,
-        pkgs,
-        ...
-      }:
+      { pkgs, ... }:
       {
         programs.topgrade = {
           enable = true;
@@ -43,7 +39,6 @@ in
               ];
             };
             pre_commands = {
-              "Delete conflicting HM files" = "${config.xdg.configHome}/mimeapps.list";
               "NixOS Rebuild" = "${pkgs.nh}/bin/nh os switch --update";
             };
             commands = { };
