@@ -50,8 +50,8 @@ let
     src = fetchFromGitHub {
       owner = "ocornut";
       repo = "imgui";
-      tag = "v1.91.6-docking";
-      hash = "sha256-28wyzzwXE02W5vbEdRCw2iOF8ONkb3M3Al8XlYBvz1A=";
+      tag = "v1.91.9b-docking";
+      hash = "sha256-mQOJ6jCN+7VopgZ61yzaCnt4R1QLrW7+47xxMhFRHLQ=";
     };
     patches = [
       "${starship-sf64.src}/libultraship/cmake/dependencies/patches/imgui-fixes-and-config.patch"
@@ -68,8 +68,8 @@ let
   prism = fetchFromGitHub {
     owner = "KiritoDv";
     repo = "prism-processor";
-    rev = "fb3f8b4a2d14dfcbae654d0f0e59a73b6f6ca850";
-    hash = "sha256-gGdQSpX/TgCNZ0uyIDdnazgVHpAQhl30e+V0aVvTFMM=";
+    rev = "7ae724a6fb7df8cbf547445214a1a848aefef747";
+    hash = "sha256-G7koDUxD6PgZWmoJtKTNubDHg6Eoq8I+AxIJR0h3i+A=";
   };
 
   stb_impl = writeTextFile {
@@ -108,13 +108,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "starship-sf64";
-  version = "1.0.0-unstable-2025-04-23";
+  version = "2.0.0";
 
   src = fetchFromGitHub {
     owner = "HarbourMasters";
     repo = "Starship";
-    rev = "4311aeda88f5aa79c47fcaf3a707723985e90675";
-    hash = "sha256-hzFAkoYtT7a1VgT4u6wrm7F4maqVa+2YapZ6nI9nqCk=";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-pjftFMUE3UQuFe6WJI+n9GllV9uT2bvhHaUICaPHz+Q=";
     fetchSubmodules = true;
   };
 
@@ -136,9 +136,17 @@ stdenv.mkDerivation (finalAttrs: {
         rev = "7e635fca68d014934b4af8a1cf874f63989352b7";
         hash = "sha256-cxTaOuLXHRU8xMz9gluYz0a93O0ez2xOxbloyc1m1ns=";
       };
-      yaml-cpp_src = srcOnly yaml-cpp;
+      yaml-cpp_src = fetchFromGitHub {
+        owner = "jbeder";
+        repo = "yaml-cpp";
+        rev = "28f93bdec6387d42332220afa9558060c8016795";
+        hash = "sha256-59/s4Rqiiw7LKQw0UwH3vOaT/YsNVcoq3vblK0FiO5c=";
+      };
       tinyxml2_src = srcOnly tinyxml-2;
     })
+
+    # Revert upstream appimage fixes as this breaks loading at least on nixpkgs
+    ./revert-appimage-fixes.patch
   ];
 
   nativeBuildInputs = [
@@ -225,7 +233,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   desktopItems = [
     (makeDesktopItem {
-      name = "starship-sf64";
+      name = "Starship";
       icon = "starship-sf64";
       exec = "starship-sf64";
       comment = finalAttrs.meta.description;
