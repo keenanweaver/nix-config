@@ -30,6 +30,14 @@ in
                 "files" = {
                   enable = true;
                   mountPoint = "${config.home.homeDirectory}/Games/myrient";
+                  options = {
+                    buffer-size = "64M";
+                    transfers = 16;
+                    no-modtime = true;
+                    no-checksum = true;
+                    vfs-read-ahead = "16M";
+                    vfs-fast-fingerprint = true;
+                  };
                 };
               };
             };
