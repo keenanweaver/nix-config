@@ -191,11 +191,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1748272670,
-        "narHash": "sha256-KvsGAUPS5g5rc4w1HD6ZmqjvY70izs175V232oTZyrU=",
+        "lastModified": 1748287245,
+        "narHash": "sha256-LnNiRRmWmuRmn8hOgS205Gn39d0ZAoNbtq5TIEW4wAQ=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "b5df860c52fb722f7bdb5a5038f270cad048a1c1",
+        "rev": "21060b27db09e7c72d974a1279219307104f3d81",
         "type": "github"
       },
       "original": {
@@ -1179,11 +1179,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1748026106,
-        "narHash": "sha256-6m1Y3/4pVw1RWTsrkAK2VMYSzG4MMIj7sqUy7o8th1o=",
+        "lastModified": 1748190013,
+        "narHash": "sha256-R5HJFflOfsP5FBtk+zE8FpL8uqE7n62jqOsADvVshhE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "063f43f2dbdef86376cc29ad646c45c46e93234c",
+        "rev": "62b852f6c6742134ade1abdd2a21685fd617a291",
         "type": "github"
       },
       "original": {
@@ -1352,11 +1352,11 @@
         "treefmt-nix": "treefmt-nix_2"
       },
       "locked": {
-        "lastModified": 1748285468,
-        "narHash": "sha256-uS80HOLz9f7FKiDmGU7587h4LJeYhFK8QpImf+YbdsA=",
+        "lastModified": 1748299745,
+        "narHash": "sha256-GjtGjpBvNWk5Bs+DIEdcTmyHaqgIlIikDNJhUuWUfDk=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "1a0e6f1d6a0e91203667508d977dded6a7efe56d",
+        "rev": "7f5c977433311ac81d8d7d54a32415dd5fa5f895",
         "type": "github"
       },
       "original": {
@@ -1375,11 +1375,11 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1747525582,
-        "narHash": "sha256-oEZ6DV4bPcNZIuwW5Kcd+/zT3PMkXse2kX/3jHoomGk=",
+        "lastModified": 1748298067,
+        "narHash": "sha256-vBwOZ4wwy30Qbik6dPP4m/k+g3z6R2eL26vhPi4tKzA=",
         "owner": "notashelf",
         "repo": "nvf",
-        "rev": "d3a0e7029ac57eef1120225973247851c5b967b5",
+        "rev": "b45f0516a12202c602e080debef926be8a0ebab6",
         "type": "github"
       },
       "original": {
@@ -1436,11 +1436,11 @@
     },
     "quadlet-nix": {
       "locked": {
-        "lastModified": 1748277006,
-        "narHash": "sha256-+garnoy9Oco2wPD+llHcu3FicP/q3/7k623qDc6Zl2g=",
+        "lastModified": 1748295604,
+        "narHash": "sha256-GDqEYNafnb4kpz3OUhfrpS7ys5r8QR/t1t7fPA6XLRQ=",
         "owner": "SEIAROTg",
         "repo": "quadlet-nix",
-        "rev": "8e969461f4cc56f4ee69e87591c0a020440193cb",
+        "rev": "5f4bc5934584eb2b6f0b8e3e13041fe76f2947b6",
         "type": "github"
       },
       "original": {
