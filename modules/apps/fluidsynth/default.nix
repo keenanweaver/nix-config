@@ -52,27 +52,11 @@ in
           SDL_SOUNDFONTS = "${cfg.soundFont}";
         };
         services.fluidsynth = {
-          enable = false;
+          enable = true;
           extraOptions = cfg.extraOptions;
           soundFont = cfg.soundFont;
           soundService = cfg.soundService;
         };
-        xdg.autostart.entries =
-          let
-            desktopEntry = (
-              pkgs.makeDesktopItem {
-                name = "fluidsynth";
-                desktopName = "fluidsynth";
-                exec = "${pkgs.fluidsynth}/bin/fluidsynth -a pulseaudio -siq -g 1.0 ${cfg.soundFont}";
-                comment = "Run fluidsynth with my options";
-                terminal = false;
-                startupNotify = false;
-              }
-            );
-          in
-          lib.mkIf cfg.autostart [
-            "${desktopEntry}/share/applications/${desktopEntry.name}"
-          ];
       };
   };
 }
