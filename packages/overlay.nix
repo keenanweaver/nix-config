@@ -1,6 +1,5 @@
 (final: prev: {
   _2ship2harkinian = prev.callPackage ./2ship2harkinian { };
-  cherry-doom = prev.callPackage ./cherry-doom { };
   doom64ex-plus = prev.callPackage ./doom64ex-plus { };
   faugus-launcher = prev.callPackage ./faugus-launcher { };
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder { };
@@ -10,7 +9,6 @@
   inter = prev.callPackage ./inter { };
   klassy = prev.callPackage ./klassy { };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
-  nugget-doom = prev.callPackage ./nugget-doom { };
   n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
   perfect_dark = prev.callPackage ./perfect_dark { };

@@ -12,7 +12,6 @@ let
     games = [
       ## Doom
       acc
-      cherry-doom
       chocolate-doom
       crispy-doom
       darkradiant
@@ -22,12 +21,31 @@ let
       doomseeker
       dsda-doom
       gzdoom
-      nugget-doom
       # odamex
       prboom-plus
       rbdoom-3-bfg
       sladeUnstable
       woof-doom
+      (woof-doom.overrideAttrs {
+        pname = "cherry-doom";
+        version = "2.0.0";
+        src = fetchFromGitHub {
+          owner = "xemonix0";
+          repo = "Cherry-Doom";
+          tag = "cherry-doom-2.0.0";
+          hash = "sha256-f/5b4i5omCp34upJ2/VF7VuvwU9YliXcWnyR4jl9gKA=";
+        };
+      })
+      (woof-doom.overrideAttrs {
+        pname = "nugget-doom";
+        version = "4.3.0";
+        src = fetchFromGitHub {
+          owner = "MrAlaux";
+          repo = "Nugget-Doom";
+          tag = "nugget-doom-4.3.0";
+          hash = "sha256-T85UwCl75/RPOscfcRVlF3HhjlDVM2+W1L002UGNLZU=";
+        };
+      })
       zandronum
       ## Fallout
       fallout-ce
