@@ -190,8 +190,8 @@ in
             };
             catppuccin-heroic = {
               enable = vars.gaming;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-heroic}/themes/catppuccin-${flavor-lower}.css";
-              target = "Games/Heroic/catppuccin-${flavor-lower}.css";
+              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-heroic}/themes/catppuccin-${flavor-lower}-${accent-lower}.css";
+              target = "Games/Heroic/catppuccin-${flavor-lower}-${accent-lower}.css";
             };
             catppuccin-konsole = {
               enable = true;
