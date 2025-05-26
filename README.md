@@ -231,12 +231,6 @@ Run the commands:
     # https://modding-openmw.com/guides/auto/i-heart-vanilla-directors-cut/linux#selected-mod-list
     wget -P "$GAMESDIR"/openmw https://gitlab.com/api/v4/projects/modding-openmw%2Fmomw-tools-pack/jobs/artifacts/master/raw/momw-tools-pack-linux.tar.gz?job=make
     fd "momw-tools-pack-linux" -t file "$GAMESDIR"/openmw -x ouch d --yes {} -d "$GAMESDIR"/openmw && fd "momw-tools-pack-linux" -t file "$GAMESDIR"/openmw -x rm {}
-    pushd "$GAMESDIR"/openmw/momw-tools-pack-linux
-    steam-run ./umo setup
-    steam-run ./umo cache sync i-heart-vanilla-directors-cut
-    steam-run ./umo install i-heart-vanilla-directors-cut
-    distrobox-enter bazzite-arch-gaming -- ./momw-configurator-linux-amd64 config i-heart-vanilla-directors-cut --run-navmeshtool --run-validator --verbose
-    popd
     ## Nox
     mkdir -p "$GAMESDIR"/nox
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/nox" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/nox

@@ -678,6 +678,24 @@ in
                   chmod +x "$LOCAL_BIN"/conty_lite.sh
                 '';
               })
+              (writeShellApplication {
+                name = "script-momw-update";
+                runtimeEnv = {
+                  MODLIST = "i-heart-vanilla-directors-cut";
+                  MOMW_DIR = "${config.home.homeDirectory}/Games/openmw/momw-tools-pack-linux";
+                };
+                runtimeInputs = [
+                  steam-run
+                ];
+                text = ''
+                  pushd "$MOMW_DIR"
+                  steam-run ./umo sync "$MODLIST"
+                  steam-run ./umo install "$MODLIST"
+                  steam-run ./momw-configurator-linux-amd64 config "$MODLIST" --run-navmeshtool --run-validator
+                  steam-run ./umo vacuum
+                  popd
+                '';
+              })
             ]
             ++ lib.flatten (lib.attrValues p);
           sessionVariables = {
@@ -873,7 +891,7 @@ in
               idle_inhibitor = "d-bus";
               sink_whitelist = [
                 { name = "Browser"; }
-                # { name = "Game"; } # nuked-sc55 & fluidsynth will interfere with screensaver
+                { name = "Game"; } # nuked-sc55 & fluidsynth will interfere with screensaver
                 { name = "Music"; }
               ];
             };
