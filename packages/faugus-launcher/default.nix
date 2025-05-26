@@ -2,7 +2,6 @@
   bash,
   fetchFromGitHub,
   gamemode,
-  gamescope,
   gobject-introspection,
   gtk3,
   icoextract,
@@ -10,18 +9,15 @@
   lib,
   libayatana-appindicator,
   libcanberra-gtk3,
-  mangohud,
   nix-update-script,
   python3Packages,
-  sc-controller,
   umu-launcher,
   wrapGAppsHook3,
-  xdg-user-dirs,
 }:
 
 python3Packages.buildPythonApplication rec {
   pname = "faugus-launcher";
-  version = "1.5.4";
+  version = "1.5.6";
 
   pyproject = false;
 
@@ -29,7 +25,7 @@ python3Packages.buildPythonApplication rec {
     owner = "Faugus";
     repo = "faugus-launcher";
     tag = version;
-    hash = "sha256-0lGoaKzM6LzRViZBhDuv59L1pYelyUXU/xauojzezyk=";
+    hash = "sha256-qFU1HcXmeRo4fwuDaSoU4h0IAPg1FhxjD8Bqc43vhDs=";
   };
 
   nativeBuildInputs = [
@@ -42,23 +38,15 @@ python3Packages.buildPythonApplication rec {
     libayatana-appindicator
   ];
 
-  propagatedBuildInputs =
-    (with python3Packages; [
-      filelock
-      pillow
-      psutil
-      pygobject3
-      pynput
-      requests
-      vdf
-    ])
-    ++ [
-      icoextract
-      imagemagick
-      libcanberra-gtk3
-      sc-controller
-      xdg-user-dirs
-    ];
+  propagatedBuildInputs = with python3Packages; [
+    filelock
+    pillow
+    psutil
+    pygobject3
+    pynput
+    requests
+    vdf
+  ];
 
   installPhase = ''
     runHook preInstall
@@ -83,36 +71,33 @@ python3Packages.buildPythonApplication rec {
 
   postPatch = ''
     substituteInPlace faugus-launcher.py \
-      --replace-fail '/usr/share' "$out/share" \
-      --replace-fail '/usr/bin/faugus-run' "$out/bin/.faugus-run-wrapped" \
-      --replace-fail '/usr/bin/faugus-proton-manager' "$out/bin/.faugus-proton-manager-wrapped" \
-      --replace-fail '/usr/bin/umu-run' "${lib.getExe' umu-launcher "umu-run"}" \
-      --replace-fail '/usr/bin/mangohud' "${lib.getExe' mangohud "mangohud"}" \
-      --replace-fail '/usr/bin/gamemoderun' "${lib.getExe' gamemode "gamemoderun"}" \
+      --replace-fail "PathManager.find_binary('faugus-run')" "'$out/bin/.faugus-run-wrapped'" \
+      --replace-fail "PathManager.find_binary('faugus-proton-manager')" "'$out/bin/.faugus-proton-manager-wrapped'" \
       --replace-fail 'Exec={faugus_run}' 'Exec=faugus-run'
 
     substituteInPlace faugus-run.py \
-      --replace-fail '/usr/share' "$out/share" \
-      --replace-fail '/usr/bin/faugus-components' "$out/bin/.faugus-components-wrapped" \
-      --replace-fail '/usr/lib/libgamemode.so.0' "${lib.getLib gamemode}/lib/libgamemode.so.0" \
-      --replace-fail '/usr/lib32/libgamemode.so.0' "${lib.getLib gamemode}/lib/libgamemode.so.0" \
-      --replace-fail '/usr/lib/x86_64-linux-gnu/libgamemode.so.0' "${lib.getLib gamemode}/lib/libgamemode.so.0" \
-      --replace-fail '/usr/lib64/libgamemode.so.0' "${lib.getLib gamemode}/lib/libgamemode.so.0" \
-      --replace-fail '/bin/bash' "${lib.getExe' bash "bash"}"
-
-    substituteInPlace faugus-proton-manager.py \
-      --replace-fail '/usr/share' "$out/share"
+      --replace-fail "PathManager.find_binary('faugus-components')" "'$out/bin/.faugus-components-wrapped'" \
+      --replace-fail "PathManager.find_library('libgamemode.so.0')" "'${lib.getLib gamemode}/lib/libgamemode.so.0'" \
+      --replace-fail "PathManager.find_library('libgamemodeauto.so.0')" "'${lib.getLib gamemode}/lib/libgamemodeauto.so.0'"
 
     substituteInPlace faugus-session \
-      --replace-fail '/bin/bash' "${lib.getExe' bash "bash"}" \
-      --replace-fail 'gamescope' "${lib.getExe' gamescope "gamescope"}"
+      --replace-fail '/bin/bash' "${lib.getExe bash}"
   '';
-
   dontWrapGApps = true;
 
   # Arguments to be passed to `makeWrapper`, only used by buildPython*
   preFixup = ''
-    makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
+    makeWrapperArgs+=(
+      "''${gappsWrapperArgs[@]}"
+      --prefix PATH : "${
+        lib.makeBinPath [
+          icoextract
+          imagemagick
+          libcanberra-gtk3
+          umu-launcher
+        ]
+      }"
+    )
   '';
 
   passthru.updateScript = nix-update-script { };
