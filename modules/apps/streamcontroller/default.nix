@@ -21,12 +21,10 @@ in
     services.udev.packages = with pkgs; [
       (writeTextFile {
         name = "40-streamdeck.rules";
-        text = builtins.readFile (
-          pkgs.fetchurl {
-            url = "https://raw.githubusercontent.com/streamduck-org/elgato-streamdeck/main/40-streamdeck.rules";
-            hash = "sha256-hY0HHNQple+utWRfczQuvlcYWH0wt+zLk0h883lPpJY=";
-          }
-        );
+        text = builtins.readFile (fetchurl {
+          url = "https://raw.githubusercontent.com/streamduck-org/elgato-streamdeck/main/40-streamdeck.rules";
+          hash = "sha256-4IeS+nRnBwF53eYK7MpteNMkEStEBWkkNZ8cveyOKm8=";
+        });
         destination = "/etc/udev/rules.d/40-streamdeck.rules";
       })
     ];
