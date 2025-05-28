@@ -39,6 +39,8 @@
 * Advanced/PCI Configuration -> Resizable BAR: **Enabled**
 * Advanced/PCI Configuration -> SR-IOV Support: **Enabled**
 * Advanced/Onboard Device Configuration -> RGB LED: **Off**
+* Advanced/Onboard Device Configuration -> BT On/Off: **On**
 * Advanced/AMD CBS/NBIO Common Options/GFX Configuration -> DGPU Only Mode: **Enabled**
 * Advanced/AMD CBS/SMU Common Options -> CPPC Dynamic Preferred Cores: **Driver** ([AMD 3D VCache CCD cores](https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer))
 * Boot -> CSM: **Disabled**
+* Boot -> Fast Boot: **Disabled**
