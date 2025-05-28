@@ -3,7 +3,6 @@
   fetchFromGitHub,
   gamemode,
   gobject-introspection,
-  gtk3,
   icoextract,
   imagemagick,
   lib,
@@ -13,19 +12,19 @@
   python3Packages,
   umu-launcher,
   wrapGAppsHook3,
+  xdg-utils,
 }:
 
 python3Packages.buildPythonApplication rec {
   pname = "faugus-launcher";
-  version = "1.5.6";
-
-  pyproject = false;
+  version = "1.5.8";
+  pyproject = true;
 
   src = fetchFromGitHub {
     owner = "Faugus";
     repo = "faugus-launcher";
     tag = version;
-    hash = "sha256-qFU1HcXmeRo4fwuDaSoU4h0IAPg1FhxjD8Bqc43vhDs=";
+    hash = "sha256-NktdSkoS0ceHva/Q5VGzA1FFZN4KKitvV9IPVybBy44=";
   };
 
   nativeBuildInputs = [
@@ -34,11 +33,15 @@ python3Packages.buildPythonApplication rec {
   ];
 
   buildInputs = [
-    gtk3
     libayatana-appindicator
   ];
 
-  propagatedBuildInputs = with python3Packages; [
+  build-system = with python3Packages; [
+    meson-python
+  ];
+
+  dependencies = with python3Packages; [
+    evdev
     filelock
     pillow
     psutil
@@ -48,34 +51,13 @@ python3Packages.buildPythonApplication rec {
     vdf
   ];
 
-  installPhase = ''
-    runHook preInstall
-
-    install -Dm755 faugus-launcher.py "$out/bin/faugus-launcher"
-    install -Dm755 faugus-run.py "$out/bin/faugus-run"
-    install -Dm755 faugus-proton-manager.py "$out/bin/faugus-proton-manager"
-    install -Dm755 faugus-components.py "$out/bin/faugus-components"
-    install -Dm755 faugus-gamepad.py "$out/bin/faugus-gamepad"
-    install -Dm755 faugus-session "$out/bin/faugus-session"
-    install -Dm644 faugus-launcher.desktop "$out/share/applications/faugus-launcher.desktop"
-    install -Dm644 assets/faugus-launcher.png "$out/share/icons/hicolor/256x256/apps/faugus-launcher.png"
-    install -Dm644 assets/faugus-battlenet.png "$out/share/icons/hicolor/256x256/apps/faugus-battlenet.png"
-    install -Dm644 assets/faugus-ea.png "$out/share/icons/hicolor/256x256/apps/faugus-ea.png"
-    install -Dm644 assets/faugus-epic-games.png "$out/share/icons/hicolor/256x256/apps/faugus-epic-games.png"
-    install -Dm644 assets/faugus-ubisoft-connect.png "$out/share/icons/hicolor/256x256/apps/faugus-ubisoft-connect.png"
-    install -Dm644 assets/faugus-banner.png "$out/share/faugus-launcher/faugus-banner.png"
-    install -Dm644 assets/faugus-notification.ogg "$out/share/faugus-launcher/faugus-notification.ogg"
-
-    runHook postInstall
-  '';
-
   postPatch = ''
-    substituteInPlace faugus-launcher.py \
+    substituteInPlace faugus_launcher.py \
       --replace-fail "PathManager.find_binary('faugus-run')" "'$out/bin/.faugus-run-wrapped'" \
       --replace-fail "PathManager.find_binary('faugus-proton-manager')" "'$out/bin/.faugus-proton-manager-wrapped'" \
       --replace-fail 'Exec={faugus_run}' 'Exec=faugus-run'
 
-    substituteInPlace faugus-run.py \
+    substituteInPlace faugus_run.py \
       --replace-fail "PathManager.find_binary('faugus-components')" "'$out/bin/.faugus-components-wrapped'" \
       --replace-fail "PathManager.find_library('libgamemode.so.0')" "'${lib.getLib gamemode}/lib/libgamemode.so.0'" \
       --replace-fail "PathManager.find_library('libgamemodeauto.so.0')" "'${lib.getLib gamemode}/lib/libgamemodeauto.so.0'"
@@ -83,9 +65,9 @@ python3Packages.buildPythonApplication rec {
     substituteInPlace faugus-session \
       --replace-fail '/bin/bash' "${lib.getExe bash}"
   '';
+
   dontWrapGApps = true;
 
-  # Arguments to be passed to `makeWrapper`, only used by buildPython*
   preFixup = ''
     makeWrapperArgs+=(
       "''${gappsWrapperArgs[@]}"
@@ -95,6 +77,7 @@ python3Packages.buildPythonApplication rec {
           imagemagick
           libcanberra-gtk3
           umu-launcher
+          xdg-utils
         ]
       }"
     )
