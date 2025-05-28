@@ -106,29 +106,34 @@
                     let
                       rcloneOpts = {
                         command = "copy";
-                        source = "myrient:/files/Redump/";
-                        destination = "/mnt/crusader/Games/Backups/Myrient/Redump/";
+                        source = "myrient:/files/Redump";
+                        destination = "/mnt/crusader/Games/Backups/Myrient/Redump";
                         args = "-v --filter-from ${rcloneOpts.filter}";
                         filter = writeText "rclone-myrient-redump-filter" ''
-                          - Apple**
-                          - Arcade**
-                          - Audio CD*/*
-                          - BD-Video*/*
-                          - DVD-Video*/*
-                          - HD DVD-Video*/*
-                          - IBM**
-                          - Microsoft**
-                          - Nintendo**
-                          - Palm*/*
-                          - Photo CD*/*
-                          - Pocket PC*/*
-                          - Sega - Saturn/*{Europe,France,Germany,Italy,Korea,Spain,Beta,Demo,Proto}*
-                          - Sony - PlayStation/*{Australia,Europe,France,Germany,Italy,Korea,Spain,Sweden,Beta,Demo,Proto}*
-                          - Sony - PlayStation 2/*{Australia,Europe,France,Germany,Italy,Korea,Spain,Sweden,Beta,Demo,Proto}*
-                          - Sony - PlayStation 3*/*
-                          - Sony - PlayStation Portable*/*
-                          - Video CD*/*
+                          - /Sony - PlayStation/*{${rcloneOpts.regionFilter}}*
+                          + /Sony - PlayStation/*{Japan,USA}*
+                          - /Sony - PlayStation 2/*{${rcloneOpts.regionFilter}}*
+                          + /Sony - PlayStation 2/*{Japan,USA}*
+                          + /Sony - PlayStation 2 - BIOS Images/**
+                          + /Sony - PlayStation - BIOS Images/**
+                          - /SNK - Neo Geo CD/*{${rcloneOpts.regionFilter}}*
+                          + /SNK - Neo Geo CD/**
+                          + /Sharp - X68000/**
+                          - /Sega - Saturn/*{${rcloneOpts.regionFilter}}*
+                          + /Sega - Saturn/*{Japan,USA}*
+                          - /Sega - Mega CD & Sega CD/*{${rcloneOpts.regionFilter}}*
+                          + /Sega - Mega CD & Sega CD/*{Japan,USA}*
+                          - /Sega - Dreamcast**/*{${rcloneOpts.regionFilter}}*
+                          + /Sega - Dreamcast**/*{Japan,USA}*
+                          - /Panasonic - 3DO Interactive Multiplayer/*{${rcloneOpts.regionFilter}}*
+                          + /Panasonic - 3DO Interactive Multiplayer/*{Japan,USA}*
+                          + /NEC - PC**/**
+                          + /Microsoft - Xbox - BIOS Images/**
+                          + /Atari - Jaguar CD Interactive Multimedia System/**
+                          - /*
+                          - **
                         '';
+                        regionFilter = "Australia,Brazil,Europe,France,Germany,Italy,Korea,Netherlands,Spain,Sweden,Beta,Demo,Proto";
                       };
                     in
                     ''
