@@ -51,35 +51,45 @@
                     let
                       rcloneOpts = {
                         command = "copy";
-                        source = "myrient:/files/No-Intro/";
-                        destination = "/mnt/crusader/Games/Backups/Myrient/No-Intro/";
+                        source = "myrient:/files/No-Intro";
+                        destination = "/mnt/crusader/Games/Backups/Myrient/No-Intro";
                         args = "-v --filter-from ${rcloneOpts.filter}";
                         filter = writeText "rclone-myrient-nointro-filter" ''
-                          - Audio CD*/*
-                          - CD-ROM*/*
-                          - DVD-ROM*/*
-                          - DVD-Video*/*
-                          - Google*/*
-                          - HD DVD*/*
-                          - IBM*/*
-                          - Microsoft - Xbox*/*
-                          - Mobile*/*
-                          - Nintendo - **Encrypted**
-                          - Nintendo - Nintendo GameCube*/*
-                          - Nintendo - Misc*/*
-                          - Nintendo - **3DS**
-                          - Nintendo - SDKs*/*
-                          - Nintendo - Wallpapers*/*
-                          - Nintendo - Wii*/*
-                          - Nintendo - amiibo*/*
-                          - Non-Redump*/*
-                          - Ouya*/*
-                          - Sony*/*
-                          - Source Code*/*
-                          - Unofficial*/*
-                          - Various*/*
-                          - Video CD*/*
-                          - Web*/*
+                          + /SNK - NeoGeo Pocket**/**
+                          + /Sharp - X68000 (Flux)/**
+                          + /Sega - SG-1000/**
+                          + /Sega - PICO/**
+                          + /Sega - Mega Drive - Genesis**/**
+                          + /Sega - Master System - Mark III/**
+                          + /Sega - Game Gear/**
+                          + /Sega - 32X/**
+                          + /Nintendo - Virtual Boy**/**
+                          + /Nintendo - Super Nintendo Entertainment System**/**
+                          + /Nintendo - Satellaview/**
+                          + /Nintendo - Nintendo Entertainment System**/**
+                          + /Nintendo - Nintendo DSi (Digital) (CDN) (Decrypted)/**
+                          + /Nintendo - Nintendo DSi (Decrypted)/**
+                          + /Nintendo - Nintendo DS (Download Play)/**
+                          + /Nintendo - Nintendo DS (Decrypted)/**
+                          + /Nintendo - Nintendo DS (Decrypted) (Private)/**
+                          + /Nintendo - Nintendo 64DD/**
+                          + /Nintendo - Nintendo 64 (BigEndian)**/**
+                          + /Nintendo - Game Boy**/**
+                          + /Nintendo - Family Computer Network System/**
+                          + /Nintendo - Family Computer Disk System (QD)/**
+                          + /Nintendo - Family Computer Disk System (FDS)/**
+                          + /NEC - PC-98**/**
+                          + /NEC - PC Engine**/**
+                          + /Fujitsu - FM Towns**/**
+                          + /Commodore - Commodore 64**/**
+                          + /Commodore - Amiga**/**
+                          + /Atari - Lynx**/**
+                          + /Atari - Jaguar**/**
+                          + /Atari - 7800**/**
+                          + /Atari - 5200/**
+                          + /Atari - 2600/**
+                          - /*
+                          - **
                         '';
                       };
                     in
