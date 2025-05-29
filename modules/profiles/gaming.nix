@@ -186,7 +186,7 @@ let
       limo
       nexusmods-app-unfree
       #owmods-gui
-      r2modman
+      #r2modman
       ## Other
       adwsteamgtk
       #chiaki-ng
@@ -315,7 +315,7 @@ in
     };
 
     hardware = {
-      new-lg4ff.enable = true;
+      #new-lg4ff.enable = true;
       uinput.enable = true;
       xpadneo.enable = true;
     };
