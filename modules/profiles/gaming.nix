@@ -62,7 +62,7 @@ let
       alephone-durandal
       alephone-infinity
       ## Morrowind
-      inputs.openmw-nix.packages.${pkgs.system}.openmw-dev
+      inputs.openmw-nix.packages.${system}.openmw-dev
       #openmw
       ## Quake
       ironwail
@@ -104,7 +104,7 @@ let
         postPatch = ''
           substituteInPlace src/music/fluidsynth.cpp \
             --replace-fail "/usr/share/soundfonts/default.sf2" \
-                           "${pkgs.soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2"
+                           "${soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2"
         '';
       })
       opentyrian
@@ -170,7 +170,7 @@ let
       rpcs3
       ryubing
       scummvm
-      inputs.chaotic.packages.${pkgs.system}.shadps4_git
+      inputs.chaotic.packages.${system}.shadps4_git
       supermodel
       #nur.repos.novel2430.vita3k
       xemu
@@ -201,24 +201,24 @@ let
       xlink-kai
       xvidcore
       ## Wine
-      inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
+      inputs.nix-gaming.packages.${system}.wine-tkg
       umu-launcher
       winetricks
       ## One-and-dones
       /*
-        inputs.aaru.packages.${pkgs.system}.default
-           inputs.nix-game-preservation.packages.${pkgs.system}.dic-git-full
+        inputs.aaru.packages.${system}.default
+           inputs.nix-game-preservation.packages.${system}.dic-git-full
            glxinfo
            jpsxdec
            mame.tools
            mmv
-           inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt-git
+           inputs.nix-game-preservation.packages.${system}.ndecrypt-git
            nsz
-           inputs.nix-game-preservation.packages.${pkgs.system}.sabretools-git
-           inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp-git
+           inputs.nix-game-preservation.packages.${system}.sabretools-git
+           inputs.nix-game-preservation.packages.${system}.unshieldsharp-git
            ps3-disc-dumper
            #(python3.withPackages (p: with p; [ lnkparse3 ]))
-           inputs.nix-game-preservation.packages.${pkgs.system}.redumper-git
+           inputs.nix-game-preservation.packages.${system}.redumper-git
            renderdoc
            vgmplay-libvgm
            vgmstream
@@ -404,7 +404,7 @@ in
           (writeTextFile {
             name = "40-logitech-g920.rules";
             text = ''
-              ATTR{idVendor}=="046d", ATTR{idProduct}=="c261", RUN+="${pkgs.usb-modeswitch}/bin/usb_modeswitch -c '/etc/usb_modeswitch.d/046d:c261'"
+              ATTR{idVendor}=="046d", ATTR{idProduct}=="c261", RUN+="${usb-modeswitch}/bin/usb_modeswitch -c '/etc/usb_modeswitch.d/046d:c261'"
             '';
             destination = "/etc/udev/rules.d/40-logitech-g920.rules";
           })
@@ -455,7 +455,7 @@ in
           (writeTextFile {
             name = "51-disable-DS3-and-DS4-motion-controls.rules";
             text = ''
-              SUBSYSTEM=="input", ATTRS{name}=="*Controller Motion Sensors", RUN+="${pkgs.coreutils}/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
+              SUBSYSTEM=="input", ATTRS{name}=="*Controller Motion Sensors", RUN+="${coreutils}/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
             '';
             destination = "/etc/udev/rules.d/51-disable-DS3-and-DS4-motion-controls.rules";
           })
