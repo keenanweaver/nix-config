@@ -19,9 +19,6 @@ in
   };
   config = lib.mkIf cfg.enable {
 
-    # Allow for overclocking
-    boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
-
     environment.systemPackages = with pkgs; [
       amdgpu_top
       nvtopPackages.amd
