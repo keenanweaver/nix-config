@@ -65,6 +65,7 @@ in
                 ];
               userSettings = {
                 "codeium.enableConfig"."*" = true;
+                "codeium.enableConfig"."nix" = true;
                 "editor.formatOnSave" = false;
                 "editor.inlineSuggest.enabled" = true;
                 "editor.minimap.enabled" = true;
