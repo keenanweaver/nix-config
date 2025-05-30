@@ -295,6 +295,10 @@ Run the commands:
     mkdir -p "$FLATPAKDIR"/info.exult.exult/data/{forgeofvirtue,silverseed}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/ultima_vii_the_black_gate_the_forge_of_virtue" -x ls -t | head -n1 | xargs innoextract -g -d "$FLATPAKDIR"/info.exult.exult/data/forgeofvirtue
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/ultima_vii_serpent_isle" -x ls -t | head -n1 | xargs innoextract -g -d "$FLATPAKDIR"/info.exult.exult/data/silverseed
+    wget -P "$FLATPAKDIR"/info.exult.exult/data https://exult.info/snapshots/fonts_replacement.zip
+    fd 'fonts' -a -d 1 -e zip "$FLATPAKDIR"/info.exult.exult/data -x ouch d -y {} -d "$FLATPAKDIR"/info.exult.exult/data/forgeofvirtue/patch
+    fd 'fonts' -a -d 1 -e zip "$FLATPAKDIR"/info.exult.exult/data -x ouch d -y {} -d "$FLATPAKDIR"/info.exult.exult/data/silverseed/patch
+    fd -a -d 1 -e zip . "$FLATPAKDIR"/info.exult.exult/data -x rm {}
     ## X-COM
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/xcom_ufo_defense" -x ls -t | head -n1 | xargs innoextract -g -d "$XDG_DATA_HOME"/openxcom/UFO
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/xcom_terror_from_the_deep" -x ls -t | head -n1 | xargs innoextract -g -d "$XDG_DATA_HOME"/openxcom/TFTD
