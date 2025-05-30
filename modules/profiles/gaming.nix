@@ -742,6 +742,11 @@ in
                 };
               };
               "info.exult.exult" = {
+                Context = {
+                  filesystems = [
+                    "${config.home.homeDirectory}/Music/soundfonts:ro"
+                  ];
+                };
                 Environment = {
                   PULSE_SINK = "Game";
                 };
