@@ -292,12 +292,9 @@ Run the commands:
     mkdir -p "$GAMESDIR"/theme-hospital
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/theme_hospital" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/theme-hospital
     ## Ultima VII
-    mkdir -p "$XDG_DATA_HOME"/exult/{forgeofvirtue,silverseed}
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/ultima_vii_the_black_gate_the_forge_of_virtue" -x ls -t | head -n1 | xargs innoextract -g -d "$XDG_DATA_HOME"/exult/forgeofvirtue
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/ultima_vii_serpent_isle" -x ls -t | head -n1 | xargs innoextract -g -d "$XDG_DATA_HOME"/exult/silverseed
-    wget -P "$XDG_DATA_HOME"/exult http://prdownloads.sourceforge.net/exult/exult_audio.zip
-    fd 'exult_audio' -e zip "$XDG_DATA_HOME"/exult -x ouch d --yes {} -d "$XDG_DATA_HOME"/exult
-    fd 'exult_audio' -e zip "$XDG_DATA_HOME"/exult -x rm {}
+    mkdir -p "$FLATPAKDIR"/info.exult.exult/data/{forgeofvirtue,silverseed}
+    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/ultima_vii_the_black_gate_the_forge_of_virtue" -x ls -t | head -n1 | xargs innoextract -g -d "$FLATPAKDIR"/info.exult.exult/data/forgeofvirtue
+    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/ultima_vii_serpent_isle" -x ls -t | head -n1 | xargs innoextract -g -d "$FLATPAKDIR"/info.exult.exult/data/silverseed
     ## X-COM
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/xcom_ufo_defense" -x ls -t | head -n1 | xargs innoextract -g -d "$XDG_DATA_HOME"/openxcom/UFO
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/xcom_terror_from_the_deep" -x ls -t | head -n1 | xargs innoextract -g -d "$XDG_DATA_HOME"/openxcom/TFTD

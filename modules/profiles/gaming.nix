@@ -90,7 +90,6 @@ let
       clonehero # Guitar Hero
       corsix-th # Theme Hospital
       devilutionx # Diablo
-      exult # Ultima VII
       # ja2-stracciatella
       jazz2
       katawa-shoujo-re-engineered
@@ -742,6 +741,11 @@ in
                   PULSE_SINK = "Game";
                 };
               };
+              "info.exult.exult" = {
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
               "net.sourceforge.uqm_mods.UQM-MegaMod" = {
                 Environment = {
                   PULSE_SINK = "Game";
@@ -792,6 +796,7 @@ in
               "io.github.randovania.Randovania"
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
+              "info.exult.exult"
               "net.nmlgc.rec98.sh01"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
               "org.easyrpg.player"
