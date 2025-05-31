@@ -42,7 +42,6 @@ in
           "Life"
           "Media"
           "Miscellaneous"
-          "Mister"
           "Photos"
           "Projects"
         ]
