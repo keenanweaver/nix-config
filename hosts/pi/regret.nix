@@ -34,6 +34,52 @@
     {
       systemd.user = {
         services = {
+          rclone-myrient-chd = {
+            Unit = {
+              Description = "Download chd packs from Myrient";
+            };
+            Service = {
+              ExecStart =
+                with pkgs;
+                lib.getExe (writeShellApplication {
+                  name = "rclone-myrient-chd";
+                  runtimeInputs = [
+                    rclone
+                  ];
+                  text = ''
+                    # NEC TURBOGRAFX 16
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/pcecd-chd-zstd-redump/tgcd-chd-zstd" "/mnt/crusader/Games/Rom/CHD/NEC TurboGrafx 16/USA" -v
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/pcecd-chd-zstd-redump/pcecd-chd-zstd" "/mnt/crusader/Games/Rom/CHD/NEC TurboGrafx 16/Japan" -v
+                    # NEOGEO CD
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/ngcd-chd-zstd-redump/ngcd-chd-zstd" "/mnt/crusader/Games/Rom/CHD/SNK NeoGeo CD" -v
+                    # Panasonic 3DO
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/3do-chd-zstd-redump/3do-chd-zstd" "/mnt/crusader/Games/Rom/CHD/Panasonic 3DO/USA" --include "*USA*" -v
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/3do-chd-zstd-redump/3do-chd-zstd" "/mnt/crusader/Games/Rom/CHD/Panasonic 3DO/Japan" --include "*Japan*" -v
+                    # Sega CD
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/chd_segacd/CHD-SegaCD-NTSC" "/mnt/crusader/Games/Rom/CHD/Sega CD/USA" -v
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/chd_segacd/CHD-MegaCD-NTSCJ" "/mnt/crusader/Games/Rom/CHD/Sega CD/Japan" -v
+                    # Sega Dreamcast
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/dc-chd-zstd-redump/dc-chd-zstd" "/mnt/crusader/Games/Rom/CHD/Sega Dreamcast/USA" --include "*USA*" -v
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/dc-chd-zstd-redump/dc-chd-zstd" "/mnt/crusader/Games/Rom/CHD/Sega Dreamcast/Japan" --include "*Japan*" -v
+                    # Sega Saturn
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/USA" "/mnt/crusader/Games/Rom/CHD/Sega Saturn/USA" -v
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/Japan" "/mnt/crusader/Games/Rom/CHD/Sega Saturn/Japan" -v
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/Improvements" "/mnt/crusader/Games/Rom/CHD/Sega Saturn/Improvements" -v
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/Translations" "/mnt/crusader/Games/Rom/CHD/Sega Saturn/Translations" -v
+                    # Sony Playstation
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx/CHD-PSX-USA" "/mnt/crusader/Games/Rom/CHD/Sony Playstation/USA" -v
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx_jap/CHD-PSX-JAP" "/mnt/crusader/Games/Rom/CHD/Sony Playstation/Japan" -v
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx_jap_p2/CHD-PSX-JAP" "/mnt/crusader/Games/Rom/CHD/Sony Playstation/Japan" -v
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx/CHD-PSX-Improvements" "/mnt/crusader/Games/Rom/CHD/Sony Playstation/Improvements" -v
+                    # Sony PSP
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part1/psp-chd-zstd" "/mnt/crusader/Games/Rom/CHD/Sony PSP/USA" --include "*USA*" -v
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part2/psp-chd-zstd" "/mnt/crusader/Games/Rom/CHD/Sony PSP/USA" --include "*USA*" -v
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part1/psp-chd-zstd" "/mnt/crusader/Games/Rom/CHD/Sony PSP/Japan" --include "*Japan*" -v
+                    rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part2/psp-chd-zstd" "/mnt/crusader/Games/Rom/CHD/Sony PSP/Japan" --include "*Japan*" -v
+                  '';
+                });
+            };
+          };
           rclone-myrient-nointro = {
             Unit = {
               Description = "Download No-Intro from Myrient";
@@ -99,72 +145,12 @@
                 });
             };
           };
-          rclone-myrient-redump = {
-            Unit = {
-              Description = "Download Redump from Myrient";
-            };
-            Service = {
-              Type = "oneshot";
-              ExecStart =
-                with pkgs;
-                lib.getExe (writeShellApplication {
-                  name = "rclone-myrient-redump";
-                  runtimeInputs = [
-                    rclone
-                  ];
-                  text =
-                    let
-                      rcloneOpts = {
-                        command = "copy";
-                        source = "myrient:/files/Redump";
-                        destination = "/mnt/crusader/Games/Backups/Myrient/Redump";
-                        args = "-v --filter-from ${rcloneOpts.filter}";
-                        filter = writeText "rclone-myrient-redump-filter" ''
-                          - /Sony - PlayStation/*{${rcloneOpts.regionFilter}}*
-                          + /Sony - PlayStation/*{Japan,USA}*
-                          - /Sony - PlayStation 2/*{${rcloneOpts.regionFilter}}*
-                          + /Sony - PlayStation 2/*{Japan,USA}*
-                          + /Sony - PlayStation 2 - BIOS Images/**
-                          + /Sony - PlayStation - BIOS Images/**
-                          - /SNK - Neo Geo CD/*{${rcloneOpts.regionFilter}}*
-                          + /SNK - Neo Geo CD/**
-                          + /Sharp - X68000/**
-                          - /Sega - Saturn/*{${rcloneOpts.regionFilter}}*
-                          + /Sega - Saturn/*{Japan,USA}*
-                          - /Sega - Mega CD & Sega CD/*{${rcloneOpts.regionFilter}}*
-                          + /Sega - Mega CD & Sega CD/*{Japan,USA}*
-                          - /Sega - Dreamcast**/*{${rcloneOpts.regionFilter}}*
-                          + /Sega - Dreamcast**/*{Japan,USA}*
-                          - /Panasonic - 3DO Interactive Multiplayer/*{${rcloneOpts.regionFilter}}*
-                          + /Panasonic - 3DO Interactive Multiplayer/*{Japan,USA}*
-                          + /NEC - PC**/**
-                          + /Microsoft - Xbox - BIOS Images/**
-                          + /Atari - Jaguar CD Interactive Multimedia System/**
-                          - /*
-                          - **
-                        '';
-                        regionFilter = "Australia,Brazil,Europe,France,Germany,Italy,Korea,Netherlands,Spain,Sweden,Beta,Demo,Proto";
-                      };
-                    in
-                    ''
-                      rclone ${rcloneOpts.command} ${rcloneOpts.source} ${rcloneOpts.destination} ${rcloneOpts.args}
-                    '';
-                });
-            };
-          };
         };
         timers = {
           rclone-myrient-nointro = {
             Install.WantedBy = [ "multi-user.target" ];
             Timer = {
               OnCalendar = "Thu *-*-1..7 02:00:00 ${osConfig.time.timeZone}";
-              Persistent = true;
-            };
-          };
-          rclone-myrient-redump = {
-            Install.WantedBy = [ "multi-user.target" ];
-            Timer = {
-              OnCalendar = "Tue *-*-8..15 02:00:00 ${osConfig.time.timeZone}";
               Persistent = true;
             };
           };
