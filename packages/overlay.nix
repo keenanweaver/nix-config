@@ -6,7 +6,6 @@
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui { };
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif { };
-  heroic-unwrapped = prev.callPackage ./heroic { };
   inter = prev.callPackage ./inter { };
   klassy = prev.callPackage ./klassy { };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };

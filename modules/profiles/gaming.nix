@@ -109,12 +109,12 @@ let
       opentyrian
       (openxcom.overrideAttrs {
         pname = "openxcom-extended";
-        version = "8.2.8";
+        version = "8.2.9";
         src = fetchFromGitHub {
           owner = "MeridianOXC";
           repo = "OpenXcom";
-          rev = "63791bda02f2f2c6635ad8685ba1faf6ca424f78";
-          hash = "sha256-7+HLEBX9TeKMYjls6/H+aR244dbiYKExVDdNStNIDdg=";
+          rev = "69e58623e620be35944af10ed0b009b26fd30c85";
+          hash = "sha256-mvKiTydG1c2kyXu0YgCoMe69d1oUNMsgHrGzJVccC9w=";
         };
       })
       openxray # STALKER
@@ -245,7 +245,6 @@ in
     gamescope.enable = true;
     gsr.enable = true;
     heroic.enable = true;
-    lact.enable = true;
     lutris.enable = true;
     mangohud.enable = true;
     nonfree.enable = true;
