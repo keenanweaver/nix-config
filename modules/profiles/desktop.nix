@@ -18,16 +18,20 @@ in
   };
   config = lib.mkIf cfg.enable {
     # Custom modules
-    base.enable = true;
-    catppuccinTheming.enable = true;
-    kde.enable = true;
+    # Apps
     mumble.enable = true;
-    office.enable = true;
+    rmpc.enable = true;
     vesktop.enable = true;
     vscode.enable = true;
     wezterm.enable = true;
     wireshark.enable = true;
     zen-browser.enable = true;
+
+    # System
+    base.enable = true;
+    catppuccinTheming.enable = true;
+    kde.enable = true;
+    office.enable = true;
 
     boot = {
       binfmt = {
@@ -69,6 +73,7 @@ in
         enable = true;
         geoProviderUrl = "https://beacondb.net/v1/geolocate";
       };
+      lact.enable = true;
       power-profiles-daemon.enable = true;
       udev.packages = with pkgs; [ android-udev-rules ];
       udisks2 = {
@@ -85,6 +90,7 @@ in
       }:
       {
         home.packages = with pkgs; [
+          amdgpu_top
           audacious
           audacious-plugins
           (writeShellApplication {
@@ -112,6 +118,7 @@ in
           metadata-cleaner
           mousai
           neo
+          nvtopPackages.amd
           picard
           projectm-sdl-cpp
           puddletag

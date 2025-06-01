@@ -26,7 +26,6 @@
     ./jujutsu
     ./keyd
     ./lazygit
-    ./lact
     ./lsd
     ./lutris
     ./mangohud
@@ -42,6 +41,7 @@
     ./pay-respects
     ./rclone
     ./ripgrep
+    ./rmpc
     ./solaar
     ./ssh
     ./starship
