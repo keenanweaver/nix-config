@@ -824,12 +824,57 @@ in
               };
               customGames = [
                 {
+                  name = "Blake Stone";
+                  files = [
+                    "${config.xdg.dataHome}/bibendovsky/bstone/*saved_game*"
+                  ];
+                }
+                {
+                  name = "Daikatana";
+                  files = [
+                    "${config.xdg.dataHome}/Daikatana/data/save_x64"
+                  ];
+                }
+                {
+                  name = "DevilutionX";
+                  files = [
+                    "${config.xdg.dataHome}/diasurgical/devilution/*.sv"
+                  ];
+                }
+                {
                   name = "Doom";
                   files = [
                     "${config.xdg.configHome}/gzdoom/savegames"
                     "${config.xdg.dataHome}/cherry-doom/savegames"
+                    "${config.xdg.dataHome}/chocolate-doom/savegames"
+                    "${config.xdg.dataHome}/chocolate-heretic/savegames"
+                    "${config.xdg.dataHome}/chocolate-hexen/savegames"
+                    "${config.xdg.dataHome}/crispy-doom/savegames"
+                    "${config.xdg.dataHome}/crispy-heretic/savegames"
+                    "${config.xdg.dataHome}/crispy-hexen/savegames"
+                    "${config.xdg.dataHome}/doom64ex-plus/*.dsg"
                     "${config.xdg.dataHome}/nugget-doom/savegames"
                     "${config.xdg.dataHome}/woof/savegames"
+                  ];
+                }
+                {
+                  name = "Doom 3";
+                  files = [
+                    "${config.xdg.dataHome}/dhewm3/base/savegames"
+                    "${config.xdg.dataHome}/rbdoom3bfg/base/savegame"
+                  ];
+                }
+                {
+                  name = "ECWolf";
+                  files = [
+                    "${config.xdg.dataHome}/ecwolf/savegames"
+                  ];
+                }
+                {
+                  name = "Exult";
+                  files = [
+                    "${config.home.homeDirectory}/.var/app/info.exult.exult/data/forgeofvirtue/save/*.sav"
+                    "${config.home.homeDirectory}/.var/app/info.exult.exult/data/silverseed/save/*.sav"
                   ];
                 }
                 {
@@ -842,6 +887,30 @@ in
                   name = "ScummVM";
                   files = [
                     "${config.xdg.dataHome}/scummvm/saves"
+                  ];
+                }
+                {
+                  name = "Ship of Harkinian";
+                  files = [
+                    "${config.xdg.dataHome}/soh/Save"
+                  ];
+                }
+                {
+                  name = "SM64EX";
+                  files = [
+                    "${config.xdg.dataHome}/sm64ex/sm64_save*"
+                  ];
+                }
+                {
+                  name = "The Force Engine";
+                  files = [
+                    "${config.xdg.dataHome}/TheForceEngine/Saves"
+                  ];
+                }
+                {
+                  name = "Wipeout";
+                  files = [
+                    "${config.xdg.dataHome}/phoboslab/wipeout/save*"
                   ];
                 }
               ];
@@ -910,6 +979,7 @@ in
         xdg = {
           autostart.entries = with pkgs; [
             "${moondeck-buddy}/share/applications/MoonDeckBuddy.desktop"
+            "${nuked-sc55}/share/applications/Nuked-SC55_silent.desktop"
           ];
           desktopEntries = {
             _86box = {
