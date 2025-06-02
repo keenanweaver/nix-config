@@ -11,6 +11,7 @@
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
+  nyan-doom = prev.callPackage ./nyan-doom { };
   perfect_dark = prev.callPackage ./perfect_dark { };
   plymouth = prev.plymouth.overrideAttrs (
     { src, ... }:

@@ -21,6 +21,7 @@ let
       doomseeker
       dsda-doom
       gzdoom
+      nyan-doom
       # odamex
       prboom-plus
       rbdoom-3-bfg
