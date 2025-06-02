@@ -108,6 +108,24 @@ in
                     ];
                     "capture.props" = {
                       "media.class" = "Audio/Sink";
+                      "node.name" = "MIDI";
+                      "node.description" = "MIDI";
+                    };
+                    "playback.props" = {
+                      "node.name" = "MIDI_m";
+                      "node.description" = "MIDI";
+                    };
+                  };
+                }
+                {
+                  "name" = "libpipewire-module-loopback";
+                  "args" = {
+                    "audio.position" = [
+                      "FL"
+                      "FR"
+                    ];
+                    "capture.props" = {
+                      "media.class" = "Audio/Sink";
                       "node.name" = "Music";
                       "node.description" = "Music";
                     };
