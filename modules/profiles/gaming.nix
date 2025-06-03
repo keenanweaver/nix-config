@@ -865,6 +865,20 @@ in
                   ];
                 }
                 {
+                  name = "Duckstation";
+                  files = [
+                    "${config.xdg.configHome}/duckstation/memcards"
+                    "${config.xdg.configHome}/duckstation/savestates"
+                  ];
+                }
+                {
+                  name = "Duke3D";
+                  files = [
+                    "${config.xdg.configHome}/eduke32/*.esv"
+                    "${config.xdg.configHome}/raze/savegames"
+                  ];
+                }
+                {
                   name = "ECWolf";
                   files = [
                     "${config.xdg.dataHome}/ecwolf/savegames"
@@ -881,6 +895,13 @@ in
                   name = "OpenMW";
                   files = [
                     "${config.xdg.dataHome}/openmw/saves"
+                  ];
+                }
+                {
+                  name = "PCSX2";
+                  files = [
+                    "${config.xdg.configHome}/PCSX2/memcards"
+                    "${config.xdg.configHome}/PCSX2/sstates"
                   ];
                 }
                 {
