@@ -52,36 +52,36 @@
                     in
                     ''
                       # NEC TURBOGRAFX 16
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/pcecd-chd-zstd-redump/tgcd-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/NEC TurboGrafx 16/USA" --filter "- *{${filter}},Japan*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/pcecd-chd-zstd-redump/pcecd-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/NEC TurboGrafx 16/Japan" --filter "- *{${filter}},USA*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/pcecd-chd-zstd-redump/tgcd-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/NEC TurboGrafx 16/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/pcecd-chd-zstd-redump/pcecd-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/NEC TurboGrafx 16/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
                       rclone copy myrient:"/files/Internet Archive/chadmaster/ngcd-chd-zstd-redump/ngcd-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/SNK NeoGeo CD" --filter "- *{${filter}}*" -v
                       # Nintendo GameCube
-                      rclone copy myrient:"/files/Redump/Nintendo - GameCube - NKit RVZ [zstd-19-128k]/" "/mnt/crusader/Games/Rom/CHD/Nintendo GameCube/USA" --filter "- *{${filter}},Japan*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Redump/Nintendo - GameCube - NKit RVZ [zstd-19-128k]/" "/mnt/crusader/Games/Rom/CHD/Nintendo GameCube/Japan" --filter "- *{${filter}},USA*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Redump/Nintendo - GameCube - NKit RVZ [zstd-19-128k]/" "/mnt/crusader/Games/Rom/CHD/Nintendo GameCube/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
+                      rclone copy myrient:"/files/Redump/Nintendo - GameCube - NKit RVZ [zstd-19-128k]/" "/mnt/crusader/Games/Rom/CHD/Nintendo GameCube/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
                       # Panasonic 3DO
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/3do-chd-zstd-redump/3do-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Panasonic 3DO/USA" --filter "- *{${filter}},Japan*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/3do-chd-zstd-redump/3do-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Panasonic 3DO/Japan" --filter "- *{${filter}},USA*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/3do-chd-zstd-redump/3do-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Panasonic 3DO/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/3do-chd-zstd-redump/3do-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Panasonic 3DO/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
                       # Sega CD
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_segacd/CHD-SegaCD-NTSC/" "/mnt/crusader/Games/Rom/CHD/Sega CD/USA" --filter "- *{${filter}},Japan*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_segacd/CHD-MegaCD-NTSCJ/" "/mnt/crusader/Games/Rom/CHD/Sega CD/Japan" --filter "- *{${filter}},USA*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_segacd/CHD-SegaCD-NTSC/" "/mnt/crusader/Games/Rom/CHD/Sega CD/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_segacd/CHD-MegaCD-NTSCJ/" "/mnt/crusader/Games/Rom/CHD/Sega CD/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
                       # Sega Dreamcast
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/dc-chd-zstd-redump/dc-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Sega Dreamcast/USA" --filter "- *{${filter}},Japan*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/dc-chd-zstd-redump/dc-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Sega Dreamcast/Japan" --filter "- *{${filter}},USA*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/dc-chd-zstd-redump/dc-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Sega Dreamcast/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/dc-chd-zstd-redump/dc-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Sega Dreamcast/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
                       # Sega Saturn
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/USA/" "/mnt/crusader/Games/Rom/CHD/Sega Saturn/USA" --filter "- *{${filter}},Japan*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/Japan/" "/mnt/crusader/Games/Rom/CHD/Sega Saturn/Japan" --filter "- *{${filter}},USA*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/USA/" "/mnt/crusader/Games/Rom/CHD/Sega Saturn/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/Japan/" "/mnt/crusader/Games/Rom/CHD/Sega Saturn/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
                       rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/Improvements/" "/mnt/crusader/Games/Rom/CHD/Sega Saturn/Improvements" --filter "- *{${filter}}*" -v
                       rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/Translations/" "/mnt/crusader/Games/Rom/CHD/Sega Saturn/Translations" --filter "- *{${filter}}*" -v
                       # Sony Playstation
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx/CHD-PSX-USA/" "/mnt/crusader/Games/Rom/CHD/Sony Playstation/USA" --filter "- *{${filter}},Japan*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx_jap/CHD-PSX-JAP/" "/mnt/crusader/Games/Rom/CHD/Sony Playstation/Japan" --filter "- *{${filter}},USA*" --filter "+ *Japan*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx_jap_p2/CHD-PSX-JAP/" "/mnt/crusader/Games/Rom/CHD/Sony Playstation/Japan" --filter "- *{${filter}},USA*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx/CHD-PSX-USA/" "/mnt/crusader/Games/Rom/CHD/Sony Playstation/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx_jap/CHD-PSX-JAP/" "/mnt/crusader/Games/Rom/CHD/Sony Playstation/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx_jap_p2/CHD-PSX-JAP/" "/mnt/crusader/Games/Rom/CHD/Sony Playstation/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
                       rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx/CHD-PSX-Improvements/" "/mnt/crusader/Games/Rom/CHD/Sony Playstation/Improvements" --filter "- *{${filter}}*" -v
                       # Sony PSP
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part1/psp-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Sony PSP/USA" --filter "- *{${filter}},Japan*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part2/psp-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Sony PSP/USA" --filter "- *{${filter}},Japan*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part1/psp-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Sony PSP/Japan" --filter "- *{${filter}},USA*" --filter "+ *Japan*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part2/psp-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Sony PSP/Japan" --filter "- *{${filter}},USA*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part1/psp-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Sony PSP/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part2/psp-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Sony PSP/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part1/psp-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Sony PSP/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part2/psp-chd-zstd/" "/mnt/crusader/Games/Rom/CHD/Sony PSP/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
                     '';
                 });
             };
