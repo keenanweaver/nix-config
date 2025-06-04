@@ -10,6 +10,7 @@
     ./coolercontrol
     ./direnv
     ./distrobox
+    ./easyeffects
     ./fastfetch
     ./fd
     ./fluidsynth

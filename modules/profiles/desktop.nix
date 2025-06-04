@@ -19,6 +19,7 @@ in
   config = lib.mkIf cfg.enable {
     # Custom modules
     # Apps
+    easyeffects.enable = true;
     mumble.enable = true;
     rmpc.enable = true;
     vesktop.enable = true;
