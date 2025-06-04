@@ -25,6 +25,8 @@ in
       }:
       {
         home.file = {
+          # https://gitlab.freedesktop.org/drm/amd/-/issues/3166#note_2277578
+          # https://reddit.com/r/linux_gaming/comments/1kz7kkv/is_nvidia_holding_me_back_on_linux/mv3625m/#mv3625m
           mangohud-config = {
             enable = true;
             text = ''
@@ -32,8 +34,8 @@ in
               ##  Display  ##
               ###############
               gl_vsync=1
-              vsync=5 # https://gitlab.freedesktop.org/drm/amd/-/issues/3166#note_2277578
-              fps_limit=357,237,141,117,60,30,0
+              vsync=2
+              fps_limit=352,240,120,60,30,0
 
               ###########
               ## Binds ##
