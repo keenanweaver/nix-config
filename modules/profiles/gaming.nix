@@ -157,7 +157,7 @@ let
       melonDS
       mesen
       nuked-sc55
-      pcsx2
+      inputs.chaotic.packages.${system}.pcsx2_git
       pegasus-frontend
       ppsspp
       (retroarch.withCores (
