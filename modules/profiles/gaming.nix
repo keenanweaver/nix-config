@@ -1000,7 +1000,6 @@ in
         xdg = {
           autostart.entries = with pkgs; [
             "${moondeck-buddy}/share/applications/MoonDeckBuddy.desktop"
-            "${nuked-sc55}/share/applications/Nuked-SC55_silent.desktop"
           ];
           desktopEntries = {
             _86box = {
