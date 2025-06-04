@@ -20,7 +20,6 @@ in
       {
         config,
         pkgs,
-        inputs,
         ...
       }:
       {
@@ -137,22 +136,22 @@ in
               font_size=30
               ${lib.optionalString config.catppuccin.enable ''
                 # Catppuccin theming
-                background_color=1e1e2e
+                background_color=1E1E2E
                 battery_color=585b70
-                cpu_color=89b4fa
-                cpu_load_color=a6e3a1,f9e2af,f38ba8
-                engine_color=cba6f7
-                fps_color=f38ba8,f9e2af,a6e3a1
+                cpu_color=89B4FA
+                cpu_load_color=CDD6F4,FAB387,F38BA8
+                engine_color=b4befe
+                fps_color=F38BA8,F9E2AF,A6E3A1
                 frametime_color=a6e3a1
-                gpu_color=cba6f7
-                gpu_load_color=a6e3a1,f9e2af,f38ba8
-                io_color=f9e2af
-                media_player_color=cdd6f4
-                ram_color=94e2d5
+                gpu_color=A6E3A1
+                gpu_load_color=CDD6F4,FAB387,F38BA8
+                io_color=F9E2AF
+                media_player_color=CDD6F4
+                ram_color=F5C2E7
                 text_color=cdd6f4
-                text_outline_color=1e1e2e
+                text_outline_color=11111b
                 vram_color=94e2d5
-                wine_color=cba6f7
+                wine_color=b4befe
               ''}'';
             target = "${config.xdg.configHome}/MangoHud/MangoHud.conf";
           };
@@ -164,7 +163,7 @@ in
         };
         programs.mangohud = {
           enable = true;
-          package = inputs.chaotic.packages.${pkgs.system}.mangohud_git;
+          #package = inputs.chaotic.packages.${pkgs.system}.mangohud_git;
         };
         services.flatpak = {
           overrides = {
