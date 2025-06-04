@@ -21,7 +21,11 @@ let
   #cursor-theme = "breeze_cursors";
   cursor-theme = "catppuccin-${flavor-lower}-${accent-lower}-cursors";
   icon-theme = "Papirus-Dark";
-  wallpaper = "lavender-wave-haikei.png";
+  #wallpaper = "lavender-wave-haikei.png";
+  wallpaper = pkgs.fetchurl {
+    url = "https://w.wallhaven.cc/full/2k/wallhaven-2kpexy.jpg";
+    hash = "sha256-vSzbsrAg6EalV5FzvHPQRS1qdhjJpDSjda4M+s8ACU4=";
+  };
 in
 {
   options = {
@@ -36,7 +40,7 @@ in
       cache.enable = true;
       flavor = "${flavor-lower}";
       sddm = {
-        background = "/home/${username}/Pictures/wallpapers/${wallpaper}";
+        background = "${wallpaper}";
         font = "${mono-font}";
         fontSize = "11";
       };
@@ -428,7 +432,7 @@ in
             };
             kscreenlocker = {
               appearance = {
-                wallpaper = "${config.home.homeDirectory}/Pictures/wallpapers/${wallpaper}";
+                wallpaper = "${wallpaper}";
               };
             };
             workspace = {
@@ -459,7 +463,7 @@ in
               # Splash Screen
               splashScreen.theme = "Catppuccin-${flavor-upper}-${accent-upper}";
               # Wallpaper
-              wallpaper = "${config.home.homeDirectory}/Pictures/wallpapers/${wallpaper}";
+              wallpaper = "${wallpaper}";
             };
           };
           vscode = {
