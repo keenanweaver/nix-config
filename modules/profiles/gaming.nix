@@ -307,14 +307,9 @@ in
           target = "usb_modeswitch.d/046d:c261";
         };
       };
-      systemPackages = with pkgs; [
-        usb-modeswitch
-        usb-modeswitch-data
-      ];
     };
 
     hardware = {
-      #new-lg4ff.enable = true;
       uinput.enable = true;
       xpadneo.enable = true;
     };
@@ -584,9 +579,13 @@ in
                   runtimeInputs = [
                     kdePackages.libkscreen
                   ];
-                  text = ''
-                    kscreen-doctor output.DP-1.vrrpolicy.never
-                  '';
+                  text =
+                    let
+                      primaryscreen = "DP-1";
+                    in
+                    ''
+                      kscreen-doctor output.${primaryscreen}.vrrpolicy.never
+                    '';
                 });
               target = "${config.home.homeDirectory}/Games/vrr-off.sh";
             };
@@ -599,9 +598,13 @@ in
                   runtimeInputs = [
                     kdePackages.libkscreen
                   ];
-                  text = ''
-                    kscreen-doctor output.DP-1.vrrpolicy.automatic
-                  '';
+                  text =
+                    let
+                      primaryscreen = "DP-1";
+                    in
+                    ''
+                      kscreen-doctor output.${primaryscreen}.vrrpolicy.automatic
+                    '';
                 });
               target = "${config.home.homeDirectory}/Games/vrr-on.sh";
             };
