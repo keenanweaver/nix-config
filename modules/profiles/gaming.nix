@@ -16,7 +16,7 @@ let
       crispy-doom
       darkradiant
       dhewm3
-      doom64ex-plus
+      doom64ex-minus
       doomrunner
       doomseeker
       dsda-doom
@@ -855,7 +855,7 @@ in
                     "${config.xdg.dataHome}/crispy-doom/savegames"
                     "${config.xdg.dataHome}/crispy-heretic/savegames"
                     "${config.xdg.dataHome}/crispy-hexen/savegames"
-                    "${config.xdg.dataHome}/doom64ex-plus/*.dsg"
+                    "${config.xdg.dataHome}/doom64ex-minus/*.dsg"
                     "${config.xdg.dataHome}/nugget-doom/savegames"
                     "${config.xdg.dataHome}/woof/savegames"
                   ];
