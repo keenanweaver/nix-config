@@ -49,43 +49,43 @@
                   text =
                     let
                       chdDest = "/mnt/crusader/Games/Rom/CHD";
-                      filter = "Asia,Austria,Australia,Brazil,China,Europe,Finland,France,Germany,Greece,India,Italy,Korea,Netherlands,Poland,Portugal,Russia,Scandinavia,Spain,Sweden,Switzerland,UK,Beta,Demo,Proto";
+                      filter = "Asia,Austria,Australia,Brazil,China,Croatia,Denmark,Europe,Finland,France,Germany,Greece,India,Italy,Ireland,Korea,Netherlands,Norway,Poland,Portugal,Russia,Scandinavia,'South Africa',Spain,Sweden,Switzerland,UK,Beta,Demo,Proto";
                     in
                     ''
                       # NEC TURBOGRAFX 16
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/pcecd-chd-zstd-redump/tgcd-chd-zstd/" "${chdDest}/NEC TurboGrafx 16/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/pcecd-chd-zstd-redump/pcecd-chd-zstd/" "${chdDest}/NEC TurboGrafx 16/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/pcecd-chd-zstd-redump/tgcd-chd-zstd/" "${chdDest}/NEC TurboGrafx 16/USA" --filter "- *{\(${filter},Japan\)}*" --filter "+ *\(USA\)*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/pcecd-chd-zstd-redump/pcecd-chd-zstd/" "${chdDest}/NEC TurboGrafx 16/Japan" --filter "- *{\(${filter},USA\)}*" --filter "+ *\(Japan\)*" -v
                       # Nintendo GameCube
-                      rclone copy myrient:"/files/Redump/Nintendo - GameCube - NKit RVZ [zstd-19-128k]/" "${chdDest}/Nintendo GameCube/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Redump/Nintendo - GameCube - NKit RVZ [zstd-19-128k]/" "${chdDest}/Nintendo GameCube/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Redump/Nintendo - GameCube - NKit RVZ [zstd-19-128k]/" "${chdDest}/Nintendo GameCube/USA" --filter "- *{\(${filter},Japan\)}*" --filter "+ *\(USA\)*" -v
+                      rclone copy myrient:"/files/Redump/Nintendo - GameCube - NKit RVZ [zstd-19-128k]/" "${chdDest}/Nintendo GameCube/Japan" --filter "- *{\(${filter},USA\)}*" --filter "+ *\(Japan\)*" -v
                       # Panasonic 3DO
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/3do-chd-zstd-redump/3do-chd-zstd/" "${chdDest}/Panasonic 3DO/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/3do-chd-zstd-redump/3do-chd-zstd/" "${chdDest}/Panasonic 3DO/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/3do-chd-zstd-redump/3do-chd-zstd/" "${chdDest}/Panasonic 3DO/USA" --filter "- *{\(${filter},Japan\)}*" --filter "+ *\(USA\)*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/3do-chd-zstd-redump/3do-chd-zstd/" "${chdDest}/Panasonic 3DO/Japan" --filter "- *{\(${filter},USA\)}*" --filter "+ *\(Japan\)*" -v
                       # Sega CD
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_segacd/CHD-SegaCD-NTSC/" "${chdDest}/Sega CD/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_segacd/CHD-MegaCD-NTSCJ/" "${chdDest}/Sega CD/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_segacd/CHD-SegaCD-NTSC/" "${chdDest}/Sega CD/USA" --filter "- *{\(${filter},Japan\)}*" --filter "+ *\(USA\)*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_segacd/CHD-MegaCD-NTSCJ/" "${chdDest}/Sega CD/Japan" --filter "- *{\(${filter},USA\)}*" --filter "+ *\(Japan\)*" -v
                       # Sega Dreamcast
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/dc-chd-zstd-redump/dc-chd-zstd/" "${chdDest}/Sega Dreamcast/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/dc-chd-zstd-redump/dc-chd-zstd/" "${chdDest}/Sega Dreamcast/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/dc-chd-zstd-redump/dc-chd-zstd/" "${chdDest}/Sega Dreamcast/USA" --filter "- *{\(${filter},Japan\)}*" --filter "+ *\(USA\)*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/dc-chd-zstd-redump/dc-chd-zstd/" "${chdDest}/Sega Dreamcast/Japan" --filter "- *{\(${filter},USA\)}*" --filter "+ *\(Japan\)*" -v
                       # Sega Saturn
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/USA/" "${chdDest}/Sega Saturn/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/Japan/" "${chdDest}/Sega Saturn/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/Improvements/" "${chdDest}/Sega Saturn/Improvements" --filter "- *{${filter}}*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/Translations/" "${chdDest}/Sega Saturn/Translations" --filter "- *{${filter}}*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/USA/" "${chdDest}/Sega Saturn/USA" --filter "- *{\(${filter},Japan\)}*" --filter "+ *\(USA\)*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/Japan/" "${chdDest}/Sega Saturn/Japan" --filter "- *{\(${filter},USA\)}*" --filter "+ *\(Japan\)*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/Improvements/" "${chdDest}/Sega Saturn/Improvements" --filter "- *{\(${filter})}*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_saturn/CHD-Saturn/Translations/" "${chdDest}/Sega Saturn/Translations" --filter "- *{\(${filter})}*" -v
                       # SNK NEOGEO CD
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/ngcd-chd-zstd-redump/ngcd-chd-zstd/" "${chdDest}/SNK NeoGeo CD" --filter "- *{${filter}}*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/ngcd-chd-zstd-redump/ngcd-chd-zstd/" "${chdDest}/SNK NeoGeo CD" --filter "- *{\(${filter})}*" -v
                       # Sony Playstation
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx/CHD-PSX-USA/" "${chdDest}/Sony Playstation/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx_jap/CHD-PSX-JAP/" "${chdDest}/Sony Playstation/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx_jap_p2/CHD-PSX-JAP/" "${chdDest}/Sony Playstation/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx/CHD-PSX-Improvements/" "${chdDest}/Sony Playstation/Improvements" --filter "- *{${filter}}*" -v
-                      rclone copy myrient:"/files/Redump/Sony - PlayStation 2/" "${chdDest}/Sony Playstation 2/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Redump/Sony - PlayStation 2/" "${chdDest}/Sony Playstation 2/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx/CHD-PSX-USA/" "${chdDest}/Sony Playstation/USA" --filter "- *{\(${filter},Japan\)}*" --filter "+ *\(USA\)*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx_jap/CHD-PSX-JAP/" "${chdDest}/Sony Playstation/Japan" --filter "- *{\(${filter},USA\)}*" --filter "+ *\(Japan\)*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx_jap_p2/CHD-PSX-JAP/" "${chdDest}/Sony Playstation/Japan" --filter "- *{\(${filter},USA\)}*" --filter "+ *\(Japan\)*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/chd_psx/CHD-PSX-Improvements/" "${chdDest}/Sony Playstation/Improvements" --filter "- *{\(${filter})}*" -v
+                      rclone copy myrient:"/files/Redump/Sony - PlayStation 2/" "${chdDest}/Sony Playstation 2/USA" --filter "- *{\(${filter},Japan\)}*" --filter "+ *\(USA\)*" -v
+                      rclone copy myrient:"/files/Redump/Sony - PlayStation 2/" "${chdDest}/Sony Playstation 2/Japan" --filter "- *{\(${filter},USA\)}*" --filter "+ *\(Japan\)*" -v
                       # Sony PSP
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part1/psp-chd-zstd/" "${chdDest}/Sony PSP/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part2/psp-chd-zstd/" "${chdDest}/Sony PSP/USA" --filter "- *{${filter},Japan}*" --filter "+ *USA*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part1/psp-chd-zstd/" "${chdDest}/Sony PSP/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
-                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part2/psp-chd-zstd/" "${chdDest}/Sony PSP/Japan" --filter "- *{${filter},USA}*" --filter "+ *Japan*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part1/psp-chd-zstd/" "${chdDest}/Sony PSP/USA" --filter "- *{\(${filter},Japan\)}*" --filter "+ *\(USA\)*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part2/psp-chd-zstd/" "${chdDest}/Sony PSP/USA" --filter "- *{\(${filter},Japan\)}*" --filter "+ *\(USA\)*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part1/psp-chd-zstd/" "${chdDest}/Sony PSP/Japan" --filter "- *{\(${filter},USA\)}*" --filter "+ *\(Japan\)*" -v
+                      rclone copy myrient:"/files/Internet Archive/chadmaster/psp-chd-zstd-redump-part2/psp-chd-zstd/" "${chdDest}/Sony PSP/Japan" --filter "- *{\(${filter},USA\)}*" --filter "+ *\(Japan\)*" -v
                     '';
                 });
             };
