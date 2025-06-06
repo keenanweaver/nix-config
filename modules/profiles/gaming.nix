@@ -997,6 +997,13 @@ in
             };
           };
         };
+        systemd.user.timers.ludusavi = lib.mkForce {
+          Install.WantedBy = [ "timers.target" ];
+          Timer = {
+            OnBootSec = "2min";
+            OnUnitActiveSec = "24h";
+          };
+        };
         xdg = {
           autostart.entries = with pkgs; [
             "${moondeck-buddy}/share/applications/MoonDeckBuddy.desktop"
