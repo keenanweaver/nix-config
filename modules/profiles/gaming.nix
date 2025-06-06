@@ -503,10 +503,6 @@ in
       }:
       {
 
-        imports = [
-          ../apps/ludusavi
-        ];
-
         home = {
           file = {
             desktop-entry-dxvk =

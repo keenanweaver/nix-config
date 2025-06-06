@@ -35,6 +35,10 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   makeFlags = [ "PREFIX=${placeholder "out"}" ];
+  env = lib.optionalAttrs stdenv.hostPlatform.isDarwin { LDFLAGS = "-framework OpenGL"; };
+  preBuild = lib.optionalString stdenv.hostPlatform.isDarwin ''
+    buildFlagsArray+=('LIBS=sdl3 fluidsynth libpng')
+  '';
 
   meta = {
     description = "Improved, modern version of Doom64EX";
