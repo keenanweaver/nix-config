@@ -46,6 +46,7 @@ in
                     python-lsp-server
                   ])
                 ))
+                sqlfluff
                 terraform-ls
                 taplo-lsp
                 nodePackages.yaml-language-server
@@ -81,6 +82,14 @@ in
               filetree = {
                 neo-tree = {
                   enable = true;
+                };
+              };
+              formatter = {
+                conform-nvim = {
+                  enable = true;
+                  setupOpts.formatters-by-ft = {
+                    nix = [ "nixfmt" ];
+                  };
                 };
               };
               gestures = {
@@ -202,6 +211,14 @@ in
                 };
                 trouble = {
                   enable = true;
+                };
+              };
+              maps = {
+                normal = {
+                  "<leader>e" = {
+                    desc = "Toggle Neotree";
+                    action = "<cmd>Neotree toggle reveal<cr>";
+                  };
                 };
               };
               minimap.codewindow.enable = true;
