@@ -36,6 +36,7 @@ in
     keyd.enable = false;
     lazydocker.enable = true;
     lazygit.enable = true;
+    lazysql.enable = true;
     lsd.enable = true;
     mullvad.enable = true;
     navi.enable = true;

@@ -28,6 +28,7 @@
     ./keyd
     ./lazydocker
     ./lazygit
+    ./lazysql
     ./lsd
     ./lutris
     ./mangohud
