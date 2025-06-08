@@ -34,6 +34,7 @@ in
     home-managerConfig.enable = true;
     jujutsu.enable = true;
     keyd.enable = false;
+    lazydocker.enable = true;
     lazygit.enable = true;
     lsd.enable = true;
     mullvad.enable = true;

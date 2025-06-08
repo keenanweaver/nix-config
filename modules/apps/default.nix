@@ -26,6 +26,7 @@
     ./home-manager
     ./jujutsu
     ./keyd
+    ./lazydocker
     ./lazygit
     ./lsd
     ./lutris
