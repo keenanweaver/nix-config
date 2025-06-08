@@ -76,6 +76,7 @@ in
             gh
             just
             powershell
+            seer
             ### Ansible ###
             ansible
             ansible-language-server
@@ -123,7 +124,6 @@ in
             isd
             jiq
             jq
-            lazydocker
             magic-wormhole-rs
             mkvtoolnix-cli
             play
