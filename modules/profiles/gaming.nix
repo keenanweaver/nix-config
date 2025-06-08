@@ -169,7 +169,15 @@ let
       ))
       rpcs3
       ryubing
-      scummvm
+      (scummvm.overrideAttrs {
+        version = "2.9.1";
+        src = fetchFromGitHub {
+          owner = "scummvm";
+          repo = "scummvm";
+          rev = "v2.9.1";
+          hash = "sha256-+MM47piuXuIBmAQd0g/cAg5t02qSQ0sw/DwFrMUSIAA=";
+        };
+      })
       inputs.chaotic.packages.${system}.shadps4_git
       supermodel
       #nur.repos.novel2430.vita3k
@@ -839,6 +847,12 @@ in
                   name = "DevilutionX";
                   files = [
                     "${config.xdg.dataHome}/diasurgical/devilution/*.sv"
+                  ];
+                }
+                {
+                  name = "Dolphin-Emu";
+                  files = [
+                    "${config.xdg.dataHome}/dolphin-emu/StateSaves"
                   ];
                 }
                 {
