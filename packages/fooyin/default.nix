@@ -6,16 +6,11 @@
   pkg-config,
   alsa-lib,
   ffmpeg,
-  flac,
   kdePackages,
   kdsingleapplication,
   pipewire,
   taglib,
   libebur128,
-  libmpg123,
-  libogg,
-  libopus,
-  libvorbis,
   libvgm,
   libsndfile,
   libarchive,
@@ -28,13 +23,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fooyin";
-  version = "0-unstable-2025-05-30";
+  version = "0-unstable-2025-06-07";
 
   src = fetchFromGitHub {
     owner = "ludouzi";
     repo = "fooyin";
-    rev = "78b9ba1528eea485c3dde2838984b9f0a02a64fb";
-    hash = "sha256-+Eo/IOyKh0CN5QuAUt9FASwZAcGCToC3Dnx6Qyi9hMU=";
+    rev = "5da509aff468e411236ba1b27e6017fb5a71e83d";
+    hash = "sha256-1evZ804DO5NWKev1zPPkec+Yk7gyggwoIvlIW/1yHmw=";
   };
 
   buildInputs = [
@@ -50,12 +45,7 @@ stdenv.mkDerivation (finalAttrs: {
     pipewire
     SDL2
     # input plugins
-    flac
     libebur128
-    libmpg123
-    libogg
-    libopus
-    libvorbis
     libvgm
     libsndfile
     libarchive
