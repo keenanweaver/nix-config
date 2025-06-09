@@ -35,6 +35,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";

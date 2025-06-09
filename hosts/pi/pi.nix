@@ -1,8 +1,5 @@
 {
   lib,
-  pkgs,
-  inputs,
-  modulesPath,
   ...
 }:
 {
@@ -12,9 +9,6 @@
     ./impermanence.nix
     # Profiles
     ../../modules
-    # Raspberry Pi
-    inputs.nixos-hardware.nixosModules.raspberry-pi-4
-    (modulesPath + "/installer/sd-card/sd-image-aarch64.nix")
   ];
 
   # Custom modules
@@ -29,19 +23,12 @@
   # System
   flatpak.enable = lib.mkForce false;
 
-  boot = {
-    initrd = {
-      availableKernelModules = [
-        "xhci_pci"
-        "usbhid"
-      ];
-    };
-    kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_rpi4;
-    loader.systemd-boot.enable = lib.mkForce false;
-    supportedFilesystems = lib.mkForce [
-      "vfat"
-      "btrfs"
-      "tmpfs"
+  nixConfig = {
+    extra-substituters = [
+      "https://nixos-raspberrypi.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
     ];
   };
 
