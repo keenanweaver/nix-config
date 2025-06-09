@@ -206,6 +206,7 @@ let
       lgogdownloader
       moondeck-buddy
       parsec-bin
+      tochd
       xlink-kai
       xvidcore
       ## Wine
