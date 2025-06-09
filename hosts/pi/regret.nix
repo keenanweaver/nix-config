@@ -49,7 +49,7 @@
                   text =
                     let
                       chdDest = "/mnt/crusader/Games/Rom/CHD";
-                      filter = "Asia,Austria,Australia,Belgium,Brazil,China,Croatia,Denmark,Europe,Finland,France,Germany,Greece,India,Italy,Ireland,Korea,Netherlands,Norway,Poland,Portugal,Russia,Scandinavia,'South Africa',Spain,Sweden,Switzerland,UK,Beta,Demo,Proto";
+                      filter = "Asia,Austria,Australia,Belgium,Brazil,China,Croatia,Denmark,Europe,Finland,France,Germany,Greece,India,Italy,Ireland,Korea,Netherlands,Norway,Poland,Portugal,Russia,Scandinavia,'South Africa',Spain,Sweden,Switzerland,Taiwan,UK,Beta,Demo,Proto";
                     in
                     ''
                       # NEC TURBOGRAFX 16
