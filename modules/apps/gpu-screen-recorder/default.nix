@@ -2,7 +2,6 @@
   lib,
   config,
   username,
-  pkgs,
   ...
 }:
 let
@@ -16,20 +15,11 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      gpu-screen-recorder
-    ];
-
-    programs.gpu-screen-recorder = {
-      enable = true;
-    };
-    programs.gpu-screen-recorder-ui.enable = true;
-    
-    security.wrappers."gpu-screen-recorder" = {
-      owner = "root";
-      group = "root";
-      capabilities = "cap_sys_nice+ep";
-      source = "${pkgs.gpu-screen-recorder}/bin/gpu-screen-recorder";
+    programs = {
+      gpu-screen-recorder = {
+        enable = true;
+      };
+      gpu-screen-recorder-ui.enable = true;
     };
 
     home-manager.users.${username} =
