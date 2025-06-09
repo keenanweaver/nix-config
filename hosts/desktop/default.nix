@@ -77,20 +77,6 @@
   powerManagement.cpuFreqGovernor = "performance";
 
   services = {
-    /*
-      beesd = {
-         filesystems = {
-           games = {
-             spec = "/home/${username}/Games";
-             verbosity = "crit";
-             extraOptions = [
-               "--loadavg-target"
-               "5.0"
-             ];
-           };
-         };
-       };
-    */
     pipewire = {
       extraConfig = {
         pipewire = {
