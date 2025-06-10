@@ -37,7 +37,6 @@ in
           haruna
           icoutils
           isoimagewriter
-          k3b
           kaccounts-providers
           kcalc
           kcron
@@ -80,6 +79,7 @@ in
     ];
     programs = {
       fuse.userAllowOther = true;
+      k3b.enable = true;
       kdeconnect.enable = true;
       partition-manager.enable = true;
     };
