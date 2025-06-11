@@ -395,6 +395,19 @@
             };
           }
           {
+            description = "icon: melonDS";
+            match = {
+              window-class = {
+                value = "melonDS";
+                type = "regex";
+              };
+            };
+            apply = {
+              desktopfile = "net.kuribo64.melonDS";
+              apply = "force";
+            };    
+          }
+          {
             description = "mumble";
             match = {
               window-class = {
