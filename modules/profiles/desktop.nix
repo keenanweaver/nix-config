@@ -189,7 +189,7 @@ in
               videoPlayer = "org.kde.haruna.desktop";
             in
             {
-              enable = false;
+              enable = true;
               defaultApplications =
                 {
                   "audio/*" = audioPlayer;
