@@ -57,6 +57,11 @@ in
           soundFont = cfg.soundFont;
           soundService = cfg.soundService;
         };
+        systemd.user.services.fluidsynth = {
+          Service = {
+            Environment = "PULSE_SINK=MIDI";
+          };
+        };
       };
   };
 }
