@@ -147,7 +147,7 @@ let
       mednaffe
       mesen
       nuked-sc55
-      inputs.chaotic.packages.${system}.pcsx2_git
+      #inputs.chaotic.packages.${system}.pcsx2_git
       inputs.chaotic.packages.${system}.shadps4_git
       #nur.repos.novel2430.vita3k
       ## Input
@@ -700,6 +700,11 @@ in
                 };
               };
               "com.richwhitehouse.BigPEmu" = {
+                Context = {
+                  filesystems = [
+                    "!home"
+                  ];
+                };
                 Environment = {
                   PULSE_SINK = "Game";
                 };
@@ -751,7 +756,18 @@ in
               "io.github.ryubing.Ryujinx" = {
                 Context = {
                   filesystems = [
+                    "!home"
                     "${config.home.homeDirectory}/Games/games/switch"
+                  ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
+              "net.fsuae.FS-UAE" = {
+                Context = {
+                  filesystems = [
+                    "!home"
                   ];
                 };
                 Environment = {
@@ -761,7 +777,19 @@ in
               "net.kuribo64.melonDS" = {
                 Context = {
                   filesystems = [
+                    "!home"
                     "/mnt/crusader/Games/Backups/Myrient/No-Intro"
+                  ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
+              "net.pcsx2.PCSX2" = {
+                Context = {
+                  filesystems = [
+                    "host"
+                    "/mnt/crusader/Games/Rom/CHD/Sony Playstation 2"
                   ];
                 };
                 Environment = {
@@ -771,6 +799,7 @@ in
               "net.rpcs3.RPCS3" = {
                 Context = {
                   filesystems = [
+                    "!home"
                     "${config.home.homeDirectory}/Games/games/rpcs3"
                   ];
                 };
@@ -793,20 +822,20 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "org.DolphinEmu.dolphin-emu" = {
+              "org.duckstation.DuckStation" = {
                 Context = {
                   filesystems = [
-                    "/mnt/crusader/Games/Rom/CHD/Nintendo GameCube"
+                    "/mnt/crusader/Games/Rom/CHD/Sony Playstation"
                   ];
                 };
                 Environment = {
                   PULSE_SINK = "Game";
                 };
               };
-              "org.duckstation.DuckStation" = {
+              "org.DolphinEmu.dolphin-emu" = {
                 Context = {
                   filesystems = [
-                    "/mnt/crusader/Games/Rom/CHD/Sony Playstation"
+                    "/mnt/crusader/Games/Rom/CHD/Nintendo GameCube"
                   ];
                 };
                 Environment = {
@@ -818,6 +847,7 @@ in
                   filesystems = [
                     "${config.home.homeDirectory}/Music/soundfonts:ro"
                     "${config.home.homeDirectory}/Games/games/rpg-maker"
+                    "!home"
                     "!host"
                   ];
                   shared = "network"; # obs-gamecapture
@@ -842,6 +872,7 @@ in
                 Context = {
                   filesystems = [
                     "/mnt/crusader/Games/Rom/Other/MAME"
+                    "!home"
                   ];
                 };
                 Environment = {
@@ -856,6 +887,7 @@ in
               "org.scummvm.ScummVM" = {
                 Context = {
                   filesystems = [
+                    "!home"
                     "${config.home.homeDirectory}/Music/roland:ro"
                     "${config.home.homeDirectory}/Music/soundfonts:ro"
                     "${config.home.homeDirectory}/Games/games/scummvm"
@@ -900,6 +932,10 @@ in
               "net.fsuae.FS-UAE"
               "net.kuribo64.melonDS"
               "net.nmlgc.rec98.sh01"
+              {
+                appId = "net.pcsx2.PCSX2";
+                origin = "flathub-beta";
+              }
               "net.rpcs3.RPCS3"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
               "org.azahar_emu.Azahar"
@@ -951,6 +987,7 @@ in
                   name = "Dolphin-Emu";
                   files = [
                     "${config.xdg.dataHome}/dolphin-emu/StateSaves"
+                    "${config.home.homeDirectory}/.var/app/org.DolphinEmu.dolphin-emu/data/dolphin-emu/StateSaves"
                   ];
                 }
                 {
@@ -981,6 +1018,8 @@ in
                   files = [
                     "${config.xdg.configHome}/duckstation/memcards"
                     "${config.xdg.configHome}/duckstation/savestates"
+                    "${config.home.homeDirectory}/.var/app/org.duckstation.DuckStation/config/duckstation/memcards"
+                    "${config.home.homeDirectory}/.var/app/org.duckstation.DuckStation/config/duckstation/savestates"
                   ];
                 }
                 {
@@ -1014,12 +1053,15 @@ in
                   files = [
                     "${config.xdg.configHome}/PCSX2/memcards"
                     "${config.xdg.configHome}/PCSX2/sstates"
+                    "${config.home.homeDirectory}/.var/app/net.pcsx2.PCSX2/config/PCSX2/memcards"
+                    "${config.home.homeDirectory}/.var/app/net.pcsx2.PCSX2/config/PCSX2/sstates"
                   ];
                 }
                 {
                   name = "ScummVM";
                   files = [
                     "${config.xdg.dataHome}/scummvm/saves"
+                    "${config.home.homeDirectory}/.var/app/org.scummvm.ScummVM/data/scummvm/saves"
                   ];
                 }
                 {
