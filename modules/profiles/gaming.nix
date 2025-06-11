@@ -141,47 +141,15 @@ let
       ## Emulators
       _86Box-with-roms
       # archipelago
-      ares
-      azahar
-      bigpemu
       # bizhawk
-      cemu
-      dolphin-emu
-      duckstation
-      flycast
-      fsuae-launcher
       hypseus-singe
-      mame
       mednafen
       mednaffe
-      melonDS
       mesen
       nuked-sc55
       inputs.chaotic.packages.${system}.pcsx2_git
-      pegasus-frontend
-      ppsspp
-      (retroarch.withCores (
-        cores: with cores; [
-          beetle-saturn
-          blastem
-          mgba
-        ]
-      ))
-      rpcs3
-      ryubing
-      (scummvm.overrideAttrs {
-        version = "2.9.1";
-        src = fetchFromGitHub {
-          owner = "scummvm";
-          repo = "scummvm";
-          rev = "v2.9.1";
-          hash = "sha256-+MM47piuXuIBmAQd0g/cAg5t02qSQ0sw/DwFrMUSIAA=";
-        };
-      })
       inputs.chaotic.packages.${system}.shadps4_git
-      supermodel
       #nur.repos.novel2430.vita3k
-      xemu
       ## Input
       joystickwake
       oversteer
@@ -731,6 +699,16 @@ in
                   PULSE_SINK = "Game";
                 };
               };
+              "com.richwhitehouse.BigPEmu" = {
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
+              "com.supermodel3.Supermodel" = {
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
               "dev.opengoal.OpenGOAL" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/opengoal" ];
@@ -739,11 +717,10 @@ in
                   PULSE_SINK = "Game";
                 };
               };
-              "io.github.noxworld_dev.OpenNox" = {
+              "info.cemu.Cemu" = {
                 Context = {
                   filesystems = [
-                    "!home"
-                    "${config.home.homeDirectory}/Games/nox"
+                    "${config.home.homeDirectory}/Games/games/cemu"
                   ];
                 };
                 Environment = {
@@ -760,7 +737,78 @@ in
                   PULSE_SINK = "Game";
                 };
               };
+              "io.github.noxworld_dev.OpenNox" = {
+                Context = {
+                  filesystems = [
+                    "!home"
+                    "${config.home.homeDirectory}/Games/nox"
+                  ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
+              "io.github.ryubing.Ryujinx" = {
+                Context = {
+                  filesystems = [
+                    "${config.home.homeDirectory}/Games/games/switch"
+                  ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
+              "net.kuribo64.melonDS" = {
+                Context = {
+                  filesystems = [
+                    "/mnt/crusader/Games/Backups/Myrient/No-Intro"
+                  ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
+              "net.rpcs3.RPCS3" = {
+                Context = {
+                  filesystems = [
+                    "${config.home.homeDirectory}/Games/games/rpcs3"
+                  ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
               "net.sourceforge.uqm_mods.UQM-MegaMod" = {
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
+              "org.azahar_emu.Azahar" = {
+                Context = {
+                  filesystems = [
+                    "${config.home.homeDirectory}/Games/games/3ds"
+                  ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
+              "org.DolphinEmu.dolphin-emu" = {
+                Context = {
+                  filesystems = [
+                    "/mnt/crusader/Games/Rom/CHD/Nintendo GameCube"
+                  ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
+              "org.duckstation.DuckStation" = {
+                Context = {
+                  filesystems = [
+                    "/mnt/crusader/Games/Rom/CHD/Sony Playstation"
+                  ];
+                };
                 Environment = {
                   PULSE_SINK = "Game";
                 };
@@ -780,7 +828,39 @@ in
                   RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/games/rpg-maker/RTP/2003";
                 };
               };
+              "org.flycast.Flycast" = {
+                Context = {
+                  filesystems = [
+                    "/mnt/crusader/Games/Rom/CHD/Sega Dreamcast"
+                  ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
+              "org.mamedev.MAME" = {
+                Context = {
+                  filesystems = [
+                    "/mnt/crusader/Games/Rom/Other/MAME"
+                  ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
               "org.openjkdf2.OpenJKDF2" = {
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
+              "org.scummvm.ScummVM" = {
+                Context = {
+                  filesystems = [
+                    "${config.home.homeDirectory}/Music/roland:ro"
+                    "${config.home.homeDirectory}/Music/soundfonts:ro"
+                    "${config.home.homeDirectory}/Games/games/scummvm"
+                  ];
+                };
                 Environment = {
                   PULSE_SINK = "Game";
                 };
@@ -792,6 +872,7 @@ in
               };
             };
             packages = [
+              "app.xemu.xemu"
               "com.fightcade.Fightcade"
               "com.fightcade.Fightcade.Wine"
               {
@@ -804,18 +885,34 @@ in
               }
               "com.github.optyfr.JRomManager"
               "com.qzandronum.Q-Zandronum"
+              "com.richwhitehouse.BigPEmu"
+              "com.supermodel3.Supermodel"
+              "dev.ares.ares"
               "dev.opengoal.OpenGOAL"
+              "info.cemu.Cemu"
+              "info.exult.exult"
               "io.github.hedge_dev.hedgemodmanager"
               "io.github.noxworld_dev.OpenNox"
               "io.github.randovania.Randovania"
+              "io.github.ryubing.Ryujinx"
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"
-              "info.exult.exult"
+              "net.fsuae.FS-UAE"
+              "net.kuribo64.melonDS"
               "net.nmlgc.rec98.sh01"
+              "net.rpcs3.RPCS3"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
+              "org.azahar_emu.Azahar"
+              "org.DolphinEmu.dolphin-emu"
+              "org.duckstation.DuckStation"
               "org.easyrpg.player"
+              "org.flycast.Flycast"
+              "org.mamedev.MAME"
               "org.openfodder.OpenFodder"
               "org.openjkdf2.OpenJKDF2"
+              "org.pegasus_frontend.Pegasus"
+              "org.ppsspp.PPSSPP"
+              "org.scummvm.ScummVM"
               "org.sonic3air.Sonic3AIR"
               "vet.rsc.OpenRSC.Launcher"
             ];
