@@ -66,6 +66,7 @@ in
         inputs.lightly.packages.${system}.darkly-qt5
         inputs.lightly.packages.${system}.darkly-qt6
         klassy
+        plasma-panel-colorizer
         utterly-round-plasma-style
       ];
     };
