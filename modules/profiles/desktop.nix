@@ -189,7 +189,7 @@ in
               videoPlayer = "org.kde.haruna.desktop";
             in
             {
-              enable = true;
+              enable = false;
               defaultApplications =
                 {
                   "audio/*" = audioPlayer;
@@ -210,6 +210,8 @@ in
                   "x-scheme-handler/bottles" = "com.usebottles.bottles.desktop";
                   "x-scheme-handler/http" = browser;
                   "x-scheme-handler/https" = browser;
+                  "x-scheme-handler/sgnl" = "signal.desktop";
+                  "x-scheme-handler/signalcaptcha" = "signal.desktop";
                   "x-scheme-handler/terminal" = "org.wezfurlong.wezterm.desktop";
                 }
                 // lib.optionalAttrs vars.gaming {
