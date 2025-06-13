@@ -446,7 +446,7 @@
                 value = "Desktop_2"; # Social desktop
               };
               position = {
-                value = "1287,0";
+                value = "0,0";
               };
               screen = {
                 value = 1;
@@ -564,7 +564,7 @@
                 value = "Desktop_2"; # Social desktop
               };
               position = {
-                value = "0,0";
+                value = "1287,0";
               };
               screen = {
                 value = 1;
