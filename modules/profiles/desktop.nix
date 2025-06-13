@@ -119,6 +119,7 @@ in
           metadata-cleaner
           mousai
           neo
+          newsflash
           nvtopPackages.amd
           picard
           projectm-sdl-cpp

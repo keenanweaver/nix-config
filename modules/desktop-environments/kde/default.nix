@@ -29,7 +29,6 @@ in
         with pkgs.kdePackages;
         [
           # https://github.com/shvedes/awesome-kde
-          akregator
           arianna
           breeze
           ffmpegthumbnailer
@@ -125,23 +124,6 @@ in
         xdgOpenUsePortal = true;
       };
     };
-    home-manager.users.${username} = {
-      xdg.autostart.entries =
-        let
-          akregator = (
-            pkgs.makeDesktopItem {
-              name = "akregator";
-              desktopName = "akregator";
-              exec = "akregator %u --hide-mainwindow";
-              comment = "Run akregator";
-              terminal = false;
-              startupNotify = false;
-            }
-          );
-        in
-        [
-          "${akregator}/share/applications/${akregator.name}"
-        ];
-    };
+    home-manager.users.${username} = { };
   };
 }
