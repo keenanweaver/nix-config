@@ -95,6 +95,10 @@
       url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    simracing-hwdb = {
+      url = "github:JacKeTUs/simracing-hwdb";
+      flake = false;
+    };
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
 
     # Theming

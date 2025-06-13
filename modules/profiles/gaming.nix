@@ -360,17 +360,20 @@ in
         scheduler = "scx_lavd";
       };
       udev = {
-        extraRules = ''
-          # https://wiki.archlinux.org/title/Improving_performance#Changing_I/O_scheduler
-          # HDD
-          ACTION=="add|change", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
-
-          # SSD
-          ACTION=="add|change", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="bfq"
-
-          # NVMe SSD
-          ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
-        '';
+        extraHwdb = builtins.concatStringsSep "\n" (
+          with inputs;
+          builtins.map builtins.readFile [
+            "${simracing-hwdb}/90-fanatec.hwdb"
+            "${simracing-hwdb}/90-heusinkveld.hwdb"
+            "${simracing-hwdb}/90-leo-bodnar.hwdb"
+            "${simracing-hwdb}/90-oddor.hwdb"
+            "${simracing-hwdb}/90-shh.hwdb"
+            "${simracing-hwdb}/90-simlab.hwdb"
+            "${simracing-hwdb}/90-simsonn.hwdb"
+            "${simracing-hwdb}/90-thrustmaster.hwdb"
+            "${simracing-hwdb}/90-vrs.hwdb"
+          ]
+        );
         packages = with pkgs; [
           game-devices-udev-rules
           (writeTextFile {
@@ -379,6 +382,20 @@ in
               ATTR{idVendor}=="046d", ATTR{idProduct}=="c261", RUN+="${usb-modeswitch}/bin/usb_modeswitch -c '/etc/usb_modeswitch.d/046d:c261'"
             '';
             destination = "/etc/udev/rules.d/40-logitech-g920.rules";
+          })
+          (writeTextFile {
+            name = "60-ioschedulers.rules";
+            text = ''
+              # HDD
+              ACTION=="add|change", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
+
+              # SSD
+              ACTION=="add|change", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="mq-deadline"
+
+              # NVMe SSD
+              ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
+            '';
+            destination = "/etc/udev/rules.d/60-ioschedulers.rules";
           })
           (writeTextFile {
             name = "70-easysmx.rules";
