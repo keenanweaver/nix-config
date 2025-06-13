@@ -74,7 +74,7 @@
     hostName = "nixos-desktop";
   };
 
-  powerManagement.cpuFreqGovernor = "performance";
+  powerManagement.cpuFreqGovernor = "schedutil";
 
   services = {
     pipewire = {
