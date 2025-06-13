@@ -388,10 +388,8 @@ in
             text = ''
               # HDD
               ACTION=="add|change", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
-
               # SSD
               ACTION=="add|change", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="mq-deadline"
-
               # NVMe SSD
               ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
             '';
@@ -415,11 +413,9 @@ in
               SUBSYSTEM=="usb", ATTR{idProduct}=="09cc", ATTR{idVendor}=="054c", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
               # X-input/XBOX
               SUBSYSTEM=="usb", ATTR{idProduct}=="1053", ATTR{idVendor}=="3537", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-
               # GameSir Cyclone 2 Wireless Controller; 2.4GHz
               # X-input/XBOX
               SUBSYSTEM=="usb", ATTR{idProduct}=="100b", ATTR{idVendor}=="3537", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-
               # GameSir Cyclone 2 Wireless Controller; Bluetooth
               SUBSYSTEM=="input", ATTR{idProduct}=="8100", ATTR{idVendor}=="054c", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
             '';
@@ -496,7 +492,6 @@ in
         ...
       }:
       {
-
         home = {
           file =
             let
@@ -627,7 +622,7 @@ in
               };
               wine-controller-proton = {
                 # https://selfmadepenguin.wordpress.com/2024/02/14/how-i-solved-my-gamecontroller-problems/
-                # Import with: wine start regedit.exe /home/keenan/.wine/controller-proton.reg
+                # Import with: wine start regedit.exe /home/keenan/Games/wine-controller.reg
                 enable = true;
                 text = ''
                   Windows Registry Editor Version 5.00
@@ -640,7 +635,7 @@ in
               };
               wine-mouse-acceleration = {
                 # https://reddit.com/r/linux_gaming/comments/1hs1685/windows_mouse_acceleration_seems_to_be_enabled_in/
-                # Import with: wine start regedit.exe /home/keenan/.wine/mouse-acceleration-proton.reg
+                # Import with: wine start regedit.exe /home/keenan/Games/wine-mouse-acceleration.reg
                 enable = true;
                 text = ''
                   Windows Registry Editor Version 5.00
@@ -683,7 +678,6 @@ in
                   curl
                   fd
                   jq
-                  sd
                   wget
                 ];
                 text = ''
