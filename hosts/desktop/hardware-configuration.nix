@@ -3,8 +3,8 @@
   fileSystems."/" = {
     fsType = "tmpfs";
     options = [
+      "defaults"
       "mode=755"
-      "size=16G"
     ];
   };
 
