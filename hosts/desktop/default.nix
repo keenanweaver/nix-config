@@ -129,9 +129,15 @@
     };
   };
 
-  systemd.targets = {
-    hibernate.enable = false;
-    hybrid-sleep.enable = false;
+  systemd = {
+    services = {
+      NetworkManager-wait-online.wantedBy = lib.mkForce [ ];
+      plymouth-quit-wait.enable = false;
+    };
+    targets = {
+      hibernate.enable = false;
+      hybrid-sleep.enable = false;
+    };
   };
 
   zramSwap = {

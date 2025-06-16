@@ -56,7 +56,7 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   # https://discourse.nixos.org/t/how-to-disable-networkmanager-wait-online-service-in-the-configuration-file/19963
-  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services.NetworkManager-wait-online.wantedBy = lib.mkForce [ ];
 
   home-manager.users.${username} = { };
 }
