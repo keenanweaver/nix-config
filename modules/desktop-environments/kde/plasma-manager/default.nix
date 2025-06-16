@@ -278,7 +278,7 @@
           };
           krunner = {
             position = "top";
-            activateWhenTypingOnDesktop = true;
+            activateWhenTypingOnDesktop = false;
             historyBehavior = "enableSuggestions";
           };
           kscreenlocker = {

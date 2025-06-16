@@ -22,6 +22,7 @@ in
       plasma6.excludePackages = with pkgs.kdePackages; [ elisa ];
       sessionVariables = {
         GDK_DEBUG = "portals"; # KDE filepicker
+        QT_QPA_PLATFORM = "wayland;xcb";
         XDG_CURRENT_DESKTOP = "KDE";
       };
       systemPackages =
@@ -42,6 +43,7 @@ in
           kdenetwork-filesharing
           kdesu
           kdialog
+          kdotool
           kfind
           kget
           kgpg
