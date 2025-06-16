@@ -166,7 +166,6 @@ let
       ## Other
       adwsteamgtk
       #chiaki-ng
-      faugus-launcher
       flips
       gswatcher
       igir
@@ -695,18 +694,21 @@ in
                 name = "script-momw-update";
                 runtimeEnv = {
                   MODLIST = "i-heart-vanilla-directors-cut";
-                  MOMW_DIR = "${config.home.homeDirectory}/Games/openmw/momw-tools-pack-linux";
                 };
                 runtimeInputs = [
+                  inputs.openmw-nix.packages.${system}.delta-plugin
+                  inputs.openmw-nix.packages.${system}.groundcoverify
+                  inputs.openmw-nix.packages.${system}.momw-configurator
+                  inputs.openmw-nix.packages.${system}.openmw-validator
+                  inputs.openmw-nix.packages.${system}.umo
+                  p7zip-rar
                   steam-run
                 ];
                 text = ''
-                  pushd "$MOMW_DIR"
-                  steam-run ./umo sync "$MODLIST"
-                  steam-run ./umo install "$MODLIST"
-                  steam-run ./momw-configurator-linux-amd64 config "$MODLIST" --run-navmeshtool --run-validator
-                  steam-run ./umo vacuum
-                  popd
+                  umo sync "$MODLIST"
+                  umo install "$MODLIST"
+                  momw-configurator config "$MODLIST" --run-navmeshtool --run-validator
+                  umo vacuum
                 '';
               })
             ]
@@ -960,9 +962,16 @@ in
               "dev.opengoal.OpenGOAL"
               "info.cemu.Cemu"
               "info.exult.exult"
+              "io.github.Faugus.faugus-launcher"
+              {
+                appId = "io.github.hedge_dev.unleashedrecomp";
+                bundle = "file://${config.home.homeDirectory}/Games/io.github.hedge_dev.unleashedrecomp.flatpak";
+                sha256 = "13wca95yngfwl1y0c05y0b2w7aa8k3nkhvk46wsrxjvw3shb35im";
+              }
               "io.github.hedge_dev.hedgemodmanager"
               "io.github.noxworld_dev.OpenNox"
               "io.github.randovania.Randovania"
+              #"io.github.RobertBeckebans.RBDoom3BFG"
               "io.github.ryubing.Ryujinx"
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"

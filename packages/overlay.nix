@@ -1,7 +1,5 @@
 (final: prev: {
-  _2ship2harkinian = prev.callPackage ./2ship2harkinian { };
   doom64ex-minus = prev.callPackage ./doom64ex-minus { };
-  faugus-launcher = prev.callPackage ./faugus-launcher { };
   fooyin = prev.callPackage ./fooyin { };
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui { };
