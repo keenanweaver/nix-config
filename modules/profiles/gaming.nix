@@ -694,21 +694,18 @@ in
                 name = "script-momw-update";
                 runtimeEnv = {
                   MODLIST = "i-heart-vanilla-directors-cut";
+                  MOMW_DIR = "${config.home.homeDirectory}/Games/openmw/momw-tools-pack-linux";
                 };
                 runtimeInputs = [
-                  inputs.openmw-nix.packages.${system}.delta-plugin
-                  inputs.openmw-nix.packages.${system}.groundcoverify
-                  inputs.openmw-nix.packages.${system}.momw-configurator
-                  inputs.openmw-nix.packages.${system}.openmw-validator
-                  inputs.openmw-nix.packages.${system}.umo
-                  p7zip-rar
                   steam-run
                 ];
                 text = ''
-                  umo sync "$MODLIST"
-                  umo install "$MODLIST"
-                  momw-configurator config "$MODLIST" --run-navmeshtool --run-validator
-                  umo vacuum
+                  pushd "$MOMW_DIR"
+                  steam-run ./umo sync "$MODLIST"
+                  steam-run ./umo install "$MODLIST"
+                  steam-run ./momw-configurator-linux-amd64 config "$MODLIST" --run-navmeshtool --run-validator
+                  steam-run ./umo vacuum
+                  popd
                 '';
               })
             ]
