@@ -90,6 +90,7 @@ in
               };
             };
           };
+          uninstallUnmanaged = true;
         };
       };
   };
