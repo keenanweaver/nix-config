@@ -35,10 +35,10 @@ in
       enable = cfg.enableNative;
       package = pkgs.steam.override {
         extraEnv = {
-          MANGOHUD = 1;
-          OBS_VKCAPTURE = 1;
-          PROTON_ENABLE_WAYLAND = 1;
-          PROTON_ENABLE_HDR = 1;
+          MANGOHUD = true;
+          OBS_VKCAPTURE = true;
+          PROTON_ENABLE_WAYLAND = true;
+          PROTON_ENABLE_HDR = true;
           PULSE_SINK = "Game";
         };
         # https://github.com/NixOS/nixpkgs/issues/279893#issuecomment-2425213386
