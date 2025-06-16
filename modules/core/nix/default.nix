@@ -107,7 +107,7 @@ in
             npr = "nixpkgs-review pr --print-result";
             psr = "plasmashell --replace & disown";
             rbn = "podman stop -a && systemctl reboot";
-            repw = "${lib.optionalString vars.gaming "systemctl --user stop gpu-screen-recorder &&"} systemctl --user restart pipewire{,-pulse} wireplumber ${lib.optionalString vars.gaming "&& systemctl --user start gpu-screen-recorder"}";
+            repw = "systemctl --user restart pipewire{,-pulse} wireplumber";
             up = "topgrade";
             wget = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
           };
