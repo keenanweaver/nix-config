@@ -90,14 +90,10 @@ let
       augustus # Caesar 3
       clonehero # Guitar Hero
       corsix-th # Theme Hospital
-      devilutionx # Diablo
-      # ja2-stracciatella
       jazz2
       katawa-shoujo-re-engineered
-      nur.repos.Rhys-T.lix-game # Lemmings clone
       openjk # Jedi Academy
       openloco
-      # opennox
       openomf
       openrct2
       (openttd.overrideAttrs {
@@ -110,31 +106,26 @@ let
       opentyrian
       (openxcom.overrideAttrs {
         pname = "openxcom-extended";
-        version = "8.2.9";
+        version = "8.3.0";
         src = fetchFromGitHub {
           owner = "MeridianOXC";
           repo = "OpenXcom";
-          rev = "69e58623e620be35944af10ed0b009b26fd30c85";
-          hash = "sha256-mvKiTydG1c2kyXu0YgCoMe69d1oUNMsgHrGzJVccC9w=";
+          rev = "792896d264c738f92dd7b8295d8389dd098a171f";
+          hash = "sha256-7P/h2dlPNBO0yZkDhSGnLYsuEGx9qcvi9VErDnm5WJk=";
         };
       })
       openxray # STALKER
       perfect_dark
       prismlauncher # MineCraft
       relive # Oddworld
-      ringracers
-      runelite # RuneScape
       shipwright
       sm64ex
-      space-station-14-launcher
       #inputs.nix-citizen.packages.${system}.star-citizen
       starship-sf64
-      srb2
       theforceengine # Dark Forces / Outlaws
       urbanterror
-      wipeout-rewrite
-      xivlauncher # FFXIV
       vvvvvv
+      wipeout-rewrite
       zelda64recomp
     ];
     tools = [
@@ -778,6 +769,18 @@ in
                   PULSE_SINK = "Game";
                 };
               };
+              "io.github.Faugus.faugus-launcher" = {
+                Context = {
+                  filesystems = [
+                    "${config.home.homeDirectory}/Games/faugus"
+                    "xdg-data/Steam"
+                    "/mnt/crusader/Games"
+                  ];
+                };
+                Environment = {
+                  PULSE_SINK = "Game";
+                };
+              };
               "io.github.noxworld_dev.OpenNox" = {
                 Context = {
                   filesystems = [
@@ -980,12 +983,15 @@ in
                 origin = "flathub-beta";
               }
               "net.rpcs3.RPCS3"
+              "net.runelite.RuneLite"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
               "org.azahar_emu.Azahar"
+              "org.diasurgical.DevilutionX"
               "org.DolphinEmu.dolphin-emu"
               "org.duckstation.DuckStation"
               "org.easyrpg.player"
               "org.flycast.Flycast"
+              "org.kartkrew.RingRacers"
               "org.mamedev.MAME"
               "org.openfodder.OpenFodder"
               "org.openjkdf2.OpenJKDF2"
@@ -993,6 +999,7 @@ in
               "org.ppsspp.PPSSPP"
               "org.scummvm.ScummVM"
               "org.sonic3air.Sonic3AIR"
+              "org.srb2.SRB2"
               "vet.rsc.OpenRSC.Launcher"
             ];
           };

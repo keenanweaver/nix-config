@@ -366,7 +366,7 @@
             apply = {
               desktopfile = "org.azahar_emu.Azahar";
               apply = "force";
-            };    
+            };
           }
           {
             description = "icon: doomseeker";
@@ -379,7 +379,20 @@
             apply = {
               desktopfile = "org.drdteam.Doomseeker";
               apply = "force";
-            };    
+            };
+          }
+          {
+            description = "icon: faugus";
+            match = {
+              window-class = {
+                value = "faugus";
+                type = "regex";
+              };
+            };
+            apply = {
+              desktopfile = "io.github.Faugus.faugus-launcher";
+              apply = "force";
+            };
           }
           {
             description = "icon: heroic";
@@ -405,7 +418,7 @@
             apply = {
               desktopfile = "net.kuribo64.melonDS";
               apply = "force";
-            };    
+            };
           }
           {
             description = "mumble";

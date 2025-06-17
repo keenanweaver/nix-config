@@ -165,10 +165,11 @@ Run the commands:
     mv "$GAMESDIR"/descent/descent-2/app/* "$GAMESDIR"/descent/descent-2 && rm -rf "$GAMESDIR"/descent/descent-2/{app,tmp}
     mv "$GAMESDIR"/descent/descent-3/app/* "$GAMESDIR"/descent/descent-3 && rm -rf "$GAMESDIR"/descent/descent-3/{app,tmp}
     ## Diablo
-    mkdir -p "$XDG_DATA_HOME"/diasurgical/devilution/hellfire
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/diablo" -x ls -t | head -n1 | xargs innoextract -d "$XDG_DATA_HOME"/diasurgical/devilution -I 'DIABDAT.MPQ' -I 'hellfire.mpq' -I 'hfmonk.mpq' -I 'hfmusic.mpq' -I 'hfvoice.mpq'
-    mv "$XDG_DATA_HOME"/diasurgical/devilution/hellfire/* "$XDG_DATA_HOME"/diasurgical/devilution
-    rm -rf "$XDG_DATA_HOME"/diasurgical/devilution/hellfire
+    DATADIR="$FLATPAKDIR/org.diasurgical.DevilutionX/data/diasurgical/devilution"
+    mkdir -p "$DATADIR"
+    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/diablo" -x ls -t | head -n1 | xargs innoextract -d "$DATADIR" -I 'DIABDAT.MPQ' -I 'hellfire.mpq' -I 'hfmonk.mpq' -I 'hfmusic.mpq' -I 'hfvoice.mpq'
+    mv "$DATADIR"/hellfire/* $DATADIR
+    rm -rf $DATADIR/hellfire
     ## Doom 3
     mkdir -p "$GAMESDIR"/doom/{doom-3,doom-3-bfg}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/doom_3_classic" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/doom/doom-3
