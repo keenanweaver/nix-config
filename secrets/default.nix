@@ -20,7 +20,9 @@ in
       defaultSopsFormat = "yaml";
       secrets = {
         github_token = { };
-        pass = { };
+        pass = {
+          neededForUsers = true;
+        };
       };
       templates = {
         "nix-github-token.conf" = {
