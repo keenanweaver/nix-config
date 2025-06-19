@@ -37,7 +37,6 @@ in
           "appdata"
           "Backup"
           "Downloads"
-          "eXo"
           "Games"
           "Life"
           "Media"

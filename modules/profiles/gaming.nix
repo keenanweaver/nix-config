@@ -163,6 +163,7 @@ let
       innoextract
       lgogdownloader
       moondeck-buddy
+      nero-umu
       parsec-bin
       tochd
       xlink-kai
@@ -644,7 +645,7 @@ in
               (writeShellApplication {
                 name = "script-exodos-nuked";
                 runtimeEnv = {
-                  EXODOS = "/mnt/crusader/eXo/eXoDOS/eXo/eXoDOS";
+                  EXODOS = "/mnt/crusader/Games/eXo/eXoDOS/eXo/eXoDOS";
                 };
                 runtimeInputs = [
                   fd
