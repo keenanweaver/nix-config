@@ -215,14 +215,6 @@
  <separator>
   <info>
    <metadata owner="http://www.kde.org">
-    <UDI>/org/kde/fstab/crusader:/mnt/user/eXo:/mnt/crusader/eXo</UDI>
-    <isSystemItem>true</isSystemItem>
-   </metadata>
-  </info>
- </separator>
- <separator>
-  <info>
-   <metadata owner="http://www.kde.org">
     <UDI>/org/kde/fstab/crusader:/mnt/user/Photos:/mnt/crusader/Photos</UDI>
     <isSystemItem>true</isSystemItem>
    </metadata>
@@ -232,14 +224,6 @@
   <info>
    <metadata owner="http://www.kde.org">
     <UDI>/org/kde/fstab/crusader:/mnt/user/Media:/mnt/crusader/Media</UDI>
-    <isSystemItem>true</isSystemItem>
-   </metadata>
-  </info>
- </separator>
- <separator>
-  <info>
-   <metadata owner="http://www.kde.org">
-    <UDI>/org/kde/fstab/crusader:/mnt/user/Mister:/mnt/crusader/Mister</UDI>
     <isSystemItem>true</isSystemItem>
    </metadata>
   </info>
