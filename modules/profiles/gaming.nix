@@ -21,6 +21,7 @@ let
       doomseeker
       dsda-doom
       gzdoom
+      nugget-doom
       nyan-doom
       # odamex
       prboom-plus
@@ -35,16 +36,6 @@ let
           repo = "Cherry-Doom";
           tag = "cherry-doom-2.0.0";
           hash = "sha256-f/5b4i5omCp34upJ2/VF7VuvwU9YliXcWnyR4jl9gKA=";
-        };
-      })
-      (woof-doom.overrideAttrs {
-        pname = "nugget-doom";
-        version = "4.3.0";
-        src = fetchFromGitHub {
-          owner = "MrAlaux";
-          repo = "Nugget-Doom";
-          tag = "nugget-doom-4.3.0";
-          hash = "sha256-T85UwCl75/RPOscfcRVlF3HhjlDVM2+W1L002UGNLZU=";
         };
       })
       zandronum
@@ -91,7 +82,7 @@ let
       clonehero # Guitar Hero
       corsix-th # Theme Hospital
       jazz2
-      katawa-shoujo-re-engineered
+      #katawa-shoujo-re-engineered
       openjk # Jedi Academy
       openloco
       openomf
@@ -106,12 +97,12 @@ let
       opentyrian
       (openxcom.overrideAttrs {
         pname = "openxcom-extended";
-        version = "8.3.0";
+        version = "8.3.1";
         src = fetchFromGitHub {
           owner = "MeridianOXC";
           repo = "OpenXcom";
-          rev = "792896d264c738f92dd7b8295d8389dd098a171f";
-          hash = "sha256-7P/h2dlPNBO0yZkDhSGnLYsuEGx9qcvi9VErDnm5WJk=";
+          rev = "c4779fe48021b1716b12983eb3ef84c47f5345a3";
+          hash = "sha256-PoQ3sss8ac06WzM+axGGnrZcfzFAVhVBKRNgt4CnC1k=";
         };
       })
       openxray # STALKER
@@ -260,7 +251,7 @@ in
       };
     };
 
-    chaotic.mesa-git.enable = true;
+    #chaotic.mesa-git.enable = true;
 
     environment = {
       etc = {
@@ -1212,6 +1203,7 @@ in
         xdg = {
           autostart.entries = with pkgs; [
             "${moondeck-buddy}/share/applications/MoonDeckBuddy.desktop"
+            "${nuked-sc55}/share/applications/Nuked-SC55_silent.desktop"
           ];
           desktopEntries = {
             _86box = {

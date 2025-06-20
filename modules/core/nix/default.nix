@@ -73,8 +73,6 @@ in
           upper = "06:00";
         };
       };
-      rebuild.enableNg = true;
-      switch.enableNg = true;
     };
 
     home-manager.users.${username} =

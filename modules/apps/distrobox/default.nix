@@ -56,6 +56,20 @@ in
             in
             with pkgs;
             [
+              (writeShellApplication {
+                name = "bootstrap-baremetal";
+                runtimeInputs = [
+                  distrobox
+                ];
+                text = ''
+                  distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
+                  ${lib.optionalString vars.gaming ''
+                    distrobox enter bazzite-arch-exodos -- bash -l -c "bootstrap-distrobox"
+                    distrobox enter bazzite-arch-gaming -- bash -l -c "bootstrap-distrobox"
+                    script-game-stuff
+                  ''}
+                '';
+              })
               distrobox-tui
             ]
             ++ lib.optionals cfg.gaming [

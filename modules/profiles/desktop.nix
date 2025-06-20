@@ -85,7 +85,6 @@ in
     home-manager.users.${username} =
       {
         pkgs,
-        config,
         vars,
         ...
       }:
@@ -94,25 +93,13 @@ in
           amdgpu_top
           audacious
           audacious-plugins
-          (writeShellApplication {
-            name = "bootstrap-baremetal";
-            runtimeInputs = [
-              distrobox
-            ];
-            text = ''
-              distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
-              distrobox enter bazzite-arch-exodos -- bash -l -c "bootstrap-distrobox"
-              distrobox enter bazzite-arch-gaming -- bash -l -c "bootstrap-distrobox"
-              ${lib.optionalString vars.gaming ''script-game-stuff''}
-            '';
-          })
           cyanrip
           filezilla
           fooyin
           gearlever
           hacompanion
           halloy
-          handbrake
+          #handbrake
           kdePackages.kdenlive
           losslesscut-bin
           mangareader
