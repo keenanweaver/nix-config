@@ -131,7 +131,7 @@
 
   systemd = {
     services = {
-      NetworkManager-wait-online.wantedBy = lib.mkForce [ ];
+      # NetworkManager-wait-online.wantedBy = lib.mkForce [ ];
       plymouth-quit-wait.enable = false;
     };
     targets = {
