@@ -421,6 +421,19 @@
             };
           }
           {
+            description = "icon: pcsx2";
+            match = {
+              window-class = {
+                value = "PCSX2";
+                type = "regex";
+              };
+            };
+            apply = {
+              desktopfile = "net.pcsx2.PCSX2";
+              apply = "force";
+            };
+          }
+          {
             description = "mumble";
             match = {
               window-class = {
