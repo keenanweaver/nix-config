@@ -72,6 +72,7 @@ in
               text = ''
                 @nClientDownloadEnableHTTP2PlatformLinux 0
                 @fDownloadRateImprovementToAddAnotherConnection 1.0
+                unShaderBackgroundProcessingThreads 8
               '';
               target = "${config.xdg.dataHome}/Steam/steam_dev.cfg";
             };

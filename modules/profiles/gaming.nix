@@ -222,7 +222,7 @@ in
       kernelModules = [
         "gcadapter_oc"
         "zenergy"
-      ];
+      ]; 
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
       kernelParams = [
         "usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
@@ -251,7 +251,7 @@ in
       };
     };
 
-    #chaotic.mesa-git.enable = true;
+    chaotic.mesa-git.enable = true;
 
     environment = {
       etc = {

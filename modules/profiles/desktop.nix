@@ -106,7 +106,6 @@ in
           metadata-cleaner
           mousai
           neo
-          newsflash
           nvtopPackages.amd
           picard
           projectm-sdl-cpp
@@ -114,6 +113,7 @@ in
           qpwgraph
           qtscrcpy
           revolt-desktop
+          rssguard
           rustdesk-flutter
           signal-desktop-bin
           varia
