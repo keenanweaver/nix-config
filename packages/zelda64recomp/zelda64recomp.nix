@@ -137,11 +137,9 @@ llvmPackages_19.stdenv.mkDerivation (finalAttrs: {
 
   postFixup = ''
     # This is needed as Zelda64Recompiled will segfault when not run from the same directory as the binary
-    # It will also exit if run with SDL_VIDEODRIVER=wayland
     source "${makeWrapper}/nix-support/setup-hook"
     wrapProgram $out/bin/Zelda64Recompiled \
-      --run "cd $out/bin/" \
-      --set SDL_VIDEODRIVER x11
+      --run "cd $out/bin/"
   '';
 
   meta = {
