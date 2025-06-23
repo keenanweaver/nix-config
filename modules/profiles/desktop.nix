@@ -99,7 +99,7 @@ in
           gearlever
           hacompanion
           halloy
-          #handbrake
+          handbrake
           kdePackages.kdenlive
           losslesscut-bin
           mangareader

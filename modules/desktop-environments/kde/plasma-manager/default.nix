@@ -132,7 +132,10 @@
             kcminputrc = {
               "Keyboard"."RepeatDelay" = 250;
             };
-            "kded5rc"."Module-device_automounter"."autoload" = false;
+            kded5rc = {
+              "Module-device_automounter"."autoload" = false;
+              "Module-gtkconfig"."autoload" = false;
+            };
             kdeglobals = {
               "KDE"."AnimationDurationFactor" = 0.25;
               "KDE"."ShowDeleteCommand" = true;

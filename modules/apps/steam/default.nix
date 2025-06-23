@@ -52,7 +52,6 @@ in
         inputs.nix-proton-cachyos.packages.${system}.proton-cachyos
         proton-ge-bin
       ];
-      gamescopeSession.enable = true;
       localNetworkGameTransfers.openFirewall = true;
       protontricks.enable = true;
       remotePlay.openFirewall = true;
