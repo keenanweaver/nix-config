@@ -154,7 +154,6 @@ let
       innoextract
       lgogdownloader
       moondeck-buddy
-      nero-umu
       parsec-bin
       tochd
       xlink-kai
@@ -207,6 +206,7 @@ in
     heroic.enable = true;
     lutris.enable = true;
     mangohud.enable = true;
+    nero-umu.enable = true;
     nonfree.enable = true;
     obs.enable = true;
     steam.enable = true;
@@ -222,7 +222,7 @@ in
       kernelModules = [
         "gcadapter_oc"
         "zenergy"
-      ]; 
+      ];
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
       kernelParams = [
         "usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz

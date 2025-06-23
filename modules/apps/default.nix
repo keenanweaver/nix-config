@@ -35,6 +35,7 @@
     ./mullvad
     ./mumble
     ./navi
+    ./nero-umu
     ./nh
     ./nix-index
     ./nix-ld
