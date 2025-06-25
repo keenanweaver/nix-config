@@ -246,11 +246,11 @@ in
                   export PULSE_SINK="Game"
                   cd /mnt/crusader/Games/eXo/eXoDOS/exogui
                   if [ -z "''${CONTAINER_ID}" ]; then
-                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/mnt/crusader/eXo/eXoDOS/exogui/${bin}' "$@"
+                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/mnt/crusader/Games/eXo/eXoDOS/exogui/${bin}' "$@"
                   elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
                     exec distrobox-host-exec '${bin-export}' "$@"
                   else
-                    exec '/mnt/crusader/eXo/eXoDOS/exogui/${bin}' "$@"
+                    exec '/mnt/crusader/Games/eXo/eXoDOS/exogui/${bin}' "$@"
                   fi
                 ''
               )

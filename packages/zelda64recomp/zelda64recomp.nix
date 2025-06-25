@@ -18,6 +18,7 @@
   z64decompress,
   n64recomp,
   directx-shader-compiler,
+  forceX11 ? false,
 }:
 
 let
@@ -135,11 +136,14 @@ llvmPackages_19.stdenv.mkDerivation (finalAttrs: {
      )
   '';
 
+  # This is needed as Zelda64Recompiled will segfault when not run from the same
+  # directory as the binary. It also used to exit when run without X11. Recent rt64
+  # updates enabled wayland support, but leave the option to disable this on the
+  # application level if desired.
   postFixup = ''
-    # This is needed as Zelda64Recompiled will segfault when not run from the same directory as the binary
     source "${makeWrapper}/nix-support/setup-hook"
-    wrapProgram $out/bin/Zelda64Recompiled \
-      --run "cd $out/bin/"
+    wrapProgram $out/bin/Zelda64Recompiled --run "cd $out/bin/" \
+        ${lib.optionalString forceX11 ''--set SDL_VIDEODRIVER x11''}
   '';
 
   meta = {
