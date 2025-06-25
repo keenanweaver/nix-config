@@ -81,6 +81,7 @@ let
       augustus # Caesar 3
       clonehero # Guitar Hero
       corsix-th # Theme Hospital
+      #isle-portable
       jazz2
       #katawa-shoujo-re-engineered
       openjk # Jedi Academy
@@ -124,6 +125,7 @@ let
       _86Box-with-roms
       # archipelago
       # bizhawk
+      dosbox-staging
       hypseus-singe
       mednafen
       mednaffe
@@ -132,6 +134,7 @@ let
       #inputs.chaotic.packages.${system}.pcsx2_git
       inputs.chaotic.packages.${system}.shadps4_git
       #nur.repos.novel2430.vita3k
+      xenia-canary
       ## Input
       joystickwake
       oversteer
