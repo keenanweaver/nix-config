@@ -710,10 +710,6 @@ in
               global = {
                 Environment = {
                   FLATPAK_GL_DRIVERS = "mesa-git";
-                };
-              };
-              "com.fightcade.Fightcade" = {
-                Environment = {
                   PULSE_SINK = "Game";
                 };
               };
@@ -723,21 +719,10 @@ in
                     "!home"
                   ];
                 };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
-              "com.supermodel3.Supermodel" = {
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
               };
               "dev.opengoal.OpenGOAL" = {
                 Context = {
                   filesystems = [ "${config.home.homeDirectory}/Games/opengoal" ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
                 };
               };
               "info.cemu.Cemu" = {
@@ -746,18 +731,12 @@ in
                     "${config.home.homeDirectory}/Games/games/cemu"
                   ];
                 };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
               };
               "info.exult.exult" = {
                 Context = {
                   filesystems = [
                     "${config.home.homeDirectory}/Music/soundfonts:ro"
                   ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
                 };
               };
               "io.github.Faugus.faugus-launcher" = {
@@ -768,9 +747,6 @@ in
                     "/mnt/crusader/Games"
                   ];
                 };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
               };
               "io.github.noxworld_dev.OpenNox" = {
                 Context = {
@@ -778,9 +754,6 @@ in
                     "!home"
                     "${config.home.homeDirectory}/Games/nox"
                   ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
                 };
               };
               "io.github.ryubing.Ryujinx" = {
@@ -790,18 +763,12 @@ in
                     "${config.home.homeDirectory}/Games/games/switch"
                   ];
                 };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
               };
               "net.fsuae.FS-UAE" = {
                 Context = {
                   filesystems = [
                     "!home"
                   ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
                 };
               };
               "net.kuribo64.melonDS" = {
@@ -811,9 +778,6 @@ in
                     "/mnt/crusader/Games/Backups/Myrient/No-Intro"
                   ];
                 };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
               };
               "net.pcsx2.PCSX2" = {
                 Context = {
@@ -821,9 +785,6 @@ in
                     "host"
                     "/mnt/crusader/Games/Rom/CHD/Sony Playstation 2"
                   ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
                 };
               };
               "net.rpcs3.RPCS3" = {
@@ -833,23 +794,12 @@ in
                     "${config.home.homeDirectory}/Games/games/rpcs3"
                   ];
                 };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
-              "net.sourceforge.uqm_mods.UQM-MegaMod" = {
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
               };
               "org.azahar_emu.Azahar" = {
                 Context = {
                   filesystems = [
                     "${config.home.homeDirectory}/Games/games/3ds"
                   ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
                 };
               };
               "org.duckstation.DuckStation" = {
@@ -858,18 +808,12 @@ in
                     "/mnt/crusader/Games/Rom/CHD/Sony Playstation"
                   ];
                 };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
               };
               "org.DolphinEmu.dolphin-emu" = {
                 Context = {
                   filesystems = [
                     "/mnt/crusader/Games/Rom/CHD/Nintendo GameCube"
                   ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
                 };
               };
               "org.easyrpg.player" = {
@@ -883,7 +827,6 @@ in
                   shared = "network"; # obs-gamecapture
                 };
                 Environment = {
-                  PULSE_SINK = "Game";
                   RPG2K_RTP_PATH = "${config.home.homeDirectory}/Games/games/rpg-maker/RTP/2000";
                   RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/games/rpg-maker/RTP/2003";
                 };
@@ -894,9 +837,6 @@ in
                     "/mnt/crusader/Games/Rom/CHD/Sega Dreamcast"
                   ];
                 };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
               };
               "org.mamedev.MAME" = {
                 Context = {
@@ -904,14 +844,6 @@ in
                     "/mnt/crusader/Games/Rom/Other/MAME"
                     "!home"
                   ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
-              "org.openjkdf2.OpenJKDF2" = {
-                Environment = {
-                  PULSE_SINK = "Game";
                 };
               };
               "org.scummvm.ScummVM" = {
@@ -922,14 +854,6 @@ in
                     "${config.home.homeDirectory}/Music/soundfonts:ro"
                     "${config.home.homeDirectory}/Games/games/scummvm"
                   ];
-                };
-                Environment = {
-                  PULSE_SINK = "Game";
-                };
-              };
-              "org.sonic3air.Sonic3AIR" = {
-                Environment = {
-                  PULSE_SINK = "Game";
                 };
               };
             };

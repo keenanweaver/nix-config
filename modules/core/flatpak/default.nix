@@ -89,6 +89,16 @@ in
                 XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
               };
             };
+            "io.github.ungoogled_software.ungoogled_chromium" = {
+              Environment = {
+                PULSE_SINK = "Browser";
+              };
+            };
+            "net.mullvad.MullvadBrowser" = {
+              Environment = {
+                PULSE_SINK = "Browser";
+              };
+            };
           };
           uninstallUnmanaged = true;
         };
