@@ -30,20 +30,9 @@ in
             name = "gsr-save-replay";
             runtimeInputs = [
               killall
-              libnotify
             ];
             text = ''
               killall -SIGUSR1 gpu-screen-recorder
-            '';
-          })
-          (writeShellApplication {
-            name = "gsr-stop-replay";
-            runtimeInputs = [
-              killall
-              libnotify
-            ];
-            text = ''
-              killall -SIGINT gpu-screen-recorder
             '';
           })
         ];
