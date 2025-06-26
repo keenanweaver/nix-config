@@ -28,16 +28,6 @@ let
       rbdoom-3-bfg
       sladeUnstable
       woof-doom
-      (woof-doom.overrideAttrs {
-        pname = "cherry-doom";
-        version = "2.0.0";
-        src = fetchFromGitHub {
-          owner = "xemonix0";
-          repo = "Cherry-Doom";
-          tag = "cherry-doom-2.0.0";
-          hash = "sha256-f/5b4i5omCp34upJ2/VF7VuvwU9YliXcWnyR4jl9gKA=";
-        };
-      })
       zandronum
       ## Fallout
       fallout-ce
@@ -74,7 +64,6 @@ let
       etlegacy
       iortcw
       ## Other
-      # _2ship2harkinian
       abuse
       am2rlauncher
       arx-libertatis # Arx Fatalis
@@ -107,7 +96,6 @@ let
         };
       })
       openxray # STALKER
-      perfect_dark
       prismlauncher # MineCraft
       relive # Oddworld
       shipwright
@@ -124,6 +112,7 @@ let
       ## Emulators
       _86Box-with-roms
       # archipelago
+      nur.repos.bandithedoge.basiliskii-bin
       # bizhawk
       dosbox-staging
       hypseus-singe
@@ -133,6 +122,7 @@ let
       nuked-sc55
       #inputs.chaotic.packages.${system}.pcsx2_git
       inputs.chaotic.packages.${system}.shadps4_git
+      nur.repos.bandithedoge.sheepshaver-bin
       #nur.repos.novel2430.vita3k
       xenia-canary
       ## Input
@@ -143,7 +133,7 @@ let
       cartridges
       itch
       ## Modding
-      #hedgemodmanager
+      hedgemodmanager
       limo
       nexusmods-app-unfree
       #owmods-gui
@@ -301,13 +291,22 @@ in
 
     nix.settings = {
       extra-substituters = [
+        "https://just-one-more-cache.cachix.org/"
         "https://nix-gaming.cachix.org"
         "https://nix-citizen.cachix.org"
       ];
       extra-trusted-public-keys = [
+        "just-one-more-cache.cachix.org-1:4nShcKEgcUEVlJqKFrgDwoGfqLnw5KPG4UDTV02jnr4="
         "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       ];
+    };
+
+    programs = {
+      perfect-dark-git.enable = true;
+      sm64coopdx.enable = true;
+      spaghetti-kart-git.enable = true;
+      starship-sf64.enable = true;
     };
 
     security = {
@@ -653,7 +652,6 @@ in
                 name = "script-game-stuff";
                 runtimeEnv = {
                   DREAMM = "https://aarongiles.com/dreamm/releases/dreamm-3.0.3-linux-x64.tgz";
-                  SHEEP_SHAVER = "https://api.github.com/repos/Korkman/macemu-appimage-builder/releases/latest";
                   CONTY = "https://api.github.com/repos/Kron4ek/conty/releases/latest";
                   GAMES_DIR = "${config.home.homeDirectory}/Games";
                   LOCAL_BIN = "${config.home.homeDirectory}/.local/bin";
@@ -669,8 +667,6 @@ in
                   ## DREAMM
                   wget -P "$GAMES_DIR"/games/dreamm $DREAMM
                   fd dreamm -e tgz "$GAMES_DIR"/games/dreamm -x tar xf {} -c "$GAMES_DIR"/games/dreamm
-                  ## SheepShaver
-                  curl $SHEEP_SHAVER | jq -r '.assets[] | select(.name | test("SheepShaver-x86_64.AppImage$$")).browser_download_url' | xargs wget -P "$LOCAL_BIN"
                   ## Conty
                   curl $CONTY | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs wget -P "$LOCAL_BIN"
                   chmod +x "$LOCAL_BIN"/conty_lite.sh
@@ -963,10 +959,8 @@ in
                 bundle = "file://${config.home.homeDirectory}/Games/io.github.hedge_dev.unleashedrecomp.flatpak";
                 sha256 = "13wca95yngfwl1y0c05y0b2w7aa8k3nkhvk46wsrxjvw3shb35im";
               }
-              "io.github.hedge_dev.hedgemodmanager"
               "io.github.noxworld_dev.OpenNox"
               "io.github.randovania.Randovania"
-              #"io.github.RobertBeckebans.RBDoom3BFG"
               "io.github.ryubing.Ryujinx"
               "io.github.santiagocezar.maniatic-launcher"
               "io.itch.tx00100xt.SeriousSamClassic-VK"

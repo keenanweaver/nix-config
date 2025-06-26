@@ -10,7 +10,6 @@
   n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
   nyan-doom = prev.callPackage ./nyan-doom { };
-  perfect_dark = prev.callPackage ./perfect_dark { };
   plymouth = prev.plymouth.overrideAttrs (
     { src, ... }:
     {
@@ -23,7 +22,6 @@
     }
   );
   relive = prev.callPackage ./relive { };
-  starship-sf64 = prev.callPackage ./starship-sf64 { };
   tochd = prev.callPackage ./tochd { };
   xlink-kai = prev.callPackage ./xlink-kai { };
   z64decompress = prev.callPackage ./zelda64recomp/z64decompress.nix { };

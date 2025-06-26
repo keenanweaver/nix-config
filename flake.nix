@@ -76,6 +76,10 @@
       url = "github:Jovian-Experiments/Jovian-NixOS";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    just-one-more-repo = {
+      url = "github:ProverbialPennance/just-one-more-repo";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     wayland-pipewire-idle-inhibit = {
       url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -214,6 +218,7 @@
               ./hosts/desktop/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB" ]; }
               inputs.impermanence.nixosModules.impermanence
+              inputs.just-one-more-repo.nixosModules.default
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
