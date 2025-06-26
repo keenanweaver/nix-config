@@ -70,7 +70,7 @@ let
       augustus # Caesar 3
       clonehero # Guitar Hero
       corsix-th # Theme Hospital
-      #isle-portable
+      isle-portable
       jazz2
       #katawa-shoujo-re-engineered
       openjk # Jedi Academy
