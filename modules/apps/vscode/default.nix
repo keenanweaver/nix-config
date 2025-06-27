@@ -17,6 +17,7 @@ let
       formulahendry.code-runner
       foxundermoon.shell-format
       jnoortheen.nix-ide
+      llvm-vs-code-extensions.vscode-clangd
       mkhl.direnv
       #ms-python.python
       ms-vscode.powershell

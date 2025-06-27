@@ -86,6 +86,8 @@ in
             shellcheck
             shellharden
             shfmt
+            ## Clang ##
+            clang-tools
             ### Docker ###
             #docker-compose-language-service
             #dockerfile-language-server-nodejs

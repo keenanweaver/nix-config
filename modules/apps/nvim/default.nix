@@ -121,6 +121,11 @@ in
                 bash = {
                   enable = true;
                 };
+                clang = {
+                  enable = true;
+                  cHeader = true;
+                  dap.enable = true;
+                };
                 css = {
                   enable = true;
                 };
