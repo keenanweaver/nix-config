@@ -58,6 +58,10 @@
                       # Nintendo GameCube
                       #rclone copy myrient:"/files/Redump/Nintendo - GameCube - NKit RVZ [zstd-19-128k]/" "${chdDest}/Nintendo GameCube/USA" --filter "- *{\(${filter},Japan\)}*" --filter "+ *\(USA\)*" -v
                       #rclone copy myrient:"/files/Redump/Nintendo - GameCube - NKit RVZ [zstd-19-128k]/" "${chdDest}/Nintendo GameCube/Japan" --filter "- *{\(${filter},USA\)}*" --filter "+ *\(Japan\)*" -v
+                      # Philips CD-i
+                      rclone copy myrient:"/files/Redump/Philips - CD-i/" "${chdDest}/Philips CD-i/USA" --filter "- *{\(${filter},Japan\)}*" --filter "+ *\(USA\)*" -v
+                      rclone copy myrient:"/files/Redump/Philips - CD-i/" "${chdDest}/Philips CD-i/Japan" --filter "- *{\(${filter},USA\)}*" --filter "+ *\(Japan\)*" -v
+                      rclone copy myrient:"/files/Redump/Philips - CD-i/" "${chdDest}/Philips CD-i/Europe" --filter "- *{\(USA,Beta,Demo,Proto,Japan\)}*" -v
                       # Panasonic 3DO
                       rclone copy myrient:"/files/Internet Archive/chadmaster/3do-chd-zstd-redump/3do-chd-zstd/" "${chdDest}/Panasonic 3DO/USA" --filter "- *{\(${filter},Japan\)}*" --filter "+ *\(USA\)*" -v
                       rclone copy myrient:"/files/Internet Archive/chadmaster/3do-chd-zstd-redump/3do-chd-zstd/" "${chdDest}/Panasonic 3DO/Japan" --filter "- *{\(${filter},USA\)}*" --filter "+ *\(Japan\)*" -v
