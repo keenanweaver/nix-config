@@ -101,6 +101,7 @@ in
           halloy
           handbrake
           kdePackages.kdenlive
+          jellyfin-tui
           losslesscut-bin
           mangareader
           metadata-cleaner
