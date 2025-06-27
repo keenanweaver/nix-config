@@ -144,9 +144,14 @@
     enable = true;
   };
 
-  home-manager.users.${username} = {
-    home.sessionVariables = {
-      WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"; # 7950X3D
+  home-manager.users.${username} =
+    { pkgs, ... }:
+    {
+      home = {
+        packages = with pkgs; [ solaar ];
+        sessionVariables = {
+          WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"; # 7950X3D
+        };
+      };
     };
-  };
 }

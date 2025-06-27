@@ -218,7 +218,7 @@ in
       ];
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
       kernelParams = [
-        "usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
+        #"usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
         "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
         "amdgpu.mcbp=0"
         "tsc=reliable"
