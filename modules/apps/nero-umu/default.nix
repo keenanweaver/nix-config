@@ -20,18 +20,18 @@ in
       {
         home.file = {
           wine-links-proton-cachyos-nero = {
-            enable = false;
+            enable = true;
             source = config.lib.file.mkOutOfStoreSymlink "${
               inputs.nix-proton-cachyos.packages.${pkgs.system}.proton-cachyos
             }/share/steam/compatibilitytools.d/proton-cachyos";
-            target = "${config.xdg.dataHome}/Nero-UMU/compatibilitytools.d/proton-cachyos";
+            target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/proton-cachyos-nero";
           };
           wine-links-protonge-nero = {
-            enable = false;
+            enable = true;
             source = config.lib.file.mkOutOfStoreSymlink "${
               inputs.chaotic.packages.${pkgs.system}.proton-ge-custom
             }/bin";
-            target = "${config.xdg.dataHome}/Nero-UMU/compatibilitytools.d/proton-ge-custom";
+            target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/proton-ge-custom-nero";
           };
         };
         home.packages = with pkgs; [ nero-umu ];
