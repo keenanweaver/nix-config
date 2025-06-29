@@ -34,7 +34,6 @@ in
           };
         })
         [
-          "appdata"
           "Backup"
           "Downloads"
           "Games"
