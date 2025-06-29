@@ -31,7 +31,7 @@ in
             source = config.lib.file.mkOutOfStoreSymlink "${
               inputs.chaotic.packages.${pkgs.system}.proton-ge-custom
             }/bin";
-            target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/proton-ge-custom-nero";
+            target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-custom-nero";
           };
         };
         home.packages = with pkgs; [ nero-umu ];
