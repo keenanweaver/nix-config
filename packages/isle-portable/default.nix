@@ -75,18 +75,24 @@ stdenv.mkDerivation (finalAttrs: {
     ];
 
   cmakeFlags = [
-    (lib.strings.cmakeBool "DOWNLOAD_DEPENDENCIES" false)
-    (lib.strings.cmakeBool "ISLE_DEBUG" imguiDebug)
-    (lib.strings.cmakeFeature "ISLE_EMSCRIPTEN_HOST" emscriptenHost)
+    (lib.cmakeBool "DOWNLOAD_DEPENDENCIES" false)
+    (lib.cmakeBool "ISLE_DEBUG" imguiDebug)
+    (lib.cmakeFeature "ISLE_EMSCRIPTEN_HOST" emscriptenHost)
   ];
 
   passthru.updateScript = unstableGitUpdater { hardcodeZeroVersion = true; };
 
   meta = {
-    description = "A portable version of LEGO Island (Version 1.1, English) based on the isle decompilation project.";
+    description = "Portable decompilation of Lego Island";
     homepage = "https://github.com/isledecomp/isle-portable";
-    license = lib.licenses.unfree;
-    platforms = lib.platforms.all;
+    license = with lib.licenses; [
+      # The original code for the portable project
+      lgpl3Plus
+      # The decompilation code
+      mit
+      unfree
+    ];
+    platforms = with lib.platforms; windows ++ linux ++ darwin;
     mainProgram = "isle";
     maintainers = with lib.maintainers; [
       RossSmyth
