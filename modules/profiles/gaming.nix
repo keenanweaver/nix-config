@@ -75,6 +75,7 @@ let
       #katawa-shoujo-re-engineered
       openjk # Jedi Academy
       openloco
+      inputs.chaotic.packages.${system}.openmohaa_git
       openomf
       openrct2
       (openttd.overrideAttrs {
@@ -358,6 +359,9 @@ in
             "${simracing-hwdb}/90-vrs.hwdb"
           ]
         );
+        extraRules = ''
+          KERNEL=="ntsync", MODE="0644"
+        '';
         packages = with pkgs; [
           game-devices-udev-rules
           (writeTextFile {
@@ -391,14 +395,14 @@ in
             name = "70-gamesir.rules";
             text = ''
               # GameSir Cyclone 2 Wireless Controller; USB
-              # Nintendo Switch
+              ## Nintendo Switch
               SUBSYSTEM=="usb", ATTR{idProduct}=="2009", ATTR{idVendor}=="057e", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-              # D-input/Sony
+              ## D-input/Sony
               SUBSYSTEM=="usb", ATTR{idProduct}=="09cc", ATTR{idVendor}=="054c", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-              # X-input/XBOX
+              ## X-input/XBOX
               SUBSYSTEM=="usb", ATTR{idProduct}=="1053", ATTR{idVendor}=="3537", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
               # GameSir Cyclone 2 Wireless Controller; 2.4GHz
-              # X-input/XBOX
+              ## X-input/XBOX
               SUBSYSTEM=="usb", ATTR{idProduct}=="100b", ATTR{idVendor}=="3537", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
               # GameSir Cyclone 2 Wireless Controller; Bluetooth
               SUBSYSTEM=="input", ATTR{idProduct}=="8100", ATTR{idVendor}=="054c", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
@@ -411,14 +415,41 @@ in
               # 8BitDo Arcade Stick; Bluetooth (X-mode)
               SUBSYSTEM=="input", ATTRS{name}=="8BitDo Arcade Stick", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
               # 8BitDo Ultimate 2.4G Wireless  Controller; USB/2.4Ghz
-              # X-mode
+              ## X-mode
               SUBSYSTEM=="usb", ATTR{idProduct}=="3106", ATTR{idVendor}=="2dc8", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-              # D-mode
+              ## D-mode
               SUBSYSTEM=="usb", ATTR{idProduct}=="3012", ATTR{idVendor}=="2dc8", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
               # 8BitDo Ultimate 2C Wireless Controller; USB/2.4GHz
               SUBSYSTEM=="usb", ATTR{idProduct}=="310a", ATTR{idVendor}=="2dc8", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
             '';
             destination = "/etc/udev/rules.d/70-8bitdo.rules";
+          })
+          # https://github.com/starcitizen-lug/knowledge-base/wiki/Sticks,-Throttles,-&-Pedals
+          (writeTextFile {
+            name = "70-flight-stick.rules";
+            text = ''
+              # Virpil
+              KERNEL=="hidraw*", ATTRS{idVendor}=="3344", ATTRS{idProduct}=="*", MODE="0660", TAG+="uaccess"
+              ## Virpil Rudder Pedals
+              ACTION=="add", SUBSYSTEM=="input", KERNEL=="event*", \
+                ENV{ID_VENDOR_ID}=="3344", ENV{ID_MODEL_ID}=="01f8", \
+                RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0"
+              # VKB
+              KERNEL=="hidraw*", ATTRS{idVendor}=="231d", ATTRS{idProduct}=="*", MODE="0660", TAG+="uaccess"
+              ## VKB SEM
+              ACTION=="add", SUBSYSTEM=="input", KERNEL=="event*", \
+                ENV{ID_VENDOR_ID}=="231d", ENV{ID_MODEL_ID}=="2204", \
+                RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0" 
+              ## VKB Gunfighter L
+              ACTION=="add", SUBSYSTEM=="input", KERNEL=="event*", \
+                ENV{ID_VENDOR_ID}=="231d", ENV{ID_MODEL_ID}=="0127", \
+                RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0" 
+              ## VKB Gunfighter R
+              ACTION=="add", SUBSYSTEM=="input", KERNEL=="event*", \
+                ENV{ID_VENDOR_ID}=="231d", ENV{ID_MODEL_ID}=="0126", \
+                RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0" 
+            '';
+            destination = "/etc/udev/rules.d/70-vkb.rules";
           })
           # https://wiki.archlinux.org/title/Gamepad#Motion_controls_taking_over_joypad_controls_and/or_causing_unintended_input_with_joypad_controls
           (writeTextFile {
