@@ -226,6 +226,10 @@ Run the commands:
     ## Locomotion
     mkdir -p "$GAMESDIR"/loco
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/chris_sawyers_locomotion" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/loco
+    ## Medal of Honor: Allied Assault
+    mkdir -p "$HOME"/.openmohaa
+    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/medal_of_honor_allied_assault_war_chest" -x ls -t | head -n1 | xargs innoextract -g -d "$HOME"/.openmohaa
+    mv "$HOME"/.openmohaa/app/* "$HOME"/.openmohaa && rm -rf "$HOME"/.openmohaa/{app,tmp}
     ## Morrowind
     mkdir -p "$GAMESDIR"/{morrowind,openmw}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/the_elder_scrolls_iii_morrowind_goty_edition_game" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/morrowind
