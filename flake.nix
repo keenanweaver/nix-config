@@ -89,7 +89,7 @@
       inputs.nix-gaming.follows = "nix-gaming";
     };
     nix-gaming.url = "github:fufexan/nix-gaming";
-    nix-proton-cachyos.url = "github:kimjongbing/nix-proton-cachyos";
+    nix-proton-cachyos.url = "github:jbgi/nix-proton-cachyos";
     nix-reshade.url = "github:LovingMelody/nix-reshade";
     nonfree = {
       url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
@@ -276,6 +276,7 @@
               ./hosts/desktop/disko.nix
               { _module.args.disks = [ "/dev/nvme0n1" ]; }
               inputs.impermanence.nixosModules.impermanence
+              inputs.just-one-more-repo.nixosModules.default
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.nur.modules.nixos.default
               inputs.sops-nix.nixosModules.sops
