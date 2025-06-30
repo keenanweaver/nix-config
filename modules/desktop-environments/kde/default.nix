@@ -109,12 +109,6 @@ in
         touchpad.accelProfile = "flat";
       };
     };
-    # TODO: Remove after Plasma fixed favorites reloading https://github.com/NixOS/nixpkgs/issues/414909
-    system.userActivationScripts = {
-      "restart-plasma" = ''
-        ${pkgs.systemd}/bin/systemctl restart --user plasma-plasmashell.service
-      '';
-    };
 
     xdg = {
       portal = {
