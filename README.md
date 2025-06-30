@@ -24,6 +24,7 @@ TODO:
 * Fix nuked-sc55 not autostarting
 * Linking Kron4ek Wine breaks [Bottles](modules/apps/bottles/default.nix)
 * Fix Sunshine hanging KDE on logout
+* `PROTON_ENABLE_WAYLAND=1` primary monitor wrong. https://github.com/CachyOS/proton-cachyos/issues/29
 
 # Installation instructions
 
