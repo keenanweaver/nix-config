@@ -236,6 +236,7 @@ in
           "fs.file-max" = 2097152;
           "kernel.split_lock_mitigate" = 0;
           "net.core.netdev_max_backlog" = 4096;
+          "net.ipv4.tcp_fin_timeout" = 5;
           "vm.dirty_background_bytes" = 67108864;
           "vm.dirty_bytes" = 268435456;
           "vm.dirty_writeback_centisecs" = 1500;
@@ -725,8 +726,8 @@ in
             ]
             ++ lib.flatten (lib.attrValues p);
           sessionVariables = {
-            # https://gitlab.com/OpenMW/openmw/-/issues/6185
-            OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT";
+            OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT"; # https://gitlab.com/OpenMW/openmw/-/issues/6185
+            SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
           };
         };
 
