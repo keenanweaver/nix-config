@@ -424,7 +424,7 @@
             description = "icon: pcsx2";
             match = {
               window-class = {
-                value = "PCSX2";
+                value = "pcsx2";
                 type = "regex";
               };
             };

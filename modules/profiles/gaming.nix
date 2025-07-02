@@ -99,10 +99,10 @@ let
       openxray # STALKER
       prismlauncher # MineCraft
       relive # Oddworld
-      shipwright
+      #shipwright
       sm64ex
       #inputs.nix-citizen.packages.${system}.star-citizen
-      starship-sf64
+      #starship-sf64
       theforceengine # Dark Forces / Outlaws
       urbanterror
       vvvvvv
@@ -305,7 +305,9 @@ in
     };
 
     programs = {
+      _2ship2harkinian-git.enable = true;
       perfect-dark-git.enable = true;
+      shipwright-git.enable = true;
       sm64coopdx.enable = true;
       spaghetti-kart-git.enable = true;
       starship-sf64.enable = true;
