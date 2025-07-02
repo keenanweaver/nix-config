@@ -99,6 +99,7 @@ let
       openxray # STALKER
       prismlauncher # MineCraft
       relive # Oddworld
+      sdlpop # Prince of Persia
       #shipwright
       sm64ex
       #inputs.nix-citizen.packages.${system}.star-citizen
