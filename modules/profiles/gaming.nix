@@ -268,6 +268,7 @@ in
     hardware = {
       uinput.enable = true;
       xpadneo.enable = true;
+      xone.enable = true;
     };
 
     networking = {
@@ -729,8 +730,7 @@ in
             ]
             ++ lib.flatten (lib.attrValues p);
           sessionVariables = {
-            OSG_VERTEX_BUFFER_HINT = "VERTEX_BUFFER_OBJECT"; # https://gitlab.com/OpenMW/openmw/-/issues/6185
-            SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
+            #SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
           };
         };
 
