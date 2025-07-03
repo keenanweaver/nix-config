@@ -225,7 +225,7 @@ in
               target = "${config.xdg.dataHome}/powershell/Modules/Catppuccin";
             };
             catppuccin-vesktop = {
-              enable = true;
+              enable = false;
               text = ''
                 @import url("https://catppuccin.github.io/discord/dist/catppuccin-${flavor-lower}-${accent-lower}.theme.css");
               '';
