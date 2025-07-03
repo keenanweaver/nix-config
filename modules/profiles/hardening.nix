@@ -166,7 +166,7 @@ in
       };
       sudo = {
         execWheelOnly = true;
-        extraConfig = ''Defaults env_reset,pwfeedback'';
+        extraConfig = ''Defaults !lecture,env_reset,pwfeedback'';
         extraRules = [
           {
             commands =
@@ -178,7 +178,6 @@ in
                 [
                   "poweroff"
                   "reboot"
-                  "nh"
                   "nixos-rebuild"
                   "nix-env"
                   "shutdown"
