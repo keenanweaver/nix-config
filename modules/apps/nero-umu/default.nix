@@ -34,7 +34,17 @@ in
             target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-custom-nero";
           };
         };
-        home.packages = with pkgs; [ nero-umu ];
+        home.packages = with pkgs; [
+          (nero-umu.overrideAttrs {
+            version = "1.1.3";
+            src = fetchFromGitHub {
+              owner = "SeongGino";
+              repo = "Nero-umu";
+              tag = "v1.1.3";
+              hash = "sha256-w9sMBMtaop0lCwqvNf235cf0+ON91tMoqU1guyX6oVU=";
+            };
+          })
+        ];
       };
   };
 }
