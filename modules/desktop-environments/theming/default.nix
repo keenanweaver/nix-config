@@ -13,7 +13,7 @@ let
   flavor-lower = "mocha";
   flavor-upper = "Mocha";
   cfg = config.catppuccinTheming;
-  mono-font = "JetBrainsMono Nerd Font";
+  mono-font = "Maple Mono Normal NF";
   sans-font = "Inter";
   sans-font-pkg = pkgs.inter;
   #serif-font = "IBM Plex Serif";
@@ -323,16 +323,6 @@ in
               theme_background = false;
             };
           };
-          foot = {
-            settings = {
-              colors = {
-                alpha = 0.7;
-              };
-              main = {
-                font = "${mono-font}:size=12";
-              };
-            };
-          };
           git = {
             delta = { };
           };
@@ -353,15 +343,6 @@ in
                 family = "${mono-font}";
                 pointSize = 14;
               };
-            };
-          };
-          kitty = {
-            font = {
-              name = "${mono-font}";
-              size = 14;
-            };
-            settings = {
-              background_opacity = "0.7";
             };
           };
           konsole = {

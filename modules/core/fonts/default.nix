@@ -23,6 +23,7 @@ in
       packages = with pkgs; [
         inter
         liberation_ttf
+        maple-mono.Normal-NF
         material-design-icons
         nerd-fonts.jetbrains-mono
         source-han-sans
@@ -34,7 +35,7 @@ in
         allowBitmaps = false;
         defaultFonts = {
           monospace = [
-            "JetBrainsMono Nerd Font"
+            "Maple Mono Normal NF"
             "Liberation Mono"
           ];
           sansSerif = [
