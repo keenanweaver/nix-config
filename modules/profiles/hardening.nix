@@ -178,6 +178,7 @@ in
                 [
                   "poweroff"
                   "reboot"
+                  "nh"
                   "nixos-rebuild"
                   "nix-env"
                   "shutdown"
