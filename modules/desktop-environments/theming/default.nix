@@ -108,12 +108,14 @@ in
           lazygit = {
             accent = "${accent-lower}";
           };
+          mangohud.enable = false;
           micro = {
             transparent = true;
           };
           vscode = {
-            accent = "${accent-lower}";
-            settings.accent = "${accent-lower}";
+            profiles.default = {
+              accent = "${accent-lower}";
+            };
           };
           yazi = {
             accent = "${accent-lower}";

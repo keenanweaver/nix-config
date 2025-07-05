@@ -353,6 +353,7 @@ in
         extraHwdb = builtins.concatStringsSep "\n" (
           with inputs;
           builtins.map builtins.readFile [
+            "${simracing-hwdb}/90-cammus.hwdb"
             "${simracing-hwdb}/90-fanatec.hwdb"
             "${simracing-hwdb}/90-heusinkveld.hwdb"
             "${simracing-hwdb}/90-leo-bodnar.hwdb"
