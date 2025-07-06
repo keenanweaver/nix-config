@@ -54,6 +54,7 @@ in
           kompare
           krfb
           krita
+          ksshaskpass
           ksystemlog
           kzones
           markdownpart

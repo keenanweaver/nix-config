@@ -15,6 +15,7 @@ in
   };
   config = lib.mkIf cfg.enable {
     programs.ssh = {
+      enableAskPassword = true;
       startAgent = true;
     };
     services.openssh = {
@@ -46,70 +47,65 @@ in
       };
     };
     home-manager.users.${username} =
-      { config, pkgs, ... }:
+      { pkgs, ... }:
       {
         home.packages = with pkgs; [ sshs ];
+        home.sessionVariables = {
+          SSH_ASKPASS = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
+          SSH_ASKPASS_REQUIRE = "prefer";
+        };
         programs.ssh = {
           enable = true;
-          extraConfig = ''
-            Host nixos-desktop
-              HostName nixos-desktop
-              User ${username}
-              Port 6777
-            Host nixos-laptop
-              HostName nixos-laptop
-              User ${username}
-              Port 6777
-            Host unraid
-              HostName crusader
-              User root
-              Port 6777
-            Host nixos-unraid
-              HostName nixos-unraid
-              User ${username}
-              Port 6777
-            Host remorsepi
-              HostName remorsepi
-              User ${username}
-              Port 6777
-            Host regretpi
-              HostName regretpi
-              User ${username}
-              Port 6777
-            Host mister
-              HostName mister
-              User root
-            Host Mumble
-              HostName game-central.party
-              User ${username}
-              Port 6777
-            Host unifi-CKG2
-              HostName unifi
-              User keenanweaver
-            Host opnsense
-              HostName opnsense
-              User ${username}
-            Host bazzite
-              HostName bazzite
-              User bazzite
-          '';
+          addKeysToAgent = "yes";
+          matchBlocks = {
+            bazzite = {
+              hostname = "bazzite";
+              user = "bazzite";
+            };
+            mister = {
+              hostname = "mister";
+              port = 6777;
+              user = "root";
+            };
+            mumble = {
+              hostname = "game-central.party";
+              port = 6777;
+            };
+            nixos-desktop = {
+              hostname = "nixos-desktop";
+              port = 6777;
+            };
+            nixos-laptop = {
+              hostname = "nixos-laptop";
+              port = 6777;
+            };
+            nixos-unraid = {
+              hostname = "nixos-unraid";
+              port = 6777;
+            };
+            opnsense = {
+              hostname = "opnsense";
+            };
+            regretpi = {
+              hostname = "regretpi";
+              port = 6777;
+            };
+            remorsepi = {
+              hostname = "remorsepi";
+              port = 6777;
+            };
+            unifi-CKG2 = {
+              hostname = "unifi";
+              port = 6777;
+              user = "keenanweaver";
+            };
+            unraid = {
+              hostname = "crusader";
+              port = 6777;
+              user = "root";
+            };
+          };
         };
-        xdg.autostart.entries =
-          let
-            desktopEntry = (
-              pkgs.makeDesktopItem {
-                name = "ssh-add";
-                desktopName = "ssh-add";
-                exec = "ssh-add -q ${config.home.homeDirectory}/.ssh/id_ed25519";
-                comment = "Run ssh-add";
-                terminal = false;
-                startupNotify = false;
-              }
-            );
-          in
-          [
-            "${desktopEntry}/share/applications/${desktopEntry.name}"
-          ];
       };
   };
 }
