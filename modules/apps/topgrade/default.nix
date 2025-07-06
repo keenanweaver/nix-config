@@ -37,6 +37,9 @@ in
                 "vim"
                 "system"
               ];
+              ignore_failures = [ "powershell" ];
+              no_retry = true;
+              notify_each_step = true;
             };
             pre_commands = {
               "NixOS Rebuild" = "${pkgs.nh}/bin/nh os switch --update";
