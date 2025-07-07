@@ -51,14 +51,14 @@ stdenv.mkDerivation (finalAttrs: {
   desktopItems = [
     (makeDesktopItem {
       name = "Nuked-SC55";
-      exec = "PULSE_SINK=MIDI nuked-sc55";
+      exec = "env PULSE_SINK=MIDI nuked-sc55";
       desktopName = "Nuked-SC55";
       comment = "Roland SC-55 series emulation";
       categories = [ "Game" ];
     })
     (makeDesktopItem {
       name = "Nuked-SC55_silent";
-      exec = "PULSE_SINK=MIDI nuked-sc55 -i";
+      exec = "env PULSE_SINK=MIDI nuked-sc55 -i";
       desktopName = "Nuked-SC55 (silent)";
       comment = "Roland SC-55 series emulation";
       categories = [ "Game" ];
