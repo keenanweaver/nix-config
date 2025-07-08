@@ -112,6 +112,7 @@ in
           micro = {
             transparent = true;
           };
+          vesktop.enable = false;
           vscode = {
             profiles.default = {
               accent = "${accent-lower}";
@@ -225,13 +226,6 @@ in
               enable = true;
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-powershell}";
               target = "${config.xdg.dataHome}/powershell/Modules/Catppuccin";
-            };
-            catppuccin-vesktop = {
-              enable = false;
-              text = ''
-                @import url("https://catppuccin.github.io/discord/dist/catppuccin-${flavor-lower}-${accent-lower}.theme.css");
-              '';
-              target = "${config.xdg.configHome}/vesktop/themes/${flavor-lower}.theme.css";
             };
             catppuccin-zen-flatpak = {
               enable = true;

@@ -402,6 +402,19 @@
               };
             }
             {
+              description = "icon: freetube";
+              match = {
+                window-class = {
+                  value = "FreeTube";
+                  type = "regex";
+                };
+              };
+              apply = {
+                desktopfile = "freetube.desktop";
+                apply = "force";
+              };
+            }
+            {
               description = "icon: libreoffice";
               match = {
                 window-class = {
