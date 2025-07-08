@@ -88,6 +88,7 @@ in
             shfmt
             ## Clang ##
             clang-tools
+            qtcreator
             ### Docker ###
             #docker-compose-language-service
             #dockerfile-language-server-nodejs

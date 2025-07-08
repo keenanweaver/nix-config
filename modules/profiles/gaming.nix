@@ -16,7 +16,6 @@ let
       crispy-doom
       darkradiant
       dhewm3
-      doom64ex-minus
       doomrunner
       doomseeker
       dsda-doom

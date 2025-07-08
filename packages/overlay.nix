@@ -1,5 +1,4 @@
 (final: prev: {
-  doom64ex-minus = prev.callPackage ./doom64ex-minus { };
   fooyin = prev.callPackage ./fooyin { };
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui { };
