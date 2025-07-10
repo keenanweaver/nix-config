@@ -20,27 +20,22 @@ in
       {
         programs.rclone = {
           enable = true;
-          remotes = {
-            myrient = {
-              config = {
-                type = "http";
-                url = "https://myrient.erista.me";
-              };
-              mounts = lib.mkIf vars.gaming {
-                "files" = {
-                  enable = true;
-                  mountPoint = "${config.home.homeDirectory}/Games/myrient";
-                };
-              };
-            };
-          };
-        };
-        systemd.user.services = {
-          "rclone-mount:files@myrient" = {
-            Service = {
-              RestartSec = 10;
-            };
-          };
+          /*
+            remotes = {
+                     myrient = {
+                       config = {
+                         type = "http";
+                         url = "https://myrient.erista.me";
+                       };
+                       mounts = {
+                         "files" = lib.mkIf vars.gaming {
+                           enable = true;
+                           mountPoint = "${config.home.homeDirectory}/Games/myrient";
+                         };
+                       };
+                     };
+                   };
+          */
         };
       };
   };
