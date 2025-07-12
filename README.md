@@ -270,6 +270,7 @@ Run the commands:
     mkdir -p "$GAMESDIR"/rollercoaster-tycoon/rct-{1,2}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/rollercoaster_tycoon_deluxe" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/rollercoaster-tycoon/rct-1
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/rollercoaster_tycoon_2" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/rollercoaster-tycoon/rct-2
+    mv "$GAMESDIR"/rollercoaster-tycoon/rct-1/app/* "$GAMESDIR"/rollercoaster-tycoon/rct-1 && rm -rf "$GAMESDIR"/rollercoaster-tycoon/rct-1/{app,tmp}
     ## RTCW
     mkdir -p "$HOME"/.wolf
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/return_to_castle_wolfenstein_game" -x ls -t | head -n1 | xargs innoextract -g -d "$HOME"/.wolf
@@ -283,7 +284,7 @@ Run the commands:
     fd -a -d 1 -e zip . "$GAMESDIR"/mario-64 -x rm {}
     ## STALKER
     mkdir -p "$XDG_DATA_HOME"/GSC Game World/{"S.T.A.L.K.E.R. - Call of Pripyat","S.T.A.L.K.E.R. - Clear Sky","S.T.A.L.K.E.R. - Shadow of Chernobyl"}
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/stalker_call_of_pripyat" -x ls -t | head -n1 | xargs innoextract -g -d "$XDG_DATA_HOME"/GSC Game World/"S.T.A.L.K.E.R. - Call of Pripyat"
+    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/stalker_call_of_pripyat_base" -x ls -t | head -n1 | xargs innoextract -g -d "$XDG_DATA_HOME"/GSC Game World/"S.T.A.L.K.E.R. - Call of Pripyat"
     mv "$XDG_DATA_HOME"/GSC Game World/"S.T.A.L.K.E.R. - Call of Pripyat"/game/* "$XDG_DATA_HOME"/GSC Game World/"S.T.A.L.K.E.R. - Call of Pripyat" && rm -rf "$XDG_DATA_HOME/GSC Game World/S.T.A.L.K.E.R. - Call of Pripyat/"{__unpacker,app,DirectX,Foxit,support,tmp}
     ## Serious Sam
     mkdir -p "$FLATPAKDIR"/io.itch.tx00100xt.SeriousSamClassic-VK/data/Serious-Engine/{serioussam,serioussamse}

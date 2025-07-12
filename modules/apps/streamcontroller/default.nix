@@ -23,7 +23,7 @@ in
         name = "40-streamdeck.rules";
         text = builtins.readFile (fetchurl {
           url = "https://raw.githubusercontent.com/streamduck-org/elgato-streamdeck/main/40-streamdeck.rules";
-          hash = "sha256-4IeS+nRnBwF53eYK7MpteNMkEStEBWkkNZ8cveyOKm8=";
+          hash = "sha256-kqZf92JWFJosAG1hfX4TR2aH6eqLc8a1L9XiDodHYso=";
         });
         destination = "/etc/udev/rules.d/40-streamdeck.rules";
       })
