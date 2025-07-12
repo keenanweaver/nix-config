@@ -87,6 +87,8 @@ in
               Environment = {
                 PROTON_ENABLE_WAYLAND = "1";
                 PROTON_ENABLE_HDR = "1";
+                PROTON_USE_NTSYNC = "1";
+                PROTON_USE_WOW64 = "1";
                 PULSE_SINK = "Game";
                 WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23";
               };
@@ -104,7 +106,7 @@ in
             "bottles" = lib.mkIf cfg.enableNative {
               name = "Bottles";
               comment = "Run Windows software";
-              exec = "PROTON_ENABLE_WAYLAND=1 PROTON_ENABLE_HDR=1 PULSE_SINK=Game bottles %u";
+              exec = "env PROTON_ENABLE_WAYLAND=1 PROTON_ENABLE_HDR=1 PROTON_USE_NTSYNC=1 PROTON_USE_WOW64=1 PULSE_SINK=Game bottles %u";
               terminal = false;
               icon = "com.usebottles.bottles";
               type = "Application";

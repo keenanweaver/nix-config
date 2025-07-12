@@ -142,7 +142,7 @@ let
       #r2modman
       ## Other
       adwsteamgtk
-      #chiaki-ng
+      chiaki-ng
       flips
       gst_all_1.gst-plugins-bad
       gst_all_1.gst-plugins-base
@@ -160,7 +160,7 @@ let
       xvidcore
       ## Wine
       umu-launcher
-      inputs.nix-gaming.packages.${system}.wine-tkg
+      inputs.nix-gaming.packages.${system}.wine-tkg-ntsync
       winetricks
       ## One-and-dones
       /*
@@ -221,6 +221,7 @@ in
       ];
       kernelModules = [
         "gcadapter_oc"
+        "ntsync"
         "zenergy"
       ];
       kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
@@ -371,9 +372,6 @@ in
             "${simracing-hwdb}/90-vrs.hwdb"
           ]
         );
-        extraRules = ''
-          KERNEL=="ntsync", MODE="0644"
-        '';
         packages = with pkgs; [
           game-devices-udev-rules
           (writeTextFile {
@@ -462,6 +460,11 @@ in
                 RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0" 
             '';
             destination = "/etc/udev/rules.d/70-vkb.rules";
+          })
+          (writeTextFile {
+            name = "ntsync-udev-rules";
+            text = ''KERNEL=="ntsync", MODE="0660", TAG+="uaccess"'';
+            destination = "/etc/udev/rules.d/70-ntsync.rules";
           })
           # https://wiki.archlinux.org/title/Gamepad#Motion_controls_taking_over_joypad_controls_and/or_causing_unintended_input_with_joypad_controls
           (writeTextFile {
@@ -1203,7 +1206,7 @@ in
             itch = {
               name = "itch";
               comment = "Install and play itch.io games easily";
-              exec = "PULSE_SINK=Game obs-gamecapture mangohud itch";
+              exec = "env PULSE_SINK=Game obs-gamecapture mangohud itch";
               icon = "itch";
               categories = [ "Game" ];
             };
