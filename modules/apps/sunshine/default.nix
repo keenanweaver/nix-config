@@ -12,6 +12,29 @@
     };
   };
   config = lib.mkIf config.sunshine.enable {
+
+    networking = {
+      firewall = {
+        allowedUDPPorts = [
+          # Moonlight
+          5353
+          47998
+          47999
+          48000
+          48002
+          48010
+        ];
+        allowedTCPPorts = [
+          # MoonDeck Buddy
+          59999
+          # Moonlight
+          47984
+          47989
+          48010
+        ];
+      };
+    };
+
     services.sunshine = {
       enable = true;
       autoStart = true;
@@ -46,6 +69,9 @@
         output_name = 1;
       };
     };
-    home-manager.users.${username} = { };
+    home-manager.users.${username} = {
+      home.packages = with pkgs; [ moondeck-buddy ];
+      xdg.autostart.entries = with pkgs; [ "${moondeck-buddy}/share/applications/MoonDeckBuddy.desktop" ];
+    };
   };
 }
