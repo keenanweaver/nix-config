@@ -39,6 +39,8 @@ in
           OBS_VKCAPTURE = true;
           PROTON_ENABLE_WAYLAND = true;
           PROTON_ENABLE_HDR = true;
+          PROTON_USE_NTSYNC = true;
+          PROTON_USE_WOW64 = true;
           PULSE_SINK = "Game";
         };
         # https://github.com/NixOS/nixpkgs/issues/279893#issuecomment-2425213386
