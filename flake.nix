@@ -241,7 +241,7 @@
                     catppuccin.homeModules.catppuccin
                     impermanence.homeManagerModules.impermanence
                     nix-flatpak.homeManagerModules.nix-flatpak
-                    nix-index-database.hmModules.nix-index
+                    nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
                     nvf.homeManagerModules.default
                     plasma-manager.homeManagerModules.plasma-manager
@@ -303,7 +303,7 @@
                     catppuccin.homeModules.catppuccin
                     impermanence.homeManagerModules.impermanence
                     nix-flatpak.homeManagerModules.nix-flatpak
-                    nix-index-database.hmModules.nix-index
+                    nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
                     nvf.homeManagerModules.default
                     plasma-manager.homeManagerModules.plasma-manager
@@ -360,7 +360,7 @@
                   sharedModules = with inputs; [
                     impermanence.homeManagerModules.impermanence
                     nix-flatpak.homeManagerModules.nix-flatpak
-                    nix-index-database.hmModules.nix-index
+                    nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
                     quadlet-nix.homeManagerModules.quadlet
                     sops-nix.homeManagerModules.sops
@@ -412,7 +412,7 @@
                     catppuccin.homeModules.catppuccin
                     impermanence.homeManagerModules.impermanence
                     nix-flatpak.homeManagerModules.nix-flatpak
-                    nix-index-database.hmModules.nix-index
+                    nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
                     nvf.homeManagerModules.default
                     plasma-manager.homeManagerModules.plasma-manager
@@ -474,7 +474,7 @@
                     inputs.catppuccin.homeModules.catppuccin
                     inputs.impermanence.homeManagerModules.impermanence
                     inputs.nix-flatpak.homeManagerModules.nix-flatpak
-                    inputs.nix-index-database.hmModules.nix-index
+                    inputs.nix-index-database.homeModules.nix-index
                     inputs.nur.modules.homeManager.default
                     inputs.nvf.homeManagerModules.default
                     inputs.plasma-manager.homeManagerModules.plasma-manager

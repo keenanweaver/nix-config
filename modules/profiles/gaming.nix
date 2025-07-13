@@ -88,22 +88,20 @@ let
       opentyrian
       (openxcom.overrideAttrs {
         pname = "openxcom-extended";
-        version = "8.3.1";
+        version = "8.3.3";
         src = fetchFromGitHub {
           owner = "MeridianOXC";
           repo = "OpenXcom";
-          rev = "c4779fe48021b1716b12983eb3ef84c47f5345a3";
-          hash = "sha256-PoQ3sss8ac06WzM+axGGnrZcfzFAVhVBKRNgt4CnC1k=";
+          rev = "41f48fc753ffcaba3fe9c537b62b64107e4f8bd4";
+          hash = "sha256-QgHHjHri+SwWmQdPLuwn8gwsWLuP9amGHGTXqd/aRJs=";
         };
       })
       openxray # STALKER
       prismlauncher # MineCraft
       relive # Oddworld
       sdlpop # Prince of Persia
-      #shipwright
       sm64ex
-      #inputs.nix-citizen.packages.${system}.star-citizen
-      #starship-sf64
+      # inputs.nix-citizen.packages.${system}.star-citizen
       theforceengine # Dark Forces / Outlaws
       urbanterror
       vvvvvv
@@ -122,10 +120,10 @@ let
       mednaffe
       mesen
       nuked-sc55
-      #inputs.chaotic.packages.${system}.pcsx2_git
+      # inputs.chaotic.packages.${system}.pcsx2_git
       inputs.chaotic.packages.${system}.shadps4_git
       nur.repos.bandithedoge.sheepshaver-bin
-      #nur.repos.novel2430.vita3k
+      # nur.repos.novel2430.vita3k
       xenia-canary
       ## Input
       joystickwake
@@ -138,8 +136,6 @@ let
       hedgemodmanager
       limo
       nexusmods-app-unfree
-      #owmods-gui
-      #r2modman
       ## Other
       adwsteamgtk
       chiaki-ng
@@ -153,7 +149,6 @@ let
       igir
       innoextract
       lgogdownloader
-      moondeck-buddy
       parsec-bin
       tochd
       xlink-kai
@@ -275,28 +270,6 @@ in
       uinput.enable = true;
       xpadneo.enable = true;
       xone.enable = true;
-    };
-
-    networking = {
-      firewall = {
-        allowedUDPPorts = [
-          # Moonlight
-          5353
-          47998
-          47999
-          48000
-          48002
-          48010
-        ];
-        allowedTCPPorts = [
-          # MoonDeck Buddy
-          59999
-          # Moonlight
-          47984
-          47989
-          48010
-        ];
-      };
     };
 
     nix.settings = {
@@ -1168,7 +1141,6 @@ in
         };
         xdg = {
           autostart.entries = with pkgs; [
-            "${moondeck-buddy}/share/applications/MoonDeckBuddy.desktop"
             "${nuked-sc55}/share/applications/Nuked-SC55_silent.desktop"
           ];
           desktopEntries = {
