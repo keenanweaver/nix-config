@@ -78,6 +78,7 @@ in
                 filesystems = [
                   "/mnt/crusader/Games"
                   "/mnt/crusader/Media/Audio/Music"
+                  "${config.home.homeDirectory}/Downloads"
                   "${config.home.homeDirectory}/Games"
                   "${config.xdg.dataHome}/applications"
                   "${config.xdg.dataHome}/games"
