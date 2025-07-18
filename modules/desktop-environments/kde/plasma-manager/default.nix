@@ -203,6 +203,7 @@
               "Plugins"."kwin4_effect_open_close_kineticEnabled" = true;
               "Plugins"."kwin4_effect_shapecornersEnabled" = false;
               "Plugins"."kwin4_effect_squashEnabled" = false;
+              "Plugins"."contrastEnabled" = true;
               "Plugins"."kzonesEnabled" = true;
               "Plugins"."restoreToScreenEnabled" = true;
               "Round-Corners"."ActiveOutlinePalette" = 4;
@@ -294,8 +295,8 @@
             effects = {
               blur = {
                 enable = true;
-                strength = 6;
-                noiseStrength = 6;
+                strength = 10;
+                noiseStrength = 0;
               };
               cube.enable = true;
               desktopSwitching.animation = "slide";
