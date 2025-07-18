@@ -124,7 +124,7 @@ in
             hexyl
             hyperfine
             impala
-            isd
+            #isd
             jiq
             jq
             magic-wormhole-rs
