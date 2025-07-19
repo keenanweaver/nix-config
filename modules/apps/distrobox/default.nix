@@ -104,13 +104,13 @@ in
                   lib32-pipewire-jack            \
                   libva-mesa-driver              \
                   mangohud                       \
+                  maplemono-nf                   \
                   openal                         \
                   parui                          \
                   pipewire                       \
                   pipewire-pulse                 \
                   pipewire-alsa                  \
                   pipewire-jack                  \
-                  ttf-jetbrains-mono-nerd        \
                   vkbasalt                       \
                   wireplumber                    \
                   xdg-desktop-portal-kde
