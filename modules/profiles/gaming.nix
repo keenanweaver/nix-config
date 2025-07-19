@@ -237,12 +237,15 @@ in
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/sysctl.d/99-cachyos-settings.conf
           "fs.file-max" = 2097152;
           "kernel.split_lock_mitigate" = 0;
+          #"net.core.default_qdisc" = "cake";
           "net.core.netdev_max_backlog" = 4096;
+          #"net.ipv4.tcp_congestion_control" = "bbr";
           "net.ipv4.tcp_fin_timeout" = 5;
           "vm.dirty_background_bytes" = 67108864;
           "vm.dirty_bytes" = 268435456;
           "vm.dirty_writeback_centisecs" = 1500;
           "vm.page-cluster" = 0;
+          "vm.swappiness" = 100;
           "vm.vfs_cache_pressure" = 50;
         };
       };
@@ -268,8 +271,8 @@ in
 
     hardware = {
       uinput.enable = true;
-      xpadneo.enable = true;
       xone.enable = true;
+      xpadneo.enable = true;
     };
 
     nix.settings = {
@@ -347,6 +350,14 @@ in
         );
         packages = with pkgs; [
           game-devices-udev-rules
+          # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/30-zram.rules
+          (writeTextFile {
+            name = "30-zram.rules";
+            text = ''
+              ACTION=="change", KERNEL=="zram0", ATTR{initstate}=="1", SYSCTL{vm.swappiness}="150", RUN+="${pkgs.bash}/bin/bash -c 'echo N > /sys/module/zswap/parameters/enabled'"
+            '';
+            destination = "/etc/udev/rules.d/30-zram.rules";
+          })
           (writeTextFile {
             name = "40-logitech-g920.rules";
             text = ''
@@ -354,6 +365,15 @@ in
             '';
             destination = "/etc/udev/rules.d/40-logitech-g920.rules";
           })
+          # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/50-sata.rules
+          (writeTextFile {
+            name = "50-sata.rules";
+            text = ''
+              ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="*", ATTR{link_power_management_policy}="max_performance"
+            '';
+            destination = "/etc/udev/rules.d/50-sata.rules";
+          })
+          # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/60-ioschedulers.rules
           (writeTextFile {
             name = "60-ioschedulers.rules";
             text = ''
@@ -365,6 +385,14 @@ in
               ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
             '';
             destination = "/etc/udev/rules.d/60-ioschedulers.rules";
+          })
+          # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/69-hdparm.rules
+          (writeTextFile {
+            name = "69-hdparm.rules";
+            text = ''
+              ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", RUN+="${hdparm}/bin/hdparm -B 254 -S 0 /dev/%k"
+            '';
+            destination = "/etc/udev/rules.d/69-hdparm.rules";
           })
           (writeTextFile {
             name = "70-easysmx.rules";
@@ -471,19 +499,21 @@ in
           # https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
           "w /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode - - - - cache"
           # https://wiki.archlinux.org/title/Gaming#Make_the_changes_permanent
-          "w /proc/sys/vm/compaction_proactiveness - - - - 0"
-          "w /proc/sys/vm/watermark_boost_factor - - - - 1"
-          "w /proc/sys/vm/min_free_kbytes - - - - 1048576"
-          "w /proc/sys/vm/watermark_scale_factor - - - - 500"
-          "w /sys/kernel/mm/lru_gen/enabled - - - - 5"
-          "w /proc/sys/vm/zone_reclaim_mode - - - - 0"
-          "w /proc/sys/vm/page_lock_unfairness - - - - 1"
-          "w /proc/sys/kernel/sched_child_runs_first - - - - 0"
-          "w /proc/sys/kernel/sched_autogroup_enabled - - - - 1"
-          "w /proc/sys/kernel/sched_cfs_bandwidth_slice_us - - - - 3000"
-          "w /sys/kernel/debug/sched/base_slice_ns  - - - - 3000000"
-          "w /sys/kernel/debug/sched/migration_cost_ns - - - - 500000"
-          "w /sys/kernel/debug/sched/nr_migrate - - - - 8"
+          /*
+            "w /proc/sys/vm/compaction_proactiveness - - - - 0"
+                   "w /proc/sys/vm/watermark_boost_factor - - - - 1"
+                   "w /proc/sys/vm/min_free_kbytes - - - - 1048576"
+                   "w /proc/sys/vm/watermark_scale_factor - - - - 500"
+                   "w /sys/kernel/mm/lru_gen/enabled - - - - 5"
+                   "w /proc/sys/vm/zone_reclaim_mode - - - - 0"
+                   "w /proc/sys/vm/page_lock_unfairness - - - - 1"
+                   "w /proc/sys/kernel/sched_child_runs_first - - - - 0"
+                   "w /proc/sys/kernel/sched_autogroup_enabled - - - - 1"
+                   "w /proc/sys/kernel/sched_cfs_bandwidth_slice_us - - - - 3000"
+                   "w /sys/kernel/debug/sched/base_slice_ns  - - - - 3000000"
+                   "w /sys/kernel/debug/sched/migration_cost_ns - - - - 500000"
+                   "w /sys/kernel/debug/sched/nr_migrate - - - - 8"
+          */
         ];
       };
     };
@@ -1087,19 +1117,19 @@ in
                   store = "lutris";
                 }
                 {
-                  path = "${config.home.homeDirectory}/Games/Bottles/Battle.net";
+                  path = "${config.home.homeDirectory}/Games/nero/Battle.net";
                   store = "otherWine";
                 }
                 {
-                  path = "${config.home.homeDirectory}/Games/Bottles/GOG-Galaxy";
+                  path = "${config.home.homeDirectory}/Games/nero/GOG-Galaxy";
                   store = "otherWine";
                 }
                 {
-                  path = "${config.home.homeDirectory}/Games/Bottles/itch.io";
+                  path = "${config.home.homeDirectory}/Games/nero/itch.io";
                   store = "otherWine";
                 }
                 {
-                  path = "${config.home.homeDirectory}/Games/Bottles/Uplay";
+                  path = "${config.home.homeDirectory}/Games/nero/Uplay";
                   store = "otherWine";
                 }
                 {
@@ -1166,7 +1196,7 @@ in
               {
                 name = "GOG Galaxy";
                 comment = "Launch GOG Galaxy using Bottles.";
-                exec = "flatpak run --command=bottles-cli com.usebottles.bottles run -p \"GOG Galaxy\" -b \"GOG Galaxy\" -- %u";
+                exec = "nero-umu --prefix 'GOG Galaxy' --shortcut 'GOG Galaxy'";
                 icon = "${icon}";
                 categories = [ "Game" ];
                 noDisplay = false;
