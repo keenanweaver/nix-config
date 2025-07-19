@@ -77,9 +77,6 @@ in
       lact.enable = true;
       power-profiles-daemon.enable = true;
       udev.packages = with pkgs; [ android-udev-rules ];
-      udisks2 = {
-        enable = true;
-      };
     };
 
     home-manager.users.${username} =
@@ -101,8 +98,8 @@ in
           hacompanion
           halloy
           handbrake
-          kdePackages.kdenlive
           jellyfin-tui
+          kdePackages.kdenlive
           losslesscut-bin
           mangareader
           metadata-cleaner

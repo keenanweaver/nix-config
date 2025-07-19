@@ -11,9 +11,6 @@
       sysctl = {
         "kernel.sysrq" = 4;
         "kernel.nmi_watchdog" = 0;
-        "net.core.default_qdisc" = "cake";
-        "net.ipv4.tcp_congestion_control" = "bbr";
-        "vm.swappiness" = 10;
       };
     };
     kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;

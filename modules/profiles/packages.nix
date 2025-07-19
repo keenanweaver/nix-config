@@ -146,7 +146,6 @@ in
             ouch # compression
             pigz # gz
             procs # ps
-            rclone # rsync
             sd # sed
             writedisk # dd
             xh # curl
@@ -161,33 +160,7 @@ in
             nixfmt-rfc-style
             nixpkgs-review
             nixos-shell
-            /*
-              (writeShellApplication {
-                         name = "nos";
-                         runtimeInputs = [
-                           coreutils
-                           fzf
-                           optinix
-                           ripgrep
-                         ];
-                         text = ''
-                           optinix get --no-tui | rg 'Name: ' | cut -d' ' -f2 | fzf --preview='optinix get --no-tui "{}"'
-                         '';
-                       })
-            */
-            (writeShellApplication {
-              name = "nps";
-              runtimeInputs = [
-                fzf
-                inputs.nsearch.packages.${pkgs.system}.default
-              ];
-              text = ''
-                export NSEARCH_FZF_CMD="fzf --multi --bind=ctrl-space:select --bind=alt-space:deselect"
-                nsearch
-              '';
-            })
             nvd
-            #optinix
             statix
           ]
           ++ lib.optionals cfg.system [

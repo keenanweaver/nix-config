@@ -53,10 +53,6 @@
       url = "github:zshzoo/cd-ls";
       flake = false;
     };
-    nsearch = {
-      url = "github:niksingh710/nsearch";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     ucodenix.url = "github:e-tho/ucodenix";
 
     # Gaming
