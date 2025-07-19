@@ -30,14 +30,14 @@ in
           wine-links-proton-cachyos-heroic = {
             enable = cfg.enableNative;
             source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.nix-proton-cachyos.packages.${pkgs.system}.proton-cachyos
+              inputs.chaotic.packages.${pkgs.system}.proton-cachyos
             }/share/steam/compatibilitytools.d/proton-cachyos";
             target = "${config.xdg.configHome}/heroic/tools/proton/proton-cachyos";
           };
           wine-links-proton-cachyos-flatpak-heroic = {
             enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.nix-proton-cachyos.packages.${pkgs.system}.proton-cachyos
+              inputs.chaotic.packages.${pkgs.system}.proton-cachyos
             }/share/steam/compatibilitytools.d/proton-cachyos";
             target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-cachyos";
           };

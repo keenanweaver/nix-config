@@ -22,7 +22,7 @@ in
           wine-links-proton-cachyos-nero = {
             enable = true;
             source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.nix-proton-cachyos.packages.${pkgs.system}.proton-cachyos
+              inputs.chaotic.packages.${pkgs.system}.proton-cachyos
             }/share/steam/compatibilitytools.d/proton-cachyos";
             target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/proton-cachyos-nero";
           };

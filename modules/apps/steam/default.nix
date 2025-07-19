@@ -51,7 +51,7 @@ in
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         luxtorpeda
-        inputs.nix-proton-cachyos.packages.${system}.proton-cachyos
+        inputs.chaotic.packages.${pkgs.system}.proton-cachyos
         proton-ge-bin
       ];
       localNetworkGameTransfers.openFirewall = true;

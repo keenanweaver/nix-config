@@ -40,14 +40,14 @@ in
           wine-links-proton-cachyos-bottles = {
             enable = cfg.enableNative;
             source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.nix-proton-cachyos.packages.${pkgs.system}.proton-cachyos
+              inputs.chaotic.packages.${pkgs.system}.proton-cachyos
             }/share/steam/compatibilitytools.d/proton-cachyos";
             target = "${config.xdg.dataHome}/bottles/runners/proton-cachyos";
           };
           wine-links-proton-cachyos-flatpak-bottles = {
             enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.nix-proton-cachyos.packages.${pkgs.system}.proton-cachyos
+              inputs.chaotic.packages.${pkgs.system}.proton-cachyos
             }/share/steam/compatibilitytools.d/proton-cachyos";
             target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos";
           };

@@ -40,14 +40,14 @@ in
           wine-links-proton-cachyos-lutris = {
             enable = cfg.enableNative;
             source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.nix-proton-cachyos.packages.${pkgs.system}.proton-cachyos
+              inputs.chaotic.packages.${pkgs.system}.proton-cachyos
             }/share/steam/compatibilitytools.d/proton-cachyos";
             target = "${config.xdg.dataHome}/lutris/runners/proton/proton-cachyos";
           };
           wine-links-proton-cachyos-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.nix-proton-cachyos.packages.${pkgs.system}.proton-cachyos
+              inputs.chaotic.packages.${pkgs.system}.proton-cachyos
             }/share/steam/compatibilitytools.d/proton-cachyos";
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-cachyos";
           };
