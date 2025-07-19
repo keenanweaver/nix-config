@@ -21,10 +21,8 @@ My suggestion is to just take the bits and pieces you like and morph them into y
 I'm always looking to simplify or make things better. Please let me know if you have suggestions.
 
 TODO:
-* Fix nuked-sc55 not autostarting
 * Linking Kron4ek Wine breaks [Bottles](modules/apps/bottles/default.nix)
 * Fix Sunshine hanging KDE on logout
-* `PROTON_ENABLE_WAYLAND=1` primary monitor wrong. https://github.com/CachyOS/proton-cachyos/issues/29
 
 # Installation instructions
 
