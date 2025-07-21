@@ -151,7 +151,6 @@ in
             xh # curl
             ## Nix ##
             comma
-            inputs.nsearch.packages.${pkgs.system}.default
             manix
             nixd
             nix-init
