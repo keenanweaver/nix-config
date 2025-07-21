@@ -42,11 +42,6 @@ in
             source = config.lib.file.mkOutOfStoreSymlink cfg.soundFont;
             target = "${config.home.homeDirectory}/Music/soundfonts/default.sf2";
           };
-          midi-soundfonts-default-dosbox = {
-            enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink cfg.soundFont;
-            target = "${config.xdg.configHome}/dosbox/soundfonts/default.sf2";
-          };
         };
         home.sessionVariables = {
           SDL_SOUNDFONTS = "${cfg.soundFont}";
