@@ -13,15 +13,27 @@ in
     defaultAudioDevice = lib.mkOption {
       type = lib.types.str;
     };
+    enableFlatpak = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+    };
+    enableNative = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
   };
   config = lib.mkIf cfg.enable {
-    programs = {
+    programs = lib.mkIf cfg.enableNative {
       gpu-screen-recorder = {
         enable = true;
       };
       gpu-screen-recorder-ui.enable = true;
     };
-
+    services.flatpak = lib.mkIf cfg.enableFlatpak {
+      packages = [
+        "com.dec05eba.gpu_screen_recorder"
+      ];
+    };
     home-manager.users.${username} =
       { pkgs, ... }:
       {
@@ -45,6 +57,22 @@ in
                 command = "gsr-save-replay";
                 comment = "Save GPU Screen Recorder replay";
               };
+            };
+          };
+        };
+        systemd.user.services = {
+          "gsr-ui" = lib.mkIf cfg.enableFlatpak{
+            Unit = {
+              Description = "GPU Screen Recorder UI";
+            };
+            Service = {
+              ExecStart = "${pkgs.flatpak}/bin/flatpak run com.dec05eba.gpu_screen_recorder gsr-ui";
+              KillSignal = "SIGINT";
+              Restart = "on-failure";
+              RestartSec = 5;
+            };
+            Install = {
+              WantedBy = [ "default.target" ];
             };
           };
         };

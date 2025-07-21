@@ -110,16 +110,23 @@ in
         touchpad.accelProfile = "flat";
       };
     };
-
-    xdg = {
-      portal = {
-        config.common.default = "*";
-        extraPortals = with pkgs; [
-          kdePackages.xdg-desktop-portal-kde
-          xdg-desktop-portal-gtk
-        ];
-        xdgOpenUsePortal = true;
+    xdg.portal = {
+      config = {
+        kde = {
+          default = [
+            "kde"
+            "gtk"
+          ];
+          "org.freedesktop.portal.FileChooser" = [ "kde" ];
+          "org.freedesktop.portal.OpenURI" = [ "kde" ];
+        };
       };
+
+      extraPortals = with pkgs; [
+        kdePackages.xdg-desktop-portal-kde
+        xdg-desktop-portal-gtk
+      ];
+      xdgOpenUsePortal = true;
     };
     home-manager.users.${username} = { };
   };

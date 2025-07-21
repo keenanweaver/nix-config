@@ -88,7 +88,6 @@ in
         pciutils
         sops
         ssh-to-age
-        xdg-dbus-proxy
         xdg-user-dirs
       ];
     };

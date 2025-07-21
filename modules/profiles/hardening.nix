@@ -2,7 +2,6 @@
   lib,
   config,
   username,
-  vars,
   ...
 }:
 let
