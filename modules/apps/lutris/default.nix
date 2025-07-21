@@ -57,17 +57,13 @@ in
           };
           wine-links-proton-ge-lutris = {
             enable = cfg.enableNative;
-            source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-ge-custom
-            }/bin";
-            target = "${config.xdg.dataHome}/lutris/runners/proton/proton-ge-custom";
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin.steamcompattool}";
+            target = "${config.xdg.dataHome}/lutris/runners/proton/proton-ge-bin";
           };
           wine-links-proton-ge-flatpak-lutris = {
             enable = cfg.enableFlatpak;
-            source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-ge-custom
-            }/bin";
-            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-ge-custom";
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin.steamcompattool}";
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-ge-bin";
           };
         };
         home.packages =

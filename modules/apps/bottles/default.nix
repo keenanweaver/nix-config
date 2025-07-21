@@ -57,17 +57,13 @@ in
           };
           wine-links-protonge-bottles = {
             enable = cfg.enableNative;
-            source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-ge-custom
-            }/bin";
-            target = "${config.xdg.dataHome}/bottles/runners/proton-ge-custom";
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin.steamcompattool}";
+            target = "${config.xdg.dataHome}/bottles/runners/proton-ge-bin";
           };
           wine-links-protonge-flatpak-bottles = {
             enable = cfg.enableFlatpak;
-            source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-ge-custom
-            }/bin";
-            target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-custom";
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin.steamcompattool}";
+            target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-bin";
           };
         };
         home.packages = lib.mkIf cfg.enableNative [

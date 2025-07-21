@@ -43,17 +43,13 @@ in
           };
           wine-links-proton-ge-heroic = {
             enable = cfg.enableNative;
-            source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-ge-custom
-            }/bin";
-            target = "${config.xdg.configHome}/heroic/tools/proton/proton-ge-custom";
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin.steamcompattool}";
+            target = "${config.xdg.configHome}/heroic/tools/proton/proton-ge-bin";
           };
           wine-links-proton-ge-flatpak-heroic = {
             enable = cfg.enableFlatpak;
-            source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-ge-custom
-            }/bin";
-            target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-ge-custom";
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin.steamcompattool}";
+            target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-ge-bin";
           };
         };
         home.packages = with pkgs; lib.mkIf cfg.enableNative [ heroic ];

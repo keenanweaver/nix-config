@@ -28,10 +28,8 @@ in
           };
           wine-links-protonge-nero = {
             enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-ge-custom
-            }/bin";
-            target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-custom-nero";
+            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin.steamcompattool}";
+            target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-bin-nero";
           };
         };
         home.packages = with pkgs; [
