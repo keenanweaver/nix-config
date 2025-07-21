@@ -29,26 +29,30 @@ in
         home.file = {
           wine-links-kron4ek-lutris = {
             enable = cfg.enableNative;
-            source = config.lib.file.mkOutOfStoreSymlink inputs.nix-gaming.packages.${pkgs.system}.wine-tkg-ntsync;
+            source =
+              config.lib.file.mkOutOfStoreSymlink
+                inputs.nix-gaming.packages.${pkgs.system}.wine-tkg-ntsync;
             target = "${config.xdg.dataHome}/lutris/runners/wine/kron4ek";
           };
           wine-links-kron4ek-lutris-flatpak = {
             enable = cfg.enableFlatpak;
-            source = config.lib.file.mkOutOfStoreSymlink inputs.nix-gaming.packages.${pkgs.system}.wine-tkg-ntsync;
+            source =
+              config.lib.file.mkOutOfStoreSymlink
+                inputs.nix-gaming.packages.${pkgs.system}.wine-tkg-ntsync;
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/kron4ek";
           };
           wine-links-proton-cachyos-lutris = {
             enable = cfg.enableNative;
             source = config.lib.file.mkOutOfStoreSymlink "${
               inputs.chaotic.packages.${pkgs.system}.proton-cachyos
-            }/share/steam/compatibilitytools.d/proton-cachyos";
+            }/bin";
             target = "${config.xdg.dataHome}/lutris/runners/proton/proton-cachyos";
           };
           wine-links-proton-cachyos-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${
               inputs.chaotic.packages.${pkgs.system}.proton-cachyos
-            }/share/steam/compatibilitytools.d/proton-cachyos";
+            }/bin";
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-cachyos";
           };
           wine-links-proton-ge-lutris = {

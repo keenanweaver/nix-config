@@ -535,7 +535,7 @@ in
                 let
                   configFile = pkgs.fetchurl {
                     url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
-                    hash = "sha256-OydD9rHfPQlsKs+889mQ6DJ14aBePdQ/RWvTiEMQij4=";
+                    hash = "sha256-at2s/DZEwkzQT47rBOWRfd0jBu1pJuqsqyHslMbjVfk=";
                   };
                 in
                 {
@@ -554,7 +554,7 @@ in
                 let
                   configFile = pkgs.fetchurl {
                     url = "https://raw.githubusercontent.com/flightlessmango/MangoHud/master/data/MangoHud.conf";
-                    hash = "sha256-hAZePm8o5/55IlSghWKhBJBi63JtKJQzGYDUn69u1oM=";
+                    hash = "sha256-v4HdqQtJBvPR19SNf+FxoV5wJ+0Ou/1UYAkIwskXIWc=";
                   };
                 in
                 {
@@ -1195,8 +1195,8 @@ in
               in
               {
                 name = "GOG Galaxy";
-                comment = "Launch GOG Galaxy using Bottles.";
-                exec = "nero-umu --prefix 'GOG Galaxy' --shortcut 'GOG Galaxy'";
+                comment = "Launch GOG Galaxy using nero-umu";
+                exec = "nero-umu --prefix \"GOG Galaxy\" --shortcut \"GOG Galaxy\"";
                 icon = "${icon}";
                 categories = [ "Game" ];
                 noDisplay = false;
