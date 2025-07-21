@@ -48,23 +48,16 @@
             screen = 0;
             widgets = [
               {
-                kickoff =
-                  let
-                    icon = pkgs.fetchurl {
-                      url = "https://raw.githubusercontent.com/NixOS/nixos-artwork/refs/heads/master/logo/nix-snowflake-rainbow.svg";
-                      hash = "sha256-gMeJgiSSA5hFwtW3njZQAd4OHji6kbRCJKVoN6zsRbY=";
-                    };
-                  in
-                  {
-                    applicationsDisplayMode = "list";
-                    compactDisplayStyle = true;
-                    icon = "${icon}";
-                    favoritesDisplayMode = "grid";
-                    # pin = true;
-                    showActionButtonCaptions = true;
-                    showButtonsFor = "power";
-                    sortAlphabetically = true;
-                  };
+                kickoff = {
+                  applicationsDisplayMode = "list";
+                  compactDisplayStyle = true;
+                  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
+                  favoritesDisplayMode = "grid";
+                  # pin = true;
+                  showActionButtonCaptions = true;
+                  showButtonsFor = "power";
+                  sortAlphabetically = true;
+                };
               }
               {
                 iconTasks = {
