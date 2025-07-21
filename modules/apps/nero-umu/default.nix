@@ -23,7 +23,7 @@ in
             enable = true;
             source = config.lib.file.mkOutOfStoreSymlink "${
               inputs.chaotic.packages.${pkgs.system}.proton-cachyos
-            }/share/steam/compatibilitytools.d/proton-cachyos";
+            }/bin";
             target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/proton-cachyos-nero";
           };
           wine-links-protonge-nero = {
