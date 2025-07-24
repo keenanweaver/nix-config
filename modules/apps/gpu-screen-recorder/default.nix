@@ -2,7 +2,6 @@
   lib,
   config,
   username,
-  pkgs,
   ...
 }:
 let
@@ -35,19 +34,6 @@ in
         "com.dec05eba.gpu_screen_recorder"
       ];
     };
-    systemd.user.services = {
-      "gsr-ui" = lib.mkIf cfg.enableFlatpak {
-        name = "gsr-ui";
-        description = "GPU Screen Recorder UI";
-        serviceConfig = {
-          ExecStart = "${pkgs.flatpak}/bin/flatpak run com.dec05eba.gpu_screen_recorder gsr-ui";
-          KillSignal = "SIGINT";
-          Restart = "on-failure";
-          RestartSec = 5;
-        };
-        wantedBy = [ "graphical-session.target" ];
-      };
-    };
     home-manager.users.${username} =
       { pkgs, ... }:
       {
@@ -74,6 +60,26 @@ in
             };
           };
         };
+        /*
+          systemd.user.services = {
+                 "gsr-ui" = lib.mkIf cfg.enableFlatpak {
+                   Unit = {
+                     Description = "GPU Screen Recorder UI";
+                   };
+                   Service = {
+                     ExecStart = "${pkgs.flatpak}/bin/flatpak run com.dec05eba.gpu_screen_recorder gsr-ui";
+                     KillSignal = "SIGINT";
+                     Restart = "on-failure";
+                     RestartSec = 5;
+                     Type = "simple";
+                   };
+                   Install = {
+                     WantedBy = [ "default.target" ];
+                     After = [ "graphical-session.target" ];
+                   };
+                 };
+               };
+        */
       };
   };
 }
