@@ -12,10 +12,18 @@ in
   options = {
     streamcontroller = {
       enable = lib.mkEnableOption "Enable streamcontroller in NixOS & home-manager";
+      enableFlatpak = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+      };
+      enableNative = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+      };
     };
   };
   config = lib.mkIf cfg.enable {
-    programs.streamcontroller = {
+    programs.streamcontroller = lib.mkIf cfg.enableNative {
       enable = true;
     };
     services.udev.packages = with pkgs; [
@@ -28,6 +36,12 @@ in
         destination = "/etc/udev/rules.d/40-streamdeck.rules";
       })
     ];
-    home-manager.users.${username} = { };
+    home-manager.users.${username} = {
+      services.flatpak = lib.mkIf cfg.enableFlatpak {
+        packages = [
+          "com.core447.StreamController"
+        ];
+      };
+    };
   };
 }
