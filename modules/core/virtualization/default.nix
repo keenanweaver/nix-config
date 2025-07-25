@@ -16,6 +16,10 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
+    boot.kernel.sysctl = {
+      "net.ipv4.ip_forward" = 1;
+    };
+
     environment = {
       systemPackages = with pkgs; [
         docker-compose
@@ -23,15 +27,21 @@ in
         quickemu
         spice
         spice-protocol
-        virt-manager
         virtiofsd
         virtio-win
         win-spice
       ];
     };
+
+    networking.firewall.trustedInterfaces = [ "virbr0" ];
+
+    programs.virt-manager.enable = true;
+
     services = {
       spice-vdagentd.enable = vars.desktop;
+      qemuGuest.enable = vars.desktop;
     };
+
     virtualisation = {
       podman = {
         enable = true;
@@ -50,6 +60,7 @@ in
           swtpm.enable = true;
           ovmf.enable = true;
           ovmf.packages = [ pkgs.OVMFFull.fd ];
+          vhostUserPackages = with pkgs; [ virtiofsd ];
         };
       };
       spiceUSBRedirection.enable = true;
@@ -60,6 +71,8 @@ in
         };
       };
     };
+
+    systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
 
     users = {
       users = {
@@ -82,13 +95,6 @@ in
       };
     };
 
-    home-manager.users.${username} = {
-      dconf.settings = {
-        "org/virt-manager/virt-manager/connections" = {
-          autoconnect = [ "qemu:///system" ];
-          uris = [ "qemu:///system" ];
-        };
-      };
-    };
+    home-manager.users.${username} = { };
   };
 }
