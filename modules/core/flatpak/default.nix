@@ -102,7 +102,7 @@ in
               };
             };
           };
-          uninstallUnmanaged = true;
+          uninstallUnmanaged = false;
         };
       };
   };
