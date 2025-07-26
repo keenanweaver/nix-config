@@ -1,5 +1,5 @@
 {
-  disks ? [ "/dev/nvme0n1" ],
+  disks ? [ "/dev/disk/by-id/nvme-eui.5cd2e48231514cb8" ],
   ...
 }:
 {

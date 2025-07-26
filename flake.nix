@@ -268,8 +268,8 @@
               inputs.catppuccin.nixosModules.catppuccin
               inputs.chaotic.nixosModules.default
               inputs.disko.nixosModules.disko
-              ./hosts/desktop/disko.nix
-              { _module.args.disks = [ "/dev/nvme0n1" ]; }
+              ./hosts/laptop/disko.nix
+              { _module.args.disks = [ "/dev/disk/by-id/nvme-eui.5cd2e48231514cb8" ]; }
               inputs.impermanence.nixosModules.impermanence
               inputs.just-one-more-repo.nixosModules.default
               inputs.nix-flatpak.nixosModules.nix-flatpak
