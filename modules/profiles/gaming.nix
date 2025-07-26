@@ -93,7 +93,7 @@ let
           owner = "MeridianOXC";
           repo = "OpenXcom";
           rev = "18e1cab08ad58d881ad832cb694c980b67506ff2";
-          hash = "";
+          hash = "sha256-u/3/6Ptoj5n0sbXTVg2Ftiy2jJAoEGgoO09Cu75NOmc=";
         };
       })
       openxray # STALKER
@@ -340,6 +340,7 @@ in
             "${simracing-hwdb}/90-fanatec.hwdb"
             "${simracing-hwdb}/90-heusinkveld.hwdb"
             "${simracing-hwdb}/90-leo-bodnar.hwdb"
+            "${simracing-hwdb}/90-mmos.hwdb"
             "${simracing-hwdb}/90-oddor.hwdb"
             "${simracing-hwdb}/90-shh.hwdb"
             "${simracing-hwdb}/90-simagic.hwdb"

@@ -1325,11 +1325,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1753534149,
-        "narHash": "sha256-Om0Zu+8cQVNXRq9iymXvdlh97QqxblyRqn+3sQXz6mQ=",
+        "lastModified": 1753543690,
+        "narHash": "sha256-NZzhjWIG6BhRRv2jD16cKq3TjJwIFGXaBUrU6uegRWQ=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "64ecaf164bc3a0f5a6c8f48cfc3e10ceac1c232b",
+        "rev": "83c1dafd5065df0699821a3f18b9e598fe1448b0",
         "type": "github"
       },
       "original": {
@@ -1531,11 +1531,11 @@
     "simracing-hwdb": {
       "flake": false,
       "locked": {
-        "lastModified": 1751667669,
-        "narHash": "sha256-HhI5g4csT3LfTC2JAs4X3AvnCsh74HjaE+4ELgNfRRw=",
+        "lastModified": 1753543943,
+        "narHash": "sha256-RnQJQac1OHh8yHDJm9dI9Ljnh/XLNSwrHAc+dlOI5No=",
         "owner": "JacKeTUs",
         "repo": "simracing-hwdb",
-        "rev": "102aeec54e51f9de8da3ff7f448e67f9c6f21bac",
+        "rev": "e8de26d6784cb85c191b8e0122cf7388d3df9e2c",
         "type": "github"
       },
       "original": {
