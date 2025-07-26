@@ -132,8 +132,6 @@ in
                     jazzjackrabbit               \
                     lab3d-sdl                    \
                     portproton                   \
-                    sonicthehedgehog             \
-                    sonicthehedgehog2            \
                     supermarioworld              \
                     xash3d-fwgs-git              \
                     zeldalttp
@@ -316,42 +314,6 @@ in
                 in
                 writeShellScriptBin "${bin-export}" ''
                   export GTK_THEME=Breeze-Dark
-                  export PULSE_SINK="Game"
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                    exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                    exec '/usr/bin/${bin}' "$@"
-                  fi
-                ''
-              )
-              (
-                let
-                  args = "obs-gamecapture mangohud";
-                  bin = "sonic";
-                  bin-export = "${bin}-db";
-                  container = "bazzite-arch-gaming";
-                in
-                writeShellScriptBin "${bin-export}" ''
-                  export PULSE_SINK="Game"
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                    exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                    exec '/usr/bin/${bin}' "$@"
-                  fi
-                ''
-              )
-              (
-                let
-                  args = "obs-gamecapture mangohud";
-                  bin = "sonic2";
-                  bin-export = "${bin}-db";
-                  container = "bazzite-arch-gaming";
-                in
-                writeShellScriptBin "${bin-export}" ''
                   export PULSE_SINK="Game"
                   if [ -z "''${CONTAINER_ID}" ]; then
                     exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"

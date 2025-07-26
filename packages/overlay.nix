@@ -22,6 +22,7 @@
     }
   );
   relive = prev.callPackage ./relive { };
+  rsdkv4 = prev.callPackage ./rsdkv4 { };
   tochd = prev.callPackage ./tochd { };
   xlink-kai = prev.callPackage ./xlink-kai { };
   z64decompress = prev.callPackage ./zelda64recomp/z64decompress.nix { };

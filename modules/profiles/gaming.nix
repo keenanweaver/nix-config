@@ -88,17 +88,18 @@ let
       opentyrian
       (openxcom.overrideAttrs {
         pname = "openxcom-extended";
-        version = "8.3.3";
+        version = "8.3.4";
         src = fetchFromGitHub {
           owner = "MeridianOXC";
           repo = "OpenXcom";
-          rev = "41f48fc753ffcaba3fe9c537b62b64107e4f8bd4";
-          hash = "sha256-QgHHjHri+SwWmQdPLuwn8gwsWLuP9amGHGTXqd/aRJs=";
+          rev = "18e1cab08ad58d881ad832cb694c980b67506ff2";
+          hash = "";
         };
       })
       openxray # STALKER
       prismlauncher # MineCraft
       relive # Oddworld
+      rsdkv4
       sdlpop # Prince of Persia
       sm64ex
       # inputs.nix-citizen.packages.${system}.star-citizen
