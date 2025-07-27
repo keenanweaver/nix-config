@@ -34,6 +34,11 @@
 * Junkfood Snack Box MICRO XL
 * Logitech G920 Racing Wheel
 * Sony Dualsense Controller
+### Other
+* Anker Powered USB Hub for Laptop, 7 Ports USB 3.0 Data Hub (UPC: 848061071467)
+* BenQ ScreenBar Halo 2 LED Monitor Light
+* CyberPower CP1500AVRLCD3 Intelligent LCD UPS System
+* FlexiSpot Kana Pro Bamboo Standing Desk
 # BIOS settings
 * OC Tweaker -> Gaming Mode: **Disabled** (Wrong cores are parked when enabled)
 * OC Tweaker -> DRAM Profile Configuration: **XMP1-6400**
