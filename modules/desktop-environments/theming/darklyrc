@@ -4,14 +4,12 @@ ShadowSize=ShadowMedium
 
 [Style]
 DolphinSidebarOpacity=70
-MenuBarOpacity=70
 MenuItemDrawStrongFocus=false
 MenuOpacity=70
-TabBarAltStyle=true
+TabBarOpacity=70
 TabDrawHighlight=true
-TabUseHighlightColor=true
+TabUseBrighterCloseIcon=true
 ToolBarOpacity=70
-TransparentDolphinView=false
 UnifiedTabBarKonsole=true
 renderThinSeperatorBetweenTheScrollBar=true
 

@@ -295,8 +295,8 @@
             effects = {
               blur = {
                 enable = true;
-                strength = 10;
-                noiseStrength = 0;
+                strength = 3;
+                noiseStrength = 3;
               };
               cube.enable = true;
               desktopSwitching.animation = "slide";
