@@ -28,9 +28,8 @@ in
         programs.zsh = {
           enable = true;
           autosuggestion.enable = true;
-          dotDir = ".config/zsh";
+          dotDir = "${config.xdg.configHome}/zsh";
           history = {
-            path = "${config.xdg.dataHome}/zsh/zsh_history";
             size = 999999999;
             extended = true;
             ignoreSpace = true;
