@@ -75,10 +75,6 @@ in
           inputs.rom-properties.packages.${pkgs.system}.rp_kde6
         ];
     };
-    # Neochat
-    nixpkgs.config.permittedInsecurePackages = [
-      "olm-3.2.16"
-    ];
     programs = {
       fuse.userAllowOther = true;
       k3b.enable = true;

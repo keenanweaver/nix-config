@@ -37,6 +37,10 @@ in
         in
         formatted;
     };
+    nixpkgs.config.permittedInsecurePackages = [
+      "olm-3.2.16" # Neochat
+      "libsoup-2.74.3" # Not sure what
+    ];
     programs = {
       appimage = {
         enable = true;
