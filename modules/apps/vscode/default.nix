@@ -60,7 +60,6 @@ in
                 with pkgs.vscode-extensions;
                 marketplace-extensions
                 ++ [
-                  catppuccin.catppuccin-vsc-icons
                   visualjj.visualjj
                   editorconfig.editorconfig
                 ];

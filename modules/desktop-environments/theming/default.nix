@@ -459,7 +459,6 @@ in
                   "terminal.integrated.fontFamily" = "${mono-font}";
                   "terminal.integrated.fontSize" = 14;
                   "terminal.integrated.fontWeight" = "normal";
-                  "workbench.iconTheme" = "catppuccin-${flavor-lower}";
                 };
               };
             };
