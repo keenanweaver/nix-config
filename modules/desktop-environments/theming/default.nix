@@ -319,6 +319,11 @@ in
               theme_background = false;
             };
           };
+          freetube = {
+            settings = {
+              baseTheme = "catppuccin${flavor-upper}";
+            };
+          };
           git = {
             delta = { };
           };

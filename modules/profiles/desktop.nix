@@ -20,6 +20,7 @@ in
     # Custom modules
     # Apps
     easyeffects.enable = true;
+    freetube.enable = true;
     mumble.enable = true;
     rmpc.enable = true;
     vesktop.enable = true;
