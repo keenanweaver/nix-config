@@ -23,18 +23,19 @@
 
   # Options
   imguiDebug ? false,
+  addrSan ? false,
   emscriptenHost ? "",
 }:
 stdenv.mkDerivation (finalAttrs: {
   strictDeps = true;
   name = "isle-portable";
-  version = "0-unstable-2025-06-23";
+  version = "0-unstable-2025-07-25";
 
   src = fetchFromGitHub {
     owner = "isledecomp";
     repo = "isle-portable";
-    rev = "19fee55333ee4a422f95f5279afcae0cef20d961";
-    hash = "sha256-DwMrj71CODRbx1QzNj9LuaCmZ+1kllH+0XkVv5jlSaU=";
+    rev = "89f2f5cefee1a107330bbf93048f7da73f5754f7";
+    hash = "sha256-h+IkzDSZjt8Kcjb5RMOjCCJh9a0gkMBAYXzIYMv6mZM=";
     fetchSubmodules = true;
   };
 
@@ -50,28 +51,27 @@ stdenv.mkDerivation (finalAttrs: {
     pkg-config
   ];
 
-  buildInputs =
-    [
-      qt6.qtbase
-      sdl3
-      iniparser
-    ]
-    ++ lib.optionals stdenv.hostPlatform.isLinux [
-      xorg.libX11
-      xorg.libXext
-      xorg.libXrandr
-      xorg.libXrender
-      xorg.libXfixes
-      xorg.libXi
-      xorg.libXinerama
-      xorg.libXcursor
-      wayland
-      libxkbcommon
-      wayland-protocols
-      glew
-      mesa
-      alsa-lib
-    ];
+  buildInputs = [
+    qt6.qtbase
+    sdl3
+    iniparser
+  ]
+  ++ lib.optionals stdenv.hostPlatform.isLinux [
+    xorg.libX11
+    xorg.libXext
+    xorg.libXrandr
+    xorg.libXrender
+    xorg.libXfixes
+    xorg.libXi
+    xorg.libXinerama
+    xorg.libXcursor
+    wayland
+    libxkbcommon
+    wayland-protocols
+    glew
+    mesa
+    alsa-lib
+  ];
 
   cmakeFlags = [
     (lib.cmakeBool "DOWNLOAD_DEPENDENCIES" false)

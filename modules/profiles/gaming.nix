@@ -101,6 +101,7 @@ let
       relive # Oddworld
       rsdkv4
       sdlpop # Prince of Persia
+      serious-sam-classic-vulkan
       sm64ex
       # inputs.nix-citizen.packages.${system}.star-citizen
       theforceengine # Dark Forces / Outlaws
@@ -750,7 +751,7 @@ in
 
         nixpkgs = {
           overlays = [
-            inputs.umu.overlays.default
+            #inputs.umu.overlays.default
           ];
         };
 
@@ -937,7 +938,6 @@ in
               "io.github.randovania.Randovania"
               "io.github.ryubing.Ryujinx"
               "io.github.santiagocezar.maniatic-launcher"
-              "io.itch.tx00100xt.SeriousSamClassic-VK"
               "net.fsuae.FS-UAE"
               "net.kuribo64.melonDS"
               "net.nmlgc.rec98.sh01"

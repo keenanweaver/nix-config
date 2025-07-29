@@ -15,12 +15,12 @@
 }:
 
 stdenv.mkDerivation (finalAttrs: {
-  pname = "RSDKv4";
+  pname = "rsdkv4";
   version = "0-unstable-2025-07-25";
 
   src = fetchFromGitHub {
-    owner = "Rubberduckycooly";
-    repo = "Sonic-1-2-2013-Decompilation";
+    owner = "RSDKModding";
+    repo = "RSDKv4-Decompilation";
     rev = "3a7168f179e0587526e719d1ac2a8c91138901b8";
     hash = "sha256-DwmISe/WwsWp9IWLTGGCODAe5mlm294FKKwaPyZDe28=";
     fetchSubmodules = true;
@@ -47,10 +47,11 @@ stdenv.mkDerivation (finalAttrs: {
   installFlags = [ "prefix=$(out)" ];
 
   meta = {
-    description = "Complete decompilation of Sonic 1 & Sonic 2 (2013) & Retro Engine (v4)";
-    homepage = "https://github.com/Rubberduckycooly/Sonic-1-2-2013-Decompilation";
-    license = lib.licenses.unfreeRedistributable;
-    maintainers = with lib.maintainers; [ puffnfresh ];
-    platforms = lib.platforms.linux;
+    description = "Complete decompilation of Sonic 1 & Sonic 2 (2013) & Retro Engine (v4";
+    homepage = "https://github.com/RSDKModding/RSDKv4-Decompilation";
+    license = lib.licenses.unfree; # FIXME: nix-init did not find a license
+    maintainers = with lib.maintainers; [ keenanweaver ];
+    mainProgram = "RSDKv4";
+    platforms = lib.platforms.all;
   };
 })
