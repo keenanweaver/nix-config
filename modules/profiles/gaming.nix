@@ -65,7 +65,7 @@ let
       iortcw
       ## Other
       abuse
-      am2rlauncher
+      #am2rlauncher
       arx-libertatis # Arx Fatalis
       augustus # Caesar 3
       clonehero # Guitar Hero

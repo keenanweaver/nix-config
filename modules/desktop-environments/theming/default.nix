@@ -98,6 +98,7 @@ in
           enable = true;
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
+          cache.enable = true;
           cursors = {
             enable = true;
             accent = "${accent-lower}";
