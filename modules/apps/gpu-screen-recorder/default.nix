@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  pkgs,
   ...
 }:
 let
@@ -15,19 +16,29 @@ in
     };
     enableFlatpak = lib.mkOption {
       type = lib.types.bool;
-      default = true;
+      default = false;
     };
     enableNative = lib.mkOption {
       type = lib.types.bool;
-      default = false;
+      default = true;
     };
   };
   config = lib.mkIf cfg.enable {
     programs = lib.mkIf cfg.enableNative {
       gpu-screen-recorder = {
         enable = true;
+        package =
+          with pkgs;
+          gpu-screen-recorder.overrideAttrs {
+            version = "5.6.4";
+            src = fetchgit {
+              url = "https://repo.dec05eba.com/gpu-screen-recorder";
+              tag = "5.6.4";
+              hash = "sha256-is9O0tRMhdkiKzpYa2QI+BmELLFP8WPMTa1LLLtjkxw=";
+            };
+          };
       };
-      gpu-screen-recorder-ui.enable = true;
+      gpu-screen-recorder.ui.enable = true;
     };
     services.flatpak = lib.mkIf cfg.enableFlatpak {
       packages = [

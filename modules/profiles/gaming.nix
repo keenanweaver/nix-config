@@ -142,15 +142,12 @@ let
       adwsteamgtk
       chiaki-ng
       flips
-      gst_all_1.gst-plugins-bad
-      gst_all_1.gst-plugins-base
-      gst_all_1.gst-plugins-good
-      gst_all_1.gst-plugins-ugly
-      gst_all_1.gstreamer
       gswatcher
       igir
       innoextract
       lgogdownloader
+      lsfg-vk
+      lsfg-vk-ui
       parsec-bin
       tochd
       xlink-kai
@@ -214,12 +211,12 @@ in
     boot = {
       extraModulePackages = with config.boot.kernelPackages; [
         gcadapter-oc-kmod
-        zenergy
+        #zenergy
       ];
       kernelModules = [
         "gcadapter_oc"
         "ntsync"
-        "zenergy"
+        #"zenergy"
       ];
       #kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
       kernelParams = [
@@ -493,9 +490,9 @@ in
     };
 
     systemd = {
-      extraConfig = ''
-        DefaultLimitNOFILE=1048576
-      '';
+      settings.Manager = {
+        DefaultLimitNOFILE = 1048576;
+      };
       tmpfiles = {
         rules = [
           # AMD V-Cache
@@ -926,6 +923,7 @@ in
               "com.supermodel3.Supermodel"
               "dev.ares.ares"
               "dev.opengoal.OpenGOAL"
+              "info.beyondallreason.bar"
               "info.cemu.Cemu"
               "info.exult.exult"
               "io.github.Faugus.faugus-launcher"

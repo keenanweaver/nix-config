@@ -60,6 +60,7 @@
       url = "github:Whovian9369/aaru-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    gpu-screen-recorder-ui.url = "github:Enovale/gsrui-nix";
     nix-game-preservation = {
       url = "github:Whovian9369/nix-game-preservation";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -212,6 +213,7 @@
               inputs.disko.nixosModules.disko
               ./hosts/desktop/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB" ]; }
+              inputs.gpu-screen-recorder-ui.nixosModules.default
               inputs.impermanence.nixosModules.impermanence
               inputs.just-one-more-repo.nixosModules.default
               inputs.nix-flatpak.nixosModules.nix-flatpak
