@@ -12,13 +12,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "n64recomp";
-  version = "0-unstable-2025-02-27";
+  version = "0-unstable-2025-07-19";
 
   src = fetchFromGitHub {
     owner = "N64Recomp";
     repo = "N64Recomp";
-    rev = "989a86b36912403cd323de884bf834f2605ea770";
-    hash = "sha256-DlzqixK8qnKrwN5zAqaae2MoXLqIIIzIkReVSk2dDFg=";
+    rev = "c1a6dc93bfa5977de0ea256562058be4f1b73353";
+    hash = "sha256-4Ew+vzSPDw97KplMk/7glsRsf2zds5zTbWPxOowdeAg=";
     fetchSubmodules = true;
   };
 
@@ -58,6 +58,5 @@ stdenv.mkDerivation (finalAttrs: {
     maintainers = with lib.maintainers; [ qubitnano ];
     mainProgram = "N64Recomp";
     platforms = lib.platforms.linux;
-    hydraPlatforms = [ ];
   };
 })

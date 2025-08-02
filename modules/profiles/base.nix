@@ -125,10 +125,10 @@ in
     };
 
     systemd = {
-      extraConfig = ''
-        DefaultTimeoutStartSec=15s
-        DefaultTimeoutStopSec=10s
-      '';
+      settings.Manager = {
+        DefaultTimeoutStartSec = "15s";
+        DefaultTimeoutStopSec = "10s";
+      };
     };
 
     system.stateVersion = "23.11";

@@ -141,8 +141,7 @@ llvmPackages_19.stdenv.mkDerivation (finalAttrs: {
   # updates enabled wayland support, but leave the option to disable this on the
   # application level if desired.
   postFixup = ''
-    source "${makeWrapper}/nix-support/setup-hook"
-    wrapProgram $out/bin/Zelda64Recompiled --run "cd $out/bin/" \
+    wrapProgram $out/bin/Zelda64Recompiled --chdir "$out/bin/" \
         ${lib.optionalString forceX11 ''--set SDL_VIDEODRIVER x11''}
   '';
 
@@ -162,6 +161,5 @@ llvmPackages_19.stdenv.mkDerivation (finalAttrs: {
     maintainers = with lib.maintainers; [ qubitnano ];
     mainProgram = "Zelda64Recompiled";
     platforms = [ "x86_64-linux" ];
-    hydraPlatforms = [ ];
   };
 })
