@@ -610,11 +610,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754085240,
-        "narHash": "sha256-kVHCrTWEe8B1thAhFag1bk4QPY0ZP45V9vPbrwPHoNo=",
+        "lastModified": 1754174776,
+        "narHash": "sha256-Sp3FRM6xNwNtGzYH/HByjzJYHSQvwsW+lDMMZNF43PQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e102920c1becb114645c6f92fe14edc0b05cc229",
+        "rev": "e6e2f43a62b7dbc8aa8b1adb7101b0d8b9395445",
         "type": "github"
       },
       "original": {
@@ -688,11 +688,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754154334,
-        "narHash": "sha256-ThBrJdkAjtBOVegBcAcCzirFyjCZtul/1mSnDJ384aI=",
+        "lastModified": 1754172609,
+        "narHash": "sha256-V3b5t+drwIS/gZ0IrWPu6ZKegR7fDybs0lElKReOx4E=",
         "owner": "ProverbialPennance",
         "repo": "just-one-more-repo",
-        "rev": "c9279fa270ad9489d003b10baf168a7fd410fcc7",
+        "rev": "b32facc0f7ee299fda43195288b25a07230ccfe5",
         "type": "github"
       },
       "original": {
@@ -1357,11 +1357,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1754164015,
-        "narHash": "sha256-Zf0t03UIDmlozEwP6v/brzJ3BE4XLmoNSIb2SrBuuv8=",
+        "lastModified": 1754166409,
+        "narHash": "sha256-v5xlkaDi8j5Hl7rOuZrbw83L42ykDHy66D5IQ76A9WQ=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "eb10594c0da5cb09f3ad687461d1979e5f054c6c",
+        "rev": "e5bde1a7291282d444412ac22b4e2f153ce73993",
         "type": "github"
       },
       "original": {
