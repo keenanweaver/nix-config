@@ -23,13 +23,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fooyin";
-  version = "0-unstable-2025-07-31";
+  version = "0-unstable-2025-08-02";
 
   src = fetchFromGitHub {
     owner = "ludouzi";
     repo = "fooyin";
-    rev = "31bc308888599df32779df6e0ac58805675a93fe";
-    hash = "sha256-zwjqK76cxbsNF3Kjv/aBTpGSu3Pe5G6xnKTLaGRXSEw=";
+    rev = "376a024bf1c18d5a4829d1ca125c72e9c4014ff9";
+    hash = "sha256-H8/rcIg8H2FQhTHaNbogwN/17yZcKmZgbwDyTnJLzV8=";
   };
 
   buildInputs = [
