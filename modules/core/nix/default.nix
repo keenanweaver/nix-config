@@ -43,8 +43,6 @@ in
         extra-trusted-public-keys = [
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         ];
-        keep-derivations = true;
-        keep-outputs = true;
         log-lines = lib.mkDefault 50;
         trusted-users = [
           "${username}"
