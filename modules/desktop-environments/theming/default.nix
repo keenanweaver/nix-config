@@ -36,8 +36,8 @@ in
   config = lib.mkIf cfg.enable {
     catppuccin = {
       enable = true;
+      cache.enable = false;
       accent = "${accent-lower}";
-      cache.enable = true;
       flavor = "${flavor-lower}";
       sddm = {
         background = "${wallpaper}";
@@ -70,6 +70,16 @@ in
         utterly-round-plasma-style
       ];
     };
+
+    nix.settings = {
+      extra-substituters = [
+        "https://catppuccin.cachix.org"
+      ];
+      extra-trusted-public-keys = [
+        "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
+      ];
+    };
+
     services = {
       displayManager = {
         sddm = {
@@ -98,7 +108,7 @@ in
           enable = true;
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
-          cache.enable = true;
+          cache.enable = false;
           cursors = {
             enable = true;
             accent = "${accent-lower}";
