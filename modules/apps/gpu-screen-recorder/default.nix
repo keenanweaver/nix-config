@@ -16,11 +16,11 @@ in
     };
     enableFlatpak = lib.mkOption {
       type = lib.types.bool;
-      default = false;
+      default = true;
     };
     enableNative = lib.mkOption {
       type = lib.types.bool;
-      default = true;
+      default = false;
     };
   };
   config = lib.mkIf cfg.enable {
