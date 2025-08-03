@@ -133,6 +133,7 @@ let
       sc-controller
       ## Launchers & utils
       cartridges
+      nur.repos.rogreat.faugus-launcher
       itch
       ## Modding
       hedgemodmanager
@@ -787,15 +788,6 @@ in
                   ];
                 };
               };
-              "io.github.Faugus.faugus-launcher" = {
-                Context = {
-                  filesystems = [
-                    "${config.home.homeDirectory}/Games/faugus"
-                    "xdg-data/Steam"
-                    "/mnt/crusader/Games"
-                  ];
-                };
-              };
               "io.github.noxworld_dev.OpenNox" = {
                 Context = {
                   filesystems = [
@@ -926,7 +918,6 @@ in
               "info.beyondallreason.bar"
               "info.cemu.Cemu"
               "info.exult.exult"
-              "io.github.Faugus.faugus-launcher"
               {
                 appId = "io.github.hedge_dev.unleashedrecomp";
                 bundle = "file://${config.home.homeDirectory}/Games/io.github.hedge_dev.unleashedrecomp.flatpak";
