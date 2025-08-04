@@ -16,8 +16,14 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    boot.kernel.sysctl = {
-      "net.ipv4.ip_forward" = 1;
+    boot = {
+      extraModprobeConfig = ''
+        options kvm_amd nested=1
+        options kvm ignore_msrs=1 report_ignored_msrs=0
+      '';
+      kernel.sysctl = {
+        "net.ipv4.ip_forward" = 1;
+      };
     };
 
     environment = {
@@ -50,7 +56,7 @@ in
           dates = "weekly";
         };
         defaultNetwork.settings.dns_enabled = true;
-        #dockerCompat = true;
+        dockerCompat = true;
         #dockerSocket.enable = true;
       };
       libvirtd = {
@@ -79,6 +85,7 @@ in
         ${username} = {
           extraGroups = [
             "docker"
+            "kvm"
             "libvirtd"
             "podman"
           ];

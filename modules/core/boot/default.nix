@@ -11,6 +11,7 @@
       sysctl = {
         "kernel.sysrq" = 4;
         "kernel.nmi_watchdog" = 0;
+        "kernel.soft_watchdog" = 0;
       };
     };
     kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
