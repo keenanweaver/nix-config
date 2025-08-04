@@ -38,7 +38,6 @@ in
             };
           };
       };
-      gpu-screen-recorder.ui.enable = true;
     };
     services.flatpak = lib.mkIf cfg.enableFlatpak {
       packages = [

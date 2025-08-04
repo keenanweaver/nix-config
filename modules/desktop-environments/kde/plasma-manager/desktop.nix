@@ -383,7 +383,7 @@
               };
             };
             apply = {
-              desktopfile = "io.github.Faugus.faugus-launcher";
+              desktopfile = "faugus-launcher";
               apply = "force";
             };
           }
