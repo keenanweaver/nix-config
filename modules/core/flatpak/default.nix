@@ -83,12 +83,16 @@ in
                   "xdg-data/icons:ro"
                 ]
                 ++ lib.optionals vars.gaming [
+                  "xdg-config/lsfg-vk:rw"
                   "xdg-run/discord-ipc-*"
                 ];
               };
               Environment = {
                 # Wrong cursor in flatpaks fix
                 XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
+              }
+              // lib.optionalAttrs vars.gaming {
+                LSFG_CONFIG = "${config.xdg.configHome}/lsfg-vk/conf.toml";
               };
             };
             "io.github.ungoogled_software.ungoogled_chromium" = {

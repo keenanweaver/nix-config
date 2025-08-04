@@ -147,8 +147,6 @@ let
       igir
       innoextract
       lgogdownloader
-      lsfg-vk
-      lsfg-vk-ui
       parsec-bin
       tochd
       xlink-kai
@@ -325,6 +323,10 @@ in
           enable = true;
           package = pkgs.openrgb-with-all-plugins;
         };
+      };
+      lsfg-vk = {
+        enable = true;
+        ui.enable = true;
       };
       scx = {
         enable = true;
@@ -743,7 +745,10 @@ in
             ]
             ++ lib.flatten (lib.attrValues p);
           sessionVariables = {
-            #SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS = "0";
+            # https://reddit.com/r/linux_gaming/comments/1mg8vtl/low_latency_gaming_guide/
+            MESA_VK_WSI_PRESENT_MODE = "mailbox";
+            #KWIN_DRM_NO_AMS = 1;
+            SDL_VIDEODRIVER = "wayland,x11";
           };
         };
 

@@ -3,8 +3,6 @@
   inter = prev.callPackage ./inter { };
   isle-portable = prev.callPackage ./isle-portable { };
   klassy = prev.callPackage ./klassy { };
-  lsfg-vk = prev.callPackage ./lsfg-vk { };
-  lsfg-vk-ui = prev.callPackage ./lsfg-vk/ui.nix { };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
