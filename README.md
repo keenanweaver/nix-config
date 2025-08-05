@@ -37,6 +37,7 @@ Prerequisites:
 4. Partition the disks:
     * `nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /etc/nixos/hosts/desktop/disko.nix`
     * `nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /etc/nixos/hosts/laptop/disko.nix`
+    * `nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /etc/nixos/hosts/htpc/disko.nix`
     * `nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /etc/nixos/hosts/pi/disko.nix`
     * `nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko /etc/nixos/hosts/vm/disko.nix`
 5. Verify hardware-configuration.nix disk IDs, add to repo hardware-configuration.nix:
@@ -66,6 +67,7 @@ Prerequisites:
 3. Apply configuration:
     * `sudo nixos-rebuild switch --impure --upgrade --flake /etc/nixos/#nixos-desktop`
     * `sudo nixos-rebuild switch --impure --upgrade --flake /etc/nixos/#nixos-laptop`
+    * `sudo nixos-rebuild switch --impure --upgrade --flake /etc/nixos/#nixos-htpc`
     * `sudo nixos-rebuild switch --impure --upgrade --flake /etc/nixos/#nixos-pi`
     * `sudo nixos-rebuild switch --impure --upgrade --flake /etc/nixos/#nixos-unraid`
 
