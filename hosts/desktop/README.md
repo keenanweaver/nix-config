@@ -25,11 +25,8 @@
 * Audiotechnica ATH-AD700X
 * Beyerdynamic DT 880 Premium 600 OHM Headphones
 ### Game
-* 8BitDo Ultimate 2 Wireless Controller
-* 8BitDo Ultimate 2.4G Controller
-* 8BitDo Ultimate 2C Wireless Controller
+
 * 8BitDo Arcade Stick for Xbox
-* EasySMX Wireless Gaming Controller
 * GameSir Cyclone 2 Wireless Controller
 * Junkfood Snack Box MICRO XL
 * Logitech G920 Racing Wheel

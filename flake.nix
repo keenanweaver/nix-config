@@ -163,14 +163,14 @@
         {
           steamdeck = home-manager.lib.homeManagerConfiguration {
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            modules = [
+            modules = with inputs; [
               ./hosts/steamdeck/home.nix
-              inputs.catppuccin.homeModules.catppuccin
-              inputs.impermanence.homeManagerModules.impermanence
-              inputs.nix-flatpak.homeManagerModules.nix-flatpak
-              inputs.nur.modules.homeManager.default
-              inputs.plasma-manager.homeManagerModules.plasma-manager
-              inputs.sops-nix.homeManagerModules.sops
+              catppuccin.homeModules.catppuccin
+              impermanence.homeManagerModules.impermanence
+              nix-flatpak.homeManagerModules.nix-flatpak
+              nur.modules.homeManager.default
+              plasma-manager.homeManagerModules.plasma-manager
+              sops-nix.homeManagerModules.sops
             ];
 
             extraSpecialArgs = {
@@ -207,22 +207,22 @@
               };
             };
 
-            modules = [
+            modules = with inputs; [
 
               ./hosts/desktop
 
-              inputs.catppuccin.nixosModules.catppuccin
-              inputs.chaotic.nixosModules.default
-              inputs.disko.nixosModules.disko
+              catppuccin.nixosModules.catppuccin
+              chaotic.nixosModules.default
+              disko.nixosModules.disko
               ./hosts/desktop/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB" ]; }
-              inputs.impermanence.nixosModules.impermanence
-              inputs.just-one-more-repo.nixosModules.default
-              inputs.lsfg-vk-flake.nixosModules.default
-              inputs.nix-flatpak.nixosModules.nix-flatpak
-              inputs.nur.modules.nixos.default
-              inputs.sops-nix.nixosModules.sops
-              inputs.ucodenix.nixosModules.default
+              impermanence.nixosModules.impermanence
+              just-one-more-repo.nixosModules.default
+              lsfg-vk-flake.nixosModules.default
+              nix-flatpak.nixosModules.nix-flatpak
+              nur.modules.nixos.default
+              sops-nix.nixosModules.sops
+              ucodenix.nixosModules.default
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
@@ -266,20 +266,20 @@
               };
             };
 
-            modules = [
+            modules = with inputs; [
 
               ./hosts/laptop
 
-              inputs.catppuccin.nixosModules.catppuccin
-              inputs.chaotic.nixosModules.default
-              inputs.disko.nixosModules.disko
+              catppuccin.nixosModules.catppuccin
+              chaotic.nixosModules.default
+              disko.nixosModules.disko
               ./hosts/laptop/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/nvme-eui.5cd2e48231514cb8" ]; }
-              inputs.impermanence.nixosModules.impermanence
-              inputs.just-one-more-repo.nixosModules.default
-              inputs.nix-flatpak.nixosModules.nix-flatpak
-              inputs.nur.modules.nixos.default
-              inputs.sops-nix.nixosModules.sops
+              impermanence.nixosModules.impermanence
+              just-one-more-repo.nixosModules.default
+              nix-flatpak.nixosModules.nix-flatpak
+              nur.modules.nixos.default
+              sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
@@ -313,6 +313,66 @@
               }
             ];
           };
+          # HTPC
+          nixos-htpc = nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+
+            specialArgs = {
+              inherit inputs;
+              inherit fullname username;
+
+              vars = {
+                desktop = true;
+                gaming = true;
+              };
+            };
+
+            modules = with inputs; [
+
+              ./hosts/htpc
+
+              catppuccin.nixosModules.catppuccin
+              chaotic.nixosModules.default
+              disko.nixosModules.disko
+              ./hosts/desktop/disko.nix
+              { _module.args.disks = [ "/dev/disk/by-id/" ]; }
+              impermanence.nixosModules.impermanence
+              jovian-nixos.nixosModules.default
+              just-one-more-repo.nixosModules.default
+              lsfg-vk-flake.nixosModules.default
+              nix-flatpak.nixosModules.nix-flatpak
+              nur.modules.nixos.default
+              sops-nix.nixosModules.sops
+              ucodenix.nixosModules.default
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  backupFileExtension = "hmbak";
+                  useUserPackages = true;
+                  extraSpecialArgs = {
+                    inherit inputs; # Experiment with config and other attributes
+                    inherit fullname username;
+
+                    vars = {
+                      desktop = true;
+                      gaming = true;
+                    };
+                  };
+                  sharedModules = with inputs; [
+                    catppuccin.homeModules.catppuccin
+                    impermanence.homeManagerModules.impermanence
+                    nix-flatpak.homeManagerModules.nix-flatpak
+                    nix-index-database.homeModules.nix-index
+                    nur.modules.homeManager.default
+                    nvf.homeManagerModules.default
+                    plasma-manager.homeManagerModules.plasma-manager
+                    sops-nix.homeManagerModules.sops
+                    wayland-pipewire-idle-inhibit.homeModules.default
+                  ];
+                };
+              }
+            ];
+          };
           # Pi
           remorsepi = nixpkgs.lib.nixosSystem {
             system = "aarch64-linux";
@@ -327,17 +387,17 @@
               };
             };
 
-            modules = [
+            modules = with inputs; [
 
               ./hosts/pi/remorse.nix
 
-              inputs.chaotic.nixosModules.default
-              inputs.impermanence.nixosModules.impermanence
-              inputs.nix-flatpak.nixosModules.nix-flatpak
-              inputs.nixos-hardware.nixosModules.raspberry-pi-4
-              inputs.nur.modules.nixos.default
-              inputs.quadlet-nix.nixosModules.quadlet
-              inputs.sops-nix.nixosModules.sops
+              chaotic.nixosModules.default
+              impermanence.nixosModules.impermanence
+              nix-flatpak.nixosModules.nix-flatpak
+              nixos-hardware.nixosModules.raspberry-pi-4
+              nur.modules.nixos.default
+              quadlet-nix.nixosModules.quadlet
+              sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
@@ -382,18 +442,18 @@
               };
             };
 
-            modules = [
+            modules = with inputs; [
 
               ./hosts/pi/regret.nix
 
-              inputs.catppuccin.nixosModules.catppuccin
-              inputs.chaotic.nixosModules.default
-              inputs.impermanence.nixosModules.impermanence
-              inputs.nix-flatpak.nixosModules.nix-flatpak
-              inputs.nixos-hardware.nixosModules.raspberry-pi-4
-              inputs.nur.modules.nixos.default
-              inputs.quadlet-nix.nixosModules.quadlet
-              inputs.sops-nix.nixosModules.sops
+              catppuccin.nixosModules.catppuccin
+              chaotic.nixosModules.default
+              impermanence.nixosModules.impermanence
+              nix-flatpak.nixosModules.nix-flatpak
+              nixos-hardware.nixosModules.raspberry-pi-4
+              nur.modules.nixos.default
+              quadlet-nix.nixosModules.quadlet
+              sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
@@ -437,19 +497,19 @@
               };
             };
 
-            modules = [
+            modules = with inputs; [
 
               ./hosts/vm
 
-              inputs.catppuccin.nixosModules.catppuccin
-              inputs.chaotic.nixosModules.default
-              inputs.disko.nixosModules.disko
+              catppuccin.nixosModules.catppuccin
+              chaotic.nixosModules.default
+              disko.nixosModules.disko
               ./hosts/vm/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/virtio-vdisk1" ]; }
-              inputs.impermanence.nixosModules.impermanence
-              inputs.nix-flatpak.nixosModules.nix-flatpak
-              inputs.nur.modules.nixos.default
-              inputs.sops-nix.nixosModules.sops
+              impermanence.nixosModules.impermanence
+              nix-flatpak.nixosModules.nix-flatpak
+              nur.modules.nixos.default
+              sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
@@ -470,15 +530,15 @@
                       stateVersion = "23.11";
                     };
                   };
-                  sharedModules = [
-                    inputs.catppuccin.homeModules.catppuccin
-                    inputs.impermanence.homeManagerModules.impermanence
-                    inputs.nix-flatpak.homeManagerModules.nix-flatpak
-                    inputs.nix-index-database.homeModules.nix-index
-                    inputs.nur.modules.homeManager.default
-                    inputs.nvf.homeManagerModules.default
-                    inputs.plasma-manager.homeManagerModules.plasma-manager
-                    inputs.sops-nix.homeManagerModules.sops
+                  sharedModules = with inputs; [
+                    catppuccin.homeModules.catppuccin
+                    impermanence.homeManagerModules.impermanence
+                    nix-flatpak.homeManagerModules.nix-flatpak
+                    nix-index-database.homeModules.nix-index
+                    nur.modules.homeManager.default
+                    nvf.homeManagerModules.default
+                    plasma-manager.homeManagerModules.plasma-manager
+                    sops-nix.homeManagerModules.sops
                   ];
                 };
               }
