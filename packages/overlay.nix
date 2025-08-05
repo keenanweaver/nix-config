@@ -1,7 +1,6 @@
 (final: prev: {
   fooyin = prev.callPackage ./fooyin { };
   inter = prev.callPackage ./inter { };
-  isle-portable = prev.callPackage ./isle-portable { };
   klassy = prev.callPackage ./klassy { };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
