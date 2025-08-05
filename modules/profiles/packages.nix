@@ -76,7 +76,6 @@ in
           ++ lib.optionals cfg.dev [
             codeium
             devenv
-            gh
             just
             powershell
             seer

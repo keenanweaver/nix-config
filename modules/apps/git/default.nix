@@ -23,6 +23,9 @@ in
     home-manager.users.${username} =
       { config, pkgs, ... }:
       {
+        programs.gh = {
+          enable = true;
+        };
         programs.git = {
           enable = true;
           delta = {
@@ -44,10 +47,8 @@ in
             safe = {
               directory = [
                 "/mnt/crusader/Projects/Codeberg/nix-config"
-                "/mnt/crusader/Projects/GitHub/arch-distrobox"
                 "/mnt/crusader/Projects/GitHub/keenanweaver.github.io"
                 "/mnt/crusader/Projects/GitHub/nix-config"
-                "/mnt/crusader/Projects/GitHub/nix-config/.git"
                 "/mnt/crusader/Projects/Gitlab/moka-pics"
               ];
             };
