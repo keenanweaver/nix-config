@@ -123,6 +123,14 @@ let
       mesen
       nuked-sc55
       # inputs.chaotic.packages.${system}.pcsx2_git
+      (retroarch.withCores (
+        cores: with cores; [
+          beetle-psx-hw
+          beetle-saturn
+          blastem
+          mgba
+        ]
+      ))
       inputs.chaotic.packages.${system}.shadps4_git
       nur.repos.bandithedoge.sheepshaver-bin
       # nur.repos.novel2430.vita3k
