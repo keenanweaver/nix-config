@@ -70,7 +70,7 @@ let
       augustus # Caesar 3
       clonehero # Guitar Hero
       corsix-th # Theme Hospital
-      isle-portable
+      #isle-portable
       jazz2
       #katawa-shoujo-re-engineered
       openjk # Jedi Academy
@@ -192,6 +192,10 @@ in
   options = {
     gaming = {
       enable = lib.mkEnableOption "Enable Gaming module in NixOS";
+      installPackages = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+      };
     };
   };
 
@@ -692,7 +696,7 @@ in
                 target = "${config.home.homeDirectory}/Games/wine-mouse-acceleration.reg";
               };
             };
-          packages =
+          packages = lib.mkIf cfg.installPackages (
             with pkgs;
             [
               (writeShellApplication {
@@ -751,7 +755,8 @@ in
                 '';
               })
             ]
-            ++ lib.flatten (lib.attrValues p);
+            ++ lib.flatten (lib.attrValues p)
+          );
           sessionVariables = {
             # https://reddit.com/r/linux_gaming/comments/1mg8vtl/low_latency_gaming_guide/
             MESA_VK_WSI_PRESENT_MODE = "mailbox";
@@ -1121,19 +1126,19 @@ in
                   store = "lutris";
                 }
                 {
-                  path = "${config.home.homeDirectory}/Games/nero/Battle.net";
+                  path = "${config.home.homeDirectory}/Games/Bottles/*";
                   store = "otherWine";
                 }
                 {
-                  path = "${config.home.homeDirectory}/Games/nero/GOG-Galaxy";
+                  path = "${config.home.homeDirectory}/Games/faugus/*";
                   store = "otherWine";
                 }
                 {
-                  path = "${config.home.homeDirectory}/Games/nero/itch.io";
+                  path = "${config.home.homeDirectory}/Games/nero/*";
                   store = "otherWine";
                 }
                 {
-                  path = "${config.home.homeDirectory}/Games/nero/Uplay";
+                  path = "${config.home.homeDirectory}/Games/portproton/*";
                   store = "otherWine";
                 }
                 {

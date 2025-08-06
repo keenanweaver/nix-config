@@ -18,7 +18,12 @@
 
   # Custom modules
   desktop.enable = true;
-  gaming.enable = true;
+  gaming = {
+    enable = true;
+    installPackages = false;
+  };
+  sunshine.enable = lib.mkForce false;
+  zerotier.enable = lib.mkForce false;
 
   boot = {
     initrd = {
@@ -86,9 +91,43 @@
     };
   };
 
+  programs = {
+    _2ship2harkinian-git.enable = lib.mkForce false;
+    perfect-dark-git.enable = lib.mkForce false;
+    shipwright-git.enable = lib.mkForce false;
+    sm64coopdx.enable = lib.mkForce false;
+    spaghetti-kart-git.enable = lib.mkForce false;
+    starship-sf64.enable = lib.mkForce false;
+  };
+
   zramSwap = {
     enable = true;
   };
 
-  home-manager.users.${username} = { };
+  home-manager.users.${username} = {
+    home.packages = with pkgs; [
+      moonlight-qt
+      ## Emulators
+      mednafen
+      mednaffe
+      (retroarch.withCores (
+        cores: with cores; [
+          beetle-psx-hw
+          beetle-saturn
+          blastem
+          mgba
+        ]
+      ))
+      inputs.chaotic.packages.${system}.shadps4_git
+      xenia-canary
+      ## Input
+      joystickwake
+      oversteer
+      sc-controller
+      ## Wine
+      umu-launcher
+      inputs.nix-gaming.packages.${system}.wine-tkg-ntsync
+      winetricks
+    ];
+  };
 }
