@@ -368,29 +368,30 @@ in
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/30-zram.rules
           (writeTextFile {
             name = "30-zram.rules";
-            text = ''
-              ACTION=="change", KERNEL=="zram0", ATTR{initstate}=="1", SYSCTL{vm.swappiness}="150", RUN+="${pkgs.bash}/bin/bash -c 'echo N > /sys/module/zswap/parameters/enabled'"
-            '';
             destination = "/etc/udev/rules.d/30-zram.rules";
+            text = ''
+              ACTION=="change", KERNEL=="zram0", ATTR{initstate}=="1", SYSCTL{vm.swappiness}="150", RUN+="${bash}/bin/bash -c 'echo N > /sys/module/zswap/parameters/enabled'"
+            '';
           })
           (writeTextFile {
             name = "40-logitech-g920.rules";
+            destination = "/etc/udev/rules.d/40-logitech-g920.rules";
             text = ''
               ATTR{idVendor}=="046d", ATTR{idProduct}=="c261", RUN+="${usb-modeswitch}/bin/usb_modeswitch -c '/etc/usb_modeswitch.d/046d:c261'"
             '';
-            destination = "/etc/udev/rules.d/40-logitech-g920.rules";
           })
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/50-sata.rules
           (writeTextFile {
             name = "50-sata.rules";
+            destination = "/etc/udev/rules.d/50-sata.rules";
             text = ''
               ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="*", ATTR{link_power_management_policy}="max_performance"
             '';
-            destination = "/etc/udev/rules.d/50-sata.rules";
           })
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/60-ioschedulers.rules
           (writeTextFile {
             name = "60-ioschedulers.rules";
+            destination = "/etc/udev/rules.d/60-ioschedulers.rules";
             text = ''
               # HDD
               ACTION=="add|change", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
@@ -399,26 +400,26 @@ in
               # NVMe SSD
               ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
             '';
-            destination = "/etc/udev/rules.d/60-ioschedulers.rules";
           })
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/69-hdparm.rules
           (writeTextFile {
             name = "69-hdparm.rules";
+            destination = "/etc/udev/rules.d/69-hdparm.rules";
             text = ''
               ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", RUN+="${hdparm}/bin/hdparm -B 254 -S 0 /dev/%k"
             '';
-            destination = "/etc/udev/rules.d/69-hdparm.rules";
           })
           (writeTextFile {
             name = "70-easysmx.rules";
+            destination = "/etc/udev/rules.d/70-easysmx.rules";
             text = ''
               # EasySMX X05
               SUBSYSTEM=="usb", ATTR{idProduct}=="0091", ATTR{idVendor}=="2f24", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
             '';
-            destination = "/etc/udev/rules.d/70-easysmx.rules";
           })
           (writeTextFile {
             name = "70-gamesir.rules";
+            destination = "/etc/udev/rules.d/70-gamesir.rules";
             text = ''
               # GameSir Cyclone 2 Wireless Controller; USB
               ## Nintendo Switch
@@ -433,10 +434,10 @@ in
               # GameSir Cyclone 2 Wireless Controller; Bluetooth
               SUBSYSTEM=="input", ATTR{idProduct}=="8100", ATTR{idVendor}=="054c", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
             '';
-            destination = "/etc/udev/rules.d/70-gamesir.rules";
           })
           (writeTextFile {
             name = "70-8bitdo.rules";
+            destination = "/etc/udev/rules.d/70-8bitdo.rules";
             text = ''
               # 8BitDo Arcade Stick; Bluetooth (X-mode)
               SUBSYSTEM=="input", ATTRS{name}=="8BitDo Arcade Stick", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
@@ -448,11 +449,11 @@ in
               # 8BitDo Ultimate 2C Wireless Controller; USB/2.4GHz
               SUBSYSTEM=="usb", ATTR{idProduct}=="310a", ATTR{idVendor}=="2dc8", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
             '';
-            destination = "/etc/udev/rules.d/70-8bitdo.rules";
           })
           # https://github.com/starcitizen-lug/knowledge-base/wiki/Sticks,-Throttles,-&-Pedals
           (writeTextFile {
             name = "70-flight-stick.rules";
+            destination = "/etc/udev/rules.d/70-vkb.rules";
             text = ''
               # Virpil
               KERNEL=="hidraw*", ATTRS{idVendor}=="3344", ATTRS{idProduct}=="*", MODE="0660", TAG+="uaccess"
@@ -475,30 +476,29 @@ in
                 ENV{ID_VENDOR_ID}=="231d", ENV{ID_MODEL_ID}=="0126", \
                 RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0" 
             '';
-            destination = "/etc/udev/rules.d/70-vkb.rules";
           })
           (writeTextFile {
             name = "ntsync-udev-rules";
-            text = ''KERNEL=="ntsync", MODE="0660", TAG+="uaccess"'';
             destination = "/etc/udev/rules.d/70-ntsync.rules";
+            text = ''KERNEL=="ntsync", MODE="0660", TAG+="uaccess"'';
           })
           # https://wiki.archlinux.org/title/Gamepad#Motion_controls_taking_over_joypad_controls_and/or_causing_unintended_input_with_joypad_controls
           (writeTextFile {
             name = "51-disable-DS3-and-DS4-motion-controls.rules";
+            destination = "/etc/udev/rules.d/51-disable-DS3-and-DS4-motion-controls.rules";
             text = ''
               SUBSYSTEM=="input", ATTRS{name}=="*Controller Motion Sensors", RUN+="${coreutils}/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
             '';
-            destination = "/etc/udev/rules.d/51-disable-DS3-and-DS4-motion-controls.rules";
           })
           # https://reddit.com/r/linux_gaming/comments/1fu4ggk/can_someone_explain_dualsense_to_me/lpwxv12/?context=3#lpwxv12
           (writeTextFile {
             name = "51-disable-dualsense-sound-and-vibration.rules";
+            destination = "/etc/udev/rules.d/51-disable-dualsense-sound-and-vibration.rules";
             text = ''
               KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", MODE="0660", TAG+="uaccess"
               KERNEL=="hidraw*", KERNELS=="*054C:0CE6*", MODE="0660", TAG+="uaccess"
               ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", ENV{PULSE_IGNORE}="1", ENV{ACP_IGNORE}="1"
             '';
-            destination = "/etc/udev/rules.d/51-disable-dualsense-sound-and-vibration.rules";
           })
         ];
       };
