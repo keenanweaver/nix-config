@@ -107,6 +107,7 @@ in
       };
     };
     xdg.portal = {
+      enable = true;
       config = {
         kde = {
           default = [
@@ -117,7 +118,6 @@ in
           "org.freedesktop.portal.OpenURI" = [ "kde" ];
         };
       };
-
       extraPortals = with pkgs; [
         kdePackages.xdg-desktop-portal-kde
         xdg-desktop-portal-gtk

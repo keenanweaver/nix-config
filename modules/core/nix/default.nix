@@ -86,7 +86,6 @@ in
             "${config.home.homeDirectory}/.local/bin"
           ];
           sessionVariables = {
-            MANPAGER = "batman";
             NIXOS_OZONE_WL = "1"; # Electron apps
             NIXPKGS_ALLOW_UNFREE = "1";
             XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";

@@ -91,6 +91,7 @@ in
           amdgpu_top
           audacious
           audacious-plugins
+          caligula
           cyanrip
           filezilla
           fooyin
@@ -178,46 +179,37 @@ in
             in
             {
               enable = true;
-              defaultApplications =
-                {
-                  "audio/*" = audioPlayer;
-                  "image/*" = imageViewer;
-                  "video/*" = videoPlayer;
-                  "text/*" = editor;
-                  "text/html" = browser;
-                  "text/plain" = editor;
-                  "application/json" = editor;
-                  "application/pdf" = pdfViewer;
-                  "application/toml" = editor;
-                  "application/x-bat" = editor;
-                  "application/xhtml+xml" = browser;
-                  "application/xml" = editor;
-                  "application/x-shellscript" = editor;
-                  "application/x-yaml" = editor;
-                  "inode/directory" = "org.kde.dolphin.desktop";
-                  "x-scheme-handler/bottles" = "com.usebottles.bottles.desktop";
-                  "x-scheme-handler/http" = browser;
-                  "x-scheme-handler/https" = browser;
-                  "x-scheme-handler/sgnl" = "signal.desktop";
-                  "x-scheme-handler/signalcaptcha" = "signal.desktop";
-                  "x-scheme-handler/terminal" = "org.wezfurlong.wezterm.desktop";
-                }
-                // lib.optionalAttrs vars.gaming {
-                  "application/x-alcohol" = "cdemu-client.desktop";
-                  "application/x-cue" = "cdemu-client.desktop";
-                  "application/x-gd-rom-cue" = "cdemu-client.desktop";
-                  "application/x-msdownload" = "wine.desktop";
-                  "x-scheme-handler/ror2mm" = "r2modman.desktop";
-                };
+              defaultApplications = {
+                "audio/*" = audioPlayer;
+                "image/*" = imageViewer;
+                "video/*" = videoPlayer;
+                "text/*" = editor;
+                "text/html" = browser;
+                "text/plain" = editor;
+                "application/json" = editor;
+                "application/pdf" = pdfViewer;
+                "application/toml" = editor;
+                "application/x-bat" = editor;
+                "application/xhtml+xml" = browser;
+                "application/xml" = editor;
+                "application/x-shellscript" = editor;
+                "application/x-yaml" = editor;
+                "inode/directory" = "org.kde.dolphin.desktop";
+                "x-scheme-handler/bottles" = "com.usebottles.bottles.desktop";
+                "x-scheme-handler/http" = browser;
+                "x-scheme-handler/https" = browser;
+                "x-scheme-handler/sgnl" = "signal.desktop";
+                "x-scheme-handler/signalcaptcha" = "signal.desktop";
+                "x-scheme-handler/terminal" = "org.wezfurlong.wezterm.desktop";
+              }
+              // lib.optionalAttrs vars.gaming {
+                "application/x-alcohol" = "cdemu-client.desktop";
+                "application/x-cue" = "cdemu-client.desktop";
+                "application/x-gd-rom-cue" = "cdemu-client.desktop";
+                "application/x-msdownload" = "wine.desktop";
+                "x-scheme-handler/ror2mm" = "r2modman.desktop";
+              };
             };
-          portal = {
-            config.common.default = "*";
-            enable = true;
-            extraPortals = with pkgs; [
-              kdePackages.xdg-desktop-portal-kde
-              xdg-desktop-portal-gtk
-            ];
-          };
         };
       };
   };

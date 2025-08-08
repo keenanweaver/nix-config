@@ -281,7 +281,7 @@
             };
           };
           krunner = {
-            position = "top";
+            position = "center";
             activateWhenTypingOnDesktop = false;
             historyBehavior = "enableSuggestions";
           };
