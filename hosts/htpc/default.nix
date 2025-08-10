@@ -71,6 +71,7 @@
     };
     steam = {
       autoStart = true;
+      desktopSession = "plasma";
       enable = true;
     };
   };

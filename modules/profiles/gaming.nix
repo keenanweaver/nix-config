@@ -729,8 +729,8 @@ in
                 ];
                 text = ''
                   ## DREAMM
-                  wget -P "$GAMES_DIR"/games/dreamm $DREAMM
-                  fd dreamm -e tgz "$GAMES_DIR"/games/dreamm -x tar xf {} -c "$GAMES_DIR"/games/dreamm
+                  wget -P "$GAMES_DIR"/dreamm $DREAMM
+                  fd dreamm -e tgz "$GAMES_DIR"/dreamm -x tar xf {} -c "$GAMES_DIR"/dreamm
                   ## Conty
                   curl $CONTY | jq -r '.assets[] | select(.name | test("conty_lite.sh$")).browser_download_url' | xargs wget -P "$LOCAL_BIN"
                   chmod +x "$LOCAL_BIN"/conty_lite.sh
