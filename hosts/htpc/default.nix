@@ -1,6 +1,7 @@
 {
   lib,
   username,
+  inputs,
   pkgs,
   ...
 }:
@@ -69,9 +70,10 @@
       has.amd.gpu = true;
     };
     steam = {
+      enable = true;
       autoStart = true;
       desktopSession = "plasma";
-      enable = true;
+      user = "${username}";
     };
   };
 
@@ -99,13 +101,7 @@
     starship-sf64.enable = lib.mkForce false;
   };
 
-  services = {
-    flatpak = {
-      packages = [
-        "net.retrodeck.retrodeck"
-      ];
-    };
-  };
+  services.displayManager.sddm.enable = lib.mkForce false;
 
   zramSwap = {
     enable = true;
@@ -136,5 +132,12 @@
       inputs.nix-gaming.packages.${system}.wine-tkg-ntsync
       winetricks
     ];
+    services = {
+      flatpak = {
+        packages = [
+          "net.retrodeck.retrodeck"
+        ];
+      };
+    };
   };
 }

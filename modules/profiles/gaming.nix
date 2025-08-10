@@ -550,7 +550,7 @@ in
                 let
                   configFile = pkgs.fetchurl {
                     url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
-                    hash = "sha256-at2s/DZEwkzQT47rBOWRfd0jBu1pJuqsqyHslMbjVfk=";
+                    hash = "sha256-OcmvXWdwCjFGSLmkrfOHLa9e/rKcd2sV2cuW4pxudiU=";
                   };
                 in
                 {
