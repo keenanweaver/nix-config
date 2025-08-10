@@ -671,7 +671,7 @@ in
               wine-controller-proton = {
                 # https://selfmadepenguin.wordpress.com/2024/02/14/how-i-solved-my-gamecontroller-problems/
                 # Import with: wine start regedit.exe /home/keenan/Games/wine-controller.reg
-                enable = true;
+                enable = false;
                 text = ''
                   Windows Registry Editor Version 5.00
 
@@ -684,7 +684,7 @@ in
               wine-mouse-acceleration = {
                 # https://reddit.com/r/linux_gaming/comments/1hs1685/windows_mouse_acceleration_seems_to_be_enabled_in/
                 # Import with: wine start regedit.exe /home/keenan/Games/wine-mouse-acceleration.reg
-                enable = true;
+                enable = false;
                 text = ''
                   Windows Registry Editor Version 5.00
 
@@ -795,7 +795,7 @@ in
               "info.cemu.Cemu" = {
                 Context = {
                   filesystems = [
-                    "${config.home.homeDirectory}/Games/games/cemu"
+                    "${config.home.homeDirectory}/Games/cemu"
                   ];
                 };
               };
@@ -818,7 +818,7 @@ in
                 Context = {
                   filesystems = [
                     "!home"
-                    "${config.home.homeDirectory}/Games/games/switch"
+                    "${config.home.homeDirectory}/Games/switch"
                   ];
                 };
               };
@@ -849,14 +849,14 @@ in
                 Context = {
                   filesystems = [
                     "!home"
-                    "${config.home.homeDirectory}/Games/games/rpcs3"
+                    "${config.home.homeDirectory}/Games/rpcs3"
                   ];
                 };
               };
               "org.azahar_emu.Azahar" = {
                 Context = {
                   filesystems = [
-                    "${config.home.homeDirectory}/Games/games/3ds"
+                    "${config.home.homeDirectory}/Games/3ds"
                   ];
                 };
               };
@@ -878,15 +878,15 @@ in
                 Context = {
                   filesystems = [
                     "${config.home.homeDirectory}/Music/soundfonts:ro"
-                    "${config.home.homeDirectory}/Games/games/rpg-maker"
+                    "${config.home.homeDirectory}/Games/rpg-maker"
                     "!home"
                     "!host"
                   ];
                   shared = "network"; # obs-gamecapture
                 };
                 Environment = {
-                  RPG2K_RTP_PATH = "${config.home.homeDirectory}/Games/games/rpg-maker/RTP/2000";
-                  RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/games/rpg-maker/RTP/2003";
+                  RPG2K_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2000";
+                  RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2003";
                 };
               };
               "org.flycast.Flycast" = {
@@ -910,7 +910,7 @@ in
                     "!home"
                     "${config.home.homeDirectory}/Music/roland:ro"
                     "${config.home.homeDirectory}/Music/soundfonts:ro"
-                    "${config.home.homeDirectory}/Games/games/scummvm"
+                    "${config.home.homeDirectory}/Games/scummvm"
                   ];
                 };
               };
@@ -978,7 +978,7 @@ in
             backupNotification = true;
             settings = {
               backup = {
-                path = "${config.home.homeDirectory}/Games/games/ludusavi";
+                path = "${config.home.homeDirectory}/Games/ludusavi";
                 format = {
                   chosen = "zip";
                   zip.compression = "deflate";
@@ -1110,7 +1110,7 @@ in
                 }
               ];
               restore = {
-                path = "${config.home.homeDirectory}/Games/games/ludusavi";
+                path = "${config.home.homeDirectory}/Games/ludusavi";
               };
               roots = [
                 {
@@ -1147,10 +1147,6 @@ in
                 }
                 {
                   path = "${config.home.homeDirectory}/Games/Steam";
-                  store = "steam";
-                }
-                {
-                  path = "${config.home.homeDirectory}/Games/games/SteamLibrary";
                   store = "steam";
                 }
               ];
@@ -1192,7 +1188,7 @@ in
                 "Emulator"
               ];
               settings = {
-                Path = "${config.home.homeDirectory}/Games/games/86box/win98se";
+                Path = "${config.home.homeDirectory}/Games/86box/win98se";
               };
             };
             gog-galaxy =

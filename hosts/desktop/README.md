@@ -9,7 +9,7 @@
 * NZXT Kraken Elite 360mm AIO CPU Cooler
 * Corsair RM850e (2023) PSU
 * Crucial T700 2TB Gen5 NVMe M.2 SSD
-* Samsung 990 PRO 2TB SSD NVMe M.2 PCIe Gen4
+* Samsung 4TB 990 EVO Plus PCIe 5.0 x2 M.2 Internal SSD
 * [GIGABYTE - AORUS FO27Q3 - 27" QD OLED Gaming Monitor](https://www.gigabyte.com/Monitor/AORUS-FO27Q3)
 * Lenovo Legion Y27q-20 Gaming Monitor, 27”
 * Fractal Design North XL ATX mATX Mid Tower PC Case

@@ -32,7 +32,7 @@
 
   fileSystems."/home/${username}/Games" = {
     depends = [ "/home" ];
-    device = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S73WNJ0TB09290J-part1";
+    device = "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U8NJ0Y515050E-part1";
     fsType = "btrfs";
     options = [
       "compress=zstd:1"

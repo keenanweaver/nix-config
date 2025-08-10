@@ -335,7 +335,7 @@
               chaotic.nixosModules.default
               disko.nixosModules.disko
               ./hosts/desktop/disko.nix
-              { _module.args.disks = [ "/dev/disk/by-id/" ]; }
+              { _module.args.disks = [ "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S73WNJ0TB09290J" ]; }
               impermanence.nixosModules.impermanence
               jovian-nixos.nixosModules.default
               just-one-more-repo.nixosModules.default

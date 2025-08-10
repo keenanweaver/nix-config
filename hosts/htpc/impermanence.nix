@@ -12,7 +12,6 @@
           "/var/lib/flatpak"
           "/var/lib/libvirt"
           "/var/lib/nixos"
-          "/var/lib/systemd/coredump"
           "/var/lib/upower"
           "/var/log"
         ];
@@ -22,6 +21,7 @@
           "/etc/ssh/ssh_host_ed25519_key.pub"
           "/etc/ssh/ssh_host_rsa_key"
           "/etc/ssh/ssh_host_rsa_key.pub"
+          "/tmp/secret.key"
         ];
       };
     };

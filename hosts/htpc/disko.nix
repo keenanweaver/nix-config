@@ -1,5 +1,5 @@
 {
-  disks ? [ "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB" ],
+  disks ? [ "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S73WNJ0TB09290J" ],
   ...
 }:
 {
@@ -31,6 +31,7 @@
               name = "crypted";
               settings = {
                 allowDiscards = true;
+                keyFile = "/tmp/secret.key";
               };
               content = {
                 type = "btrfs";
