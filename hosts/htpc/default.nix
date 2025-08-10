@@ -23,6 +23,7 @@
     enable = true;
     installPackages = false;
   };
+  packages.enable = lib.mkForce false;
   sunshine.enable = lib.mkForce false;
   zerotier.enable = lib.mkForce false;
 
