@@ -75,6 +75,10 @@ in
               hostname = "nixos-desktop";
               port = 6777;
             };
+            nixos-htpc = {
+              hostname = "nixos-htpc";
+              port = 6777;
+            };
             nixos-laptop = {
               hostname = "nixos-laptop";
               port = 6777;

@@ -13,7 +13,7 @@
     # Profiles
     ../../modules
     # Plasma
-    ../../modules/desktop-environments/kde/plasma-manager/desktop.nix
+    #../../modules/desktop-environments/kde/plasma-manager/desktop.nix
   ];
 
   # Custom modules
@@ -45,7 +45,6 @@
     ];
     kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
     kernelParams = lib.mkDefault [
-      "amd_iommu=on"
       "amd_pstate=guided"
       "microcode.amd_sha_check=off"
     ];
@@ -98,6 +97,14 @@
     sm64coopdx.enable = lib.mkForce false;
     spaghetti-kart-git.enable = lib.mkForce false;
     starship-sf64.enable = lib.mkForce false;
+  };
+
+  services = {
+    flatpak = {
+      packages = [
+        "net.retrodeck.retrodeck"
+      ];
+    };
   };
 
   zramSwap = {
