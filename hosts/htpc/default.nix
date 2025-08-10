@@ -34,7 +34,6 @@
         "usb_storage"
         "usbhid"
         "sd_mod"
-        "sr_mod"
       ];
     };
     kernelModules = lib.mkDefault [
