@@ -17,19 +17,20 @@
   libopenmpt,
   game-music-emu,
   SDL2,
+  icu,
   enablePlugins ? true,
   enableVGM ? true,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fooyin";
-  version = "0-unstable-2025-08-02";
+  version = "0-unstable-2025-08-10";
 
   src = fetchFromGitHub {
     owner = "ludouzi";
     repo = "fooyin";
-    rev = "376a024bf1c18d5a4829d1ca125c72e9c4014ff9";
-    hash = "sha256-H8/rcIg8H2FQhTHaNbogwN/17yZcKmZgbwDyTnJLzV8=";
+    rev = "d84280dff59bc5a54b13b72cc3edd3253b3692a6";
+    hash = "sha256-DMjNVN6mJELLLnYysBmrZx8YV9e6YNjh2Wkcp1+/h5M=";
   };
 
   buildInputs = [
@@ -39,6 +40,7 @@ stdenv.mkDerivation (finalAttrs: {
     kdePackages.qtwayland
     taglib
     ffmpeg
+    icu
     kdsingleapplication
     # output plugins
     alsa-lib
