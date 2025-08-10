@@ -759,7 +759,7 @@ in
           );
           sessionVariables = {
             # https://reddit.com/r/linux_gaming/comments/1mg8vtl/low_latency_gaming_guide/
-            MESA_VK_WSI_PRESENT_MODE = "mailbox";
+            MESA_VK_WSI_PRESENT_MODE = "fifo";
             #KWIN_DRM_NO_AMS = 1;
             SDL_VIDEODRIVER = "wayland,x11";
           };
