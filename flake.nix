@@ -313,66 +313,6 @@
               }
             ];
           };
-          # HTPC
-          nixos-htpc = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-
-            specialArgs = {
-              inherit inputs;
-              inherit fullname username;
-
-              vars = {
-                desktop = true;
-                gaming = true;
-              };
-            };
-
-            modules = with inputs; [
-
-              ./hosts/htpc
-
-              catppuccin.nixosModules.catppuccin
-              chaotic.nixosModules.default
-              disko.nixosModules.disko
-              ./hosts/htpc/disko.nix
-              { _module.args.disks = [ "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S73WNJ0TB09290J" ]; }
-              impermanence.nixosModules.impermanence
-              jovian.nixosModules.default
-              just-one-more-repo.nixosModules.default
-              lsfg-vk-flake.nixosModules.default
-              nix-flatpak.nixosModules.nix-flatpak
-              nur.modules.nixos.default
-              sops-nix.nixosModules.sops
-              ucodenix.nixosModules.default
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  backupFileExtension = "hmbak";
-                  useUserPackages = true;
-                  extraSpecialArgs = {
-                    inherit inputs; # Experiment with config and other attributes
-                    inherit fullname username;
-
-                    vars = {
-                      desktop = true;
-                      gaming = true;
-                    };
-                  };
-                  sharedModules = with inputs; [
-                    catppuccin.homeModules.catppuccin
-                    impermanence.homeManagerModules.impermanence
-                    nix-flatpak.homeManagerModules.nix-flatpak
-                    nix-index-database.homeModules.nix-index
-                    nur.modules.homeManager.default
-                    nvf.homeManagerModules.default
-                    plasma-manager.homeManagerModules.plasma-manager
-                    sops-nix.homeManagerModules.sops
-                    wayland-pipewire-idle-inhibit.homeModules.default
-                  ];
-                };
-              }
-            ];
-          };
           # Pi
           remorsepi = nixpkgs.lib.nixosSystem {
             system = "aarch64-linux";

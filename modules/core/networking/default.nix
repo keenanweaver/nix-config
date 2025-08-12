@@ -28,7 +28,7 @@ in
           "crusader"
         ];
         "10.20.20.15" = [
-          "nixos-htpc"
+          "bazzite-htpc"
         ];
         "10.20.20.17" = [
           "nixos-unraid"
