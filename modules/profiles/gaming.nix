@@ -142,7 +142,6 @@ let
       ## Launchers & utils
       cartridges
       nur.repos.rogreat.faugus-launcher
-      itch
       ## Modding
       hedgemodmanager
       limo
@@ -1210,13 +1209,6 @@ in
                   StartupWMClass = "GOG Galaxy";
                 };
               };
-            itch = {
-              name = "itch";
-              comment = "Install and play itch.io games easily";
-              exec = "env PULSE_SINK=Game obs-gamecapture mangohud itch";
-              icon = "itch";
-              categories = [ "Game" ];
-            };
             quake-injector = {
               name = "Quake Injector";
               exec = "quake-injector";

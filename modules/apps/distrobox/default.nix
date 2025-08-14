@@ -233,25 +233,27 @@ in
                   fi
                 ''
               )
-              (
-                let
-                  args = "obs-gamecapture mangohud";
-                  bin = "exogui";
-                  bin-export = "${bin}-db";
-                  container = "bazzite-arch-exodos";
-                in
-                writeShellScriptBin "${bin-export}" ''
-                  export PULSE_SINK="Game"
-                  cd /mnt/crusader/Games/eXo/eXoDOS/exogui
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/mnt/crusader/Games/eXo/eXoDOS/exogui/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                    exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                    exec '/mnt/crusader/Games/eXo/eXoDOS/exogui/${bin}' "$@"
-                  fi
-                ''
-              )
+              /*
+                (
+                             let
+                               args = "obs-gamecapture mangohud";
+                               bin = "exogui";
+                               bin-export = "${bin}-db";
+                               container = "bazzite-arch-exodos";
+                             in
+                             writeShellScriptBin "${bin-export}" ''
+                               export PULSE_SINK="Game"
+                               cd /mnt/crusader/Games/eXo/eXoDOS/exogui
+                               if [ -z "''${CONTAINER_ID}" ]; then
+                                 exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/mnt/crusader/Games/eXo/eXoDOS/exogui/${bin}' "$@"
+                               elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+                                 exec distrobox-host-exec '${bin-export}' "$@"
+                               else
+                                 exec '/mnt/crusader/Games/eXo/eXoDOS/exogui/${bin}' "$@"
+                               fi
+                             ''
+                           )
+              */
               (
                 let
                   args = "obs-gamecapture mangohud";
@@ -407,6 +409,18 @@ in
               comment = "DOSBox Staging";
               exec = "dosbox-db";
               icon = "dosbox-staging";
+              categories = [ "Game" ];
+              noDisplay = false;
+              startupNotify = true;
+              settings = {
+                Keywords = "dosbox;dos";
+              };
+            };
+            exogui = lib.mkIf cfg.gaming {
+              name = "exogui";
+              comment = "eXoGUI";
+              exec = "exogui-db";
+              icon = "distributor-logo-ms-dos";
               categories = [ "Game" ];
               noDisplay = false;
               startupNotify = true;
