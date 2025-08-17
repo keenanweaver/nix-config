@@ -26,12 +26,14 @@ in
             ui_scale = 120;
             show_preview_panel = true;
           };
-          keybindings = {
-            quit = [
-              "esc"
-              "ctrl-c"
-            ];
-          };
+          /*
+            keybindings = {
+                     quit = [
+                       "esc"
+                       "ctrl-c"
+                     ];
+                   };
+          */
         };
       };
     };

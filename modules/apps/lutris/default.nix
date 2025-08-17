@@ -89,9 +89,6 @@ in
                   "${config.xdg.dataHome}/Steam"
                 ];
               };
-              Environment = {
-                PULSE_SINK = "Game";
-              };
               "Session Bus Policy" = {
                 "org.freedesktop.Flatpak" = "talk";
               };

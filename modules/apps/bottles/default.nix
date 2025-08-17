@@ -90,8 +90,10 @@ in
                 PROTON_ENABLE_HDR = "1";
                 PROTON_USE_NTSYNC = "1";
                 PROTON_USE_WOW64 = "1";
-                PULSE_SINK = "Game";
                 WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23";
+                # FSR 4
+                DXIL_SPIRV_CONFIG = "wmma_rdna3_workaround";
+                PROTON_FSR4_UPGRADE = "1";
               };
               "Session Bus Policy" = {
                 "org.freedesktop.Flatpak" = "talk";
