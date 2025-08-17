@@ -1,5 +1,8 @@
 (final: prev: {
   fooyin = prev.callPackage ./fooyin { };
+  gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder/gsr.nix { };
+  gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif.nix { };
+  gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };
   inter = prev.callPackage ./inter { };
   klassy = prev.callPackage ./klassy { };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };

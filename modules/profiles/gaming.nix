@@ -206,7 +206,10 @@ in
     fluidsynth.enable = true;
     gamemode.enable = false;
     gamescope.enable = true;
-    gsr.enable = true;
+    programs.gsr = {
+      enable = true;
+    };
+    #gsr.enable = true;
     heroic.enable = true;
     lutris.enable = true;
     mangohud.enable = true;
@@ -753,6 +756,15 @@ in
                   popd
                 '';
               })
+              (writeShellApplication {
+                name = "gsr-save-replay";
+                runtimeInputs = [
+                  killall
+                ];
+                text = ''
+                  killall -SIGUSR1 gpu-screen-recorder
+                '';
+              })
             ]
             ++ lib.flatten (lib.attrValues p)
           );
@@ -768,6 +780,19 @@ in
           overlays = [
             #inputs.umu.overlays.default
           ];
+        };
+
+        programs.plasma = {
+          hotkeys = {
+            commands = {
+              "gsr-save-replay" = {
+                name = "Save GSR Replay";
+                key = "Meta+Ctrl+|";
+                command = "gsr-save-replay";
+                comment = "Save GPU Screen Recorder replay";
+              };
+            };
+          };
         };
 
         services = {
