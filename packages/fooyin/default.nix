@@ -18,19 +18,17 @@
   game-music-emu,
   SDL2,
   icu,
-  enablePlugins ? true,
-  enableVGM ? true,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fooyin";
-  version = "0-unstable-2025-08-10";
+  version = "0.9.1";
 
   src = fetchFromGitHub {
     owner = "ludouzi";
     repo = "fooyin";
-    rev = "d84280dff59bc5a54b13b72cc3edd3253b3692a6";
-    hash = "sha256-DMjNVN6mJELLLnYysBmrZx8YV9e6YNjh2Wkcp1+/h5M=";
+    tag = "v" + finalAttrs.version;
+    hash = "sha256-xtCMi0LWpw8+kLB3qHXRaj8ckC2WluVTckzAOJa98/Q=";
   };
 
   buildInputs = [
@@ -64,8 +62,9 @@ stdenv.mkDerivation (finalAttrs: {
 
   cmakeFlags = [
     (lib.cmakeBool "BUILD_TESTING" finalAttrs.finalPackage.doCheck)
-    (lib.cmakeBool "BUILD_PLUGINS" enablePlugins)
-    (lib.cmakeBool "BUILD_LIBVGM" enableVGM)
+    # we need INSTALL_FHS to be true as the various artifacts are otherwise just dumped in the root
+    # of $out and the fixupPhase cleans things up anyway
+    (lib.cmakeBool "INSTALL_FHS" true)
   ];
 
   env.LANG = "C.UTF-8";
@@ -73,14 +72,11 @@ stdenv.mkDerivation (finalAttrs: {
   meta = {
     description = "Customisable music player";
     homepage = "https://www.fooyin.org/";
-    downloadPage = "https://github.com/fooyin/fooyin";
     changelog = "https://github.com/fooyin/fooyin/blob/${finalAttrs.src.rev}/CHANGELOG.md";
-    license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [
-      peterhoeg
-      keenanweaver
-    ];
+    downloadPage = "https://github.com/fooyin/fooyin";
     mainProgram = "fooyin";
+    license = lib.licenses.gpl3Only;
+    maintainers = with lib.maintainers; [ peterhoeg ];
     platforms = lib.platforms.linux;
   };
 })
