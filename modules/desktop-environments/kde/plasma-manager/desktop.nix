@@ -214,7 +214,7 @@
                 config = {
                   Station = {
                     refreshPeriod = "900";
-                    stationID = "KNEOMAHA1167";
+                    stationID = "KNEOMAHA1247";
                   };
                   Units = {
                     unitsChoice = "1";

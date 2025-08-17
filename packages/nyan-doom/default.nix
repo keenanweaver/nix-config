@@ -19,13 +19,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "nyan-doom";
-  version = "1.3.4";
+  version = "1.3.6";
 
   src = fetchFromGitHub {
     owner = "andrikpowell";
     repo = "nyan-doom";
-    rev = "v${finalAttrs.version}";
-    hash = "sha256-EUAwglDDBIdx/qQTr+I960rzmHsRHArUieD9TxW2XNk=";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-db8EiLAfm8Y0lm8aeHdgYhTaNValk0qQmSj5TRH5iRE=";
   };
 
   nativeBuildInputs = [

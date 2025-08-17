@@ -88,12 +88,12 @@ let
       opentyrian
       (openxcom.overrideAttrs {
         pname = "openxcom-extended";
-        version = "8.3.4";
+        version = "8.3.6";
         src = fetchFromGitHub {
           owner = "MeridianOXC";
           repo = "OpenXcom";
-          rev = "18e1cab08ad58d881ad832cb694c980b67506ff2";
-          hash = "sha256-u/3/6Ptoj5n0sbXTVg2Ftiy2jJAoEGgoO09Cu75NOmc=";
+          rev = "43e375f8301f5e85718a3aa9d20b8e19e33c44e8";
+          hash = "sha256-ANURqAt/GE7aoFh78FHE/SMcvohS1ThZfWM/SLkRUeg=";
         };
       })
       openxray # STALKER
