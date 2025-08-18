@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  username,
   ...
 }:
 
@@ -57,6 +58,32 @@ in
         group = "root";
         capabilities = "cap_sys_admin+ep";
         source = lib.getExe' package "gsr-kms-server";
+      };
+    };
+
+    home-manager.users.${username} = {
+      home.packages = with pkgs; [
+        (writeShellApplication {
+          name = "gsr-save-replay";
+          runtimeInputs = [
+            killall
+          ];
+          text = ''
+            killall -SIGUSR1 gpu-screen-recorder
+          '';
+        })
+      ];
+      programs.plasma = {
+        hotkeys = {
+          commands = {
+            "gsr-save-replay" = {
+              name = "Save GSR Replay";
+              key = "Meta+Ctrl+|";
+              command = "gsr-save-replay";
+              comment = "Save GPU Screen Recorder replay";
+            };
+          };
+        };
       };
     };
   };

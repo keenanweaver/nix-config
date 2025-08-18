@@ -304,7 +304,10 @@ in
       _2ship2harkinian-git.enable = true;
       perfect-dark-git.enable = true;
       shipwright-git.enable = true;
-      sm64coopdx.enable = true;
+      sm64coopdx = {
+        enable = true;
+        coopNet.openFirewall = true;
+      };
       spaghetti-kart-git.enable = true;
       starship-sf64.enable = true;
     };
@@ -756,15 +759,6 @@ in
                   popd
                 '';
               })
-              (writeShellApplication {
-                name = "gsr-save-replay";
-                runtimeInputs = [
-                  killall
-                ];
-                text = ''
-                  killall -SIGUSR1 gpu-screen-recorder
-                '';
-              })
             ]
             ++ lib.flatten (lib.attrValues p)
           );
@@ -778,21 +772,8 @@ in
 
         nixpkgs = {
           overlays = [
-            #inputs.umu.overlays.default
+            inputs.umu.overlays.default
           ];
-        };
-
-        programs.plasma = {
-          hotkeys = {
-            commands = {
-              "gsr-save-replay" = {
-                name = "Save GSR Replay";
-                key = "Meta+Ctrl+|";
-                command = "gsr-save-replay";
-                comment = "Save GPU Screen Recorder replay";
-              };
-            };
-          };
         };
 
         services = {
