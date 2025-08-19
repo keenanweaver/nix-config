@@ -129,6 +129,15 @@
       enable = true;
       cpuModelId = "00A60F12";
     };
+    zram-generator = {
+      enable = true;
+      settings = {
+        zram0 = {
+          compression-algorithm = "zstd";
+          zram-size = "ram / 2";
+        };
+      };
+    };
   };
 
   systemd = {
@@ -140,10 +149,6 @@
       hibernate.enable = false;
       hybrid-sleep.enable = false;
     };
-  };
-
-  zramSwap = {
-    enable = true;
   };
 
   home-manager.users.${username} =
