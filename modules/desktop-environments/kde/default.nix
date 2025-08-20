@@ -22,6 +22,7 @@ in
       plasma6.excludePackages = with pkgs.kdePackages; [ elisa ];
       sessionVariables = {
         GDK_DEBUG = "portals"; # KDE filepicker
+        KWIN_DISABLE_TONEMAPPING = "1";
         QT_QPA_PLATFORM = "wayland;xcb";
         XDG_CURRENT_DESKTOP = "KDE";
       };
