@@ -301,7 +301,7 @@ in
     };
 
     programs = {
-      _2ship2harkinian-git.enable = true;
+      #_2ship2harkinian-git.enable = true;
       perfect-dark-git.enable = true;
       shipwright-git.enable = true;
       sm64coopdx = {

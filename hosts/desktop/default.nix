@@ -44,7 +44,7 @@
     kernelPackages = pkgs.linuxPackages_cachyos.cachyOverride { mArch = "ZEN4"; };
     kernelParams = lib.mkDefault [
       "amd_iommu=on"
-      "amd_pstate=guided"
+      "amd_pstate=active"
       "microcode.amd_sha_check=off"
     ];
     loader = {
