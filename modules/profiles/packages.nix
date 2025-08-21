@@ -115,6 +115,7 @@ in
             #lemminx
           ]
           ++ lib.optionals cfg.misc [
+            adguardian
             angle-grinder
             bandwhich
             binsider
@@ -126,9 +127,9 @@ in
             hexyl
             hyperfine
             impala
-            #isd
+            isd
             jiq
-            jq
+            lazyjournal
             magic-wormhole-rs
             mkvtoolnix-cli
             play
