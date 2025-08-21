@@ -651,11 +651,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1755583961,
-        "narHash": "sha256-1G0LlVkXMQp4pIUFvQNhCjySXEGOSLUaOClVyKe/jGM=",
+        "lastModified": 1755710949,
+        "narHash": "sha256-m/K1I8iBcmR1rd05s4NLcu11X/UKe29kwx8sCKMZP6Q=",
         "owner": "ProverbialPennance",
         "repo": "just-one-more-repo",
-        "rev": "1ae54d526ca1c33d78827f5d08104b47665dd19b",
+        "rev": "6647bee8dfdd306088ee8f2e6b8b681b41f4ed6b",
         "type": "github"
       },
       "original": {
@@ -1328,11 +1328,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1755683241,
-        "narHash": "sha256-ROZNAbdrDigxwCDh3v05KNn3M8qcWCToiq/Y2X0aKmg=",
+        "lastModified": 1755722870,
+        "narHash": "sha256-MUyrAjWpGEdOMcuyLv+c467VqJGf6TC/ZYoMZRV8wto=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "8a25063a8e1556fe62700423607719575a6ce300",
+        "rev": "22f05c844cd7f8d08063c6dc89448343171ad323",
         "type": "github"
       },
       "original": {
