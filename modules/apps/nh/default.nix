@@ -16,7 +16,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.nh = {
       enable = true;
-      flake = "/mnt/crusader/Projects/GitHub/nix-config";
+      flake = "/mnt/crusader/Projects/Codeberg/nix-config";
     };
     home-manager.users.${username} = { };
   };
