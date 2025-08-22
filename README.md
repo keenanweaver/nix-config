@@ -103,7 +103,7 @@ This is to quickly set up games for nix, Flatpak, and distrobox that require ext
 Enter a nix shell:
 
 ``` nix
-    nix-shell --command "export GAMESDIR=$HOME/Games; export FLATPAKDIR=$HOME/.var/app; export MNTDIR=/mnt/crusader/Games; return" -p curl fd innoextract jq ouch powershell sd steam-run unzip wget
+    nix-shell --command "export GAMESDIR=$HOME/Games; export FLATPAKDIR=$HOME/.var/app; export MNTDIR=/mnt/crusader/Games; return" -p curl fd gnused innoextract jq ouch powershell sd steam-run unzip wget
 ```
 
 Run the commands:
@@ -177,16 +177,13 @@ Run the commands:
     mv "$GAMESDIR"/doom/doom-3-bfg/app/base/* "$GAMESDIR"/doom/doom-3-bfg && rm -rf "$GAMESDIR"/doom/doom-3-bfg/{tmp,app}
     curl https://api.github.com/repos/RobertBeckebans/RBDOOM-3-BFG/releases/latest | jq -r '.assets[] | select(.name | test("full")).browser_download_url' | xargs wget -P "$GAMESDIR"/doom/doom-3-bfg
     fd -a -d 1 -e 7z . "$GAMESDIR/doom/doom-3-bfg" -x ouch d {} -y -d "$GAMESDIR"/doom/doom-3-bfg
-    ## DOOM 64
-    mkdir -p "$XDG_DATA_HOME"/doom64ex-plus
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/doom_64" -x ls -t | head -n1 | xargs innoextract -I 'DOOM64.WAD' -d "$XDG_DATA_HOME"/doom64ex-plus
     ## Duke Nukem
     mkdir -p "$GAMESDIR"/duke/{duke-nukem-ii,duke-nukem-3d/atomic-edition}
     fd Duke-Nukem-II -a -d 1 -e exe . "$MNTDIR/Backups/Zoom" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/duke/duke-nukem-ii -I nukem2.cmp -I nukem2.f1 -I nukem2.f2 -I nukem2.f3 -I nukem2.f4 -I nukem2.f5
     mv "$GAMESDIR"/duke/duke-nukem-ii/app/* "$GAMESDIR"/duke/duke-nukem-ii
     fd Duke-Nukem-3D-Atomic-Edition -a -d 1 -e exe . "$MNTDIR/Backups/Zoom" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/duke/duke-nukem-3d/atomic-edition
     mv "$GAMESDIR"/duke/duke-nukem-3d/atomic-edition/app/* "$GAMESDIR"/duke/duke-nukem-3d/atomic-edition
-    fd 'Duke-Nukem-3D-DLC-Pack' -a -d 1 -e tar.xz . "$MNTDIR/Backups/Zoom" -x tar xf {} --directory="$GAMESDIR"/duke/duke-3d/
+    fd 'Duke-Nukem-3D-DLC-Pack' -a -d 1 -e tar.xz . "$MNTDIR/Backups/Zoom" -x tar xf {} --directory="$GAMESDIR"/duke/duke-nukem-3d/
     ## Fallout
     mkdir -p "$XDG_DATA_HOME"/{fallout-ce,fallout2-ce}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/fallout_game" -x ls -t | head -n1 | xargs innoextract -d "$XDG_DATA_HOME"/fallout-ce -g
@@ -198,8 +195,8 @@ Run the commands:
     pwsh -c "dir . -r | % { if ($_.Name -cne $_.Name.ToLower()) { ren $_.FullName $_.Name.ToLower() } }" && cd "$XDG_DATA_HOME"/fallout2-ce/data/sound/music && pwsh -c "dir . -r | % { if ($_.Name -cne $_.Name.ToUpper()) { ren $_.FullName $_.Name.ToUpper() } }"
     gamescope -f -w 2560 -h 1440 -- fallout2-ce && sleep 3 && sd 'music_path1=sound\\music\\' 'music_path1=data\\sound\\music\\' $XDG_DATA_HOME/fallout2-ce/fallout2.cfg && sd 'music_path2=sound\\music\\' 'music_path2=data\\sound\\music\\' "$XDG_DATA_HOME"/fallout2-ce/fallout2.cfg
     ## Freespace
-    mkdir -p "$GAMESDIR"/games/fs2
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/freespace_2" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/games/fs2/fs2
+    mkdir -p "$GAMESDIR"/freespace-2
+    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/freespace_2" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/freespace-2/FS2
     ## HOMM
     mkdir -p "$XDG_DATA_HOME"/{fheroes2,vcmi}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/heroes_of_might_and_magic_2_gold_edition" -x ls -t | head -n1 | xargs innoextract -g -d "$XDG_DATA_HOME"/fheroes2
@@ -242,9 +239,9 @@ Run the commands:
     mv "$GAMESDIR"/nox/app/* "$GAMESDIR"/nox && rm -rf "$GAMESDIR"/nox/{app,tmp}
     ## Oddworld
     mkdir -p "$GAMESDIR"/oddworld/{ao,ae}
-    fd "Oddworld-Abe's-Oddysee" -a -d 1 -e exe . "$MNTDIR/Backups/Zoom" -x ls -t | head -n1 | xargs innoextract -d "$GAMESDIR"/oddworld/ao
+    fd "Oddworld-Abe's-Oddysee" -a -d 1 -e exe . "$MNTDIR/Backups/Zoom" -x ls -t | head -n1 | sed 's/^/"/;s/$/"/' | xargs innoextract -d "$GAMESDIR"/oddworld/ao
     mv "$GAMESDIR"/oddworld/ao/app/* "$GAMESDIR"/oddworld/ao && rm -rf "$GAMESDIR"/oddworld/ao/{app,tmp}
-    fd "Oddworld-Abe's-Exoddus" -a -d 1 -e exe . "$MNTDIR/Backups/Zoom" -x ls -t | head -n1 | xargs innoextract -d "$GAMESDIR"/oddworld/ae
+    fd "Oddworld-Abe's-Exoddus" -a -d 1 -e exe . "$MNTDIR/Backups/Zoom" -x ls -t | head -n1 | sed 's/^/"/;s/$/"/' | xargs innoextract -d "$GAMESDIR"/oddworld/ae
     mv "$GAMESDIR"/oddworld/ae/app/* "$GAMESDIR"/oddworld/ae && rm -rf "$GAMESDIR"/oddworld/ae/{app,tmp}
     ## Outlaws
     mkdir -p "$GAMESDIR"/the-force-engine/ol
@@ -312,8 +309,10 @@ Run the commands:
     mkdir -p "$GAMESDIR"/zelda-64
     wget -P "$GAMESDIR"/zelda-64 https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Legend%20of%20Zelda%2C%20The%20-%20Majora%27s%20Mask%20%28USA%29.zip
     wget -P "$GAMESDIR"/zelda-64 https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Legend%20of%20Zelda%2C%20The%20-%20Ocarina%20of%20Time%20%28USA%29%20%28Rev%202%29.zip
-    fd Ocarina -a -d 1 -e zip "$GAMESDIR"/zelda-64 -x ouch d -y {} -d "$GAMESDIR"/zelda-64
-    fd Majora -a -d 1 -e z64 . "$GAMESDIR"/zelda-64 -x mv {} "$GAMESDIR"/zelda-64/mm.us.rev1.rom.z64
+    fd Ocarina -a -d 1 -e zip "$GAMESDIR"/zelda-64 -x ouch d -y {} -d "$GAMESDIR"/zelda-64/.oot
+    fd Majora -a -d 1 -e zip "$GAMESDIR"/zelda-64 -x ouch d -y {} -d "$GAMESDIR"/zelda-64/.mm
+    fd Ocarina -a -d 1 -e z64 "$GAMESDIR"/zelda-64/.oot -x mv {} "$GAMESDIR"/zelda-64
+    fd Majora -a -d 1 -e z64 "$GAMESDIR"/zelda-64/.mm -x mv {} "$GAMESDIR"/zelda-64/mm.us.rev1.rom.z64
     nix-store --add-fixed sha256 "$GAMESDIR"/zelda-64/mm.us.rev1.rom.z64
-    fd -a -d 1 -e zip . "$GAMESDIR"/zelda-64 -x rm {}
+    fd -a -d 1 -e zip . "$GAMESDIR"/zelda-64 -x rm {} && rm -rf "$GAMESDIR"/zelda-64/{.mm,.oot}
 ```

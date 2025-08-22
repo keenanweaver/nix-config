@@ -983,7 +983,7 @@ in
             backupNotification = true;
             settings = {
               backup = {
-                path = "${config.home.homeDirectory}/Games/ludusavi";
+                path = "${config.home.homeDirectory}/Games/games/ludusavi";
                 format = {
                   chosen = "zip";
                   zip.compression = "deflate";
@@ -1115,7 +1115,7 @@ in
                 }
               ];
               restore = {
-                path = "${config.home.homeDirectory}/Games/ludusavi";
+                path = "${config.home.homeDirectory}/Games/games/ludusavi";
               };
               roots = [
                 {
@@ -1158,6 +1158,7 @@ in
               theme = "dark";
             };
           };
+          speechd.enable = true;
           wayland-pipewire-idle-inhibit = {
             enable = true;
             settings = {
