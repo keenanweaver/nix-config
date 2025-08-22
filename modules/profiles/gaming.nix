@@ -1158,7 +1158,6 @@ in
               theme = "dark";
             };
           };
-          speechd.enable = true;
           wayland-pipewire-idle-inhibit = {
             enable = true;
             settings = {
