@@ -9,17 +9,13 @@
   n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
   nyan-doom = prev.callPackage ./nyan-doom { };
-  plymouth = prev.plymouth.overrideAttrs (
-    { src, ... }:
-    {
-      version = "24.004.60-unstable-2025-05-15";
-
-      src = src.override {
-        rev = "bc6c67dc1172a2041d275472f56948298ddde800";
-        hash = "sha256-rR8ZoAoXlXpbgOAPrZwt65lykn0hbYJlRZJ/GFUobMo=";
-      };
-    }
-  );
+  proton-ge-bin = prev.proton-ge-bin.overrideAttrs (old: rec {
+    version = "GE-Proton10-13";
+    src = prev.fetchzip {
+      url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
+      hash = "sha256-HjCsnPX3TwUroVj8RnQ0k6unU2Ou/E5PogRIElDWjgE=";
+    };
+  });
   relive = prev.callPackage ./relive { };
   rsdkv4 = prev.callPackage ./rsdkv4 { };
   tochd = prev.callPackage ./tochd { };
