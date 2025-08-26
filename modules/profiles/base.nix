@@ -32,6 +32,7 @@ in
     gpg.enable = true;
     helix.enable = true;
     home-managerConfig.enable = true;
+    jq.enable = true;
     jujutsu.enable = true;
     keyd.enable = false;
     lazydocker.enable = true;

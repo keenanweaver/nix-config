@@ -24,6 +24,7 @@
     ./helix
     ./heroic
     ./home-manager
+    ./jq
     ./jujutsu
     ./keyd
     ./lazydocker
