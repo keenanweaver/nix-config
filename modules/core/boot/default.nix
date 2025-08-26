@@ -34,6 +34,7 @@
       };
       systemd-boot = {
         enable = true;
+        consoleMode = "max";
         editor = false;
       };
       timeout = 1;

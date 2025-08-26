@@ -116,7 +116,7 @@ in
           revolt-desktop
           rssguard
           rustdesk-flutter
-          signal-desktop-bin
+          signal-desktop
           varia
         ];
         xdg = {

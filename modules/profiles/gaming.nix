@@ -44,6 +44,7 @@ let
       alephone-infinity
       ## Morrowind
       inputs.openmw-nix.packages.${system}.openmw-dev
+      inputs.openmw-nix.packages.${system}.openmw-validator
       #openmw
       ## Quake
       ironwail
@@ -88,12 +89,12 @@ let
       opentyrian
       (openxcom.overrideAttrs {
         pname = "openxcom-extended";
-        version = "8.3.6";
+        version = "8.3.7";
         src = fetchFromGitHub {
           owner = "MeridianOXC";
           repo = "OpenXcom";
-          rev = "43e375f8301f5e85718a3aa9d20b8e19e33c44e8";
-          hash = "sha256-ANURqAt/GE7aoFh78FHE/SMcvohS1ThZfWM/SLkRUeg=";
+          rev = "9ec5518ec1e292a015dafe00073184a157b5bd30";
+          hash = "sha256-c43xhZlwln/yHPu2xRuNarGJqchvLbRAdYKQijC/yBQ=";
         };
       })
       openxray # STALKER
@@ -108,7 +109,7 @@ let
       urbanterror
       vvvvvv
       wipeout-rewrite
-      zelda64recomp
+     # zelda64recomp
     ];
     tools = [
       ## Emulators
@@ -155,6 +156,7 @@ let
       innoextract
       lgogdownloader
       parsec-bin
+      protonplus
       tochd
       xlink-kai
       xvidcore
@@ -326,6 +328,12 @@ in
             item = "nofile";
             type = "-";
             value = "2097152";
+          }
+          {
+            domain = "*";
+            item = "nofile";
+            type = "soft";
+            value = "64556";
           }
         ];
       };
@@ -511,7 +519,7 @@ in
 
     systemd = {
       settings.Manager = {
-        DefaultLimitNOFILE = 1048576;
+        DefaultLimitNOFILE = "8192:524288";
       };
       tmpfiles = {
         rules = [
