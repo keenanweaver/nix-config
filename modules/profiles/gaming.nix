@@ -158,7 +158,7 @@ let
       parsec-bin
       protonplus
       tochd
-      xlink-kai
+      #xlink-kai
       xvidcore
       ## Wine
       umu-launcher
@@ -353,11 +353,11 @@ in
         enable = true;
         ui.enable = true;
       };
-      scx = {
-        enable = true;
-        package = pkgs.scx.rustscheds;
-        scheduler = "scx_lavd";
-      };
+      #scx = {
+      #  enable = true;
+      #  package = pkgs.scx.rustscheds;
+      #  scheduler = "scx_lavd";
+      #};
       udev = {
         extraHwdb = builtins.concatStringsSep "\n" (
           with inputs;
@@ -1192,18 +1192,6 @@ in
             "${nuked-sc55}/share/applications/Nuked-SC55_silent.desktop"
           ];
           desktopEntries = {
-            _86box = {
-              name = "86Box (Win98SE)";
-              exec = "86Box";
-              icon = "net.86box.86Box";
-              categories = [
-                "Game"
-                "Emulator"
-              ];
-              settings = {
-                Path = "${config.home.homeDirectory}/Games/86box/win98se";
-              };
-            };
             gog-galaxy =
               let
                 icon = pkgs.fetchurl {

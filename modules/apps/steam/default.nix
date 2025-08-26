@@ -10,10 +10,10 @@ let
   cfg = config.steam;
 
   # FSR4
-  fsrVersion = "67D435F7d97000";
+  fsrVersion = "67A4D2BC10ad000";
   fsrDll = pkgs.fetchurl {
     url = "https://download.amd.com/dir/bin/amdxcffx64.dll/${fsrVersion}/amdxcffx64.dll";
-    sha256 = "sha256-/mkRMNFVAf48GzzspYKT9URKH+4OqdubOvvm0RvfTsI=";
+    sha256 = "sha256-pSAv1p7knOscwOzGu17uebjxJu81Dueb0ckzyc5hq0k=";
     curlOpts = "--referer https://support.amd.com";
   };
 

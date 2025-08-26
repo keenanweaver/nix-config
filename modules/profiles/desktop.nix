@@ -55,11 +55,11 @@ in
         };
       };
       enableAllFirmware = true;
-      i2c.enable = true;
       graphics = {
         enable = true;
         enable32Bit = true;
       };
+      i2c.enable = true;
     };
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     services = {
@@ -104,7 +104,7 @@ in
           kdePackages.kdenlive
           losslesscut-bin
           mangareader
-          metadata-cleaner
+          #metadata-cleaner
           mousai
           neo
           nvtopPackages.amd

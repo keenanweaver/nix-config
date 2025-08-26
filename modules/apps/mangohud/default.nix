@@ -162,7 +162,7 @@ in
         };
         programs.mangohud = {
           enable = true;
-          package = inputs.chaotic.packages.${pkgs.system}.mangohud_git;
+          #package = inputs.chaotic.packages.${pkgs.system}.mangohud_git;
         };
         services.flatpak = {
           overrides = {

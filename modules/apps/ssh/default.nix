@@ -56,8 +56,11 @@ in
         };
         programs.ssh = {
           enable = true;
-          addKeysToAgent = "yes";
+          enableDefaultConfig = false;
           matchBlocks = {
+            "*" = {
+              addKeysToAgent = "yes";
+            };
             bazzite = {
               hostname = "bazzite";
               user = "bazzite";
