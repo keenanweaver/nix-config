@@ -45,6 +45,7 @@ let
       ## Morrowind
       inputs.openmw-nix.packages.${system}.openmw-dev
       inputs.openmw-nix.packages.${system}.openmw-validator
+      tes3cmd
       #openmw
       ## Quake
       ironwail
@@ -109,7 +110,7 @@ let
       urbanterror
       vvvvvv
       wipeout-rewrite
-     # zelda64recomp
+      zelda64recomp
     ];
     tools = [
       ## Emulators
@@ -753,18 +754,18 @@ in
                 name = "script-momw-update";
                 runtimeEnv = {
                   MODLIST = "i-heart-vanilla-directors-cut";
-                  MOMW_DIR = "${config.home.homeDirectory}/Games/openmw/momw-tools-pack-linux";
                 };
                 runtimeInputs = [
-                  steam-run
+                  inputs.openmw-nix.packages.${system}.momw-configurator
+                  inputs.openmw-nix.packages.${system}.openmw-validator
+                  inputs.openmw-nix.packages.${system}.umo
+                  tes3cmd
                 ];
                 text = ''
-                  pushd "$MOMW_DIR"
-                  steam-run ./umo sync "$MODLIST"
-                  steam-run ./umo install "$MODLIST"
-                  steam-run ./momw-configurator-linux-amd64 config "$MODLIST" --run-navmeshtool --run-validator
-                  steam-run ./umo vacuum
-                  popd
+                  umo sync "$MODLIST"
+                  umo install "$MODLIST"
+                  momw-configurator config "$MODLIST" --run-navmeshtool --run-validator
+                  umo vacuum
                 '';
               })
             ]
