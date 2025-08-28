@@ -76,7 +76,7 @@ in
         geoProviderUrl = "https://beacondb.net/v1/geolocate";
       };
       lact.enable = true;
-      power-profiles-daemon.enable = true;
+      tuned.enable = true;
       udev.packages = with pkgs; [ android-udev-rules ];
     };
 
