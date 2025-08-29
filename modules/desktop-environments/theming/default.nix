@@ -461,7 +461,7 @@ in
               # System sounds
               soundTheme = "ocean";
               # Splash Screen
-              splashScreen.theme = "Catppuccin-${flavor-upper}-${accent-upper}";
+              splashScreen.theme = "SimpleNixSplash-Plasma6";
               # Wallpaper
               wallpaper = "${wallpaper}";
             };

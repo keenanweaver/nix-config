@@ -449,6 +449,7 @@ in
               SUBSYSTEM=="input", ATTR{idProduct}=="8100", ATTR{idVendor}=="054c", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
             '';
           })
+          # 8BitDo Firmware Updater https://gist.github.com/archeYR/d687de5e484ce7b45d6a94415a04f3dc 
           (writeTextFile {
             name = "70-8bitdo.rules";
             destination = "/etc/udev/rules.d/70-8bitdo.rules";
@@ -462,6 +463,8 @@ in
               SUBSYSTEM=="usb", ATTR{idProduct}=="3012", ATTR{idVendor}=="2dc8", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
               # 8BitDo Ultimate 2C Wireless Controller; USB/2.4GHz
               SUBSYSTEM=="usb", ATTR{idProduct}=="310a", ATTR{idVendor}=="2dc8", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
+              # Firmware Updater
+              SUBSYSTEM=="hidraw", ATTRS{idProduct}=="*", ATTRS{idVendor}=="2dc8", TAG+="uaccess"
             '';
           })
           # https://github.com/starcitizen-lug/knowledge-base/wiki/Sticks,-Throttles,-&-Pedals
@@ -488,7 +491,7 @@ in
               ## VKB Gunfighter R
               ACTION=="add", SUBSYSTEM=="input", KERNEL=="event*", \
                 ENV{ID_VENDOR_ID}=="231d", ENV{ID_MODEL_ID}=="0126", \
-                RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0" 
+                RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0"
             '';
           })
           (writeTextFile {
@@ -1154,10 +1157,6 @@ in
                 {
                   path = "${config.home.homeDirectory}/Games/portproton/*";
                   store = "otherWine";
-                }
-                {
-                  path = "${config.xdg.dataHome}/Steam";
-                  store = "steam";
                 }
                 {
                   path = "${config.home.homeDirectory}/Games/Steam";
