@@ -173,7 +173,7 @@
               impermanence.homeManagerModules.impermanence
               nix-flatpak.homeManagerModules.nix-flatpak
               nur.modules.homeManager.default
-              plasma-manager.homeManagerModules.plasma-manager
+              plasma-manager.homeModules.plasma-manager
               sops-nix.homeManagerModules.sops
             ];
 
@@ -248,7 +248,7 @@
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
                     nvf.homeManagerModules.default
-                    plasma-manager.homeManagerModules.plasma-manager
+                    plasma-manager.homeModules.plasma-manager
                     sops-nix.homeManagerModules.sops
                     wayland-pipewire-idle-inhibit.homeModules.default
                   ];
@@ -310,7 +310,7 @@
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
                     nvf.homeManagerModules.default
-                    plasma-manager.homeManagerModules.plasma-manager
+                    plasma-manager.homeModules.plasma-manager
                     sops-nix.homeManagerModules.sops
                   ];
                 };
@@ -419,7 +419,7 @@
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
                     nvf.homeManagerModules.default
-                    plasma-manager.homeManagerModules.plasma-manager
+                    plasma-manager.homeModules.plasma-manager
                     quadlet-nix.homeManagerModules.quadlet
                     sops-nix.homeManagerModules.sops
                   ];
@@ -481,7 +481,7 @@
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
                     nvf.homeManagerModules.default
-                    plasma-manager.homeManagerModules.plasma-manager
+                    plasma-manager.homeModules.plasma-manager
                     sops-nix.homeManagerModules.sops
                   ];
                 };

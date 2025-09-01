@@ -34,12 +34,12 @@ in
         };
         home.packages = with pkgs; [
           (nero-umu.overrideAttrs {
-            version = "1.1.3-unstable-2025-08-20";
+            version = "1.1.3-unstable-2025-08-31";
             src = fetchFromGitHub {
               owner = "SeongGino";
               repo = "Nero-umu";
-              rev = "34e6b8b91eb1cd8b19ffdf63ec3e01cf37e5eb14";
-              hash = "sha256-NqU0I/Vn1elu1yoReIES26Yx9dCotw+1C9vPaBNf4x0=";
+              rev = "867dd85fdf8338a3cadfc6b5bb1c28dbcf4ddcfa";
+              hash = "sha256-9PG0phQHcCOd7uzegOMGYEFvaFiQ9k+fleMfeAH2Er0=";
             };
           })
         ];
