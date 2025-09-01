@@ -133,6 +133,15 @@ let
           mgba
         ]
       ))
+      (scummvm.overrideAttrs {
+        version = "2.10.0";
+        src = fetchFromGitHub {
+          owner = "scummvm";
+          repo = "scummvm";
+          rev = "12f5a3292748870b73988bf5c57069f4f9d5b1d0";
+          hash = "sha256-WRPIs24dy9ucYR6r1uv+rrylLKsDyOQssLmtFBTn/zg=";
+        };
+      })
       inputs.chaotic.packages.${system}.shadps4_git
       nur.repos.bandithedoge.sheepshaver-bin
       # nur.repos.novel2430.vita3k
@@ -449,7 +458,7 @@ in
               SUBSYSTEM=="input", ATTR{idProduct}=="8100", ATTR{idVendor}=="054c", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
             '';
           })
-          # 8BitDo Firmware Updater https://gist.github.com/archeYR/d687de5e484ce7b45d6a94415a04f3dc 
+          # 8BitDo Firmware Updater https://gist.github.com/archeYR/d687de5e484ce7b45d6a94415a04f3dc
           (writeTextFile {
             name = "70-8bitdo.rules";
             destination = "/etc/udev/rules.d/70-8bitdo.rules";
@@ -984,7 +993,7 @@ in
               "org.openjkdf2.OpenJKDF2"
               "org.pegasus_frontend.Pegasus"
               "org.ppsspp.PPSSPP"
-              "org.scummvm.ScummVM"
+              #"org.scummvm.ScummVM"
               "org.sonic3air.Sonic3AIR"
               "org.srb2.SRB2"
               "vet.rsc.OpenRSC.Launcher"
