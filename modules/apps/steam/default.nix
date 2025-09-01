@@ -10,10 +10,10 @@ let
   cfg = config.steam;
 
   # FSR4
-  fsrVersion = "67A4D2BC10ad000";
+  fsrVersion = "6759C4F010ad000";
   fsrDll = pkgs.fetchurl {
     url = "https://download.amd.com/dir/bin/amdxcffx64.dll/${fsrVersion}/amdxcffx64.dll";
-    sha256 = "sha256-pSAv1p7knOscwOzGu17uebjxJu81Dueb0ckzyc5hq0k=";
+    hash = "sha256-b80/a1kKSLC54rzEv6QQZ26/qYkFcAEslZfRFV9BfXQ=";
     curlOpts = "--referer https://support.amd.com";
   };
 
@@ -79,19 +79,22 @@ in
         extraEnv = {
           MANGOHUD = true;
           OBS_VKCAPTURE = true;
-          PROTON_ENABLE_WAYLAND = true;
-          PROTON_ENABLE_HDR = true;
-          PROTON_USE_NTSYNC = true;
-          PROTON_USE_WOW64 = true;
           PULSE_SINK = "Game";
           # FSR 4
           DXIL_SPIRV_CONFIG = "wmma_rdna3_workaround";
           PROTON_FSR4_UPGRADE = true;
+          # proton-cachyos
+          PROTON_FSR4_RDNA3_UPGRADE = true;
+          # proton-ge
+          PROTON_ENABLE_WAYLAND = true;
+          PROTON_ENABLE_HDR = true;
+          PROTON_USE_WOW64 = true;
         };
         # https://github.com/NixOS/nixpkgs/issues/279893#issuecomment-2425213386
         extraProfile = ''
           unset TZ
         '';
+        privateTmp = false; # https://github.com/NixOS/nixpkgs/issues/381923
       };
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
