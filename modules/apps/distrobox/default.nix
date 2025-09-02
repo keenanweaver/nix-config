@@ -31,6 +31,7 @@ in
           containers = {
             bazzite-arch-exodos = lib.mkIf cfg.gaming {
               init = true;
+              #image = "debian:sid";
               replace = true;
             };
             bazzite-arch-gaming = lib.mkIf cfg.gaming {
@@ -38,18 +39,13 @@ in
               replace = true;
             };
           };
+          enableSystemdUnit = true;
+          settings = {
+            container_additional_volumes = "/nix/store:/nix/store:ro /etc/static/profiles/per-user:/etc/profiles/per-user:ro";
+            container_image_default = "ghcr.io/ublue-os/bazzite-arch:latest";
+          };
         };
         home = {
-          file = {
-            config-distrobox-config-file = {
-              enable = true;
-              text = ''
-                container_additional_volumes="/nix/store:/nix/store:ro /etc/static/profiles/per-user:/etc/profiles/per-user:ro"
-                container_image_default="ghcr.io/ublue-os/bazzite-arch:latest"
-              '';
-              target = "${config.xdg.configHome}/distrobox/distrobox.conf";
-            };
-          };
           packages =
             let
               db-package = config.programs.distrobox.package;
