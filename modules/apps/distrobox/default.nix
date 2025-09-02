@@ -29,9 +29,9 @@ in
         programs.distrobox = {
           enable = true;
           containers = {
-            bazzite-arch-exodos = lib.mkIf cfg.gaming {
+            exodos = lib.mkIf cfg.gaming {
+              image = "ubuntu:24.04";
               init = true;
-              #image = "debian:sid";
               replace = true;
             };
             bazzite-arch-gaming = lib.mkIf cfg.gaming {
@@ -60,7 +60,7 @@ in
                 text = ''
                   distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
                   ${lib.optionalString vars.gaming ''
-                    distrobox enter bazzite-arch-exodos -- bash -l -c "bootstrap-distrobox"
+                    distrobox enter exodos -- bash -l -c "bootstrap-distrobox"
                     distrobox enter bazzite-arch-gaming -- bash -l -c "bootstrap-distrobox"
                     script-game-stuff
                   ''}
@@ -70,22 +70,22 @@ in
             ]
             ++ lib.optionals cfg.gaming [
               (writeShellScriptBin "bootstrap-distrobox" ''
-                ## Set paru settings
-                if ! grep -q "^SudoLoop" "$XDG_CONFIG_HOME/paru/paru.conf"; then
-                  wget -O "$XDG_CONFIG_HOME/paru/paru.conf" https://raw.githubusercontent.com/Morganamilo/paru/master/paru.conf
-                  sd '#SudoLoop' 'SudoLoop' "$XDG_CONFIG_HOME/paru/paru.conf"
-                  sd '#CleanAfter' 'CleanAfter' "$XDG_CONFIG_HOME/paru/paru.conf"
-                  sd '#BottomUp' 'BottomUp' "$XDG_CONFIG_HOME/paru/paru.conf"
-                fi
-                ## Add Chaotic AUR
-                if ! grep -q "chaotic" /etc/pacman.conf; then
-                  sudo pacman-key --init
-                  sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
-                  sudo pacman-key --lsign-key 3056513887B78AEB
-                  sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-                  echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf;
-                fi
-                ## Set up containers
+                if [ $(lsb_release -is) == "Arch" ]; then
+                  ## Set paru settings
+                  if ! grep -q "^SudoLoop" "$XDG_CONFIG_HOME/paru/paru.conf"; then
+                    wget -O "$XDG_CONFIG_HOME/paru/paru.conf" https://raw.githubusercontent.com/Morganamilo/paru/master/paru.conf
+                    sd '#SudoLoop' 'SudoLoop' "$XDG_CONFIG_HOME/paru/paru.conf"
+                    sd '#CleanAfter' 'CleanAfter' "$XDG_CONFIG_HOME/paru/paru.conf"
+                    sd '#BottomUp' 'BottomUp' "$XDG_CONFIG_HOME/paru/paru.conf"
+                  fi
+                  ## Add Chaotic AUR
+                  if ! grep -q "chaotic" /etc/pacman.conf; then
+                    sudo pacman-key --init
+                    sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+                    sudo pacman-key --lsign-key 3056513887B78AEB
+                    sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+                    echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf;
+                  fi
                 ${lib.optionalString vars.gaming ''
                   ### Base packages
                   paru -Syu --needed --noconfirm \
@@ -93,20 +93,20 @@ in
                   konsole                        \
                   lib32-libpulse                 \
                   lib32-mangohud                 \
-                  lib32-vkbasalt                 \
-                  lib32-vulkan-radeon            \
                   lib32-openal                   \
                   lib32-pipewire                 \
                   lib32-pipewire-jack            \
+                  lib32-vkbasalt                 \
+                  lib32-vulkan-radeon            \
                   libva-mesa-driver              \
                   mangohud                       \
                   maplemono-nf                   \
                   openal                         \
                   parui                          \
                   pipewire                       \
-                  pipewire-pulse                 \
                   pipewire-alsa                  \
                   pipewire-jack                  \
+                  pipewire-pulse                 \
                   vkbasalt                       \
                   wireplumber                    \
                   xdg-desktop-portal-kde
@@ -114,8 +114,8 @@ in
                   paru -S --needed --noconfirm   \
                   archlinux-keyring              \
                   base-devel                     \
-                  yay
-                  if [[ "$CONTAINER_ID" =~ ^bazzite-arch-exodos ]]; then
+                  yay''}
+                  if [[ "$CONTAINER_ID" =~ ^exodos ]]; then
                     # Games/emulators/tools
                     paru -S --needed --noconfirm \
                     dbgl                         \
@@ -136,7 +136,23 @@ in
                   else 
                     echo "Container hostname not found"
                   fi
-                ''}'')
+                fi
+                if [ $(lsb_release -is) == "Debian" ]; then
+                  if [[ "$CONTAINER_ID" =~ ^exodos ]]; then
+                    sudo apt install -y          \
+                    alsa                         \
+                    ffmpeg                       \
+                    kdialog                      \
+                    konsole                      \
+                    libnss3                      \
+                    libslirp0                    \
+                    lsb-release                  \
+                    pipewire                     \
+                    plasma-desktop               \
+                    wireplumber
+                  fi
+                fi
+              '')
               (
                 let
                   args = "obs-gamecapture mangohud";
@@ -196,7 +212,7 @@ in
                   args = "obs-gamecapture mangohud";
                   bin = "dbgl";
                   bin-export = "${bin}-db";
-                  container = "bazzite-arch-exodos";
+                  container = "exodos";
                 in
                 writeShellScriptBin "${bin-export}" ''
                   export GTK_USE_PORTAL=0
@@ -216,7 +232,7 @@ in
                   args = "obs-gamecapture mangohud";
                   bin = "dosbox";
                   bin-export = "${bin}-db";
-                  container = "bazzite-arch-exodos";
+                  container = "exodos";
                 in
                 writeShellScriptBin "${bin-export}" ''
                   export PULSE_SINK="Game"
@@ -234,7 +250,7 @@ in
                   args = "obs-gamecapture mangohud";
                   bin = "exogui";
                   bin-export = "${bin}-db";
-                  container = "bazzite-arch-exodos";
+                  container = "exodos";
                 in
                 writeShellScriptBin "${bin-export}" ''
                   export PULSE_SINK="Game"

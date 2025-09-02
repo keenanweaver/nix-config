@@ -66,7 +66,7 @@ in
               -- Distrobox tab
               local db_tab, db_bae_pane, _ = window:spawn_tab { }
               local db_bag_pane = db_bae_pane:split { direction = 'Bottom' }
-              db_bae_pane:send_text 'distrobox enter bazzite-arch-exodos\nclear\n'
+              db_bae_pane:send_text 'distrobox enter exodos\nclear\n'
               db_bag_pane:send_text 'distrobox enter bazzite-arch-gaming\nclear\n'
               db_tab:set_title ' distrobox '
             ''
