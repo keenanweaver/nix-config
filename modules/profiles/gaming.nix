@@ -363,11 +363,11 @@ in
         enable = true;
         ui.enable = true;
       };
-      #scx = {
-      #  enable = true;
-      #  package = pkgs.scx.rustscheds;
-      #  scheduler = "scx_lavd";
-      #};
+      scx = {
+        enable = true;
+        package = pkgs.scx.rustscheds;
+        scheduler = "scx_lavd";
+      };
       udev = {
         extraHwdb = builtins.concatStringsSep "\n" (
           with inputs;
@@ -536,25 +536,8 @@ in
       };
       tmpfiles = {
         rules = [
-          # AMD V-Cache
-          # https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
+          # AMD V-Cache https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
           "w /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode - - - - cache"
-          # https://wiki.archlinux.org/title/Gaming#Make_the_changes_permanent
-          /*
-            "w /proc/sys/vm/compaction_proactiveness - - - - 0"
-                   "w /proc/sys/vm/watermark_boost_factor - - - - 1"
-                   "w /proc/sys/vm/min_free_kbytes - - - - 1048576"
-                   "w /proc/sys/vm/watermark_scale_factor - - - - 500"
-                   "w /sys/kernel/mm/lru_gen/enabled - - - - 5"
-                   "w /proc/sys/vm/zone_reclaim_mode - - - - 0"
-                   "w /proc/sys/vm/page_lock_unfairness - - - - 1"
-                   "w /proc/sys/kernel/sched_child_runs_first - - - - 0"
-                   "w /proc/sys/kernel/sched_autogroup_enabled - - - - 1"
-                   "w /proc/sys/kernel/sched_cfs_bandwidth_slice_us - - - - 3000"
-                   "w /sys/kernel/debug/sched/base_slice_ns  - - - - 3000000"
-                   "w /sys/kernel/debug/sched/migration_cost_ns - - - - 500000"
-                   "w /sys/kernel/debug/sched/nr_migrate - - - - 8"
-          */
         ];
       };
     };
@@ -696,7 +679,7 @@ in
               };
               wine-controller-proton = {
                 # https://selfmadepenguin.wordpress.com/2024/02/14/how-i-solved-my-gamecontroller-problems/
-                # Import with: wine start regedit.exe /home/keenan/Games/wine-controller.reg
+                # Import with: wine start regedit.exe ~/Games/wine-controller.reg
                 enable = false;
                 text = ''
                   Windows Registry Editor Version 5.00
@@ -709,7 +692,7 @@ in
               };
               wine-mouse-acceleration = {
                 # https://reddit.com/r/linux_gaming/comments/1hs1685/windows_mouse_acceleration_seems_to_be_enabled_in/
-                # Import with: wine start regedit.exe /home/keenan/Games/wine-mouse-acceleration.reg
+                # Import with: wine start regedit.exe ~/Games/wine-mouse-acceleration.reg
                 enable = false;
                 text = ''
                   Windows Registry Editor Version 5.00
