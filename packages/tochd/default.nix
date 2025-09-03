@@ -1,14 +1,14 @@
 {
   lib,
   fetchFromGitHub,
-  python3,
+  python3Packages,
   mame-tools,
   p7zip,
 }:
 
-python3.pkgs.buildPythonApplication rec {
+python3Packages.buildPythonApplication rec {
   pname = "tochd";
-  version = "0-unstable-2024-06-08";
+  version = "0.13-unstable-2024-06-08";
   pyproject = true;
 
   src = fetchFromGitHub {
@@ -18,7 +18,7 @@ python3.pkgs.buildPythonApplication rec {
     hash = "sha256-lpDROCiXyfM4OdXBNGkEhD3T2c8aS8QyF7etHC5tQ8M=";
   };
 
-  build-system = with python3.pkgs; [
+  build-system = with python3Packages; [
     setuptools
     wheel
   ];
@@ -42,6 +42,5 @@ python3.pkgs.buildPythonApplication rec {
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ keenanweaver ];
     mainProgram = "tochd";
-    platforms = lib.platforms.all;
   };
 }

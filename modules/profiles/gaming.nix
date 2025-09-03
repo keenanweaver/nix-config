@@ -171,7 +171,7 @@ let
       #xlink-kai
       xvidcore
       ## Wine
-      umu-launcher
+      #umu-launcher
       inputs.nix-gaming.packages.${system}.wine-tkg-ntsync
       winetricks
       ## One-and-dones
@@ -559,7 +559,7 @@ in
                 let
                   configFile = pkgs.fetchurl {
                     url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
-                    hash = "sha256-OcmvXWdwCjFGSLmkrfOHLa9e/rKcd2sV2cuW4pxudiU=";
+                    hash = "sha256-XYvMokHNZNf+BDHQRJfMWXpafcxDaIbGxTisGEq5+WI=";
                   };
                 in
                 {
@@ -1001,6 +1001,12 @@ in
                   ];
                 }
                 {
+                  name = "CorsixTH";
+                  files = [
+                    "${config.xdg.configHome}/CorsixTH/Saves/*.sav"
+                  ];
+                }
+                {
                   name = "Daikatana";
                   files = [
                     "${config.xdg.dataHome}/Daikatana/data/save_x64"
@@ -1123,15 +1129,15 @@ in
               };
               roots = [
                 {
-                  path = "${config.xdg.configHome}/heroic";
-                  store = "heroic";
-                }
-                {
                   path = "${config.home.homeDirectory}/Games/Heroic";
                   store = "heroic";
                 }
                 {
                   path = "${config.xdg.dataHome}/lutris";
+                  store = "lutris";
+                }
+                {
+                  path = "${config.home.homeDirectory}/Games/lutris";
                   store = "lutris";
                 }
                 {
