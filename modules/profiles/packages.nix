@@ -156,7 +156,6 @@ in
             comma
             manix
             nixd
-            nix-init
             nix-inspect
             nix-update
             nixfmt-rfc-style

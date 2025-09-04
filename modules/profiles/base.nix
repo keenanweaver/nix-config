@@ -42,8 +42,9 @@ in
     mullvad.enable = true;
     navi.enable = true;
     nh.enable = true;
-    nix-ld.enable = true;
     nix-index.enable = true;
+    nix-init.enable = true;
+    nix-ld.enable = true;
     nushell.enable = true;
     nvim.enable = true;
     pay-respects.enable = true;

@@ -39,6 +39,7 @@
     ./nero-umu
     ./nh
     ./nix-index
+    ./nix-init
     ./nix-ld
     ./nushell
     ./nvim
