@@ -24,7 +24,12 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} =
-      { config, pkgs, ... }:
+      {
+        config,
+        pkgs,
+        osConfig,
+        ...
+      }:
       {
         home.file = {
           wine-links-kron4ek-lutris-flatpak = {
@@ -57,12 +62,12 @@ in
             winetricks
           ];
           protonPackages = with pkgs; [
-            inputs.chaotic.packages.${pkgs.system}.proton-cachyos
+            #inputs.chaotic.packages.${system}.proton-cachyos
             proton-ge-bin
           ];
           steamPackage = osConfig.programs.steam.package;
           winePackages = with pkgs; [
-            inputs.nix-gaming.packages.${pkgs.system}.wine-tkg-ntsync
+            inputs.nix-gaming.packages.${system}.wine-tkg-ntsync
           ];
         };
         services.flatpak = lib.mkIf cfg.enableFlatpak {
