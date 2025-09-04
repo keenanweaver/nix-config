@@ -27,26 +27,12 @@ in
       { config, pkgs, ... }:
       {
         home.file = {
-          wine-links-kron4ek-lutris = {
-            enable = cfg.enableNative;
-            source =
-              config.lib.file.mkOutOfStoreSymlink
-                inputs.nix-gaming.packages.${pkgs.system}.wine-tkg-ntsync;
-            target = "${config.xdg.dataHome}/lutris/runners/wine/kron4ek";
-          };
           wine-links-kron4ek-lutris-flatpak = {
             enable = cfg.enableFlatpak;
             source =
               config.lib.file.mkOutOfStoreSymlink
                 inputs.nix-gaming.packages.${pkgs.system}.wine-tkg-ntsync;
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/kron4ek";
-          };
-          wine-links-proton-cachyos-lutris = {
-            enable = cfg.enableNative;
-            source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-cachyos
-            }/bin";
-            target = "${config.xdg.dataHome}/lutris/runners/proton/proton-cachyos";
           };
           wine-links-proton-cachyos-flatpak-lutris = {
             enable = cfg.enableFlatpak;
@@ -55,28 +41,30 @@ in
             }/bin";
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-cachyos";
           };
-          wine-links-proton-ge-lutris = {
-            enable = cfg.enableNative;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin.steamcompattool}";
-            target = "${config.xdg.dataHome}/lutris/runners/proton/proton-ge-bin";
-          };
           wine-links-proton-ge-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin.steamcompattool}";
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-ge-bin";
           };
         };
-        home.packages =
-          with pkgs;
-          lib.mkIf cfg.enableNative [
-            (lutris.override {
-              extraPkgs = (
-                pkgs: [
-                  umu-launcher
-                ]
-              );
-            })
+        programs.lutris = lib.mkIf cfg.enableNative {
+          enable = true;
+          extraPackages = with pkgs; [
+            gamemode
+            gamescope
+            mangohud
+            umu-launcher
+            winetricks
           ];
+          protonPackages = with pkgs; [
+            inputs.chaotic.packages.${pkgs.system}.proton-cachyos
+            proton-ge-bin
+          ];
+          steamPackage = osConfig.programs.steam.package;
+          winePackages = with pkgs; [
+            inputs.nix-gaming.packages.${pkgs.system}.wine-tkg-ntsync
+          ];
+        };
         services.flatpak = lib.mkIf cfg.enableFlatpak {
           overrides = {
             "net.lutris.Lutris" = {
