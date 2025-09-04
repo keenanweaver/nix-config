@@ -177,6 +177,17 @@ in
       ];
       xdgOpenUsePortal = true;
     };
-    home-manager.users.${username} = { };
+    home-manager.users.${username} = { 
+      home.file = {
+        purposerc = {
+          enable = true;
+          text = ''
+            [plugins]
+            disabled=emailplugin,imgurplugin,nextcloudplugin,pastebinplugin,purpose_gdrive,telegramplugin,youtubeplugin
+          '';
+          target = "${config.xdg.configHome}/purposerc";
+        };
+      };
+    };
   };
 }
