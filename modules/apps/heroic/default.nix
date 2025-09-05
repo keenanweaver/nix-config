@@ -14,11 +14,11 @@ in
       enable = lib.mkEnableOption "Enable heroic in home-manager";
       enableFlatpak = lib.mkOption {
         type = lib.types.bool;
-        default = false;
+        default = true;
       };
       enableNative = lib.mkOption {
         type = lib.types.bool;
-        default = true;
+        default = false;
       };
     };
   };
@@ -61,7 +61,6 @@ in
                   "/mnt/crusader/Games"
                   "${config.home.homeDirectory}/Games"
                   "${config.xdg.dataHome}/applications"
-                  "${config.xdg.dataHome}/games"
                   "${config.xdg.dataHome}/Steam"
                 ];
               };
