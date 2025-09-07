@@ -243,7 +243,6 @@ in
         "ntsync"
         #"zenergy"
       ];
-      #kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos;
       kernelParams = [
         #"usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
         "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
@@ -506,7 +505,9 @@ in
           (writeTextFile {
             name = "ntsync-udev-rules";
             destination = "/etc/udev/rules.d/70-ntsync.rules";
-            text = ''KERNEL=="ntsync", MODE="0660", TAG+="uaccess"'';
+            text = ''
+              KERNEL=="ntsync", MODE="0660", TAG+="uaccess"
+            '';
           })
           # https://wiki.archlinux.org/title/Gamepad#Motion_controls_taking_over_joypad_controls_and/or_causing_unintended_input_with_joypad_controls
           (writeTextFile {

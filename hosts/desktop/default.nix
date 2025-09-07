@@ -19,7 +19,7 @@
   # Custom modules
   desktop.enable = true;
   gaming.enable = true;
-  programs.gsr.defaultAudioDevice = "alsa_output.usb-Schiit_Audio_Schiit_Modi_-00.analog-stereo.monitor"; # alsa_output.usb-Generic_USB_Audio-00.analog-stereo.monitor
+  solaar.enable = true;
   streamcontroller.enable = true;
   vhs-decode.enable = true;
 
@@ -41,7 +41,7 @@
       "tcp_bbr"
       "uinput"
     ];
-    kernelPackages = pkgs.linuxPackages_cachyos.cachyOverride { mArch = "ZEN4"; };
+    kernelPackages = pkgs.linuxPackages_cachyos-gcc.cachyOverride { mArch = "ZEN4"; };
     kernelParams = lib.mkDefault [
       "amd_iommu=on"
       "amd_pstate=active"
@@ -151,15 +151,12 @@
     };
   };
 
-  home-manager.users.${username} =
-    { pkgs, ... }:
-    {
-      home = {
-        packages = with pkgs; [ solaar ];
-        sessionVariables = {
-          WAYLANDDRV_PRIMARY_MONITOR = "DP-1"; # https://reddit.com/r/linux_gaming/comments/1louxm2/fix_for_wine_wayland_using_wrong_monitor/
-          WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"; # 7950X3D
-        };
+  home-manager.users.${username} = {
+    home = {
+      sessionVariables = {
+        WAYLANDDRV_PRIMARY_MONITOR = "DP-1"; # https://reddit.com/r/linux_gaming/comments/1louxm2/fix_for_wine_wayland_using_wrong_monitor/
+        WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"; # 7950X3D
       };
     };
+  };
 }

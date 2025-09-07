@@ -39,7 +39,7 @@ in
               replace = true;
             };
           };
-          enableSystemdUnit = true;
+          enableSystemdUnit = cfg.gaming;
           settings = {
             container_additional_volumes = "/nix/store:/nix/store:ro /etc/static/profiles/per-user:/etc/profiles/per-user:ro";
             container_image_default = "ghcr.io/ublue-os/bazzite-arch:latest";

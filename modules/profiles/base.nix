@@ -33,7 +33,7 @@ in
     helix.enable = true;
     home-managerConfig.enable = true;
     jq.enable = true;
-    jujutsu.enable = true;
+    jujutsu.enable = false;
     keyd.enable = false;
     lazydocker.enable = true;
     lazygit.enable = true;

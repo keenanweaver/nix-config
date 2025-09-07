@@ -27,6 +27,7 @@ in
     home-manager.users.${username} =
       { pkgs, ... }:
       {
+        home.packages = with pkgs; [ solaar ];
         xdg.autostart.entries = lib.mkIf cfg.autostart [
           "${pkgs.solaar}/share/applications/solaar.desktop"
         ];
