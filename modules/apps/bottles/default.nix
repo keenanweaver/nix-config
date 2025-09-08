@@ -44,14 +44,14 @@ in
           wine-links-proton-cachyos-bottles = {
             enable = cfg.enableNative;
             source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-cachyos
+              inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4
             }/bin";
             target = "${config.xdg.dataHome}/bottles/runners/proton-cachyos";
           };
           wine-links-proton-cachyos-flatpak-bottles = {
             enable = cfg.enableFlatpak;
             source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-cachyos
+              inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4
             }/bin";
             target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos";
           };
@@ -88,12 +88,10 @@ in
               Environment = {
                 PROTON_ENABLE_WAYLAND = "1";
                 PROTON_ENABLE_HDR = "1";
+                PROTON_FSR4_RDNA3_UPGRADE = "1";
                 PROTON_USE_NTSYNC = "1";
                 PROTON_USE_WOW64 = "1";
                 WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23";
-                # FSR 4
-                DXIL_SPIRV_CONFIG = "wmma_rdna3_workaround";
-                PROTON_FSR4_UPGRADE = "1";
               };
               "Session Bus Policy" = {
                 "org.freedesktop.Flatpak" = "talk";
