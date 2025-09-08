@@ -44,11 +44,6 @@ in
           # proton-cachyos
           PROTON_FSR4_RDNA3_UPGRADE = true;
           PROTON_USE_NTSYNC = true;
-          # proton-ge
-          /*
-            DXIL_SPIRV_CONFIG = "wmma_rdna3_workaround";
-                   PROTON_FSR4_UPGRADE = true;
-          */
         };
         # https://github.com/NixOS/nixpkgs/issues/279893#issuecomment-2425213386
         extraProfile = ''
