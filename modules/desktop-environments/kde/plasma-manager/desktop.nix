@@ -48,16 +48,23 @@
             screen = 0;
             widgets = [
               {
-                kickoff = {
-                  applicationsDisplayMode = "list";
-                  compactDisplayStyle = true;
-                  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
-                  favoritesDisplayMode = "grid";
-                  # pin = true;
-                  showActionButtonCaptions = true;
-                  showButtonsFor = "power";
-                  sortAlphabetically = true;
-                };
+                kickoff =
+                  let
+                    start-icon = pkgs.fetchurl {
+                      url = "https://repository-images.githubusercontent.com/596919733/e8621c86-692f-4fea-ba17-e41fc262ff70";
+                      hash = "sha256-XgWT+5hZiRRLpc44fYLNPucdT/oA9abgyboDWoSuKB8=";
+                    };
+                  in
+                  {
+                    applicationsDisplayMode = "list";
+                    compactDisplayStyle = true;
+                    icon = "${start-icon}";
+                    favoritesDisplayMode = "grid";
+                    # pin = true;
+                    showActionButtonCaptions = true;
+                    showButtonsFor = "power";
+                    sortAlphabetically = true;
+                  };
               }
               {
                 iconTasks = {
