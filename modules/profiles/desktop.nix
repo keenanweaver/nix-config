@@ -104,7 +104,7 @@ in
           kdePackages.kdenlive
           losslesscut-bin
           mangareader
-          #metadata-cleaner
+          metadata-cleaner
           mousai
           neo
           nvtopPackages.amd

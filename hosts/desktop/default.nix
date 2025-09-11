@@ -93,9 +93,9 @@
                 176400
                 192000
               ];
-              "default.clock.quantum" = 512;
-              "default.clock.min-quantum" = 512;
-              "default.clock.max-quantum" = 512;
+              "default.clock.quantum" = 256;
+              "default.clock.min-quantum" = 256;
+              "default.clock.max-quantum" = 256;
             };
           };
           # Create mono-only microphone output

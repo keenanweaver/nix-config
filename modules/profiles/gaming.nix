@@ -74,7 +74,7 @@ let
       corsix-th # Theme Hospital
       isle-portable
       jazz2
-      #katawa-shoujo-re-engineered
+      katawa-shoujo-re-engineered
       openjk # Jedi Academy
       openloco
       inputs.chaotic.packages.${system}.openmohaa_git
@@ -103,7 +103,7 @@ let
       relive # Oddworld
       rsdkv4
       sdlpop # Prince of Persia
-      serious-sam-classic-vulkan
+      #serious-sam-classic-vulkan
       sm64ex
       # inputs.nix-citizen.packages.${system}.star-citizen
       theforceengine # Dark Forces / Outlaws
@@ -134,17 +134,17 @@ let
         ]
       ))
       (scummvm.overrideAttrs {
-        version = "2.10.0";
+        version = "3.0.0";
         src = fetchFromGitHub {
           owner = "scummvm";
           repo = "scummvm";
-          rev = "c6ffe860f298c64e8890cfd033b8ea6b9d2a0298";
-          hash = "sha256-cUIsv6LaLEcEJuyxGkOEHc+KuIPAXouPn343TzZWPHc=";
+          rev = "4d9e3ceb9aba8f9ce8ab30bdf7c9591a608da575";
+          hash = "sha256-1Gqjl2KUYdcGSTOQ7tHJZVSqFXOxJ5R+Yy+/Yz7fCxw=";
         };
       })
       inputs.chaotic.packages.${system}.shadps4_git
       nur.repos.bandithedoge.sheepshaver-bin
-      # nur.repos.novel2430.vita3k
+      #nur.repos.novel2430.vita3k
       xenia-canary
       ## Input
       joystickwake
@@ -178,7 +178,6 @@ let
       #xlink-kai
       xvidcore
       ## Wine
-      #umu-launcher
       inputs.nix-gaming.packages.${system}.wine-tkg-ntsync
       winetricks
       ## One-and-dones
@@ -243,12 +242,12 @@ in
     boot = {
       extraModulePackages = with config.boot.kernelPackages; [
         gcadapter-oc-kmod
-        #zenergy
+        zenergy
       ];
       kernelModules = [
         "gcadapter_oc"
         "ntsync"
-        #"zenergy"
+        "zenergy"
       ];
       kernelParams = [
         #"usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
@@ -326,7 +325,7 @@ in
         enable = true;
         coopNet.openFirewall = true;
       };
-      spaghetti-kart-git.enable = true;
+      #spaghetti-kart-git.enable = true;
       starship-sf64.enable = true;
     };
 
