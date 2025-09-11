@@ -325,7 +325,7 @@ in
         enable = true;
         coopNet.openFirewall = true;
       };
-      #spaghetti-kart-git.enable = true;
+      spaghetti-kart-git.enable = true;
       starship-sf64.enable = true;
     };
 

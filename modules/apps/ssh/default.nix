@@ -49,7 +49,10 @@ in
     home-manager.users.${username} =
       { config, pkgs, ... }:
       {
-        home.packages = with pkgs; [ sshs ];
+        home.packages = with pkgs; [
+          lazyssh
+          sshs
+        ];
         home.sessionVariables = {
           SSH_ASKPASS = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
           SSH_ASKPASS_REQUIRE = "prefer";
