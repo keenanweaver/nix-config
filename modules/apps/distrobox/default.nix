@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   username,
   vars,
   ...
@@ -28,6 +29,7 @@ in
       {
         programs.distrobox = {
           enable = true;
+          package = inputs.chaotic.packages.${pkgs.system}.distrobox_git;
           containers = {
             exodos = lib.mkIf cfg.gaming {
               image = "ubuntu:24.04";

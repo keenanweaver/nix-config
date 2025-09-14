@@ -93,7 +93,6 @@ in
             qtcreator
             ### Docker ###
             #docker-compose-language-service
-            #dockerfile-language-server-nodejs
             ### HTML / CSS / JSON ###
             #vscode-langservers-extracted
             ### Lua ###

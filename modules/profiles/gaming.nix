@@ -43,10 +43,10 @@ let
       alephone-durandal
       alephone-infinity
       ## Morrowind
-      inputs.openmw-nix.packages.${system}.openmw-dev
+      #inputs.openmw-nix.packages.${system}.openmw-dev
       inputs.openmw-nix.packages.${system}.openmw-validator
       tes3cmd
-      #openmw
+      openmw
       ## Quake
       ironwail
       q2pro
@@ -134,12 +134,12 @@ let
         ]
       ))
       (scummvm.overrideAttrs {
-        version = "3.0.0";
+        version = "3.0.0-unstable-09-13-2025";
         src = fetchFromGitHub {
           owner = "scummvm";
           repo = "scummvm";
-          rev = "4d9e3ceb9aba8f9ce8ab30bdf7c9591a608da575";
-          hash = "sha256-1Gqjl2KUYdcGSTOQ7tHJZVSqFXOxJ5R+Yy+/Yz7fCxw=";
+          rev = "6231e6f5b8fec2c7717fdb50f637f2fe731858d1";
+          hash = "sha256-a/1Jqjn/2LhqwBFyy2hLDWtM3thzO3HAdBpumbzSJOk=";
         };
       })
       inputs.chaotic.packages.${system}.shadps4_git
@@ -1135,6 +1135,10 @@ in
                 path = "${config.home.homeDirectory}/Games/games/ludusavi";
               };
               roots = [
+                {
+                  path = "${config.xdg.configHome}/heroic";
+                  store = "heroic";
+                }
                 {
                   path = "${config.home.homeDirectory}/Games/Heroic";
                   store = "heroic";

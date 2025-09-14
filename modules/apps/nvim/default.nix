@@ -33,7 +33,7 @@ in
                 shellharden
                 shfmt
                 docker-compose-language-service
-                dockerfile-language-server-nodejs
+                dockerfile-language-server
                 vscode-langservers-extracted
                 lua-language-server
                 marksman

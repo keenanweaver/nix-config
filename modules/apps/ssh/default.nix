@@ -70,7 +70,6 @@ in
             };
             mister = {
               hostname = "mister";
-              port = 6777;
               user = "root";
             };
             mumble = {
@@ -83,7 +82,6 @@ in
             };
             bazzite-htpc = {
               hostname = "bazzite-htpc";
-              port = 6777;
             };
             nixos-laptop = {
               hostname = "nixos-laptop";
