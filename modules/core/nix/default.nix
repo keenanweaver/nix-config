@@ -95,6 +95,7 @@ in
             bb = "bat --color=always";
             db = "distrobox";
             dbe = "db enter";
+            imp = "fd --one-file-system --base-directory / -t f -H -E '{tmp,etc/passwd,var/lib/systemd/coredump}'"; # https://reddit.com/r/NixOS/comments/1nhm4mm/tailscale_impermanence_broken/nedm0vd/?context=3#nedm0vd
             l = "lsd -la --group-dirs=first";
             nv = "nvim";
             ngc = "nh clean all";

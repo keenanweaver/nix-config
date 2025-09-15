@@ -149,9 +149,15 @@ in
                     libnss3                      \
                     libslirp0                    \
                     lsb-release                  \
+                    openjdk-21-jre               \
                     pipewire                     \
                     plasma-desktop               \
                     wireplumber
+
+                    curl -L -o ~/.cache/dosbox-staging-linux-latest.tar.xz \
+                    $(curl -s https://api.github.com/repos/dosbox-staging/dosbox-staging/releases/latest \
+                    | grep "browser_download_url.*linux.*tar.xz" \
+                    | cut -d '"' -f 4)
                   fi
                 fi
               '')
