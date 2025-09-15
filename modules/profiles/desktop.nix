@@ -75,7 +75,42 @@ in
         enable = true;
         geoProviderUrl = "https://beacondb.net/v1/geolocate";
       };
-      lact.enable = true;
+      lact = {
+        enable = true;
+        settings = {
+          version = 5;
+          daemon = {
+            log_level = "info";
+            admin_group = "wheel";
+            disable_clocks_cleanup = false;
+          };
+          apply_settings_timer = 5;
+          profiles = {
+            Gaming = {
+              gpus = {
+                "1002:744C-1EAE:7901-0000:03:00.0" = {
+                  fan_control_enabled = false;
+                  pwfw_options = {
+                    zero_rpm = true;
+                  };
+                  performance_level = "high";
+                };
+              };
+              rule = {
+                type = "process";
+                filter = {
+                  name = "winedevice.exe";
+                };
+              };
+              hooks = {
+                activated = "${pkgs.libnotify}/bin/notify-send 'LACT' 'Gaming profile activated' -i io.github.ilya_zlobintsev.LACT -a 'LACT'";
+                deactivated = "${pkgs.libnotify}/bin/notify-send 'LACT' 'Default profile activated' -i io.github.ilya_zlobintsev.LACT -a 'LACT'";
+              };
+            };
+          };
+          auto_switch_profiles = true;
+        };
+      };
       tuned.enable = true;
       udev.packages = with pkgs; [ android-udev-rules ];
     };

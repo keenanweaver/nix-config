@@ -5,6 +5,7 @@
         hideMounts = true;
         directories = [
           "/etc/coolercontrol"
+          "/etc/lact"
           "/etc/mullvad-vpn"
           "/etc/NetworkManager/system-connections"
           "/etc/secureboot"
