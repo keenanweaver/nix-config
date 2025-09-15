@@ -86,7 +86,8 @@ in
           };
           apply_settings_timer = 5;
           profiles = {
-            Gaming = {
+            # Idea from https://gitlab.freedesktop.org/drm/amd/-/issues/3618#note_2981844
+            gaming = {
               gpus = {
                 "1002:744C-1EAE:7901-0000:03:00.0" = {
                   fan_control_enabled = false;
