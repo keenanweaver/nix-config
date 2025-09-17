@@ -35,12 +35,12 @@ in
         home.packages = with pkgs; [
           #nero-umu
           (nero-umu.overrideAttrs {
-            version = "1.1.4";
+            version = "1.1.5-unstable-09-14-2025";
             src = fetchFromGitHub {
               owner = "SeongGino";
               repo = "Nero-umu";
-              tag = "v1.1.4";
-              hash = "sha256-Cx2hN5LV7/EOXnn9RfIsj9OmnlM1oMZB7a535/hwTas=";
+              rev = "c3cd9684a3bee2a984b6d709680590be347e42b6";
+              hash = "sha256-QELtkVHBPi7L9IRuwf/S5wJzYz61PEexVcUn+taIAaY=";
             };
           })
         ];

@@ -71,10 +71,6 @@ in
           };
           packages = [
             "com.heroicgameslauncher.hgl"
-            "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08"
-            "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/25.08"
-            "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
-            "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08"
           ];
         };
       };

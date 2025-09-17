@@ -79,42 +79,44 @@
   powerManagement.cpuFreqGovernor = "schedutil";
 
   services = {
-    lact = {
-      settings = {
-        version = 5;
-        daemon = {
-          log_level = "info";
-          admin_group = "wheel";
-          disable_clocks_cleanup = false;
-        };
-        apply_settings_timer = 5;
-        profiles = {
-          # Idea from https://gitlab.freedesktop.org/drm/amd/-/issues/3618#note_2981844
-          gaming = {
-            gpus = {
-              "1002:744C-1EAE:7901-0000:03:00.0" = {
-                fan_control_enabled = false;
-                pwfw_options = {
-                  zero_rpm = true;
-                };
-                performance_level = "high";
-              };
-            };
-            rule = {
-              type = "process";
-              filter = {
-                name = "winedevice.exe";
-              };
-            };
-            hooks = {
-              activated = "${pkgs.libnotify}/bin/notify-send 'LACT' 'Gaming profile activated' -i io.github.ilya_zlobintsev.LACT -a 'LACT'";
-              deactivated = "${pkgs.libnotify}/bin/notify-send 'LACT' 'Default profile activated' -i io.github.ilya_zlobintsev.LACT -a 'LACT'";
-            };
-          };
-        };
-        auto_switch_profiles = true;
-      };
-    };
+    /*
+      lact = {
+         settings = {
+           version = 5;
+           daemon = {
+             log_level = "info";
+             admin_group = "wheel";
+             disable_clocks_cleanup = false;
+           };
+           apply_settings_timer = 5;
+           profiles = {
+             # Idea from https://gitlab.freedesktop.org/drm/amd/-/issues/3618#note_2981844
+             gaming = {
+               gpus = {
+                 "1002:744C-1EAE:7901-0000:03:00.0" = {
+                   fan_control_enabled = false;
+                   pwfw_options = {
+                     zero_rpm = true;
+                   };
+                   performance_level = "high";
+                 };
+               };
+               rule = {
+                 type = "process";
+                 filter = {
+                   name = "winedevice.exe";
+                 };
+               };
+               hooks = {
+                 activated = "${pkgs.libnotify}/bin/notify-send LACT \"Gaming profile activated\" -i io.github.ilya_zlobintsev.LACT -a LACT";
+                 deactivated = "${pkgs.libnotify}/bin/notify-send LACT \"Default profile activated\" -i io.github.ilya_zlobintsev.LACT -a LACT";
+               };
+             };
+           };
+           auto_switch_profiles = true;
+         };
+       };
+    */
     pipewire = {
       extraConfig = {
         pipewire = {

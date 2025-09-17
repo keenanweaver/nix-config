@@ -132,6 +132,7 @@ in
       fuse.userAllowOther = true;
       k3b.enable = true;
       kdeconnect.enable = true;
+      kde-pim.enable = true;
       partition-manager.enable = true;
     };
     services = {
