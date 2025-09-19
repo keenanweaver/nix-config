@@ -131,6 +131,7 @@ in
             lazyjournal
             magic-wormhole-rs
             mkvtoolnix-cli
+            patool
             play
             podman-tui
             streamrip

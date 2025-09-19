@@ -21,7 +21,7 @@
   gaming.enable = true;
   solaar.enable = true;
   streamcontroller.enable = true;
-  vhs-decode.enable = true;
+  vhs-decode.enable = false;
 
   boot = {
     initrd = {

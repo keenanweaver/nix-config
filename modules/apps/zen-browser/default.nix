@@ -53,7 +53,7 @@ in
             user_pref("extensions.formautofill.creditCards.enabled", false);
             user_pref("signon.rememberSignons", false);
             /* Autoplay enable */
-            user_pref("media.autoplay.default", 1); /* Disable autoplay with sound */
+            user_pref("media.autoplay.default", 5);
             /* Enable DRM content */
             user_pref("media.eme.enabled", true);
             user_pref("browser.eme.ui.enabled", true);

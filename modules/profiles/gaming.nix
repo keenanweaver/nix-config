@@ -134,12 +134,12 @@ let
         ]
       ))
       (scummvm.overrideAttrs {
-        version = "3.0.0-unstable-09-13-2025";
+        version = "3.0.0-unstable-09-19-2025";
         src = fetchFromGitHub {
           owner = "scummvm";
           repo = "scummvm";
-          rev = "6231e6f5b8fec2c7717fdb50f637f2fe731858d1";
-          hash = "sha256-a/1Jqjn/2LhqwBFyy2hLDWtM3thzO3HAdBpumbzSJOk=";
+          rev = "d7f6dacbfeaf71bc08342ee5df513dcf522006ff";
+          hash = "sha256-1zSLYywf9iJDmvSwAl//hgu0lYsPvAUnaw1JA06fOow=";
         };
       })
       inputs.chaotic.packages.${system}.shadps4_git
@@ -155,7 +155,7 @@ let
       nur.repos.rogreat.faugus-launcher
       ## Modding
       hedgemodmanager
-      limo
+      #limo
       nexusmods-app-unfree
       ## Other
       adwsteamgtk
