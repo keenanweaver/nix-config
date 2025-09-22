@@ -77,7 +77,7 @@ let
       katawa-shoujo-re-engineered
       openjk # Jedi Academy
       openloco
-      inputs.chaotic.packages.${system}.openmohaa_git
+      #inputs.chaotic.packages.${system}.openmohaa_git
       openomf
       openrct2
       (openttd.overrideAttrs {
@@ -155,7 +155,7 @@ let
       nur.repos.rogreat.faugus-launcher
       ## Modding
       hedgemodmanager
-      #limo
+      limo
       nexusmods-app-unfree
       ## Other
       adwsteamgtk

@@ -71,10 +71,6 @@ in
       };
       devmon.enable = true;
       fwupd.enable = true;
-      geoclue2 = {
-        enable = true;
-        geoProviderUrl = "https://beacondb.net/v1/geolocate";
-      };
       lact.enable = true;
       tuned.enable = true;
       udev.packages = with pkgs; [ android-udev-rules ];
