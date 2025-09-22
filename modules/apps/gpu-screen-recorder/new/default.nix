@@ -85,6 +85,23 @@ in
           };
         };
       };
+      # Using built-in autostart in the GUI will need manual intervention/updating as it results in hanging symlink after some time.
+      systemd.user.services = {
+        "gpu-screen-recorder-ui" = {
+          Unit = {
+            Description = "GPU Screen Recorder UI Service";
+          };
+          Service = {
+            ExecStart = "${pkgs.gpu-screen-recorder-ui}/bin/gsr-ui launch-daemon";
+            KillSignal = "SIGINT";
+            Restart = "on-failure";
+            RestartSec = 5;
+          };
+          Install = {
+            WantedBy = [ "default.target" ];
+          };
+        };
+      };
     };
   };
 
