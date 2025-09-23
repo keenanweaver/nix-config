@@ -7,7 +7,7 @@
   SDL2,
   SDL2_image,
   SDL2_mixer,
-  dumb,
+  libopenmpt,
   fluidsynth,
   libGLU,
   libmad,
@@ -37,7 +37,7 @@ stdenv.mkDerivation (finalAttrs: {
     SDL2
     SDL2_image
     SDL2_mixer
-    dumb
+    libopenmpt
     fluidsynth
     libGLU
     libmad

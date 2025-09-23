@@ -8,6 +8,7 @@
   n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
   nyan-doom = prev.callPackage ./nyan-doom { };
+  prboom-plus = prev.callPackage ./prboom-plus { };
   proton-em = prev.callPackage ./proton-em { };
   proton-ge-bin = prev.proton-ge-bin.overrideAttrs (old: rec {
     version = "GE-Proton10-16";
