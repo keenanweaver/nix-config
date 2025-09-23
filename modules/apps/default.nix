@@ -19,7 +19,7 @@
     ./gamemode
     ./gamescope
     ./git
-    ./gpu-screen-recorder/new
+    ./gpu-screen-recorder
     ./gpg
     ./helix
     ./heroic

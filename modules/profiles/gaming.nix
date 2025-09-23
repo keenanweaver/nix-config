@@ -224,10 +224,7 @@ in
     fluidsynth.enable = true;
     gamemode.enable = false;
     gamescope.enable = true;
-    programs.gsr = {
-      enable = true;
-    };
-    #gsr.enable = true;
+    gsr.enable = true;
     heroic.enable = true;
     lutris.enable = true;
     mangohud.enable = true;
@@ -774,9 +771,11 @@ in
             ++ lib.flatten (lib.attrValues p)
           );
           sessionVariables = {
+            # https://wiki.cachyos.org/configuration/gaming/#increase-maximum-shader-cache-size
+            AMD_VULKAN_ICD = "RADV";
+            MESA_SHADER_CACHE_MAX_SIZE = "12G";
             # https://reddit.com/r/linux_gaming/comments/1mg8vtl/low_latency_gaming_guide/
             MESA_VK_WSI_PRESENT_MODE = "fifo";
-            #KWIN_DRM_NO_AMS = 1;
             SDL_VIDEODRIVER = "wayland,x11";
           };
         };
@@ -920,16 +919,6 @@ in
                   ];
                 };
               };
-              "org.scummvm.ScummVM" = {
-                Context = {
-                  filesystems = [
-                    "!home"
-                    "${config.home.homeDirectory}/Music/roland:ro"
-                    "${config.home.homeDirectory}/Music/soundfonts:ro"
-                    "${config.home.homeDirectory}/Games/scummvm"
-                  ];
-                };
-              };
             };
             packages = [
               "app.xemu.xemu"
@@ -983,7 +972,6 @@ in
               "org.openjkdf2.OpenJKDF2"
               "org.pegasus_frontend.Pegasus"
               "org.ppsspp.PPSSPP"
-              #"org.scummvm.ScummVM"
               "org.sonic3air.Sonic3AIR"
               "org.srb2.SRB2"
               "vet.rsc.OpenRSC.Launcher"
