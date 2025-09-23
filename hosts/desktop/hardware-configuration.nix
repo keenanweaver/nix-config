@@ -10,14 +10,14 @@
 
   fileSystems."/home" = {
     options = [
-      "compress=zstd:1"
+      "compress=zstd:3"
       "subvol=home"
     ];
   };
 
   fileSystems."/nix" = {
     options = [
-      "compress=zstd:1"
+      "compress=zstd:3"
       "subvol=nix"
     ];
   };
@@ -25,7 +25,7 @@
   fileSystems."/persist" = {
     neededForBoot = true;
     options = [
-      "compress=zstd:1"
+      "compress=zstd:3"
       "subvol=persist"
     ];
   };
@@ -35,7 +35,7 @@
     device = "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U8NJ0Y515050E-part1";
     fsType = "btrfs";
     options = [
-      "compress=zstd:1"
+      "compress=zstd:3"
     ];
   };
 
@@ -44,7 +44,7 @@
     device = "/dev/disk/by-id/ata-Samsung_SSD_870_EVO_2TB_S620NJ0R902825F-part1";
     fsType = "btrfs";
     options = [
-      "compress=zstd:1"
+      "compress=zstd:3"
     ];
   };
 
