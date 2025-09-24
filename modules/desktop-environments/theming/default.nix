@@ -208,11 +208,6 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-ghostwriter}/themes/catppuccin-${flavor-lower}-${accent-lower}.json";
               target = "${config.xdg.dataHome}/ghostwriter/themes/catppuccin-${flavor-lower}-${accent-lower}.json";
             };
-            catppuccin-halloy = {
-              enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-halloy}/themes/catppuccin-${flavor-lower}.toml";
-              target = "${config.xdg.configHome}/halloy/themes/catppuccin-${flavor-lower}.toml";
-            };
             catppuccin-heroic = {
               enable = vars.gaming;
               source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-heroic}/themes/catppuccin-${flavor-lower}-${accent-lower}.css";
@@ -343,6 +338,14 @@ in
           };
           git = {
             delta = { };
+          };
+          halloy = {
+            settings = {
+              font = {
+                family = "${mono-font}";
+                size = 20;
+              };
+            };
           };
           helix = {
             settings = {

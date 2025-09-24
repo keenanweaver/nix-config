@@ -21,6 +21,7 @@ in
     # Apps
     easyeffects.enable = true;
     freetube.enable = true;
+    halloy.enable = true;
     mumble.enable = true;
     rmpc.enable = true;
     vesktop.enable = true;
@@ -94,7 +95,6 @@ in
           freetube
           gearlever
           hacompanion
-          halloy
           handbrake
           jellyfin-tui
           kdePackages.kdenlive

@@ -21,6 +21,7 @@
     ./git
     ./gpu-screen-recorder
     ./gpg
+    ./halloy
     ./helix
     ./heroic
     ./home-manager
