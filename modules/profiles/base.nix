@@ -70,7 +70,6 @@ in
     nixConfig.enable = true;
     packages.enable = true;
     pipewire.enable = true;
-    secrets.enable = true;
     users.enable = true;
     virtualization.enable = true;
 
