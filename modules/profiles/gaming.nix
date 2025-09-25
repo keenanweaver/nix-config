@@ -134,12 +134,12 @@ let
         ]
       ))
       (scummvm.overrideAttrs {
-        version = "3.0.0-unstable-09-19-2025";
+        version = "3.0.0-unstable-09-25-2025";
         src = fetchFromGitHub {
           owner = "scummvm";
           repo = "scummvm";
-          rev = "d7f6dacbfeaf71bc08342ee5df513dcf522006ff";
-          hash = "sha256-1zSLYywf9iJDmvSwAl//hgu0lYsPvAUnaw1JA06fOow=";
+          rev = "ccb5cc23775b07995505bdfdd49d658db6e48060";
+          hash = "sha256-J3vw8v3ny8AdVEsE1jnkSg/9POJ6SUYXpO/4TPjrUpA=";
         };
       })
       inputs.chaotic.packages.${system}.shadps4_git
