@@ -48,14 +48,18 @@
       "microcode.amd_sha_check=off"
     ];
     loader = {
-      systemd-boot = {
-        windows = {
-          "11" = {
-            title = "Windows 11";
-            efiDeviceHandle = "HD3b";
-            sortKey = "z_windows";
-          };
-        };
+      limine = {
+        extraEntries =
+          let
+            windowspartuuid = "360eceef-be4b-4477-8d89-af08b7edb5c8";
+          in
+          ''
+            /+Windows
+            //Windows 11 IoT Enterprise LTSC
+                protocol: efi
+                path: uuid(${windowspartuuid}):/EFI/Microsoft/Boot/bootmgfw.efi
+          '';
+        style.interface.resolution = "2560x1440";
       };
     };
     tmp.tmpfsSize = "100%";
