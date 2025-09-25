@@ -196,6 +196,7 @@
                     "applications:vesktop.desktop"
                     "applications:signal.desktop"
                     "applications:info.mumble.Mumble.desktop"
+                    "applications:org.squidowl.halloy.desktop"
                     "applications:qobuz.desktop"
                     "applications:foobar2000.desktop"
                     "applications:org.fooyin.fooyin.desktop"
@@ -273,6 +274,30 @@
             match = {
               window-class = {
                 value = "electron vesktop";
+                type = "exact";
+              };
+            };
+            apply = {
+              ignoregeometry = {
+                value = true;
+              };
+              position = {
+                value = "0,0";
+              };
+              screen = {
+                value = 1;
+                apply = "force";
+              };
+              size = {
+                value = "1026,646";
+              };
+            };
+          }
+          {
+            description = "halloy";
+            match = {
+              window-class = {
+                value = "halloy org.squidowl.halloy";
                 type = "exact";
               };
             };
