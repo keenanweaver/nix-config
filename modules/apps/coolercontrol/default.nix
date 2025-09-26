@@ -12,14 +12,13 @@ in
   options = {
     coolercontrol = {
       enable = lib.mkEnableOption "Enable coolercontrol in NixOS";
-      desktopEntry = lib.mkOption {
+      autostart = lib.mkOption {
         type = lib.types.bool;
         default = true;
       };
     };
   };
   config = lib.mkIf cfg.enable {
-
     # Allow for overclocking
     boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
 
@@ -32,6 +31,10 @@ in
       enable = true;
     };
 
-    home-manager.users.${username} = { };
+    home-manager.users.${username} = {
+      xdg.autostart.entries = lib.mkIf cfg.autostart [
+        "${pkgs.coolercontrol.coolercontrol-gui}/share/applications/org.coolercontrol.CoolerControl.desktop"
+      ];
+    };
   };
 }
