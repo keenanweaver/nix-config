@@ -23,12 +23,13 @@ in
     # Allow for overclocking
     boot.kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
 
-    environment.systemPackages = with pkgs; [ liquidctl ];
+    environment.systemPackages = with pkgs; [
+      liquidctl
+      lm_sensors
+    ];
 
-    programs = {
-      coolercontrol = {
-        enable = true;
-      };
+    programs.coolercontrol = {
+      enable = true;
     };
 
     home-manager.users.${username} = { };
