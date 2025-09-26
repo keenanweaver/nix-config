@@ -10,13 +10,15 @@
   nyan-doom = prev.callPackage ./nyan-doom { };
   prboom-plus = prev.callPackage ./prboom-plus { };
   proton-em = prev.callPackage ./proton-em { };
-  proton-ge-bin = prev.proton-ge-bin.overrideAttrs (old: rec {
-    version = "GE-Proton10-16";
-    src = prev.fetchzip {
-      url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
-      hash = "sha256-pwnYnO6JPoZS8w2kge98WQcTfclrx7U2vwxGc6uj9k4=";
-    };
-  });
+  /*
+    proton-ge-bin = prev.proton-ge-bin.overrideAttrs (old: rec {
+      version = "GE-Proton10-16";
+      src = prev.fetchzip {
+        url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
+        hash = "sha256-pwnYnO6JPoZS8w2kge98WQcTfclrx7U2vwxGc6uj9k4=";
+      };
+    });
+  */
   relive = prev.callPackage ./relive { };
   rsdkv4 = prev.callPackage ./rsdkv4 { };
   tochd = prev.callPackage ./tochd { };

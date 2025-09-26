@@ -194,9 +194,9 @@
                   launchers = [
                     "applications:org.wezfurlong.wezterm.desktop"
                     "applications:vesktop.desktop"
+                    "applications:org.squidowl.halloy.desktop"
                     "applications:signal.desktop"
                     "applications:info.mumble.Mumble.desktop"
-                    "applications:org.squidowl.halloy.desktop"
                     "applications:qobuz.desktop"
                     "applications:foobar2000.desktop"
                     "applications:org.fooyin.fooyin.desktop"
