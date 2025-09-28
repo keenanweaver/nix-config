@@ -1148,6 +1148,10 @@ in
                   store = "otherWine";
                 }
                 {
+                  path = "${config.home.homeDirectory}/Games/Heroic/Prefixes/default/*";
+                  store = "otherWine";
+                }
+                {
                   path = "${config.home.homeDirectory}/Games/nero/*";
                   store = "otherWine";
                 }
