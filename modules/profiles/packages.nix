@@ -81,7 +81,7 @@ in
             seer
             ### Ansible ###
             ansible
-            ansible-language-server
+            #ansible-language-server
             ansible-lint
             ## Bash ###
             bash-language-server

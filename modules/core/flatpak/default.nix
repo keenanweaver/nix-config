@@ -17,10 +17,8 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    services = {
-      flatpak = {
-        enable = true;
-      };
+    services.flatpak = {
+      enable = true;
     };
 
     environment.systemPackages = with pkgs; [

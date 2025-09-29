@@ -19,6 +19,9 @@
   desktop.enable = true;
 
   boot = {
+    extraModprobeConfig = ''
+      options cf680211 ieee80211_regdom="US"
+    '';
     initrd.availableKernelModules = lib.mkDefault [
       "xhci_pci"
       "ahci"

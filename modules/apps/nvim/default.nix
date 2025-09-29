@@ -26,7 +26,7 @@ in
           settings = {
             vim = {
               extraPackages = with pkgs; [
-                ansible-language-server
+                #ansible-language-server
                 ansible-lint
                 bash-language-server
                 shellcheck

@@ -17,12 +17,12 @@
 
 stdenv.mkDerivation rec {
   pname = "gpu-screen-recorder-notification";
-  version = "1.0.9";
+  version = "1.1.0";
 
   src = fetchgit {
     url = "https://repo.dec05eba.com/${pname}";
     tag = version;
-    hash = "sha256-pq6SgJpkHjH+GXDV/QlfHbT5t8iRJYqm3+SHlDJq6XY=";
+    hash = "sha256-ODifZ046DEBNiGT3+S6pQyF8ekrb6LIHWton8nv1MBo=";
   };
 
   postPatch = ''
