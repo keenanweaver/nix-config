@@ -128,7 +128,7 @@
                       };
                     };
                     hidden = [
-                      "Akregator"
+                      "CoolerControl"
                       "KTailctl"
                       "MoonDeckBuddy"
                       "com.core447.StreamController.TrayIcon"
