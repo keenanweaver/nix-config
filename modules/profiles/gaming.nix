@@ -414,16 +414,34 @@ in
             '';
           })
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/60-ioschedulers.rules
+          /*
+            (writeTextFile {
+                     name = "60-ioschedulers.rules";
+                     destination = "/etc/udev/rules.d/60-ioschedulers.rules";
+                     text = ''
+                       # HDD
+                       ACTION!="remove", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
+                       # SSD
+                       ACTION!="remove", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="mq-deadline"
+                       # NVMe SSD
+                       ACTION!="remove", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
+                     '';
+                   })
+          */
+          # https://wiki.cachyos.org/configuration/general_system_tweaks/#how-to-enable-adios
           (writeTextFile {
             name = "60-ioschedulers.rules";
             destination = "/etc/udev/rules.d/60-ioschedulers.rules";
             text = ''
               # HDD
-              ACTION!="remove", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
+              ACTION!="remove", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", \
+                  ATTR{queue/scheduler}="bfq"
               # SSD
-              ACTION!="remove", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="mq-deadline"
+              ACTION!="remove", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", \
+                  ATTR{queue/scheduler}="adios"
               # NVMe SSD
-              ACTION!="remove", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
+              ACTION!="remove", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", \
+                  ATTR{queue/scheduler}="adios"
             '';
           })
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/69-hdparm.rules
@@ -924,6 +942,14 @@ in
               "app.xemu.xemu"
               "com.fightcade.Fightcade"
               "com.fightcade.Fightcade.Wine"
+              {
+                appId = "org.freedesktop.Platform.GL.mesa-git/x86_64/25.08";
+                origin = "flathub-beta";
+              }
+              {
+                appId = "org.freedesktop.Platform.GL32.mesa-git/x86_64/25.08";
+                origin = "flathub-beta";
+              }
               {
                 appId = "org.freedesktop.Platform.GL.mesa-git/x86_64/24.08";
                 origin = "flathub-beta";
