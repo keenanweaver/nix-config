@@ -46,23 +46,42 @@
           };
           lsp = {
             customServers = {
+              bash = {
+                command = [
+                  (lib.getExe pkgs.bash-language-server)
+                  "start"
+                ];
+                url = "https://github.com/bash-lsp/bash-language-server";
+                highlightingModeRegex = "^Bash$";
+              };
               json = {
                 command = [
-                  "${pkgs.vscode-langservers-extracted}/bin/vscode-json-language-server"
+                  (lib.getExe pkgs.vscode-json-languageserver)
                   "--stdio"
                 ];
                 url = "https://github.com/microsoft/vscode/tree/main/extensions/json-language-features/server";
                 highlightingModeRegex = "^JSON$";
               };
               markdown = {
-                command = [ "${pkgs.marksman}/bin/marksman" ];
+                command = [ (lib.getExe pkgs.marksman) ];
                 url = "https://github.com/artempyanykh/marksman";
                 highlightingModeRegex = "^Markdown$";
               };
               nix = {
-                command = [ "${pkgs.nixd}/bin/nixd" ];
+                command = [ (lib.getExe pkgs.nixd) ];
                 url = "https://github.com/nix-community/nixd";
                 highlightingModeRegex = "^Nix$";
+                settings.nixd = {
+                  formatting.command = [ (lib.getExe pkgs.nixfmt-rfc-style) ];
+                };
+              };
+              yaml = {
+                command = [
+                  (lib.getExe pkgs.yaml-language-server)
+                  "--stdio"
+                ];
+                url = "https://github.com/redhat-developer/yaml-language-server";
+                highlightingModeRegex = "^YAML$";
               };
             };
           };
