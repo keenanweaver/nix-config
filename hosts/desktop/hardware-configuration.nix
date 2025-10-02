@@ -1,14 +1,16 @@
 { lib, username, ... }:
 {
   fileSystems."/" = {
+    device = "tmpfs";
     fsType = "tmpfs";
     options = [
-      "defaults"
+      "relatime"
       "mode=755"
     ];
   };
 
   fileSystems."/home" = {
+    fsType = "btrfs";
     options = [
       "compress=zstd:3"
       "subvol=home"
@@ -16,6 +18,7 @@
   };
 
   fileSystems."/nix" = {
+    fsType = "btrfs";
     options = [
       "compress=zstd:3"
       "subvol=nix"
@@ -23,6 +26,7 @@
   };
 
   fileSystems."/persist" = {
+    fsType = "btrfs";
     neededForBoot = true;
     options = [
       "compress=zstd:3"
