@@ -11,6 +11,7 @@
   fluidsynth,
   libGLU,
   libmad,
+  libsndfile,
   libvorbis,
   libzip,
   portmidi,
@@ -19,13 +20,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "nyan-doom";
-  version = "1.3.6";
+  version = "1.4.0";
 
   src = fetchFromGitHub {
     owner = "andrikpowell";
     repo = "nyan-doom";
-    tag = "v${finalAttrs.version}";
-    hash = "sha256-db8EiLAfm8Y0lm8aeHdgYhTaNValk0qQmSj5TRH5iRE=";
+    tag = "v" + finalAttrs.version;
+    hash = "sha256-PTnRB6kEFWzdWuJ63a1cdsrHTb/3IT9afQuBLfwmdOQ=";
   };
 
   nativeBuildInputs = [
@@ -41,6 +42,7 @@ stdenv.mkDerivation (finalAttrs: {
     fluidsynth
     libGLU
     libmad
+    libsndfile
     libvorbis
     libzip
     portmidi

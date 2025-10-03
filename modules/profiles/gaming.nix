@@ -84,7 +84,7 @@ let
         postPatch = ''
           substituteInPlace src/music/fluidsynth.cpp \
             --replace-fail "/usr/share/soundfonts/default.sf2" \
-                           "${soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2"
+              "${soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2"
         '';
       })
       opentyrian
@@ -134,12 +134,12 @@ let
         ]
       ))
       (scummvm.overrideAttrs {
-        version = "3.0.0-unstable-09-25-2025";
+        version = "3.0.0-unstable-10-03-2025";
         src = fetchFromGitHub {
           owner = "scummvm";
           repo = "scummvm";
-          rev = "ccb5cc23775b07995505bdfdd49d658db6e48060";
-          hash = "sha256-J3vw8v3ny8AdVEsE1jnkSg/9POJ6SUYXpO/4TPjrUpA=";
+          rev = "acab8019c1e923a5f1798a027354f85dc6eae919";
+          hash = "sha256-Fj6uzx0M72MKUMq4tmMhT0tP4qlLRGjazCJ1B/R3DEw=";
         };
       })
       inputs.chaotic.packages.${system}.shadps4_git
