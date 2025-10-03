@@ -1,7 +1,6 @@
 { lib, username, ... }:
 {
   fileSystems."/" = {
-    device = "tmpfs";
     fsType = "tmpfs";
     options = [
       "relatime"

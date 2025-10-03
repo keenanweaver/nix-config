@@ -2,6 +2,7 @@
 {
   home-manager.users.${username} =
     {
+      lib,
       username,
       config,
       inputs,

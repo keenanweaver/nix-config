@@ -64,6 +64,7 @@
         mountOptions = [
           "mode=755"
           "size=32G"
+          "relatime"
         ];
       };
     };
