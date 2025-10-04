@@ -39,7 +39,8 @@
 # BIOS settings
 * OC Tweaker -> Gaming Mode: **Disabled** (Wrong cores are parked when enabled)
 * OC Tweaker -> DRAM Profile Configuration: **XMP1-6400**
-* Advanced/AMD Overclocking/Accept --> Precision Boost Overdrive: **Enabled**
+* Advanced/ACPI Configuration -> Deep Sleep: **Enabled in S4 & S5** (Disable USB ports when off)
+* Advanced/AMD Overclocking/Accept -> Precision Boost Overdrive: **Enabled**
 * Advanced/PCI Configuration -> Above 4G Decoding: **Enabled**
 * Advanced/PCI Configuration -> Resizable BAR: **Enabled**
 * Advanced/PCI Configuration -> SR-IOV Support: **Enabled**
