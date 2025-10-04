@@ -390,14 +390,6 @@ in
         );
         packages = with pkgs; [
           game-devices-udev-rules
-          # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/30-zram.rules
-          (writeTextFile {
-            name = "30-zram.rules";
-            destination = "/etc/udev/rules.d/30-zram.rules";
-            text = ''
-              ACTION!="remove", KERNEL=="zram0", ATTR{initstate}=="1", SYSCTL{vm.swappiness}="150", RUN+="${bash}/bin/bash -c 'echo N > /sys/module/zswap/parameters/enabled'"
-            '';
-          })
           (writeTextFile {
             name = "40-logitech-g920.rules";
             destination = "/etc/udev/rules.d/40-logitech-g920.rules";
@@ -413,35 +405,17 @@ in
               ACTION!="remove", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="*", ATTR{link_power_management_policy}="max_performance"
             '';
           })
-          # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/60-ioschedulers.rules
-          /*
-            (writeTextFile {
-                     name = "60-ioschedulers.rules";
-                     destination = "/etc/udev/rules.d/60-ioschedulers.rules";
-                     text = ''
-                       # HDD
-                       ACTION!="remove", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
-                       # SSD
-                       ACTION!="remove", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="mq-deadline"
-                       # NVMe SSD
-                       ACTION!="remove", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="none"
-                     '';
-                   })
-          */
           # https://wiki.cachyos.org/configuration/general_system_tweaks/#how-to-enable-adios
           (writeTextFile {
             name = "60-ioschedulers.rules";
             destination = "/etc/udev/rules.d/60-ioschedulers.rules";
             text = ''
               # HDD
-              ACTION!="remove", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", \
-                  ATTR{queue/scheduler}="bfq"
+              ACTION!="remove", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
               # SSD
-              ACTION!="remove", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", \
-                  ATTR{queue/scheduler}="adios"
+              ACTION!="remove", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="adios"
               # NVMe SSD
-              ACTION!="remove", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", \
-                  ATTR{queue/scheduler}="adios"
+              ACTION!="remove", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="adios"
             '';
           })
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/69-hdparm.rules
@@ -496,11 +470,13 @@ in
               ACTION!="remove", SUBSYSTEM=="hidraw", ATTRS{idProduct}=="*", ATTRS{idVendor}=="2dc8", TAG+="uaccess"
             '';
           })
-          # https://github.com/starcitizen-lug/knowledge-base/wiki/Sticks,-Throttles,-&-Pedals
+          # https://wiki.starcitizen-lug.org/Sticks,-Throttles,-&-Pedals
           (writeTextFile {
             name = "70-flight-stick.rules";
-            destination = "/etc/udev/rules.d/70-vkb.rules";
+            destination = "/etc/udev/rules.d/70-flight-stick.rules";
             text = ''
+              # Thrustmaster
+              ACTION!="remove", KERNEL=="hidraw*", ATTRS{idVendor}=="044f", ATTRS{idProduct}=="*", MODE="0660", TAG+="uaccess"
               # Virpil
               ACTION!="remove", KERNEL=="hidraw*", ATTRS{idVendor}=="3344", ATTRS{idProduct}=="*", MODE="0660", TAG+="uaccess"
               ## Virpil Rudder Pedals
@@ -512,11 +488,11 @@ in
               ## VKB SEM
               ACTION!="remove", SUBSYSTEM=="input", KERNEL=="event*", \
                 ENV{ID_VENDOR_ID}=="231d", ENV{ID_MODEL_ID}=="2204", \
-                RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0" 
+                RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0"
               ## VKB Gunfighter L
               ACTION!="remove", SUBSYSTEM=="input", KERNEL=="event*", \
                 ENV{ID_VENDOR_ID}=="231d", ENV{ID_MODEL_ID}=="0127", \
-                RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0" 
+                RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0"
               ## VKB Gunfighter R
               ACTION!="remove", SUBSYSTEM=="input", KERNEL=="event*", \
                 ENV{ID_VENDOR_ID}=="231d", ENV{ID_MODEL_ID}=="0126", \
@@ -581,7 +557,7 @@ in
                 let
                   configFile = pkgs.fetchurl {
                     url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
-                    hash = "sha256-XYvMokHNZNf+BDHQRJfMWXpafcxDaIbGxTisGEq5+WI=";
+                    hash = "sha256-YWgK8Yh5G2kLBPr3+RjliB3n0aPH4I7IbKZTKzeXItI=";
                   };
                 in
                 {
@@ -730,6 +706,136 @@ in
           packages = lib.mkIf cfg.installPackages (
             with pkgs;
             [
+              (writeShellApplication {
+                name = "doom-wad-extractor";
+                runtimeInputs = [
+                  fd
+                  unzip
+                ];
+                runtimeEnv = {
+                  IDGAMESARCHIVE_PATH = "/mnt/crusader/Games/Games/Doom/idgames";
+                  OUTPUT_PATH = "${config.home.homeDirectory}/Games/doom/doom/pwads";
+                };
+                text = ''
+                  # Check if search pattern was provided
+                  if [ $# -eq 0 ]; then
+                      echo "Usage: doom-wad-extractor <search_pattern> [additional_patterns...]"
+                      echo "Example: doom-wad-extractor 'swtw' 'flotsam'"
+                      echo ""
+                      echo "Set IDGAMESARCHIVE_PATH environment variable to override default path"
+                      echo "Current path: $IDGAMESARCHIVE_PATH"
+                      exit 1
+                  fi
+
+                  # Push to the idgames directory
+                  pushd "$IDGAMESARCHIVE_PATH" > /dev/null || exit 1
+
+                  # Run fd with all provided arguments, filtering for archive files
+                  echo "Searching for: $*"
+
+                  # Combine all results from multiple fd searches
+                  all_results=()
+                  for pattern in "$@"; do
+                      while IFS= read -r line; do
+                          all_results+=("$line")
+                      done < <(fd "$pattern" -e zip -e wad -e pk3)
+                  done
+
+                  # Remove duplicates and sort
+                  mapfile -t results < <(printf '%s\n' "''${all_results[@]}" | sort -u)
+
+                  # Check if any results were found
+                  if [ ''${#results[@]} -eq 0 ]; then
+                      echo "No files found matching: $1"
+                      popd > /dev/null || exit 1
+                      exit 1
+                  fi
+
+                  # Display results with numbers
+                  echo -e "\nFound ''${#results[@]} file(s):"
+                  for i in "''${!results[@]}"; do
+                      printf "%d) %s\n" $((i+1)) "''${results[$i]}"
+                  done
+
+                  # Get user selection
+                  echo -e "\nEnter the numbers to extract (space-separated, e.g., '1 3 5'), 'all' for all files, or press Enter for first result:"
+                  read -r selection
+
+                  # Default to first result if empty
+                  if [ -z "$selection" ]; then
+                      selection="1"
+                  fi
+
+                  # Create output directory if it doesn't exist
+                  mkdir -p "$OUTPUT_PATH"
+
+                  # Process selection
+                  if [ "$selection" = "all" ]; then
+                      selected_indices=("''${!results[@]}")
+                  else
+                      # Parse space-separated numbers
+                      read -ra numbers <<< "$selection"
+                      declare -A seen
+                      selected_indices=()
+                      for num in "''${numbers[@]}"; do
+                          if [[ "$num" =~ ^[0-9]+$ ]] && [ "$num" -ge 1 ] && [ "$num" -le ''${#results[@]} ]; then
+                              idx=$((num-1))
+                              if [ -z "''${seen[$idx]:-}" ]; then
+                                  selected_indices+=("$idx")
+                                  seen[$idx]=1
+                              fi
+                          else
+                              echo "Warning: Invalid selection '$num' - skipping"
+                          fi
+                      done
+                  fi
+
+                  # Extract selected files
+                  if [ ''${#selected_indices[@]} -eq 0 ]; then
+                      echo "No valid selections made."
+                  else
+                      echo -e "\nProcessing ''${#selected_indices[@]} file(s) to $OUTPUT_PATH"
+                      for idx in "''${selected_indices[@]}"; do
+                          file="''${results[$idx]}"
+                          filename=$(basename "$file")
+                          extension="''${filename##*.}"
+                          filename_no_ext="''${filename%.*}"
+                          target_dir="$OUTPUT_PATH/$filename_no_ext"
+
+                          if [[ "$extension" =~ ^(wad|pk3)$ ]]; then
+                              echo "Copying: $file"
+                              mkdir -p "$target_dir"
+                              cp "$file" "$target_dir/"
+                          else
+                              echo "Extracting: $file"
+                              mkdir -p "$target_dir"
+                              unzip -o -d "$target_dir" "$file"
+
+                              # Check if there's a single directory with the same name (case-insensitive)
+                              shopt -s nocasematch
+                              for dir in "$target_dir"/*; do
+                                  if [ -d "$dir" ]; then
+                                      dir_name=$(basename "$dir")
+                                      if [[ "$dir_name" == "$filename_no_ext" ]]; then
+                                          echo "Flattening nested directory..."
+                                          # Move contents up one level
+                                          mv "$dir"/* "$target_dir/" 2>/dev/null || true
+                                          # Remove the now-empty directory
+                                          rmdir "$dir" 2>/dev/null || true
+                                          break
+                                      fi
+                                  fi
+                              done
+                              shopt -u nocasematch
+                          fi
+                      done
+                      echo -e "\nProcessing complete!"
+                  fi
+
+                  # Pop back to original directory
+                  popd > /dev/null || exit 1
+                '';
+              })
               (writeShellApplication {
                 name = "script-exodos-nuked";
                 runtimeEnv = {
