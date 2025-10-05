@@ -5,44 +5,38 @@
 }:
 let
   cfg = config.zerotier;
-  adapter = "ztmosnophz";
+  adapter = "zt6ntckupu";
   networks = [
-    "60ee7c034aab3fb3" # Vagabond Gaming Network
+    "363c67c55a4294ae" # Vagabond Gaming Network
   ];
 in
 {
-  options = {
-    zerotier = {
-      enable = lib.mkEnableOption "Enable zerotier in NixOS";
-    };
+  options.zerotier = {
+    enable = lib.mkEnableOption "ZeroTier networking";
   };
+
   config = lib.mkIf cfg.enable {
     # https://github.com/gomaaz/Zerotier_Gaming_Fix#-considerations-for-gaming-with-linux-and-mac-friends
     # https://discuss.zerotier.com/t/lan-game-server-not-visible-through-zerotier-local-lan-works/12166/7
-    networking = {
-      interfaces = {
-        ${adapter} = {
-          ipv4 = {
-            routes = [
-              {
-                address = "255.255.255.255";
-                prefixLength = 32;
-                options = {
-                  dev = "${adapter}";
-                };
-              }
-            ];
-          };
-        };
+    networking.interfaces.${adapter}.ipv4.routes = [
+      {
+        address = "255.255.255.255";
+        prefixLength = 32;
+        options.dev = adapter;
+      }
+    ];
+
+    services.zerotierone = {
+      enable = true;
+      joinNetworks = networks;
+      localConf = {
+        concurrency = 32; # TODO: Better way to make this dynamic & reproducible
+        cpuPinningEnabled = true;
+        multicoreEnabled = true;
       };
     };
-    services = {
-      zerotierone = {
-        enable = true;
-        joinNetworks = networks;
-      };
-    };
-    # Fix long boot
+
+    # Fix long boot times by adjusting service dependencies
     systemd.services = {
       "network-addresses-${adapter}" = {
         before = lib.mkForce [ ];
