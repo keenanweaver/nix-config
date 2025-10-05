@@ -329,10 +329,18 @@ in
     security = {
       pam = {
         loginLimits = [
+          # RPCS3
           {
             domain = "*";
+            type = "hard";
             item = "memlock";
-            type = "-";
+            value = "unlimited";
+          }
+          # RPCS3
+          {
+            domain = "*";
+            type = "soft";
+            item = "memlock";
             value = "unlimited";
           }
           {
@@ -800,7 +808,21 @@ in
                           filename=$(basename "$file")
                           extension="''${filename##*.}"
                           filename_no_ext="''${filename%.*}"
-                          target_dir="$OUTPUT_PATH/$filename_no_ext"
+
+                          # Determine subfolder based on path
+                          subfolder=""
+                          file_lower=$(echo "$file" | tr '[:upper:]' '[:lower:]')
+                          if [[ "$file_lower" == *"doom2"* ]]; then
+                              subfolder="doom2"
+                          elif [[ "$file_lower" == *"doom"* ]]; then
+                              subfolder="doom"
+                          fi
+
+                          if [ -n "$subfolder" ]; then
+                              target_dir="$OUTPUT_PATH/$subfolder/$filename_no_ext"
+                          else
+                              target_dir="$OUTPUT_PATH/$filename_no_ext"
+                          fi
 
                           if [[ "$extension" =~ ^(wad|pk3)$ ]]; then
                               echo "Copying: $file"
