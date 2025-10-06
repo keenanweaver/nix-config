@@ -178,7 +178,7 @@ let
       #xlink-kai
       xvidcore
       ## Wine
-      inputs.nix-gaming.packages.${system}.wine-tkg-ntsync
+      inputs.nix-gaming.packages.${system}.wine-tkg
       winetricks
       ## One-and-dones
       /*

@@ -36,7 +36,7 @@ in
             enable = cfg.enableFlatpak;
             source =
               config.lib.file.mkOutOfStoreSymlink
-                inputs.nix-gaming.packages.${pkgs.system}.wine-tkg-ntsync;
+                inputs.nix-gaming.packages.${pkgs.system}.wine-tkg;
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/kron4ek";
           };
           wine-links-proton-cachyos-flatpak-lutris = {
@@ -67,7 +67,7 @@ in
           ];
           steamPackage = osConfig.programs.steam.package;
           winePackages = with pkgs; [
-            inputs.nix-gaming.packages.${system}.wine-tkg-ntsync
+            inputs.nix-gaming.packages.${system}.wine-tkg
           ];
         };
         services.flatpak = lib.mkIf cfg.enableFlatpak {
