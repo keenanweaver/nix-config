@@ -22,13 +22,6 @@ in
         final: prev: {
           # https://github.com/ValveSoftware/gamescope/issues/1622
           NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];
-          # https://github.com/ValveSoftware/gamescope/pull/1867
-          patches = prev.patches ++ [
-            (pkgs.fetchpatch {
-              url = "https://patch-diff.githubusercontent.com/raw/ValveSoftware/gamescope/pull/1867.patch";
-              hash = "sha256-ONjSInJ7M8niL5xWaNk5Z16ZMcM/A7M7bHTrgCFjrts=";
-            })
-          ];
         }
       );
       capSysNice = false; # 'true' breaks gamescope for Steam https://github.com/NixOS/nixpkgs/issues/292620#issuecomment-2143529075
