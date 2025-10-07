@@ -90,12 +90,12 @@ let
       opentyrian
       (openxcom.overrideAttrs {
         pname = "openxcom-extended";
-        version = "8.4.0";
+        version = "8.4.2";
         src = fetchFromGitHub {
           owner = "MeridianOXC";
           repo = "OpenXcom";
-          rev = "0598aeac811739e4cb3cdc39996c2eb573dd3b49";
-          hash = "sha256-coAdsM0IEz9MRiO4sBvCXcmyVc39zFGJ5FIBDizMVRw=";
+          rev = "0ad66a8f0806896a1fab3747d693595c477fa820";
+          hash = "sha256-QDdZKB9k7MukWUj/G/ZCPVOygRluDepx2gy9URosP9Y=";
         };
       })
       openxray # STALKER
@@ -134,12 +134,12 @@ let
         ]
       ))
       (scummvm.overrideAttrs {
-        version = "3.0.0-unstable-10-03-2025";
+        version = "3.0.0-unstable-10-06-2025";
         src = fetchFromGitHub {
           owner = "scummvm";
           repo = "scummvm";
-          rev = "acab8019c1e923a5f1798a027354f85dc6eae919";
-          hash = "sha256-Fj6uzx0M72MKUMq4tmMhT0tP4qlLRGjazCJ1B/R3DEw=";
+          rev = "5b9ff55aaf935767c713753c6279b867c2401945";
+          hash = "sha256-kKbllkvbjdgkTZLRsyBtIPV+bOavXUiOIMnu5eD9CSg=";
         };
       })
       inputs.chaotic.packages.${system}.shadps4_git
