@@ -15,14 +15,14 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "relive";
-  version = "1.0.9";
+  version = "1.0.9-unstable-05-29-2025";
 
   src = fetchFromGitHub {
     owner = "AliveTeam";
     repo = "alive_reversing";
-    tag = "github-v${finalAttrs.version}";
+    rev = "7bf8a75de37f6f65554bf1c4a0e4b1100f0d37ae";
     fetchSubmodules = true;
-    hash = "sha256-5915ZIgZ6a5l1Fvu4nsn2ucFuZmFAPgqSrlwL79VQdQ=";
+    hash = "sha256-w/mpu9bE+jHbRDyE5Oy47EDQd/FXfwjXqndSBe7XKC4=";
   };
 
   nativeBuildInputs = [
