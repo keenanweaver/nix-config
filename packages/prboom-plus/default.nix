@@ -13,6 +13,7 @@
   libopenmpt,
   libvorbis,
   libmad,
+  libGLU,
   pcre,
 }:
 
@@ -42,15 +43,19 @@ stdenv.mkDerivation (finalAttrs: {
     portmidi
     libopenmpt
     libvorbis
+    libGLU
     libmad
     pcre
   ];
 
-  # Fixes impure path to soundfont
   prePatch = ''
-    substituteInPlace src/m_misc.c --replace \
+    substituteInPlace src/m_misc.c --replace-fail \
       "/usr/share/sounds/sf3/default-GM.sf3" \
       "${soundfont-fluid}/share/soundfonts/FluidR3_GM2-2.sf2"
+
+    substituteInPlace CMakeLists.txt --replace-fail \
+      "cmake_minimum_required(VERSION 3.0)" \
+      "cmake_minimum_required(VERSION 3.10)"
   '';
 
   meta = {
@@ -58,6 +63,6 @@ stdenv.mkDerivation (finalAttrs: {
     description = "Advanced, Vanilla-compatible Doom engine based on PrBoom";
     license = lib.licenses.gpl2Plus;
     platforms = lib.platforms.linux;
-    maintainers = [ lib.aintainers.ashley ];
+    maintainers = [ lib.maintainers.ashley ];
   };
 })

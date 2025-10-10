@@ -23,11 +23,11 @@ let
       nugget-doom
       nyan-doom
       # odamex
-      prboom-plus
+      #prboom-plus
       rbdoom-3-bfg
       sladeUnstable
       woof-doom
-      zandronum
+      #zandronum
       ## Fallout
       fallout-ce
       fallout2-ce
@@ -46,7 +46,7 @@ let
       #inputs.openmw-nix.packages.${system}.openmw-dev
       inputs.openmw-nix.packages.${system}.openmw-validator
       tes3cmd
-      openmw
+      #openmw
       ## Quake
       ironwail
       q2pro
@@ -67,7 +67,6 @@ let
       iortcw
       ## Other
       abuse
-      #am2rlauncher
       arx-libertatis # Arx Fatalis
       augustus # Caesar 3
       clonehero # Guitar Hero
@@ -75,11 +74,11 @@ let
       isle-portable
       jazz2
       katawa-shoujo-re-engineered
-      openjk # Jedi Academy
+      #openjk # Jedi Academy
       openloco
       #inputs.chaotic.packages.${system}.openmohaa_git
       openomf
-      openrct2
+      #openrct2
       (openttd.overrideAttrs {
         postPatch = ''
           substituteInPlace src/music/fluidsynth.cpp \

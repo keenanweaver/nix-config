@@ -9,11 +9,11 @@
   (
     finalAttrs: _: {
       pname = "proton-em";
-      version = "10.0-2F";
+      version = "10.0-30";
 
       src = fetchzip {
         url = "https://github.com/Etaash-mathamsetty/Proton/releases/download/EM-${finalAttrs.version}/proton-EM-${finalAttrs.version}.tar.xz";
-        hash = "sha256-usjEAYEue2tQmOasQM46F1t0qJ1ouVmPyfl2hVlBzOg=";
+        hash = "sha256-OfXi4DDKfJdjTK5xe1c3n1smKVmvFkjvJy2x0vPEs9g=";
       };
 
       meta = {

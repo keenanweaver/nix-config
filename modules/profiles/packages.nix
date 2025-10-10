@@ -78,7 +78,7 @@ in
             devenv
             just
             powershell
-            seer
+            #seer
             ### Ansible ###
             ansible
             #ansible-language-server

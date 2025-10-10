@@ -69,7 +69,7 @@ in
           sddm-kcm
           svgpart
           syntax-highlighting
-          systemdgenie
+          #systemdgenie
           tokodon
         ]
         ++ lib.optionals vars.gaming [
