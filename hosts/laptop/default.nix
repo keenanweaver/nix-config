@@ -56,6 +56,8 @@
     hostName = "nixos-laptop";
   };
 
+  nix.settings.build-dir = "/nix/build";
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   # https://discourse.nixos.org/t/how-to-disable-networkmanager-wait-online-service-in-the-configuration-file/19963

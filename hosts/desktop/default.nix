@@ -80,7 +80,9 @@
     hostName = "nixos-desktop";
   };
 
-  powerManagement.cpuFreqGovernor = "schedutil";
+  nix.settings.build-dir = "/nix/build";
+
+  powerManagement.cpuFreqGovernor = "ondemand";
 
   services = {
     /*
