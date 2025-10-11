@@ -90,7 +90,7 @@ in
             shfmt
             ## Clang ##
             clang-tools
-            qtcreator
+            #qtcreator
             ### Docker ###
             #docker-compose-language-service
             ### HTML / CSS / JSON ###
