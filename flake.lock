@@ -207,11 +207,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1760152188,
-        "narHash": "sha256-k9sqEYgJ2QH257T4p6MeKCHLYi2k9XH7Cjv8LPrtuvY=",
+        "lastModified": 1760184540,
+        "narHash": "sha256-zzkbK1k1CQrQR6Va0YN9x60SEfyXDunq8xdG6qKmYLY=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "3f06ccee77dcae294d48cf7741dd3647fc3613a7",
+        "rev": "044947d09d3717d1b296e5cae11458c46e1a9073",
         "type": "github"
       },
       "original": {
@@ -267,11 +267,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1758350402,
-        "narHash": "sha256-xpbGgQ6ymKvz/LQ3RrUTHdbRKWznZAbdaNAH7TdbKZs=",
+        "lastModified": 1759560021,
+        "narHash": "sha256-J/rtMKVUAEqOFj0ogvcHKK8HbaKhw+tiNrDOpEM+ZDY=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "bfa40349cb508ebec2a8d0f89d65022967d28dc4",
+        "rev": "6ffcbf59c119b0c6384c7d98f18cea06a9af7e9c",
         "type": "github"
       },
       "original": {
@@ -803,11 +803,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1759943685,
-        "narHash": "sha256-K/KJwBDM2m671jduPYxg8j3J3Gq1UwJJkGqZ72aD/t8=",
+        "lastModified": 1760227258,
+        "narHash": "sha256-y9JS+MyJELlvyCmiVV7EChMF55vt0bi1dEGZ8shaWM0=",
         "owner": "LovingMelody",
         "repo": "nix-citizen",
-        "rev": "9dbade42e6559a1e05c8377640e57d4d26e29579",
+        "rev": "e92be894f1fdb0666d0b46d72927e675dbb137ea",
         "type": "github"
       },
       "original": {
@@ -1229,11 +1229,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1759831965,
-        "narHash": "sha256-vgPm2xjOmKdZ0xKA6yLXPJpjOtQPHfaZDRtH+47XEBo=",
+        "lastModified": 1760038930,
+        "narHash": "sha256-Oncbh0UmHjSlxO7ErQDM3KM0A5/Znfofj2BSzlHLeVw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c9b6fb798541223bbb396d287d16f43520250518",
+        "rev": "0b4defa2584313f3b781240b29d61f6f9f7e0df3",
         "type": "github"
       },
       "original": {
@@ -1348,11 +1348,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1760200786,
-        "narHash": "sha256-tSJqF5yXSMUsKLQppoNtEsyvgM5duksB15K7asaOmho=",
+        "lastModified": 1760215349,
+        "narHash": "sha256-XtDMYu/hIP+WzEGgJKlnHw56cYFlqyhecnJlXH4r/eA=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "3d05fd576ec38ebe18f8de774d0b89e5742a5c6c",
+        "rev": "6251d2740a8b79bddad2e0a6829ee70a86cbbab8",
         "type": "github"
       },
       "original": {
@@ -1393,11 +1393,11 @@
         "snowfall-lib": "snowfall-lib"
       },
       "locked": {
-        "lastModified": 1758488073,
-        "narHash": "sha256-UwUrjMGk3PAMM4yvthF7Q+BDxzusQKze196bmMz3fYw=",
+        "lastModified": 1760206467,
+        "narHash": "sha256-mOkiA+mYSywA4ld3sfLzSNcQYMcv8V1ZqephNptzyJY=",
         "ref": "refs/heads/main",
-        "rev": "7d82d55244ab85fcd3947130b04dd70fb0fcebc6",
-        "revCount": 153,
+        "rev": "fc6263c94e57a3b50feab6250a9b2b47c08252a0",
+        "revCount": 158,
         "type": "git",
         "url": "https://codeberg.org/PopeRigby/openmw-nix.git"
       },
@@ -1517,11 +1517,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1758294437,
-        "narHash": "sha256-PXDZtnSSNXIlTlytspxkTm/RENaQKdTJ44RGqm/LPLA=",
+        "lastModified": 1759301569,
+        "narHash": "sha256-7StxDed3v2fAWLkl+Hse9FlpjT7Dk7Cn/4vxTFyEhIg=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "b12a1293473d4c1c74a63752184b8d21d32a6bde",
+        "rev": "472037b789cf593172d6adf3b8d9f7a429f6cd9b",
         "type": "github"
       },
       "original": {
@@ -1724,11 +1724,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1758728421,
-        "narHash": "sha256-ySNJ008muQAds2JemiyrWYbwbG+V7S5wg3ZVKGHSFu8=",
+        "lastModified": 1760120816,
+        "narHash": "sha256-gq9rdocpmRZCwLS5vsHozwB6b5nrOBDNc2kkEaTXHfg=",
         "owner": "numtide",
         "repo": "treefmt-nix",
-        "rev": "5eda4ee8121f97b218f7cc73f5172098d458f1d1",
+        "rev": "761ae7aff00907b607125b2f57338b74177697ed",
         "type": "github"
       },
       "original": {
