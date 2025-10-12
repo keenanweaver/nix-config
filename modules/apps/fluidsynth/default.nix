@@ -54,7 +54,10 @@ in
         };
         systemd.user.services.fluidsynth = {
           Service = {
-            Environment = "PULSE_SINK=MIDI";
+            Environment = [
+              "PIPEWIRE_NODE=MIDI"
+              "PULSE_SINK=MIDI"
+            ];
           };
         };
       };

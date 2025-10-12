@@ -31,6 +31,7 @@ in
           "app.zen_browser.zen" = {
             Environment = {
               MOZ_ENABLE_WAYLAND = "1";
+              PIPEWIRE_NODE = "Browser";
               PULSE_SINK = "Browser";
             };
           };

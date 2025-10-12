@@ -37,6 +37,7 @@ in
         extraEnv = {
           MANGOHUD = true;
           OBS_VKCAPTURE = true;
+          PIPEWIRE_NODE = "Game";
           PULSE_SINK = "Game";
           PROTON_ENABLE_WAYLAND = true;
           PROTON_ENABLE_HDR = true;

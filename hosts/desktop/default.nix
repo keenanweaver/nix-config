@@ -41,7 +41,7 @@
       "tcp_bbr"
       "uinput"
     ];
-    kernelPackages = pkgs.linuxPackages_cachyos-gcc.cachyOverride { mArch = "ZEN4"; };
+    kernelPackages = pkgs.linuxPackages_cachyos-lto.cachyOverride { mArch = "ZEN4"; };
     kernelParams = lib.mkDefault [
       "amd_iommu=on"
       "amd_pstate=active"

@@ -169,6 +169,7 @@ in
                   container = "bazzite-arch-gaming";
                 in
                 writeShellScriptBin "archipelago-db" ''
+                  export PIPEWIRE_NODE="Game"
                   export PULSE_SINK="Game"
                   if [ -z "''${CONTAINER_ID}" ]; then
                   	exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '${bin}' "$@"
@@ -187,6 +188,7 @@ in
                   container = "bazzite-arch-gaming";
                 in
                 writeShellScriptBin "${bin-export}" ''
+                  export PIPEWIRE_NODE="Game"
                   export PULSE_SINK="Game"
                   if [ -z "''${CONTAINER_ID}" ]; then
                     exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
@@ -205,6 +207,7 @@ in
                   container = "bazzite-arch-gaming";
                 in
                 writeShellScriptBin "daikatana-db" ''
+                  export PIPEWIRE_NODE="Game"
                   export PULSE_SINK="Game"
                   if [ -z "''${CONTAINER_ID}" ]; then
                     exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '${bin}' "$@"
@@ -225,6 +228,7 @@ in
                 writeShellScriptBin "${bin-export}" ''
                   export GTK_USE_PORTAL=0
                   export GTK_THEME=Breeze-Dark
+                  export PIPEWIRE_NODE="Game"
                   export PULSE_SINK="Game"
                   if [ -z "''${CONTAINER_ID}" ]; then
                     exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/sbin/${bin}' "$@"
@@ -243,6 +247,7 @@ in
                   container = "exodos";
                 in
                 writeShellScriptBin "${bin-export}" ''
+                  export PIPEWIRE_NODE="Game"
                   export PULSE_SINK="Game"
                   if [ -z "''${CONTAINER_ID}" ]; then
                     exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
@@ -261,6 +266,7 @@ in
                   container = "exodos";
                 in
                 writeShellScriptBin "${bin-export}" ''
+                  export PIPEWIRE_NODE="Game"
                   export PULSE_SINK="Game"
                   cd /mnt/crusader/Games/eXo/eXoDOS/exogui
                   if [ -z "''${CONTAINER_ID}" ]; then
@@ -280,6 +286,7 @@ in
                   container = "bazzite-arch-gaming";
                 in
                 writeShellScriptBin "${bin-export}" ''
+                  export PIPEWIRE_NODE="Game"
                   export PULSE_SINK="Game"
                   if [ -z "''${CONTAINER_ID}" ]; then
                     exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
@@ -298,6 +305,7 @@ in
                   container = "bazzite-arch-gaming";
                 in
                 writeShellScriptBin "${bin-export}" ''
+                  export PIPEWIRE_NODE="Game"
                   export PULSE_SINK="Game"
                   if [ -z "''${CONTAINER_ID}" ]; then
                     exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
@@ -334,6 +342,7 @@ in
                 in
                 writeShellScriptBin "${bin-export}" ''
                   export GTK_THEME=Breeze-Dark
+                  export PIPEWIRE_NODE="Game"
                   export PULSE_SINK="Game"
                   if [ -z "''${CONTAINER_ID}" ]; then
                     exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
@@ -352,6 +361,7 @@ in
                   container = "bazzite-arch-gaming";
                 in
                 writeShellScriptBin "${bin-export}" ''
+                  export PIPEWIRE_NODE="Game"
                   export PULSE_SINK="Game"
                   if [ -z "''${CONTAINER_ID}" ]; then
                     exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
@@ -370,6 +380,7 @@ in
                   container = "bazzite-arch-gaming";
                 in
                 writeShellScriptBin "${bin-export}" ''
+                  export PIPEWIRE_NODE="Game"
                   export PULSE_SINK="Game"
                   if [ -z "''${CONTAINER_ID}" ]; then
                     exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
@@ -388,6 +399,7 @@ in
                   container = "bazzite-arch-gaming";
                 in
                 writeShellScriptBin "${bin-export}" ''
+                  export PIPEWIRE_NODE="Game"
                   export PULSE_SINK="Game"
                   if [ -z "''${CONTAINER_ID}" ]; then
                     exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"

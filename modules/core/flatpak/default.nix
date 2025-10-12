@@ -95,11 +95,13 @@ in
             };
             "io.github.ungoogled_software.ungoogled_chromium" = {
               Environment = {
+                PIPEWIRE_NODE = "Browser";
                 PULSE_SINK = "Browser";
               };
             };
             "net.mullvad.MullvadBrowser" = {
               Environment = {
+                PIPEWIRE_NODE = "Browser";
                 PULSE_SINK = "Browser";
               };
             };

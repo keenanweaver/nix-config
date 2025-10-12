@@ -97,18 +97,18 @@
                 };
               };
             }
-              {
-                name = "com.github.k-donn.plasmoid-wunderground";
-                config = {
-                  Station = {
-                    refreshPeriod = "900";
-                    stationID = "KNEOMAHA1072";
-                  };
-                  Units = {
-                    unitsChoice = "1";
-                  };
+            {
+              name = "com.github.k-donn.plasmoid-wunderground";
+              config = {
+                Station = {
+                  refreshPeriod = "900";
+                  stationID = "KNEOMAHA1072";
                 };
-              }
+                Units = {
+                  unitsChoice = "1";
+                };
+              };
+            }
             "org.kde.plasma.marginsseparator"
             "org.kde.plasma.marginsseparator"
             "org.kde.plasma.marginsseparator"

@@ -300,7 +300,7 @@ in
     hardware = {
       uinput.enable = true;
       xone.enable = true;
-      xpadneo.enable = true;
+      #xpadneo.enable = true;
     };
 
     nix.settings = {
@@ -941,6 +941,7 @@ in
               global = {
                 Environment = {
                   FLATPAK_GL_DRIVERS = "mesa-git";
+                  #PIPEWIRE_NODE = "Game";
                   PULSE_SINK = "Game";
                 };
               };
