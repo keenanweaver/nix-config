@@ -269,15 +269,11 @@ in
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/sysctl.d/99-cachyos-settings.conf
           "fs.file-max" = 2097152;
           "kernel.split_lock_mitigate" = 0;
-          #"net.core.default_qdisc" = "cake";
           "net.core.netdev_max_backlog" = 4096;
-          #"net.ipv4.tcp_congestion_control" = "bbr";
           "net.ipv4.tcp_fin_timeout" = 5;
           "vm.dirty_background_bytes" = 67108864;
           "vm.dirty_bytes" = 268435456;
           "vm.dirty_writeback_centisecs" = 1500;
-          "vm.page-cluster" = 0;
-          "vm.swappiness" = 100;
           "vm.vfs_cache_pressure" = 50;
         };
       };
@@ -381,7 +377,7 @@ in
       };
       scx = {
         enable = true;
-        package = pkgs.scx.rustscheds;
+        package = pkgs.scx_git.full;
         scheduler = "scx_lavd";
       };
       udev = {
@@ -544,7 +540,8 @@ in
 
     systemd = {
       settings.Manager = {
-        DefaultLimitNOFILE = "8192:524288";
+        # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/systemd/system.conf.d/10-limits.conf
+        DefaultLimitNOFILE = "2048:2097152";
       };
       tmpfiles = {
         rules = [
