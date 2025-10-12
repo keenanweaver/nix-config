@@ -1350,36 +1350,117 @@ in
           autostart.entries = with pkgs; [
             "${nuked-sc55}/share/applications/Nuked-SC55_silent.desktop"
           ];
-          desktopEntries = {
-            gog-galaxy =
-              let
-                icon = pkgs.fetchurl {
-                  url = "https://docs.gog.com/_assets/galaxy_icon_rgb.svg";
-                  hash = "sha256-SpaFaSK05Uq534qPYV7s7/vzexZmMnpJiVtOsbCtjvg=";
-                };
-              in
-              {
-                name = "GOG Galaxy";
-                comment = "Launch GOG Galaxy using nero-umu";
-                exec = "nero-umu --prefix \"GOG Galaxy\" --shortcut \"GOG Galaxy\"";
-                icon = "${icon}";
+          desktopEntries =
+            let
+              audioCapture = "env PIPEWIRE_NODE=Game PULSE_SINK=Game";
+              mangohud = lib.getExe' pkgs.mangohud "mangohud";
+              videoCapture = lib.getExe' pkgs.obs-studio-plugins.obs-vkcapture "obs-gamecapture";
+            in
+            {
+              doomrunner = {
+                name = "Doom Runner";
+                comment = "Preset-oriented graphical launcher of various ported Doom engines";
+                exec = audioCapture + " " + videoCapture + " " + mangohud + " " + (lib.getExe pkgs.doomrunner);
+                icon = "DoomRunner";
                 categories = [ "Game" ];
                 noDisplay = false;
                 startupNotify = true;
+                terminal = false;
+              };
+              dreamm = {
+                name = "DREAMM";
+                comment = "specialized emulator for playing many of your original DOS, Windows, and FM-Towns LucasArts (and LucasArts-adjacent) games";
+                exec =
+                  audioCapture
+                  + " "
+                  + videoCapture
+                  + " "
+                  + mangohud
+                  + " ${config.home.homeDirectory}/Games/dreamm/dreamm";
+                icon = "${config.home.homeDirectory}/Games/dreamm/dreamm.png";
+                noDisplay = false;
+                startupNotify = true;
+                terminal = false;
+              };
+              gog-galaxy =
+                let
+                  icon = pkgs.fetchurl {
+                    url = "https://docs.gog.com/_assets/galaxy_icon_rgb.svg";
+                    hash = "sha256-SpaFaSK05Uq534qPYV7s7/vzexZmMnpJiVtOsbCtjvg=";
+                  };
+                in
+                {
+                  name = "GOG Galaxy";
+                  comment = "Launch GOG Galaxy using nero-umu";
+                  exec = "nero-umu --prefix \"GOG Galaxy\" --shortcut \"GOG Galaxy\"";
+                  icon = "${icon}";
+                  categories = [ "Game" ];
+                  noDisplay = false;
+                  startupNotify = true;
+                  settings = {
+                    StartupWMClass = "GOG Galaxy";
+                  };
+                };
+              nero-umu = {
+                name = "Nero UMU";
+                comment = "A fast and efficient umu manager, just as the Romans designed";
+                exec = audioCapture + " nero-umu";
+                icon = "xyz.TOS.Nero";
+                categories = [ "Game" ];
+                mimeType = [
+                  "application/x-ms-dos-executable"
+                  "application/x-msi"
+                  "application/x-bat"
+                ];
+                noDisplay = false;
+                startupNotify = true;
+                terminal = false;
+              };
+              quake-injector = {
+                name = "Quake Injector";
+                exec = lib.getExe (
+                  pkgs.writeShellApplication {
+                    name = "quake-injector";
+                    runtimeEnv = {
+                      quakeDir = "${config.home.homeDirectory}/Games/quake/quake-1/injector";
+                      exec = "${audioCapture} obs-gamecapture mangohud quake-injector";
+                    };
+                    runtimeInputs = with pkgs; [
+                      mangohud
+                      obs-studio-plugins.obs-vkcapture
+                      quake-injector
+                    ];
+                    text = ''
+                      pushd $quakeDir
+                      $exec
+                      popd
+                    '';
+                  }
+                );
+                icon = "quake-injector";
+                categories = [ "Game" ];
                 settings = {
-                  StartupWMClass = "GOG Galaxy";
+                  Path = "${config.home.homeDirectory}/Games/quake/quake-1/injector";
                 };
               };
-            quake-injector = {
-              name = "Quake Injector";
-              exec = "quake-injector";
-              icon = "quake-injector";
-              categories = [ "Game" ];
-              settings = {
-                Path = "${config.home.homeDirectory}/Games/quake/quake-1/injector";
+              scummvm = {
+                name = "ScummVM";
+                comment = "Interpreter for numerous adventure games and RPGs";
+                exec = audioCapture + " " + videoCapture + " " + mangohud + " scummvm";
+                icon = "org.scummvm.scummvm";
+                categories = [
+                  "Game"
+                  "AdventureGame"
+                  "RolePlaying"
+                ];
+                noDisplay = false;
+                settings = {
+                  StartupWMClass = "scummvm";
+                };
+                startupNotify = false;
+                terminal = false;
               };
             };
-          };
         };
       };
   };
