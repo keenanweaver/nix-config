@@ -5,6 +5,7 @@
     options = [
       "relatime"
       "mode=755"
+      "size=8G"
     ];
   };
 

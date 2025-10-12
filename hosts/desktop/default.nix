@@ -178,7 +178,7 @@
       settings = {
         zram0 = {
           compression-algorithm = "zstd";
-          zram-size = "ram / 2";
+          zram-size = "ram";
         };
       };
     };
