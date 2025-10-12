@@ -73,37 +73,14 @@ let
       isle-portable
       jazz2
       katawa-shoujo-re-engineered
-      (openjk.overrideAttrs {
-        version = "0-unstable-2025-10-09";
-        src = fetchFromGitHub {
-          owner = "JACoders";
-          repo = "OpenJK";
-          rev = "d1cb662f07dfa4c1999edfb5c1a86fd1c6285372";
-          hash = "sha256-XTGe/V4FnQSQA9fY6MmpECs1f2PPk+yTZkAL93UoH/I=";
-        };
-      }) # Jedi Academy
+      openjk # Jedi Academy
       openloco
       inputs.chaotic.packages.${system}.openmohaa_git
       openomf
       #openrct2
-      (openttd.overrideAttrs {
-        postPatch = ''
-          substituteInPlace src/music/fluidsynth.cpp \
-            --replace-fail "/usr/share/soundfonts/default.sf2" \
-              "${soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2"
-        '';
-      })
+      openttd
       opentyrian
-      (openxcom.overrideAttrs {
-        pname = "openxcom-extended";
-        version = "8.4.2";
-        src = fetchFromGitHub {
-          owner = "MeridianOXC";
-          repo = "OpenXcom";
-          rev = "0ad66a8f0806896a1fab3747d693595c477fa820";
-          hash = "sha256-QDdZKB9k7MukWUj/G/ZCPVOygRluDepx2gy9URosP9Y=";
-        };
-      })
+      openxcom
       openxray # STALKER
       prismlauncher # MineCraft
       relive # Oddworld
@@ -139,15 +116,7 @@ let
           mgba
         ]
       ))
-      (scummvm.overrideAttrs {
-        version = "3.0.0-unstable-10-11-2025";
-        src = fetchFromGitHub {
-          owner = "scummvm";
-          repo = "scummvm";
-          rev = "a78571655eee9c1538a0d711967cf4c21159221b";
-          hash = "sha256-S4siOw8nvkPMa8B7k4Cz2Z3nJVVyVk3KOnNG+6brD/g=";
-        };
-      })
+      scummvm
       inputs.chaotic.packages.${system}.shadps4_git
       nur.repos.bandithedoge.sheepshaver-bin
       #nur.repos.novel2430.vita3k
@@ -1367,21 +1336,19 @@ in
                 startupNotify = true;
                 terminal = false;
               };
-              dreamm = {
-                name = "DREAMM";
-                comment = "specialized emulator for playing many of your original DOS, Windows, and FM-Towns LucasArts (and LucasArts-adjacent) games";
-                exec =
-                  audioCapture
-                  + " "
-                  + videoCapture
-                  + " "
-                  + mangohud
-                  + " ${config.home.homeDirectory}/Games/dreamm/dreamm";
-                icon = "${config.home.homeDirectory}/Games/dreamm/dreamm.png";
-                noDisplay = false;
-                startupNotify = true;
-                terminal = false;
-              };
+              dreamm =
+                let
+                  dreamm = "${config.home.homeDirectory}/Games/dreamm/dreamm";
+                in
+                {
+                  name = "DREAMM";
+                  comment = "Specialized emulator for playing many of your original DOS, Windows, and FM-Towns LucasArts (and LucasArts-adjacent) games";
+                  exec = audioCapture + " " + videoCapture + " " + mangohud + " " + dreamm;
+                  icon = "${config.home.homeDirectory}/Games/dreamm/dreamm.png";
+                  noDisplay = false;
+                  startupNotify = true;
+                  terminal = false;
+                };
               gog-galaxy =
                 let
                   icon = pkgs.fetchurl {
@@ -1392,7 +1359,7 @@ in
                 {
                   name = "GOG Galaxy";
                   comment = "Launch GOG Galaxy using nero-umu";
-                  exec = "nero-umu --prefix \"GOG Galaxy\" --shortcut \"GOG Galaxy\"";
+                  exec = (lib.getExe pkgs.nero-umu) + " --prefix \"GOG Galaxy\" --shortcut \"GOG Galaxy\"";
                   icon = "${icon}";
                   categories = [ "Game" ];
                   noDisplay = false;
@@ -1404,7 +1371,7 @@ in
               nero-umu = {
                 name = "Nero UMU";
                 comment = "A fast and efficient umu manager, just as the Romans designed";
-                exec = audioCapture + " nero-umu";
+                exec = audioCapture + " " + (lib.getExe pkgs.nero-umu);
                 icon = "xyz.TOS.Nero";
                 categories = [ "Game" ];
                 mimeType = [
@@ -1446,7 +1413,7 @@ in
               scummvm = {
                 name = "ScummVM";
                 comment = "Interpreter for numerous adventure games and RPGs";
-                exec = audioCapture + " " + videoCapture + " " + mangohud + " scummvm";
+                exec = audioCapture + " " + videoCapture + " " + mangohud + " " + (lib.getExe pkgs.scummvm);
                 icon = "org.scummvm.scummvm";
                 categories = [
                   "Game"

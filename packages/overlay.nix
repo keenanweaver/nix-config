@@ -6,9 +6,43 @@
   inter = prev.callPackage ./inter { };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
+  nero-umu = prev.nero-umu.overrideAttrs {
+    version = "1.1.5-unstable-09-14-2025";
+    src = prev.fetchFromGitHub {
+      owner = "SeongGino";
+      repo = "Nero-umu";
+      rev = "c3cd9684a3bee2a984b6d709680590be347e42b6";
+      hash = "sha256-QELtkVHBPi7L9IRuwf/S5wJzYz61PEexVcUn+taIAaY=";
+    };
+  };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
   nyan-doom = prev.callPackage ./nyan-doom { };
-  prboom-plus = prev.callPackage ./prboom-plus { };
+  openjk = prev.openjk.overrideAttrs {
+    version = "0-unstable-2025-10-09";
+    src = prev.fetchFromGitHub {
+      owner = "JACoders";
+      repo = "OpenJK";
+      rev = "d1cb662f07dfa4c1999edfb5c1a86fd1c6285372";
+      hash = "sha256-XTGe/V4FnQSQA9fY6MmpECs1f2PPk+yTZkAL93UoH/I=";
+    };
+  };
+  openttd = prev.openttd.overrideAttrs {
+    postPatch = ''
+      substituteInPlace src/music/fluidsynth.cpp \
+        --replace-fail "/usr/share/soundfonts/default.sf2" \
+          "${final.soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2"
+    '';
+  };
+  openxcom = prev.openxcom.overrideAttrs {
+    pname = "openxcom-extended";
+    version = "8.4.2";
+    src = prev.fetchFromGitHub {
+      owner = "MeridianOXC";
+      repo = "OpenXcom";
+      rev = "0ad66a8f0806896a1fab3747d693595c477fa820";
+      hash = "sha256-QDdZKB9k7MukWUj/G/ZCPVOygRluDepx2gy9URosP9Y=";
+    };
+  };
   proton-em = prev.callPackage ./proton-em { };
   /*
     proton-ge-bin = prev.proton-ge-bin.overrideAttrs (old: rec {
@@ -21,6 +55,15 @@
   */
   relive = prev.callPackage ./relive { };
   rsdkv4 = prev.callPackage ./rsdkv4 { };
+  scummvm = prev.scummvm.overrideAttrs {
+    version = "3.0.0-unstable-10-11-2025";
+    src = prev.fetchFromGitHub {
+      owner = "scummvm";
+      repo = "scummvm";
+      rev = "a78571655eee9c1538a0d711967cf4c21159221b";
+      hash = "sha256-S4siOw8nvkPMa8B7k4Cz2Z3nJVVyVk3KOnNG+6brD/g=";
+    };
+  };
   tochd = prev.callPackage ./tochd { };
   xlink-kai = prev.callPackage ./xlink-kai { };
   z64decompress = prev.callPackage ./zelda64recomp/z64decompress.nix { };
