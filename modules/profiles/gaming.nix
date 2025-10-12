@@ -23,7 +23,6 @@ let
       nugget-doom
       nyan-doom
       # odamex
-      #prboom-plus
       rbdoom-3-bfg
       sladeUnstable
       woof-doom
@@ -74,9 +73,17 @@ let
       isle-portable
       jazz2
       katawa-shoujo-re-engineered
-      #openjk # Jedi Academy
+      (openjk.overrideAttrs {
+        version = "0-unstable-2025-10-09";
+        src = fetchFromGitHub {
+          owner = "JACoders";
+          repo = "OpenJK";
+          rev = "d1cb662f07dfa4c1999edfb5c1a86fd1c6285372";
+          hash = "sha256-XTGe/V4FnQSQA9fY6MmpECs1f2PPk+yTZkAL93UoH/I=";
+        };
+      }) # Jedi Academy
       openloco
-      #inputs.chaotic.packages.${system}.openmohaa_git
+      inputs.chaotic.packages.${system}.openmohaa_git
       openomf
       #openrct2
       (openttd.overrideAttrs {
@@ -133,12 +140,12 @@ let
         ]
       ))
       (scummvm.overrideAttrs {
-        version = "3.0.0-unstable-10-06-2025";
+        version = "3.0.0-unstable-10-11-2025";
         src = fetchFromGitHub {
           owner = "scummvm";
           repo = "scummvm";
-          rev = "5b9ff55aaf935767c713753c6279b867c2401945";
-          hash = "sha256-kKbllkvbjdgkTZLRsyBtIPV+bOavXUiOIMnu5eD9CSg=";
+          rev = "a78571655eee9c1538a0d711967cf4c21159221b";
+          hash = "sha256-S4siOw8nvkPMa8B7k4Cz2Z3nJVVyVk3KOnNG+6brD/g=";
         };
       })
       inputs.chaotic.packages.${system}.shadps4_git
