@@ -1321,15 +1321,15 @@ in
           ];
           desktopEntries =
             let
-              audioCapture = "env PIPEWIRE_NODE=Game PULSE_SINK=Game";
-              mangohud = lib.getExe' pkgs.mangohud "mangohud";
-              videoCapture = lib.getExe' pkgs.obs-studio-plugins.obs-vkcapture "obs-gamecapture";
+              audioCapture = "env PIPEWIRE_NODE=Game PULSE_SINK=Game ";
+              mangohud = lib.getExe' pkgs.mangohud "mangohud" + " ";
+              videoCapture = lib.getExe' pkgs.obs-studio-plugins.obs-vkcapture "obs-gamecapture" + " ";
             in
             {
               doomrunner = {
                 name = "Doom Runner";
                 comment = "Preset-oriented graphical launcher of various ported Doom engines";
-                exec = audioCapture + " " + videoCapture + " " + mangohud + " " + (lib.getExe pkgs.doomrunner);
+                exec = audioCapture + videoCapture + mangohud + (lib.getExe pkgs.doomrunner);
                 icon = "DoomRunner";
                 categories = [ "Game" ];
                 noDisplay = false;
@@ -1343,7 +1343,7 @@ in
                 {
                   name = "DREAMM";
                   comment = "Specialized emulator for playing many of your original DOS, Windows, and FM-Towns LucasArts (and LucasArts-adjacent) games";
-                  exec = audioCapture + " " + videoCapture + " " + mangohud + " " + dreamm;
+                  exec = audioCapture + videoCapture + mangohud + dreamm;
                   icon = "${config.home.homeDirectory}/Games/dreamm/dreamm.png";
                   noDisplay = false;
                   startupNotify = true;
@@ -1360,7 +1360,7 @@ in
                   name = "GOG Galaxy";
                   comment = "Launch GOG Galaxy using nero-umu";
                   exec = (lib.getExe pkgs.nero-umu) + " --prefix \"GOG Galaxy\" --shortcut \"GOG Galaxy\"";
-                  icon = "${icon}";
+                  icon = icon;
                   categories = [ "Game" ];
                   noDisplay = false;
                   startupNotify = true;
@@ -1371,7 +1371,7 @@ in
               nero-umu = {
                 name = "Nero UMU";
                 comment = "A fast and efficient umu manager, just as the Romans designed";
-                exec = audioCapture + " " + (lib.getExe pkgs.nero-umu);
+                exec = audioCapture + (lib.getExe pkgs.nero-umu);
                 icon = "xyz.TOS.Nero";
                 categories = [ "Game" ];
                 mimeType = [
@@ -1413,7 +1413,7 @@ in
               scummvm = {
                 name = "ScummVM";
                 comment = "Interpreter for numerous adventure games and RPGs";
-                exec = audioCapture + " " + videoCapture + " " + mangohud + " " + (lib.getExe pkgs.scummvm);
+                exec = audioCapture + videoCapture + mangohud + (lib.getExe pkgs.scummvm);
                 icon = "org.scummvm.scummvm";
                 categories = [
                   "Game"
