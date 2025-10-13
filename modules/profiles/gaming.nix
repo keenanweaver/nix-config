@@ -102,6 +102,7 @@ let
       nur.repos.bandithedoge.basiliskii-bin
       # bizhawk
       dosbox-staging
+      easyrpg-player
       hypseus-singe
       mednafen
       mednaffe
@@ -889,6 +890,8 @@ in
             ++ lib.flatten (lib.attrValues p)
           );
           sessionVariables = {
+            RPG2K_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2000";
+            RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2003";
             # https://wiki.cachyos.org/configuration/gaming/#increase-maximum-shader-cache-size
             AMD_VULKAN_ICD = "RADV";
             MESA_SHADER_CACHE_MAX_SIZE = "12G";
@@ -1091,7 +1094,7 @@ in
               "org.diasurgical.DevilutionX"
               "org.DolphinEmu.dolphin-emu"
               "org.duckstation.DuckStation"
-              "org.easyrpg.player"
+              #"org.easyrpg.player"
               "org.flycast.Flycast"
               "org.kartkrew.RingRacers"
               "org.mamedev.MAME"
@@ -1324,12 +1327,13 @@ in
               audioCapture = "env PIPEWIRE_NODE=Game PULSE_SINK=Game ";
               mangohud = lib.getExe' pkgs.mangohud "mangohud" + " ";
               videoCapture = lib.getExe' pkgs.obs-studio-plugins.obs-vkcapture "obs-gamecapture" + " ";
+              avm = audioCapture + videoCapture + mangohud;
             in
             {
               doomrunner = {
                 name = "Doom Runner";
                 comment = "Preset-oriented graphical launcher of various ported Doom engines";
-                exec = audioCapture + videoCapture + mangohud + (lib.getExe pkgs.doomrunner);
+                exec = avm + (lib.getExe pkgs.doomrunner);
                 icon = "DoomRunner";
                 categories = [ "Game" ];
                 noDisplay = false;
@@ -1338,14 +1342,34 @@ in
               };
               dreamm =
                 let
-                  dreamm = "${config.home.homeDirectory}/Games/dreamm/dreamm";
+                  execBin = "${config.home.homeDirectory}/Games/dreamm/dreamm";
                 in
                 {
                   name = "DREAMM";
                   comment = "Specialized emulator for playing many of your original DOS, Windows, and FM-Towns LucasArts (and LucasArts-adjacent) games";
-                  exec = audioCapture + videoCapture + mangohud + dreamm;
+                  exec = avm + execBin;
                   icon = "${config.home.homeDirectory}/Games/dreamm/dreamm.png";
                   noDisplay = false;
+                  startupNotify = true;
+                  terminal = false;
+                };
+              easyrpg-player =
+                let
+                  execBin = lib.getExe' pkgs.easyrpg-player "easyrpg-player";
+                  execArgs = " --project-path ${config.home.homeDirectory}/Games/rpg-maker";
+                in
+                {
+                  name = "EasyRPG Player";
+                  comment = "Play RPG Maker games";
+                  exec = avm + execBin + execArgs;
+                  icon = "easyrpg-player";
+                  categories = [
+                    "Game"
+                    "RolePlaying"
+                  ];
+                  settings = {
+                    StartupWMClass = "EasyRPG Player";
+                  };
                   startupNotify = true;
                   terminal = false;
                 };
@@ -1413,7 +1437,7 @@ in
               scummvm = {
                 name = "ScummVM";
                 comment = "Interpreter for numerous adventure games and RPGs";
-                exec = audioCapture + videoCapture + mangohud + (lib.getExe pkgs.scummvm);
+                exec = avm + (lib.getExe pkgs.scummvm);
                 icon = "org.scummvm.scummvm";
                 categories = [
                   "Game"
