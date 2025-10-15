@@ -19,12 +19,13 @@ let
       doomrunner
       doomseeker
       dsda-doom
-      gzdoom
+      #gzdoom
       nugget-doom
       nyan-doom
       # odamex
       rbdoom-3-bfg
       sladeUnstable
+      uzdoom
       woof-doom
       #zandronum
       ## Fallout
@@ -45,7 +46,7 @@ let
       #inputs.openmw-nix.packages.${system}.openmw-dev
       inputs.openmw-nix.packages.${system}.openmw-validator
       tes3cmd
-      #openmw
+      openmw
       ## Quake
       ironwail
       q2pro
@@ -959,6 +960,14 @@ in
                   ];
                 };
               };
+              "io.github.strikerx3.ymir" = {
+                Context = {
+                  filesystems = [
+                    "/mnt/crusader/Games/Rom/CHD/Sega Saturn"
+                    "/mnt/crusader/Games/Mister/Saturn"
+                  ];
+                };
+              };
               "net.fsuae.FS-UAE" = {
                 Context = {
                   filesystems = [
@@ -1080,6 +1089,7 @@ in
               "io.github.randovania.Randovania"
               "io.github.ryubing.Ryujinx"
               "io.github.santiagocezar.maniatic-launcher"
+              "io.github.strikerx3.ymir"
               "net.fsuae.FS-UAE"
               "net.kuribo64.melonDS"
               "net.nmlgc.rec98.sh01"

@@ -45,10 +45,10 @@
   };
   proton-em = prev.callPackage ./proton-em { };
   proton-ge-bin = prev.proton-ge-bin.overrideAttrs (old: rec {
-    version = "GE-Proton10-18";
+    version = "GE-Proton10-20";
     src = prev.fetchzip {
       url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
-      hash = "sha256-s2xnoyRy4JI1weRJ+9wjZzBRpsH7HMbK9DbhdVDJKww=";
+      hash = "sha256-sJkaDEnfAuEqcLDBtAfU6Rny3P3lOCnG1DusWfvv2Fg=";
     };
   });
   relive = prev.callPackage ./relive { };
@@ -63,6 +63,7 @@
     };
   };
   tochd = prev.callPackage ./tochd { };
+  uzdoom = prev.callPackage ./uzdoom { };
   xlink-kai = prev.callPackage ./xlink-kai { };
   z64decompress = prev.callPackage ./zelda64recomp/z64decompress.nix { };
   zelda64recomp = prev.callPackage ./zelda64recomp/zelda64recomp.nix { };
