@@ -23,21 +23,22 @@ in
     home-manager.users.${username} =
       { config, pkgs, ... }:
       {
+        programs.delta = {
+          enable = true;
+          enableGitIntegration = true;
+          options = {
+            light = false;
+            line-numbers = true;
+            navigate = true;
+            side-by-side = true;
+          };
+        };
         programs.gh = {
           enable = true;
         };
         programs.git = {
           enable = true;
-          delta = {
-            enable = true;
-            options = {
-              light = false;
-              line-numbers = true;
-              navigate = true;
-              side-by-side = true;
-            };
-          };
-          extraConfig = {
+          settings = {
             diff = {
               colorMoved = "default";
             };
@@ -52,11 +53,13 @@ in
                 "/mnt/crusader/Projects/Gitlab/moka-pics"
               ];
             };
+            user = {
+              email = "keenanweaver@protonmail.com";
+              name = "${fullname}";
+            };
           };
           includes = [ { path = "${config.xdg.configHome}/git/mocha.gitconfig"; } ];
           package = pkgs.gitFull;
-          userName = "${fullname}";
-          userEmail = "keenanweaver@protonmail.com";
           signing = {
             signByDefault = true;
             key = "0926B70C6A27AAE1";

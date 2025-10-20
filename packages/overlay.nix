@@ -17,15 +17,6 @@
   };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
   nyan-doom = prev.callPackage ./nyan-doom { };
-  openjk = prev.openjk.overrideAttrs {
-    version = "0-unstable-2025-10-09";
-    src = prev.fetchFromGitHub {
-      owner = "JACoders";
-      repo = "OpenJK";
-      rev = "d1cb662f07dfa4c1999edfb5c1a86fd1c6285372";
-      hash = "sha256-XTGe/V4FnQSQA9fY6MmpECs1f2PPk+yTZkAL93UoH/I=";
-    };
-  };
   openttd = prev.openttd.overrideAttrs {
     postPatch = ''
       substituteInPlace src/music/fluidsynth.cpp \

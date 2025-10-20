@@ -336,9 +336,6 @@ in
               baseTheme = "catppuccin${flavor-upper}";
             };
           };
-          git = {
-            delta = { };
-          };
           halloy = {
             settings = {
               font = {
