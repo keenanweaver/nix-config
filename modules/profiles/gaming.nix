@@ -69,6 +69,7 @@ let
       abuse
       arx-libertatis # Arx Fatalis
       augustus # Caesar 3
+      bolt-launcher # RuneScape
       clonehero # Guitar Hero
       corsix-th # Theme Hospital
       isle-portable
@@ -129,7 +130,7 @@ let
       sc-controller
       ## Launchers & utils
       cartridges
-      nur.repos.rogreat.faugus-launcher
+      faugus-launcher
       ## Modding
       hedgemodmanager
       limo
@@ -1055,22 +1056,6 @@ in
               "app.xemu.xemu"
               "com.fightcade.Fightcade"
               "com.fightcade.Fightcade.Wine"
-              {
-                appId = "org.freedesktop.Platform.GL.mesa-git/x86_64/25.08";
-                origin = "flathub-beta";
-              }
-              {
-                appId = "org.freedesktop.Platform.GL32.mesa-git/x86_64/25.08";
-                origin = "flathub-beta";
-              }
-              {
-                appId = "org.freedesktop.Platform.GL.mesa-git/x86_64/24.08";
-                origin = "flathub-beta";
-              }
-              {
-                appId = "org.freedesktop.Platform.GL32.mesa-git/x86_64/24.08";
-                origin = "flathub-beta";
-              }
               "com.github.optyfr.JRomManager"
               "com.qzandronum.Q-Zandronum"
               "com.richwhitehouse.BigPEmu"
@@ -1098,14 +1083,30 @@ in
                 origin = "flathub-beta";
               }
               "net.rpcs3.RPCS3"
-              "net.runelite.RuneLite"
               "net.sourceforge.uqm_mods.UQM-MegaMod"
               "org.azahar_emu.Azahar"
               "org.diasurgical.DevilutionX"
               "org.DolphinEmu.dolphin-emu"
               "org.duckstation.DuckStation"
-              #"org.easyrpg.player"
               "org.flycast.Flycast"
+              "org.freedesktop.Platform.VulkanLayer.lsfgvk/x86_64/24.08"
+              "org.freedesktop.Platform.VulkanLayer.lsfgvk/x86_64/25.08"
+              {
+                appId = "org.freedesktop.Platform.GL.mesa-git/x86_64/25.08";
+                origin = "flathub-beta";
+              }
+              {
+                appId = "org.freedesktop.Platform.GL32.mesa-git/x86_64/25.08";
+                origin = "flathub-beta";
+              }
+              {
+                appId = "org.freedesktop.Platform.GL.mesa-git/x86_64/24.08";
+                origin = "flathub-beta";
+              }
+              {
+                appId = "org.freedesktop.Platform.GL32.mesa-git/x86_64/24.08";
+                origin = "flathub-beta";
+              }
               "org.kartkrew.RingRacers"
               "org.mamedev.MAME"
               "org.openfodder.OpenFodder"
