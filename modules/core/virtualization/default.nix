@@ -56,8 +56,8 @@ in
           dates = "weekly";
         };
         defaultNetwork.settings.dns_enabled = true;
-        dockerCompat = true;
-        #dockerSocket.enable = true;
+        dockerCompat = false;
+        dockerSocket.enable = true;
       };
       libvirtd = {
         # Make sure you run this once: "sudo virsh net-autostart default"
@@ -91,7 +91,7 @@ in
 
         nixosvmtest = {
           isSystemUser = true;
-          initialHashedPassword = "$y$j9T$cLVPJpZrtzdgCM732gQ3g/$4qBIUCoDSJ1frFNcvqYSL6ykQSOdjQyDVqRIANx.SRD";
+          hashedPasswordFile = config.sops.secrets.pass.path;
           group = "nixosvmtest";
         };
       };
