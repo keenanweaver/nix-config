@@ -22,12 +22,12 @@ in
         adbusers = { };
         plugdev = { };
       };
-      mutableUsers = false;
+      mutableUsers = true;
       users = {
         "${username}" = {
           description = "${fullname}";
           isNormalUser = true;
-          hashedPasswordFile = config.sops.secrets.pass.path;
+          initialHashedPassword = "$y$j9T$B1obD.4xOr/6gJ6FCsu1v/$7axAjbaqRpFR3zGZVbOuCRGUNGJXyRxdavAHIyOdyK.";
           extraGroups = [
             "adbusers"
             "audio"
