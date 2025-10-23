@@ -212,7 +212,7 @@
               "Plugins"."MoveWindowToCenterEnabled" = true;
               #"Plugins"."alwaysopenonprimaryscreen" = "Enabled";
               #"Plugins"."center-new-windowsEnabled" = true;
-              "Plugins"."forceblurEnabled" = false;
+              "Plugins"."forceblurEnabled" = true;
               "Plugins"."kinetic_fadingpopupsEnabled" = true;
               "Plugins"."kinetic_scaleEnabled" = true;
               "Plugins"."kinetic_squashEnabled" = true;
@@ -224,7 +224,7 @@
               "Plugins"."kwin4_effect_shapecornersEnabled" = false;
               "Plugins"."kwin4_effect_squashEnabled" = false;
               "Plugins"."contrastEnabled" = true;
-              "Plugins"."kzonesEnabled" = true;
+              "Plugins"."kzonesEnabled" = false;
               "Plugins"."restoreToScreenEnabled" = true;
               "Round-Corners"."ActiveOutlinePalette" = 4;
               "Round-Corners"."ActiveOutlineUseCustom" = false;
@@ -314,7 +314,7 @@
             edgeBarrier = 0;
             effects = {
               blur = {
-                enable = true;
+                enable = false;
                 strength = 3;
                 noiseStrength = 3;
               };
@@ -373,6 +373,11 @@
               ];
               "Window No Border" = "Meta+Shift+B";
             };
+            "services/org.kde.krunner.desktop"."_launch" = [
+              "Meta+Space"
+              "Alt+F2"
+              "Search"
+            ];
           };
           hotkeys = {
             commands = {
@@ -384,7 +389,7 @@
               };
               "wezterm" = {
                 name = "Launch wezterm";
-                key = "F12";
+                key = "Meta+F12";
                 command = "wezterm";
                 comment = "Launch wezterm";
               };

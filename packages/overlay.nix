@@ -7,12 +7,12 @@
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
   nero-umu = prev.nero-umu.overrideAttrs {
-    version = "1.1.5-unstable-10-19-2025";
+    version = "1.1.5-unstable-10-21-2025";
     src = prev.fetchFromGitHub {
       owner = "SeongGino";
       repo = "Nero-umu";
-      rev = "dbc6b99e414bbc5bf06529eb9cb660e16616290e";
-      hash = "sha256-DGnqZy8EwMmff+naUQg0pL1G25JLTNP4gaWDIJgVgT8=";
+      rev = "e5b2bf57de2931dbb11f60984dafa6b0744457e5";
+      hash = "sha256-GxysOjT56k+d/dGs1gm+hq7RUqXWxlQLk1yCHo2Iwkw=";
     };
   };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
@@ -35,13 +35,15 @@
     };
   };
   proton-em = prev.callPackage ./proton-em { };
-  proton-ge-bin = prev.proton-ge-bin.overrideAttrs (old: rec {
-    version = "GE-Proton10-21";
-    src = prev.fetchzip {
-      url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
-      hash = "sha256-Oa9+DjEeZZiJEr9H7wnUtGb6v/JXHk0qt0GAGcp3JFQ=";
-    };
-  });
+  /*
+    proton-ge-bin = prev.proton-ge-bin.overrideAttrs (old: rec {
+      version = "GE-Proton10-21";
+      src = prev.fetchzip {
+        url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
+        hash = "sha256-Oa9+DjEeZZiJEr9H7wnUtGb6v/JXHk0qt0GAGcp3JFQ=";
+      };
+    });
+  */
   relive = prev.callPackage ./relive { };
   rsdkv4 = prev.callPackage ./rsdkv4 { };
   scummvm = prev.scummvm.overrideAttrs {
