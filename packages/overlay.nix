@@ -7,12 +7,12 @@
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
   nero-umu = prev.nero-umu.overrideAttrs {
-    version = "1.1.5-unstable-10-21-2025";
+    version = "1.1.5-unstable-10-25-2025";
     src = prev.fetchFromGitHub {
       owner = "SeongGino";
       repo = "Nero-umu";
-      rev = "e5b2bf57de2931dbb11f60984dafa6b0744457e5";
-      hash = "sha256-GxysOjT56k+d/dGs1gm+hq7RUqXWxlQLk1yCHo2Iwkw=";
+      rev = "0f8dad3fffbbdfafa4c4baa0eaca4f89019528dd";
+      hash = "sha256-wUR52eINvAPooVpyQQvxznjGMEQKtIW6oWrCSXaTKAk=";
     };
   };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
@@ -56,7 +56,6 @@
     };
   };
   tochd = prev.callPackage ./tochd { };
-  uzdoom = prev.callPackage ./uzdoom { };
   xlink-kai = prev.callPackage ./xlink-kai { };
   z64decompress = prev.callPackage ./zelda64recomp/z64decompress.nix { };
   zelda64recomp = prev.callPackage ./zelda64recomp/zelda64recomp.nix { };

@@ -56,7 +56,7 @@ in
           dates = "weekly";
         };
         defaultNetwork.settings.dns_enabled = true;
-        dockerCompat = false;
+        dockerCompat = true;
         dockerSocket.enable = true;
       };
       libvirtd = {

@@ -12,7 +12,6 @@
     };
   };
   config = lib.mkIf config.sunshine.enable {
-
     networking = {
       firewall = {
         allowedUDPPorts = [
@@ -51,14 +50,14 @@
           }
           {
             name = "MoonDeckStream";
-            cmd = "${pkgs.moondeck-buddy}/bin/MoonDeckStream";
+            cmd = lib.getExe pkgs.moondeck-buddy;
             exclude-global-prep-cmd = "false";
             elevated = "false";
           }
           {
             name = "Steam Big Picture";
             image-path = "steam.png";
-            detached = [ "steam steam://open/bigpicture" ];
+            detached = [ "${lib.getExe pkgs.steam} steam://open/bigpicture" ];
             auto-detach = "true";
             wait-all = "true";
             exit-timeout = "5";

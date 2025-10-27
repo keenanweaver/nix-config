@@ -74,7 +74,6 @@ in
       fwupd.enable = true;
       lact.enable = true;
       tuned.enable = true;
-      udev.packages = with pkgs; [ android-udev-rules ];
     };
 
     home-manager.users.${username} =

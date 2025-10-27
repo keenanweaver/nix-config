@@ -25,7 +25,7 @@ let
       # odamex
       rbdoom-3-bfg
       sladeUnstable
-      uzdoom
+      #nur.repos.bandithedoge.uzdoom
       woof-doom
       #zandronum
       ## Fallout
@@ -46,7 +46,7 @@ let
       #inputs.openmw-nix.packages.${system}.openmw-dev
       inputs.openmw-nix.packages.${system}.openmw-validator
       tes3cmd
-      openmw
+      #openmw
       ## Quake
       ironwail
       q2pro
@@ -74,7 +74,7 @@ let
       corsix-th # Theme Hospital
       isle-portable
       jazz2
-      katawa-shoujo-re-engineered
+      #katawa-shoujo-re-engineered
       openjk # Jedi Academy
       openloco
       inputs.chaotic.packages.${system}.openmohaa_git
@@ -83,7 +83,7 @@ let
       openttd
       opentyrian
       openxcom
-      openxray # STALKER
+      #openxray # STALKER
       prismlauncher # MineCraft
       relive # Oddworld
       rsdkv4
@@ -137,7 +137,7 @@ let
       nexusmods-app-unfree
       ## Other
       adwsteamgtk
-      chiaki-ng
+      #chiaki-ng
       flips
       gst_all_1.gstreamer
       gst_all_1.gst-libav
@@ -349,7 +349,7 @@ in
       };
       scx = {
         enable = true;
-        package = pkgs.scx_git.full;
+        package = pkgs.scx.rustscheds;
         scheduler = "scx_lavd";
       };
       udev = {
@@ -380,13 +380,15 @@ in
             '';
           })
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/50-sata.rules
-          (writeTextFile {
-            name = "50-sata.rules";
-            destination = "/etc/udev/rules.d/50-sata.rules";
-            text = ''
-              ACTION!="remove", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="*", ATTR{link_power_management_policy}="max_performance"
-            '';
-          })
+          /*
+            (writeTextFile {
+                     name = "50-sata.rules";
+                     destination = "/etc/udev/rules.d/50-sata.rules";
+                     text = ''
+                       ACTION!="remove", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="*", ATTR{link_power_management_policy}="max_performance"
+                     '';
+                   })
+          */
           # https://wiki.cachyos.org/configuration/general_system_tweaks/#how-to-enable-adios
           (writeTextFile {
             name = "60-ioschedulers.rules";
@@ -1395,7 +1397,7 @@ in
                   name = "GOG Galaxy";
                   comment = "Launch GOG Galaxy using nero-umu";
                   exec = (lib.getExe pkgs.nero-umu) + " --prefix \"GOG Galaxy\" --shortcut \"GOG Galaxy\"";
-                  icon = icon;
+                  icon = "${icon}";
                   categories = [ "Game" ];
                   noDisplay = false;
                   startupNotify = true;

@@ -20,26 +20,29 @@ python3Packages.buildPythonApplication rec {
 
   build-system = with python3Packages; [
     setuptools
-    wheel
   ];
 
-  propagatedBuildInputs = [
-    mame-tools
-    p7zip
+  makeWrapperArgs = [
+    "--prefix PATH : ${
+      lib.makeBinPath [
+        mame-tools
+        p7zip
+      ]
+    }"
   ];
 
   postInstall = ''
-    mkdir -p $out/{share/licenses,share/doc/tochd}
     mv $out/bin/tochd.py $out/bin/tochd
-    install -TDm644 README.md $out/share/doc/tochd/README.md
-    install -TDm644 LICENSE $out/share/licenses/tochd/LICENSE
+    install -Dm644 README.md -t $out/share/doc/tochd
+    install -Dm644 LICENSE -t $out/share/licenses/tochd
   '';
 
   meta = {
     description = "Convert game ISO and archives to CD/DVD CHD";
-    homepage = "https://github.com/thingsiplay/tochd.git";
+    homepage = "https://github.com/thingsiplay/tochd";
     changelog = "https://github.com/thingsiplay/tochd/blob/${src.rev}/CHANGES.md";
     license = lib.licenses.mit;
+    platforms = lib.platforms.unix;
     maintainers = with lib.maintainers; [ keenanweaver ];
     mainProgram = "tochd";
   };
