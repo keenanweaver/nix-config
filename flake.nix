@@ -40,6 +40,7 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur-bandithedoge.url = "github:bandithedoge/nur-packages";
     nvf.url = "github:notashelf/nvf";
     quadlet-nix = {
       url = "github:SEIAROTg/quadlet-nix";

@@ -34,21 +34,19 @@ in
         home.file = {
           wine-links-kron4ek-lutris-flatpak = {
             enable = cfg.enableFlatpak;
-            source =
-              config.lib.file.mkOutOfStoreSymlink
-                inputs.nix-gaming.packages.${pkgs.system}.wine-tkg;
+            source = inputs.nix-gaming.packages.${pkgs.system}.wine-tkg;
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/kron4ek";
           };
           wine-links-proton-cachyos-flatpak-lutris = {
             enable = cfg.enableFlatpak;
-            source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4
-            }/bin";
+            source = "${inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4}/bin";
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-cachyos";
           };
           wine-links-proton-ge-flatpak-lutris = {
             enable = cfg.enableFlatpak;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin.steamcompattool}";
+            source = "${
+              inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.ge
+            }/share/steam/compatibilitytools.d/proton-ge";
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-ge-bin";
           };
         };
@@ -63,7 +61,7 @@ in
           ];
           protonPackages = with pkgs; [
             #inputs.chaotic.packages.${system}.proton-cachyos
-            proton-ge-bin
+            inputs.nur-bandithedoge.legacyPackages.${system}.proton.ge
           ];
           steamPackage = osConfig.programs.steam.package;
           winePackages = with pkgs; [

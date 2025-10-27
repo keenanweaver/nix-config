@@ -21,14 +21,14 @@ in
         home.file = {
           wine-links-proton-cachyos-nero = {
             enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4
-            }/bin";
+            source = "${inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4}/bin";
             target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/proton-cachyos-nero";
           };
           wine-links-protonge-nero = {
             enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin.steamcompattool}";
+            source = "${
+              inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.ge
+            }/share/steam/compatibilitytools.d/proton-ge";
             target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-bin-nero";
           };
         };

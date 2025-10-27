@@ -29,40 +29,36 @@ in
         home.file = {
           wine-links-kron4ek-bottles = {
             enable = false;
-            source =
-              config.lib.file.mkOutOfStoreSymlink
-                inputs.nix-gaming.packages.${pkgs.system}.wine-tkg;
+            source = inputs.nix-gaming.packages.${pkgs.system}.wine-tkg;
             target = "${config.xdg.dataHome}/bottles/runners/kron4ek";
           };
           wine-links-kron4ek-bottles-flatpak = {
             enable = false;
-            source =
-              config.lib.file.mkOutOfStoreSymlink
-                inputs.nix-gaming.packages.${pkgs.system}.wine-tkg;
+            source = inputs.nix-gaming.packages.${pkgs.system}.wine-tkg;
             target = ".var/app/com.usebottles.bottles/data/bottles/runners/kron4ek";
           };
           wine-links-proton-cachyos-bottles = {
             enable = cfg.enableNative;
-            source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4
-            }/bin";
+            source = "${inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4}/bin";
             target = "${config.xdg.dataHome}/bottles/runners/proton-cachyos";
           };
           wine-links-proton-cachyos-flatpak-bottles = {
             enable = cfg.enableFlatpak;
-            source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4
-            }/bin";
+            source = "${inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4}/bin";
             target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos";
           };
           wine-links-protonge-bottles = {
             enable = cfg.enableNative;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin.steamcompattool}";
+            source = "${
+              inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.ge
+            }/share/steam/compatibilitytools.d/proton-ge";
             target = "${config.xdg.dataHome}/bottles/runners/proton-ge-bin";
           };
           wine-links-protonge-flatpak-bottles = {
             enable = cfg.enableFlatpak;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin.steamcompattool}";
+            source = "${
+              inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.ge
+            }/share/steam/compatibilitytools.d/proton-ge";
             target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-bin";
           };
         };

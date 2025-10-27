@@ -29,26 +29,26 @@ in
         home.file = {
           wine-links-proton-cachyos-heroic = {
             enable = cfg.enableNative;
-            source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4
-            }/bin";
+            source = "${inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4}/bin";
             target = "${config.xdg.configHome}/heroic/tools/proton/proton-cachyos";
           };
           wine-links-proton-cachyos-flatpak-heroic = {
             enable = cfg.enableFlatpak;
-            source = config.lib.file.mkOutOfStoreSymlink "${
-              inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4
-            }/bin";
+            source = "${inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4}/bin";
             target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-cachyos";
           };
           wine-links-proton-ge-heroic = {
             enable = cfg.enableNative;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin.steamcompattool}";
+            source = "${
+              inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.ge
+            }/share/steam/compatibilitytools.d/proton-ge";
             target = "${config.xdg.configHome}/heroic/tools/proton/proton-ge-bin";
           };
           wine-links-proton-ge-flatpak-heroic = {
             enable = cfg.enableFlatpak;
-            source = config.lib.file.mkOutOfStoreSymlink "${pkgs.proton-ge-bin.steamcompattool}";
+            source = "${
+              inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.ge
+            }/share/steam/compatibilitytools.d/proton-ge";
             target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-ge-bin";
           };
         };

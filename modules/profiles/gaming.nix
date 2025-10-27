@@ -12,6 +12,7 @@ let
     games = [
       ## Doom
       acc
+      inputs.nur-bandithedoge.legacyPackages.${system}.cherry-doom
       chocolate-doom
       crispy-doom
       darkradiant
@@ -21,11 +22,12 @@ let
       dsda-doom
       #gzdoom
       nugget-doom
-      nyan-doom
+      inputs.nur-bandithedoge.legacyPackages.${system}.nyan-doom
+      #nyan-doom
       # odamex
       rbdoom-3-bfg
       sladeUnstable
-      #nur.repos.bandithedoge.uzdoom
+      inputs.nur-bandithedoge.legacyPackages.${system}.uzdoom
       woof-doom
       #zandronum
       ## Fallout
@@ -101,7 +103,8 @@ let
       ## Emulators
       _86Box-with-roms
       # archipelago
-      nur.repos.bandithedoge.basiliskii-bin
+      #nur.repos.bandithedoge.basiliskii-bin
+      inputs.nur-bandithedoge.legacyPackages.${system}.basiliskii-bin
       # bizhawk
       dosbox-staging
       easyrpg-player
@@ -121,7 +124,8 @@ let
       ))
       scummvm
       inputs.chaotic.packages.${system}.shadps4_git
-      nur.repos.bandithedoge.sheepshaver-bin
+      #nur.repos.bandithedoge.sheepshaver-bin
+      inputs.nur-bandithedoge.legacyPackages.${system}.sheepshaver-bin
       #nur.repos.novel2430.vita3k
       xenia-canary
       ## Input
@@ -156,6 +160,7 @@ let
       #xlink-kai
       xvidcore
       ## Wine
+      inputs.nur-bandithedoge.legacyPackages.${system}.winegui
       inputs.nix-gaming.packages.${system}.wine-tkg
       winetricks
       ## One-and-dones
@@ -277,11 +282,13 @@ in
 
     nix.settings = {
       extra-substituters = [
+        "https://bandithedoge.cachix.org"
         "https://just-one-more-cache.cachix.org/"
         "https://nix-gaming.cachix.org"
         "https://nix-citizen.cachix.org"
       ];
       extra-trusted-public-keys = [
+        "bandithedoge.cachix.org-1:ZtcHw1anyEa4t6H8m3o/ctYFrwYFPAwoENSvofamE6g="
         "just-one-more-cache.cachix.org-1:4nShcKEgcUEVlJqKFrgDwoGfqLnw5KPG4UDTV02jnr4="
         "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
