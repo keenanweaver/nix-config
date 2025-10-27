@@ -94,6 +94,74 @@
                 });
             };
           };
+          rclone-myrient-mame = {
+            Unit = {
+              Description = "Download mame from Myrient";
+            };
+            Service = {
+              Type = "oneshot";
+              ExecStart =
+                with pkgs;
+                lib.getExe (writeShellApplication {
+                  name = "rclone-myrient-mame";
+                  runtimeInputs = [
+                    rclone
+                  ];
+                  text =
+                    let
+                      rcloneOpts = {
+                        command = "copy";
+                        source = "myrient:/files/MAME/";
+                        destination = "/mnt/crusader/Games/Backups/Myrient/MAME";
+                        args = "--filter-from ${rcloneOpts.filter}";
+                        filter = writeText "rclone-myrient-mame-filter" ''
+                          + *(merged)/**
+                          + *(bios-devices)/**
+                          - /*
+                          - **
+                        '';
+                      };
+                    in
+                    ''
+                      rclone ${rcloneOpts.command} ${rcloneOpts.source} ${rcloneOpts.destination} ${rcloneOpts.args}
+                    '';
+                });
+            };
+          };
+          rclone-myrient-hbmame = {
+            Unit = {
+              Description = "Download hbmame from Myrient";
+            };
+            Service = {
+              Type = "oneshot";
+              ExecStart =
+                with pkgs;
+                lib.getExe (writeShellApplication {
+                  name = "rclone-myrient-hbmame";
+                  runtimeInputs = [
+                    rclone
+                  ];
+                  text =
+                    let
+                      rcloneOpts = {
+                        command = "copy";
+                        source = "myrient:/files/HBMAME/";
+                        destination = "/mnt/crusader/Games/Backups/Myrient/HBMAME";
+                        args = "--filter-from ${rcloneOpts.filter}";
+                        filter = writeText "rclone-myrient-mame-filter" ''
+                          + *(merged)/**
+                          + *(bios-devices)/**
+                          - /*
+                          - **
+                        '';
+                      };
+                    in
+                    ''
+                      rclone ${rcloneOpts.command} ${rcloneOpts.source} ${rcloneOpts.destination} ${rcloneOpts.args}
+                    '';
+                });
+            };
+          };
           rclone-myrient-nointro = {
             Unit = {
               Description = "Download No-Intro from Myrient";
