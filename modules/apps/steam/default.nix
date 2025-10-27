@@ -57,7 +57,7 @@ in
         luxtorpeda
         inputs.chaotic.packages.${system}.proton-cachyos_x86_64_v4
         proton-em
-        proton-ge-bin
+        inputs.nur-bandithedoge.legacyPackages.${system}.proton.ge
       ];
       localNetworkGameTransfers.openFirewall = true;
       protontricks.enable = true;
