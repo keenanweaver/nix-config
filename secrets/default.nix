@@ -1,10 +1,15 @@
 {
   lib,
   config,
+  pkgs,
   username,
   ...
 }:
 {
+  environment.systemPackages = with pkgs; [
+    ssh-to-age
+    sops
+  ];
   sops = {
     age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
     defaultSopsFile = ./secrets.yaml;

@@ -87,8 +87,6 @@ in
       systemPackages = with pkgs; [
         lm_sensors
         pciutils
-        sops
-        ssh-to-age
         xdg-user-dirs
       ];
     };
