@@ -35,15 +35,6 @@
     };
   };
   proton-em = prev.callPackage ./proton-em { };
-  /*
-    proton-ge-bin = prev.proton-ge-bin.overrideAttrs (old: rec {
-      version = "GE-Proton10-21";
-      src = prev.fetchzip {
-        url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
-        hash = "sha256-Oa9+DjEeZZiJEr9H7wnUtGb6v/JXHk0qt0GAGcp3JFQ=";
-      };
-    });
-  */
   relive = prev.callPackage ./relive { };
   rsdkv4 = prev.callPackage ./rsdkv4 { };
   scummvm = prev.scummvm.overrideAttrs {

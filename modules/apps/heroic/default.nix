@@ -29,12 +29,12 @@ in
         home.file = {
           wine-links-proton-cachyos-heroic = {
             enable = cfg.enableNative;
-            source = "${inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4}/bin";
+            source = "${inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
             target = "${config.xdg.configHome}/heroic/tools/proton/proton-cachyos";
           };
           wine-links-proton-cachyos-flatpak-heroic = {
             enable = cfg.enableFlatpak;
-            source = "${inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4}/bin";
+            source = "${inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
             target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-cachyos";
           };
           wine-links-proton-ge-heroic = {

@@ -39,7 +39,7 @@ in
           };
           wine-links-proton-cachyos-flatpak-lutris = {
             enable = cfg.enableFlatpak;
-            source = "${inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4}/bin";
+            source = "${inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-cachyos";
           };
           wine-links-proton-ge-flatpak-lutris = {

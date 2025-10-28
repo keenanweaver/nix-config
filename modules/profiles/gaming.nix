@@ -107,6 +107,7 @@ let
       inputs.nur-bandithedoge.legacyPackages.${system}.basiliskii-bin
       # bizhawk
       dosbox-staging
+      duckstation
       easyrpg-player
       hypseus-singe
       mednafen
@@ -1016,13 +1017,6 @@ in
                   ];
                 };
               };
-              "org.duckstation.DuckStation" = {
-                Context = {
-                  filesystems = [
-                    "/mnt/crusader/Games/Rom/CHD/Sony Playstation"
-                  ];
-                };
-              };
               "org.DolphinEmu.dolphin-emu" = {
                 Context = {
                   filesystems = [
@@ -1096,7 +1090,6 @@ in
               "org.azahar_emu.Azahar"
               "org.diasurgical.DevilutionX"
               "org.DolphinEmu.dolphin-emu"
-              "org.duckstation.DuckStation"
               "org.flycast.Flycast"
               "org.freedesktop.Platform.VulkanLayer.lsfgvk/x86_64/24.08"
               "org.freedesktop.Platform.VulkanLayer.lsfgvk/x86_64/25.08"

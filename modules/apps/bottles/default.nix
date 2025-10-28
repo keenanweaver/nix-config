@@ -39,12 +39,12 @@ in
           };
           wine-links-proton-cachyos-bottles = {
             enable = cfg.enableNative;
-            source = "${inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4}/bin";
+            source = "${inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
             target = "${config.xdg.dataHome}/bottles/runners/proton-cachyos";
           };
           wine-links-proton-cachyos-flatpak-bottles = {
             enable = cfg.enableFlatpak;
-            source = "${inputs.chaotic.packages.${pkgs.system}.proton-cachyos_x86_64_v4}/bin";
+            source = "${inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
             target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos";
           };
           wine-links-protonge-bottles = {

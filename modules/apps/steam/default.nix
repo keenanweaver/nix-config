@@ -52,10 +52,9 @@ in
         '';
         privateTmp = false; # https://github.com/NixOS/nixpkgs/issues/381923
       };
-      dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         luxtorpeda
-        inputs.chaotic.packages.${system}.proton-cachyos_x86_64_v4
+        inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.cachyos
         proton-em
         inputs.nur-bandithedoge.legacyPackages.${system}.proton.ge
       ];
