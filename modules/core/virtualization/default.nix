@@ -49,6 +49,9 @@ in
     };
 
     virtualisation = {
+      docker = {
+        enable = true;
+      };
       podman = {
         enable = true;
         autoPrune = {
@@ -57,7 +60,7 @@ in
         };
         defaultNetwork.settings.dns_enabled = true;
         #dockerCompat = true;
-        dockerSocket.enable = true;
+        #dockerSocket.enable = true;
       };
       libvirtd = {
         # Make sure you run this once: "sudo virsh net-autostart default"
