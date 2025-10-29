@@ -7,16 +7,15 @@
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
   nero-umu = prev.nero-umu.overrideAttrs {
-    version = "1.1.5-unstable-10-25-2025";
+    version = "1.1.5-unstable-10-29-2025";
     src = prev.fetchFromGitHub {
-      owner = "SeongGino";
+      owner = "ern775";
       repo = "Nero-umu";
-      rev = "0f8dad3fffbbdfafa4c4baa0eaca4f89019528dd";
-      hash = "sha256-wUR52eINvAPooVpyQQvxznjGMEQKtIW6oWrCSXaTKAk=";
+      rev = "8716b1237d86f57fbe301a78d8c06f635fb69862";
+      hash = "sha256-xiBm2lgmfpN/faqnZeNtcxnIyT0iJZgrnlf3xdB2ItQ=";
     };
   };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
-  nyan-doom = prev.callPackage ./nyan-doom { };
   openttd = prev.openttd.overrideAttrs {
     postPatch = ''
       substituteInPlace src/music/fluidsynth.cpp \
@@ -38,12 +37,12 @@
   relive = prev.callPackage ./relive { };
   rsdkv4 = prev.callPackage ./rsdkv4 { };
   scummvm = prev.scummvm.overrideAttrs {
-    version = "3.0.0-unstable-10-19-2025";
+    version = "3.0.0-unstable-10-29-2025";
     src = prev.fetchFromGitHub {
       owner = "scummvm";
       repo = "scummvm";
-      rev = "83957afe2799908027b4768e2a85ba19157b3d2f";
-      hash = "sha256-HhcFNRUe3AdwrKz8wevA6+dfjsuPJhYkprT9LXP2UqA=";
+      rev = "69dd0889cc9150d715b42fdaf9e3d7c6cf48e135";
+      hash = "sha256-3cRdbrgxpJxtSXawxl7NQvlq/R0zrF9Y9r1yibS+blg=";
     };
   };
   tochd = prev.callPackage ./tochd { };

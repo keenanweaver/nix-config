@@ -23,10 +23,9 @@ let
       #gzdoom
       nugget-doom
       inputs.nur-bandithedoge.legacyPackages.${system}.nyan-doom
-      #nyan-doom
       # odamex
       rbdoom-3-bfg
-      sladeUnstable
+      slade
       inputs.nur-bandithedoge.legacyPackages.${system}.uzdoom
       woof-doom
       #zandronum
@@ -107,7 +106,7 @@ let
       inputs.nur-bandithedoge.legacyPackages.${system}.basiliskii-bin
       # bizhawk
       dosbox-staging
-      duckstation
+      #duckstation
       easyrpg-player
       hypseus-singe
       mednafen
@@ -1166,7 +1165,6 @@ in
                 {
                   name = "Doom";
                   files = [
-                    "${config.xdg.configHome}/gzdoom/savegames"
                     "${config.xdg.dataHome}/cherry-doom/savegames"
                     "${config.xdg.dataHome}/chocolate-doom/savegames"
                     "${config.xdg.dataHome}/chocolate-heretic/savegames"
@@ -1177,6 +1175,7 @@ in
                     "${config.xdg.dataHome}/doom64ex-minus/*.dsg"
                     "${config.xdg.dataHome}/nugget-doom/savegames"
                     "${config.xdg.dataHome}/woof/savegames"
+                    "${config.xdg.configHome}/uzdoom/savegames"
                   ];
                 }
                 {
