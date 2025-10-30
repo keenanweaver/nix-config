@@ -48,7 +48,7 @@ in
                 ))
                 sqlfluff
                 terraform-ls
-                taplo-lsp
+                taplo
                 nodePackages.yaml-language-server
                 yamllint
                 lemminx

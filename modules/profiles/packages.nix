@@ -107,7 +107,7 @@ in
             ### Terraform ###
             #terraform-ls
             ### TOML ###
-            #taplo-lsp
+            #taplo
             ### YAML ###
             #nodePackages.yaml-language-server
             #yamllint

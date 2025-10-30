@@ -43,7 +43,6 @@ in
             shellcheck
             shfmt
             taplo
-            taplo-lsp
             terraform-ls
             vscode-langservers-extracted
             wl-clipboard
