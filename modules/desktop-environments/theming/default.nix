@@ -143,7 +143,7 @@ in
         gtk = {
           enable = true;
           cursorTheme = {
-            name = lib.mkDefault "${cursor-theme}";
+            name = "${cursor-theme}";
             size = 24;
           };
           font = {

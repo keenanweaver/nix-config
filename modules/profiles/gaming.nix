@@ -28,7 +28,7 @@ let
       slade
       inputs.nur-bandithedoge.legacyPackages.${system}.uzdoom
       woof-doom
-      #zandronum
+      zandronum
       ## Fallout
       fallout-ce
       fallout2-ce
@@ -47,7 +47,7 @@ let
       #inputs.openmw-nix.packages.${system}.openmw-dev
       inputs.openmw-nix.packages.${system}.openmw-validator
       tes3cmd
-      #openmw
+      openmw
       ## Quake
       ironwail
       q2pro
@@ -84,7 +84,7 @@ let
       openttd
       opentyrian
       openxcom
-      #openxray # STALKER
+      openxray # STALKER
       prismlauncher # MineCraft
       relive # Oddworld
       rsdkv4
@@ -102,11 +102,10 @@ let
       ## Emulators
       _86Box-with-roms
       # archipelago
-      #nur.repos.bandithedoge.basiliskii-bin
       inputs.nur-bandithedoge.legacyPackages.${system}.basiliskii-bin
       # bizhawk
       dosbox-staging
-      #duckstation
+      duckstation
       easyrpg-player
       hypseus-singe
       mednafen
@@ -124,7 +123,6 @@ let
       ))
       scummvm
       inputs.chaotic.packages.${system}.shadps4_git
-      #nur.repos.bandithedoge.sheepshaver-bin
       inputs.nur-bandithedoge.legacyPackages.${system}.sheepshaver-bin
       #nur.repos.novel2430.vita3k
       xenia-canary
@@ -137,6 +135,7 @@ let
       faugus-launcher
       ## Modding
       hedgemodmanager
+      nur.repos.merrkry.jackify-bin
       limo
       nexusmods-app-unfree
       ## Other

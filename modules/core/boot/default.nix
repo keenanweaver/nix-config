@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   boot = {
     consoleLogLevel = 0;
@@ -13,7 +13,7 @@
         "kernel.soft_watchdog" = 0;
       };
     };
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [
       "nowatchdog"
       "zswap.enabled=0"

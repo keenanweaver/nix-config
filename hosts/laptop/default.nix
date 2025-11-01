@@ -22,7 +22,7 @@
     extraModprobeConfig = ''
       options cf680211 ieee80211_regdom="US"
     '';
-    initrd.availableKernelModules = lib.mkDefault [
+    initrd.availableKernelModules = [
       "xhci_pci"
       "ahci"
       "nvme"
@@ -30,11 +30,11 @@
       "usbhid"
       "sd_mod"
     ];
-    kernelModules = lib.mkDefault [
+    kernelModules = [
       "tcp_bbr"
       "kvm-amd"
     ];
-    kernelParams = lib.mkDefault [
+    kernelParams = [
       "amd_iommu=on"
       "amd_pstate=guided"
     ];

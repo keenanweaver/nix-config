@@ -25,7 +25,7 @@
 
   boot = {
     initrd = {
-      availableKernelModules = lib.mkDefault [
+      availableKernelModules = [
         "nvme"
         "xhci_pci"
         "ahci"
@@ -35,14 +35,13 @@
         "sr_mod"
       ];
     };
-    kernelModules = lib.mkDefault [
+    kernelModules = [
       "dm-snapshot"
       "kvm-amd"
       "tcp_bbr"
-      "uinput"
     ];
-    kernelPackages = pkgs.linuxPackages_cachyos-lto.cachyOverride { mArch = "ZEN4"; };
-    kernelParams = lib.mkDefault [
+    kernelPackages = lib.mkForce (pkgs.linuxPackages_cachyos-lto.cachyOverride { mArch = "ZEN4"; });
+    kernelParams = [
       "amd_iommu=on"
       "amd_pstate=active"
       "microcode.amd_sha_check=off"
