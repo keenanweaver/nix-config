@@ -20,7 +20,6 @@ let
       doomrunner
       doomseeker
       dsda-doom
-      #gzdoom
       nugget-doom
       inputs.nur-bandithedoge.legacyPackages.${system}.nyan-doom
       # odamex

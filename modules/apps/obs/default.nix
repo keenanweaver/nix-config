@@ -35,7 +35,7 @@ in
             obs-cmd
           ];
         sessionVariables = {
-          # https://github.com/nowrep/obs-vkcapture/issues/14#issuecomment-322237961
+          # https://github.com/nowrep/obs-vkcapture/issues/14#issuecomment-3222379615
           VK_INSTANCE_LAYERS = "VK_LAYER_MANGOHUD_overlay_x86:VK_LAYER_MANGOHUD_overlay_x86_64:VK_LAYER_OBS_vkcapture_32:VK_LAYER_OBS_vkcapture_64";
         }
         // lib.optionalAttrs cfg.silenceOutput {
