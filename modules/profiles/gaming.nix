@@ -139,7 +139,7 @@ let
       nexusmods-app-unfree
       ## Other
       adwsteamgtk
-      #chiaki-ng
+      chiaki-ng
       flips
       gst_all_1.gstreamer
       gst_all_1.gst-libav
@@ -387,16 +387,6 @@ in
               ATTR{idVendor}=="046d", ATTR{idProduct}=="c261", RUN+="${usb-modeswitch}/bin/usb_modeswitch -c '/etc/usb_modeswitch.d/046d:c261'"
             '';
           })
-          # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/udev/rules.d/50-sata.rules
-          /*
-            (writeTextFile {
-                     name = "50-sata.rules";
-                     destination = "/etc/udev/rules.d/50-sata.rules";
-                     text = ''
-                       ACTION!="remove", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="*", ATTR{link_power_management_policy}="max_performance"
-                     '';
-                   })
-          */
           # https://wiki.cachyos.org/configuration/general_system_tweaks/#how-to-enable-adios
           (writeTextFile {
             name = "60-ioschedulers.rules";
