@@ -1006,7 +1006,7 @@ in
                 Context = {
                   filesystems = [
                     "!home"
-                    "${config.home.homeDirectory}/Games/rpcs3"
+                    "${config.home.homeDirectory}/Games/roms/rpcs3"
                   ];
                 };
               };
