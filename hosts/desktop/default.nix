@@ -42,6 +42,7 @@
     ];
     kernelPackages = lib.mkForce (pkgs.linuxPackages_cachyos-lto.cachyOverride { mArch = "ZEN4"; });
     kernelParams = [
+      "amd_3d_vcache.x3d_mode=cache" # AMD V-Cache https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
       "amd_iommu=on"
       "amd_pstate=active"
       "microcode.amd_sha_check=off"

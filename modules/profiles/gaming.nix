@@ -515,12 +515,6 @@ in
         # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/systemd/system.conf.d/10-limits.conf
         DefaultLimitNOFILE = "2048:2097152";
       };
-      tmpfiles = {
-        rules = [
-          # AMD V-Cache https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
-          "w /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode - - - - cache"
-        ];
-      };
     };
 
     home-manager.users.${username} =
