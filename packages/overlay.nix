@@ -7,12 +7,12 @@
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
   nero-umu = prev.nero-umu.overrideAttrs {
-    version = "1.1.5-unstable-11-01-2025";
+    version = "1.1.5-unstable-11-04-2025";
     src = prev.fetchFromGitHub {
       owner = "SeongGino";
       repo = "Nero-umu";
-      rev = "ac7d10904647c2f3e6084b8529d7600be5f08da7";
-      hash = "sha256-vMqhCNrvjnU+CypSGMx+ZM/9F81JrrX3o4yWo8k1qow=";
+      rev = "6fc47e45f04cf927fb51711be7eb11ff4fffc084";
+      hash = "sha256-gaGEz06mnO8EgURJ1LP++Z+lwd3kbtMG6XHyEh/oh5E=";
     };
   };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
@@ -37,12 +37,12 @@
   relive = prev.callPackage ./relive { };
   rsdkv4 = prev.callPackage ./rsdkv4 { };
   scummvm = prev.scummvm.overrideAttrs {
-    version = "3.0.0-unstable-10-29-2025";
+    version = "3.0.0-unstable-11-05-2025";
     src = prev.fetchFromGitHub {
       owner = "scummvm";
       repo = "scummvm";
-      rev = "69dd0889cc9150d715b42fdaf9e3d7c6cf48e135";
-      hash = "sha256-3cRdbrgxpJxtSXawxl7NQvlq/R0zrF9Y9r1yibS+blg=";
+      rev = "3ca9da6a1c36ed1450ec5c5f08d48a225c7699df";
+      hash = "sha256-bASoth1yrnJiKghQ/riePqaqgak9tHXVTd2BB+vF4Hk=";
     };
   };
   tochd = prev.callPackage ./tochd { };
