@@ -19,6 +19,7 @@ in
       };
     };
   };
+
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} =
       {
@@ -26,396 +27,179 @@ in
         pkgs,
         ...
       }:
+      let
+        db-package = config.programs.distrobox.package;
+        mkDistroboxWrapper =
+          {
+            name,
+            bin,
+            container,
+            args ? "${pkgs.obs-studio-plugins.obs-vkcapture}/bin/obs-gamecapture ${pkgs.mangohud}/bin/mangohud",
+            extraEnv ? {
+              MANGOHUD_CONFIG = "${config.xdg.configHome}/MangoHud/MangoHud.conf";
+              PIPEWIRE_NODE = "Game";
+              PULSE_SINK = "Game";
+            },
+            preExec ? "",
+          }:
+          pkgs.writeShellScriptBin "${name}-db" ''
+            ${lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "export ${k}=\"${v}\"") extraEnv)}
+            ${preExec}
+            if [ -z "''${CONTAINER_ID}" ]; then
+              exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '${bin}' "$@"
+            elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
+              exec "${db-package}/bin/distrobox-host-exec" '${name}-db' "$@"
+            else
+              exec '${bin}' "$@"
+            fi
+          '';
+        gameWrappers = [
+          {
+            name = "archipelago";
+            bin = "/opt/Archipelago/ArchipelagoLauncher";
+            container = "bazzite-arch-gaming";
+          }
+          {
+            name = "bizhawk";
+            bin = "/usr/bin/bizhawk";
+            container = "bazzite-arch-gaming";
+          }
+          {
+            name = "daikatana";
+            bin = "${config.home.homeDirectory}/Games/daikatana/daikatana";
+            container = "bazzite-arch-gaming";
+          }
+          {
+            name = "dbgl";
+            bin = "/usr/bin/dbgl";
+            container = "exodos";
+            extraEnv = {
+              GTK_USE_PORTAL = "0";
+              GTK_THEME = "Breeze-Dark";
+              PIPEWIRE_NODE = "Game";
+              PULSE_SINK = "Game";
+            };
+          }
+          {
+            name = "dosbox";
+            bin = "/usr/bin/dosbox";
+            container = "exodos";
+          }
+          {
+            name = "exogui";
+            bin = "/mnt/crusader/Games/eXo/eXoDOS/exogui/exogui";
+            container = "exodos";
+            preExec = "cd /mnt/crusader/Games/eXo/eXoDOS/exogui";
+          }
+          {
+            name = "jazzjackrabbit";
+            bin = "/usr/bin/jazzjackrabbit";
+            container = "bazzite-arch-gaming";
+          }
+          {
+            name = "lab3d-sdl";
+            bin = "/usr/bin/lab3d-sdl";
+            container = "bazzite-arch-gaming";
+          }
+          {
+            name = "obs-gamecapture";
+            bin = "/usr/bin/obs-gamecapture";
+            container = "bazzite-arch-gaming";
+          }
+          {
+            name = "portproton";
+            bin = "/usr/bin/portproton";
+            container = "bazzite-arch-gaming";
+            extraEnv = {
+              GTK_THEME = "Breeze-Dark";
+              PIPEWIRE_NODE = "Game";
+              PULSE_SINK = "Game";
+            };
+          }
+          {
+            name = "supermarioworld";
+            bin = "/usr/bin/supermarioworld";
+            container = "bazzite-arch-gaming";
+          }
+          {
+            name = "xash3d";
+            bin = "/usr/bin/xash3d";
+            container = "bazzite-arch-gaming";
+          }
+          {
+            name = "zeldalttp";
+            bin = "/usr/bin/zeldalttp";
+            container = "bazzite-arch-gaming";
+          }
+        ];
+      in
       {
-        programs.distrobox = {
-          enable = true;
-          package = inputs.chaotic.packages.${pkgs.system}.distrobox_git;
-          containers = {
-            exodos = lib.mkIf cfg.gaming {
-              image = "ubuntu:24.04";
-              init = true;
-              replace = true;
+        programs =
+          let
+            custompath = ''
+              if [ "''${CONTAINER_ID:-}" = "exodos" ]; then
+                  PATH=${config.xdg.dataHome}/distrobox/exodos/dosbox:${config.xdg.dataHome}/distrobox/exodos/dbgl:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/opt/rocm/bin:/var/lib/flatpak/exports/bin:${config.home.homeDirectory}/.local/share/flatpak/exports/bin:${config.home.homeDirectory}/.bin:${config.home.homeDirectory}/.local/bin:${config.home.homeDirectory}/bin:/run/wrappers/bin:${config.home.homeDirectory}/.nix-profile/bin:/nix/profile/bin:${config.home.homeDirectory}/.local/state/nix/profile/bin:/etc/profiles/per-user/${username}/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:${config.home.homeDirectory}/.config/zsh/plugins/cd-ls:${config.home.homeDirectory}/.config/zsh/plugins/zsh-fast-syntax-highlighting:${config.home.homeDirectory}/.config/zsh/plugins/nix-zsh-completions
+              fi'';
+          in
+          {
+            bash = {
+              initExtra = lib.mkAfter ''
+                ${custompath}
+              '';
             };
-            bazzite-arch-gaming = lib.mkIf cfg.gaming {
-              init = true;
-              replace = true;
+            distrobox = {
+              enable = true;
+              package = inputs.chaotic.packages.${pkgs.system}.distrobox_git;
+              containers = {
+                exodos = lib.mkIf cfg.gaming {
+                  #home = "${config.xdg.dataHome}/distrobox/exodos";
+                  image = "ubuntu:24.04";
+                  init = true;
+                  replace = true;
+                };
+                bazzite-arch-gaming = lib.mkIf cfg.gaming {
+                  #home = "${config.xdg.dataHome}/distrobox/bazzite-arch-gaming";
+                  image = "ghcr.io/ublue-os/bazzite-arch:latest";
+                  init = true;
+                  replace = true;
+                };
+              };
+              enableSystemdUnit = true;
+              settings = {
+                container_additional_volumes = "/nix/store:/nix/store:ro /etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro";
+              };
+            };
+            zsh = {
+              initContent = lib.mkAfter ''
+                ${custompath}
+              '';
             };
           };
-          enableSystemdUnit = cfg.gaming;
-          settings = {
-            container_additional_volumes = "/nix/store:/nix/store:ro /etc/static/profiles/per-user:/etc/profiles/per-user:ro";
-            container_image_default = "ghcr.io/ublue-os/bazzite-arch:latest";
-          };
-        };
         home = {
           packages =
-            let
-              db-package = config.programs.distrobox.package;
-            in
             with pkgs;
             [
-              (writeShellApplication {
-                name = "bootstrap-baremetal";
-                runtimeInputs = [
-                  distrobox
-                ];
-                text = ''
-                  distrobox assemble create --file ${config.xdg.configHome}/distrobox/distrobox.ini
-                  ${lib.optionalString vars.gaming ''
-                    distrobox enter exodos -- bash -l -c "bootstrap-distrobox"
-                    distrobox enter bazzite-arch-gaming -- bash -l -c "bootstrap-distrobox"
-                    script-game-stuff
-                  ''}
-                '';
-              })
               distrobox-tui
             ]
-            ++ lib.optionals cfg.gaming [
-              (writeShellScriptBin "bootstrap-distrobox" ''
-                if [ $(lsb_release -is) == "Arch" ]; then
-                  ## Set paru settings
-                  if ! grep -q "^SudoLoop" "$XDG_CONFIG_HOME/paru/paru.conf"; then
-                    wget -O "$XDG_CONFIG_HOME/paru/paru.conf" https://raw.githubusercontent.com/Morganamilo/paru/master/paru.conf
-                    sd '#SudoLoop' 'SudoLoop' "$XDG_CONFIG_HOME/paru/paru.conf"
-                    sd '#CleanAfter' 'CleanAfter' "$XDG_CONFIG_HOME/paru/paru.conf"
-                    sd '#BottomUp' 'BottomUp' "$XDG_CONFIG_HOME/paru/paru.conf"
-                  fi
-                  ## Add Chaotic AUR
-                  if ! grep -q "chaotic" /etc/pacman.conf; then
-                    sudo pacman-key --init
-                    sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
-                    sudo pacman-key --lsign-key 3056513887B78AEB
-                    sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
-                    echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf;
-                  fi
-                ${lib.optionalString vars.gaming ''
-                  ### Base packages
-                  paru -Syu --needed --noconfirm \
-                  kdialog                        \
-                  konsole                        \
-                  lib32-libpulse                 \
-                  lib32-mangohud                 \
-                  lib32-openal                   \
-                  lib32-pipewire                 \
-                  lib32-pipewire-jack            \
-                  lib32-vkbasalt                 \
-                  lib32-vulkan-radeon            \
-                  libva-mesa-driver              \
-                  mangohud                       \
-                  maplemono-nf                   \
-                  openal                         \
-                  parui                          \
-                  pipewire                       \
-                  pipewire-alsa                  \
-                  pipewire-jack                  \
-                  pipewire-pulse                 \
-                  vkbasalt                       \
-                  wireplumber                    \
-                  xdg-desktop-portal-kde
-                  ## Install necessary packages
-                  paru -S --needed --noconfirm   \
-                  archlinux-keyring              \
-                  base-devel                     \
-                  yay''}
-                  if [[ "$CONTAINER_ID" =~ ^exodos ]]; then
-                    # Games/emulators/tools
-                    paru -S --needed --noconfirm \
-                    dbgl                         \
-                    dosbox-staging-git
-                  elif [[ "$CONTAINER_ID" =~ ^bazzite-arch-gaming ]]; then
-                    # Games/emulators/tools
-                    paru -S --needed --noconfirm \
-                    archipelagomw-bin            \
-                    bizhawk-bin                  \
-                    jazzjackrabbit               \
-                    lab3d-sdl                    \
-                    portproton                   \
-                    supermarioworld              \
-                    xash3d-fwgs-git              \
-                    zeldalttp
-                    # Other steps
-                    sudo chown -R ${username} /opt/bizhawk
-                  else 
-                    echo "Container hostname not found"
-                  fi
-                fi
-                if [ $(lsb_release -is) == "Debian" ]; then
-                  if [[ "$CONTAINER_ID" =~ ^exodos ]]; then
-                    sudo apt install -y          \
-                    alsa                         \
-                    ffmpeg                       \
-                    kdialog                      \
-                    konsole                      \
-                    libnss3                      \
-                    libslirp0                    \
-                    lsb-release                  \
-                    openjdk-21-jre               \
-                    pipewire                     \
-                    plasma-desktop               \
-                    wireplumber
-
-                    curl -L -o ~/.cache/dosbox-staging-linux-latest.tar.xz \
-                    $(curl -s https://api.github.com/repos/dosbox-staging/dosbox-staging/releases/latest \
-                    | grep "browser_download_url.*linux.*tar.xz" \
-                    | cut -d '"' -f 4)
-                  fi
-                fi
-              '')
-              (
-                let
-                  args = "obs-gamecapture mangohud";
-                  bin = "/opt/Archipelago/ArchipelagoLauncher";
-                  bin-export = "${bin}-db";
-                  container = "bazzite-arch-gaming";
-                in
-                writeShellScriptBin "archipelago-db" ''
-                  export PIPEWIRE_NODE="Game"
-                  export PULSE_SINK="Game"
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '${bin}' "$@"
-                  fi
-                ''
-              )
-              (
-                let
-                  args = "obs-gamecapture mangohud";
-                  bin = "bizhawk";
-                  bin-export = "${bin}-db";
-                  container = "bazzite-arch-gaming";
-                in
-                writeShellScriptBin "${bin-export}" ''
-                  export PIPEWIRE_NODE="Game"
-                  export PULSE_SINK="Game"
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                    exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                    exec '/usr/bin/${bin}' "$@"
-                  fi
-                ''
-              )
-              (
-                let
-                  args = "obs-gamecapture mangohud";
-                  bin = "${config.home.homeDirectory}/Games/daikatana/daikatana";
-                  bin-export = "${bin}-db";
-                  container = "bazzite-arch-gaming";
-                in
-                writeShellScriptBin "daikatana-db" ''
-                  export PIPEWIRE_NODE="Game"
-                  export PULSE_SINK="Game"
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                    exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                    exec '${bin}' "$@"
-                  fi
-                ''
-              )
-              (
-                let
-                  args = "obs-gamecapture mangohud";
-                  bin = "dbgl";
-                  bin-export = "${bin}-db";
-                  container = "exodos";
-                in
-                writeShellScriptBin "${bin-export}" ''
-                  export GTK_USE_PORTAL=0
-                  export GTK_THEME=Breeze-Dark
-                  export PIPEWIRE_NODE="Game"
-                  export PULSE_SINK="Game"
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/sbin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                    exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                    exec '/usr/bin/${bin}' "$@"
-                  fi
-                ''
-              )
-              (
-                let
-                  args = "obs-gamecapture mangohud";
-                  bin = "dosbox";
-                  bin-export = "${bin}-db";
-                  container = "exodos";
-                in
-                writeShellScriptBin "${bin-export}" ''
-                  export PIPEWIRE_NODE="Game"
-                  export PULSE_SINK="Game"
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                    exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                    exec '/usr/bin/${bin}' "$@"
-                  fi
-                ''
-              )
-              (
-                let
-                  args = "obs-gamecapture mangohud";
-                  bin = "exogui";
-                  bin-export = "${bin}-db";
-                  container = "exodos";
-                in
-                writeShellScriptBin "${bin-export}" ''
-                  export PIPEWIRE_NODE="Game"
-                  export PULSE_SINK="Game"
-                  cd /mnt/crusader/Games/eXo/eXoDOS/exogui
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/mnt/crusader/Games/eXo/eXoDOS/exogui/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                    exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                    exec '/mnt/crusader/Games/eXo/eXoDOS/exogui/${bin}' "$@"
-                  fi
-                ''
-              )
-              (
-                let
-                  args = "obs-gamecapture mangohud";
-                  bin = "jazzjackrabbit";
-                  bin-export = "${bin}-db";
-                  container = "bazzite-arch-gaming";
-                in
-                writeShellScriptBin "${bin-export}" ''
-                  export PIPEWIRE_NODE="Game"
-                  export PULSE_SINK="Game"
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                    exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                    exec '/usr/bin/${bin}' "$@"
-                  fi
-                ''
-              )
-              (
-                let
-                  args = "obs-gamecapture mangohud";
-                  bin = "lab3d-sdl";
-                  bin-export = "${bin}-db";
-                  container = "bazzite-arch-gaming";
-                in
-                writeShellScriptBin "${bin-export}" ''
-                  export PIPEWIRE_NODE="Game"
-                  export PULSE_SINK="Game"
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                    exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                    exec '/usr/bin/${bin}' "$@"
-                  fi
-                ''
-              )
-              (
-                let
-                  args = "";
-                  bin = "obs-gamecapture";
-                  bin-export = "${bin}-db";
-                  container = "bazzite-arch-gaming";
-                in
-                writeShellScriptBin "${bin-export}" ''
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                  	exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                  	exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                  	exec '/usr/bin/${bin}' "$@"
-                  fi
-                ''
-              )
-              (
-                let
-                  args = "";
-                  bin = "portproton";
-                  bin-export = "${bin}-db";
-                  container = "bazzite-arch-gaming";
-                in
-                writeShellScriptBin "${bin-export}" ''
-                  export GTK_THEME=Breeze-Dark
-                  export PIPEWIRE_NODE="Game"
-                  export PULSE_SINK="Game"
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                    exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                    exec '/usr/bin/${bin}' "$@"
-                  fi
-                ''
-              )
-              (
-                let
-                  args = "obs-gamecapture mangohud";
-                  bin = "supermarioworld";
-                  bin-export = "${bin}-db";
-                  container = "bazzite-arch-gaming";
-                in
-                writeShellScriptBin "${bin-export}" ''
-                  export PIPEWIRE_NODE="Game"
-                  export PULSE_SINK="Game"
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                    exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                    exec '/usr/bin/${bin}' "$@"
-                  fi
-                ''
-              )
-              (
-                let
-                  args = "obs-gamecapture mangohud";
-                  bin = "xash3d";
-                  bin-export = "${bin}-db";
-                  container = "bazzite-arch-gaming";
-                in
-                writeShellScriptBin "${bin-export}" ''
-                  export PIPEWIRE_NODE="Game"
-                  export PULSE_SINK="Game"
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                    exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                    exec '/usr/bin/${bin}' "$@"
-                  fi
-                ''
-              )
-              (
-                let
-                  args = "obs-gamecapture mangohud";
-                  bin = "zeldalttp";
-                  bin-export = "${bin}-db";
-                  container = "bazzite-arch-gaming";
-                in
-                writeShellScriptBin "${bin-export}" ''
-                  export PIPEWIRE_NODE="Game"
-                  export PULSE_SINK="Game"
-                  if [ -z "''${CONTAINER_ID}" ]; then
-                    exec "${db-package}/bin/distrobox-enter" -n ${container} -- ${args} '/usr/bin/${bin}' "$@"
-                  elif [ -n "''${CONTAINER_ID}" ] && [ "''${CONTAINER_ID}" != "${container}" ]; then
-                    exec distrobox-host-exec '${bin-export}' "$@"
-                  else
-                    exec '/usr/bin/${bin}' "$@"
-                  fi
-                ''
-              )
-            ];
+            ++ lib.optionals cfg.gaming (
+              [
+                (import ./bootstrap-distrobox.nix {
+                  inherit
+                    lib
+                    username
+                    pkgs
+                    vars
+                    ;
+                })
+              ]
+              ++ map mkDistroboxWrapper gameWrappers
+            );
         };
+
         xdg = {
           desktopEntries = {
             archipelago = lib.mkIf cfg.gaming {
-              name = "Archipelago";
+              name = "Archipelago (distrobox)";
               comment = "Multiworld multi-game randomizer";
               exec = "archipelago-db";
               icon = "archipelago";
@@ -425,7 +209,7 @@ in
               ];
             };
             bizhawk = lib.mkIf cfg.gaming {
-              name = "bizhawk";
+              name = "bizhawk (distrobox)";
               comment = "A multi-platform emulator with full re-recording support and Lua scripting";
               exec = "bizhawk-db";
               icon = "bizhawk";
@@ -434,8 +218,20 @@ in
                 "Emulator"
               ];
             };
+            dbgl = lib.mkIf cfg.gaming {
+              name = "dbgl (distrobox)";
+              comment = "DOSBox Game Launcher";
+              exec = "dbgl-db";
+              icon = "dosbox-staging";
+              categories = [ "Game" ];
+              noDisplay = false;
+              startupNotify = true;
+              settings = {
+                Keywords = "dosbox;dos";
+              };
+            };
             dosbox = lib.mkIf cfg.gaming {
-              name = "dosbox-staging";
+              name = "dosbox-staging (distrobox)";
               comment = "DOSBox Staging";
               exec = "dosbox-db";
               icon = "dosbox-staging";
@@ -447,7 +243,7 @@ in
               };
             };
             exogui = lib.mkIf cfg.gaming {
-              name = "exogui";
+              name = "exogui (distrobox)";
               comment = "eXoGUI";
               exec = "exogui-db";
               icon = "distributor-logo-ms-dos";
@@ -466,7 +262,7 @@ in
                 };
               in
               lib.mkIf cfg.gaming {
-                name = "PortProton";
+                name = "PortProton (distrobox)";
                 comment = "Proton launcher";
                 exec = "portproton-db";
                 icon = "${icon}";

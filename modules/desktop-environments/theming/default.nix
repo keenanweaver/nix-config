@@ -305,7 +305,6 @@ in
           };
           packages = with pkgs; [
             hicolor-icon-theme
-            vivid
             ## GNOME
             adwaita-icon-theme
             gnome-settings-daemon
@@ -315,7 +314,7 @@ in
           sessionVariables = {
             GSETTINGS_BACKEND = "keyfile";
             GTK_USE_PORTAL = "1";
-            LS_COLORS = "$(vivid generate catppuccin-${flavor-lower})";
+            LS_COLORS = "$(${pkgs.vivid}/bin/vivid generate catppuccin-${flavor-lower})";
             XCURSOR_NAME = "${cursor-theme}";
             XCURSOR_SIZE = "24";
           };
