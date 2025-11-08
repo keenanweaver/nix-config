@@ -199,6 +199,7 @@ in
 
   config = lib.mkIf cfg.enable {
     # Custom modules
+    apollo.enable = false;
     bottles.enable = true;
     cdemu.enable = true;
     coolercontrol.enable = true;
@@ -207,7 +208,7 @@ in
     gamescope.enable = true;
     gsr.enable = true;
     heroic.enable = true;
-    lutris.enable = true;
+    lutris.enable = false;
     mangohud.enable = true;
     nero-umu.enable = true;
     nonfree.enable = true;

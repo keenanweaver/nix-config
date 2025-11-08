@@ -1,5 +1,6 @@
 {
   imports = [
+    ./apollo
     ./atuin
     ./bash
     ./bat
