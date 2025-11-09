@@ -208,7 +208,7 @@ in
     gamescope.enable = true;
     gsr.enable = true;
     heroic.enable = true;
-    lutris.enable = false;
+    lutris.enable = true;
     mangohud.enable = true;
     nero-umu.enable = true;
     nonfree.enable = true;
@@ -362,23 +362,25 @@ in
         ];
       };
       udev = {
-        extraHwdb = builtins.concatStringsSep "\n" (
-          with inputs;
-          builtins.map builtins.readFile [
-            "${simracing-hwdb}/90-cammus.hwdb"
-            "${simracing-hwdb}/90-fanatec.hwdb"
-            "${simracing-hwdb}/90-heusinkveld.hwdb"
-            "${simracing-hwdb}/90-leo-bodnar.hwdb"
-            "${simracing-hwdb}/90-mmos.hwdb"
-            "${simracing-hwdb}/90-oddor.hwdb"
-            "${simracing-hwdb}/90-shh.hwdb"
-            "${simracing-hwdb}/90-simagic.hwdb"
-            "${simracing-hwdb}/90-simlab.hwdb"
-            "${simracing-hwdb}/90-simsonn.hwdb"
-            "${simracing-hwdb}/90-thrustmaster.hwdb"
-            "${simracing-hwdb}/90-vrs.hwdb"
-          ]
-        );
+        extraHwdb =
+          with builtins;
+          concatStringsSep "\n" (
+            with inputs;
+            map readFile [
+              "${simracing-hwdb}/90-cammus.hwdb"
+              "${simracing-hwdb}/90-fanatec.hwdb"
+              "${simracing-hwdb}/90-heusinkveld.hwdb"
+              "${simracing-hwdb}/90-leo-bodnar.hwdb"
+              "${simracing-hwdb}/90-mmos.hwdb"
+              "${simracing-hwdb}/90-oddor.hwdb"
+              "${simracing-hwdb}/90-shh.hwdb"
+              "${simracing-hwdb}/90-simagic.hwdb"
+              "${simracing-hwdb}/90-simlab.hwdb"
+              "${simracing-hwdb}/90-simsonn.hwdb"
+              "${simracing-hwdb}/90-thrustmaster.hwdb"
+              "${simracing-hwdb}/90-vrs.hwdb"
+            ]
+          );
         packages = with pkgs; [
           game-devices-udev-rules
           (writeTextFile {

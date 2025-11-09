@@ -1,5 +1,15 @@
 (final: prev: {
   fooyin = prev.callPackage ./fooyin { };
+  game-devices-udev-rules = prev.game-devices-udev-rules.overrideAttrs (oldAttrs: rec {
+    version = "0.25";
+    src = prev.fetchFromGitea {
+      domain = "codeberg.org";
+      owner = "fabiscafe";
+      repo = "game-devices-udev";
+      tag = version;
+      hash = "sha256-CLQFdPr489OKZRj1v8EZypM1KOXgAOAOF0VQpeud4uo=";
+    };
+  });
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder/gsr.nix { };
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif.nix { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };

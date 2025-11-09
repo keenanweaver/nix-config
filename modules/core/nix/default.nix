@@ -74,7 +74,7 @@ in
     };
 
     home-manager.users.${username} =
-      { config, ... }:
+      { config, pkgs, ... }:
       {
         home = {
           extraProfileCommands = ''
@@ -91,21 +91,21 @@ in
             XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
           };
           shellAliases = {
-            b = "bat --color=always -pp";
-            bb = "bat --color=always";
-            db = "distrobox";
+            b = "${lib.getExe pkgs.bat} --color=always -pp";
+            bb = "${lib.getExe pkgs.bat} --color=always";
+            db = lib.getExe' config.programs.distrobox.package "distrobox";
             dbe = "db enter";
-            imp = "fd --one-file-system --base-directory / -t f -H -E '{tmp,etc/passwd,var/lib/systemd/coredump}'"; # https://reddit.com/r/NixOS/comments/1nhm4mm/tailscale_impermanence_broken/nedm0vd/?context=3#nedm0vd
-            l = "lsd -la --group-dirs=first";
-            nv = "nvim";
-            ngc = "nh clean all";
-            nor = "nh os switch";
-            npr = "nixpkgs-review pr --print-result";
+            imp = "${lib.getExe config.programs.fd.package} --one-file-system --base-directory / -t f -H -E '{tmp,etc/passwd,var/lib/systemd/coredump}'"; # https://reddit.com/r/NixOS/comments/1nhm4mm/tailscale_impermanence_broken/nedm0vd/?context=3#nedm0vd
+            l = "${lib.getExe config.programs.lsd.package} -la --group-dirs=first";
+            nv = lib.getExe' config.programs.nvf.settings.vim.package "neovim";
+            ngc = "${lib.getExe config.programs.nh.package} clean all";
+            nor = "${lib.getExe config.programs.nh.package} os switch";
+            npr = "${lib.getExe pkgs.nixpkgs-review} pr --print-result";
             psr = "plasmashell --replace & disown";
             rbn = "podman stop -a && systemctl reboot";
             repw = "systemctl --user restart pipewire{,-pulse} wireplumber";
-            up = "topgrade";
-            wget = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
+            upd = lib.getExe pkgs.topgrade;
+            wget = "${lib.getExe pkgs.wget} --hsts-file=${config.xdg.dataHome}/wget-hsts";
           };
         };
         nixpkgs = {
