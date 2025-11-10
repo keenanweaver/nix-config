@@ -88,6 +88,7 @@ in
           {
             name = "exogui";
             bin = "/mnt/crusader/Games/eXo/eXoDOS/exogui/exogui";
+            args = "/usr/bin/obs-gamecapture ${pkgs.mangohud}/bin/mangohud";
             container = "exodos";
             preExec = "cd /mnt/crusader/Games/eXo/eXoDOS/exogui";
           }

@@ -173,6 +173,7 @@ let
            nsz
            inputs.nix-game-preservation.packages.${system}.sabretools-git
            inputs.nix-game-preservation.packages.${system}.unshieldsharp-git
+           openspeedrun
            ps3-disc-dumper
            #(python3.withPackages (p: with p; [ lnkparse3 ]))
            inputs.nix-game-preservation.packages.${system}.redumper-git

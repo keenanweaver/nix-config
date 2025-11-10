@@ -94,10 +94,24 @@ pkgs.writeShellScriptBin "bootstrap-distrobox" ''
       plasma-desktop               \
       wireplumber
 
-      curl -L -o ~/.cache/dosbox-staging-linux-latest.tar.xz \
-      $(curl -s https://api.github.com/repos/dosbox-staging/dosbox-staging/releases/latest \
-      | grep "browser_download_url.*linux.*tar.xz" \
-      | cut -d '"' -f 4)
+      # Build obs-gamecapture
+      sudo apt install -y          \
+      libobs-dev                   \
+      libvulkan-dev                \
+      libgl1-mesa-dev              \
+      libegl1-mesa-dev             \
+      libx11-dev                   \
+      libxcb1-dev                  \
+      libwayland-dev               \
+      wayland-protocols            \
+      pkg-config                   \
+      mkdir -p /home/${username}/.cache/obs-gamecapture
+      git clone https://github.com/nowrep/obs-vkcapture.git
+      pushd /home/${username}/.cache/obs-gamecapture/obs-vkcapture
+      mkdir build && cd build
+      cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+      make && sudo make install
+      popd
     fi
   fi
 ''
