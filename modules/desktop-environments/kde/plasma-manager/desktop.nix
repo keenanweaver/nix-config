@@ -140,6 +140,7 @@
                       "indicator-solaar"
                       "tray-id" # Sunshine
                       "xdg-desktop-portal-kde" # Portal
+                      "chrome_status_icon_1" # Vesktop
                     ];
                   };
                 };
