@@ -262,20 +262,10 @@ in
               source = config.lib.file.mkOutOfStoreSymlink "${pkgs.inter}/share/fonts/opentype";
               target = "${config.xdg.dataHome}/fonts/inter";
             };
-            gtk3-config-colors = {
-              enable = true;
-              text = builtins.readFile ./gtk-3.0/colors.css;
-              target = "${config.xdg.configHome}/gtk-3.0/colors.css";
-            };
             gtk3-config-gtk = {
               enable = true;
               text = builtins.readFile ./gtk-3.0/gtk.css;
               target = "${config.xdg.configHome}/gtk-3.0/gtk.css";
-            };
-            gtk4-config-colors = {
-              enable = true;
-              text = builtins.readFile ./gtk-4.0/colors.css;
-              target = "${config.xdg.configHome}/gtk-4.0/colors.css";
             };
             gtk4-config-gtk = {
               enable = true;
