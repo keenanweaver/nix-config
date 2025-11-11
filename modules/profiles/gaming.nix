@@ -207,7 +207,10 @@ in
     fluidsynth.enable = true;
     gamemode.enable = false;
     gamescope.enable = true;
-    gsr.enable = true;
+    gsr = {
+      enable = true;
+      ui.enable = true;
+    };
     heroic.enable = true;
     lutris.enable = true;
     mangohud.enable = true;
