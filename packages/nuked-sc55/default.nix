@@ -13,13 +13,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "nuked-sc55";
-  version = "0.3.1";
+  version = "0.3.1-unstable-10-13-2025";
 
   src = fetchFromGitHub {
     owner = "nukeykt";
     repo = "Nuked-SC55";
-    rev = "${finalAttrs.version}";
-    sha256 = "sha256-ofobMU60liujiOAQfG6ubW/tcD7wI9OtLSFUFrBF/mQ=";
+    rev = "dd2f525f15fe4580a8fbc59535170651ca559f59";
+    hash = "sha256-dFyHxY5neVm6L59JBNwtIfsPZV8S/7G/1wL+2oUpHX0=";
     fetchSubmodules = true;
   };
 
@@ -40,7 +40,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   cmakeFlags = [
-    "-DCMAKE_BUILD_TYPE=Release" # https://github.com/nukeykt/Nuked-SC55/issues/100
+    (lib.cmakeFeature "CMAKE_BUILD_TYPE" "Release") # https://github.com/nukeykt/Nuked-SC55/issues/100
   ];
 
   # Hardcode the $out path to the back.data file

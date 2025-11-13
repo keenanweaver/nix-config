@@ -21,8 +21,8 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "AliveTeam";
     repo = "alive_reversing";
     rev = "7bf8a75de37f6f65554bf1c4a0e4b1100f0d37ae";
-    fetchSubmodules = true;
     hash = "sha256-w/mpu9bE+jHbRDyE5Oy47EDQd/FXfwjXqndSBe7XKC4=";
+    fetchSubmodules = true;
   };
 
   nativeBuildInputs = [

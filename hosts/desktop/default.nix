@@ -133,7 +133,7 @@
     pipewire = {
       extraConfig = {
         pipewire = {
-          "10-clock-rate" = {
+          "10-clock" = {
             "context.properties" = {
               # To make DAC properly work
               "default.clock.allowed-rates" = [
@@ -147,6 +147,7 @@
               "default.clock.quantum" = 256;
               "default.clock.min-quantum" = 256;
               "default.clock.max-quantum" = 256;
+              "default.clock.quantum-limit" = 256;
             };
           };
           # Create mono-only microphone output
