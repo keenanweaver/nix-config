@@ -122,7 +122,6 @@ in
           micro = {
             transparent = true;
           };
-          vesktop.enable = false;
           vscode = {
             profiles.default = {
               accent = "${accent-lower}";
@@ -182,21 +181,9 @@ in
               gtk-xft-rgba = "rgb";
             };
           };
-          /*
-            theme = {
-                     name = "${GTK-THEME}";
-                     package = pkgs.kdePackages.breeze-gtk;
-                   };
-          */
         };
         home = {
           file = {
-            # UMU cursor workaround
-            umu-breeze-cursors = {
-              enable = false;
-              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.kdePackages.breeze}/share/icons/breeze_cursors";
-              target = "${config.xdg.dataHome}/icons/breeze_cursors";
-            };
             catppuccin-gtk = {
               enable = true;
               source = config.lib.file.mkOutOfStoreSymlink "${pkgs.kdePackages.breeze-gtk}/share/themes/${GTK-THEME}";
@@ -261,6 +248,11 @@ in
               enable = true;
               source = config.lib.file.mkOutOfStoreSymlink "${pkgs.inter}/share/fonts/opentype";
               target = "${config.xdg.dataHome}/fonts/inter";
+            };
+            gtk3-config-colors = {
+              enable = true;
+              text = builtins.readFile ./gtk-3.0/colors.css;
+              target = "${config.xdg.configHome}/gtk-3.0/colors.css";
             };
             gtk3-config-gtk = {
               enable = true;
