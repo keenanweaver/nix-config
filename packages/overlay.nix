@@ -45,7 +45,9 @@
   };
   proton-em = prev.callPackage ./proton-em { };
   relive = prev.callPackage ./relive { };
-  rsdkv4 = prev.callPackage ./rsdkv4 { };
+  rsdkv3 = prev.callPackage ./rsdk/v3 { };
+  rsdkv4 = prev.callPackage ./rsdk/v4 { };
+  rsdkv5 = prev.callPackage ./rsdk/v5 { };
   scummvm = prev.scummvm.overrideAttrs {
     version = "3.0.0-unstable-11-10-2025";
     src = prev.fetchFromGitHub {

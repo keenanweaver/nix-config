@@ -86,7 +86,9 @@ let
       openxray # STALKER
       prismlauncher # MineCraft
       relive # Oddworld
+      rsdkv3
       rsdkv4
+      rsdkv5
       sdlpop # Prince of Persia
       #serious-sam-classic-vulkan
       sm64ex
@@ -1456,6 +1458,72 @@ in
                 startupNotify = false;
                 terminal = false;
               };
+              sonic-1 =
+                let
+                  icon = pkgs.fetchurl {
+                    url = "https://cdn2.steamgriddb.com/icon/24b16fede9a67c9251d3e7c7161c83ac.png";
+                    hash = "sha256-m5CEGaJj4Pr37EZIQpsHyBGYYjI9P2vNAOIBI2N5iiY=";
+                  };
+                in
+                {
+                  name = "Sonic the Hedgehog";
+                  #comment = "";
+                  exec = avm + (lib.getExe pkgs.rsdkv4);
+                  icon = icon;
+                  categories = [
+                    "Game"
+                  ];
+                  noDisplay = false;
+                  settings = {
+                    Path = "${config.home.homeDirectory}/Games/sonic/sonic-1";
+                  };
+                  startupNotify = false;
+                  terminal = false;
+                };
+              sonic-2 =
+                let
+                  icon = pkgs.fetchurl {
+                    url = "https://cdn2.steamgriddb.com/icon/6b180037abbebea991d8b1232f8a8ca9/32/256x256.png";
+                    hash = "sha256-dU0Kz8UhHnj7H9/2psCKvJ6ssvqiJQHHl2CZRNgFkjo=";
+                  };
+                in
+                {
+                  name = "Sonic the Hedgehog 2";
+                  #comment = "";
+                  exec = avm + (lib.getExe pkgs.rsdkv4);
+                  icon = icon;
+                  categories = [
+                    "Game"
+                  ];
+                  noDisplay = false;
+                  settings = {
+                    Path = "${config.home.homeDirectory}/Games/sonic/sonic-2";
+                  };
+                  startupNotify = false;
+                  terminal = false;
+                };
+              sonic-cd =
+                let
+                  icon = pkgs.fetchurl {
+                    url = "https://cdn2.steamgriddb.com/icon/f416d0fbce436dde50730df3a12bba3b/24/256x256.png";
+                    hash = "sha256-ZsZDjMCB2H3zkyTm42KfHVPPT/GwswVPa7NxPcqcz6Q=";
+                  };
+                in
+                {
+                  name = "Sonic CD";
+                  #comment = "";
+                  exec = avm + (lib.getExe pkgs.rsdkv3);
+                  icon = icon;
+                  categories = [
+                    "Game"
+                  ];
+                  noDisplay = false;
+                  settings = {
+                    Path = "${config.home.homeDirectory}/Games/sonic/sonic-cd";
+                  };
+                  startupNotify = false;
+                  terminal = false;
+                };
             };
         };
       };

@@ -286,6 +286,12 @@ Run the commands:
     mkdir -p "$FLATPAKDIR"/io.itch.tx00100xt.SeriousSamClassic-VK/data/Serious-Engine/{serioussam,serioussamse}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/serious_sam_the_first_encounter" -x ls -t | head -n1 | xargs innoextract -g -d "$FLATPAKDIR"/io.itch.tx00100xt.SeriousSamClassic-VK/data/Serious-Engine/serioussam
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/serious_sam_the_second_encounter" -x ls -t | head -n1 | xargs innoextract -g -d "$FLATPAKDIR"/io.itch.tx00100xt.SeriousSamClassic-VK/data/Serious-Engine/serioussamse
+    ## Sonic
+    mkdir -p "$GAMESDIR"/sonic/sonic-{1,2,3,cd,mania}
+    wget -P "$GAMESDIR"/sonic/sonic-1 https://archive.org/download/sonic-rsdk-data/Sonic%201/data.rsdk
+    wget -P "$GAMESDIR"/sonic/sonic-2 https://archive.org/download/sonic-rsdk-data/Sonic%202/data.rsdk
+    wget -P "$GAMESDIR"/sonic/sonic-3 https://archive.org/download/sonic-and-knuckles-sonic-3_202309/Sonic%20and%20Knuckles%20%26%20Sonic%203.bin
+    wget -P "$GAMESDIR"/sonic/sonic-cd https://archive.org/download/sonic-rsdk-data/Sonic%20CD/data.rsdk
     ## Starfox 64
     mkdir -p "$GAMESDIR"/starfox-64
     wget -P "$GAMESDIR"/starfox-64 https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Star%20Fox%2064%20%28USA%29%20%28Rev%201%29.zip
