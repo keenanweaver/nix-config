@@ -59,7 +59,7 @@ in
           ksystemlog
           #kzones
           markdownpart
-          #neochat
+          neochat
           okteta
           orca
           packagekit-qt # Discover store

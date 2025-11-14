@@ -100,3 +100,5 @@ toggle:checked {
 
 @define-color accent_bg_color @blue_1;
 @define-color accent_fg_color @window_bg_color;
+
+@import 'colors.css';
