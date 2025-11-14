@@ -2,7 +2,6 @@
   lib,
   config,
   username,
-  pkgs,
   ...
 }:
 let
@@ -111,7 +110,7 @@ in
           #revolt-desktop
           #stoat-desktop
           rssguard
-          rustdesk-flutter
+          #rustdesk-flutter
           signal-desktop
           varia
           winboat

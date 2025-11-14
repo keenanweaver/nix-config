@@ -76,10 +76,10 @@ let
       jazz2
       #katawa-shoujo-re-engineered
       openjk # Jedi Academy
-      openloco
+      #openloco
       inputs.chaotic.packages.${system}.openmohaa_git
       openomf
-      #openrct2
+      openrct2
       openttd
       opentyrian
       openxcom
