@@ -39,6 +39,7 @@ in
             "uinput"
             "video"
             "wheel"
+            "ydotool"
           ];
           openssh.authorizedKeys.keys = [
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN76CGOScFN8M/6oDyry/iP95DF0bTHixmk73fKsRP+f keenanweaver@protonmail.com"

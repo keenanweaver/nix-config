@@ -62,6 +62,9 @@ in
       i2c.enable = true;
     };
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+    programs = {
+      ydotool.enable = true;
+    };
     services = {
       btrfs = {
         autoScrub = {
@@ -83,7 +86,6 @@ in
       }:
       {
         home.packages = with pkgs; [
-          amdgpu_top
           audacious
           audacious-plugins
           caligula
@@ -101,7 +103,6 @@ in
           metadata-cleaner
           mousai
           neo
-          nvtopPackages.amd
           picard
           projectm-sdl-cpp
           puddletag

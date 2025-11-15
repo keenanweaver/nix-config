@@ -34,15 +34,16 @@ in
                 "helix"
                 "home_manager"
                 "nix"
-                "vim"
+                "nix_helper"
                 "system"
+                "vim"
               ];
               ignore_failures = [ "powershell" ];
               no_retry = true;
               notify_each_step = true;
             };
             pre_commands = {
-              "NixOS Rebuild" = "${pkgs.nh}/bin/nh os switch --update";
+              "NixOS Rebuild" = "${lib.getExe pkgs.nh} os switch --update";
             };
             commands = { };
             post_commands =
