@@ -267,10 +267,6 @@ Run the commands:
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/rollercoaster_tycoon_deluxe" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/rollercoaster-tycoon/rct-1
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/rollercoaster_tycoon_2" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/rollercoaster-tycoon/rct-2
     mv "$GAMESDIR"/rollercoaster-tycoon/rct-1/app/* "$GAMESDIR"/rollercoaster-tycoon/rct-1 && rm -rf "$GAMESDIR"/rollercoaster-tycoon/rct-1/{app,tmp}
-    ## RTCW
-    mkdir -p "$HOME"/.wolf
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/return_to_castle_wolfenstein_game" -x ls -t | head -n1 | xargs innoextract -g -d "$HOME"/.wolf
-    mv "$HOME"/.wolf/app/* "$HOME"/.wolf && mv "$HOME"/.wolf/Main "$HOME"/.wolf/main
     ## Super Mario 64
     mkdir -p "$GAMESDIR"/mario-64
     wget -P "$GAMESDIR"/mario-64 https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Super%20Mario%2064%20%28USA%29.zip
