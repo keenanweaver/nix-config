@@ -29,25 +29,25 @@ in
         home.file = {
           wine-links-proton-cachyos-heroic = {
             enable = cfg.enableNative;
-            source = "${inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
+            source = "${inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
             target = "${config.xdg.configHome}/heroic/tools/proton/proton-cachyos";
           };
           wine-links-proton-cachyos-flatpak-heroic = {
             enable = cfg.enableFlatpak;
-            source = "${inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
+            source = "${inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
             target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-cachyos";
           };
           wine-links-proton-ge-heroic = {
             enable = cfg.enableNative;
             source = "${
-              inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.ge
+              inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.ge
             }/share/steam/compatibilitytools.d/proton-ge";
             target = "${config.xdg.configHome}/heroic/tools/proton/proton-ge-bin";
           };
           wine-links-proton-ge-flatpak-heroic = {
             enable = cfg.enableFlatpak;
             source = "${
-              inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.ge
+              inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.ge
             }/share/steam/compatibilitytools.d/proton-ge";
             target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-ge-bin";
           };

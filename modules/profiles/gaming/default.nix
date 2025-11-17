@@ -201,6 +201,7 @@ in
               "${simracing-hwdb}/90-simagic.hwdb"
               "${simracing-hwdb}/90-simlab.hwdb"
               "${simracing-hwdb}/90-simsonn.hwdb"
+              "${simracing-hwdb}/90-simtrecs.hwdb"
               "${simracing-hwdb}/90-thrustmaster.hwdb"
               "${simracing-hwdb}/90-vrs.hwdb"
             ]

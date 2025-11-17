@@ -34,18 +34,20 @@ in
         home.file = {
           wine-links-kron4ek-lutris-flatpak = {
             enable = cfg.enableFlatpak;
-            source = inputs.nix-gaming.packages.${pkgs.system}.wine-tkg;
+            source = inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.wine-tkg;
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/kron4ek";
           };
           wine-links-proton-cachyos-flatpak-lutris = {
             enable = cfg.enableFlatpak;
-            source = "${inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
+            source = "${
+              inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.cachyos
+            }/share/steam/compatibilitytools.d/proton-cachyos";
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-cachyos";
           };
           wine-links-proton-ge-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = "${
-              inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.ge
+              inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.ge
             }/share/steam/compatibilitytools.d/proton-ge";
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-ge-bin";
           };
@@ -60,12 +62,12 @@ in
             winetricks
           ];
           protonPackages = with pkgs; [
-            #inputs.chaotic.packages.${system}.proton-cachyos
-            inputs.nur-bandithedoge.legacyPackages.${system}.proton.ge
+            #inputs.chaotic.packages.${stdenv.hostPlatform.system}.proton-cachyos
+            inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.proton.ge
           ];
           steamPackage = osConfig.programs.steam.package;
           winePackages = with pkgs; [
-            inputs.nix-gaming.packages.${system}.wine-tkg
+            inputs.nix-gaming.packages.${stdenv.hostPlatform.system}.wine-tkg
           ];
         };
         services.flatpak = lib.mkIf cfg.enableFlatpak {

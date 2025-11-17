@@ -21,13 +21,13 @@ in
         home.file = {
           wine-links-proton-cachyos-nero = {
             enable = true;
-            source = "${inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
+            source = "${inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
             target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/proton-cachyos-nero";
           };
           wine-links-protonge-nero = {
             enable = true;
             source = "${
-              inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.ge
+              inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.ge
             }/share/steam/compatibilitytools.d/proton-ge";
             target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-bin-nero";
           };

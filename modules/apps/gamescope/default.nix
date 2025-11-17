@@ -18,7 +18,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.gamescope = {
       enable = true;
-      package = inputs.chaotic.packages.${pkgs.system}.gamescope_git.overrideAttrs (
+      package = inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.gamescope_git.overrideAttrs (
         final: prev: {
           # https://github.com/ValveSoftware/gamescope/issues/1622
           NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];

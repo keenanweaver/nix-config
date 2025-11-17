@@ -38,7 +38,7 @@
       autoStart = true;
       capSysAdmin = true;
       openFirewall = true;
-      package = inputs.apollo.packages.${pkgs.system}.default;
+      package = inputs.apollo.packages.${pkgs.stdenv.hostPlatform.system}.default;
       applications = {
         apps = [
           {

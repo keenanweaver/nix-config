@@ -155,7 +155,6 @@
     "io.github.noxworld_dev.OpenNox"
     "io.github.randovania.Randovania"
     "io.github.ryubing.Ryujinx"
-    "io.github.santiagocezar.maniatic-launcher"
     "io.github.strikerx3.ymir"
     "net.fsuae.FS-UAE"
     "net.kuribo64.melonDS"

@@ -9,7 +9,7 @@ with pkgs;
   games = [
     ## Doom
     acc
-    inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.cherry-doom
+    inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.cherry-doom
     chocolate-doom
     crispy-doom
     darkradiant
@@ -18,11 +18,11 @@ with pkgs;
     doomseeker
     dsda-doom
     nugget-doom
-    inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.nyan-doom
-    # odamex
+    inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.nyan-doom
+    odamex
     rbdoom-3-bfg
     slade
-    inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.uzdoom
+    inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.uzdoom
     woof-doom
     zandronum
     ## Fallout
@@ -40,8 +40,8 @@ with pkgs;
     alephone-durandal
     alephone-infinity
     ## Morrowind
-    #inputs.openmw-nix.packages.${pkgs.system}.openmw-dev
-    inputs.openmw-nix.packages.${pkgs.system}.openmw-validator
+    #inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-dev
+    inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-validator
     tes3cmd
     openmw
     ## Quake
@@ -74,7 +74,7 @@ with pkgs;
     #katawa-shoujo-re-engineered
     openjk # Jedi Academy
     #openloco
-    inputs.chaotic.packages.${pkgs.system}.openmohaa_git
+    inputs.chaotic.packages.${stdenv.hostPlatform.system}.openmohaa_git
     openomf
     openrct2
     openttd
@@ -89,7 +89,7 @@ with pkgs;
     sdlpop # Prince of Persia
     #serious-sam-classic-vulkan
     sm64ex
-    # inputs.nix-citizen.packages.${pkgs.system}.star-citizen
+    # inputs.nix-citizen.packages.${stdenv.hostPlatform.system}.star-citizen
     theforceengine # Dark Forces / Outlaws
     urbanterror
     vvvvvv
@@ -100,7 +100,7 @@ with pkgs;
     ## Emulators
     _86Box-with-roms
     # archipelago
-    inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.basiliskii-bin
+    inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.basiliskii-bin
     # bizhawk
     dosbox-staging
     duckstation
@@ -110,7 +110,7 @@ with pkgs;
     mednaffe
     mesen
     nuked-sc55
-    # inputs.chaotic.packages.${pkgs.system}.pcsx2_git
+    # inputs.chaotic.packages.${stdenv.hostPlatform.system}.pcsx2_git
     (retroarch.withCores (
       cores: with cores; [
         beetle-psx-hw
@@ -120,8 +120,8 @@ with pkgs;
       ]
     ))
     scummvm
-    inputs.chaotic.packages.${pkgs.system}.shadps4_git
-    inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.sheepshaver-bin
+    inputs.chaotic.packages.${stdenv.hostPlatform.system}.shadps4_git
+    inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.sheepshaver-bin
     #nur.repos.novel2430.vita3k
     xenia-canary
     ## Input
@@ -157,25 +157,25 @@ with pkgs;
     #xlink-kai
     xvidcore
     ## Wine
-    inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.winegui
-    inputs.nix-gaming.packages.${pkgs.system}.wine-tkg
+    inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.winegui
+    inputs.nix-gaming.packages.${stdenv.hostPlatform.system}.wine-tkg
     winetricks
     ## One-and-dones
     /*
-      inputs.aaru.packages.${pkgs.system}.default
-         inputs.nix-game-preservation.packages.${pkgs.system}.dic-git-full
+      inputs.aaru.packages.${stdenv.hostPlatform.system}.default
+         inputs.nix-game-preservation.packages.${stdenv.hostPlatform.system}.dic-git-full
          glxinfo
          jpsxdec
          mame.tools
          mmv
-         inputs.nix-game-preservation.packages.${pkgs.system}.ndecrypt-git
+         inputs.nix-game-preservation.packages.${stdenv.hostPlatform.system}.ndecrypt-git
          nsz
-         inputs.nix-game-preservation.packages.${pkgs.system}.sabretools-git
-         inputs.nix-game-preservation.packages.${pkgs.system}.unshieldsharp-git
+         inputs.nix-game-preservation.packages.${stdenv.hostPlatform.system}.sabretools-git
+         inputs.nix-game-preservation.packages.${stdenv.hostPlatform.system}.unshieldsharp-git
          openspeedrun
          ps3-disc-dumper
          #(python3.withPackages (p: with p; [ lnkparse3 ]))
-         inputs.nix-game-preservation.packages.${pkgs.system}.redumper-git
+         inputs.nix-game-preservation.packages.${stdenv.hostPlatform.system}.redumper-git
          renderdoc
          vgmplay-libvgm
          vgmstream
@@ -372,9 +372,9 @@ with pkgs;
         MODLIST = "i-heart-vanilla-directors-cut";
       };
       runtimeInputs = [
-        inputs.openmw-nix.packages.${pkgs.system}.momw-configurator
-        inputs.openmw-nix.packages.${pkgs.system}.openmw-validator
-        inputs.openmw-nix.packages.${pkgs.system}.umo
+        inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.momw-configurator
+        inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-validator
+        inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.umo
         tes3cmd
       ];
       text = ''

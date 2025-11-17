@@ -72,7 +72,7 @@ in
           tokodon
         ]
         ++ lib.optionals vars.gaming [
-          inputs.rom-properties.packages.${pkgs.system}.rp_kde6
+          inputs.rom-properties.packages.${pkgs.stdenv.hostPlatform.system}.rp_kde6
         ];
     };
     nixpkgs.overlays = lib.singleton (

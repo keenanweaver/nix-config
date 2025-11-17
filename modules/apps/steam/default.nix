@@ -54,9 +54,9 @@ in
       };
       extraCompatPackages = with pkgs; [
         luxtorpeda
-        inputs.nur-bandithedoge.legacyPackages.${pkgs.system}.proton.cachyos
+        inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.proton.cachyos
         proton-em
-        inputs.nur-bandithedoge.legacyPackages.${system}.proton.ge
+        inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.proton.ge
       ];
       localNetworkGameTransfers.openFirewall = true;
       protontricks.enable = true;

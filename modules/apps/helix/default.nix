@@ -18,7 +18,7 @@ in
       {
         programs.helix = {
           enable = true;
-          package = inputs.chaotic.packages.${pkgs.system}.helix_git;
+          package = inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.helix_git;
           extraPackages = with pkgs; [
             bash-language-server
             biome

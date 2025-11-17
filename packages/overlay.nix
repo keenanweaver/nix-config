@@ -58,6 +58,7 @@
     };
   };
   tochd = prev.callPackage ./tochd { };
+  woof-doom = prev.callPackage ./woof-doom { };
   xlink-kai = prev.callPackage ./xlink-kai { };
   z64decompress = prev.callPackage ./zelda64recomp/z64decompress.nix { };
   zelda64recomp = prev.callPackage ./zelda64recomp/zelda64recomp.nix { };

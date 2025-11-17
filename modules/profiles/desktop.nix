@@ -111,10 +111,10 @@ in
           #revolt-desktop
           #stoat-desktop
           rssguard
-          #rustdesk-flutter
+          rustdesk-flutter
           signal-desktop
           varia
-          winboat
+          #winboat
         ];
         xdg = {
           desktopEntries = {
