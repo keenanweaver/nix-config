@@ -27,13 +27,18 @@ in
         home.file = {
           # https://gitlab.freedesktop.org/drm/amd/-/issues/3166#note_2277578
           # https://reddit.com/r/linux_gaming/comments/1kz7kkv/is_nvidia_holding_me_back_on_linux/mv3625m/#mv3625m
+          # https://github.com/doitsujin/dxvk/issues/5330
+          # https://www.reddit.com/r/nvidia/comments/1lokih2/putting_misconceptions_about_optimal_fps_caps/
           mangohud-config = {
             enable = true;
             text = with pkgs; ''
               ###############
               ##  Display  ##
               ###############
-              fps_limit=357,240,120,60,30,0
+              fps_limit=328,240,120,60,30,0 
+              fps_limit_method=early
+              vsync=3
+              gl_vsync=1
 
               ###########
               ## Binds ##
