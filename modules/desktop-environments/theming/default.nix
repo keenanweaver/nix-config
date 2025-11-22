@@ -387,7 +387,7 @@ in
           plasma = {
             configFile = {
               # Application Style
-              "kdeglobals"."KDE"."widgetStyle" = "Darkly";
+              "kdeglobals"."KDE"."widgetStyle" = "Klassy";
             };
             fonts = {
               general = {
@@ -432,8 +432,8 @@ in
               theme = "Utterly-Round";
               # Window decorations
               windowDecorations = {
-                library = "org.kde.darkly";
-                theme = "Darkly";
+                library = "org.kde.klassy";
+                theme = "Klassy";
               };
               # Icons
               iconTheme = "${icon-theme}";

@@ -135,7 +135,7 @@
               "General"."GlobalViewProps" = false;
               "General"."ShowFullPath" = true;
               "General"."ShowFullPathInTitlebar" = true;
-              "General"."ShowToolTips" = true;
+              "General"."ShowToolTips" = false;
               "General"."SplitView" = true;
               "General"."UseTabForSwitchingSplitView" = true;
               "IconsMode"."PreviewSize" = 112;
