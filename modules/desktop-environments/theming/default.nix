@@ -270,7 +270,7 @@ in
               target = "${config.xdg.configHome}/gtk-4.0/gtk.css";
             };
             klassy-config = {
-              enable = false;
+              enable = true;
               text = builtins.readFile ./klassyrc;
               target = "${config.xdg.configHome}/klassy/klassyrc";
             };

@@ -34,47 +34,51 @@
       };
     };
 
-    services.sunshine = {
-      enable = true;
-      autoStart = true;
-      capSysAdmin = true;
-      openFirewall = true;
-      applications = {
-        env = {
-          PATH = "$(PATH):/run/current-system/sw/bin:/etc/profiles/per-user/${username}/bin:$(HOME)/.local/bin";
+    services.sunshine =
+      let
+        primaryDisplay = "DP-1";
+      in
+      {
+        enable = true;
+        autoStart = true;
+        capSysAdmin = true;
+        openFirewall = true;
+        applications = {
+          env = {
+            PATH = "$(PATH):/run/current-system/sw/bin:/etc/profiles/per-user/${username}/bin:$(HOME)/.local/bin";
+          };
+          apps = [
+            {
+              name = "Desktop";
+              prep-cmd = [
+                {
+                  do = "${lib.getExe pkgs.kdePackages.libkscreen} output.${primaryDisplay}.mode.2560x1440@120";
+                  undo = "${lib.getExe pkgs.kdePackages.libkscreen} output.${primaryDisplay}.mode.2560x1440@360";
+                }
+              ];
+              exclude-global-prep-cmd = "false";
+              auto-detach = "true";
+            }
+            {
+              name = "MoonDeckStream";
+              cmd = lib.getExe pkgs.moondeck-buddy;
+              exclude-global-prep-cmd = "false";
+              elevated = "false";
+            }
+            {
+              name = "Steam Big Picture";
+              image-path = "steam.png";
+              detached = [ "${lib.getExe pkgs.steam} steam://open/bigpicture" ];
+              auto-detach = "true";
+              wait-all = "true";
+              exit-timeout = "5";
+            }
+          ];
         };
-        apps = [
-          {
-            name = "Desktop";
-            prep-cmd = [
-              {
-                do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-1.mode.2560x1440@120";
-                undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-1.mode.3440x1440@360";
-              }
-            ];
-            exclude-global-prep-cmd = "false";
-            auto-detach = "true";
-          }
-          {
-            name = "MoonDeckStream";
-            cmd = lib.getExe pkgs.moondeck-buddy;
-            exclude-global-prep-cmd = "false";
-            elevated = "false";
-          }
-          {
-            name = "Steam Big Picture";
-            image-path = "steam.png";
-            detached = [ "${lib.getExe pkgs.steam} steam://open/bigpicture" ];
-            auto-detach = "true";
-            wait-all = "true";
-            exit-timeout = "5";
-          }
-        ];
+        settings = {
+          output_name = 1;
+        };
       };
-      settings = {
-        output_name = 1;
-      };
-    };
     home-manager.users.${username} = {
       home.packages = with pkgs; [ moondeck-buddy ];
       xdg.autostart.entries = with pkgs; [ "${moondeck-buddy}/share/applications/MoonDeckBuddy.desktop" ];
