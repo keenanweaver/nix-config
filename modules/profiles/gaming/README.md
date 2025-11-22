@@ -9,3 +9,4 @@
   * In-game: uncap FPS, disable v-sync, exclusive fullscreen
   * KDE: Adaptive Sync set to 'Automatic'
   * MangoHud: `vsync=2`, `gl_vsync=1`, `fps_limit=352` 97% of your refresh rate
+  * DXVK: `dxvk.tearFree = True`

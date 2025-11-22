@@ -18,7 +18,7 @@ in
   config = lib.mkIf cfg.enable {
     # Custom modules
     # Apps
-    easyeffects.enable = true;
+    easyeffects.enable = false;
     freetube.enable = true;
     halloy.enable = true;
     mumble.enable = true;

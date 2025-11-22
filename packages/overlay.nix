@@ -1,21 +1,19 @@
 (final: prev: {
   fooyin = prev.callPackage ./fooyin { };
-  game-devices-udev-rules = prev.game-devices-udev-rules.overrideAttrs (oldAttrs: rec {
-    version = "0.25";
-    src = prev.fetchFromGitea {
-      domain = "codeberg.org";
-      owner = "fabiscafe";
-      repo = "game-devices-udev";
-      tag = version;
-      hash = "sha256-CLQFdPr489OKZRj1v8EZypM1KOXgAOAOF0VQpeud4uo=";
-    };
-  });
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder/gsr.nix { };
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif.nix { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };
   inter = prev.callPackage ./inter { };
+  lutris-unwrapped = prev.lutris-unwrapped.overrideAttrs {
+    version = "0.5.19-unstable-11-20-2025";
+    src = prev.fetchFromGitHub {
+      owner = "lutris";
+      repo = "lutris";
+      rev = "9db793dc9f3a1b2507afdce20b823801ec3b1c8e";
+      hash = "sha256-QSbKHK9Nk8byZFORBjriKFijDJCJ8u1ugVcxOpxmQsk=";
+    };
+  };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
-  n64recomp = prev.callPackage ./zelda64recomp/n64recomp.nix { };
   nero-umu = prev.nero-umu.overrideAttrs {
     version = "1.1.5-unstable-11-06-2025";
     src = prev.fetchFromGitHub {
@@ -49,16 +47,15 @@
   rsdkv4 = prev.callPackage ./rsdk/v4 { };
   rsdkv5 = prev.callPackage ./rsdk/v5 { };
   scummvm = prev.scummvm.overrideAttrs {
-    version = "3.0.0-unstable-11-10-2025";
+    version = "3.0.0-unstable-11-22-2025";
     src = prev.fetchFromGitHub {
       owner = "scummvm";
       repo = "scummvm";
-      rev = "5f426286b8567891381bbfd4a0dc08acbe6efad9";
-      hash = "sha256-4J1z6q79RdneeU0iTT/oh6O7qUa1w8rX9rbQ2UGuu00=";
+      rev = "0ad54bf79ef8efe3138ecaf047b00f3cb7b678e9";
+      hash = "sha256-no2PvOMR2gNA7Kymn5P2JTBi0W/I1akENzJJr4L3ptc=";
     };
   };
   tochd = prev.callPackage ./tochd { };
-  woof-doom = prev.callPackage ./woof-doom { };
   xlink-kai = prev.callPackage ./xlink-kai { };
   z64decompress = prev.callPackage ./zelda64recomp/z64decompress.nix { };
   zelda64recomp = prev.callPackage ./zelda64recomp/zelda64recomp.nix { };
