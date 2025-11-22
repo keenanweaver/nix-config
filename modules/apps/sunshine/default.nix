@@ -46,7 +46,14 @@
         apps = [
           {
             name = "Desktop";
-            image-path = "desktop.png";
+            prep-cmd = [
+              {
+                do = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-1.mode.2560x1440@120";
+                undo = "${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.DP-1.mode.3440x1440@360";
+              }
+            ];
+            exclude-global-prep-cmd = "false";
+            auto-detach = "true";
           }
           {
             name = "MoonDeckStream";
