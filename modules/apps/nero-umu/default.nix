@@ -11,7 +11,7 @@ in
 {
   options = {
     nero-umu = {
-      enable = lib.mkEnableOption "Enable nero-umu in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable nero-umu in home-manager";
     };
   };
   config = lib.mkIf cfg.enable {
@@ -19,17 +19,24 @@ in
       { config, pkgs, ... }:
       {
         home.file = {
-          wine-links-proton-cachyos-nero = {
+          proton-links-proton-cachyos-nero = {
             enable = true;
-            source = "${inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
-            target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/proton-cachyos-nero";
+            source = "${
+              inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos_x86_64_v4
+            }/bin";
+            target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-proton-cachyos-nero-nix";
           };
-          wine-links-protonge-nero = {
+          proton-links-proton-em-nero = {
+            enable = true;
+            source = pkgs.proton-em.steamcompattool;
+            target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-proton-em-nero-nix";
+          };
+          proton-links-proton-ge-nero = {
             enable = true;
             source = "${
               inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.ge
             }/share/steam/compatibilitytools.d/proton-ge";
-            target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-bin-nero";
+            target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-nero-nix";
           };
         };
         home.packages = with pkgs; [

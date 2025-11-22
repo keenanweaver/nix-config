@@ -27,39 +27,53 @@ in
       { config, pkgs, ... }:
       {
         home.file = {
-          wine-links-kron4ek-bottles = {
+          proton-links-kron4ek-bottles = {
             enable = false;
             source = inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.wine-tkg;
-            target = "${config.xdg.dataHome}/bottles/runners/kron4ek";
+            target = "${config.xdg.dataHome}/bottles/runners/kron4ek-nix";
           };
-          wine-links-kron4ek-bottles-flatpak = {
+          proton-links-kron4ek-bottles-flatpak = {
             enable = false;
             source = inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.wine-tkg;
-            target = ".var/app/com.usebottles.bottles/data/bottles/runners/kron4ek";
+            target = ".var/app/com.usebottles.bottles/data/bottles/runners/kron4ek-nix";
           };
-          wine-links-proton-cachyos-bottles = {
+          proton-links-proton-cachyos-bottles = {
             enable = cfg.enableNative;
-            source = "${inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
-            target = "${config.xdg.dataHome}/bottles/runners/proton-cachyos";
+            source = "${
+              inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos_x86_64_v4
+            }/bin";
+            target = "${config.xdg.dataHome}/bottles/runners/proton-cachyos-nix";
           };
-          wine-links-proton-cachyos-flatpak-bottles = {
+          proton-links-proton-cachyos-flatpak-bottles = {
             enable = cfg.enableFlatpak;
-            source = "${inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.cachyos}/share/steam/compatibilitytools.d/proton-cachyos";
-            target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos";
+            source = "${
+              inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos_x86_64_v4
+            }/bin";
+            target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos-nix";
           };
-          wine-links-protonge-bottles = {
+          proton-links-proton-em-bottles = {
+            enable = cfg.enableNative;
+            source = pkgs.proton-em.steamcompattool;
+            target = "${config.xdg.dataHome}/bottles/runners/proton-em";
+          };
+          proton-links-proton-em-flatpak-bottles = {
+            enable = cfg.enableFlatpak;
+            source = pkgs.proton-em.steamcompattool;
+            target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-em-nix";
+          };
+          proton-links-proton-ge-bottles = {
             enable = cfg.enableNative;
             source = "${
               inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.ge
             }/share/steam/compatibilitytools.d/proton-ge";
-            target = "${config.xdg.dataHome}/bottles/runners/proton-ge-bin";
+            target = "${config.xdg.dataHome}/bottles/runners/proton-ge-bin-nix";
           };
-          wine-links-protonge-flatpak-bottles = {
+          proton-links-proton-ge-flatpak-bottles = {
             enable = cfg.enableFlatpak;
             source = "${
               inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.ge
             }/share/steam/compatibilitytools.d/proton-ge";
-            target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-bin";
+            target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-bin-nix";
           };
         };
         home.packages = lib.mkIf cfg.enableNative [

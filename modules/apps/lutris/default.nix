@@ -35,21 +35,26 @@ in
           wine-links-kron4ek-lutris-flatpak = {
             enable = cfg.enableFlatpak;
             source = inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.wine-tkg;
-            target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/kron4ek";
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/kron4ek-nix";
           };
-          wine-links-proton-cachyos-flatpak-lutris = {
+          proton-links-proton-cachyos-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = "${
-              inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.cachyos
-            }/share/steam/compatibilitytools.d/proton-cachyos";
-            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-cachyos";
+              inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos_x86_64_v4
+            }/bin";
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-cachyos-nix";
           };
-          wine-links-proton-ge-flatpak-lutris = {
+          proton-links-proton-em-flatpak-lutris = {
+            enable = cfg.enableFlatpak;
+            source = pkgs.proton-em.steamcompattool;
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-ge-nix";
+          };
+          proton-links-proton-ge-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = "${
               inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.ge
             }/share/steam/compatibilitytools.d/proton-ge";
-            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-ge-bin";
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-ge-nix";
           };
         };
         programs.lutris = lib.mkIf cfg.enableNative {
@@ -62,8 +67,9 @@ in
             winetricks
           ];
           protonPackages = with pkgs; [
-            #inputs.chaotic.packages.${stdenv.hostPlatform.system}.proton-cachyos
+            #inputs.chaotic.packages.${stdenv.hostPlatform.system}.proton-cachyos_x86_64_v4
             inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.proton.ge
+            proton-em
           ];
           steamPackage = osConfig.programs.steam.package;
           winePackages = with pkgs; [
