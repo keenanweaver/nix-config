@@ -107,6 +107,10 @@
       flake = false;
     };
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
+    yeetmouse = {
+      url = "github:AndyFilter/YeetMouse?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Theming
     catppuccin = {
@@ -232,6 +236,7 @@
               nur.modules.nixos.default
               sops-nix.nixosModules.sops
               ucodenix.nixosModules.default
+              yeetmouse.nixosModules.default
               home-manager.nixosModules.home-manager
               {
                 home-manager = {

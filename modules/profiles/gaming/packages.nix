@@ -67,13 +67,13 @@ with pkgs;
     arx-libertatis # Arx Fatalis
     augustus # Caesar 3
     bolt-launcher # RuneScape
-    clonehero # Guitar Hero
     corsix-th # Theme Hospital
+    gamma-launcher
     isle-portable
     jazz2
     #katawa-shoujo-re-engineered
     openjk # Jedi Academy
-    #openloco
+    openloco
     inputs.chaotic.packages.${stdenv.hostPlatform.system}.openmohaa_git
     openomf
     openrct2
@@ -94,13 +94,14 @@ with pkgs;
     urbanterror
     vvvvvv
     wipeout-rewrite
-    zelda64recomp
+    yarg
+    #zelda64recomp
   ];
   tools = [
     ## Emulators
     _86Box-with-roms
     # archipelago
-    inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.basiliskii-bin
+    #inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.basiliskii-bin
     # bizhawk
     dosbox-staging
     duckstation
@@ -120,7 +121,7 @@ with pkgs;
       ]
     ))
     scummvm
-    inputs.chaotic.packages.${stdenv.hostPlatform.system}.shadps4_git
+    #inputs.chaotic.packages.${stdenv.hostPlatform.system}.shadps4_git
     inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.sheepshaver-bin
     #nur.repos.novel2430.vita3k
     xenia-canary
@@ -131,11 +132,14 @@ with pkgs;
     ## Launchers & utils
     cartridges
     faugus-launcher
+    goverlay
+    inputs.just-one-more-repo.packages.${stdenv.hostPlatform.system}.scopebuddy
     ## Modding
     hedgemodmanager
     nur.repos.merrkry.jackify-bin
     limo
     nexusmods-app-unfree
+    inputs.just-one-more-repo.packages.${stdenv.hostPlatform.system}.r2modman
     ## Other
     adwsteamgtk
     chiaki-ng
