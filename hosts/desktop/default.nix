@@ -197,10 +197,18 @@
 
   systemd = {
     services = {
+      # NetworkManager-wait-online.wantedBy = lib.mkForce [ ];
+      plymouth-quit-wait.enable = false;
+    };
+    targets = {
+      hibernate.enable = false;
+      hybrid-sleep.enable = false;
+    };
+    user.services = {
       check-ram-on-boot = {
         description = "Check if all RAM is loaded on boot";
-        wantedBy = [ "multi-user.target" ];
-        after = [ "network.target" ];
+        wantedBy = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
         serviceConfig = {
           Type = "oneshot";
           ExecStart =
@@ -211,10 +219,11 @@
                 coreutils
                 kdePackages.kdialog
                 ripgrep
+                systemd
               ];
               text = ''
                 total_ram=$(rg MemTotal /proc/meminfo | tr -s ' ' | cut -d ' ' -f2)
-                if [ "$total_ram" -lt 65401140 ]; then
+                if [ "$total_ram" -lt 6000000 ]; then
                   if kdialog --title "RAM Issue" \
                     --warningyesno "Not all RAM loaded. Mobo messed up again.\n\nReboot now?"; then
                     systemctl reboot
@@ -225,25 +234,32 @@
           RemainAfterExit = false;
         };
       };
-      # NetworkManager-wait-online.wantedBy = lib.mkForce [ ];
-      plymouth-quit-wait.enable = false;
-    };
-    targets = {
-      hibernate.enable = false;
-      hybrid-sleep.enable = false;
     };
   };
 
-  home-manager.users.${username} = {
-    home = {
-      packages = with pkgs; [
-        amdgpu_top
-        nvtopPackages.amd
-      ];
-      sessionVariables = {
-        WAYLANDDRV_PRIMARY_MONITOR = "DP-1"; # https://reddit.com/r/linux_gaming/comments/1louxm2/fix_for_wine_wayland_using_wrong_monitor/
-        WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"; # 7950X3D
+  home-manager.users.${username} =
+    { config, ... }:
+    {
+      home = {
+        file = {
+          dxvk-conf = {
+            enable = true;
+            text = ''
+              dxvk.tearFree = True
+              dxgi.maxFrameRate = 328
+              d3d9.maxFrameRate = 328
+            '';
+            target = "${config.xdg.configHome}/dxvk/dxvk.conf";
+          };
+        };
+        packages = with pkgs; [
+          amdgpu_top
+          nvtopPackages.amd
+        ];
+        sessionVariables = {
+          WAYLANDDRV_PRIMARY_MONITOR = "DP-1"; # https://reddit.com/r/linux_gaming/comments/1louxm2/fix_for_wine_wayland_using_wrong_monitor/
+          WINE_CPU_TOPOLOGY = "16:0,1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"; # 7950X3D
+        };
       };
     };
-  };
 }
