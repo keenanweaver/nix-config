@@ -38,6 +38,9 @@
       "amd_iommu=on"
       "amd_pstate=guided"
     ];
+    loader = {
+      limine.style.interface.resolution = "1920x1080";
+    };
   };
 
   hardware = {

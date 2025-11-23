@@ -197,6 +197,34 @@
 
   systemd = {
     services = {
+      check-ram-on-boot = {
+        description = "Check if all RAM is loaded on boot";
+        wantedBy = [ "multi-user.target" ];
+        after = [ "network.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart =
+            with pkgs;
+            lib.getExe (writeShellApplication {
+              name = "check-ram-on-boot";
+              runtimeInputs = [
+                coreutils
+                kdePackages.kdialog
+                ripgrep
+              ];
+              text = ''
+                total_ram=$(rg MemTotal /proc/meminfo | tr -s ' ' | cut -d ' ' -f2)
+                if [ "$total_ram" -lt 65401140 ]; then
+                  if kdialog --title "RAM Issue" \
+                    --warningyesno "Not all RAM loaded. Mobo messed up again.\n\nReboot now?"; then
+                    systemctl reboot
+                  fi
+                fi
+              '';
+            });
+          RemainAfterExit = false;
+        };
+      };
       # NetworkManager-wait-online.wantedBy = lib.mkForce [ ];
       plymouth-quit-wait.enable = false;
     };

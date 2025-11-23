@@ -284,6 +284,7 @@
 
               ./hosts/laptop
 
+              #apollo.nixosModules.x86_64-linux.default
               catppuccin.nixosModules.catppuccin
               chaotic.nixosModules.default
               disko.nixosModules.disko

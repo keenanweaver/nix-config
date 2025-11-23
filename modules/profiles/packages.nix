@@ -38,7 +38,6 @@ in
         formatted;
     };
     nixpkgs.config.permittedInsecurePackages = [
-      "mbedtls-2.28.10" # openrgb, lutris, obs-studio
       "olm-3.2.16" # Neochat
     ];
     programs = {

@@ -29,7 +29,6 @@
     loader = {
       efi = {
         canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot";
       };
       limine = {
         enable = true;
@@ -38,17 +37,17 @@
           "efi/netbootxyz/netboot.xyz.efi" = "${pkgs.netbootxyz-efi}";
         };
         extraEntries = ''
-          /+Tools
-          //MemTest86
+          /Tools
+          //MemTest86+
             protocol: efi
+            comment: ${pkgs.memtest86plus.meta.description}
             path: boot():/limine/efi/memtest86/memtest.efi
           //Netboot.xyz
             protocol: efi
+            comment: ${pkgs.netbootxyz-efi.meta.description}
             path: boot():/limine/efi/netbootxyz/netboot.xyz.efi
         '';
-        secureBoot = {
-          enable = false;
-        };
+        secureBoot.enable = true;
       };
       timeout = 1;
     };

@@ -10,3 +10,4 @@
   * KDE: Adaptive Sync set to 'Automatic'
   * MangoHud: `vsync=2`, `gl_vsync=1`, `fps_limit=352` 97% of your refresh rate
   * DXVK: `dxvk.tearFree = True`
+* Sunshine: Keep KDE HDR setting to 'Prefer color accuracy' or colors are wrong
