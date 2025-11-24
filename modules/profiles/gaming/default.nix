@@ -258,17 +258,19 @@ in
           };
         };
 
-        nixpkgs = {
-          overlays = [
-            inputs.umu.overlays.default
-          ];
-        };
+        /*
+          nixpkgs = {
+                 overlays = [
+                   inputs.umu.overlays.default
+                 ];
+               };
+        */
 
         services = {
           flatpak = import ./flatpaks.nix { inherit config; };
           ludusavi = import ./ludusavi.nix { inherit config; };
           wayland-pipewire-idle-inhibit = {
-            enable = true;
+            enable = false;
             settings = {
               verbosity = "WARN";
               media_minimum_duration = 5;
