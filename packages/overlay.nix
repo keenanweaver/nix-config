@@ -55,7 +55,6 @@
       hash = "sha256-no2PvOMR2gNA7Kymn5P2JTBi0W/I1akENzJJr4L3ptc=";
     };
   };
-  tochd = prev.callPackage ./tochd { };
   xlink-kai = prev.callPackage ./xlink-kai { };
   z64decompress = prev.callPackage ./zelda64recomp/z64decompress.nix { };
   zelda64recomp = prev.callPackage ./zelda64recomp/zelda64recomp.nix { };

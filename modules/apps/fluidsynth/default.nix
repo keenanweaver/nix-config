@@ -39,7 +39,7 @@ in
         home.file = {
           midi-soundfonts-default = {
             enable = true;
-            source = config.lib.file.mkOutOfStoreSymlink cfg.soundFont;
+            source = cfg.soundFont;
             target = "${config.home.homeDirectory}/Music/soundfonts/default.sf2";
           };
         };

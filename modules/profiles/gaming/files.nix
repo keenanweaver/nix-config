@@ -12,7 +12,7 @@ in
     let
       configFile = pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
-        hash = "sha256-9q4EAXo/TFeJBi57cTabF5LmZCnnERMKvNtsV8USRnA=";
+        hash = "sha256-PF6JX+9xc1zbtUwc5HMPc2FdxYSR8EDk5c+ujad1Td4=";
       };
     in
     {
@@ -67,7 +67,7 @@ in
     };
   roms-mt32-exodos = {
     enable = true;
-    source = config.lib.file.mkOutOfStoreSymlink "${inputs.nonfree}/Music/roland";
+    source = "${inputs.nonfree}/Music/roland";
     target = "${config.xdg.configHome}/dosbox/mt32-roms";
   };
   screen-hdr-off = {

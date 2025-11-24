@@ -69,6 +69,7 @@ in
         services.flatpak = {
           packages = [
             "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/24.08"
+            "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/25.08"
           ];
         };
       };

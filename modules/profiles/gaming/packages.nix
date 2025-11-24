@@ -61,7 +61,7 @@ with pkgs;
     bstone
     ecwolf
     etlegacy
-    iortcw
+    #iortcw
     ## Other
     abuse
     arx-libertatis # Arx Fatalis
@@ -74,7 +74,7 @@ with pkgs;
     #katawa-shoujo-re-engineered
     openjk # Jedi Academy
     openloco
-    inputs.chaotic.packages.${stdenv.hostPlatform.system}.openmohaa_git
+    #inputs.chaotic.packages.${stdenv.hostPlatform.system}.openmohaa_git
     openomf
     openrct2
     openttd
