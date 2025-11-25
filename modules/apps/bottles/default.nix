@@ -63,16 +63,12 @@ in
           };
           proton-links-proton-ge-bottles = {
             enable = cfg.enableNative;
-            source = "${
-              inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.ge
-            }/share/steam/compatibilitytools.d/proton-ge";
+            source = "${inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-ge-custom}/bin";
             target = "${config.xdg.dataHome}/bottles/runners/proton-ge-bin-nix";
           };
           proton-links-proton-ge-flatpak-bottles = {
             enable = cfg.enableFlatpak;
-            source = "${
-              inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.ge
-            }/share/steam/compatibilitytools.d/proton-ge";
+            source = "${inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-ge-custom}/bin";
             target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-bin-nix";
           };
         };

@@ -91,7 +91,7 @@ in
           caligula
           cyanrip
           filezilla
-          fooyin
+          #fooyin
           freetube
           gearlever
           hacompanion

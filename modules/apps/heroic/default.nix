@@ -43,16 +43,12 @@ in
           };
           proton-links-proton-ge-heroic = {
             enable = cfg.enableNative;
-            source = "${
-              inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.ge
-            }/share/steam/compatibilitytools.d/proton-ge";
+            source = "${inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-ge-custom}/bin";
             target = "${config.xdg.configHome}/heroic/tools/proton/proton-ge-nix";
           };
           proton-links-proton-ge-flatpak-heroic = {
             enable = cfg.enableFlatpak;
-            source = "${
-              inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.ge
-            }/share/steam/compatibilitytools.d/proton-ge";
+            source = "${inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-ge-custom}/bin";
             target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-ge-nix";
           };
           proton-links-proton-em-heroic = {

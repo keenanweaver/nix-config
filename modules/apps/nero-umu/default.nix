@@ -33,9 +33,7 @@ in
           };
           proton-links-proton-ge-nero = {
             enable = true;
-            source = "${
-              inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.ge
-            }/share/steam/compatibilitytools.d/proton-ge";
+            source = "${inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-ge-custom}/bin";
             target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-nero-nix";
           };
         };

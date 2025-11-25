@@ -102,9 +102,12 @@ in
     hardware = {
       uinput.enable = true;
       xone.enable = true;
-      #yeetmouse = {
-      #  enable = true;
-      #};
+      #xpadneo.enable = true;
+      /*
+        yeetmouse = {
+             enable = true;
+           };
+      */
     };
 
     nix.settings = {
@@ -270,7 +273,7 @@ in
           flatpak = import ./flatpaks.nix { inherit config; };
           ludusavi = import ./ludusavi.nix { inherit config; };
           wayland-pipewire-idle-inhibit = {
-            enable = false;
+            enable = true;
             settings = {
               verbosity = "WARN";
               media_minimum_duration = 5;
