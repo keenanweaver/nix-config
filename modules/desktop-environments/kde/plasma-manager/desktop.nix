@@ -50,15 +50,14 @@
               {
                 kickoff =
                   let
-                    start-icon = pkgs.fetchurl {
-                      url = "https://repository-images.githubusercontent.com/596919733/e8621c86-692f-4fea-ba17-e41fc262ff70";
-                      hash = "sha256-XgWT+5hZiRRLpc44fYLNPucdT/oA9abgyboDWoSuKB8=";
+                    start-icon = builtins.path {
+                      path = ../../theming/nix-catppuccin-logo.png;
                     };
                   in
                   {
                     applicationsDisplayMode = "list";
                     compactDisplayStyle = true;
-                    icon = "${start-icon}";
+                    icon = start-icon;
                     favoritesDisplayMode = "grid";
                     # pin = true;
                     showActionButtonCaptions = true;

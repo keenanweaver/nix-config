@@ -39,16 +39,22 @@
           floating = false;
           widgets = [
             {
-              kickoff = {
-                applicationsDisplayMode = "list";
-                compactDisplayStyle = true;
-                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
-                favoritesDisplayMode = "grid";
-                # pin = true;
-                showActionButtonCaptions = true;
-                showButtonsFor = "power";
-                sortAlphabetically = true;
-              };
+              kickoff =
+                let
+                  start-icon = builtins.path {
+                    path = ../../theming/nix-catppuccin-logo.png;
+                  };
+                in
+                {
+                  applicationsDisplayMode = "list";
+                  compactDisplayStyle = true;
+                  icon = start-icon;
+                  favoritesDisplayMode = "grid";
+                  # pin = true;
+                  showActionButtonCaptions = true;
+                  showButtonsFor = "power";
+                  sortAlphabetically = true;
+                };
             }
             {
               iconTasks = {
