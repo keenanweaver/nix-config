@@ -40,22 +40,28 @@ FullHeightButtonWidthMarginRight=8
 ScaleBackgroundPercent=150
 SpacerButtonWidthRelative=50
 
+[Style]
+ButtonGradient=true
+
+[SystemIconGeneration]
+KlassyDarkIconThemeInherits=Papirus-Dark
+KlassyIconThemeInherits=Papirus
+
 [TitleBarSpacing]
 PercentMaximizedTopBottomMargins=70
-TitleBarBottomMargin=3
 TitleBarLeftMargin=4
 TitleBarRightMargin=4
-TitleBarTopMargin=3
 
 [Windeco]
 BoldButtonIcons=BoldIconsBold
 ButtonIconStyle=StyleOxygen
 ButtonShape=ShapeSmallCircle
 ColorizeThinWindowOutlineWithButton=false
-IconSize=IconSmallMedium
+DrawBackgroundGradient=true
+IconSize=IconSmall
 WindowCornerRadius=10
 
 [WindowOutlineStyle]
 LockThinWindowOutlineStyleActiveInactive=true
 ThinWindowOutlineStyleActive=WindowOutlineContrast
-ThinWindowOutlineThickness=1.75
+ThinWindowOutlineThickness=1.1500000000000001
