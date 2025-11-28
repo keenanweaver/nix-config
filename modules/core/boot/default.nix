@@ -33,7 +33,7 @@
       limine = {
         enable = true;
         additionalFiles = {
-          "efi/memtest86/memtest.efi" = "${pkgs.memtest86plus}/memtest.efi";
+          "efi/memtest86/mt86plus.efi" = "${pkgs.memtest86plus}/mt86plus.efi";
           "efi/netbootxyz/netboot.xyz.efi" = "${pkgs.netbootxyz-efi}";
         };
         extraEntries = ''
@@ -41,8 +41,8 @@
           //MemTest86+
             protocol: efi
             comment: ${pkgs.memtest86plus.meta.description}
-            path: boot():/limine/efi/memtest86/memtest.efi
-          //Netboot.xyz
+            path: boot():/limine/efi/memtest86/mt86plus.efi
+          //netboot.xyz
             protocol: efi
             comment: ${pkgs.netbootxyz-efi.meta.description}
             path: boot():/limine/efi/netbootxyz/netboot.xyz.efi
