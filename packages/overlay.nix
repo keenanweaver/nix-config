@@ -15,12 +15,12 @@
   };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nero-umu = prev.nero-umu.overrideAttrs {
-    version = "1.1.5-unstable-11-06-2025";
+    version = "1.1.5-unstable-11-29-2025";
     src = prev.fetchFromGitHub {
       owner = "SeongGino";
       repo = "Nero-umu";
-      rev = "f4f2774947303f2933314bf7be7f793a29f752f5";
-      hash = "sha256-iurEgd5ChR+Y5/JWgnJDQNBq+BcOfUVOTafcAKVPXYI=";
+      rev = "4db5173ab37bc41d5c015ff1bdb4bf3f9a76af09";
+      hash = "sha256-vITwvh2Afw3OXyiipk7KETPS5RfTbYYAWk3LhqR4nUM=";
     };
   };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
