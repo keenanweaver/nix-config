@@ -14,11 +14,11 @@ in
       enable = lib.mkEnableOption "Enable bottles in home-manager";
       enableFlatpak = lib.mkOption {
         type = lib.types.bool;
-        default = true;
+        default = false;
       };
       enableNative = lib.mkOption {
         type = lib.types.bool;
-        default = false;
+        default = true;
       };
     };
   };
