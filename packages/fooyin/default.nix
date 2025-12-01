@@ -69,6 +69,10 @@ stdenv.mkDerivation (finalAttrs: {
 
   env.LANG = "C.UTF-8";
 
+  patches = [
+    ./qt.patch
+  ];
+
   meta = {
     description = "Customisable music player";
     homepage = "https://www.fooyin.org/";

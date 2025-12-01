@@ -91,7 +91,7 @@ in
           caligula
           cyanrip
           filezilla
-          #fooyin
+          fooyin
           freetube
           gearlever
           hacompanion
@@ -114,7 +114,7 @@ in
           rustdesk-flutter
           signal-desktop
           varia
-          #winboat
+          winboat
         ];
         xdg = {
           desktopEntries = {
