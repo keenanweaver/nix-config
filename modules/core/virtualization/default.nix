@@ -28,7 +28,7 @@ in
 
     environment = {
       systemPackages = with pkgs; [
-        docker-compose
+        #docker-compose
         podlet
         quickemu
         spice
@@ -41,7 +41,7 @@ in
 
     networking.firewall.trustedInterfaces = [ "virbr0" ];
 
-    programs.virt-manager.enable = true;
+    programs.virt-manager.enable = vars.desktop;
 
     services = {
       spice-vdagentd.enable = vars.desktop;
@@ -49,18 +49,14 @@ in
     };
 
     virtualisation = {
-      docker = {
+      containers = {
         enable = true;
       };
       podman = {
         enable = true;
-        autoPrune = {
-          enable = true;
-          dates = "weekly";
-        };
         defaultNetwork.settings.dns_enabled = true;
         #dockerCompat = true;
-        #dockerSocket.enable = true;
+        dockerSocket.enable = true;
       };
       libvirtd = {
         # Make sure you run this once: "sudo virsh net-autostart default"
@@ -85,7 +81,6 @@ in
       users = {
         ${username} = {
           extraGroups = [
-            "docker"
             "kvm"
             "libvirtd"
             "podman"
