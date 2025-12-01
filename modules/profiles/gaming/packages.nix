@@ -112,14 +112,6 @@ with pkgs;
     mesen
     nuked-sc55
     # inputs.chaotic.packages.${stdenv.hostPlatform.system}.pcsx2_git
-    (retroarch.withCores (
-      cores: with cores; [
-        beetle-psx-hw
-        beetle-saturn
-        blastem
-        mgba
-      ]
-    ))
     scummvm
     #inputs.chaotic.packages.${stdenv.hostPlatform.system}.shadps4_git
     inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.sheepshaver-bin

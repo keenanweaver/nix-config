@@ -39,6 +39,7 @@ in
     nero-umu.enable = true;
     nonfree.enable = true;
     obs.enable = true;
+    retroarch.enable = true;
     steam.enable = true;
     sunshine.enable = true;
     vkbasalt.enable = true;

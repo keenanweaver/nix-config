@@ -48,6 +48,7 @@
     ./obs
     ./pay-respects
     ./rclone
+    ./retroarch
     ./ripgrep
     ./rmpc
     ./solaar
