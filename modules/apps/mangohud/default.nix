@@ -62,6 +62,7 @@ in
               gpu_temp
               gpu_core_clock
               gpu_power
+              gpu_power_limit
               gpu_load_change
               gpu_load_value=60,90
               gpu_fan
@@ -87,6 +88,7 @@ in
               ## RAM ##
               #########
               vram
+              proc_vram
               gpu_mem_temp
               swap
               ram
@@ -98,6 +100,7 @@ in
               exec_name
               arch
               vulkan_driver
+              dx_api
               wine
               winesync
               gamemode
