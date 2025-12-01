@@ -10,12 +10,16 @@ in
 {
   options = {
     nh = {
-      enable = lib.mkEnableOption "Enable nh in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable nh in NixOS";
     };
   };
   config = lib.mkIf cfg.enable {
     programs.nh = {
       enable = true;
+      clean = {
+        enable = true;
+        extraArgs = "--keep-since 14d --keep 3";
+      };
       flake = "/mnt/crusader/Projects/Codeberg/nix-config";
     };
     home-manager.users.${username} = { };
