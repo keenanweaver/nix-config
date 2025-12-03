@@ -100,7 +100,7 @@ in
               exec_name
               arch
               vulkan_driver
-              dx_api
+              # dx_api
               wine
               winesync
               gamemode

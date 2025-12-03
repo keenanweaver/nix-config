@@ -22,7 +22,7 @@ with pkgs;
     odamex
     rbdoom-3-bfg
     slade
-    inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.uzdoom
+    uzdoom
     woof-doom
     zandronum
     ## Fallout
