@@ -102,7 +102,7 @@ in
 
     hardware = {
       uinput.enable = true;
-      xone.enable = true;
+      #xone.enable = true;
       #xpadneo.enable = true;
       /*
         yeetmouse = {
@@ -229,12 +229,20 @@ in
       {
         inputs,
         config,
+        osConfig,
         lib,
         ...
       }:
       {
         home = {
-          file = import ./files.nix { inherit pkgs inputs config; };
+          file = import ./files.nix {
+            inherit
+              pkgs
+              inputs
+              config
+              osConfig
+              ;
+          };
           packages =
             with lib;
             mkIf cfg.installPackages (

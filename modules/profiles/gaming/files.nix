@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   config,
+  osConfig,
   ...
 }:
 let
@@ -65,10 +66,20 @@ in
       '';
       target = "${config.xdg.dataHome}/templates/vkBasalt.desktop";
     };
-  roms-mt32-exodos = {
+  dosbox-roms-mt32 = {
     enable = true;
-    source = "${inputs.nonfree}/Music/roland";
+    source = "${inputs.nonfree}/Music/roland/mt32";
     target = "${config.xdg.configHome}/dosbox/mt32-roms";
+  };
+  dosbox-roms-sc55 = {
+    enable = true;
+    source = "${inputs.nonfree}/Music/roland/sc55";
+    target = "${config.xdg.configHome}/dosbox/soundcanvas-roms";
+  };
+  dosbox-soundfont = {
+    enable = true;
+    source = osConfig.fluidsynth.soundFont;
+    target = "${config.xdg.configHome}/dosbox/soundfonts/default.sf2";
   };
   screen-hdr-off = {
     enable = true;
