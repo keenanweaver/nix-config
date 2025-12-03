@@ -148,7 +148,7 @@ with pkgs;
     parsec-bin
     protonplus
     tochd
-    #xlink-kai
+    xlink-kai
     xvidcore
     ## Wine
     inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.winegui
