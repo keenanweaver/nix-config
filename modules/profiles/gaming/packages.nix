@@ -61,7 +61,6 @@ with pkgs;
     bstone
     ecwolf
     etlegacy
-    #iortcw
     ## Other
     abuse
     arx-libertatis # Arx Fatalis
@@ -74,7 +73,6 @@ with pkgs;
     #katawa-shoujo-re-engineered
     openjk # Jedi Academy
     openloco
-    #inputs.chaotic.packages.${stdenv.hostPlatform.system}.openmohaa_git
     openomf
     openrct2
     openttd
@@ -95,7 +93,7 @@ with pkgs;
     vvvvvv
     wipeout-rewrite
     yarg
-    #zelda64recomp
+    zelda64recomp
   ];
   tools = [
     ## Emulators
