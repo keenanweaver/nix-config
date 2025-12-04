@@ -104,11 +104,9 @@ in
       uinput.enable = true;
       #xone.enable = true;
       #xpadneo.enable = true;
-      /*
-        yeetmouse = {
-             enable = true;
-           };
-      */
+      yeetmouse = {
+        enable = false;
+      };
     };
 
     nix.settings = {
@@ -265,7 +263,8 @@ in
             AMD_VULKAN_ICD = "RADV";
             MESA_SHADER_CACHE_MAX_SIZE = "12G";
             # https://reddit.com/r/linux_gaming/comments/1mg8vtl/low_latency_gaming_guide/
-            MESA_VK_WSI_PRESENT_MODE = "fifo";
+            KWIN_DRM_NO_AMS = "1";
+            MESA_VK_WSI_PRESENT_MODE = "immediate";
             SDL_VIDEODRIVER = "wayland,x11";
           };
         };

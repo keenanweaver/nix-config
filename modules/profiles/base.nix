@@ -171,13 +171,12 @@ in
             dbe = "db enter";
             imp = "${lib.getExe config.programs.fd.package} --one-file-system --base-directory / -t f -H -E '{tmp,etc/passwd,var/lib/systemd/coredump}'"; # https://reddit.com/r/NixOS/comments/1nhm4mm/tailscale_impermanence_broken/nedm0vd/?context=3#nedm0vd
             l = "${lib.getExe config.programs.lsd.package} -la --group-dirs=first";
-            nv = lib.getExe' config.programs.nvf.settings.vim.package "neovim";
             ngc = "${lib.getExe config.programs.nh.package} clean all";
             nor = "${lib.getExe config.programs.nh.package} os switch";
             npr = "${lib.getExe pkgs.nixpkgs-review} pr --print-result";
-            psr = "plasmashell --replace & disown";
-            rbn = "podman stop -a && systemctl reboot";
-            repw = "systemctl --user restart pipewire{,-pulse} wireplumber";
+            psr = "${lib.getExe' pkgs.kdePackages.plasma-workspace "plasmashell"} --replace & disown";
+            rbn = "${lib.getExe pkgs.podman} stop -a && ${lib.getExe' pkgs.systemd "systemctl"} reboot";
+            repw = "${lib.getExe' pkgs.systemd "systemctl"} --user restart pipewire{,-pulse} wireplumber";
             upd = lib.getExe pkgs.topgrade;
             wget = "${lib.getExe pkgs.wget} --hsts-file=${config.xdg.dataHome}/wget-hsts";
           };

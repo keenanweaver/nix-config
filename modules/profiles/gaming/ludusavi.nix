@@ -52,10 +52,9 @@
           "${config.xdg.dataHome}/crispy-doom/savegames"
           "${config.xdg.dataHome}/crispy-heretic/savegames"
           "${config.xdg.dataHome}/crispy-hexen/savegames"
-          "${config.xdg.dataHome}/doom64ex-minus/*.dsg"
           "${config.xdg.dataHome}/nugget-doom/savegames"
+          "${config.xdg.dataHome}/uzdoom/savegames"
           "${config.xdg.dataHome}/woof/savegames"
-          "${config.xdg.configHome}/uzdoom/savegames"
         ];
       }
       {
@@ -92,6 +91,13 @@
         files = [
           "${config.home.homeDirectory}/.var/app/info.exult.exult/data/forgeofvirtue/save/*.sav"
           "${config.home.homeDirectory}/.var/app/info.exult.exult/data/silverseed/save/*.sav"
+        ];
+      }
+      {
+        name = "Marathon";
+        files = [
+          "${config.home.homeDirectory}/.alephone/Quick Saves"
+          "${config.home.homeDirectory}/.alephone/Saved Games"
         ];
       }
       {

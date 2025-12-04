@@ -111,7 +111,7 @@ with pkgs;
     nuked-sc55
     # inputs.chaotic.packages.${stdenv.hostPlatform.system}.pcsx2_git
     scummvm
-    #inputs.chaotic.packages.${stdenv.hostPlatform.system}.shadps4_git
+    shadps4
     inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.sheepshaver-bin
     #nur.repos.novel2430.vita3k
     xenia-canary
