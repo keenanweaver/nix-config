@@ -13,7 +13,7 @@ in
     let
       configFile = pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/doitsujin/dxvk/master/dxvk.conf";
-        hash = "sha256-PF6JX+9xc1zbtUwc5HMPc2FdxYSR8EDk5c+ujad1Td4=";
+        hash = "sha256-UiCSte2pEBgg21ERVj+LSsY8I/8RKyySwzDvnopJRVI=";
       };
     in
     {

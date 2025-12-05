@@ -34,7 +34,7 @@ in
             name,
             bin,
             container,
-            args ? "${pkgs.obs-studio-plugins.obs-vkcapture}/bin/obs-gamecapture ${pkgs.mangohud}/bin/mangohud",
+            args ? "${pkgs.obs-studio-plugins.obs-vkcapture}/bin/obs-gamecapture ${config.programs.mangohud.package}/bin/mangohud",
             extraEnv ? {
               MANGOHUD_CONFIG = "${config.xdg.configHome}/MangoHud/MangoHud.conf";
               PIPEWIRE_NODE = "Game";
@@ -88,7 +88,7 @@ in
           {
             name = "exogui";
             bin = "/mnt/crusader/Games/eXo/eXoDOS/exogui/exogui";
-            args = "/usr/bin/obs-gamecapture ${pkgs.mangohud}/bin/mangohud";
+            args = "/usr/bin/obs-gamecapture ${config.programs.mangohud.package}/bin/mangohud";
             container = "exodos";
             preExec = "cd /mnt/crusader/Games/eXo/eXoDOS/exogui";
           }
@@ -186,6 +186,7 @@ in
               [
                 (import ./bootstrap-distrobox.nix {
                   inherit
+                    config
                     lib
                     username
                     pkgs
