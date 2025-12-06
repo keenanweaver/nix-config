@@ -52,6 +52,9 @@ in
       networkmanager = {
         enable = true;
       };
+      nftables = {
+        enable = true;
+      };
       useDHCP = lib.mkDefault true;
       wireguard.enable = true;
     };
