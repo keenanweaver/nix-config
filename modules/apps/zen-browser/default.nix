@@ -45,6 +45,7 @@ in
             user_pref("widget.use-xdg-desktop-portal.mime-handler", 1);
             user_pref("widget.use-xdg-desktop-portal.file-picker", 1);
             /* Hardware acceleration */
+            user_pref("gfx.wayland.hdr", true);
             user_pref("gfx.webrender.all", true);
             user_pref("media.ffmpeg.vaapi.enable", true);
             /* Font */

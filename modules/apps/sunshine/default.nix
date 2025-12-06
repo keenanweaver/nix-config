@@ -52,8 +52,30 @@
               name = "Desktop";
               prep-cmd = [
                 {
-                  do = "${lib.getExe pkgs.kdePackages.libkscreen} output.${primaryDisplay}.mode.2560x1440@120";
-                  undo = "${lib.getExe pkgs.kdePackages.libkscreen} output.${primaryDisplay}.mode.2560x1440@360";
+                  do =
+                    with pkgs;
+                    lib.getExe (writeShellApplication {
+                      name = "sunshine-desktop-do";
+                      runtimeInputs = [
+                        kdePackages.libkscreen
+                      ];
+                      text = ''
+                        kscreen-doctor output.${primaryDisplay}.hdr.disable output.${primaryDisplay}.wcg.disable
+                        kscreen-doctor output.${primaryDisplay}.mode.2560x1440@120
+                      '';
+                    });
+                  undo =
+                    with pkgs;
+                    lib.getExe (writeShellApplication {
+                      name = "sunshine-desktop-undo";
+                      runtimeInputs = [
+                        kdePackages.libkscreen
+                      ];
+                      text = ''
+                        kscreen-doctor output.${primaryDisplay}.hdr.enable output.${primaryDisplay}.wcg.enable
+                        kscreen-doctor output.${primaryDisplay}.mode.2560x1440@360
+                      '';
+                    });
                 }
               ];
               exclude-global-prep-cmd = "false";
