@@ -47,12 +47,12 @@
   rsdkv4 = prev.callPackage ./rsdk/v4 { };
   rsdkv5 = prev.callPackage ./rsdk/v5 { };
   scummvm = prev.scummvm.overrideAttrs {
-    version = "3.0.0-unstable-11-22-2025";
+    version = "3.0.0-unstable-12-06-2025";
     src = prev.fetchFromGitHub {
       owner = "scummvm";
       repo = "scummvm";
-      rev = "0ad54bf79ef8efe3138ecaf047b00f3cb7b678e9";
-      hash = "sha256-no2PvOMR2gNA7Kymn5P2JTBi0W/I1akENzJJr4L3ptc=";
+      rev = "4ddb84c13352d04ab8dbeafe81f2fb6a37abc6a1";
+      hash = "sha256-G2NZAEY1H49SrPjnRD4npcaWCN5L1tJWZ54y9iBSBvc=";
     };
   };
   xlink-kai = prev.callPackage ./xlink-kai { };
