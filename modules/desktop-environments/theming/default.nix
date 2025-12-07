@@ -186,22 +186,22 @@ in
           file = {
             catppuccin-gtk = {
               enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.kdePackages.breeze-gtk}/share/themes/${GTK-THEME}";
+              source = "${pkgs.kdePackages.breeze-gtk}/share/themes/${GTK-THEME}";
               target = "${config.xdg.dataHome}/themes/${GTK-THEME}";
             };
             catppuccin-ghostwriter = {
               enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-ghostwriter}/themes/catppuccin-${flavor-lower}-${accent-lower}.json";
+              source = "${inputs.catppuccin-ghostwriter}/themes/catppuccin-${flavor-lower}-${accent-lower}.json";
               target = "${config.xdg.dataHome}/ghostwriter/themes/catppuccin-${flavor-lower}-${accent-lower}.json";
             };
             catppuccin-heroic = {
               enable = vars.gaming;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-heroic}/themes/catppuccin-${flavor-lower}-${accent-lower}.css";
+              source = "${inputs.catppuccin-heroic}/themes/catppuccin-${flavor-lower}-${accent-lower}.css";
               target = "Games/Heroic/catppuccin-${flavor-lower}-${accent-lower}.css";
             };
             catppuccin-konsole = {
               enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-konsole}/themes/catppuccin-${flavor-lower}.colorscheme";
+              source = "${inputs.catppuccin-konsole}/themes/catppuccin-${flavor-lower}.colorscheme";
               target = "${config.xdg.dataHome}/konsole/catppuccin-${flavor-lower}.colorscheme";
             };
             catppuccin-konsole-transparent = {
@@ -217,17 +217,17 @@ in
             catppuccin-obs-flatpak = {
               enable = true;
               recursive = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-obs}/themes";
+              source = "${inputs.catppuccin-obs}/themes";
               target = ".var/app/com.obsproject.Studio/config/obs-studio/themes";
             };
             catppuccin-powershell = {
               enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-powershell}";
+              source = "${inputs.catppuccin-powershell}";
               target = "${config.xdg.dataHome}/powershell/Modules/Catppuccin";
             };
             catppuccin-zen-flatpak = {
               enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${inputs.catppuccin-zen}/themes/${flavor-upper}/${accent-upper}";
+              source = "${inputs.catppuccin-zen}/themes/${flavor-upper}/${accent-upper}";
               target = ".var/app/app.zen_browser.zen/.zen/${username}/chrome";
             };
             cursor-theme-default = {
@@ -246,7 +246,7 @@ in
             # Flatpak theming issue workarounds
             flatpak-font = {
               enable = true;
-              source = config.lib.file.mkOutOfStoreSymlink "${pkgs.inter}/share/fonts/opentype";
+              source = "${pkgs.inter}/share/fonts/opentype";
               target = "${config.xdg.dataHome}/fonts/inter";
             };
             gtk3-config-colors = {
