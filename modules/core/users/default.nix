@@ -27,10 +27,9 @@ in
         "${username}" = {
           description = "${fullname}";
           isNormalUser = true;
-          initialHashedPassword = "$y$j9T$B1obD.4xOr/6gJ6FCsu1v/$7axAjbaqRpFR3zGZVbOuCRGUNGJXyRxdavAHIyOdyK.";
+          hashedPasswordFile = config.sops.secrets.user_pass.path;
           extraGroups = [
             "adbusers"
-            "audio"
             "i2c"
             "input"
             "networkmanager"

@@ -16,7 +16,7 @@
     defaultSopsFormat = "yaml";
     secrets = {
       github_token = { };
-      pass = {
+      user_pass = {
         neededForUsers = true;
       };
     };

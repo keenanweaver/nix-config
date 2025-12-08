@@ -11,6 +11,7 @@
 
   fileSystems."/home" = {
     fsType = "btrfs";
+    neededForBoot = true; # Needed for sops secrets
     options = [
       "compress=zstd:3"
       "subvol=home"

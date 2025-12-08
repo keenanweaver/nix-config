@@ -103,7 +103,7 @@ in
       #xone.enable = true;
       #xpadneo.enable = true;
       yeetmouse = {
-        enable = true;
+        enable = false;
       };
     };
 
