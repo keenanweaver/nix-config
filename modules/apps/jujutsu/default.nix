@@ -3,7 +3,6 @@
   config,
   username,
   pkgs,
-  inputs,
   ...
 }:
 let
@@ -22,7 +21,6 @@ in
       ];
       programs.jujutsu = {
         enable = true;
-        package = inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.jujutsu_git;
       };
     };
   };

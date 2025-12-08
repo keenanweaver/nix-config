@@ -109,7 +109,6 @@ with pkgs;
     mednaffe
     mesen
     nuked-sc55
-    # inputs.chaotic.packages.${stdenv.hostPlatform.system}.pcsx2_git
     scummvm
     shadps4
     inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.sheepshaver-bin

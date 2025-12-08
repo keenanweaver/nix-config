@@ -39,9 +39,7 @@ in
           };
           proton-links-proton-cachyos-flatpak-lutris = {
             enable = cfg.enableFlatpak;
-            source = "${
-              inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos_x86_64_v4
-            }/bin";
+            source = pkgs.proton-cachyos.steamcompattool;
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-cachyos-nix";
           };
           proton-links-proton-em-flatpak-lutris = {
@@ -51,9 +49,7 @@ in
           };
           proton-links-proton-ge-flatpak-lutris = {
             enable = cfg.enableFlatpak;
-            source = "${
-              inputs.nur-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton.ge
-            }/share/steam/compatibilitytools.d/proton-ge";
+            source = pkgs.proton-ge.steamcompattool;
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-ge-nix";
           };
         };
@@ -67,9 +63,9 @@ in
             winetricks
           ];
           protonPackages = with pkgs; [
-            #inputs.chaotic.packages.${stdenv.hostPlatform.system}.proton-cachyos_x86_64_v4
-            inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.proton.ge
+            #proton-cachyos
             proton-em
+            proton-ge
           ];
           steamPackage = osConfig.programs.steam.package;
           winePackages = with pkgs; [

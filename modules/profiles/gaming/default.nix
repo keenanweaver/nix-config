@@ -82,8 +82,6 @@ in
       };
     };
 
-    chaotic.mesa-git.enable = true;
-
     environment = {
       etc = {
         logitech-g920 = {
@@ -105,7 +103,7 @@ in
       #xone.enable = true;
       #xpadneo.enable = true;
       yeetmouse = {
-        enable = false;
+        enable = true;
       };
     };
 

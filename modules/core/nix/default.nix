@@ -3,6 +3,7 @@
   config,
   username,
   vars,
+  inputs,
   ...
 }:
 let
@@ -43,7 +44,7 @@ in
         allowUnfree = true;
       };
       overlays = [
-        (import ../../../packages/overlay.nix)
+        (import ../../../packages/overlay.nix { inherit inputs; })
       ];
     };
     system = {
@@ -65,7 +66,7 @@ in
           allowUnfree = true;
         };
         overlays = [
-          (import ../../../packages/overlay.nix)
+          (import ../../../packages/overlay.nix { inherit inputs; })
         ];
       };
     };

@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -225,7 +224,6 @@
 
               apollo.nixosModules.x86_64-linux.default
               catppuccin.nixosModules.catppuccin
-              chaotic.nixosModules.default
               disko.nixosModules.disko
               ./hosts/desktop/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB" ]; }
@@ -286,7 +284,6 @@
 
               apollo.nixosModules.x86_64-linux.default
               catppuccin.nixosModules.catppuccin
-              chaotic.nixosModules.default
               disko.nixosModules.disko
               ./hosts/laptop/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/nvme-eui.5cd2e48231514cb8" ]; }
@@ -346,7 +343,6 @@
 
               ./hosts/pi/remorse.nix
 
-              chaotic.nixosModules.default
               impermanence.nixosModules.impermanence
               nix-flatpak.nixosModules.nix-flatpak
               nixos-hardware.nixosModules.raspberry-pi-4
@@ -402,7 +398,6 @@
               ./hosts/pi/regret.nix
 
               catppuccin.nixosModules.catppuccin
-              chaotic.nixosModules.default
               impermanence.nixosModules.impermanence
               nix-flatpak.nixosModules.nix-flatpak
               nixos-hardware.nixosModules.raspberry-pi-4
@@ -457,7 +452,6 @@
               ./hosts/vm
 
               catppuccin.nixosModules.catppuccin
-              chaotic.nixosModules.default
               disko.nixosModules.disko
               ./hosts/vm/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/virtio-vdisk1" ]; }

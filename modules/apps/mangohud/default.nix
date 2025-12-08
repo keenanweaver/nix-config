@@ -170,7 +170,6 @@ in
         };
         programs.mangohud = {
           enable = true;
-          package = inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.mangohud_git;
         };
         services.flatpak = {
           overrides = {

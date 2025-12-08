@@ -150,7 +150,6 @@ in
             };
             distrobox = {
               enable = true;
-              package = inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.distrobox_git;
               containers = {
                 exodos = lib.mkIf cfg.gaming {
                   #home = "${config.xdg.dataHome}/distrobox/exodos";

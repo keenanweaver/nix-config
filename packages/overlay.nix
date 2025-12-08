@@ -1,3 +1,5 @@
+{ inputs }:
+
 (final: prev: {
   fooyin = prev.callPackage ./fooyin { };
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder/gsr.nix { };
@@ -41,7 +43,13 @@
       hash = "sha256-QDdZKB9k7MukWUj/G/ZCPVOygRluDepx2gy9URosP9Y=";
     };
   };
-  proton-em = prev.callPackage ./proton-em { };
+  proton-cachyos = inputs.nur-bandithedoge.legacyPackages.${final.stdenv.hostPlatform.system}.proton.cachyos.override {
+    steamDisplayName = "Proton-CachyOS v3";
+  };
+  proton-em = final.callPackage ./proton-em { };
+  proton-ge = inputs.nur-bandithedoge.legacyPackages.${final.stdenv.hostPlatform.system}.proton.ge.override {
+    steamDisplayName = "GE-Proton";
+  };
   relive = prev.callPackage ./relive { };
   rsdkv3 = prev.callPackage ./rsdk/v3 { };
   rsdkv4 = prev.callPackage ./rsdk/v4 { };

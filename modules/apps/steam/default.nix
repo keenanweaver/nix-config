@@ -53,10 +53,9 @@ in
         privateTmp = false; # https://github.com/NixOS/nixpkgs/issues/381923
       };
       extraCompatPackages = with pkgs; [
-        luxtorpeda
-        inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos_x86_64_v4
+        proton-cachyos
         proton-em
-        inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-ge-custom
+        proton-ge
       ];
       localNetworkGameTransfers.openFirewall = true;
       protontricks.enable = true;

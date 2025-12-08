@@ -2,7 +2,6 @@
   lib,
   config,
   username,
-  inputs,
   ...
 }:
 let
@@ -21,7 +20,6 @@ in
         home.packages = with pkgs; [ media-downloader ];
         programs.yt-dlp = {
           enable = true;
-          package = inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.yt-dlp_git;
         };
       };
   };

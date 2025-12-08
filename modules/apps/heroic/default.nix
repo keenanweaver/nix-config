@@ -29,26 +29,22 @@ in
         home.file = {
           proton-links-proton-cachyos-heroic = {
             enable = cfg.enableNative;
-            source = "${
-              inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos_x86_64_v4
-            }/bin";
+            source = pkgs.proton-cachyos.steamcompattool;
             target = "${config.xdg.configHome}/heroic/tools/proton/proton-cachyos-nix";
           };
           proton-links-proton-cachyos-flatpak-heroic = {
             enable = cfg.enableFlatpak;
-            source = "${
-              inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos_x86_64_v4
-            }/bin";
+            source = pkgs.proton-cachyos.steamcompattool;
             target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-cachyos-nix";
           };
           proton-links-proton-ge-heroic = {
             enable = cfg.enableNative;
-            source = "${inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-ge-custom}/bin";
+            source = pkgs.proton-ge.steamcompattool;
             target = "${config.xdg.configHome}/heroic/tools/proton/proton-ge-nix";
           };
           proton-links-proton-ge-flatpak-heroic = {
             enable = cfg.enableFlatpak;
-            source = "${inputs.chaotic.packages.${pkgs.stdenv.hostPlatform.system}.proton-ge-custom}/bin";
+            source = pkgs.proton-ge.steamcompattool;
             target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-ge-nix";
           };
           proton-links-proton-em-heroic = {
