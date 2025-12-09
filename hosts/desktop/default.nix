@@ -145,6 +145,7 @@
                 176400
                 192000
               ];
+              # https://reddit.com/r/linux_gaming/comments/1gy347h/newbie_here_ive_tried_almost_all_fixes_theres/lylqijj/?context=3#lylqijj
               "default.clock.quantum" = 256;
               "default.clock.min-quantum" = 256;
               "default.clock.max-quantum" = 256;
