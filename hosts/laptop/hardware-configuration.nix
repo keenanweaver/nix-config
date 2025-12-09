@@ -9,6 +9,7 @@
   };
 
   fileSystems."/home" = {
+    neededForBoot = true; # Needed for sops secrets
     options = [
       "compress=zstd"
       "subvol=home"

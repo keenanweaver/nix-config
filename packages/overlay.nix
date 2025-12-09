@@ -35,12 +35,12 @@
   };
   openxcom = prev.openxcom.overrideAttrs {
     pname = "openxcom-extended";
-    version = "8.4.2";
+    version = "8.4.4";
     src = prev.fetchFromGitHub {
       owner = "MeridianOXC";
       repo = "OpenXcom";
-      rev = "0ad66a8f0806896a1fab3747d693595c477fa820";
-      hash = "sha256-QDdZKB9k7MukWUj/G/ZCPVOygRluDepx2gy9URosP9Y=";
+      rev = "d6eeaac0c7e10d5b85ded92a224fdc324c7f9a88";
+      hash = "sha256-vppJmd+wrud9Xvx13aGM6O+YDQH5ZDxfHYTlMtAq6uE=";
     };
   };
   proton-cachyos = inputs.nur-bandithedoge.legacyPackages.${final.stdenv.hostPlatform.system}.proton.cachyos.override {
