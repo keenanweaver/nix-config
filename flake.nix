@@ -107,6 +107,10 @@
       url = "github:JacKeTUs/simracing-hwdb";
       flake = false;
     };
+    steam-config-nix = {
+      url = "github:different-name/steam-config-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
     yeetmouse = {
       url = "github:AndyFilter/YeetMouse?dir=nix";
@@ -261,6 +265,7 @@
                     nvf.homeManagerModules.default
                     plasma-manager.homeModules.plasma-manager
                     sops-nix.homeManagerModules.sops
+                    steam-config-nix.homeModules.default
                     wayland-pipewire-idle-inhibit.homeModules.default
                   ];
                 };

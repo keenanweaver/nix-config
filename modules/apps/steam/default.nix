@@ -3,7 +3,6 @@
   config,
   username,
   pkgs,
-  inputs,
   ...
 }:
 let
@@ -84,6 +83,30 @@ in
           packages = with pkgs; [
             steamcmd
           ];
+        };
+        # https://github.com/different-name/steam-config-nix
+        programs.steam.config = {
+          enable = true;
+          closeSteam = true;
+          users = {
+            keenanw = {
+              id = 76561197968074917;
+              apps = {
+                # Helldivers 2
+                "553850".launchOptions = {
+                  env = {
+                    WINE_CPU_TOPOLOGY = 8; # https://github.com/ValveSoftware/Proton/issues/7486#issuecomment-2683254539
+                  };
+                };
+                # Hitman: WOA
+                "1659040".launchOptions = {
+                  args = [
+                    "-skip_launcher"
+                  ];
+                };
+              };
+            };
+          };
         };
         services.flatpak = lib.mkIf cfg.enableFlatpak {
           overrides = {
