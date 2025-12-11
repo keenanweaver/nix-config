@@ -53,6 +53,7 @@
       url = "github:zshzoo/cd-ls";
       flake = false;
     };
+    lazyvim.url = "github:pfassina/lazyvim-nix";
     ucodenix.url = "github:e-tho/ucodenix";
 
     # Gaming
@@ -253,6 +254,7 @@
                   sharedModules = with inputs; [
                     catppuccin.homeModules.catppuccin
                     impermanence.homeManagerModules.impermanence
+                    lazyvim.homeManagerModules.default
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
@@ -315,6 +317,7 @@
                   sharedModules = with inputs; [
                     catppuccin.homeModules.catppuccin
                     impermanence.homeManagerModules.impermanence
+                    lazyvim.homeManagerModules.default
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default

@@ -20,8 +20,80 @@ in
         home.sessionVariables = {
           EDITOR = lib.mkForce "nvim";
         };
-        programs.nvf = {
+        programs.lazyvim = {
           enable = true;
+          extras = {
+            ai = {
+              claudecode.enable = true;
+            };
+            coding = {
+              blink.enable = true;
+              mini_snippets.enable = true;
+              mini_surround.enable = true;
+              yanky.enable = true;
+            };
+            formatting = {
+              prettier.enable = true;
+            };
+            lang = {
+              cmake.enable = true;
+              docker.enable = true;
+              git.enable = true;
+              json.enable = true;
+              nix.enable = true;
+              terraform.enable = true;
+              toml.enable = true;
+              yaml.enable = true;
+            };
+            linting = {
+              eslint.enable = true;
+              none_ls.enable = true;
+            };
+            ui = {
+              treesitter_context.enable = true;
+            };
+            util = {
+              gh.enable = true;
+              project.enable = true;
+              mini_hipatterns.enable = true;
+              rest.enable = true;
+            };
+          };
+          extraPackages = with pkgs; [
+            bash-language-server
+            clang
+            shellcheck
+            shellharden
+            shfmt
+            docker-compose-language-service
+            dockerfile-language-server
+            nixd
+            nixfmt
+            vscode-langservers-extracted
+            lua-language-server
+            marksman
+            nodePackages.yaml-language-server
+            tree-sitter
+            yamllint
+          ];
+          treesitterParsers = with pkgs.tree-sitter-grammars; [
+            tree-sitter-bash
+            tree-sitter-css
+            tree-sitter-html
+            tree-sitter-javascript
+            tree-sitter-json
+            tree-sitter-lua
+            tree-sitter-markdown
+            tree-sitter-nix
+            tree-sitter-nu
+            tree-sitter-python
+            tree-sitter-regex
+            tree-sitter-toml
+            tree-sitter-yaml
+          ];
+        };
+        programs.nvf = {
+          enable = false;
           enableManpages = true;
           settings = {
             vim = {
