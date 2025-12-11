@@ -17,12 +17,12 @@
   };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nero-umu = prev.nero-umu.overrideAttrs {
-    version = "1.1.5-unstable-11-29-2025";
+    version = "1.1.5-unstable-12-09-2025";
     src = prev.fetchFromGitHub {
       owner = "SeongGino";
       repo = "Nero-umu";
-      rev = "4db5173ab37bc41d5c015ff1bdb4bf3f9a76af09";
-      hash = "sha256-vITwvh2Afw3OXyiipk7KETPS5RfTbYYAWk3LhqR4nUM=";
+      rev = "53bd62fd179c04ef72ff77e3b35c0157f3804cf8";
+      hash = "sha256-9g7qZOa/tTHGxAqmPRG0Jh6UeraD+9naAcEnpvDdiLc=";
     };
   };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
@@ -43,13 +43,17 @@
       hash = "sha256-vppJmd+wrud9Xvx13aGM6O+YDQH5ZDxfHYTlMtAq6uE=";
     };
   };
-  proton-cachyos = inputs.nur-bandithedoge.legacyPackages.${final.stdenv.hostPlatform.system}.proton.cachyos.override {
-    steamDisplayName = "Proton-CachyOS v3";
-  };
+  proton-cachyos =
+    inputs.nur-bandithedoge.legacyPackages.${final.stdenv.hostPlatform.system}.proton.cachyos.override
+      {
+        steamDisplayName = "Proton-CachyOS v3";
+      };
   proton-em = final.callPackage ./proton-em { };
-  proton-ge = inputs.nur-bandithedoge.legacyPackages.${final.stdenv.hostPlatform.system}.proton.ge.override {
-    steamDisplayName = "GE-Proton";
-  };
+  proton-ge =
+    inputs.nur-bandithedoge.legacyPackages.${final.stdenv.hostPlatform.system}.proton.ge.override
+      {
+        steamDisplayName = "GE-Proton";
+      };
   relive = prev.callPackage ./relive { };
   rsdkv3 = prev.callPackage ./rsdk/v3 { };
   rsdkv4 = prev.callPackage ./rsdk/v4 { };
@@ -64,6 +68,6 @@
     };
   };
   xlink-kai = prev.callPackage ./xlink-kai { };
-  z64decompress = prev.callPackage ./zelda64recomp/z64decompress.nix { };
-  zelda64recomp = prev.callPackage ./zelda64recomp/zelda64recomp.nix { };
+  #z64decompress = prev.callPackage ./zelda64recomp/z64decompress.nix { };
+  #zelda64recomp = prev.callPackage ./zelda64recomp/zelda64recomp.nix { };
 })

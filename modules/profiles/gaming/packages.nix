@@ -143,6 +143,7 @@ with pkgs;
     gswatcher
     igir
     innoextract
+    libresplit
     lgogdownloader
     parsec-bin
     protonplus
