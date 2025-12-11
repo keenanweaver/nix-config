@@ -68,7 +68,6 @@ in
     mounts.enable = true;
     networking.enable = true;
     nixConfig.enable = true;
-    packages.enable = true;
     pipewire.enable = true;
     users.enable = true;
     virtualization.enable = true;
@@ -84,6 +83,15 @@ in
     };
 
     environment = {
+      etc = {
+        "packages".text =
+          let
+            packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
+            sortedUnique = builtins.sort builtins.lessThan (pkgs.lib.lists.unique packages);
+            formatted = builtins.concatStringsSep "\n" sortedUnique;
+          in
+          formatted;
+      };
       homeBinInPath = true;
       localBinInPath = true;
       shells = with pkgs; [
@@ -110,6 +118,20 @@ in
         LC_PAPER = config.i18n.defaultLocale;
         LC_TELEPHONE = config.i18n.defaultLocale;
         LC_TIME = config.i18n.defaultLocale;
+      };
+    };
+
+    nixpkgs.config.permittedInsecurePackages = [
+      "olm-3.2.16" # Neochat
+    ];
+
+    programs = {
+      appimage = {
+        enable = true;
+        binfmt = true;
+      };
+      iotop = {
+        enable = true;
       };
     };
 
@@ -153,8 +175,99 @@ in
           extraProfileCommands = ''
             export GPG_TTY=$(tty)
           '';
+          file = {
+            current-packages = {
+              enable = true;
+              text =
+                let
+                  packages = builtins.map (p: "${p.name}") config.home.packages;
+                  sortedUnique = builtins.sort builtins.lessThan (pkgs.lib.lists.unique packages);
+                  formatted-hm = builtins.concatStringsSep "\n" sortedUnique;
+                in
+                formatted-hm;
+              target = "${config.xdg.configHome}/packages-hm";
+            };
+          };
           homeDirectory = lib.mkDefault "/home/${username}";
           language.base = "en_US.UTF-8";
+          packages = with pkgs; [
+            # Dev #
+            codeium
+            devenv
+            just
+            powershell
+            seer
+            ## Bash ##
+            bash-language-server
+            shellcheck
+            shellharden
+            shfmt
+            # Misc
+            adguardian
+            angle-grinder
+            bandwhich
+            binsider
+            csvlens
+            flawz
+            glances
+            glow
+            gping
+            hexyl
+            hyperfine
+            impala
+            isd
+            jiq
+            lazyjournal
+            magic-wormhole-rs
+            mkvtoolnix-cli
+            patool
+            play
+            podman-tui
+            streamrip
+            systemctl-tui
+            #termscp
+            ttysvr
+            wikiman
+            yq
+            ## unix alts ##
+            choose # cut
+            dogdns # dig
+            dua # du
+            duf # df
+            fuc # cp / rm
+            ouch # compression
+            pigz # gz
+            procs # ps
+            sd # sed
+            writedisk # dd
+            xh # curl
+            ## Nix ##
+            comma
+            manix
+            nixd
+            nix-inspect
+            nix-update
+            nixfmt-rfc-style
+            nixpkgs-review
+            nixos-shell
+            nvd
+            statix
+            ## System ##
+            (_7zz.override { enableUnfree = true; })
+            aspell
+            aspellDicts.en
+            killall
+            libnotify
+            kmon
+            repgrep
+            unrar
+            unzip
+            usbutils
+            viu
+            wget
+            xclip
+            zip
+          ];
           sessionPath = [
             "${config.home.homeDirectory}/.bin"
             "${config.home.homeDirectory}/.local/bin"

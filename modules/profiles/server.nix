@@ -19,7 +19,6 @@ in
     # Custom modules
     base.enable = true;
     catppuccinTheming.enable = lib.mkForce false;
-    packages.enable = lib.mkForce false;
 
     # Server tweaks
     boxxy.enable = lib.mkForce false;
