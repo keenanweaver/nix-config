@@ -99,6 +99,7 @@
       url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
       flake = false;
     };
+    proton-cachyos.url = "github:powerofthe69/proton-cachyos-nix";
     openmw-nix = {
       url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -43,11 +43,6 @@
       hash = "sha256-vppJmd+wrud9Xvx13aGM6O+YDQH5ZDxfHYTlMtAq6uE=";
     };
   };
-  proton-cachyos =
-    inputs.nur-bandithedoge.legacyPackages.${final.stdenv.hostPlatform.system}.proton.cachyos.override
-      {
-        steamDisplayName = "Proton-CachyOS v3";
-      };
   proton-em = final.callPackage ./proton-em { };
   proton-ge =
     inputs.nur-bandithedoge.legacyPackages.${final.stdenv.hostPlatform.system}.proton.ge.override
@@ -68,6 +63,4 @@
     };
   };
   xlink-kai = prev.callPackage ./xlink-kai { };
-  #z64decompress = prev.callPackage ./zelda64recomp/z64decompress.nix { };
-  #zelda64recomp = prev.callPackage ./zelda64recomp/zelda64recomp.nix { };
 })

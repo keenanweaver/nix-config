@@ -93,7 +93,7 @@ with pkgs;
     vvvvvv
     wipeout-rewrite
     yarg
-    zelda64recomp
+    #zelda64recomp
   ];
   tools = [
     ## Emulators

@@ -45,6 +45,9 @@ in
       };
       overlays = [
         (import ../../../packages/overlay.nix { inherit inputs; })
+      ]
+      ++ lib.optionals vars.gaming [
+        inputs.proton-cachyos.overlays.default
       ];
     };
     system = {
@@ -67,6 +70,9 @@ in
         };
         overlays = [
           (import ../../../packages/overlay.nix { inherit inputs; })
+        ]
+        ++ lib.optionals vars.gaming [
+          inputs.proton-cachyos.overlays.default
         ];
       };
     };

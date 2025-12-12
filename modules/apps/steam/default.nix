@@ -52,7 +52,7 @@ in
         privateTmp = false; # https://github.com/NixOS/nixpkgs/issues/381923
       };
       extraCompatPackages = with pkgs; [
-        proton-cachyos
+        proton-cachyos-x86_64_v4
         proton-em
         proton-ge
       ];
@@ -75,7 +75,6 @@ in
               text = ''
                 @nClientDownloadEnableHTTP2PlatformLinux 0
                 @fDownloadRateImprovementToAddAnotherConnection 1.0
-                unShaderBackgroundProcessingThreads 8
               '';
               target = "${config.xdg.dataHome}/Steam/steam_dev.cfg";
             };
@@ -88,6 +87,10 @@ in
         programs.steam.config = {
           enable = true;
           closeSteam = true;
+          apps = {
+            # Sven Co-op
+            "225840".compatTool = "GE-Proton";
+          };
           users = {
             keenanw = {
               id = 76561197968074917;

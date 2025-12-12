@@ -13,10 +13,6 @@ in
   options = {
     gaming = {
       enable = lib.mkEnableOption "Enable Gaming module in NixOS";
-      installPackages = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-      };
     };
   };
 
@@ -241,17 +237,15 @@ in
           };
           packages =
             with lib;
-            mkIf cfg.installPackages (
-              flatten (
-                attrValues (
-                  import ./packages.nix {
-                    inherit
-                      pkgs
-                      inputs
-                      config
-                      ;
-                  }
-                )
+            flatten (
+              attrValues (
+                import ./packages.nix {
+                  inherit
+                    pkgs
+                    inputs
+                    config
+                    ;
+                }
               )
             );
           sessionVariables = {
