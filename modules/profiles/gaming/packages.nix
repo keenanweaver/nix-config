@@ -40,7 +40,6 @@ with pkgs;
     alephone-durandal
     alephone-infinity
     ## Morrowind
-    #inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-dev
     inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-validator
     tes3cmd
     openmw
@@ -93,7 +92,7 @@ with pkgs;
     vvvvvv
     wipeout-rewrite
     yarg
-    #zelda64recomp
+    zelda64recomp
   ];
   tools = [
     ## Emulators

@@ -17,12 +17,12 @@
   };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nero-umu = prev.nero-umu.overrideAttrs {
-    version = "1.1.5-unstable-12-09-2025";
+    version = "1.2.0";
     src = prev.fetchFromGitHub {
       owner = "SeongGino";
       repo = "Nero-umu";
-      rev = "53bd62fd179c04ef72ff77e3b35c0157f3804cf8";
-      hash = "sha256-9g7qZOa/tTHGxAqmPRG0Jh6UeraD+9naAcEnpvDdiLc=";
+      rev = "54ffeff238fb890ca0a17272d989133c30ffcebd";
+      hash = "sha256-dwM9ZRgNBLA16faO68pSnNsfWC4Naom6QRg1RYwXxLA=";
     };
   };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
@@ -43,6 +43,7 @@
       hash = "sha256-vppJmd+wrud9Xvx13aGM6O+YDQH5ZDxfHYTlMtAq6uE=";
     };
   };
+  proton-cachyos = inputs.proton-cachyos.packages.${final.stdenv.hostPlatform.system}.proton-cachyos-x86_64_v4;
   proton-em = final.callPackage ./proton-em { };
   proton-ge =
     inputs.nur-bandithedoge.legacyPackages.${final.stdenv.hostPlatform.system}.proton.ge.override

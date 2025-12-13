@@ -39,13 +39,13 @@ in
           };
           proton-links-proton-cachyos-flatpak-lutris = {
             enable = cfg.enableFlatpak;
-            source = "${pkgs.proton-cachyos-x86_64_v4}/share/steam/compatibilitytools.d/proton-cachyos-x86_64_v4";
+            source = pkgs.proton-cachyos.steamcompattool;
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-cachyos-nix";
           };
           proton-links-proton-em-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = pkgs.proton-em.steamcompattool;
-            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-ge-nix";
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-em-nix";
           };
           proton-links-proton-ge-flatpak-lutris = {
             enable = cfg.enableFlatpak;
@@ -63,7 +63,7 @@ in
             winetricks
           ];
           protonPackages = with pkgs; [
-            #proton-cachyos-x86_64_v4
+            #proton-cachyos
             proton-em
             proton-ge
           ];
