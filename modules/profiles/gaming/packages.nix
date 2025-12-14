@@ -82,7 +82,6 @@ with pkgs;
     relive # Oddworld
     rsdkv3
     rsdkv4
-    rsdkv5
     sdlpop # Prince of Persia
     #serious-sam-classic-vulkan
     sm64ex

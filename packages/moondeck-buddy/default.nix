@@ -9,8 +9,6 @@
   qt6,
   procps,
   xorg,
-  steam,
-  useNixSteam ? true,
 }:
 
 let
@@ -24,14 +22,14 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "moondeck-buddy";
-  version = "1.9.1";
+  version = "1.9.2";
 
   src = fetchFromGitHub {
     owner = "FrogTheFrog";
     repo = "moondeck-buddy";
     tag = "v${finalAttrs.version}";
     fetchSubmodules = true;
-    hash = "sha256-ASqEyhELzOz0sU5sysluay0pMqiBj1lFCEWMQ0oe8YE=";
+    hash = "sha256-GhZlmdI+oa5BjEzr9bkR2sY/nVpd1nuJlT2hYYv6zGU=";
   };
 
   buildInputs = [
@@ -45,11 +43,6 @@ stdenv.mkDerivation (finalAttrs: {
     ninja
     wrapQtAppsHook
   ];
-
-  postPatch = lib.optionalString useNixSteam ''
-    substituteInPlace src/lib/shared/appmetadata.cpp \
-      --replace-fail /usr/bin/steam ${lib.getExe steam};
-  '';
 
   passthru.updateScript = nix-update-script { };
 

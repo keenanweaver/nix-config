@@ -260,14 +260,6 @@ in
           };
         };
 
-        /*
-          nixpkgs = {
-                 overlays = [
-                   inputs.umu.overlays.default
-                 ];
-               };
-        */
-
         services = {
           flatpak = import ./flatpaks.nix { inherit config; };
           ludusavi = import ./ludusavi.nix { inherit config; };

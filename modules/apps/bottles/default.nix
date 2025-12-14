@@ -50,7 +50,7 @@ in
           proton-links-proton-em-bottles = {
             enable = cfg.enableNative;
             source = pkgs.proton-em.steamcompattool;
-            target = "${config.xdg.dataHome}/bottles/runners/proton-em";
+            target = "${config.xdg.dataHome}/bottles/runners/proton-em-nix";
           };
           proton-links-proton-em-flatpak-bottles = {
             enable = cfg.enableFlatpak;
