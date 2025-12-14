@@ -62,19 +62,6 @@ in
       };
     };
 
-    home-manager.users.${username} = {
-      nixpkgs = {
-        config = {
-          allowBroken = false;
-          allowUnfree = true;
-        };
-        overlays = [
-          (import ../../../packages/overlay.nix { inherit inputs; })
-        ]
-        ++ lib.optionals vars.gaming [
-          inputs.proton-cachyos.overlays.default
-        ];
-      };
-    };
+    home-manager.users.${username} = { };
   };
 }

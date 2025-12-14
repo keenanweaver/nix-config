@@ -173,38 +173,6 @@
   outputs =
     { nixpkgs, home-manager, ... }@inputs:
     {
-      homeConfigurations =
-        let
-          username = "deck";
-          home = "/home/deck";
-        in
-        {
-          steamdeck = home-manager.lib.homeManagerConfiguration {
-            pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            modules = with inputs; [
-              ./hosts/steamdeck/home.nix
-              catppuccin.homeModules.catppuccin
-              impermanence.homeManagerModules.impermanence
-              nix-flatpak.homeManagerModules.nix-flatpak
-              nur.modules.homeManager.default
-              plasma-manager.homeModules.plasma-manager
-              sops-nix.homeManagerModules.sops
-            ];
-
-            extraSpecialArgs = {
-              inherit inputs;
-              username = username;
-              home = home;
-            };
-            users.${username} = {
-              home = {
-                stateVersion = "23.11";
-              };
-            };
-            useGlobalPkgs = true;
-            useUserPackages = true;
-          };
-        };
       nixosConfigurations =
         let
           fullname = "Keenan Weaver";
@@ -246,6 +214,7 @@
               {
                 home-manager = {
                   backupFileExtension = "hmbak";
+                  useGlobalPkgs = true;
                   useUserPackages = true;
                   extraSpecialArgs = {
                     inherit inputs; # Experiment with config and other attributes
@@ -313,6 +282,7 @@
                       gaming = false;
                     };
                   };
+                  useGlobalPkgs = true;
                   useUserPackages = true;
                   users.${username} = {
                     home = {
@@ -371,6 +341,7 @@
                       gaming = false;
                     };
                   };
+                  useGlobalPkgs = true;
                   useUserPackages = true;
                   users.${username} = {
                     home = {
@@ -418,6 +389,7 @@
               {
                 home-manager = {
                   backupFileExtension = "hmbak";
+                  useGlobalPkgs = true;
                   useUserPackages = true;
                   extraSpecialArgs = {
                     inherit inputs; # Experiment with config and other attributes
