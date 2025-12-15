@@ -22,13 +22,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fooyin";
-  version = "0.9.2-unstable-10-09-2025";
+  version = "0.9.2-unstable-12-14-2025";
 
   src = fetchFromGitHub {
     owner = "ludouzi";
     repo = "fooyin";
-    rev = "a5992066d3cade035773fefb025d7653b54fc7c3";
-    hash = "sha256-dNWlrVr3usft7hb4jCaDj/0q+yZQTpBLsGGo/3ee61A=";
+    rev = "e608e12f198aaf07835e276a3d3dda83dd993fb0";
+    hash = "sha256-ieXVRvXd8Aeebex6vP0dLPKHTt1TubJxQGgsJjK8Ml8=";
   };
 
   buildInputs = [
@@ -68,10 +68,6 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   env.LANG = "C.UTF-8";
-
-  patches = [
-    ./qt.patch
-  ];
 
   meta = {
     description = "Customisable music player";

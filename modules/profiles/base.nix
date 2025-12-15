@@ -225,7 +225,7 @@ in
             podman-tui
             streamrip
             systemctl-tui
-            #termscp
+            termscp
             ttysvr
             wikiman
             yq
@@ -235,7 +235,6 @@ in
             dua # du
             duf # df
             fuc # cp / rm
-            ouch # compression
             pigz # gz
             procs # ps
             sd # sed
