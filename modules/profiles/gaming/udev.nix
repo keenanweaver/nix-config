@@ -6,7 +6,7 @@ with pkgs;
     name = "40-logitech-g920.rules";
     destination = "/etc/udev/rules.d/40-logitech-g920.rules";
     text = ''
-      ATTR{idVendor}=="046d", ATTR{idProduct}=="c261", RUN+="${usb-modeswitch}/bin/usb_modeswitch -c '/etc/usb_modeswitch.d/046d:c261'"
+      ATTR{idVendor}=="046d", ATTR{idProduct}=="c261", RUN+="${lib.getExe' usb-modeswitch "usb_modeswitch"} -c '/etc/usb_modeswitch.d/046d:c261'"
     '';
   })
   # https://wiki.cachyos.org/configuration/general_system_tweaks/#how-to-enable-adios
@@ -27,7 +27,7 @@ with pkgs;
     name = "69-hdparm.rules";
     destination = "/etc/udev/rules.d/69-hdparm.rules";
     text = ''
-      ACTION!="remove", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", RUN+="${hdparm}/bin/hdparm -B 254 -S 0 /dev/%k"
+      ACTION!="remove", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", RUN+="${lib.getExe hdparm} -B 254 -S 0 /dev/%k"
     '';
   })
   (writeTextFile {
@@ -86,21 +86,21 @@ with pkgs;
       ## Virpil Rudder Pedals
       ACTION!="remove", SUBSYSTEM=="input", KERNEL=="event*", \
         ENV{ID_VENDOR_ID}=="3344", ENV{ID_MODEL_ID}=="01f8", \
-        RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0"
+        RUN+="${lib.getExe' linuxConsoleTools "evdev-joystick"} --e %E{DEVNAME} --d 0"
       # VKB
       ACTION!="remove", KERNEL=="hidraw*", ATTRS{idVendor}=="231d", ATTRS{idProduct}=="*", MODE="0660", TAG+="uaccess"
       ## VKB SEM
       ACTION!="remove", SUBSYSTEM=="input", KERNEL=="event*", \
         ENV{ID_VENDOR_ID}=="231d", ENV{ID_MODEL_ID}=="2204", \
-        RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0"
+        RUN+="${lib.getExe' linuxConsoleTools "evdev-joystick"} --e %E{DEVNAME} --d 0"
       ## VKB Gunfighter L
       ACTION!="remove", SUBSYSTEM=="input", KERNEL=="event*", \
         ENV{ID_VENDOR_ID}=="231d", ENV{ID_MODEL_ID}=="0127", \
-        RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0"
+        RUN+="${lib.getExe' linuxConsoleTools "evdev-joystick"} --e %E{DEVNAME} --d 0"
       ## VKB Gunfighter R
       ACTION!="remove", SUBSYSTEM=="input", KERNEL=="event*", \
         ENV{ID_VENDOR_ID}=="231d", ENV{ID_MODEL_ID}=="0126", \
-        RUN+="${linuxConsoleTools}/bin/evdev-joystick --e %E{DEVNAME} --d 0"
+        RUN+="${lib.getExe' linuxConsoleTools "evdev-joystick"} --e %E{DEVNAME} --d 0"
     '';
   })
   (writeTextFile {
@@ -115,7 +115,7 @@ with pkgs;
     name = "51-disable-DS3-and-DS4-motion-controls.rules";
     destination = "/etc/udev/rules.d/51-disable-DS3-and-DS4-motion-controls.rules";
     text = ''
-      ACTION!="remove", SUBSYSTEM=="input", ATTRS{name}=="*Controller Motion Sensors", RUN+="${coreutils}/bin/rm %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
+      ACTION!="remove", SUBSYSTEM=="input", ATTRS{name}=="*Controller Motion Sensors", RUN+="${lib.getExe' coreutils "rm"} %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
     '';
   })
   # https://reddit.com/r/linux_gaming/comments/1fu4ggk/can_someone_explain_dualsense_to_me/lpwxv12/?context=3#lpwxv12

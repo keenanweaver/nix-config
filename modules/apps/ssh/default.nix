@@ -54,7 +54,7 @@ in
           sshs
         ];
         home.sessionVariables = {
-          SSH_ASKPASS = "${pkgs.kdePackages.ksshaskpass}/bin/ksshaskpass";
+          SSH_ASKPASS = lib.getExe pkgs.kdePackages.ksshaskpass;
           SSH_ASKPASS_REQUIRE = "prefer";
         };
         programs.ssh = {

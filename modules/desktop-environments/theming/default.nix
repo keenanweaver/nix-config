@@ -300,7 +300,7 @@ in
           sessionVariables = {
             GSETTINGS_BACKEND = "keyfile";
             GTK_USE_PORTAL = "1";
-            LS_COLORS = "$(${pkgs.vivid}/bin/vivid generate catppuccin-${flavor-lower})";
+            LS_COLORS = "$(${lib.getExe pkgs.vivid} generate catppuccin-${flavor-lower})";
             XCURSOR_NAME = "${cursor-theme}";
             XCURSOR_SIZE = "24";
           };

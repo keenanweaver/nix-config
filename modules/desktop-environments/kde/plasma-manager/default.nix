@@ -100,7 +100,7 @@
           };
           profiles = {
             "${username}" = {
-              command = "${pkgs.zsh}/bin/zsh";
+              command = lib.getExe pkgs.zsh;
             };
           };
         };
