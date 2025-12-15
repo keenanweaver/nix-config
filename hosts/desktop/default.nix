@@ -41,7 +41,7 @@
       "kvm-amd"
       "tcp_bbr"
     ];
-    kernelPackages = lib.mkForce (inputs.nix-cachyos-kernel.legacyPackages.${pkgs.stdenv.hostPlatform.system}.linuxPackages-cachyos-latest-lto);
+    kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
     kernelParams = [
       "amd_3d_vcache.x3d_mode=cache" # AMD V-Cache https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
       "amd_iommu=on"
@@ -88,7 +88,20 @@
     hostName = "nixos-desktop";
   };
 
-  nix.settings.build-dir = "/nix/build";
+  nix = {
+    settings = {
+      build-dir = "/nix/build";
+      # https://github.com/xddxdd/nix-cachyos-kernel?tab=readme-ov-file#binary-cache
+      /*
+        extra-substituters = [ "https://attic.xuyh0120.win/lantian" ];
+           extra-trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
+      */
+    };
+  };
+
+  nixpkgs.overlays = [
+    inputs.nix-cachyos-kernel.overlays.default
+  ];
 
   powerManagement.cpuFreqGovernor = "ondemand";
 
@@ -122,8 +135,8 @@
                  };
                };
                hooks = {
-                 activated = "${pkgs.libnotify}/bin/notify-send LACT \"Gaming profile activated\" -i io.github.ilya_zlobintsev.LACT -a LACT";
-                 deactivated = "${pkgs.libnotify}/bin/notify-send LACT \"Default profile activated\" -i io.github.ilya_zlobintsev.LACT -a LACT";
+                 activated = "${lib.getExe pkgs.libnotify} LACT \"Gaming profile activated\" -i io.github.ilya_zlobintsev.LACT -a LACT";
+                 deactivated = "${lib.getExe pkgs.libnotify} LACT \"Default profile activated\" -i io.github.ilya_zlobintsev.LACT -a LACT";
                };
              };
            };
