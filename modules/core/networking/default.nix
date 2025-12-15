@@ -58,5 +58,12 @@ in
       useDHCP = lib.mkDefault true;
       wireguard.enable = true;
     };
+    services.resolved = {
+      enable = true;
+      fallbackDns = [
+        "9.9.9.9"
+        "149.112.112.112"
+      ];
+    };
   };
 }
