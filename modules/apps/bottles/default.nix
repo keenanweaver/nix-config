@@ -60,12 +60,12 @@ in
           proton-links-proton-ge-bottles = {
             enable = cfg.enableNative;
             source = pkgs.proton-ge.steamcompattool;
-            target = "${config.xdg.dataHome}/bottles/runners/proton-ge-bin-nix";
+            target = "${config.xdg.dataHome}/bottles/runners/proton-ge-nix";
           };
           proton-links-proton-ge-flatpak-bottles = {
             enable = cfg.enableFlatpak;
             source = pkgs.proton-ge.steamcompattool;
-            target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-bin-nix";
+            target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-nix";
           };
         };
         home.packages = lib.mkIf cfg.enableNative [

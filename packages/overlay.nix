@@ -17,12 +17,12 @@
   };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nero-umu = prev.nero-umu.overrideAttrs {
-    version = "1.2.0";
+    version = "1.2.0-unstable-12-16-2025";
     src = prev.fetchFromGitHub {
       owner = "SeongGino";
       repo = "Nero-umu";
-      rev = "54ffeff238fb890ca0a17272d989133c30ffcebd";
-      hash = "sha256-dwM9ZRgNBLA16faO68pSnNsfWC4Naom6QRg1RYwXxLA=";
+      rev = "ef117073b521ebe07dcb255b42e7a09b5d9bbc93";
+      hash = "sha256-+BLE7VVGUsGtmM5GUkdDfpIgDej+nsati17m9AmEw8k=";
     };
   };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
@@ -43,13 +43,10 @@
       hash = "sha256-vppJmd+wrud9Xvx13aGM6O+YDQH5ZDxfHYTlMtAq6uE=";
     };
   };
-  proton-cachyos = inputs.proton-cachyos.packages.${final.stdenv.hostPlatform.system}.proton-cachyos-x86_64_v4;
+  proton-cachyos =
+    inputs.proton-cachyos.packages.${final.stdenv.hostPlatform.system}.proton-cachyos-x86_64_v4;
   proton-em = final.callPackage ./proton-em { };
-  proton-ge =
-    inputs.nur-bandithedoge.legacyPackages.${final.stdenv.hostPlatform.system}.proton.ge.override
-      {
-        steamDisplayName = "GE-Proton";
-      };
+  proton-ge = final.proton-ge-bin;
   relive = prev.callPackage ./relive { };
   rsdkv3 = prev.callPackage ./rsdk/v3 { };
   rsdkv4 = prev.callPackage ./rsdk/v4 { };

@@ -87,9 +87,9 @@ in
               hostname = "nixos-laptop";
               port = 6777;
             };
-            nixos-unraid = {
-              hostname = "nixos-unraid";
-              port = 6777;
+            nix-unraid = {
+              hostname = "nix-unraid";
+              port = 22;
             };
             opnsense = {
               hostname = "opnsense";

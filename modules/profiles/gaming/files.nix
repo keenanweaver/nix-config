@@ -85,7 +85,7 @@ in
     enable = true;
     source =
       with pkgs;
-      pkgs.lib.getExe (writeShellApplication {
+      lib.getExe (writeShellApplication {
         name = "hdr-off";
         runtimeInputs = [
           kdePackages.libkscreen
@@ -100,7 +100,7 @@ in
     enable = true;
     source =
       with pkgs;
-      pkgs.lib.getExe (writeShellApplication {
+      lib.getExe (writeShellApplication {
         name = "hdr-on";
         runtimeInputs = [
           kdePackages.libkscreen
@@ -115,7 +115,7 @@ in
     enable = true;
     source =
       with pkgs;
-      pkgs.lib.getExe (writeShellApplication {
+      lib.getExe (writeShellApplication {
         name = "vrr-off";
         runtimeInputs = [
           kdePackages.libkscreen
@@ -130,7 +130,7 @@ in
     enable = true;
     source =
       with pkgs;
-      pkgs.lib.getExe (writeShellApplication {
+      lib.getExe (writeShellApplication {
         name = "vrr-on";
         runtimeInputs = [
           kdePackages.libkscreen
