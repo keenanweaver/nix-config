@@ -283,6 +283,7 @@ in
             dbe = "db enter";
             imp = "${lib.getExe config.programs.fd.package} --one-file-system --base-directory / -t f -H -E '{tmp,etc/passwd,var/lib/systemd/coredump}'"; # https://reddit.com/r/NixOS/comments/1nhm4mm/tailscale_impermanence_broken/nedm0vd/?context=3#nedm0vd
             l = "${lib.getExe config.programs.lsd.package} -la --group-dirs=first";
+            lgog = "${lib.getExe pkgs.lgogdownloader} --download --exclude l,p --platform=w --directory /mnt/crusader/Games/Backups/GOG";
             ngc = "${lib.getExe config.programs.nh.package} clean all";
             nor = "${lib.getExe config.programs.nh.package} os switch";
             npr = "${lib.getExe pkgs.nixpkgs-review} pr --print-result";

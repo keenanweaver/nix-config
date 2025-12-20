@@ -258,8 +258,8 @@
           dxvk-conf = {
             enable = true;
             text = ''
-              d3d9.maxFrameRate = 328
-              dxgi.maxFrameRate = 328
+              d3d9.maxFrameRate = 357
+              dxgi.maxFrameRate = 357
               dxgi.syncInterval = 0
               dxvk.tearFree = True
             '';

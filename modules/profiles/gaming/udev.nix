@@ -6,7 +6,7 @@ with pkgs;
     name = "40-logitech-g920.rules";
     destination = "/etc/udev/rules.d/40-logitech-g920.rules";
     text = ''
-      ATTR{idVendor}=="046d", ATTR{idProduct}=="c261", RUN+="${lib.getExe' usb-modeswitch "usb_modeswitch"} -c '/etc/usb_modeswitch.d/046d:c261'"
+      ATTR{idVendor}=="046d", ATTR{idProduct}=="c261", RUN+="${lib.getExe usb-modeswitch} -c '/etc/usb_modeswitch.d/046d:c261'"
     '';
   })
   # https://wiki.cachyos.org/configuration/general_system_tweaks/#how-to-enable-adios

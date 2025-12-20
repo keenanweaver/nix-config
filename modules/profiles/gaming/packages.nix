@@ -53,8 +53,8 @@ with pkgs;
     arma3-unix-launcher
     # (arma3-unix-launcher.override { buildDayZLauncher = true; })
     ## Duke
-    eduke32
-    raze
+    #eduke32
+    #raze
     rigel-engine
     ## Wolf
     bstone

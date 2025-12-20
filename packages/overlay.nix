@@ -7,12 +7,12 @@
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };
   inter = prev.callPackage ./inter { };
   lutris-unwrapped = prev.lutris-unwrapped.overrideAttrs {
-    version = "0.5.19-unstable-12-08-2025";
+    version = "0.5.19-unstable-12-17-2025";
     src = prev.fetchFromGitHub {
       owner = "lutris";
       repo = "lutris";
-      rev = "bf6d1dfebda74027557c522549d76f7b8020a225";
-      hash = "sha256-vUpKy/DMk1EEhUi+68JJTmbxWFrWieYtWQB88UmZx+Q=";
+      rev = "7138508851a0b103aec4354089030638af3754b8";
+      hash = "sha256-bsw5KB8wFeOCKqa91QGbAI61H0pD3QOoaRBXGbCTC/E=";
     };
   };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };

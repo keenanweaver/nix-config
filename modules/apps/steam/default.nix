@@ -88,26 +88,25 @@ in
           enable = true;
           closeSteam = true;
           apps = {
-            # Sven Co-op
-            "225840".compatTool = "GE-Proton";
-          };
-          users = {
-            keenanw = {
-              id = 76561197968074917;
-              apps = {
-                # Helldivers 2
-                "553850".launchOptions = {
-                  env = {
-                    WINE_CPU_TOPOLOGY = 8; # https://github.com/ValveSoftware/Proton/issues/7486#issuecomment-2683254539
-                  };
-                };
-                # Hitman: WOA
-                "1659040".launchOptions = {
-                  args = [
-                    "-skip_launcher"
-                  ];
+            helldivers2 = {
+              id = 553850;
+              launchOptions = {
+                env = {
+                  WINE_CPU_TOPOLOGY = 8; # https://github.com/ValveSoftware/Proton/issues/7486#issuecomment-2683254539
                 };
               };
+            };
+            hitmanwoa = {
+              id = 1659040;
+              launchOptions = {
+                args = [
+                  "-skip_launcher"
+                ];
+              };
+            };
+            svencoop = {
+              id = 225840;
+              compatTool = "GE-Proton";
             };
           };
         };

@@ -95,8 +95,8 @@ pkgs.writeShellScriptBin "bootstrap-distrobox" ''
       plasma-desktop               \
       wireplumber
 
-      ln -s ${config.xdg.dataHome}/distrobox/exodos/dosbox/dosbox /usr/bin/dosbox
-      ln -s ${config.xdg.dataHome}/distrobox/exodos/dbgl/dbgl /usr/bin/dbgl
+      sudo ln -s ${config.xdg.dataHome}/distrobox/exodos/dosbox/dosbox /usr/bin/dosbox
+      sudo ln -s ${config.xdg.dataHome}/distrobox/exodos/dbgl/dbgl /usr/bin/dbgl
 
       # Build obs-gamecapture
       sudo apt install -y          \
@@ -109,8 +109,8 @@ pkgs.writeShellScriptBin "bootstrap-distrobox" ''
       libxcb1-dev                  \
       libwayland-dev               \
       wayland-protocols            \
-      pkg-config                   \
-      git clone https://github.com/nowrep/obs-vkcapture.git /home/${username}/.cache
+      pkg-config
+      git clone https://github.com/nowrep/obs-vkcapture.git /home/${username}/.cache/obs-vkcapture
       pushd /home/${username}/.cache/obs-vkcapture
       mkdir build && cd build
       cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
