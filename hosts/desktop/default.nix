@@ -41,7 +41,7 @@
       "kvm-amd"
       "tcp_bbr"
     ];
-    kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
+    kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest;
     kernelParams = [
       "amd_3d_vcache.x3d_mode=cache" # AMD V-Cache https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
       "amd_iommu=on"

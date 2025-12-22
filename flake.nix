@@ -68,7 +68,7 @@
       url = "github:pabloaul/lsfg-vk-flake/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nix-game-preservation = {
       url = "github:Whovian9369/nix-game-preservation";
       inputs.nixpkgs.follows = "nixpkgs";
