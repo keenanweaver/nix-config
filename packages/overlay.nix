@@ -35,12 +35,12 @@
   };
   openxcom = prev.openxcom.overrideAttrs {
     pname = "openxcom-extended";
-    version = "8.4.4";
+    version = "8.5.0";
     src = prev.fetchFromGitHub {
       owner = "MeridianOXC";
       repo = "OpenXcom";
-      rev = "d6eeaac0c7e10d5b85ded92a224fdc324c7f9a88";
-      hash = "sha256-vppJmd+wrud9Xvx13aGM6O+YDQH5ZDxfHYTlMtAq6uE=";
+      rev = "8d292f3b2dd5116f35d218cdd3d1fc4d754b6554";
+      hash = "sha256-85sA+J+Iq5ls1f4ssTL1Xbo6uIOJIFEQ7l4rMXYNIvA=";
     };
   };
   proton-cachyos =
@@ -51,12 +51,12 @@
   rsdkv3 = prev.callPackage ./rsdk/v3 { };
   rsdkv4 = prev.callPackage ./rsdk/v4 { };
   scummvm = prev.scummvm.overrideAttrs {
-    version = "3.0.0-unstable-12-14-2025";
+    version = "3.0.0-unstable-12-22-2025";
     src = prev.fetchFromGitHub {
       owner = "scummvm";
       repo = "scummvm";
-      rev = "5fa26ec824050a0cce86d0324addf69f6479e02f";
-      hash = "sha256-qYW3hXZaNEBtBhf7qGS9+tcXRPfaXYSRYVx6dfjFd2o=";
+      rev = "5dc51e8382f7b2c3493f722067abb9d06d8c5949";
+      hash = "sha256-RokG8eeVh0/Ne3IYIUurWLZz2zn8cp4wRqAoJ1SItPk=";
     };
   };
   xlink-kai = prev.callPackage ./xlink-kai { };

@@ -13,14 +13,12 @@ with pkgs;
     chocolate-doom
     crispy-doom
     darkradiant
-    dhewm3
     doomrunner
     doomseeker
     dsda-doom
     nugget-doom
     inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.nyan-doom
     odamex
-    rbdoom-3-bfg
     slade
     uzdoom
     woof-doom
@@ -82,10 +80,10 @@ with pkgs;
     relive # Oddworld
     rsdkv3
     rsdkv4
+    # inputs.nix-citizen.packages.${stdenv.hostPlatform.system}.rsi-launcher-umu
     sdlpop # Prince of Persia
     #serious-sam-classic-vulkan
     sm64ex
-    # inputs.nix-citizen.packages.${stdenv.hostPlatform.system}.star-citizen
     theforceengine # Dark Forces / Outlaws
     urbanterror
     vvvvvv
@@ -143,6 +141,7 @@ with pkgs;
     innoextract
     libresplit
     lgogdownloader
+    python313Packages.lnkparse3
     parsec-bin
     protonplus
     tochd
@@ -166,7 +165,6 @@ with pkgs;
          inputs.nix-game-preservation.packages.${stdenv.hostPlatform.system}.unshieldsharp-git
          openspeedrun
          ps3-disc-dumper
-         #(python3.withPackages (p: with p; [ lnkparse3 ]))
          inputs.nix-game-preservation.packages.${stdenv.hostPlatform.system}.redumper-git
          renderdoc
          vgmplay-libvgm

@@ -54,7 +54,6 @@ in
     starship.enable = true;
     tailscale.enable = true;
     tealdeer.enable = true;
-    television.enable = true;
     topgrade.enable = true;
     yazi.enable = true;
     yt-dlp.enable = true;

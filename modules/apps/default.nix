@@ -59,7 +59,6 @@
     ./sunshine
     ./tailscale
     ./tealdeer
-    ./television
     ./topgrade
     ./vesktop
     ./vhs-decode
