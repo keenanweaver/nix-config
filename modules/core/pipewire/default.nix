@@ -40,121 +40,38 @@ in
       pulse.enable = true;
       extraConfig = {
         pipewire = {
-          "11-virtual-devices" = {
-            "context.modules" =
-              [ { } ]
-              ++ lib.optionals vars.gaming [
-                # Keep playback node.name different from capture node.name so KDE doesn't get confused
-                {
-                  "name" = "libpipewire-module-loopback";
-                  "args" = {
-                    "audio.position" = [
-                      "FL"
-                      "FR"
-                    ];
-                    "capture.props" = {
-                      "media.class" = "Audio/Sink";
-                      "node.name" = "Browser";
-                      "node.description" = "Browser";
-                    };
-                    "playback.props" = {
-                      "node.name" = "Browser_m";
-                      "node.description" = "Browser";
-                    };
+          "11-virtual-devices" =
+            let
+              mkLoopbackModule = name: {
+                "name" = "libpipewire-module-loopback";
+                "args" = {
+                  "audio.position" = [
+                    "FL"
+                    "FR"
+                  ];
+                  "capture.props" = {
+                    "media.class" = "Audio/Sink";
+                    "node.name" = name;
+                    "node.description" = name;
                   };
-                }
-                {
-                  "name" = "libpipewire-module-loopback";
-                  "args" = {
-                    "audio.position" = [
-                      "FL"
-                      "FR"
-                    ];
-                    "capture.props" = {
-                      "media.class" = "Audio/Sink";
-                      "node.name" = "Game";
-                      "node.description" = "Game";
-                    };
-                    "playback.props" = {
-                      "node.name" = "Game_m";
-                      "node.description" = "Game";
-                    };
+                  "playback.props" = {
+                    "node.name" = "${name}_m";
+                    "node.description" = name;
                   };
-                }
-                {
-                  "name" = "libpipewire-module-loopback";
-                  "args" = {
-                    "audio.position" = [
-                      "FL"
-                      "FR"
-                    ];
-                    "capture.props" = {
-                      "media.class" = "Audio/Sink";
-                      "node.name" = "Live";
-                      "node.description" = "Live";
-                    };
-                    "playback.props" = {
-                      "node.name" = "Live_m";
-                      "node.description" = "Live";
-                    };
-                  };
-                }
-                {
-                  "name" = "libpipewire-module-loopback";
-                  "args" = {
-                    "audio.position" = [
-                      "FL"
-                      "FR"
-                    ];
-                    "capture.props" = {
-                      "media.class" = "Audio/Sink";
-                      "node.name" = "MIDI";
-                      "node.description" = "MIDI";
-                    };
-                    "playback.props" = {
-                      "node.name" = "MIDI_m";
-                      "node.description" = "MIDI";
-                    };
-                  };
-                }
-                {
-                  "name" = "libpipewire-module-loopback";
-                  "args" = {
-                    "audio.position" = [
-                      "FL"
-                      "FR"
-                    ];
-                    "capture.props" = {
-                      "media.class" = "Audio/Sink";
-                      "node.name" = "Music";
-                      "node.description" = "Music";
-                    };
-                    "playback.props" = {
-                      "node.name" = "Music_m";
-                      "node.description" = "Music";
-                    };
-                  };
-                }
-                {
-                  "name" = "libpipewire-module-loopback";
-                  "args" = {
-                    "audio.position" = [
-                      "FL"
-                      "FR"
-                    ];
-                    "capture.props" = {
-                      "media.class" = "Audio/Sink";
-                      "node.name" = "Voice";
-                      "node.description" = "Voice";
-                    };
-                    "playback.props" = {
-                      "node.name" = "Voice_m";
-                      "node.description" = "Voice";
-                    };
-                  };
-                }
+                };
+              };
+              virtualDevices = [
+                "Browser"
+                "Game"
+                "Live"
+                "MIDI"
+                "Music"
+                "Voice"
               ];
-          };
+            in
+            {
+              "context.modules" = [ { } ] ++ lib.optionals vars.gaming (map mkLoopbackModule virtualDevices);
+            };
         };
         pipewire-pulse = {
           "10-resample-quality" = {
@@ -166,47 +83,46 @@ in
       };
       wireplumber = {
         enable = true;
-        extraConfig =
-          {
-            # Static/crackling fix https://wiki.archlinux.org/title/PipeWire#Noticeable_audio_delay_or_audible_pop/crack_when_starting_playback
-            "51-disable-suspension" = {
-              "monitor.alsa.rules" = [
-                {
-                  matches = [
-                    { "node.name" = "~alsa_output.*"; }
-                  ];
-                  actions.update-props = {
-                    "session.suspend-timeout-seconds" = 0;
-                  };
-                }
-              ];
-              "monitor.bluez.rules" = [
-                {
-                  matches = [
-                    { "node.name" = "~bluez_input.*"; }
-                    { "node.name" = "~bluez_output.*"; }
-                  ];
-                  actions.update-props = {
-                    "session.suspend-timeout-seconds" = 0;
-                  };
-                }
-              ];
-            };
-          }
-          // lib.optionalAttrs vars.gaming {
-            "51-disable-dualsense-audio" = {
-              "monitor.alsa.rules" = [
-                {
-                  matches = [
-                    { "alsa.card_name" = "Wireless Controller"; }
-                  ];
-                  actions.update-props = {
-                    "node.disabled" = true;
-                  };
-                }
-              ];
-            };
+        extraConfig = {
+          # Static/crackling fix https://wiki.archlinux.org/title/PipeWire#Noticeable_audio_delay_or_audible_pop/crack_when_starting_playback
+          "51-disable-suspension" = {
+            "monitor.alsa.rules" = [
+              {
+                matches = [
+                  { "node.name" = "~alsa_output.*"; }
+                ];
+                actions.update-props = {
+                  "session.suspend-timeout-seconds" = 0;
+                };
+              }
+            ];
+            "monitor.bluez.rules" = [
+              {
+                matches = [
+                  { "node.name" = "~bluez_input.*"; }
+                  { "node.name" = "~bluez_output.*"; }
+                ];
+                actions.update-props = {
+                  "session.suspend-timeout-seconds" = 0;
+                };
+              }
+            ];
           };
+        }
+        // lib.optionalAttrs vars.gaming {
+          "51-disable-dualsense-audio" = {
+            "monitor.alsa.rules" = [
+              {
+                matches = [
+                  { "alsa.card_name" = "Wireless Controller"; }
+                ];
+                actions.update-props = {
+                  "node.disabled" = true;
+                };
+              }
+            ];
+          };
+        };
       };
     };
 
