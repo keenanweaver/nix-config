@@ -46,7 +46,14 @@
   proton-cachyos =
     inputs.proton-cachyos.packages.${final.stdenv.hostPlatform.system}.proton-cachyos-x86_64_v4;
   proton-em = final.callPackage ./proton-em { };
-  proton-ge = final.proton-ge-bin;
+  #proton-ge = final.proton-ge-bin;
+  proton-ge = prev.proton-ge-bin.overrideAttrs (old: rec {
+    version = "GE-Proton10-27";
+    src = prev.fetchzip {
+      url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
+      hash = "sha256-yBPjPb2LzxdgEobuoeSfs3UZ1XUxZF6vIMYF+fAnLA0=";
+    };
+  });
   relive = prev.callPackage ./relive { };
   rsdkv3 = prev.callPackage ./rsdk/v3 { };
   rsdkv4 = prev.callPackage ./rsdk/v4 { };
