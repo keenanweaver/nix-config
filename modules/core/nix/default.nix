@@ -48,6 +48,7 @@ in
         (import ../../../packages/overlay.nix { inherit inputs; })
       ]
       ++ lib.optionals vars.gaming [
+        inputs.mesa-git.overlays.default
         inputs.proton-cachyos.overlays.default
       ];
     };

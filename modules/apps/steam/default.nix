@@ -41,7 +41,6 @@ in
           PROTON_ENABLE_WAYLAND = true;
           PROTON_ENABLE_HDR = true;
           PROTON_USE_WOW64 = true;
-          # proton-cachyos
           PROTON_FSR4_RDNA3_UPGRADE = true;
           PROTON_USE_NTSYNC = true;
         };

@@ -3,7 +3,7 @@
   overrides = {
     global = {
       Environment = {
-        #FLATPAK_GL_DRIVERS = "mesa-git";
+        FLATPAK_GL_DRIVERS = "mesa-git";
         #PIPEWIRE_NODE = "Game";
         PULSE_SINK = "Game";
       };

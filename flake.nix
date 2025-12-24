@@ -89,6 +89,7 @@
       url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mesa-git.url = "github:powerofthe69/portable-mesa-git-nix";
     nix-citizen = {
       url = "github:LovingMelody/nix-citizen";
       inputs.nix-gaming.follows = "nix-gaming";
