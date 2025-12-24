@@ -48,9 +48,7 @@ in
         };
         services.fluidsynth = {
           enable = true;
-          extraOptions = cfg.extraOptions;
-          soundFont = cfg.soundFont;
-          soundService = cfg.soundService;
+          inherit (cfg) extraOptions soundFont soundService;
         };
         systemd.user.services.fluidsynth = {
           Service = {

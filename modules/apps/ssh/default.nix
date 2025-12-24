@@ -116,16 +116,14 @@ in
         };
         xdg.autostart.entries =
           let
-            desktopEntry = (
-              pkgs.makeDesktopItem {
-                name = "ssh-add";
-                desktopName = "ssh-add";
-                exec = "ssh-add -q ${config.home.homeDirectory}/.ssh/id_ed25519";
-                comment = "Run ssh-add";
-                terminal = false;
-                startupNotify = false;
-              }
-            );
+            desktopEntry = pkgs.makeDesktopItem {
+              name = "ssh-add";
+              desktopName = "ssh-add";
+              exec = "ssh-add -q ${config.home.homeDirectory}/.ssh/id_ed25519";
+              comment = "Run ssh-add";
+              terminal = false;
+              startupNotify = false;
+            };
           in
           [
             "${desktopEntry}/share/applications/${desktopEntry.name}"

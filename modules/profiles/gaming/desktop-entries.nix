@@ -143,7 +143,7 @@ in
     {
       name = "Sonic the Hedgehog";
       exec = avm + (lib.getExe pkgs.rsdkv4);
-      icon = icon;
+      inherit icon;
       categories = [
         "Game"
       ];
@@ -164,7 +164,7 @@ in
     {
       name = "Sonic the Hedgehog 2";
       exec = avm + (lib.getExe pkgs.rsdkv4);
-      icon = icon;
+      inherit icon;
       categories = [
         "Game"
       ];
@@ -185,7 +185,7 @@ in
     {
       name = "Sonic CD";
       exec = avm + (lib.getExe pkgs.rsdkv3);
-      icon = icon;
+      inherit icon;
       categories = [
         "Game"
       ];

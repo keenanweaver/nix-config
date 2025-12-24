@@ -292,7 +292,7 @@ in
             upd = lib.getExe pkgs.topgrade;
             wget = "${lib.getExe pkgs.wget} --hsts-file=${config.xdg.dataHome}/wget-hsts";
           };
-          username = username;
+          inherit username;
           stateVersion = "23.11";
         };
         xdg = {

@@ -81,12 +81,12 @@ in
                 "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
                 "nix.enableLanguageServer" = true;
                 "nix.formatterPath" = "nixfmt";
-                "nix.serverPath" = (lib.getExe pkgs.nixd);
+                "nix.serverPath" = lib.getExe pkgs.nixd;
                 "nix.serverSettings"."nixd"."formatting"."command" = [ "nixfmt" ];
                 "nix.serverSettings"."nixd"."formatting"."options" = {
                   "enable" = [ true ];
                 };
-                "powershell.powerShellAdditionalExePaths"."exePath" = (lib.getExe pkgs.powershell);
+                "powershell.powerShellAdditionalExePaths"."exePath" = lib.getExe pkgs.powershell;
                 "powershell.integratedConsole.focusConsoleOnExecute" = false;
                 "powershell.integratedConsole.showOnStartup" = false;
                 "[powershell]"."editor.renderControlCharacters" = true;
