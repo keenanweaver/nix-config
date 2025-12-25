@@ -12,6 +12,7 @@
     ./direnv
     ./distrobox
     ./easyeffects
+    ./eilmeldung
     ./fastfetch
     ./fd
     ./fluidsynth

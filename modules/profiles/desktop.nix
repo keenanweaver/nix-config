@@ -19,6 +19,7 @@ in
     # Custom modules
     # Apps
     easyeffects.enable = true;
+    eilmeldung.enable = true;
     freetube.enable = true;
     halloy.enable = true;
     mumble.enable = true;

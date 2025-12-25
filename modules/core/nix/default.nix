@@ -46,6 +46,7 @@ in
       };
       overlays = [
         (import ../../../packages/overlay.nix { inherit inputs; })
+        inputs.eilmeldung.overlays.default
       ]
       ++ lib.optionals vars.gaming [
         inputs.mesa-git.overlays.default

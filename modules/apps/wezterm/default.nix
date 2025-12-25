@@ -75,6 +75,10 @@ in
                 local ff_tab, ff_pane, _ = window:spawn_tab { }
                 ff_pane:send_text 'fastfetch\n'
                 ff_tab:set_title ' fetch '
+                -- eilmeldung tab
+                local ff_tab, ff_pane, _ = window:spawn_tab { }
+                ff_pane:send_text 'eilmeldung\n'
+                ff_tab:set_title ' rss '
                 -- neo tab
                 local neo_tab, neo_pane = window:spawn_tab { }
                 neo_pane:send_text 'neo -Da -b 2\n'

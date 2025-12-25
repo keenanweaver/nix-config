@@ -53,6 +53,7 @@
       url = "github:zshzoo/cd-ls";
       flake = false;
     };
+    eilmeldung.url = "github:christo-auer/eilmeldung";
     lazyvim.url = "github:pfassina/lazyvim-nix";
     ucodenix.url = "github:e-tho/ucodenix";
 
@@ -228,6 +229,7 @@
                   };
                   sharedModules = with inputs; [
                     catppuccin.homeModules.catppuccin
+                    eilmeldung.homeManager.default
                     impermanence.homeManagerModules.impermanence
                     lazyvim.homeManagerModules.default
                     nix-flatpak.homeManagerModules.nix-flatpak
@@ -293,6 +295,7 @@
                   };
                   sharedModules = with inputs; [
                     catppuccin.homeModules.catppuccin
+                    eilmeldung.homeManager.default
                     impermanence.homeManagerModules.impermanence
                     lazyvim.homeManagerModules.default
                     nix-flatpak.homeManagerModules.nix-flatpak
