@@ -14,8 +14,6 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    programs.dconf.enable = true;
-
     home-manager.users.${username} = {
       services.easyeffects = {
         enable = true;
