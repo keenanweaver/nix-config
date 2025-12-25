@@ -13,10 +13,6 @@ in
   options = {
     gaming = {
       enable = lib.mkEnableOption "Enable Gaming module in NixOS";
-      useMesaGit = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-      };
     };
   };
 
@@ -81,6 +77,8 @@ in
         };
       };
     };
+
+    drivers.mesa-git.enable = true;
 
     environment = {
       etc = {
@@ -263,9 +261,6 @@ in
             MESA_VK_WSI_PRESENT_MODE = "mailbox";
             #SDL_VIDEODRIVER = "wayland,x11";  # SDL2
             #SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3
-          }
-          // lib.optionalAttrs cfg.useMesaGit {
-            VK_ICD_FILENAMES = "${pkgs.mesa-git}/share/vulkan/icd.d/radeon_icd.x86_64.json";
           };
         };
 
