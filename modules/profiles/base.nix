@@ -196,11 +196,11 @@ in
             just
             powershell
             seer
-            ## Bash ##
             bash-language-server
             shellcheck
             shellharden
             shfmt
+            lua-language-server
             # Misc
             adguardian
             angle-grinder

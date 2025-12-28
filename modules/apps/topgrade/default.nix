@@ -2,7 +2,6 @@
   lib,
   config,
   username,
-  vars,
   ...
 }:
 let
@@ -46,11 +45,7 @@ in
               "NixOS Rebuild" = "${lib.getExe pkgs.nh} os switch --update";
             };
             commands = { };
-            post_commands =
-              { }
-              // lib.optionalAttrs vars.gaming {
-                #"SteamTinkerLaunch configure" = "script-stl-configure";
-              };
+            post_commands = { };
           };
         };
       };

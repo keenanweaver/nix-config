@@ -25,7 +25,6 @@ in
         liberation_ttf
         maple-mono.Normal-NF
         material-design-icons
-        nerd-fonts.jetbrains-mono
         source-han-sans
         wqy_zenhei
       ];

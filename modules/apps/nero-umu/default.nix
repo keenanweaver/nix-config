@@ -17,26 +17,28 @@ in
     home-manager.users.${username} =
       { config, pkgs, ... }:
       {
-        home.file = {
-          proton-links-proton-cachyos-nero = {
-            enable = true;
-            source = pkgs.proton-cachyos.steamcompattool;
-            target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-proton-cachyos-nero-nix";
+        home = {
+          file = {
+            proton-links-proton-cachyos-nero = {
+              enable = true;
+              source = pkgs.proton-cachyos.steamcompattool;
+              target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-proton-cachyos-nero-nix";
+            };
+            proton-links-proton-em-nero = {
+              enable = true;
+              source = pkgs.proton-em.steamcompattool;
+              target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-proton-em-nero-nix";
+            };
+            proton-links-proton-ge-nero = {
+              enable = true;
+              source = pkgs.proton-ge.steamcompattool;
+              target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-nero-nix";
+            };
           };
-          proton-links-proton-em-nero = {
-            enable = true;
-            source = pkgs.proton-em.steamcompattool;
-            target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-proton-em-nero-nix";
-          };
-          proton-links-proton-ge-nero = {
-            enable = true;
-            source = pkgs.proton-ge.steamcompattool;
-            target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-nero-nix";
-          };
+          packages = with pkgs; [
+            nero-umu
+          ];
         };
-        home.packages = with pkgs; [
-          nero-umu
-        ];
       };
   };
 }

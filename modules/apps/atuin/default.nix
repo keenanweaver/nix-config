@@ -32,6 +32,8 @@ in
             "^kmon$"
             "^l$"
             "^ll$"
+            "^ls"
+            "^lsd"
             "^pwd$"
             "^upd$"
             "^nor$"

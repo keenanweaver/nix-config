@@ -34,14 +34,6 @@
         ];
       };
     };
-    "io.github.noxworld_dev.OpenNox" = {
-      Context = {
-        filesystems = [
-          "!home"
-          "${config.home.homeDirectory}/Games/nox"
-        ];
-      };
-    };
     "io.github.ryubing.Ryujinx" = {
       Context = {
         filesystems = [
@@ -152,7 +144,6 @@
       bundle = "file://${config.home.homeDirectory}/Games/io.github.hedge_dev.unleashedrecomp.flatpak";
       sha256 = "13wca95yngfwl1y0c05y0b2w7aa8k3nkhvk46wsrxjvw3shb35im";
     }
-    "io.github.noxworld_dev.OpenNox"
     "io.github.randovania.Randovania"
     "io.github.ryubing.Ryujinx"
     "io.github.strikerx3.ymir"

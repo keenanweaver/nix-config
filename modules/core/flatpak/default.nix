@@ -10,12 +10,12 @@ let
   cfg = config.flatpak;
 in
 {
-
   options = {
     flatpak = {
       enable = lib.mkEnableOption "Enable flatpak in NixOS & home-manager";
     };
   };
+
   config = lib.mkIf cfg.enable {
     services.flatpak = {
       enable = true;
@@ -26,11 +26,13 @@ in
       xdg-dbus-proxy
     ];
 
-    systemd.services = {
-      "home-manager-${username}" = {
-        serviceConfig.TimeoutStartSec = pkgs.lib.mkForce 1200;
-      };
-    };
+    /*
+      systemd.services = {
+         "home-manager-${username}" = {
+           serviceConfig.TimeoutStartSec = pkgs.lib.mkForce 1200;
+         };
+       };
+    */
 
     users.users.${username}.extraGroups = [ "flatpak" ];
 

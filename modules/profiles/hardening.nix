@@ -151,7 +151,6 @@ in
         };
       };
       polkit = {
-        enable = true;
         # UDisks https://gist.github.com/Scrumplex/8f528c1f63b5f4bfabe14b0804adaba7
         extraConfig = ''
           polkit.addRule(function(action, subject) {
