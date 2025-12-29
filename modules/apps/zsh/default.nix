@@ -18,7 +18,7 @@ in
       enable = true;
     };
     home-manager.users.${username} =
-      { inputs, config, ... }:
+      { config, pkgs, ... }:
       {
         programs.zsh = {
           enable = true;
@@ -29,6 +29,11 @@ in
             extended = true;
             ignoreSpace = true;
           };
+          initContent = ''
+            chpwd() {
+              ${lib.getExe pkgs.lsd} -la
+            }
+          '';
           oh-my-zsh = {
             enable = true;
             custom = "${config.xdg.configHome}/zsh/.zsh_custom";
@@ -40,13 +45,6 @@ in
               "zsh-interactive-cd"
             ];
           };
-          plugins = [
-            {
-              name = "cd-ls";
-              src = inputs.cd-ls;
-              file = "cd-ls.plugin.zsh";
-            }
-          ];
           syntaxHighlighting = {
             enable = true;
           };

@@ -21,22 +21,25 @@ in
         enableNushellIntegration = true;
         enableZshIntegration = true;
         settings = {
-          add_newline = false;
+          add_newline = true;
           character = {
-            success_symbol = "[›](bold green)";
-            error_symbol = "[›](bold red)";
+            success_symbol = "[⮞](bold lavender)";
+            error_symbol = "[⮞](bold red)";
           };
           cmd_duration = {
             min_time = 1000;
             format = "[$duration ](fg:yellow)";
           };
-          format = "
-[┌───────────────────>](bold green)
-[│](bold green)$all
-[└─>](bold green)";
+          directory = {
+            truncation_symbol = ".../";
+          };
+          format = lib.concatStrings [
+            "[╭╴$symbol](lavender)$os$shell\n"
+            "[├](lavender)$all"
+            "[╰$symbol](lavender)$character"
+          ];
           os = {
             disabled = false;
-            format = "$symbol";
           };
           shell = {
             disabled = false;

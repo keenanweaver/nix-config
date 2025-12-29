@@ -18,14 +18,14 @@ in
       blesh.enable = true;
     };
     home-manager.users.${username} =
-      { config, ... }:
+      { config, pkgs, ... }:
       {
         programs.bash = {
           enable = true;
           historyFile = "${config.xdg.dataHome}/bash/.bash_history";
           initExtra = ''
-            function cdd {
-              builtin cd "$@" && ls -l
+            cd() {
+              builtin cd "$@" && ${lib.getExe pkgs.lsd} -la
             }
           '';
         };
