@@ -17,6 +17,7 @@ in
     home-manager.users.${username} =
       {
         pkgs,
+        inputs,
         config,
         ...
       }:
@@ -25,7 +26,7 @@ in
           file = {
             vkbasalt-default-config =
               let
-                reshade = "${pkgs.nur.repos.ataraxiasjel.reshade-shaders}/share/reshade";
+                reshade = "${inputs.nix-reshade.packages.${pkgs.stdenv.hostPlatform.system}.reshade-shaders}/reshade-shaders";
               in
               {
                 enable = true;
@@ -43,17 +44,17 @@ in
                   smaaCornerRounding = 25
                   toggleKey = Home
                   # ReShade effects #
-                  blending = ${reshade}/shaders/Blending.fxh
-                  daltonize = ${reshade}/shaders/Daltonize.fx
-                  deband = ${reshade}/shaders/Deband.fx
-                  displaydepth = ${reshade}/shaders/DisplayDepth.fx
-                  drawtext = ${reshade}/shaders/DrawText.fxh
-                  lut = ${reshade}/shaders/LUT.fx
-                  macros = ${reshade}/shaders/Macros.fxh
-                  reshade = ${reshade}/shaders/ReShade.fxh
-                  reshadeui = ${reshade}/shaders/ReShadeUI.fxh
-                  tridither = ${reshade}/shaders/TriDither.fxh
-                  uimask = ${reshade}/shaders/UIMask.fx 
+                  blending = ${reshade}/shaders/blending.fxh
+                  daltonize = ${reshade}/shaders/daltonize.fx
+                  deband = ${reshade}/shaders/deband.fx
+                  displaydepth = ${reshade}/shaders/displaydepth.fx
+                  drawtext = ${reshade}/shaders/drawtext.fxh
+                  lut = ${reshade}/shaders/lut.fx
+                  macros = ${reshade}/shaders/macros.fxh
+                  reshade = ${reshade}/shaders/reshade.fxh
+                  reshadeui = ${reshade}/shaders/reshadeui.fxh
+                  tridither = ${reshade}/shaders/tridither.fxh
+                  uimask = ${reshade}/shaders/uimask.fx 
                 '';
                 target = "${config.xdg.configHome}/vkBasalt/vkBasalt.conf";
               };
@@ -67,6 +68,15 @@ in
           };
         };
         services.flatpak = {
+          overrides = {
+            global = {
+              Context = {
+                filesystems = [
+                  "xdg-config/vkBasalt:ro"
+                ];
+              };
+            };
+          };
           packages = [
             "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/24.08"
             "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/25.08"

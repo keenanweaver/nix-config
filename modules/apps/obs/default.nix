@@ -62,13 +62,15 @@ in
             };
           };
         };
-        packages = lib.mkIf cfg.enableFlatpak [
-          "com.obsproject.Studio"
-          "com.obsproject.Studio.Plugin.InputOverlay"
-          "com.obsproject.Studio.Plugin.OBSVkCapture"
+        packages = [
           "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08" # Heroic
           "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08"
           "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/25.08"
+        ]
+        ++ lib.optionals cfg.enableFlatpak [
+          "com.obsproject.Studio"
+          "com.obsproject.Studio.Plugin.InputOverlay"
+          "com.obsproject.Studio.Plugin.OBSVkCapture"
         ];
       };
       xdg = {

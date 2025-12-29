@@ -49,10 +49,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    cd-ls = {
-      url = "github:zshzoo/cd-ls";
-      flake = false;
-    };
     eilmeldung.url = "github:christo-auer/eilmeldung";
     lazyvim.url = "github:pfassina/lazyvim-nix";
     ucodenix.url = "github:e-tho/ucodenix";
@@ -207,6 +203,7 @@
               impermanence.nixosModules.impermanence
               just-one-more-repo.nixosModules.default
               lsfg-vk-flake.nixosModules.default
+              mesa-git.nixosModules.default
               nix-flatpak.nixosModules.nix-flatpak
               nur.modules.nixos.default
               sops-nix.nixosModules.sops

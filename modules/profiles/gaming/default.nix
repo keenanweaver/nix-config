@@ -42,14 +42,8 @@ in
     zerotier.enable = true;
 
     boot = {
-      extraModulePackages = with config.boot.kernelPackages; [
-        gcadapter-oc-kmod
-        zenergy
-      ];
       kernelModules = [
-        "gcadapter_oc"
         "ntsync"
-        "zenergy"
       ];
       kernelParams = [
         #"usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
@@ -98,8 +92,8 @@ in
 
     hardware = {
       uinput.enable = true;
-      #xone.enable = true;
-      #xpadneo.enable = true;
+      xone.enable = true;
+      xpadneo.enable = true;
       yeetmouse = {
         enable = false;
       };

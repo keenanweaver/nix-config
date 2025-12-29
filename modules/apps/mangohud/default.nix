@@ -2,18 +2,24 @@
   lib,
   config,
   username,
-  inputs,
   ...
 }:
 let
   cfg = config.mangohud;
-  cpu = if config.networking.hostName == "nixos-desktop" then "7950X3D" else "";
-  gpu = if config.networking.hostName == "nixos-desktop" then "7900XTX" else "";
+  hostHardware = {
+    nixos-desktop = {
+      cpu = "7950X3D";
+      gpu = "7900XTX";
+    };
+  };
+  currentHost = hostHardware.${config.networking.hostName} or { cpu = ""; gpu = ""; };
+  cpu = currentHost.cpu;
+  gpu = currentHost.gpu;
 in
 {
   options = {
     mangohud = {
-      enable = lib.mkEnableOption "Enable mangohud in NixOS & home-manager";
+      enable = lib.mkEnableOption "Enable mangohud in home-manager";
     };
   };
   config = lib.mkIf cfg.enable {

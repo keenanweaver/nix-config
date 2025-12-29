@@ -21,6 +21,7 @@ My suggestion is to just take the bits and pieces you like and morph them into y
 I'm always looking to simplify or make things better. Please let me know if you have suggestions.
 
 TODO:
+* Consider [dendritic pattern](https://github.com/Doc-Steve/dendritic-design-with-flake-parts) migration
 * Tune [LACT settings for desktop](hosts/desktop/default.nix)
 * Linking Kron4ek Wine breaks [Bottles](modules/apps/bottles/default.nix)
 * Fix Sunshine hanging KDE on logout

@@ -2,8 +2,15 @@
 {
   overrides = {
     global = {
+      Context = {
+        filesystems = [
+          "xdg-config/lsfg-vk:rw"
+          "xdg-run/discord-ipc-*"
+        ];
+      };
       Environment = {
         FLATPAK_GL_DRIVERS = "mesa-git";
+        LSFG_CONFIG = "${config.xdg.configHome}/lsfg-vk/conf.toml";
         #PIPEWIRE_NODE = "Game";
         PULSE_SINK = "Game";
       };
