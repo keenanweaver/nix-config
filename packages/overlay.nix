@@ -44,7 +44,7 @@
     };
   };
   proton-cachyos =
-    inputs.proton-cachyos.packages.${final.stdenv.hostPlatform.system}.proton-cachyos-x86_64_v4;
+    inputs.nix-gaming-edge.packages.${final.stdenv.hostPlatform.system}.proton-cachyos-x86_64_v4;
   proton-em = final.callPackage ./proton-em { };
   #proton-ge = final.proton-ge-bin;
   proton-ge = prev.proton-ge-bin.overrideAttrs (old: rec {

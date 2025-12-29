@@ -49,8 +49,7 @@ in
         inputs.eilmeldung.overlays.default
       ]
       ++ lib.optionals vars.gaming [
-        inputs.mesa-git.overlays.default
-        inputs.proton-cachyos.overlays.default
+        inputs.nix-gaming-edge.overlays.default
       ];
     };
     system = {

@@ -86,18 +86,20 @@
       url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mesa-git.url = "github:powerofthe69/portable-mesa-git-nix";
     nix-citizen = {
       url = "github:LovingMelody/nix-citizen";
       inputs.nix-gaming.follows = "nix-gaming";
     };
     nix-gaming.url = "github:fufexan/nix-gaming";
+    nix-gaming-edge = {
+      url = "github:powerofthe69/nix-gaming-edge";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-reshade.url = "github:LovingMelody/nix-reshade";
     nonfree = {
       url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
       flake = false;
     };
-    proton-cachyos.url = "github:powerofthe69/proton-cachyos-nix";
     openmw-nix = {
       url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -203,8 +205,8 @@
               impermanence.nixosModules.impermanence
               just-one-more-repo.nixosModules.default
               lsfg-vk-flake.nixosModules.default
-              mesa-git.nixosModules.default
               nix-flatpak.nixosModules.nix-flatpak
+              nix-gaming-edge.nixosModules.default
               nur.modules.nixos.default
               sops-nix.nixosModules.sops
               ucodenix.nixosModules.default
