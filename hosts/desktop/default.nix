@@ -41,7 +41,7 @@
       "kvm-amd"
       "tcp_bbr"
     ];
-    kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+    kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
     kernelParams = [
       "amd_3d_vcache.x3d_mode=cache" # AMD V-Cache https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
       "amd_iommu=on"
@@ -77,7 +77,7 @@
     amdgpu = {
       initrd.enable = true;
       overdrive = {
-        enable = true;
+        enable = false;
         ppfeaturemask = "0xffffffff";
       };
     };
@@ -91,9 +91,8 @@
   nix = {
     settings = {
       build-dir = "/nix/build";
-      # https://github.com/xddxdd/nix-cachyos-kernel?tab=readme-ov-file#binary-cache
       extra-substituters = [
-        "https://attic.xuyh0120.win/lantian"
+        "https://attic.xuyh0120.win/lantian" # https://github.com/xddxdd/nix-cachyos-kernel?tab=readme-ov-file#binary-cache
         "https://nix-cache.tokidoki.dev/tokidoki"
       ];
       extra-trusted-public-keys = [

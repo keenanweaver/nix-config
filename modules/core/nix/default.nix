@@ -47,6 +47,7 @@ in
       overlays = [
         (import ../../../packages/overlay.nix { inherit inputs; })
         inputs.eilmeldung.overlays.default
+        inputs.nix-cachyos-kernel.overlays.pinned
       ]
       ++ lib.optionals vars.gaming [
         inputs.nix-gaming-edge.overlays.default
