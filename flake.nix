@@ -126,10 +126,6 @@
       url = "github:catppuccin/ghostwriter";
       flake = false;
     };
-    catppuccin-halloy = {
-      url = "github:catppuccin/halloy";
-      flake = false;
-    };
     catppuccin-heroic = {
       url = "github:catppuccin/heroic";
       flake = false;
@@ -151,7 +147,7 @@
       flake = false;
     };
     catppuccin-zen = {
-      url = "github:IAmJafeth/zen-browser";
+      url = "github:catppuccin/zen-browser";
       flake = false;
     };
     klassy = {
