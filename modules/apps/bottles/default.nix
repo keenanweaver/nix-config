@@ -40,12 +40,12 @@ in
             };
             proton-links-proton-cachyos-bottles = {
               enable = cfg.enableNative;
-              source = pkgs.proton-cachyos.steamcompattool;
+              source = pkgs.proton-cachyos-x86_64_v4.steamcompattool;
               target = "${config.xdg.dataHome}/bottles/runners/proton-cachyos-nix";
             };
             proton-links-proton-cachyos-flatpak-bottles = {
               enable = cfg.enableFlatpak;
-              source = pkgs.proton-cachyos.steamcompattool;
+              source = pkgs.proton-cachyos-x86_64_v4.steamcompattool;
               target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos-nix";
             };
             proton-links-proton-em-bottles = {

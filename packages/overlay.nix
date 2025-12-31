@@ -43,7 +43,7 @@
       hash = "sha256-85sA+J+Iq5ls1f4ssTL1Xbo6uIOJIFEQ7l4rMXYNIvA=";
     };
   };
-  proton-cachyos =
+  proton-cachyos-x86_64_v4 =
     inputs.nix-gaming-edge.packages.${final.stdenv.hostPlatform.system}.proton-cachyos-x86_64_v4;
   proton-em = final.callPackage ./proton-em { };
   #proton-ge = final.proton-ge-bin;
