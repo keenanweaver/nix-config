@@ -203,8 +203,11 @@ in
               // lib.optionalAttrs vars.gaming {
                 "application/x-alcohol" = "cdemu-client.desktop";
                 "application/x-cue" = "cdemu-client.desktop";
+                "application/x-dosexec" = "nero-umu.desktop";
+                "application/x-ms-ne-executable" = "nero-umu.desktop";
+                "application/vnd.microsoft.portable-executable" = "nero-umu.desktop";
                 "application/x-gd-rom-cue" = "cdemu-client.desktop";
-                "application/x-msdownload" = "wine.desktop";
+                "application/x-msdownload" = "nero-umu.desktop";
                 "x-scheme-handler/ror2mm" = "r2modman.desktop";
               };
             };
