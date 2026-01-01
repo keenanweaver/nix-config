@@ -47,6 +47,10 @@
       "amd_iommu=on"
       "amd_pstate=active"
       "microcode.amd_sha_check=off"
+      # AMDGPU freezing randomly https://gitlab.freedesktop.org/drm/amd/-/issues/4141
+      # Run 'sudo cat /sys/kernel/debug/dri/128/amdgpu_gpu_recover' to fix
+      "amdgpu.runpm=0"
+      "amdgpu.dcdebugmask=0x10"
     ];
     loader = {
       limine = {
@@ -77,7 +81,7 @@
     amdgpu = {
       initrd.enable = true;
       overdrive = {
-        enable = false;
+        enable = true;
         ppfeaturemask = "0xffffffff";
       };
     };
