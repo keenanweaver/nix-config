@@ -222,7 +222,7 @@ in
               
               -- First tab: zsh (top) and bash (bottom) split
               pane:send_text 'clear && ${lib.getExe pkgs.zsh}\n'
-              local bash_pane = pane:split{ direction = 'Bottom', size = 0.5 }
+              local bash_pane = pane:split{ direction = 'Bottom', size = 0.1 }
               bash_pane:send_text 'clear && ${lib.getExe pkgs.bash}\n'
               tab:set_title('zsh/bash')
               
@@ -253,8 +253,8 @@ in
               local tab6, pane6, window6 = window:spawn_tab{}
               pane6:send_text '${lib.getExe pkgs.sshs}\n'
               tab6:set_title('sshs')
-              
-              -- Tab 7: distrobox with automatic container splits
+
+              -- Tab 7: distrobox with automatic container splits (horizontal only)
               local tab7, pane7, window7 = window:spawn_tab{}
               
               -- Get list of distrobox containers
@@ -282,22 +282,10 @@ in
                   -- Enter first container in the main pane
                   pane7:send_text('${lib.getExe' config.programs.distrobox.package "distrobox-enter"} ' .. containers[1] .. '\n')
                   
-                  -- Create splits for additional containers
+                  -- Create horizontal splits only for additional containers
                   local current_pane = pane7
                   for i = 2, #containers do
-                    if i == 2 then
-                      -- First split: vertical
-                      current_pane = pane7:split{ direction = 'Right', size = 0.5 }
-                    elseif i == 3 then
-                      -- Second split: horizontal from first pane
-                      current_pane = pane7:split{ direction = 'Bottom', size = 0.5 }
-                    elseif i == 4 then
-                      -- Third split: horizontal from second pane (right side)
-                      current_pane = current_pane:split{ direction = 'Bottom', size = 0.5 }
-                    else
-                      -- Additional containers: continue splitting
-                      current_pane = current_pane:split{ direction = 'Bottom', size = 0.5 }
-                    end
+                    current_pane = current_pane:split{ direction = 'Bottom', size = 0.5 }
                     current_pane:send_text('${lib.getExe' config.programs.distrobox.package "distrobox-enter"} ' .. containers[i] .. '\n')
                   end
                   
@@ -319,15 +307,10 @@ in
               pane8:send_text '${lib.getExe pkgs.fastfetch}\n'
               tab8:set_title('fastfetch')
               
-              -- Tab 9: eilmeldung
+              -- Tab 9: neo
               local tab9, pane9, window9 = window:spawn_tab{}
-              pane9:send_text '${lib.getExe pkgs.eilmeldung}\n'
-              tab9:set_title('rss')
-              
-              -- Tab 10: neo
-              local tab10, pane10, window10 = window:spawn_tab{}
-              pane10:send_text '${lib.getExe pkgs.neo} -Da -b 2\n'
-              tab10:set_title('neo')
+              pane9:send_text '${lib.getExe pkgs.neo} -Da -b 2\n'
+              tab9:set_title('neo')
               
               -- Go back to first tab
               tab:activate()

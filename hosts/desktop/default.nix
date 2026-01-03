@@ -2,7 +2,6 @@
   lib,
   username,
   pkgs,
-  inputs,
   ...
 }:
 {
@@ -48,9 +47,12 @@
       "amd_pstate=active"
       "microcode.amd_sha_check=off"
       # AMDGPU freezing randomly https://gitlab.freedesktop.org/drm/amd/-/issues/4141
+      # https://gitlab.freedesktop.org/mesa/mesa/-/issues/14250#note_3181015
+      # https://reddit.com/r/linux_gaming/comments/1q1bg71/8_threads_in_2_weeks_amd_gpus_crashing_on/nx5zixu/?context=3#nx5zixu
       # Run 'sudo cat /sys/kernel/debug/dri/128/amdgpu_gpu_recover' to fix
       "amdgpu.runpm=0"
       "amdgpu.dcdebugmask=0x10"
+      "amdgpu.aspm=0"
     ];
     loader = {
       limine = {
@@ -105,10 +107,6 @@
       ];
     };
   };
-
-  nixpkgs.overlays = [
-    inputs.nix-cachyos-kernel.overlays.default
-  ];
 
   powerManagement.cpuFreqGovernor = "ondemand";
 

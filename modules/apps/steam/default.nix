@@ -1,6 +1,5 @@
 {
   lib,
-  inputs,
   config,
   username,
   pkgs,
@@ -52,7 +51,7 @@ in
         privateTmp = false; # https://github.com/NixOS/nixpkgs/issues/381923
       };
       extraCompatPackages = with pkgs; [
-        proton-cachyos-x86_64_v4
+        proton-cachyos-x86_64-v4
         proton-em
         proton-ge
       ];

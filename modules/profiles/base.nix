@@ -230,7 +230,7 @@ in
             yq
             ## unix alts ##
             choose # cut
-            dogdns # dig
+            doggo # dig
             dua # du
             duf # df
             fuc # cp / rm
