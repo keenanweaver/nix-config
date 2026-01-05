@@ -23,7 +23,7 @@ in
     cdemu.enable = true;
     coolercontrol.enable = true;
     fluidsynth.enable = true;
-    gamemode.enable = false;
+    gamemode.enable = true;
     gamescope.enable = true;
     gsr = {
       enable = true;
@@ -53,7 +53,7 @@ in
         "clocksource=tsc"
         "mitigations=off"
         "preempt=full" # https://reddit.com/r/linux_gaming/comments/1g0g7i0/god_of_war_ragnarok_crackling_audio/lr8j475/?context=3#lr8j475
-        "split_lock_detect=off"
+        #"split_lock_detect=off"
       ];
       kernel = {
         sysctl = {
@@ -61,7 +61,7 @@ in
           "vm.mmap_min_addr" = 0; # SheepShaver
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/sysctl.d/99-cachyos-settings.conf
           "fs.file-max" = 2097152;
-          "kernel.split_lock_mitigate" = 0;
+          #"kernel.split_lock_mitigate" = 0;
           "net.core.netdev_max_backlog" = 4096;
           "net.ipv4.tcp_fin_timeout" = 5;
           "vm.dirty_background_bytes" = 67108864;
@@ -72,7 +72,13 @@ in
       };
     };
 
-    drivers.mesa-git.enable = true;
+    drivers.mesa-git = {
+      enable = true;
+      enableCache = false;
+      #cacheCleanup = {
+      #  enable = true;
+      #};
+    };
 
     environment = {
       etc = {
@@ -253,8 +259,8 @@ in
             MESA_SHADER_CACHE_MAX_SIZE = "12G";
             # https://reddit.com/r/linux_gaming/comments/1mg8vtl/low_latency_gaming_guide/
             MESA_VK_WSI_PRESENT_MODE = "mailbox";
-            #SDL_VIDEODRIVER = "wayland,x11";  # SDL2
-            #SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3
+            SDL_VIDEODRIVER = "wayland,x11";  # SDL2
+            SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3
           };
         };
 

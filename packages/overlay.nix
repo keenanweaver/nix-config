@@ -2,6 +2,15 @@
 
 (final: prev: {
   fooyin = prev.callPackage ./fooyin { };
+  gamemode = prev.gamemode.overrideAttrs {
+    version = "1.8.2-unstable-09-04-2025";
+    src = prev.fetchFromGitHub {
+      owner = "FeralInteractive";
+      repo = "gamemode";
+      rev = "f0a569a5199974751a4a75ebdc41c8f0b8e4c909";
+      hash = "sha256-9DB8iWiyrM4EJ94ERC5SE9acrhqeI00BF1wU0umeNFg=";
+    };
+  };
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder/gsr.nix { };
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif.nix { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };

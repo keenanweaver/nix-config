@@ -109,7 +109,7 @@ in
               # dx_api
               wine
               winesync
-              # gamemode
+              gamemode
               vkbasalt
               fsr
               hdr
