@@ -23,7 +23,7 @@ in
     cdemu.enable = true;
     coolercontrol.enable = true;
     fluidsynth.enable = true;
-    gamemode.enable = true;
+    gamemode.enable = false;
     gamescope.enable = true;
     gsr = {
       enable = true;
@@ -48,12 +48,10 @@ in
       kernelParams = [
         #"usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
         "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
-        "amdgpu.mcbp=0"
         "tsc=reliable"
         "clocksource=tsc"
         "mitigations=off"
         "preempt=full" # https://reddit.com/r/linux_gaming/comments/1g0g7i0/god_of_war_ragnarok_crackling_audio/lr8j475/?context=3#lr8j475
-        #"split_lock_detect=off"
       ];
       kernel = {
         sysctl = {
@@ -61,7 +59,7 @@ in
           "vm.mmap_min_addr" = 0; # SheepShaver
           # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/sysctl.d/99-cachyos-settings.conf
           "fs.file-max" = 2097152;
-          #"kernel.split_lock_mitigate" = 0;
+          "kernel.split_lock_mitigate" = 0;
           "net.core.netdev_max_backlog" = 4096;
           "net.ipv4.tcp_fin_timeout" = 5;
           "vm.dirty_background_bytes" = 67108864;

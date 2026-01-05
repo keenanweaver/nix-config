@@ -16,15 +16,9 @@
     programs.gamemode = {
       enable = true;
       settings = {
-        general = {
-          ioprio = 0;
-          renice = 10;
-        };
         cpu = {
           amd_x3d_mode_default = "frequency";
           amd_x3d_mode_desired = "cache";
-          park_cores = "no";
-          pin_cores = "no";
         };
         custom = {
           start = lib.getExe (
