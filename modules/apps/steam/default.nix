@@ -86,7 +86,7 @@ in
         programs.steam.config = {
           enable = true;
           closeSteam = true;
-          #defaultCompatTool = "Proton CachyOS x86_64_v4";
+          defaultCompatTool = "Proton CachyOS x86_64-v4";
           apps = {
             helldivers2 = {
               id = 553850;
@@ -94,6 +94,9 @@ in
                 env = {
                   WINE_CPU_TOPOLOGY = "8:1,2,3,4,5,6,7,8"; # https://github.com/ValveSoftware/Proton/issues/7486#issuecomment-2683254539
                 };
+                wrappers = [
+                  (lib.getExe pkgs.gamemode)
+                ];
               };
             };
             hitmanwoa = {
@@ -102,11 +105,19 @@ in
                 args = [
                   "-skip_launcher"
                 ];
+                wrappers = [
+                  (lib.getExe pkgs.gamemode)
+                ];
               };
             };
             svencoop = {
               id = 225840;
-              compatTool = "Proton EM";
+              compatTool = "Proton CachyOS x86_64-v4";
+              launchOptions = {
+                wrappers = [
+                  (lib.getExe pkgs.gamemode)
+                ];
+              };
             };
           };
         };

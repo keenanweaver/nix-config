@@ -23,7 +23,7 @@ in
     cdemu.enable = true;
     coolercontrol.enable = true;
     fluidsynth.enable = true;
-    gamemode.enable = false;
+    gamemode.enable = true;
     gamescope.enable = true;
     gsr = {
       enable = true;

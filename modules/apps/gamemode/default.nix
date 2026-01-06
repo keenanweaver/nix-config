@@ -5,21 +5,18 @@
   pkgs,
   ...
 }:
+let
+  cfg = config.gamemode;
+in
 {
-  options = {
-    gamemode = {
-      enable = lib.mkEnableOption "Enable gamemode in NixOS & home-manager";
-    };
+  options.gamemode = {
+    enable = lib.mkEnableOption "Enable gamemode in NixOS & home-manager";
   };
 
-  config = lib.mkIf config.gamemode.enable {
+  config = lib.mkIf cfg.enable {
     programs.gamemode = {
       enable = true;
       settings = {
-        cpu = {
-          amd_x3d_mode_default = "frequency";
-          amd_x3d_mode_desired = "cache";
-        };
         custom = {
           start = lib.getExe (
             pkgs.writeShellApplication {

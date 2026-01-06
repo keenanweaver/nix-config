@@ -19,11 +19,10 @@ in
     # Custom modules
     # Apps
     easyeffects.enable = true;
-    eilmeldung.enable = true;
     freetube.enable = true;
     halloy.enable = true;
     mumble.enable = true;
-    rmpc.enable = true;
+    rmpc.enable = false;
     vesktop.enable = true;
     vscode.enable = true;
     wezterm.enable = true;
@@ -73,10 +72,21 @@ in
           interval = "weekly";
         };
       };
-      devmon.enable = true;
       fwupd.enable = true;
       lact.enable = true;
-      tuned.enable = true;
+      tuned = {
+        enable = true;
+        ppdSettings = {
+          profiles = {
+            balanced = "balanced";
+            performance = "throughput-performance";
+            power-saver = "desktop-powersave";
+          };
+        };
+        settings = {
+          dynamic_tuning = true;
+        };
+      };
     };
 
     home-manager.users.${username} =

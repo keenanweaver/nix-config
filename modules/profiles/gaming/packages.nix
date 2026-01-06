@@ -45,7 +45,7 @@ with pkgs;
     ironwail
     q2pro
     quake-injector
-    uhexen2
+    #uhexen2
     # trenchbroom
     ## Arma
     arma3-unix-launcher
@@ -127,7 +127,7 @@ with pkgs;
     inputs.just-one-more-repo.packages.${stdenv.hostPlatform.system}.r2modman
     ## Other
     adwsteamgtk
-    chiaki-ng
+    #chiaki-ng
     flips
     gst_all_1.gstreamer
     gst_all_1.gst-libav
