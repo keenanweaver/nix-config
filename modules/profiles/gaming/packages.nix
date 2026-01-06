@@ -118,7 +118,6 @@ with pkgs;
     cartridges
     faugus-launcher
     goverlay
-    inputs.just-one-more-repo.packages.${stdenv.hostPlatform.system}.scopebuddy
     ## Modding
     hedgemodmanager
     nur.repos.merrkry.jackify-bin
