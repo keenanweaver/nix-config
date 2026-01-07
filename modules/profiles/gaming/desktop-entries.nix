@@ -8,13 +8,14 @@ let
   audioCapture = "env PIPEWIRE_NODE=Game PULSE_SINK=Game ";
   mangohud = lib.getExe' pkgs.mangohud "mangohud" + " ";
   videoCapture = lib.getExe' pkgs.obs-studio-plugins.obs-vkcapture "obs-gamecapture" + " ";
-  avm = audioCapture + videoCapture + mangohud;
+  gameMode = lib.getExe pkgs.gamemode + " ";
+  avgm = audioCapture + videoCapture + gameMode + mangohud;
 in
 {
   doomrunner = {
     name = "Doom Runner";
     comment = "Preset-oriented graphical launcher of various ported Doom engines";
-    exec = avm + (lib.getExe pkgs.doomrunner);
+    exec = avgm + (lib.getExe pkgs.doomrunner);
     icon = "DoomRunner";
     categories = [ "Game" ];
     noDisplay = false;
@@ -28,7 +29,7 @@ in
     {
       name = "DREAMM";
       comment = "Specialized emulator for playing many of your original DOS, Windows, and FM-Towns LucasArts (and LucasArts-adjacent) games";
-      exec = avm + execBin;
+      exec = avgm + execBin;
       icon = "${config.home.homeDirectory}/Games/dreamm/dreamm.png";
       noDisplay = false;
       startupNotify = true;
@@ -42,7 +43,7 @@ in
     {
       name = "EasyRPG Player";
       comment = "Play RPG Maker games";
-      exec = avm + execBin + execArgs;
+      exec = avgm + execBin + execArgs;
       icon = "easyrpg-player";
       categories = [
         "Game"
@@ -96,9 +97,10 @@ in
         name = "quake-injector";
         runtimeEnv = {
           quakeDir = "${config.home.homeDirectory}/Games/quake/quake-1/injector";
-          exec = "${audioCapture} obs-gamecapture mangohud quake-injector";
+          exec = "${audioCapture} obs-gamecapture mangohud gamemoderun quake-injector";
         };
         runtimeInputs = with pkgs; [
+          gamemode
           mangohud
           obs-studio-plugins.obs-vkcapture
           quake-injector
@@ -119,7 +121,7 @@ in
   scummvm = {
     name = "ScummVM";
     comment = "Interpreter for numerous adventure games and RPGs";
-    exec = avm + (lib.getExe pkgs.scummvm);
+    exec = avgm + (lib.getExe pkgs.scummvm);
     icon = "org.scummvm.scummvm";
     categories = [
       "Game"
@@ -142,7 +144,7 @@ in
     in
     {
       name = "Sonic the Hedgehog";
-      exec = avm + (lib.getExe pkgs.rsdkv4);
+      exec = avgm + (lib.getExe pkgs.rsdkv4);
       inherit icon;
       categories = [
         "Game"
@@ -163,7 +165,7 @@ in
     in
     {
       name = "Sonic the Hedgehog 2";
-      exec = avm + (lib.getExe pkgs.rsdkv4);
+      exec = avgm + (lib.getExe pkgs.rsdkv4);
       inherit icon;
       categories = [
         "Game"
@@ -184,7 +186,7 @@ in
     in
     {
       name = "Sonic CD";
-      exec = avm + (lib.getExe pkgs.rsdkv3);
+      exec = avgm + (lib.getExe pkgs.rsdkv3);
       inherit icon;
       categories = [
         "Game"

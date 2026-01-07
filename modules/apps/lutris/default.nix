@@ -63,7 +63,7 @@ in
             winetricks
           ];
           protonPackages = with pkgs; [
-            pkgs.proton-cachyos-x86_64-v4
+            proton-cachyos-x86_64-v4
             proton-em
             proton-ge
           ];

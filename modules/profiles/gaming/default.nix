@@ -257,7 +257,7 @@ in
             MESA_SHADER_CACHE_MAX_SIZE = "12G";
             # https://reddit.com/r/linux_gaming/comments/1mg8vtl/low_latency_gaming_guide/
             MESA_VK_WSI_PRESENT_MODE = "mailbox";
-            SDL_VIDEODRIVER = "wayland,x11";  # SDL2
+            SDL_VIDEODRIVER = "wayland,x11"; # SDL2
             SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3
           };
         };
