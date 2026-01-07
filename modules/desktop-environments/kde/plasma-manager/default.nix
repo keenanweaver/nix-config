@@ -73,7 +73,7 @@
                 url = "https://github.com/nix-community/nixd";
                 highlightingModeRegex = "^Nix$";
                 settings.nixd = {
-                  formatting.command = [ (lib.getExe pkgs.nixfmt-rfc-style) ];
+                  formatting.command = [ (lib.getExe pkgs.nixfmt) ];
                 };
               };
               yaml = {

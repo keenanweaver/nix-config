@@ -24,7 +24,7 @@ in
             helix-gpt
             marksman
             nixd
-            nixfmt-rfc-style
+            nixfmt
             nodePackages.prettier
             pgformatter
             (python3.withPackages (
@@ -174,7 +174,7 @@ in
                 name = "nix";
                 language-servers = [
                   "nixd"
-                  "nixfmt-rfc-style"
+                  "nixfmt"
                 ];
                 formatter = {
                   command = "nixfmt";

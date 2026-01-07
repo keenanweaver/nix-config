@@ -223,7 +223,6 @@
                   };
                   sharedModules = with inputs; [
                     catppuccin.homeModules.catppuccin
-                    impermanence.homeManagerModules.impermanence
                     lazyvim.homeManagerModules.default
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.homeModules.nix-index
@@ -288,7 +287,6 @@
                   };
                   sharedModules = with inputs; [
                     catppuccin.homeModules.catppuccin
-                    impermanence.homeManagerModules.impermanence
                     lazyvim.homeManagerModules.default
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.homeModules.nix-index
@@ -346,7 +344,6 @@
                     };
                   };
                   sharedModules = with inputs; [
-                    impermanence.homeManagerModules.impermanence
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
@@ -398,7 +395,6 @@
                   };
                   sharedModules = with inputs; [
                     catppuccin.homeModules.catppuccin
-                    impermanence.homeManagerModules.impermanence
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
@@ -459,7 +455,6 @@
                   };
                   sharedModules = with inputs; [
                     catppuccin.homeModules.catppuccin
-                    impermanence.homeManagerModules.impermanence
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default

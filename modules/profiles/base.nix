@@ -245,7 +245,7 @@ in
             nixd
             nix-inspect
             nix-update
-            nixfmt-rfc-style
+            nixfmt
             nixpkgs-review
             nixos-shell
             nvd
