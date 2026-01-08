@@ -8,6 +8,7 @@
   makeWrapper,
   gpu-screen-recorder,
   gpu-screen-recorder-notification,
+  desktop-file-utils,
   libX11,
   libXrender,
   libXrandr,
@@ -25,12 +26,12 @@
 
 stdenv.mkDerivation rec {
   pname = "gpu-screen-recorder-ui";
-  version = "1.9.1";
+  version = "1.9.3";
 
   src = fetchgit {
     url = "https://repo.dec05eba.com/gpu-screen-recorder-ui";
     tag = version;
-    hash = "sha256-k7bz6nbQdWLMqBy0w9zZu/ZeCAKoIlkUXt0wPd+QstQ=";
+    hash = "sha256-K09i3fRXRksbY5LHVZOWcDdYbLaZs7J8gqbBQN56goY=";
   };
 
   postPatch = ''
@@ -51,6 +52,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
+    desktop-file-utils
     libX11
     libXrender
     libXrandr
