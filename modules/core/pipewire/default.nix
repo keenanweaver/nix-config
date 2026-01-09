@@ -70,7 +70,7 @@ in
               ];
             in
             {
-              "context.modules" = [ { } ] ++ lib.optionals vars.gaming (map mkLoopbackModule virtualDevices);
+              "context.modules" = [ { } ] ++ lib.optional vars.gaming (map mkLoopbackModule virtualDevices);
             };
         };
         pipewire-pulse = {

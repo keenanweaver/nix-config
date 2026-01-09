@@ -98,7 +98,7 @@ with pkgs;
     #inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.basiliskii-bin
     # bizhawk
     dosbox-staging
-    duckstation
+    #duckstation
     easyrpg-player
     hypseus-singe
     mednafen

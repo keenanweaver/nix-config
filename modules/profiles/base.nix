@@ -85,7 +85,7 @@ in
       etc = {
         "packages".text =
           let
-            packages = builtins.map (p: "${p.name}") config.environment.systemPackages;
+            packages = map (p: "${p.name}") config.environment.systemPackages;
             sortedUnique = builtins.sort builtins.lessThan (pkgs.lib.lists.unique packages);
             formatted = builtins.concatStringsSep "\n" sortedUnique;
           in
@@ -179,7 +179,7 @@ in
               enable = true;
               text =
                 let
-                  packages = builtins.map (p: "${p.name}") config.home.packages;
+                  packages = map (p: "${p.name}") config.home.packages;
                   sortedUnique = builtins.sort builtins.lessThan (pkgs.lib.lists.unique packages);
                   formatted-hm = builtins.concatStringsSep "\n" sortedUnique;
                 in
@@ -250,6 +250,7 @@ in
             nixos-shell
             nvd
             statix
+            optnix
             ## System ##
             (_7zz.override { enableUnfree = true; })
             aspell
@@ -263,7 +264,6 @@ in
             usbutils
             viu
             wget
-            xclip
             zip
           ];
           sessionPath = [

@@ -1,4 +1,4 @@
-{ username, pkgs, ... }:
+{ username, ... }:
 {
   imports = [ ./default.nix ];
   home-manager.users.${username} =

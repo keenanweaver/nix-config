@@ -76,20 +76,28 @@ in
             tree-sitter
             yamllint
           ];
-          treesitterParsers = with pkgs.tree-sitter-grammars; [
-            tree-sitter-bash
-            tree-sitter-css
-            tree-sitter-html
-            tree-sitter-javascript
-            tree-sitter-json
-            tree-sitter-lua
-            tree-sitter-markdown
-            tree-sitter-nix
-            tree-sitter-nu
-            tree-sitter-python
-            tree-sitter-regex
-            tree-sitter-toml
-            tree-sitter-yaml
+          treesitterParsers = with pkgs.vimPlugins.nvim-treesitter-parsers; [
+            awk
+            bash
+            css
+            html
+            ini
+            jq
+            json
+            just
+            lua
+            markdown
+            nix
+            nu
+            python
+            regex
+            terraform
+            toml
+            udev
+            xml
+            xresources
+            yaml
+            zsh
           ];
         };
         programs.nvf = {

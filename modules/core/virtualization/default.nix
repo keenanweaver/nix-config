@@ -55,7 +55,7 @@ in
       podman = {
         enable = true;
         defaultNetwork.settings.dns_enabled = true;
-        #dockerCompat = true;
+        dockerCompat = true;
         dockerSocket.enable = true;
       };
       libvirtd = {
@@ -77,24 +77,13 @@ in
 
     systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
 
-    users = {
-      users = {
-        ${username} = {
-          extraGroups = [
-            "kvm"
-            "libvirtd"
-            "podman"
-          ];
-        };
-
-        nixosvmtest = {
-          isSystemUser = true;
-          initialHashedPassword = "$y$j9T$B1obD.4xOr/6gJ6FCsu1v/$7axAjbaqRpFR3zGZVbOuCRGUNGJXyRxdavAHIyOdyK.";
-          group = "nixosvmtest";
-        };
-      };
-      groups = {
-        nixosvmtest = { };
+    users.users = {
+      ${username} = {
+        extraGroups = [
+          "kvm"
+          "libvirtd"
+          "podman"
+        ];
       };
     };
 

@@ -50,7 +50,6 @@ in
         "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
         "tsc=reliable"
         "clocksource=tsc"
-        "mitigations=off"
         "preempt=full" # https://reddit.com/r/linux_gaming/comments/1g0g7i0/god_of_war_ragnarok_crackling_audio/lr8j475/?context=3#lr8j475
       ];
       kernel = {

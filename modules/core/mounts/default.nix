@@ -19,7 +19,7 @@ in
       nfs-utils
     ];
     fileSystems = builtins.listToAttrs (
-      builtins.map
+      map
         (mount: {
           name = "/mnt/crusader/${mount}";
           value = {
