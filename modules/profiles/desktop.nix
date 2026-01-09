@@ -119,7 +119,6 @@ in
           puddletag
           qpwgraph
           qtscrcpy
-          #revolt-desktop
           #stoat-desktop
           rssguard
           rustdesk-flutter

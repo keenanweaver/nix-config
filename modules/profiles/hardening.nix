@@ -168,7 +168,7 @@ in
         extraRules = [
           {
             commands =
-              builtins.map
+              map
                 (command: {
                   command = "/run/current-system/sw/bin/${command}";
                   options = [ "NOPASSWD" ];

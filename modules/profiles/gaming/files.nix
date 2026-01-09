@@ -97,7 +97,9 @@ in
           kdePackages.libkscreen
         ];
         text = ''
-          kscreen-doctor output.${primaryscreen}.hdr.disable output.${primaryscreen}.wcg.disable
+          kscreen-doctor output.${primaryscreen}.hdr.disable
+          kscreen-doctor output.${primaryscreen}.wcg.disable
+          kscreen-doctor output.${primaryscreen}.wcg.enable
         '';
       });
     target = "${config.home.homeDirectory}/Games/hdr-off.sh";
@@ -112,7 +114,8 @@ in
           kdePackages.libkscreen
         ];
         text = ''
-          kscreen-doctor output.${primaryscreen}.hdr.enable output.${primaryscreen}.wcg.enable
+          kscreen-doctor output.${primaryscreen}.hdr.enable
+          kscreen-doctor output.${primaryscreen}.wcg.enable
         '';
       });
     target = "${config.home.homeDirectory}/Games/hdr-on.sh";
