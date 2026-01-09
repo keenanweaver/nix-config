@@ -10,11 +10,18 @@ let
     nixos-desktop = {
       cpu = "7950X3D";
       gpu = "7900XTX";
+      primaryMonitor = "DP-1";
     };
   };
-  currentHost = hostHardware.${config.networking.hostName} or { cpu = ""; gpu = ""; };
+  currentHost =
+    hostHardware.${config.networking.hostName} or {
+      cpu = "";
+      gpu = "";
+      primaryMonitor = "";
+    };
   cpu = currentHost.cpu;
   gpu = currentHost.gpu;
+  primaryMonitor = currentHost.primaryMonitor;
 in
 {
   options = {
@@ -122,8 +129,12 @@ in
               ############
               ## Custom ##
               ############
+              custom_text=HDR
+              exec=if ($(${lib.getExe kdePackages.libkscreen} --json | ${lib.getExe jq} -r '.outputs[] | select(.name == "${primaryMonitor}") | .hdr') = "true"); then echo "Enabled"; else echo "Disabled"; fi
+              custom_text=WCG
+              exec=if ($(${lib.getExe kdePackages.libkscreen} --json | ${lib.getExe jq} -r '.outputs[] | select(.name == "${primaryMonitor}") | .wcg') = "true"); then echo "Enabled"; else echo "Disabled"; fi
               custom_text=VRR
-              exec=if (${lib.getExe kdePackages.libkscreen} --outputs | ${lib.getExe ripgrep} Vrr | ${lib.getExe' coreutils "head"} -1 | ${lib.getExe ripgrep} -q Automatic); then echo "Yes"; else echo "No"; fi
+              exec=if ($(${lib.getExe kdePackages.libkscreen} --json | ${lib.getExe jq} -r '.outputs[] | select(.name == "${primaryMonitor}") | .vrrPolicy != 0')); then echo "Enabled"; else echo "Disabled"; fi
               custom_text=P-State
               exec=echo $(${lib.getExe bat} --plain /sys/devices/system/cpu/amd_pstate/status /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference)
               custom_text=V-Cache
