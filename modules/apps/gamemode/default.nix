@@ -17,6 +17,12 @@ in
     programs.gamemode = {
       enable = true;
       settings = {
+        cpu = {
+          amd_x3d_mode_default = "frequency";
+          amd_x3d_mode_desired = "cache";
+          park_cores = "no";
+          pin_cores = "yes";
+        };
         custom = {
           start = lib.getExe (
             pkgs.writeShellApplication {
