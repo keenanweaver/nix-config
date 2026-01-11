@@ -43,7 +43,6 @@ with pkgs;
     openmw
     ## Quake
     ironwail
-    q2pro
     quake-injector
     #uhexen2
     # trenchbroom

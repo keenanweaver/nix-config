@@ -202,6 +202,7 @@ in
               "${simracing-hwdb}/90-oddor.hwdb"
               "${simracing-hwdb}/90-shh.hwdb"
               "${simracing-hwdb}/90-simagic.hwdb"
+              "${simracing-hwdb}/90-simgrade.hwdb"
               "${simracing-hwdb}/90-simjack.hwdb"
               "${simracing-hwdb}/90-simlab.hwdb"
               "${simracing-hwdb}/90-simruito.hwdb"
