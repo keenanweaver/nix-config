@@ -794,11 +794,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1768127131,
-        "narHash": "sha256-tD/ZR8uGDDKL7Nm1R/dO28zd/oK/EDMSY/WRCyGdJiU=",
+        "lastModified": 1768156041,
+        "narHash": "sha256-osbp8omz1lTWGXAQrx5by5kZ2Sw9j9m3+kWgyxXMSjY=",
         "owner": "ProverbialPennance",
         "repo": "just-one-more-repo",
-        "rev": "64e6c5a49c30707226efb3511e23793bdb79eb6b",
+        "rev": "8a7ed88f7d16b17fc3296dd2e9a5767bb4ce2eea",
         "type": "github"
       },
       "original": {
@@ -1082,11 +1082,11 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1768097417,
-        "narHash": "sha256-4UZoywwHmFZTRlQmSbQI7YVrKHsg/DDRLVNMb8/fdKI=",
+        "lastModified": 1768143458,
+        "narHash": "sha256-UZN5E58XMsvKoJBPy4+beQjTkYJti58qPC+m9GDyePY=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "85f0e319c792590e15b1bd33a3155442af4fb3db",
+        "rev": "9d30426090a8d274eb20dc36bd28c6e37dc3589c",
         "type": "github"
       },
       "original": {
@@ -1449,11 +1449,11 @@
     },
     "nixpkgs_12": {
       "locked": {
-        "lastModified": 1767892417,
-        "narHash": "sha256-dhhvQY67aboBk8b0/u0XB6vwHdgbROZT3fJAjyNh5Ww=",
+        "lastModified": 1768127708,
+        "narHash": "sha256-1Sm77VfZh3mU0F5OqKABNLWxOuDeHIlcFjsXeeiPazs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "3497aa5c9457a9d88d71fa93a4a8368816fbeeba",
+        "rev": "ffbc9f8cbaacfb331b6017d5a5abb21a492c9a38",
         "type": "github"
       },
       "original": {
@@ -1696,11 +1696,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1768136966,
-        "narHash": "sha256-KD7xP28aj6C4rbghMvTOtrHDS/06NM5tu+FmA1KKwYo=",
+        "lastModified": 1768168037,
+        "narHash": "sha256-zDQs6AHsI0KIRvATGg2cWJ3OUdZYIcXEdTbL4rbT9I0=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "351a97abb816c047eb8b28260563318357cbc701",
+        "rev": "3c00a28071b83fb1bf97a3165ec7b45b8f3ba020",
         "type": "github"
       },
       "original": {
@@ -2309,11 +2309,11 @@
         "treefmt-nix": "treefmt-nix_4"
       },
       "locked": {
-        "lastModified": 1754454775,
-        "narHash": "sha256-fys9BklWg58nGyYoikZ+c1YdrPyKu93oET8Y0erYIcc=",
+        "lastModified": 1768168271,
+        "narHash": "sha256-GhsCW5TlJNOtBC+lkTweLUYwljbQhHAo+kyfmvCHYBk=",
         "owner": "rafaelrc7",
         "repo": "wayland-pipewire-idle-inhibit",
-        "rev": "d8adda1c1a9ee5096b8ea206a3994322b3fadf0e",
+        "rev": "3880b4319e05fb12943da4b030ef01cfbd46d8a0",
         "type": "github"
       },
       "original": {
