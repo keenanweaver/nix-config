@@ -33,10 +33,6 @@ with pkgs;
     ## HOMM
     fheroes2
     vcmi
-    ## Marathon
-    alephone-marathon
-    alephone-durandal
-    alephone-infinity
     ## Morrowind
     inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-validator
     tes3cmd
@@ -121,7 +117,6 @@ with pkgs;
     hedgemodmanager
     nur.repos.merrkry.jackify-bin
     limo
-    nexusmods-app-unfree
     inputs.just-one-more-repo.packages.${stdenv.hostPlatform.system}.r2modman
     ## Other
     adwsteamgtk

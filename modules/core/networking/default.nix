@@ -60,10 +60,14 @@ in
     };
     services.resolved = {
       enable = true;
-      fallbackDns = [
-        "9.9.9.9"
-        "149.112.112.112"
-      ];
+      settings = {
+        Resolve = {
+          FallbackDNS = [
+            "9.9.9.9"
+            "149.112.112.112"
+          ];
+        };
+      };
     };
   };
 }
