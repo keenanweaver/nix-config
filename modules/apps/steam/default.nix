@@ -92,7 +92,7 @@ in
               id = 553850;
               launchOptions = {
                 env = {
-                  WINE_CPU_TOPOLOGY = "8:1,2,3,4,5,6,7,8"; # https://github.com/ValveSoftware/Proton/issues/7486#issuecomment-2683254539
+                  WINE_CPU_TOPOLOGY = "8:1,2,3,4,5,6,7,16"; # https://github.com/ValveSoftware/Proton/issues/7486#issuecomment-2683254539
                 };
                 wrappers = [
                   (lib.getExe pkgs.gamemode)

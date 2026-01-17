@@ -21,7 +21,7 @@ in
           amd_x3d_mode_default = "frequency";
           amd_x3d_mode_desired = "cache";
           park_cores = "no";
-          pin_cores = "yes";
+          pin_cores = "1-7,16-23";
         };
         custom = {
           start = lib.getExe (
