@@ -17,6 +17,9 @@ in
     programs.gamemode = {
       enable = true;
       settings = {
+        general = {
+          renice = 10;
+        };
         cpu = {
           amd_x3d_mode_default = "frequency";
           amd_x3d_mode_desired = "cache";
