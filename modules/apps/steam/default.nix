@@ -83,44 +83,69 @@ in
           ];
         };
         # https://github.com/different-name/steam-config-nix
-        programs.steam.config = {
-          enable = true;
-          closeSteam = true;
-          defaultCompatTool = "Proton CachyOS x86_64-v4";
-          apps = {
-            helldivers2 = {
-              id = 553850;
-              launchOptions = {
-                env = {
-                  WINE_CPU_TOPOLOGY = "8:1,2,3,4,5,6,7,16"; # https://github.com/ValveSoftware/Proton/issues/7486#issuecomment-2683254539
+        programs.steam.config =
+          let
+            mkDefaultLaunchOpts =
+              extraOpts:
+              lib.recursiveUpdate {
+                wrappers = [ (lib.getExe pkgs.gamemode) ];
+              } extraOpts;
+          in
+          {
+            enable = true;
+            closeSteam = true;
+            defaultCompatTool = "Proton CachyOS x86_64-v4";
+            apps = {
+              halflife = {
+                id = 70;
+                launchOptions = mkDefaultLaunchOpts {
+                  env = {
+                    # MESA_LOADER_DRIVER_OVERRIDE = "zink"; # Laggy
+                  };
                 };
-                wrappers = [
-                  (lib.getExe pkgs.gamemode)
-                ];
               };
-            };
-            hitmanwoa = {
-              id = 1659040;
-              launchOptions = {
-                args = [
-                  "-skip_launcher"
-                ];
-                wrappers = [
-                  (lib.getExe pkgs.gamemode)
-                ];
+              halflifebs = {
+                id = 130;
+                launchOptions = mkDefaultLaunchOpts { };
               };
-            };
-            svencoop = {
-              id = 225840;
-              compatTool = "Proton CachyOS x86_64-v4";
-              launchOptions = {
-                wrappers = [
-                  (lib.getExe pkgs.gamemode)
-                ];
+              halflifeof = {
+                id = 50;
+                launchOptions = mkDefaultLaunchOpts { };
+              };
+              helldivers2 = {
+                id = 553850;
+                launchOptions = mkDefaultLaunchOpts {
+                  env = {
+                    WINE_CPU_TOPOLOGY = "8:1,2,3,4,5,6,7,16"; # https://github.com/ValveSoftware/Proton/issues/7486#issuecomment-2683254539
+                  };
+                };
+              };
+              hitmanwoa = {
+                id = 1659040;
+                launchOptions = mkDefaultLaunchOpts {
+                  args = [
+                    "-skip_launcher"
+                  ];
+                };
+              };
+              quakelive = {
+                id = 282440;
+                launchOptions = mkDefaultLaunchOpts {
+                  env = {
+                    # https://steamcommunity.com/sharedfiles/filedetails/?id=3642772367
+                    # mesa_glthread = "false";
+                    # MESA_GL_VERSION_OVERRIDE = "3.2";
+                    MESA_LOADER_DRIVER_OVERRIDE = "zink";
+                  };
+                };
+              };
+              svencoop = {
+                id = 225840;
+                compatTool = "Proton CachyOS x86_64-v4";
+                launchOptions = mkDefaultLaunchOpts { };
               };
             };
           };
-        };
         services.flatpak = lib.mkIf cfg.enableFlatpak {
           overrides = {
             "com.valvesoftware.Steam" = {
