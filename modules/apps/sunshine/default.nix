@@ -60,6 +60,8 @@
                         kdePackages.libkscreen
                       ];
                       text = ''
+                        kscreen-doctor output.${primaryDisplay}.hdr.enable
+                        kscreen-doctor output.${primaryDisplay}.wcg.enable
                         kscreen-doctor output.${primaryDisplay}.mode.2560x1440@120
                       '';
                     });
@@ -71,6 +73,9 @@
                         kdePackages.libkscreen
                       ];
                       text = ''
+                        kscreen-doctor output.${primaryDisplay}.hdr.disable
+                        kscreen-doctor output.${primaryDisplay}.wcg.disable
+                        kscreen-doctor output.${primaryDisplay}.wcg.enable
                         kscreen-doctor output.${primaryDisplay}.mode.2560x1440@360
                       '';
                     });

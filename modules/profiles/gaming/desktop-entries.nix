@@ -12,16 +12,6 @@ let
   avgm = audioCapture + videoCapture + gameMode + mangohud;
 in
 {
-  doomrunner = {
-    name = "Doom Runner";
-    comment = "Preset-oriented graphical launcher of various ported Doom engines";
-    exec = avgm + (lib.getExe pkgs.doomrunner);
-    icon = "DoomRunner";
-    categories = [ "Game" ];
-    noDisplay = false;
-    startupNotify = true;
-    terminal = false;
-  };
   dreamm =
     let
       execBin = "${config.home.homeDirectory}/Games/dreamm/dreamm";
