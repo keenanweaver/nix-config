@@ -42,6 +42,7 @@ in
           # https://reddit.com/r/linux_gaming/comments/1kz7kkv/is_nvidia_holding_me_back_on_linux/mv3625m/#mv3625m
           # https://github.com/doitsujin/dxvk/issues/5330
           # https://www.reddit.com/r/nvidia/comments/1lokih2/putting_misconceptions_about_optimal_fps_caps/
+          # https://reddit.com/r/linux_gaming/comments/1qh9r6z/so_confused_about_vsync_cachyos_mangohud/o0ihhi1/?context=3#o0ihhi1 Early breaks VRR
           mangohud-config = {
             enable = true;
             text = with pkgs; ''
@@ -49,7 +50,7 @@ in
               ##  Display  ##
               ###############
               fps_limit=357,0,240,120,60,30
-              fps_limit_method=early
+              fps_limit_method=late
               vsync=2
               gl_vsync=1
 
