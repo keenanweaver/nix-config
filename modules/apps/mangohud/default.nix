@@ -58,7 +58,7 @@ in
               ## Binds ##
               ###########
               toggle_fps_limit=Shift_R+F1
-              toggle_hud=Alt_R+Shift_R
+              toggle_hud=Shift_L+Shift_R
               toggle_hud_position=Shift_R+F11
               toggle_preset=Shift_R+F10
 

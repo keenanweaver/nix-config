@@ -16,12 +16,12 @@
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };
   inter = prev.callPackage ./inter { };
   lutris-unwrapped = prev.lutris-unwrapped.overrideAttrs {
-    version = "0.5.19-unstable-01-08-2026";
+    version = "0.5.19-unstable-01-20-2026";
     src = prev.fetchFromGitHub {
       owner = "lutris";
       repo = "lutris";
-      rev = "e6ce1a11e6a9f0d611eb6f91835baff9cd490f2c";
-      hash = "sha256-byvUMnt3tDHoSO8cHrXb0odeZr4Je/2M8rdCvsPHFr8=";
+      rev = "accbbfc66ed187cd1651d4397c74be1b3aa05c66";
+      hash = "sha256-m4SUzKw/CIo4xOPnTUm0gPteb69PUBwqsX91ONwh01o=";
     };
   };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
@@ -75,12 +75,12 @@
   rsdkv3 = prev.callPackage ./rsdk/v3 { };
   rsdkv4 = prev.callPackage ./rsdk/v4 { };
   scummvm = prev.scummvm.overrideAttrs {
-    version = "3.0.0-unstable-01-08-2026";
+    version = "3.0.0-unstable-01-20-2026";
     src = prev.fetchFromGitHub {
       owner = "scummvm";
       repo = "scummvm";
-      rev = "5d416fc20a8e98b94539571ffaf5fcee5f45f935";
-      hash = "sha256-T1/Hx6MX75pc14m0fvRS4/hrbyVbKY+3gbM+KFfH1Eo=";
+      rev = "59f4176fd731eac3dedca125971fc8a41c9a5a55";
+      hash = "sha256-w8Dsa8g9HcdTKVORCSaFhwMX8VlL1L6AY9HRbG4vZ40=";
     };
   };
   xlink-kai = prev.callPackage ./xlink-kai { };

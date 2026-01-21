@@ -273,7 +273,7 @@
       home = {
         file = {
           dxvk-conf = {
-            enable = true;
+            enable = false;
             text = ''
               d3d9.maxFrameRate = 357
               dxgi.maxFrameRate = 357

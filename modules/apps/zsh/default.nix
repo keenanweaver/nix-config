@@ -34,6 +34,17 @@ in
               ${lib.getExe pkgs.lsd} -la
             }
           '';
+          oh-my-zsh = {
+            enable = true;
+            custom = "${config.xdg.configHome}/zsh/.zsh_custom";
+            plugins = [
+              "command-not-found"
+              "direnv"
+              "git"
+              "sudo"
+              "zsh-interactive-cd"
+            ];
+          };
           syntaxHighlighting = {
             enable = true;
           };
