@@ -26,7 +26,7 @@ in
     # https://reddit.com/r/linux_gaming/comments/16e1l4h/slow_steam_downloads_try_this/
     fixDownloadSpeed = lib.mkOption {
       type = lib.types.bool;
-      default = true;
+      default = false;
     };
   };
   config = lib.mkIf cfg.enable {
@@ -96,7 +96,7 @@ in
             closeSteam = true;
             defaultCompatTool = "Proton CachyOS x86_64-v4";
             apps = {
-              halflife = {
+              hl = {
                 id = 70;
                 launchOptions = mkDefaultLaunchOpts {
                   env = {
@@ -104,11 +104,11 @@ in
                   };
                 };
               };
-              halflifebs = {
+              hlbs = {
                 id = 130;
                 launchOptions = mkDefaultLaunchOpts { };
               };
-              halflifeof = {
+              hlof = {
                 id = 50;
                 launchOptions = mkDefaultLaunchOpts { };
               };

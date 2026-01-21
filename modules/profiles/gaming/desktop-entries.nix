@@ -21,6 +21,9 @@ in
       comment = "Specialized emulator for playing many of your original DOS, Windows, and FM-Towns LucasArts (and LucasArts-adjacent) games";
       exec = avgm + execBin;
       icon = "${config.home.homeDirectory}/Games/dreamm/dreamm.png";
+      categories = [
+        "Game"
+      ];
       noDisplay = false;
       startupNotify = true;
       terminal = false;
@@ -68,7 +71,9 @@ in
     name = "Nero-UMU";
     comment = "A fast and efficient umu manager, just as the Romans designed";
     exec =
-      audioCapture + "PROTON_USE_NTSYNC=1 PROTON_FSR4_RDNA3_UPGRADE=1 ENABLE_LSFG=1 " + (lib.getExe pkgs.nero-umu);
+      audioCapture
+      + "PROTON_USE_NTSYNC=1 PROTON_FSR4_RDNA3_UPGRADE=1 ENABLE_LSFG=1 "
+      + (lib.getExe pkgs.nero-umu);
     icon = "xyz.TOS.Nero";
     categories = [ "Game" ];
     mimeType = [

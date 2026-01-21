@@ -44,7 +44,7 @@
     kernelParams = [
       #"amd_3d_vcache.x3d_mode=cache" # AMD V-Cache https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
       "amd_iommu=on"
-      "amd_pstate=active"
+      "amd_pstate=guided"
       "amdgpu.mcbp=0"
       "microcode.amd_sha_check=off"
       # AMDGPU freezing randomly https://gitlab.freedesktop.org/drm/amd/-/issues/4141
