@@ -87,13 +87,26 @@ in
           let
             mkDefaultLaunchOpts =
               extraOpts:
-              lib.recursiveUpdate {
-                wrappers = [
-                  (lib.getExe pkgs.gamemode)
-                  (lib.getExe' pkgs.obs-studio-plugins.obs-vkcapture "obs-gamecapture")
-                  (lib.getExe pkgs.mangohud)
-                ];
-              } extraOpts;
+              lib.recursiveUpdate
+                {
+                  wrappers = [
+                    (lib.getExe pkgs.gamemode)
+                    (lib.getExe' pkgs.obs-studio-plugins.obs-vkcapture "obs-gamecapture")
+                    (lib.getExe pkgs.mangohud)
+                  ];
+                }
+                (
+                  removeAttrs extraOpts [
+                    "enableZink"
+                    "disableWayland"
+                  ]
+                  // lib.optionalAttrs (extraOpts.enableZink or false) {
+                    env.MESA_LOADER_DRIVER_OVERRIDE = "zink";
+                  }
+                  // lib.optionalAttrs (extraOpts.disableWayland or false) {
+                    env.PROTON_ENABLE_WAYLAND = false;
+                  }
+                );
           in
           {
             enable = true;
@@ -103,18 +116,20 @@ in
               hl = {
                 id = 70;
                 launchOptions = mkDefaultLaunchOpts {
-                  env = {
-                    # MESA_LOADER_DRIVER_OVERRIDE = "zink"; # Laggy
-                  };
+                  enableZink = true;
                 };
               };
               hlbs = {
                 id = 130;
-                launchOptions = mkDefaultLaunchOpts { };
+                launchOptions = mkDefaultLaunchOpts {
+                  enableZink = true;
+                };
               };
               hlof = {
                 id = 50;
-                launchOptions = mkDefaultLaunchOpts { };
+                launchOptions = mkDefaultLaunchOpts {
+                  enableZink = true;
+                };
               };
               helldivers2 = {
                 id = 553850;
@@ -135,11 +150,11 @@ in
               quakelive = {
                 id = 282440;
                 launchOptions = mkDefaultLaunchOpts {
+                  enableZink = true;
                   env = {
                     # https://steamcommunity.com/sharedfiles/filedetails/?id=3642772367
                     # mesa_glthread = "false";
                     # MESA_GL_VERSION_OVERRIDE = "3.2";
-                    MESA_LOADER_DRIVER_OVERRIDE = "zink";
                   };
                 };
               };
@@ -147,9 +162,7 @@ in
                 id = 225840;
                 compatTool = "Proton CachyOS x86_64-v4";
                 launchOptions = mkDefaultLaunchOpts {
-                  env = {
-                    PROTON_ENABLE_WAYLAND = false;
-                  };
+                  disableWayland = true;
                 };
               };
             };
