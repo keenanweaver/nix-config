@@ -34,8 +34,8 @@ in
       enable = cfg.enableNative;
       package = pkgs.steam.override {
         extraEnv = {
-          MANGOHUD = true;
-          OBS_VKCAPTURE = true;
+          #MANGOHUD = true;
+          #OBS_VKCAPTURE = true;
           PIPEWIRE_NODE = "Game";
           PULSE_SINK = "Game";
           PROTON_ENABLE_WAYLAND = true;
@@ -88,7 +88,11 @@ in
             mkDefaultLaunchOpts =
               extraOpts:
               lib.recursiveUpdate {
-                wrappers = [ (lib.getExe pkgs.gamemode) ];
+                wrappers = [
+                  (lib.getExe pkgs.gamemode)
+                  (lib.getExe' pkgs.obs-studio-plugins.obs-vkcapture "obs-gamecapture")
+                  (lib.getExe pkgs.mangohud)
+                ];
               } extraOpts;
           in
           {
@@ -142,7 +146,11 @@ in
               svencoop = {
                 id = 225840;
                 compatTool = "Proton CachyOS x86_64-v4";
-                launchOptions = mkDefaultLaunchOpts { };
+                launchOptions = mkDefaultLaunchOpts {
+                  env = {
+                    PROTON_ENABLE_WAYLAND = false;
+                  };
+                };
               };
             };
           };
