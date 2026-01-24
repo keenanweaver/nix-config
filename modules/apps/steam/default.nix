@@ -158,6 +158,11 @@ in
                   };
                 };
               };
+              sf6 = {
+                id = 1364780;
+                compatTool = "Proton CachyOS x86_64-v4";
+                launchOptions = mkDefaultLaunchOpts { };
+              };
               svencoop = {
                 id = 225840;
                 compatTool = "Proton CachyOS x86_64-v4";
