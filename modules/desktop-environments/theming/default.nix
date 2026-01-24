@@ -62,7 +62,7 @@ in
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
         })
-        inputs.klassy.packages.${stdenv.hostPlatform.system}.default
+        klassy
         #inputs.kwin-effects-forceblur.packages.${pkgs.stdenv.hostPlatform.system}.default
         #inputs.lightly.packages.${stdenv.hostPlatform.system}.darkly-qt6
         plasma-panel-colorizer

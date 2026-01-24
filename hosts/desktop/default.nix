@@ -44,7 +44,7 @@
     kernelParams = [
       #"amd_3d_vcache.x3d_mode=cache" # AMD V-Cache https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
       "amd_iommu=on"
-      "amd_pstate=guided"
+      "amd_pstate=active" # https://wiki.archlinux.org/title/CPU_frequency_scaling#Autonomous_frequency_scaling
       "amdgpu.mcbp=0"
       "microcode.amd_sha_check=off"
       # AMDGPU freezing randomly https://gitlab.freedesktop.org/drm/amd/-/issues/4141
@@ -253,7 +253,7 @@
               ];
               text = ''
                 total_ram=$(rg MemTotal /proc/meminfo | tr -s ' ' | cut -d ' ' -f2)
-                if [ "$total_ram" -lt 6000000 ]; then
+                if [ "$total_ram" -lt 60000000 ]; then
                   if kdialog --title "RAM Issue" \
                     --warningyesno "Not all RAM loaded. Mobo messed up again.\n\nReboot now?"; then
                     systemctl reboot

@@ -48,7 +48,6 @@ in
           input-overlay
           obs-gstreamer
           obs-pipewire-audio-capture
-          obs-vaapi
           obs-vkcapture
         ];
       };

@@ -42,6 +42,7 @@ SpacerButtonWidthRelative=50
 
 [Style]
 ButtonGradient=true
+MenuOpacity=75
 
 [SystemIconGeneration]
 KlassyDarkIconThemeInherits=Papirus-Dark

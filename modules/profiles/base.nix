@@ -288,7 +288,7 @@ in
             npr = "${lib.getExe pkgs.nixpkgs-review} pr --print-result";
             psr = "${lib.getExe' pkgs.kdePackages.plasma-workspace "plasmashell"} --replace & disown";
             rbn = "${lib.getExe pkgs.podman} stop -a && ${lib.getExe' pkgs.systemd "systemctl"} reboot";
-            repw = "${lib.getExe' pkgs.systemd "systemctl"} --user restart pipewire{,-pulse} wireplumber";
+            repw = "${lib.getExe' pkgs.systemd "systemctl"} --user restart pipewire{,-pulse} wireplumber && ${lib.getExe' pkgs.systemd "systemctl"} --user restart gpu-screen-recorder-ui";
             upd = lib.getExe pkgs.topgrade;
             wget = "${lib.getExe pkgs.wget} --hsts-file=${config.xdg.dataHome}/wget-hsts";
           };

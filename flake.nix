@@ -149,10 +149,6 @@
       url = "github:catppuccin/zen-browser";
       flake = false;
     };
-    klassy = {
-      url = "github:dshatz/klassy-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     lightly.url = "github:Bali10050/Darkly";
 
     # KDE
