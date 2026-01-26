@@ -23,6 +23,9 @@
   streamcontroller.enable = true;
   vhs-decode.enable = false;
 
+  catppuccinTheming.enable = true;
+  kde.enable = true;
+
   boot = {
     initrd = {
       availableKernelModules = [

@@ -17,6 +17,10 @@
 
   # Custom modules
   desktop.enable = true;
+  catppuccinTheming.enable = true;
+  dms.enable = true;
+  kde.enable = true;
+  niri.enable = true;
 
   boot = {
     extraModprobeConfig = ''

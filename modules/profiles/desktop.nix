@@ -31,8 +31,6 @@ in
 
     # System
     base.enable = true;
-    catppuccinTheming.enable = true;
-    kde.enable = true;
     office.enable = true;
 
     boot = {
