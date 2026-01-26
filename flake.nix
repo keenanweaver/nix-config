@@ -241,7 +241,6 @@
                   sharedModules = with inputs; [
                     catppuccin.homeModules.catppuccin
                     lazyvim.homeManagerModules.default
-                    niri.homeModules.niri
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
@@ -309,7 +308,6 @@
                   sharedModules = with inputs; [
                     catppuccin.homeModules.catppuccin
                     lazyvim.homeManagerModules.default
-                    niri.homeModules.niri
                     nix-flatpak.homeManagerModules.nix-flatpak
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default

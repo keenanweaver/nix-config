@@ -42,7 +42,6 @@ in
         "desktopCommand"
         "displayManager"
         "displayMirror"
-        "displaySettings"
         "dockerManager"
         "easyEffects"
         "emojiLauncher"
@@ -62,7 +61,10 @@ in
         enable = true;
         restartIfChanged = true;
       };
+
     };
+
+    services.gnome.gcr-ssh-agent.enable = lib.mkForce false;
 
     home-manager.users.${username} = { };
   };
