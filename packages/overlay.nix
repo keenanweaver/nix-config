@@ -16,12 +16,12 @@
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };
   inter = prev.callPackage ./inter { };
   lutris-unwrapped = prev.lutris-unwrapped.overrideAttrs {
-    version = "0.5.19-unstable-01-20-2026";
+    version = "0.5.19-unstable-01-25-2026";
     src = prev.fetchFromGitHub {
       owner = "lutris";
       repo = "lutris";
-      rev = "accbbfc66ed187cd1651d4397c74be1b3aa05c66";
-      hash = "sha256-m4SUzKw/CIo4xOPnTUm0gPteb69PUBwqsX91ONwh01o=";
+      rev = "2d0244aa28fb05aebebf3f0c1ed2198cd23e77b3";
+      hash = "sha256-IKiYlbC6zyGBmv49yTz3/ER6zg5VoQazOzVmqayWEuo=";
     };
   };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
@@ -44,12 +44,12 @@
   };
   openxcom = prev.openxcom.overrideAttrs {
     pname = "openxcom-extended";
-    version = "8.5.1";
+    version = "8.5.2";
     src = prev.fetchFromGitHub {
       owner = "MeridianOXC";
       repo = "OpenXcom";
-      rev = "8a5680904621c1c5486d546f4bd3b2c2a1ba32b2";
-      hash = "sha256-7HvYYQpArZUiA+fkiyy+d5mNiozLgfu2p9t7Ob50nmE=";
+      rev = "de09546d5ed55c4bb14a73daacf382bd3a7f8378";
+      hash = "sha256-qvHJIZ0pfx+kj+9dwcrG9faAGZnHz7rYgWrAfeIzi/U=";
     };
   };
   proton-cachyos-x86_64-v4 =

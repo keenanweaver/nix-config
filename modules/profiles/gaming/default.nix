@@ -56,7 +56,7 @@ in
         sysctl = {
           "vm.max_map_count" = 2147483642;
           "vm.mmap_min_addr" = 0; # SheepShaver
-          # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/sysctl.d/99-cachyos-settings.conf
+          # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/sysctl.d/70-cachyos-settings.conf
           "fs.file-max" = 2097152;
           "kernel.split_lock_mitigate" = 0;
           "net.core.netdev_max_backlog" = 4096;
