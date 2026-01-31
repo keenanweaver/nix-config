@@ -63,8 +63,7 @@ in
           flavor = "${flavor-lower}";
         })
         klassy
-        #inputs.kwin-effects-forceblur.packages.${pkgs.stdenv.hostPlatform.system}.default
-        #inputs.lightly.packages.${stdenv.hostPlatform.system}.darkly-qt6
+        kdePackages.qtstyleplugin-kvantum
         plasma-panel-colorizer
         utterly-round-plasma-style
       ];
@@ -273,6 +272,12 @@ in
               enable = true;
               text = builtins.readFile ./klassyrc;
               target = "${config.xdg.configHome}/klassy/klassyrc";
+            };
+            kvantum-config = {
+              enable = true;
+              recursive = true;
+              source = ./Kvantum;
+              target = "${config.xdg.configHome}/Kvantum";
             };
             powershell-profile = {
               enable = true;

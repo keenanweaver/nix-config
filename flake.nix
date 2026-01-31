@@ -149,13 +149,8 @@
       url = "github:catppuccin/zen-browser";
       flake = false;
     };
-    lightly.url = "github:Bali10050/Darkly";
 
     # KDE
-    kwin-effects-forceblur = {
-      url = "github:taj-ny/kwin-effects-forceblur";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     kwin-effects-kinetic = {
       url = "github:gurrgur/kwin-effects-kinetic";
       flake = false;
