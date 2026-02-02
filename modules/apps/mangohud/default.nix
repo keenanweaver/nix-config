@@ -50,7 +50,7 @@ in
               ##  Display  ##
               ###############
               fps_limit=357,0,240,120,60,30
-              fps_limit_method=late
+              fps_limit_method=early
               vsync=2
               gl_vsync=1
 

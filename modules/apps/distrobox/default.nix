@@ -152,7 +152,7 @@ in
               containers = {
                 exodos = lib.mkIf cfg.gaming {
                   #home = "${config.xdg.dataHome}/distrobox/exodos";
-                  image = "ubuntu:24.04";
+                  image = "docker.io/library/ubuntu:24.04";
                   init = true;
                   replace = true;
                 };

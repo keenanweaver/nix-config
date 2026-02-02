@@ -74,14 +74,16 @@
   relive = prev.callPackage ./relive { };
   rsdkv3 = prev.callPackage ./rsdk/v3 { };
   rsdkv4 = prev.callPackage ./rsdk/v4 { };
-  scummvm = prev.scummvm.overrideAttrs {
-    version = "3.0.0-unstable-01-20-2026";
-    src = prev.fetchFromGitHub {
-      owner = "scummvm";
-      repo = "scummvm";
-      rev = "59f4176fd731eac3dedca125971fc8a41c9a5a55";
-      hash = "sha256-w8Dsa8g9HcdTKVORCSaFhwMX8VlL1L6AY9HRbG4vZ40=";
+  /*
+    scummvm = prev.scummvm.overrideAttrs {
+      version = "3.0.0-unstable-01-20-2026";
+      src = prev.fetchFromGitHub {
+        owner = "scummvm";
+        repo = "scummvm";
+        rev = "59f4176fd731eac3dedca125971fc8a41c9a5a55";
+        hash = "sha256-w8Dsa8g9HcdTKVORCSaFhwMX8VlL1L6AY9HRbG4vZ40=";
+      };
     };
-  };
+  */
   xlink-kai = prev.callPackage ./xlink-kai { };
 })
