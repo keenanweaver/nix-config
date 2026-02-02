@@ -47,7 +47,7 @@
             comment: ${pkgs.netbootxyz-efi.meta.description}
             path: boot():/limine/efi/netbootxyz/netboot.xyz.efi
         '';
-        secureBoot.enable = false;
+        secureBoot.enable = true;
       };
       timeout = 1;
     };

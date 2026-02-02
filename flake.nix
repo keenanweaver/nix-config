@@ -91,7 +91,7 @@
     };
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-gaming-edge = {
-      url = "github:powerofthe69/nix-gaming-edge";
+      url = "github:powerofthe69/nix-gaming-edge/nightly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-reshade.url = "github:LovingMelody/nix-reshade";

@@ -52,6 +52,7 @@
     "io.github.strikerx3.ymir" = {
       Context = {
         filesystems = [
+          "!/mnt"
           "/mnt/crusader/Games/Rom/CHD/Sega Saturn"
           "/mnt/crusader/Games/Mister/Saturn"
         ];
