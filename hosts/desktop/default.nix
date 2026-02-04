@@ -115,6 +115,20 @@
   powerManagement.cpuFreqGovernor = "ondemand";
 
   services = {
+    beesd = {
+      filesystems = {
+        Games = {
+          spec = "UUID=62b37e9d-450c-4b8c-bfcf-2c45b51c41fa";
+          extraOptions = [
+            "--thread-count"
+            "8"
+            "--loadavg-target"
+            "8.0"
+          ];
+          hashTableSizeMB = 4096;
+        };
+      };
+    };
     lact = {
       settings = {
         version = 5;
@@ -167,7 +181,6 @@
         pipewire = {
           "10-clock" = {
             "context.properties" = {
-              # To make DAC properly work
               "default.clock.allowed-rates" = [
                 44100
                 48000
@@ -176,11 +189,11 @@
                 176400
                 192000
               ];
+              "default.clock.rate" = 48000;
               # https://reddit.com/r/linux_gaming/comments/1gy347h/newbie_here_ive_tried_almost_all_fixes_theres/lylqijj/?context=3#lylqijj
-              "default.clock.quantum" = 256;
               "default.clock.min-quantum" = 256;
-              "default.clock.max-quantum" = 256;
-              "default.clock.quantum-limit" = 256;
+              "default.clock.max-quantum" = 1024;
+              "default.clock.quantum" = 256;
             };
           };
           # Create mono-only microphone output
@@ -208,6 +221,17 @@
             ];
           };
         };
+        pipewire-pulse = {
+          "10-stutters-fix" = {
+            # https://reddit.com/r/linux_gaming/comments/1kafsrz/audio_stutters_fix_clair_obscur_expedition_33_and/
+            "pulse.properties" = {
+              "pulse.default.req" = "256/48000";
+              "pulse.min.req" = "256/48000";
+              "pulse.min.frag" = "256/48000";
+              "pulse.min.quantum" = "256/48000";
+            };
+          };
+        };
       };
     };
     ucodenix = {
@@ -223,48 +247,6 @@
           zram-size = "ram";
           swap-priority = 180;
           fs-type = "swap";
-        };
-      };
-    };
-  };
-
-  systemd = {
-    services = {
-      # NetworkManager-wait-online.wantedBy = lib.mkForce [ ];
-      plymouth-quit-wait.enable = false;
-    };
-    targets = {
-      hibernate.enable = false;
-      hybrid-sleep.enable = false;
-    };
-    user.services = {
-      check-ram-on-boot = {
-        description = "Check if all RAM is loaded on boot";
-        wantedBy = [ "graphical-session.target" ];
-        after = [ "graphical-session.target" ];
-        serviceConfig = {
-          Type = "oneshot";
-          ExecStart =
-            with pkgs;
-            lib.getExe (writeShellApplication {
-              name = "check-ram-on-boot";
-              runtimeInputs = [
-                coreutils
-                kdePackages.kdialog
-                ripgrep
-                systemd
-              ];
-              text = ''
-                total_ram=$(rg MemTotal /proc/meminfo | tr -s ' ' | cut -d ' ' -f2)
-                if [ "$total_ram" -lt 60000000 ]; then
-                  if kdialog --title "RAM Issue" \
-                    --warningyesno "Not all RAM loaded. Mobo messed up again.\n\nReboot now?"; then
-                    systemctl reboot
-                  fi
-                fi
-              '';
-            });
-          RemainAfterExit = false;
         };
       };
     };
@@ -289,9 +271,26 @@
         packages = with pkgs; [
           amdgpu_top
           nvtopPackages.amd
+          (writeShellApplication {
+            name = "script-gameclip720p";
+            runtimeInputs = [
+              ffmpeg
+            ];
+            text = ''
+              if [ -z "$1" ]; then
+              	echo "Usage: $0 <input_video>"
+              	exit 1
+              fi
+
+              input="$1"
+              output="''${input%.*}_720p60.mp4"
+
+              ffmpeg -i "$input" -vf "scale=-2:720,fps=60" -c:v libx264 -preset medium -crf 23 -c:a aac -b:a 128k "$output"
+            '';
+          })
         ];
         sessionVariables = {
-          DXVK_CONFIG_FILE = "${config.xdg.configHome}/dxvk/dxvk.conf";
+          #DXVK_CONFIG_FILE = "${config.xdg.configHome}/dxvk/dxvk.conf";
           WAYLANDDRV_PRIMARY_MONITOR = "DP-1"; # https://reddit.com/r/linux_gaming/comments/1louxm2/fix_for_wine_wayland_using_wrong_monitor/
           WINE_CPU_TOPOLOGY = "15:1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"; # 7950X3D
         };
