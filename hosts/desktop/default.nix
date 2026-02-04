@@ -259,11 +259,11 @@
         file = {
           dxvk-conf = {
             enable = false;
+            # https://github.com/doitsujin/dxvk/issues/4096#issuecomment-2204077526
             text = ''
               d3d9.maxFrameRate = 357
               dxgi.maxFrameRate = 357
-              dxgi.syncInterval = 0
-              dxvk.tearFree = True
+              dxgi.syncInterval = 1
             '';
             target = "${config.xdg.configHome}/dxvk/dxvk.conf";
           };
