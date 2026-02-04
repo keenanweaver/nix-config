@@ -15,6 +15,7 @@
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif.nix { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };
   inter = prev.callPackage ./inter { };
+  kdotool = prev.callPackage ./kdotool { };
   lutris-unwrapped = prev.lutris-unwrapped.overrideAttrs {
     version = "0.5.19-unstable-01-25-2026";
     src = prev.fetchFromGitHub {
