@@ -33,17 +33,6 @@ in
     programs.steam = {
       enable = cfg.enableNative;
       package = pkgs.steam.override {
-        extraEnv = {
-          #MANGOHUD = true;
-          #OBS_VKCAPTURE = true;
-          PIPEWIRE_NODE = "Game";
-          PULSE_SINK = "Game";
-          PROTON_ENABLE_WAYLAND = true;
-          PROTON_ENABLE_HDR = true;
-          PROTON_USE_WOW64 = true;
-          PROTON_FSR4_RDNA3_UPGRADE = true;
-          PROTON_USE_NTSYNC = true;
-        };
         # https://github.com/NixOS/nixpkgs/issues/279893#issuecomment-2425213386
         extraProfile = ''
           unset TZ

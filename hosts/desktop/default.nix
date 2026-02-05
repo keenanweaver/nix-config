@@ -70,6 +70,7 @@
                 protocol: efi
                 path: uuid(${windowspartuuid}):/EFI/Microsoft/Boot/bootmgfw.efi
           '';
+        resolution = "2560x1440x32";
         style.interface.resolution = "2560x1440";
       };
     };

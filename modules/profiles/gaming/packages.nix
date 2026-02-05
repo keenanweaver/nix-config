@@ -115,7 +115,6 @@ with pkgs;
     goverlay
     ## Modding
     hedgemodmanager
-    nur.repos.merrkry.jackify-bin
     limo
     inputs.just-one-more-repo.packages.${stdenv.hostPlatform.system}.r2modman
     ## Other
@@ -134,7 +133,7 @@ with pkgs;
     innoextract
     libresplit
     lgogdownloader
-    python313Packages.lnkparse3
+    python314Packages.lnkparse3
     parsec-bin
     protonplus
     tochd
