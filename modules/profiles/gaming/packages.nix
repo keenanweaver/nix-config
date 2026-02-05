@@ -71,7 +71,6 @@ with pkgs;
     opentyrian
     openxcom
     openxray # STALKER
-    prismlauncher # MineCraft
     relive # Oddworld
     rsdkv3
     rsdkv4

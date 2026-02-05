@@ -58,6 +58,32 @@ in
               text = "publicbeta";
               target = "${config.xdg.dataHome}/Steam/package/beta";
             };
+            steam-config-default = {
+              enable = true;
+              source =
+                with pkgs;
+                lib.getExe (writeShellApplication {
+                  name = "steam-config-default";
+                  runtimeEnv = {
+                    PIPEWIRE_NODE = "Game";
+                    PULSE_SINK = "Game";
+                    PROTON_ENABLE_HDR = true;
+                    PROTON_ENABLE_WAYLAND = true;
+                    PROTON_FSR4_RDNA3_UPGRADE = true;
+                    PROTON_USE_NTSYNC = true;
+                    PROTON_USE_WOW64 = true;
+                  };
+                  runtimeInputs = [
+                    gamemode
+                    mangohud
+                    obs-studio-plugins.obs-vkcapture
+                  ];
+                  text = ''
+                    exec env gamemoderun obs-gamecapture mangohud "$@"
+                  '';
+                });
+              target = "${config.xdg.dataHome}/steam-config-nix/users/shared/app-wrappers/default";
+            };
             steam-slow-fix = {
               enable = cfg.fixDownloadSpeed;
               text = ''

@@ -267,6 +267,10 @@ in
           };
         };
 
+        programs = {
+          prismlauncher.enable = true;
+        };
+
         services = {
           flatpak = import ./flatpaks.nix { inherit config; };
           ludusavi = import ./ludusavi.nix { inherit config; };
