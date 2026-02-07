@@ -94,9 +94,9 @@ in
         };
         svencoop = {
           id = 225840;
-          compatTool = config.programs.steam.config.defaultCompatTool;
           launchOptions = {
             env = {
+              MESA_LOADER_DRIVER_OVERRIDE = "zink";
               PROTON_ENABLE_WAYLAND = lib.mkForce false;
             };
           };

@@ -82,6 +82,9 @@ in
             /* DRM content */
             user_pref("browser.eme.ui.enabled", true);
             user_pref("media.eme.enabled", true);
+            /* Zen Things */
+            user_pref("zen.window-sync.enabled", true);
+            user_pref("zen.window-sync.sync-only-pinned-tabs", true);
           '';
           target = ".var/app/app.zen_browser.zen/.zen/${username}/user.js";
         };
