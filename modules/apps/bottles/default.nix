@@ -48,6 +48,16 @@ in
               source = pkgs.proton-cachyos-x86_64-v4.steamcompattool;
               target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos-nix";
             };
+            proton-links-proton-dw-bottles = {
+              enable = cfg.enableNative;
+              source = pkgs.proton-dw.steamcompattool;
+              target = "${config.xdg.dataHome}/bottles/runners/proton-dw-nix";
+            };
+            proton-links-proton-dw-flatpak-bottles = {
+              enable = cfg.enableFlatpak;
+              source = pkgs.proton-dw.steamcompattool;
+              target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-dw-nix";
+            };
             proton-links-proton-em-bottles = {
               enable = cfg.enableNative;
               source = pkgs.proton-em.steamcompattool;

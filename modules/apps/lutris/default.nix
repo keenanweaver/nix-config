@@ -42,6 +42,11 @@ in
             source = pkgs.proton-cachyos-x86_64-v4.steamcompattool;
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-cachyos-nix";
           };
+          proton-links-proton-dw-flatpak-lutris = {
+            enable = cfg.enableFlatpak;
+            source = pkgs.proton-dw.steamcompattool;
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-dw-nix";
+          };
           proton-links-proton-em-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = pkgs.proton-em.steamcompattool;
@@ -64,6 +69,7 @@ in
           ];
           protonPackages = with pkgs; [
             proton-cachyos-x86_64-v4
+            proton-dw
             proton-em
             proton-ge
           ];

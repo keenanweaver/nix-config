@@ -55,6 +55,7 @@
   };
   proton-cachyos-x86_64-v4 =
     inputs.nix-gaming-edge.packages.${final.stdenv.hostPlatform.system}.proton-cachyos-x86_64-v4;
+  proton-dw = inputs.dw-proton.packages.${final.stdenv.hostPlatform.system}.dw-proton;
   proton-em = final.callPackage ./proton-em { };
   proton-ge = final.proton-ge-bin.override {
     steamDisplayName = "Proton GE";

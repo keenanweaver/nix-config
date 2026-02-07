@@ -60,6 +60,7 @@
     apollo = {
       url = "github:nil-andreas/apollo-flake";
     };
+    dw-proton.url = "github:imaviso/dwproton-flake";
     lsfg-vk-flake = {
       url = "github:pabloaul/lsfg-vk-flake/main";
       inputs.nixpkgs.follows = "nixpkgs";

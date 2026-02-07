@@ -41,6 +41,7 @@ in
       };
       extraCompatPackages = with pkgs; [
         proton-cachyos-x86_64-v4
+        proton-dw
         proton-em
         proton-ge
       ];

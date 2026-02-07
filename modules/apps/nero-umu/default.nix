@@ -25,6 +25,11 @@ in
                 pkgs.proton-cachyos-x86_64-v4.steamcompattool;
               target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-proton-cachyos-nero-nix";
             };
+            proton-links-proton-dw-nero = {
+              enable = true;
+              source = pkgs.proton-dw.steamcompattool;
+              target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-proton-dw-nero-nix";
+            };
             proton-links-proton-em-nero = {
               enable = true;
               source = pkgs.proton-em.steamcompattool;
