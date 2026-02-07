@@ -4,10 +4,28 @@
 
 Custom commands for KDE Connect
 
+- HDR: Toggle Off
+
+``` bash
+/home/keenan/Games/hdr-off.sh
+```
+
+- HDR: Toggle On
+
+``` bash
+/home/keenan/Games/hdr-on.sh
+```
+
 - Kill App
 
 ``` bash
 ydotool key --key-delay 200 56:1 62:1 62:0 56:0
+```
+
+- Kill EXEs
+
+``` bash
+pkill -9 -f '\.(exe|EXE)$' 2>/dev/null; killall -9 -r '.*\.(exe|EXE)$' 2>/dev/null; true
 ```
 
 - MangoHud: Toggle FPS Limit
@@ -19,7 +37,7 @@ ydotool key --key-delay 200 54:1 59:1 59:0 54:0
 - MangoHud: Toggle Overlay
 
 ``` bash
-ydotool key --key-delay 200 100:1 54:1 54:0 100:0
+ydotool key --key-delay 200 42:1 54:1 54:0 42:0
 ```
 
 - Save GSR Replay
@@ -28,8 +46,14 @@ ydotool key --key-delay 200 100:1 54:1 54:0 100:0
 gsr-save-replay
 ```
 
-- Toggle Night Light
+- VRR: Toggle Off
 
 ``` bash
-qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Toggle Night Color"
+/home/keenan/Games/vrr-off.sh
+```
+
+- VRR: Toggle On
+
+``` bash
+/home/keenan/Games/vrr-on.sh
 ```
