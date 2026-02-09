@@ -87,68 +87,50 @@ in
     source = osConfig.fluidsynth.soundFont;
     target = "${config.xdg.configHome}/dosbox/soundfonts/default.sf2";
   };
-  screen-hdr-off = {
+  toggle-hdr = {
     enable = true;
     source =
       with pkgs;
       lib.getExe (writeShellApplication {
-        name = "hdr-off";
+        name = "toggle-hdr";
         runtimeInputs = [
           kdePackages.libkscreen
+          jq
         ];
         text = ''
-          kscreen-doctor output.${primaryscreen}.hdr.disable
-          kscreen-doctor output.${primaryscreen}.wcg.disable
-          kscreen-doctor output.${primaryscreen}.wcg.enable
+          hdr_status=$(kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryscreen}") | .hdr')
+          if [ "$hdr_status" = "false" ]; then
+            kscreen-doctor output.${primaryscreen}.hdr.enable
+            kscreen-doctor output.${primaryscreen}.wcg.enable
+          elif [ "$hdr_status" = "true" ]; then
+            kscreen-doctor output.${primaryscreen}.hdr.disable
+            kscreen-doctor output.${primaryscreen}.wcg.disable
+            kscreen-doctor output.${primaryscreen}.wcg.enable
+          fi
         '';
       });
-    target = "${config.home.homeDirectory}/Games/hdr-off.sh";
+    target = "${config.home.homeDirectory}/Games/toggle-hdr.sh";
   };
-  screen-hdr-on = {
+  toggle-vrr = {
     enable = true;
     source =
       with pkgs;
       lib.getExe (writeShellApplication {
-        name = "hdr-on";
+        name = "toggle-vrr";
         runtimeInputs = [
           kdePackages.libkscreen
+          jq
         ];
         text = ''
-          kscreen-doctor output.${primaryscreen}.hdr.enable
-          kscreen-doctor output.${primaryscreen}.wcg.enable
+          vrr_policy=$(kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryscreen}") | .vrrPolicy')
+          if [ "$vrr_policy" = "0" ]; then
+            kscreen-doctor output.${primaryscreen}.vrrpolicy.automatic
+          else
+            kscreen-doctor output.${primaryscreen}.vrrpolicy.never
+          fi
         '';
       });
-    target = "${config.home.homeDirectory}/Games/hdr-on.sh";
-  };
-  screen-vrr-off = {
-    enable = true;
-    source =
-      with pkgs;
-      lib.getExe (writeShellApplication {
-        name = "vrr-off";
-        runtimeInputs = [
-          kdePackages.libkscreen
-        ];
-        text = ''
-          kscreen-doctor output.${primaryscreen}.vrrpolicy.never
-        '';
-      });
-    target = "${config.home.homeDirectory}/Games/vrr-off.sh";
-  };
-  screen-vrr-on = {
-    enable = true;
-    source =
-      with pkgs;
-      lib.getExe (writeShellApplication {
-        name = "vrr-on";
-        runtimeInputs = [
-          kdePackages.libkscreen
-        ];
-        text = ''
-          kscreen-doctor output.${primaryscreen}.vrrpolicy.automatic
-        '';
-      });
-    target = "${config.home.homeDirectory}/Games/vrr-on.sh";
+    target = "${config.home.homeDirectory}/Games/toggle-vrr.sh";
   };
   wine-controller-proton = {
     # https://selfmadepenguin.wordpress.com/2024/02/14/how-i-solved-my-gamecontroller-problems/

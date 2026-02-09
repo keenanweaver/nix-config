@@ -72,9 +72,9 @@ in
     drivers.mesa-git = {
       enable = true;
       enableCache = false;
-      #cacheCleanup = {
-      #  enable = true;
-      #};
+      cacheCleanup = {
+        enable = false;
+      };
     };
 
     environment = {

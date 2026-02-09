@@ -99,6 +99,7 @@ pkgs.writeShellScriptBin "bootstrap-distrobox" ''
       sudo ln -s ${config.xdg.dataHome}/distrobox/exodos/dbgl/dbgl /usr/bin/dbgl
 
       # Build obs-gamecapture
+      rm -rf ${config.xdg.cacheHome}/obs-vkcapture
       sudo apt install -y          \
       cmake                        \
       libobs-dev                   \
@@ -110,8 +111,8 @@ pkgs.writeShellScriptBin "bootstrap-distrobox" ''
       libwayland-dev               \
       wayland-protocols            \
       pkg-config
-      git clone https://github.com/nowrep/obs-vkcapture.git /home/${username}/.cache/obs-vkcapture
-      pushd /home/${username}/.cache/obs-vkcapture
+      git clone https://github.com/nowrep/obs-vkcapture.git ${config.xdg.cacheHome}/obs-vkcapture
+      pushd ${config.xdg.cacheHome}/obs-vkcapture
       mkdir build && cd build
       cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
       make && sudo make install
