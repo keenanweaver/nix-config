@@ -21,7 +21,6 @@ in
             bash-language-server
             biome
             docker-compose-language-service
-            helix-gpt
             marksman
             nixd
             nixfmt
@@ -51,13 +50,6 @@ in
               biome = {
                 command = "biome";
                 args = [ "lsp-proxy" ];
-              };
-              gpt = {
-                command = "helix-gpt";
-                args = [
-                  "--handler"
-                  "codeium"
-                ];
               };
               json = {
                 command = "vscode-json-languageserver";

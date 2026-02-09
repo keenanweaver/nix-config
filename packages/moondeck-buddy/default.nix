@@ -8,7 +8,7 @@
   ninja,
   qt6,
   procps,
-  xorg,
+  libxrandr,
 }:
 
 let
@@ -34,7 +34,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   buildInputs = [
     procps
-    xorg.libXrandr
+    libxrandr
     qtbase
     qtEnv
   ];

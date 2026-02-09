@@ -17,12 +17,12 @@
   inter = prev.callPackage ./inter { };
   kdotool = prev.callPackage ./kdotool { };
   lutris-unwrapped = prev.lutris-unwrapped.overrideAttrs {
-    version = "0.5.19-unstable-01-25-2026";
+    version = "0.5.19-unstable-02-08-2026";
     src = prev.fetchFromGitHub {
       owner = "lutris";
       repo = "lutris";
-      rev = "2d0244aa28fb05aebebf3f0c1ed2198cd23e77b3";
-      hash = "sha256-IKiYlbC6zyGBmv49yTz3/ER6zg5VoQazOzVmqayWEuo=";
+      rev = "0a9de9f6caedd997de03dfa40edfa2072ddde976";
+      hash = "sha256-4cQNsKYCiK/H7x09gmg0iCcxFyQuMDVAhH8OQipqOj4=";
     };
   };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };

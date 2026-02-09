@@ -44,8 +44,8 @@ in
           mesa
           networkmanager
           pkg-config
-          xorg.libX11
-          xorg.libXext
+          libX11
+          libXext
           udev
           vulkan-loader
         ];
