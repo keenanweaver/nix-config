@@ -9,27 +9,14 @@ let
   cfg = config.vscode;
   marketplace-extensions =
     with inputs.nix-vscode-extensions.extensions.x86_64-linux.vscode-marketplace; [
-      ##arrterian.nix-env-selector
       ban.spellright
-      #charliermarsh.ruff
-      #codeium.codeium
       eamodio.gitlens
       formulahendry.code-runner
       foxundermoon.shell-format
       jnoortheen.nix-ide
-      llvm-vs-code-extensions.vscode-clangd
-      ##mkhl.direnv
-      #ms-python.python
       ms-vscode.powershell
-      #ms-vscode-remote.remote-containers
-      #ms-vscode-remote.remote-ssh
-      #redhat.ansible
       redhat.vscode-xml
       redhat.vscode-yaml
-      #rust-lang.rust-analyzer
-      ##skellock.just
-      #s-nlf-fh.glassit
-      #sumneko.lua
       tamasfe.even-better-toml
       timonwong.shellcheck
       usernamehw.errorlens

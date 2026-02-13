@@ -4,16 +4,10 @@
 
 Custom commands for KDE Connect
 
-- HDR: Toggle Off
+- HDR: Toggle
 
 ``` bash
-/home/keenan/Games/hdr-off.sh
-```
-
-- HDR: Toggle On
-
-``` bash
-/home/keenan/Games/hdr-on.sh
+/home/keenan/Games/toggle-hdr.sh
 ```
 
 - Kill App
@@ -46,14 +40,8 @@ ydotool key --key-delay 200 42:1 54:1 54:0 42:0
 gsr-save-replay
 ```
 
-- VRR: Toggle Off
+- VRR: Toggle
 
 ``` bash
-/home/keenan/Games/vrr-off.sh
-```
-
-- VRR: Toggle On
-
-``` bash
-/home/keenan/Games/vrr-on.sh
+/home/keenan/Games/toggle-hdr.sh
 ```

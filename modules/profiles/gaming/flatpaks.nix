@@ -103,21 +103,6 @@
         ];
       };
     };
-    "org.easyrpg.player" = {
-      Context = {
-        filesystems = [
-          "${config.home.homeDirectory}/Music/soundfonts:ro"
-          "${config.home.homeDirectory}/Games/rpg-maker"
-          "!home"
-          "!host"
-        ];
-        shared = "network"; # obs-gamecapture
-      };
-      Environment = {
-        RPG2K_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2000";
-        RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2003";
-      };
-    };
     "org.flycast.Flycast" = {
       Context = {
         filesystems = [

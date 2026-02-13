@@ -40,14 +40,11 @@ with pkgs;
     ## Quake
     ironwail
     quake-injector
-    #uhexen2
     # trenchbroom
     ## Arma
     arma3-unix-launcher
     # (arma3-unix-launcher.override { buildDayZLauncher = true; })
     ## Duke
-    #eduke32
-    #raze
     rigel-engine
     ## Wolf
     bstone
@@ -87,7 +84,7 @@ with pkgs;
   ];
   tools = [
     ## Emulators
-    _86Box-with-roms
+    _86box-with-roms
     # archipelago
     #inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.basiliskii-bin
     # bizhawk
@@ -109,7 +106,6 @@ with pkgs;
     oversteer
     sc-controller
     ## Launchers & utils
-    cartridges
     faugus-launcher
     goverlay
     ## Modding
@@ -118,7 +114,7 @@ with pkgs;
     inputs.just-one-more-repo.packages.${stdenv.hostPlatform.system}.r2modman
     ## Other
     adwsteamgtk
-    #chiaki-ng
+    chiaki-ng
     flips
     gst_all_1.gstreamer
     gst_all_1.gst-libav
@@ -130,7 +126,6 @@ with pkgs;
     gswatcher
     igir
     innoextract
-    libresplit
     lgogdownloader
     python314Packages.lnkparse3
     parsec-bin

@@ -107,6 +107,7 @@ in
           handbrake
           jellyfin-tui
           kdePackages.kdenlive
+          kontainer
           losslesscut-bin
           mangareader
           metadata-cleaner
@@ -117,7 +118,7 @@ in
           puddletag
           qpwgraph
           qtscrcpy
-          #stoat-desktop
+          stoat-desktop
           rssguard
           rustdesk-flutter
           signal-desktop

@@ -70,7 +70,7 @@ in
     };
 
     drivers.mesa-git = {
-      enable = true;
+      enable = false;
       enableCache = false;
       cacheCleanup = {
         enable = false;

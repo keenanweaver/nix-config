@@ -3,7 +3,6 @@
   config,
   username,
   pkgs,
-  vars,
   ...
 }:
 let
@@ -49,7 +48,6 @@ in
         };
         services.flatpak = {
           packages = [
-            "io.github.DenysMb.Kontainer"
             "io.github.ungoogled_software.ungoogled_chromium"
             "net.mullvad.MullvadBrowser"
           ];
