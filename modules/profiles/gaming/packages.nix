@@ -40,7 +40,6 @@ with pkgs;
     ## Quake
     ironwail
     quake-injector
-    # trenchbroom
     ## Arma
     arma3-unix-launcher
     # (arma3-unix-launcher.override { buildDayZLauncher = true; })
@@ -86,10 +85,8 @@ with pkgs;
     ## Emulators
     _86box-with-roms
     # archipelago
-    #inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.basiliskii-bin
     # bizhawk
     dosbox-staging
-    #duckstation
     easyrpg-player
     hypseus-singe
     mednafen
@@ -99,7 +96,6 @@ with pkgs;
     scummvm
     shadps4
     inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.sheepshaver-bin
-    #nur.repos.novel2430.vita3k
     xenia-canary
     ## Input
     joystickwake
