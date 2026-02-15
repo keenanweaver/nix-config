@@ -31,6 +31,7 @@ in
             sort_sensitive = false;
           };
         };
+        shellWrapperName = "y";
       };
     };
   };

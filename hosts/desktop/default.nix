@@ -275,7 +275,7 @@
           (writeShellApplication {
             name = "script-gameclip720p";
             runtimeInputs = [
-              ffmpeg
+              handbrake
             ];
             text = ''
               if [ -z "$1" ]; then
@@ -286,7 +286,7 @@
               input="$1"
               output="''${input%.*}_720p60.mp4"
 
-              ffmpeg -i "$input" -vf "scale=-2:720,fps=60" -c:v libx264 -preset medium -crf 23 -c:a aac -b:a 128k "$output"
+              HandBrakeCLI --preset="Creator 720p60" --input "$input" --output "$output"
             '';
           })
         ];

@@ -77,6 +77,10 @@ in
             ];
           };
         };
+        ns2 = {
+          id = 4920;
+          compatTool = config.programs.steam.config.defaultCompatTool;
+        };
         quakelive = {
           id = 282440;
           launchOptions = {

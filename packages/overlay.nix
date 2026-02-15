@@ -65,22 +65,22 @@
     inputs.nix-gaming-edge.packages.${final.stdenv.hostPlatform.system}.proton-cachyos-x86_64-v4;
   proton-dw = inputs.dw-proton.packages.${final.stdenv.hostPlatform.system}.dw-proton;
   proton-em = final.callPackage ./proton-em { };
-  proton-ge = final.proton-ge-bin.override {
-    steamDisplayName = "Proton GE";
-  };
   /*
-    proton-ge =
-     (prev.proton-ge-bin.override {
-       steamDisplayName = "Proton GE";
-     }).overrideAttrs
-       (old: rec {
-         version = "GE-Proton10-30";
-         src = prev.fetchzip {
-           url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
-           hash = "sha256-YZ+v+dzO70qTs3JxOAk9n7ByIYb3r8SeJBWnzjKQwuQ=";
-         };
-       });
+    proton-ge = final.proton-ge-bin.override {
+      steamDisplayName = "Proton GE";
+    };
   */
+  proton-ge =
+    (prev.proton-ge-bin.override {
+      steamDisplayName = "Proton GE";
+    }).overrideAttrs
+      (old: rec {
+        version = "GE-Proton10-31";
+        src = prev.fetchzip {
+          url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
+          hash = "sha256-mfbbTm5gXWvdJ4fb/pfJ4E+FHpqeqmuVi40KfubagBs=";
+        };
+      });
   relive = prev.callPackage ./relive { };
   rsdkv3 = prev.callPackage ./rsdk/v3 { };
   rsdkv4 = prev.callPackage ./rsdk/v4 { };
