@@ -25,12 +25,12 @@
     };
   };
   lutris-unwrapped = prev.lutris-unwrapped.overrideAttrs {
-    version = "0.5.19-unstable-02-08-2026";
+    version = "0.5.20";
     src = prev.fetchFromGitHub {
       owner = "lutris";
       repo = "lutris";
-      rev = "0a9de9f6caedd997de03dfa40edfa2072ddde976";
-      hash = "sha256-4cQNsKYCiK/H7x09gmg0iCcxFyQuMDVAhH8OQipqOj4=";
+      rev = "c45a98a42b71b799d7169abd6ef3bd25f0065f9b";
+      hash = "sha256-ycAlVV5CkLLsk/m17R8k6x40av1wcEVQU2GMbOuc7Bs=";
     };
   };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
@@ -75,10 +75,10 @@
       steamDisplayName = "Proton GE";
     }).overrideAttrs
       (old: rec {
-        version = "GE-Proton10-31";
+        version = "GE-Proton10-32";
         src = prev.fetchzip {
           url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
-          hash = "sha256-mfbbTm5gXWvdJ4fb/pfJ4E+FHpqeqmuVi40KfubagBs=";
+          hash = "sha256-NxZ4OJUYQdRNQTb62jRET6Ef14LEhynOASIMPvwWeNA=";
         };
       });
   relive = prev.callPackage ./relive { };

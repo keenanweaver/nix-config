@@ -24,7 +24,6 @@ in
         GDK_DEBUG = "portals"; # KDE filepicker
         KWIN_DISABLE_TONEMAPPING = "1";
         QT_QPA_PLATFORM = "wayland;xcb";
-        XDG_CURRENT_DESKTOP = "KDE";
       };
       systemPackages =
         with pkgs;
@@ -95,7 +94,7 @@ in
                   installPhase = ''
                     mkdir -p $out/share
                     ( IFS=:
-                      for DIR in $XDG_DATA_DIRS; do
+                      for DIR in $XDG_DATA_DIRS; do 
                         if [[ -d "$DIR" ]]; then
                           ${prev.lib.getExe prev.lndir} -silent "$DIR" $out
                         fi
@@ -140,16 +139,15 @@ in
         autoLogin = {
           user = "${username}";
         };
-        sddm = {
-          enable = true;
+        plasma-login-manager = {
           settings = {
             General = {
               InputMethod = ""; # Remove virtual keyboard
             };
-          };
-          wayland = {
-            enable = true;
-            compositor = "kwin";
+            wayland = {
+              enable = true;
+              compositor = "kwin";
+            };
           };
         };
       };

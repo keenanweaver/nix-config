@@ -169,12 +169,12 @@ in
       };
       hardware = {
         openrgb = {
-          enable = true;
+          enable = false;
           package = pkgs.openrgb-with-all-plugins;
         };
       };
       input-remapper = {
-        enable = true;
+        enable = false;
       };
       lsfg-vk = {
         enable = true;
