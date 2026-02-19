@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  username,
   ...
 }:
 let
@@ -17,7 +18,7 @@ in
       execBin = "${config.home.homeDirectory}/Games/dreamm/dreamm";
     in
     {
-      name = "DREAMM";
+      name = "DREAMM [${username}]";
       comment = "Specialized emulator for playing many of your original DOS, Windows, and FM-Towns LucasArts (and LucasArts-adjacent) games";
       exec = avgm + execBin;
       icon = "${config.home.homeDirectory}/Games/dreamm/dreamm.png";
@@ -34,7 +35,7 @@ in
       execArgs = " --project-path ${config.home.homeDirectory}/Games/rpg-maker";
     in
     {
-      name = "EasyRPG Player";
+      name = "EasyRPG Player [${username}]";
       comment = "Play RPG Maker games";
       exec = avgm + execBin + execArgs;
       icon = "easyrpg-player";
@@ -56,7 +57,7 @@ in
       };
     in
     {
-      name = "GOG Galaxy";
+      name = "GOG Galaxy [${username}]";
       comment = "Launch GOG Galaxy using nero-umu";
       exec = (lib.getExe pkgs.nero-umu) + " --prefix \"GOG Galaxy\" --shortcut \"GOG Galaxy\"";
       icon = "${icon}";
@@ -68,7 +69,7 @@ in
       };
     };
   nero-umu = {
-    name = "Nero-UMU";
+    name = "Nero-UMU [${username}]";
     comment = "A fast and efficient umu manager, just as the Romans designed";
     exec =
       audioCapture
@@ -86,7 +87,7 @@ in
     terminal = false;
   };
   quake-injector = {
-    name = "Quake Injector";
+    name = "Quake Injector [${username}]";
     exec = lib.getExe (
       pkgs.writeShellApplication {
         name = "quake-injector";
@@ -114,7 +115,7 @@ in
     };
   };
   scummvm = {
-    name = "ScummVM";
+    name = "ScummVM [${username}]";
     comment = "Interpreter for numerous adventure games and RPGs";
     exec = avgm + (lib.getExe pkgs.scummvm);
     icon = "org.scummvm.scummvm";
@@ -138,7 +139,7 @@ in
       };
     in
     {
-      name = "Sonic the Hedgehog";
+      name = "Sonic the Hedgehog [${username}]";
       exec = avgm + (lib.getExe pkgs.rsdkv4);
       inherit icon;
       categories = [
@@ -159,7 +160,7 @@ in
       };
     in
     {
-      name = "Sonic the Hedgehog 2";
+      name = "Sonic the Hedgehog 2 [${username}]";
       exec = avgm + (lib.getExe pkgs.rsdkv4);
       inherit icon;
       categories = [
@@ -180,7 +181,7 @@ in
       };
     in
     {
-      name = "Sonic CD";
+      name = "Sonic CD [${username}]";
       exec = avgm + (lib.getExe pkgs.rsdkv3);
       inherit icon;
       categories = [

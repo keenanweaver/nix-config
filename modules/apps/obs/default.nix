@@ -84,7 +84,7 @@ in
       xdg = {
         desktopEntries = {
           "com.obsproject.Studio" = lib.mkIf cfg.enableFlatpak {
-            name = "OBS Studio";
+            name = "OBS Studio [${username}]";
             comment = "Flatpak - Free and Open Source Streaming/Recording Software";
             exec = "flatpak run --branch=stable --arch=x86_64 --command=obs com.obsproject.Studio --disable-shutdown-check";
             terminal = false;
@@ -97,7 +97,7 @@ in
             ];
           };
           "obs" = lib.mkIf cfg.enableNative {
-            name = "OBS Studio";
+            name = "OBS Studio [${username}]";
             comment = "Free and Open Source Streaming/Recording Software";
             exec = "GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb obs --disable-shutdown-check";
             terminal = false;

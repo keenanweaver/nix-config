@@ -262,8 +262,8 @@ in
             MESA_SHADER_CACHE_MAX_SIZE = "12G";
             # https://reddit.com/r/linux_gaming/comments/1mg8vtl/low_latency_gaming_guide/
             MESA_VK_WSI_PRESENT_MODE = "fifo";
-            SDL_VIDEODRIVER = "wayland,x11"; # SDL2
-            SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3
+            SDL_VIDEODRIVER = "wayland"; # SDL2
+            SDL_VIDEO_DRIVER = "wayland"; # SDL3
           };
         };
 
@@ -299,7 +299,7 @@ in
           autostart.entries = with pkgs; [
             "${nuked-sc55}/share/applications/Nuked-SC55_silent.desktop"
           ];
-          desktopEntries = import ./desktop-entries.nix { inherit pkgs config lib; };
+          desktopEntries = import ./desktop-entries.nix { inherit pkgs config lib username; };
         };
       };
   };

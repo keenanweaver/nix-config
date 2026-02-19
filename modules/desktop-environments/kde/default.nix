@@ -140,15 +140,7 @@ in
           user = "${username}";
         };
         plasma-login-manager = {
-          settings = {
-            General = {
-              InputMethod = ""; # Remove virtual keyboard
-            };
-            wayland = {
-              enable = true;
-              compositor = "kwin";
-            };
-          };
+          enable = true;
         };
       };
       libinput = {
