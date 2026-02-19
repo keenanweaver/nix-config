@@ -42,8 +42,12 @@ in
     zerotier.enable = true;
 
     boot = {
+      extraModulePackages = with config.boot.kernelPackages; [
+        zenergy
+      ];
       kernelModules = [
         "ntsync"
+        "zenergy"
       ];
       kernelParams = [
         #"usbhid.mousepoll=8" # Reduce mouse polling rate to 125hz
@@ -299,7 +303,14 @@ in
           autostart.entries = with pkgs; [
             "${nuked-sc55}/share/applications/Nuked-SC55_silent.desktop"
           ];
-          desktopEntries = import ./desktop-entries.nix { inherit pkgs config lib username; };
+          desktopEntries = import ./desktop-entries.nix {
+            inherit
+              pkgs
+              config
+              lib
+              username
+              ;
+          };
         };
       };
   };
