@@ -21,8 +21,8 @@ in
           renice = 10;
         };
         cpu = {
-          amd_x3d_mode_default = "frequency";
-          amd_x3d_mode_desired = "cache";
+          #amd_x3d_mode_default = "frequency";
+          #amd_x3d_mode_desired = "cache";
           park_cores = "no";
           pin_cores = "1-7,16-23"; # Skip core 0, testing https://kish1n.io/posts/is-core-0-sabotaging-your-performance/
         };
