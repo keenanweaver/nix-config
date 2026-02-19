@@ -284,7 +284,7 @@ in
             l = "${lib.getExe config.programs.lsd.package} -la --group-dirs=first";
             lgog = "${lib.getExe pkgs.lgogdownloader} --download --exclude l,p --platform=w --directory /mnt/crusader/Games/Backups/GOG";
             ngc = "${lib.getExe config.programs.nh.package} clean all";
-            nor = "${lib.getExe config.programs.nh.package} os switch";
+            nor = "${lib.getExe config.programs.nh.package} os boot";
             npr = "${lib.getExe pkgs.nixpkgs-review} pr --print-result";
             psr = "${lib.getExe' pkgs.kdePackages.plasma-workspace "plasmashell"} --replace & disown";
             rbn = "${lib.getExe pkgs.podman} stop -a && ${lib.getExe' pkgs.systemd "systemctl"} reboot";

@@ -41,7 +41,7 @@ in
               notify_each_step = true;
             };
             pre_commands = {
-              "NixOS Rebuild" = "${lib.getExe pkgs.nh} os switch --update";
+              "NixOS Rebuild" = "${lib.getExe pkgs.nh} os boot --update";
             };
             commands = { };
             post_commands = { };
