@@ -194,6 +194,7 @@
                   launchers = [
                     "applications:org.wezfurlong.wezterm.desktop"
                     "applications:vesktop.desktop"
+                    "applications:fluxer.desktop"
                     "applications:org.squidowl.halloy.desktop"
                     "applications:signal.desktop"
                     "applications:info.mumble.Mumble.desktop"
@@ -274,6 +275,30 @@
             match = {
               window-class = {
                 value = "electron vesktop";
+                type = "exact";
+              };
+            };
+            apply = {
+              ignoregeometry = {
+                value = true;
+              };
+              position = {
+                value = "0,0";
+              };
+              screen = {
+                value = 1;
+                apply = "force";
+              };
+              size = {
+                value = "1026,646";
+              };
+            };
+          }
+          {
+            description = "fluxer";
+            match = {
+              window-class = {
+                value = "fluxer fluxer_app";
                 type = "exact";
               };
             };

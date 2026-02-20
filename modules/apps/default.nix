@@ -15,6 +15,7 @@
     ./fastfetch
     ./fd
     ./fluidsynth
+    ./fluxer
     ./freetube
     ./fzf
     ./gamemode

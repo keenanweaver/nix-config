@@ -130,6 +130,7 @@ with pkgs;
     xlink-kai
     xvidcore
     ## Wine
+    umu-launcher
     inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.winegui
     inputs.nix-gaming.packages.${stdenv.hostPlatform.system}.wine-tkg
     winetricks
