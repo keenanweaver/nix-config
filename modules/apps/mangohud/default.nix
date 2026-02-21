@@ -51,8 +51,8 @@ in
               ###############
               fps_limit=357,0,240,120,60,30
               fps_limit_method=early
-              vsync=3
-              gl_vsync=1
+              vsync=1
+              gl_vsync=0
 
               ###########
               ## Binds ##
