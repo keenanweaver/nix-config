@@ -83,7 +83,6 @@
       });
   relive = prev.callPackage ./relive { };
   rsdkv3 = prev.callPackage ./rsdk/v3 { };
-  rsdkv4 = prev.callPackage ./rsdk/v4 { };
   /*
     scummvm = prev.scummvm.overrideAttrs {
       version = "3.0.0-unstable-01-20-2026";

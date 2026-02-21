@@ -69,7 +69,6 @@ with pkgs;
     openxray # STALKER
     relive # Oddworld
     rsdkv3
-    rsdkv4
     # inputs.nix-citizen.packages.${stdenv.hostPlatform.system}.rsi-launcher-umu
     sdlpop # Prince of Persia
     #serious-sam-classic-vulkan

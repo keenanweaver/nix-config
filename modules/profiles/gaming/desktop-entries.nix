@@ -131,48 +131,6 @@ in
     startupNotify = false;
     terminal = false;
   };
-  sonic-1 =
-    let
-      icon = pkgs.fetchurl {
-        url = "https://cdn2.steamgriddb.com/icon/24b16fede9a67c9251d3e7c7161c83ac.png";
-        hash = "sha256-m5CEGaJj4Pr37EZIQpsHyBGYYjI9P2vNAOIBI2N5iiY=";
-      };
-    in
-    {
-      name = "Sonic the Hedgehog [${username}]";
-      exec = avgm + (lib.getExe pkgs.rsdkv4);
-      inherit icon;
-      categories = [
-        "Game"
-      ];
-      noDisplay = false;
-      settings = {
-        Path = "${config.home.homeDirectory}/Games/sonic/sonic-1";
-      };
-      startupNotify = false;
-      terminal = false;
-    };
-  sonic-2 =
-    let
-      icon = pkgs.fetchurl {
-        url = "https://cdn2.steamgriddb.com/icon/6b180037abbebea991d8b1232f8a8ca9/32/256x256.png";
-        hash = "sha256-dU0Kz8UhHnj7H9/2psCKvJ6ssvqiJQHHl2CZRNgFkjo=";
-      };
-    in
-    {
-      name = "Sonic the Hedgehog 2 [${username}]";
-      exec = avgm + (lib.getExe pkgs.rsdkv4);
-      inherit icon;
-      categories = [
-        "Game"
-      ];
-      noDisplay = false;
-      settings = {
-        Path = "${config.home.homeDirectory}/Games/sonic/sonic-2";
-      };
-      startupNotify = false;
-      terminal = false;
-    };
   sonic-cd =
     let
       icon = pkgs.fetchurl {

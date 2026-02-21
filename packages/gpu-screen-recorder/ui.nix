@@ -8,32 +8,35 @@
   makeWrapper,
   gpu-screen-recorder,
   gpu-screen-recorder-notification,
-  dbus,
-  desktop-file-utils,
-  libX11,
-  libXrender,
-  libXrandr,
-  libXcomposite,
-  libXi,
-  libXcursor,
+  libx11,
+  libxrender,
+  libxrandr,
+  libxcomposite,
+  libxi,
+  libxcursor,
   libglvnd,
   libpulseaudio,
   libdrm,
+  dbus,
   wayland,
   wayland-scanner,
   wrapperDir ? "/run/wrappers/bin",
   gitUpdater,
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "gpu-screen-recorder-ui";
   version = "1.10.8";
 
   src = fetchgit {
     url = "https://repo.dec05eba.com/gpu-screen-recorder-ui";
-    tag = version;
+    tag = finalAttrs.version;
     hash = "sha256-x7MBTUWDKCzClq4ukgtFazOD/RLkX5lgmm9slN5BjVk=";
   };
+
+  patches = [
+    ./remove-gnome-postinstall.patch
+  ];
 
   postPatch = ''
     substituteInPlace depends/mglpp/depends/mgl/src/gl.c \
@@ -42,7 +45,10 @@ stdenv.mkDerivation rec {
       --replace-fail "libEGL.so.1" "${lib.getLib libglvnd}/lib/libEGL.so.1"
 
     substituteInPlace extra/gpu-screen-recorder-ui.service \
-      --replace-fail "ExecStart=${meta.mainProgram}" "ExecStart=$out/bin/${meta.mainProgram}"
+      --replace-fail "ExecStart=gsr-ui" "ExecStart=$out/bin/gsr-ui"
+
+    substituteInPlace gpu-screen-recorder.desktop \
+      --replace-fail "Exec=gsr-ui" "Exec=$out/bin/gsr-ui"
   '';
 
   nativeBuildInputs = [
@@ -53,17 +59,16 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
-    dbus
-    desktop-file-utils
-    libX11
-    libXrender
-    libXrandr
-    libXcomposite
-    libXi
-    libXcursor
+    libx11
+    libxrender
+    libxrandr
+    libxcomposite
+    libxi
+    libxcursor
     libglvnd
     libpulseaudio
     libdrm
+    dbus
     wayland
     wayland-scanner
   ];
@@ -80,7 +85,7 @@ stdenv.mkDerivation rec {
       };
     in
     ''
-      wrapProgram "$out/bin/${meta.mainProgram}" \
+      wrapProgram "$out/bin/gsr-ui" \
         --prefix PATH : "${wrapperDir}" \
         --suffix PATH : "${
           lib.makeBinPath [
@@ -100,4 +105,4 @@ stdenv.mkDerivation rec {
     maintainers = with lib.maintainers; [ js6pak ];
     platforms = lib.platforms.linux;
   };
-}
+})
