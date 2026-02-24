@@ -21,6 +21,7 @@ in
           renice = 10;
         };
         cpu = {
+          # https://github.com/aamaanaa/X3D-Cache-Core-Parking-on-Fedora
           #amd_x3d_mode_default = "frequency";
           #amd_x3d_mode_desired = "cache";
           park_cores = "no";

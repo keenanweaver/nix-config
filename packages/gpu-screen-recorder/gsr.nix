@@ -7,7 +7,7 @@
   ninja,
   addDriverRunpath,
   pkg-config,
-  libXcomposite,
+  libxcomposite,
   libpulseaudio,
   dbus,
   ffmpeg,
@@ -18,10 +18,10 @@
   libdrm,
   libva,
   libglvnd,
-  libXdamage,
-  libXi,
-  libXrandr,
-  libXfixes,
+  libxdamage,
+  libxi,
+  libxrandr,
+  libxfixes,
   libjpeg_turbo,
   wrapperDir ? "/run/wrappers/bin",
   gitUpdater,
@@ -45,7 +45,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
-    libXcomposite
+    libxcomposite
     libpulseaudio
     dbus
     ffmpeg
@@ -55,10 +55,10 @@ stdenv.mkDerivation rec {
     vulkan-headers
     libdrm
     libva
-    libXdamage
-    libXi
-    libXrandr
-    libXfixes
+    libxdamage
+    libxi
+    libxrandr
+    libxfixes
   ];
 
   mesonFlags = [
