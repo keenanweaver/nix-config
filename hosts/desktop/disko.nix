@@ -37,18 +37,18 @@
                 extraArgs = [ "-f" ];
                 subvolumes = {
                   "/home" = {
-                    mountOptions = [ "compress=zstd" ];
+                    mountOptions = [ "compress=zstd:1" ];
                     mountpoint = "/home";
                   };
                   "/nix" = {
                     mountOptions = [
-                      "compress=zstd"
+                      "compress=zstd:1"
                       "noatime"
                     ];
                     mountpoint = "/nix";
                   };
                   "/persist" = {
-                    mountOptions = [ "compress=zstd" ];
+                    mountOptions = [ "compress=zstd:1" ];
                     mountpoint = "/persist";
                   };
                 };
