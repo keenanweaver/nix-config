@@ -13,7 +13,7 @@
     fsType = "btrfs";
     neededForBoot = true; # Needed for sops secrets
     options = [
-      "compress=zstd:3"
+      "compress=zstd:1"
       "subvol=home"
     ];
   };
@@ -21,7 +21,7 @@
   fileSystems."/nix" = {
     fsType = "btrfs";
     options = [
-      "compress=zstd:3"
+      "compress=zstd:1"
       "subvol=nix"
     ];
   };
@@ -30,7 +30,7 @@
     fsType = "btrfs";
     neededForBoot = true;
     options = [
-      "compress=zstd:3"
+      "compress=zstd:1"
       "subvol=persist"
     ];
   };
@@ -40,7 +40,7 @@
     device = "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U8NJ0Y515050E-part1";
     fsType = "btrfs";
     options = [
-      "compress=zstd:3"
+      "compress=zstd:1"
     ];
   };
 
@@ -49,7 +49,7 @@
     device = "/dev/disk/by-id/ata-Samsung_SSD_870_EVO_2TB_S620NJ0R902825F-part1";
     fsType = "btrfs";
     options = [
-      "compress=zstd:3"
+      "compress=zstd:1"
     ];
   };
 
