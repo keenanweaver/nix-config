@@ -14,6 +14,7 @@ let
         PROTON_FSR4_RDNA3_UPGRADE = true;
         PROTON_USE_NTSYNC = true;
         PROTON_USE_WOW64 = true;
+        WINEDLLOVERRIDES = "dinput8,dxgi,dsound,ddraw=n,b";
       };
       wrappers = [
         (lib.getExe pkgs.gamemode)
