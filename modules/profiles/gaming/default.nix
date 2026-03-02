@@ -263,11 +263,11 @@ in
             RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2003";
             # https://wiki.cachyos.org/configuration/gaming/#increase-maximum-shader-cache-size
             AMD_VULKAN_ICD = "RADV";
-            MESA_SHADER_CACHE_MAX_SIZE = "12G";
+            MESA_SHADER_CACHE_MAX_SIZE = "16G";
             # https://reddit.com/r/linux_gaming/comments/1mg8vtl/low_latency_gaming_guide/
             MESA_VK_WSI_PRESENT_MODE = "fifo";
-            SDL_VIDEODRIVER = "wayland"; # SDL2
-            SDL_VIDEO_DRIVER = "wayland"; # SDL3
+            #SDL_VIDEODRIVER = "wayland,x11"; # SDL2
+            #SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3
           };
         };
 
