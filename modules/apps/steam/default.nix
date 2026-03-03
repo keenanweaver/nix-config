@@ -33,6 +33,15 @@ in
     programs.steam = {
       enable = cfg.enableNative;
       package = pkgs.steam.override {
+        extraEnv = {
+          PIPEWIRE_NODE = "Game";
+          PULSE_SINK = "Game";
+          PROTON_ENABLE_HDR = true;
+          PROTON_ENABLE_WAYLAND = true;
+          PROTON_FSR4_RDNA3_UPGRADE = true;
+          PROTON_USE_NTSYNC = true;
+          PROTON_USE_WOW64 = true;
+        };
         # https://github.com/NixOS/nixpkgs/issues/279893#issuecomment-2425213386
         extraProfile = ''
           unset TZ
@@ -65,15 +74,6 @@ in
                 with pkgs;
                 lib.getExe (writeShellApplication {
                   name = "steam-config-default";
-                  runtimeEnv = {
-                    PIPEWIRE_NODE = "Game";
-                    PULSE_SINK = "Game";
-                    PROTON_ENABLE_HDR = true;
-                    PROTON_ENABLE_WAYLAND = true;
-                    PROTON_FSR4_RDNA3_UPGRADE = true;
-                    PROTON_USE_NTSYNC = true;
-                    PROTON_USE_WOW64 = true;
-                  };
                   runtimeInputs = [
                     gamemode
                     mangohud
@@ -83,7 +83,7 @@ in
                     exec env gamemoderun obs-gamecapture mangohud "$@"
                   '';
                 });
-              target = "${config.xdg.dataHome}/steam-config-nix/users/shared/app-wrappers/default";
+              target = "${config.xdg.dataHome}/steam-config-nix/apps/default";
             };
             steam-slow-fix = {
               enable = cfg.fixDownloadSpeed;

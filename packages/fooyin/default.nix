@@ -18,17 +18,18 @@
   game-music-emu,
   SDL2,
   icu,
+  soundtouch,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fooyin";
-  version = "0.9.2-unstable-02-21-2026";
+  version = "0.9.2-unstable-03-02-2026";
 
   src = fetchFromGitHub {
     owner = "ludouzi";
     repo = "fooyin";
-    rev = "13c1f8627f0cc79151ff79e372efe7cdea17e59c";
-    hash = "sha256-v6ZKR3IfZEqeMhxS4R20LE8HSJPxe//ssDG8IZCbYic=";
+    rev = "52f4429ea02457f8e7c6434732f8a888a588e3ef";
+    hash = "sha256-X668DolwhD+Sa/cAAzLzivuvTYLh+R4q0tMfoz4G7dw=";
   };
 
   buildInputs = [
@@ -40,6 +41,7 @@ stdenv.mkDerivation (finalAttrs: {
     ffmpeg
     icu
     kdsingleapplication
+    soundtouch
     # output plugins
     alsa-lib
     pipewire
