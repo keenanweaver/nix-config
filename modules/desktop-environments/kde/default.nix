@@ -22,8 +22,6 @@ in
       plasma6.excludePackages = with pkgs.kdePackages; [ elisa ];
       sessionVariables = {
         GDK_DEBUG = "portals"; # KDE filepicker
-        KWIN_DISABLE_TONEMAPPING = "1";
-        QT_QPA_PLATFORM = "wayland;xcb";
       };
       systemPackages =
         with pkgs;
@@ -61,6 +59,7 @@ in
           neochat
           okteta
           orca
+          plasma-browser-integration
           packagekit-qt # Discover store
           qt6.qtwebengine
           qtimageformats
