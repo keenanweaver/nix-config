@@ -24,17 +24,15 @@
       hash = "sha256-2M1SGmYSEnZ1AlsOvhrM25oQi8mz/H8df4pzyFYybN8=";
     };
   };
-  /*
-    lutris-unwrapped = prev.lutris-unwrapped.overrideAttrs {
-      version = "0.5.20";
-      src = prev.fetchFromGitHub {
-        owner = "lutris";
-        repo = "lutris";
-        rev = "c45a98a42b71b799d7169abd6ef3bd25f0065f9b";
-        hash = "sha256-ycAlVV5CkLLsk/m17R8k6x40av1wcEVQU2GMbOuc7Bs=";
-      };
+  lutris-unwrapped = prev.lutris-unwrapped.overrideAttrs {
+    version = "0.5.22";
+    src = prev.fetchFromGitHub {
+      owner = "lutris";
+      repo = "lutris";
+      rev = "def0df605df42f25ee7a2d43a68ec7a3897cbc9a";
+      hash = "sha256-F8dbAaklWw8te/0988/bPR+b532rMYVCanWJvdeiekw=";
     };
-  */
+  };
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nero-umu = prev.nero-umu.overrideAttrs {
     version = "1.2.0-unstable-02-23-2026";

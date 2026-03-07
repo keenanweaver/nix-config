@@ -268,6 +268,7 @@ in
             MESA_VK_WSI_PRESENT_MODE = "fifo";
             #SDL_VIDEODRIVER = "wayland,x11"; # SDL2
             #SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3
+            #ENABLE_LAYER_MESA_ANTI_LAG = 1;
           };
         };
 

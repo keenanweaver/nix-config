@@ -40,22 +40,22 @@ in
           proton-links-proton-cachyos-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = pkgs.proton-cachyos-x86_64-v4.steamcompattool;
-            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-cachyos-nix";
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-cachyos-nix";
           };
           proton-links-proton-dw-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = pkgs.proton-dw.steamcompattool;
-            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-dw-nix";
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-dw-nix";
           };
           proton-links-proton-em-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = pkgs.proton-em.steamcompattool;
-            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-em-nix";
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-em-nix";
           };
           proton-links-proton-ge-flatpak-lutris = {
             enable = cfg.enableFlatpak;
             source = pkgs.proton-ge.steamcompattool;
-            target = ".var/app/net.lutris.Lutris/data/lutris/runners/proton/proton-ge-nix";
+            target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-ge-nix";
           };
         };
         programs.lutris = lib.mkIf cfg.enableNative {
