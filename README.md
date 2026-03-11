@@ -149,9 +149,7 @@ Run the commands:
     cp -r "$patch"/* "$GAMESDIR"/daikatana
     rm -rf "$GAMESDIR/daikatana/data/pak5.zip" "$GAMESDIR/daikatana/data/pak9.zip" "$GAMESDIR/daikatana/__redist" "$GAMESDIR/daikatana/app" "$GAMESDIR/daikatana/commonappdata" "$GAMESDIR/daikatana/tmp" "$patch"
     ## Dark Forces
-    mkdir -p "$GAMESDIR"/the-force-engine/df
     mkdir -p "$FLATPAKDIR"/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/{openjkdf2,openjkmots}
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/star_wars_dark_forces" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/the-force-engine/df
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/star_wars_jedi_knight_dark_forces_ii_copy3" -x ls -t | head -n1 | xargs innoextract -g -d "$FLATPAKDIR"/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/openjkdf2
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/star_wars_republic_commando_copy3" -x ls -t | head -n1 | xargs innoextract -g -d "$FLATPAKDIR"/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/openjkmots
     mv "$FLATPAKDIR"/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/openjkdf2/app/* "$FLATPAKDIR"/org.openjkdf2.OpenJKDF2/data/OpenJKDF2/openjkdf2
@@ -170,30 +168,10 @@ Run the commands:
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/diablo" -x ls -t | head -n1 | xargs innoextract -d "$DATADIR" -I 'DIABDAT.MPQ' -I 'hellfire.mpq' -I 'hfmonk.mpq' -I 'hfmusic.mpq' -I 'hfvoice.mpq'
     mv "$DATADIR"/hellfire/* $DATADIR
     rm -rf $DATADIR/hellfire
-    ## Doom 3
-    mkdir -p "$GAMESDIR"/doom/{doom-3,doom-3-bfg}
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/doom_3_classic" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/doom/doom-3
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/doom_3_bfg_edition_game" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/doom/doom-3-bfg
-    mv "$GAMESDIR"/doom/doom-3-bfg/app/base/* "$GAMESDIR"/doom/doom-3-bfg && rm -rf "$GAMESDIR"/doom/doom-3-bfg/{tmp,app}
-    curl https://api.github.com/repos/RobertBeckebans/RBDOOM-3-BFG/releases/latest | jq -r '.assets[] | select(.name | test("full")).browser_download_url' | xargs wget -P "$GAMESDIR"/doom/doom-3-bfg
-    fd -a -d 1 -e 7z . "$GAMESDIR/doom/doom-3-bfg" -x ouch d {} -y -d "$GAMESDIR"/doom/doom-3-bfg
     ## Duke Nukem
-    mkdir -p "$GAMESDIR"/duke/{duke-nukem-ii,duke-nukem-3d/atomic-edition}
+    mkdir -p "$GAMESDIR"/duke/{duke-nukem-ii}
     fd Duke-Nukem-II -a -d 1 -e exe . "$MNTDIR/Backups/Zoom" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/duke/duke-nukem-ii -I nukem2.cmp -I nukem2.f1 -I nukem2.f2 -I nukem2.f3 -I nukem2.f4 -I nukem2.f5
     mv "$GAMESDIR"/duke/duke-nukem-ii/app/* "$GAMESDIR"/duke/duke-nukem-ii
-    fd Duke-Nukem-3D-Atomic-Edition -a -d 1 -e exe . "$MNTDIR/Backups/Zoom" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/duke/duke-nukem-3d/atomic-edition
-    mv "$GAMESDIR"/duke/duke-nukem-3d/atomic-edition/app/* "$GAMESDIR"/duke/duke-nukem-3d/atomic-edition
-    fd 'Duke-Nukem-3D-DLC-Pack' -a -d 1 -e tar.xz . "$MNTDIR/Backups/Zoom" -x tar xf {} --directory="$GAMESDIR"/duke/duke-nukem-3d/
-    ## Fallout
-    mkdir -p "$XDG_DATA_HOME"/{fallout-ce,fallout2-ce}
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/fallout_game" -x ls -t | head -n1 | xargs innoextract -d "$XDG_DATA_HOME"/fallout-ce -g
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/fallout_2_game" -x ls -t | head -n1 | xargs innoextract -d "$XDG_DATA_HOME"/fallout2-ce -g
-    cd "$XDG_DATA_HOME"/fallout-ce && rm -rf __redist __support app commonappdata Extras tmp goggame*
-    pwsh -c "dir . -r | % { if ($_.Name -cne $_.Name.ToLower()) { ren $_.FullName $_.Name.ToLower() } }" && cd "$XDG_DATA_HOME"/fallout-ce/data/sound/music && pwsh -c "dir . -r | % { if ($_.Name -cne $_.Name.ToUpper()) { ren $_.FullName $_.Name.ToUpper() } }"
-    gamescope -f -w 2560 -h 1440 -- fallout-ce && sleep 3 && sd 'music_path1=sound\\music\\' 'music_path1=data\\sound\\music\\' "$XDG_DATA_HOME"/fallout-ce/fallout.cfg && sd 'music_path2=sound\\music\\' 'music_path2=data\\sound\\music\\' "$XDG_DATA_HOME"/fallout-ce/fallout.cfg
-    cd "$XDG_DATA_HOME"/fallout2-ce && mv -f app/* . && rm -rf __redist __support app commonappdata Extras tmp goggame*
-    pwsh -c "dir . -r | % { if ($_.Name -cne $_.Name.ToLower()) { ren $_.FullName $_.Name.ToLower() } }" && cd "$XDG_DATA_HOME"/fallout2-ce/data/sound/music && pwsh -c "dir . -r | % { if ($_.Name -cne $_.Name.ToUpper()) { ren $_.FullName $_.Name.ToUpper() } }"
-    gamescope -f -w 2560 -h 1440 -- fallout2-ce && sleep 3 && sd 'music_path1=sound\\music\\' 'music_path1=data\\sound\\music\\' $XDG_DATA_HOME/fallout2-ce/fallout2.cfg && sd 'music_path2=sound\\music\\' 'music_path2=data\\sound\\music\\' "$XDG_DATA_HOME"/fallout2-ce/fallout2.cfg
     ## Freespace
     mkdir -p "$GAMESDIR"/freespace-2
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/freespace_2" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/freespace-2/FS2
@@ -223,45 +201,24 @@ Run the commands:
     ## Locomotion
     mkdir -p "$GAMESDIR"/loco
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/chris_sawyers_locomotion" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/loco
-    ## Medal of Honor: Allied Assault
-    mkdir -p "$HOME"/.openmohaa
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/medal_of_honor_allied_assault_war_chest" -x ls -t | head -n1 | xargs innoextract -g -d "$HOME"/.openmohaa
-    mv "$HOME"/.openmohaa/app/* "$HOME"/.openmohaa && rm -rf "$HOME"/.openmohaa/{app,tmp}
     ## Morrowind
     mkdir -p "$GAMESDIR"/{morrowind,openmw}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/the_elder_scrolls_iii_morrowind_goty_edition_game" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/morrowind
     # https://modding-openmw.com/guides/auto/i-heart-vanilla-directors-cut/linux#selected-mod-list
     wget -P "$GAMESDIR"/openmw https://gitlab.com/api/v4/projects/modding-openmw%2Fmomw-tools-pack/jobs/artifacts/master/raw/momw-tools-pack-linux.tar.gz?job=make
     fd "momw-tools-pack-linux" -t file "$GAMESDIR"/openmw -x ouch d --yes {} -d "$GAMESDIR"/openmw && fd "momw-tools-pack-linux" -t file "$GAMESDIR"/openmw -x rm {}
-    ## Nox
-    mkdir -p "$GAMESDIR"/nox
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/nox" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/nox
-    mv "$GAMESDIR"/nox/app/* "$GAMESDIR"/nox && rm -rf "$GAMESDIR"/nox/{app,tmp}
     ## Oddworld
     mkdir -p "$GAMESDIR"/oddworld/{ao,ae}
     fd "Oddworld-Abe's-Oddysee" -a -d 1 -e exe . "$MNTDIR/Backups/Zoom" -x ls -t | head -n1 | sed 's/^/"/;s/$/"/' | xargs innoextract -d "$GAMESDIR"/oddworld/ao
     mv "$GAMESDIR"/oddworld/ao/app/* "$GAMESDIR"/oddworld/ao && rm -rf "$GAMESDIR"/oddworld/ao/{app,tmp}
     fd "Oddworld-Abe's-Exoddus" -a -d 1 -e exe . "$MNTDIR/Backups/Zoom" -x ls -t | head -n1 | sed 's/^/"/;s/$/"/' | xargs innoextract -d "$GAMESDIR"/oddworld/ae
     mv "$GAMESDIR"/oddworld/ae/app/* "$GAMESDIR"/oddworld/ae && rm -rf "$GAMESDIR"/oddworld/ae/{app,tmp}
-    ## Outlaws
-    mkdir -p "$GAMESDIR"/the-force-engine/ol
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/outlaws_a_handful_of_missions" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/the-force-engine/ol
-    mv "$GAMESDIR"/the-force-engine/ol/app/* "$GAMESDIR"/the-force-engine/ol && rm -rf "$GAMESDIR"/the-force-engine/ol/{app,tmp}
     ## Perfect Dark
     mkdir -p "$XDG_DATA_HOME"/perfectdark/data
     wget -P "$XDG_DATA_HOME"/perfectdark/data https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Perfect%20Dark%20%28USA%29%20%28Rev%201%29.zip
     fd -a -d 1 -e zip . "$XDG_DATA_HOME"/perfectdark/data -x ouch d -y {} -d "$XDG_DATA_HOME"/perfectdark/data
     fd -a -d 1 -e z64 . "$XDG_DATA_HOME"/perfectdark/data -x mv {} "$XDG_DATA_HOME"/perfectdark/data/pd.ntsc-final.z64
     fd -a -d 1 -e zip . "$XDG_DATA_HOME"/perfectdark/data -x rm {}
-    ## Quake
-    mkdir -p "$GAMESDIR"/quake/quake-1 "$HOME"/.q2pro "$HOME"/.q3a
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/quake_the_offering_game" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/quake/quake-1/original
-    mv "$GAMESDIR"/quake/quake-1/original/app/* "$GAMESDIR"/quake/quake-1/original && rm -rf "$GAMESDIR"/quake/quake-1/original/{app,tmp}
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/quake_enhanced" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/quake/quake-1/enhanced
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/quake_ii_quad_damage_game" -x ls -t | head -n1 | xargs innoextract -g -d "$HOME"/.q2pro
-    mv -f "$HOME"/.q2pro/app/* "$HOME"/.q2pro
-    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/quake_iii_arena_and_team_arena" -x ls -t | head -n1 | xargs innoextract -g -d "$HOME"/.q3a
-    mv "$HOME"/.q3a/app/* "$HOME"/.q3a && rm -rf "$HOME"/.q3a/{app,tmp}
     ## Rollercoaster Tycoon
     mkdir -p "$GAMESDIR"/rollercoaster-tycoon/rct-{1,2}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/rollercoaster_tycoon_deluxe" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/rollercoaster-tycoon/rct-1

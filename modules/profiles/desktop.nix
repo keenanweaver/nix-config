@@ -102,7 +102,6 @@ in
           cyanrip
           filezilla
           fooyin
-          freetube
           gearlever
           hacompanion
           handbrake

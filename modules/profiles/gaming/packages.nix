@@ -23,9 +23,6 @@ with pkgs;
     uzdoom
     woof-doom
     zandronum
-    ## Fallout
-    fallout-ce
-    fallout2-ce
     ## Freespace
     descent3
     dxx-rebirth

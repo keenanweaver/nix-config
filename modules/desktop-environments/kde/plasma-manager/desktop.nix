@@ -298,7 +298,7 @@
             description = "fluxer";
             match = {
               window-class = {
-                value = "fluxer fluxer_app";
+                value = "electron fluxer_desktop";
                 type = "exact";
               };
             };

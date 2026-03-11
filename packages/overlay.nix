@@ -15,15 +15,6 @@
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif.nix { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };
   inter = prev.callPackage ./inter { };
-  klassy = prev.klassy.overrideAttrs {
-    version = "6.5.3";
-    src = prev.fetchFromGitHub {
-      owner = "paulmcauley";
-      repo = "klassy";
-      rev = "0f023c0464fcae67abb939551034346dcaab9b5e";
-      hash = "sha256-2M1SGmYSEnZ1AlsOvhrM25oQi8mz/H8df4pzyFYybN8=";
-    };
-  };
   lutris-unwrapped = prev.lutris-unwrapped.overrideAttrs {
     version = "0.5.22";
     src = prev.fetchFromGitHub {
@@ -83,16 +74,5 @@
   */
   relive = prev.callPackage ./relive { };
   rsdkv3 = prev.callPackage ./rsdk/v3 { };
-  /*
-    scummvm = prev.scummvm.overrideAttrs {
-      version = "3.0.0-unstable-01-20-2026";
-      src = prev.fetchFromGitHub {
-        owner = "scummvm";
-        repo = "scummvm";
-        rev = "59f4176fd731eac3dedca125971fc8a41c9a5a55";
-        hash = "sha256-w8Dsa8g9HcdTKVORCSaFhwMX8VlL1L6AY9HRbG4vZ40=";
-      };
-    };
-  */
   xlink-kai = prev.callPackage ./xlink-kai { };
 })

@@ -188,7 +188,11 @@
         store = "otherWine";
       }
       {
-        path = "${config.home.homeDirectory}/Games/Steam";
+        path = "${config.home.homeDirectory}/Games/SteamLibrary";
+        store = "steam";
+      }
+      {
+        path = "${config.xdg.dataHome}/Steam";
         store = "steam";
       }
     ];

@@ -93,7 +93,7 @@ in
                   installPhase = ''
                     mkdir -p $out/share
                     ( IFS=:
-                      for DIR in $XDG_DATA_DIRS; do 
+                      for DIR in $XDG_DATA_DIRS; do
                         if [[ -d "$DIR" ]]; then
                           ${prev.lib.getExe prev.lndir} -silent "$DIR" $out
                         fi
