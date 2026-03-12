@@ -121,6 +121,10 @@ in
       ];
     };
 
+    nixpkgs.overlays = [
+      inputs.umu.overlays.default
+    ];
+
     programs = {
       perfect-dark-git.enable = true;
       shipwright-git.enable = true;

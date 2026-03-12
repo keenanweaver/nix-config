@@ -35,8 +35,8 @@ with pkgs;
     tes3cmd
     openmw
     ## Quake
-    ironwail
-    quake-injector
+    # ironwail
+    # quake-injector
     ## Arma
     arma3-unix-launcher
     # (arma3-unix-launcher.override { buildDayZLauncher = true; })
@@ -94,7 +94,7 @@ with pkgs;
     inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.sheepshaver-bin
     xenia-canary
     ## Input
-    joystickwake
+    #joystickwake
     oversteer
     sc-controller
     ## Launchers & utils

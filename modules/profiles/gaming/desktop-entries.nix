@@ -86,34 +86,6 @@ in
     startupNotify = true;
     terminal = false;
   };
-  quake-injector = {
-    name = "Quake Injector [${username}]";
-    exec = lib.getExe (
-      pkgs.writeShellApplication {
-        name = "quake-injector";
-        runtimeEnv = {
-          quakeDir = "${config.home.homeDirectory}/Games/quake/quake-1/injector";
-          exec = "${audioCapture} obs-gamecapture mangohud gamemoderun quake-injector";
-        };
-        runtimeInputs = with pkgs; [
-          gamemode
-          mangohud
-          obs-studio-plugins.obs-vkcapture
-          quake-injector
-        ];
-        text = ''
-          pushd $quakeDir
-          $exec
-          popd
-        '';
-      }
-    );
-    icon = "quake-injector";
-    categories = [ "Game" ];
-    settings = {
-      Path = "${config.home.homeDirectory}/Games/quake/quake-1/injector";
-    };
-  };
   scummvm = {
     name = "ScummVM [${username}]";
     comment = "Interpreter for numerous adventure games and RPGs";
