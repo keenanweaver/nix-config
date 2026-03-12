@@ -1,5 +1,6 @@
 {
   lib,
+  inputs,
   config,
   username,
   pkgs,
@@ -49,6 +50,7 @@ in
         privateTmp = false; # https://github.com/NixOS/nixpkgs/issues/381923
       };
       extraCompatPackages = with pkgs; [
+        inputs.nyx-loner.packages.${stdenv.hostPlatform.system}.luxtorpeda
         proton-cachyos-x86_64-v4
         proton-dw
         proton-em

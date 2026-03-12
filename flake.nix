@@ -18,6 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    nyx-loner.url = "github:lonerOrz/nyx-loner";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nix-index-database = {
@@ -241,6 +242,7 @@
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
                     nvf.homeManagerModules.default
+                    nyx-loner.homeManagerModules.default
                     plasma-manager.homeModules.plasma-manager
                     sops-nix.homeManagerModules.sops
                     steam-config-nix.homeModules.default
@@ -308,6 +310,7 @@
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
                     nvf.homeManagerModules.default
+                    nyx-loner.homeManagerModules.default
                     plasma-manager.homeModules.plasma-manager
                     sops-nix.homeManagerModules.sops
                   ];

@@ -112,12 +112,14 @@ in
         "https://just-one-more-cache.cachix.org/"
         "https://nix-gaming.cachix.org"
         "https://nix-citizen.cachix.org"
+        "https://cache.garnix.io" # https://github.com/lonerOrz/nyx-loner
       ];
       extra-trusted-public-keys = [
         "bandithedoge.cachix.org-1:ZtcHw1anyEa4t6H8m3o/ctYFrwYFPAwoENSvofamE6g="
         "just-one-more-cache.cachix.org-1:4nShcKEgcUEVlJqKFrgDwoGfqLnw5KPG4UDTV02jnr4="
         "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       ];
     };
 
