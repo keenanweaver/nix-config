@@ -57,6 +57,7 @@
       "amdgpu.runpm=0"
       "amdgpu.dcdebugmask=0x10"
       "amdgpu.aspm=0"
+      "amdgpu.gpu_recovery=1"
     ];
     loader = {
       limine = {
