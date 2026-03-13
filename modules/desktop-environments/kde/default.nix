@@ -168,14 +168,20 @@ in
     home-manager.users.${username} =
       { config, ... }:
       {
-        home.file = {
-          purposerc = {
-            enable = true;
-            text = ''
-              [plugins]
-              disabled=emailplugin,imgurplugin,nextcloudplugin,pastebinplugin,purpose_gdrive,telegramplugin,youtubeplugin
-            '';
-            target = "${config.xdg.configHome}/purposerc";
+        home = {
+          file = {
+            purposerc = {
+              enable = true;
+              text = ''
+                [plugins]
+                disabled=emailplugin,imgurplugin,nextcloudplugin,pastebinplugin,purpose_gdrive,telegramplugin,youtubeplugin
+              '';
+              target = "${config.xdg.configHome}/purposerc";
+            };
+          };
+          sessionVariables = {
+            GDK_BACKEND = "wayland";
+            QT_QPA_PLATFORM = "wayland";
           };
         };
       };
