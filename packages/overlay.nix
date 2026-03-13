@@ -12,6 +12,7 @@
       hash = "sha256-9DB8iWiyrM4EJ94ERC5SE9acrhqeI00BF1wU0umeNFg=";
     };
   };
+  game-wrapper = prev.callPackage ./game-wrapper { };
   gamescope = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.gamescope_git;
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder/gsr.nix { };
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif.nix { };

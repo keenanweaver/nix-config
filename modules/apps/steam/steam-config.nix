@@ -6,13 +6,9 @@
 let
   defaultOptions = {
     launchOptions = {
-      env = {
-        WINEDLLOVERRIDES = "dinput8,dxgi,dsound,ddraw=n,b";
-      };
+      env = { };
       wrappers = [
-        (lib.getExe pkgs.gamemode)
-        (lib.getExe' pkgs.obs-studio-plugins.obs-vkcapture "obs-gamecapture")
-        (lib.getExe pkgs.mangohud)
+        (lib.getExe pkgs.game-wrapper)
       ];
     };
   };

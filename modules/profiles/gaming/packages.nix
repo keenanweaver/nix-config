@@ -154,6 +154,7 @@ with pkgs;
     */
   ];
   scripts = [
+    game-wrapper
     (writeShellApplication {
       name = "doom-wad-extractor";
       runtimeInputs = [

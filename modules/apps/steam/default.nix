@@ -70,23 +70,6 @@ in
               text = "publicbeta";
               target = "${config.xdg.dataHome}/Steam/package/beta";
             };
-            steam-config-default = {
-              enable = true;
-              source =
-                with pkgs;
-                lib.getExe (writeShellApplication {
-                  name = "steam-config-default";
-                  runtimeInputs = [
-                    gamemode
-                    mangohud
-                    obs-studio-plugins.obs-vkcapture
-                  ];
-                  text = ''
-                    exec env gamemoderun obs-gamecapture mangohud "$@"
-                  '';
-                });
-              target = "${config.xdg.dataHome}/steam-config-nix/apps/default";
-            };
             steam-slow-fix = {
               enable = cfg.fixDownloadSpeed;
               text = ''
