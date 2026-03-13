@@ -4,7 +4,6 @@ pkgs.writeShellApplication {
   runtimeEnv = {
     PIPEWIRE_NODE = "Game";
     PULSE_SINK = "Game";
-    WINEDLLOVERRIDES = "dinput8,dxgi,dsound,ddraw=n,b";
   };
   runtimeInputs = with pkgs; [
     gamemode
@@ -12,6 +11,7 @@ pkgs.writeShellApplication {
     obs-studio-plugins.obs-vkcapture
   ];
   text = ''
+    export WINEDLLOVERRIDES="dinput8,dxgi,dsound,ddraw=n,b''${WINEDLLOVERRIDES:+,$WINEDLLOVERRIDES}"
     exec env gamemoderun obs-gamecapture mangohud "$@"
   '';
 }
