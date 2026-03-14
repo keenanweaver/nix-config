@@ -7,10 +7,7 @@
 }:
 let
   audioCapture = "env PIPEWIRE_NODE=Game PULSE_SINK=Game ";
-  mangohud = lib.getExe' pkgs.mangohud "mangohud" + " ";
-  videoCapture = lib.getExe' pkgs.obs-studio-plugins.obs-vkcapture "obs-gamecapture" + " ";
-  gameMode = lib.getExe pkgs.gamemode + " ";
-  avgm = audioCapture + videoCapture + gameMode + mangohud;
+  wrap = lib.getExe pkgs.game-wrapper + " ";
 in
 {
   dreamm =
@@ -20,7 +17,7 @@ in
     {
       name = "DREAMM [${username}]";
       comment = "Specialized emulator for playing many of your original DOS, Windows, and FM-Towns LucasArts (and LucasArts-adjacent) games";
-      exec = avgm + execBin;
+      exec = wrap + execBin;
       icon = "${config.home.homeDirectory}/Games/dreamm/dreamm.png";
       categories = [
         "Game"
@@ -37,7 +34,7 @@ in
     {
       name = "EasyRPG Player [${username}]";
       comment = "Play RPG Maker games";
-      exec = avgm + execBin + execArgs;
+      exec = wrap + execBin + execArgs;
       icon = "easyrpg-player";
       categories = [
         "Game"
@@ -89,7 +86,7 @@ in
   scummvm = {
     name = "ScummVM [${username}]";
     comment = "Interpreter for numerous adventure games and RPGs";
-    exec = avgm + (lib.getExe pkgs.scummvm);
+    exec = wrap + (lib.getExe pkgs.scummvm);
     icon = "org.scummvm.scummvm";
     categories = [
       "Game"
@@ -112,7 +109,7 @@ in
     in
     {
       name = "Sonic CD [${username}]";
-      exec = avgm + (lib.getExe pkgs.rsdkv3);
+      exec = wrap + (lib.getExe pkgs.rsdkv3);
       inherit icon;
       categories = [
         "Game"

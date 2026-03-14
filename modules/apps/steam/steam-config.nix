@@ -29,27 +29,12 @@ in
       {
         hl = {
           id = 70;
-          launchOptions = {
-            env = {
-              MESA_LOADER_DRIVER_OVERRIDE = "zink";
-            };
-          };
         };
         hlbs = {
           id = 130;
-          launchOptions = {
-            env = {
-              MESA_LOADER_DRIVER_OVERRIDE = "zink";
-            };
-          };
         };
         hlof = {
           id = 50;
-          launchOptions = {
-            env = {
-              MESA_LOADER_DRIVER_OVERRIDE = "zink";
-            };
-          };
         };
         helldivers2 = {
           id = 553850;
@@ -78,7 +63,6 @@ in
               # https://steamcommunity.com/sharedfiles/filedetails/?id=3642772367
               # mesa_glthread = "false";
               # MESA_GL_VERSION_OVERRIDE = "3.2";
-              MESA_LOADER_DRIVER_OVERRIDE = "zink";
             };
           };
         };
@@ -90,7 +74,6 @@ in
           id = 225840;
           launchOptions = {
             env = {
-              MESA_LOADER_DRIVER_OVERRIDE = "zink";
               PROTON_ENABLE_WAYLAND = lib.mkForce false;
             };
           };
