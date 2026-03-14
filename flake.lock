@@ -367,11 +367,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1773118123,
-        "narHash": "sha256-uwU+JTxjzveJgepaA84gyi28cx/akT7RE/qH8s7qMjk=",
+        "lastModified": 1773492089,
+        "narHash": "sha256-ZKzjqbc4vAivOptaxEsfWt9yoD7rmlYVyTgr168+sdc=",
         "owner": "imaviso",
         "repo": "dwproton-flake",
-        "rev": "2279531470e2d98febfe0ad7433bcbd7dc83c9aa",
+        "rev": "ec94234a5c7d185855975c5854115c7cacef7323",
         "type": "github"
       },
       "original": {
@@ -1916,11 +1916,11 @@
     },
     "nixpkgs_12": {
       "locked": {
-        "lastModified": 1773282481,
-        "narHash": "sha256-b/GV2ysM8mKHhinse2wz+uP37epUrSE+sAKXy/xvBY4=",
+        "lastModified": 1773389992,
+        "narHash": "sha256-wvfdLLWJ2I9oEpDd9PfMA8osfIZicoQ5MT1jIwNs9Tk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "fe416aaedd397cacb33a610b33d60ff2b431b127",
+        "rev": "c06b4ae3d6599a672a6210b7021d699c351eebda",
         "type": "github"
       },
       "original": {
@@ -2179,11 +2179,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773487617,
-        "narHash": "sha256-x/hBiGrPOqTo0s4EEMEKlIgM62Bn4o53TPk7H0Oi0iA=",
+        "lastModified": 1773492761,
+        "narHash": "sha256-zB8vTPQZxfBpfcl0FUECplO69cCj6nvoiLmSetqEU9E=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "f9d941fb820c46be3636c7d50878d5648a1c2198",
+        "rev": "efcdfcea13bc0218ea97dc672229fe43672c957b",
         "type": "github"
       },
       "original": {
