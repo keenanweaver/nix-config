@@ -83,8 +83,8 @@ Run `bootstrap-baremetal.sh`
 <br />or
 1. Set up distrobox containers:
     * `distrobox create assemble`
-    * `distrobox enter bazzite-arch-exodos -- bash -l -c "bootstrap-distrobox"`
-    * `distrobox enter bazzite-arch-gaming -- bash -l -c "bootstrap-distrobox"`
+    * `distrobox enter exodos -- bash -l -c "bootstrap-distrobox"`
+    * `distrobox enter arch-gaming -- bash -l -c "bootstrap-distrobox"`
 2. Set up games. See [GAMES.md](GAMES.md)
 ### Server
 1. Log into GOG and Internet Archive
@@ -253,6 +253,10 @@ Run the commands:
     ## Theme Hospital
     mkdir -p "$GAMESDIR"/theme-hospital
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/theme_hospital" -x ls -t | head -n1 | xargs innoextract -g -d "$GAMESDIR"/theme-hospital
+    ## TTD
+    mkdir -p ""$XDG_DATA_HOME"/openttd/baseset"
+    fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/transport_tycoon_deluxe" -x ls -t | head -n1 | xargs innoextract -g -d "$XDG_DATA_HOME"/openttd/baseset/extract
+    mv "$XDG_DATA_HOME"/openttd/baseset/extract/CD/* "$XDG_DATA_HOME"/openttd/baseset && rm -rf "$XDG_DATA_HOME"/openttd/extract
     ## Ultima VII
     mkdir -p "$FLATPAKDIR"/info.exult.exult/data/{forgeofvirtue,silverseed}
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/ultima_vii_the_black_gate_the_forge_of_virtue" -x ls -t | head -n1 | xargs innoextract -g -d "$FLATPAKDIR"/info.exult.exult/data/forgeofvirtue

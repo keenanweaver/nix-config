@@ -23,7 +23,15 @@ pkgs.writeShellScriptBin "bootstrap-distrobox" ''
       sudo pacman-key --lsign-key 3056513887B78AEB
       sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
       echo -e "[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist" | sudo tee -a /etc/pacman.conf;
+      echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" | sudo tee -a /etc/pacman.conf;
     fi
+
+    ## Set up paru
+    rm -rf ${config.xdg.cacheHome}/paru
+    sudo pacman -S --needed --noconfirm base-devel
+    git clone https://aur.archlinux.org/paru.git ${config.xdg.cacheHome}/paru
+    cd ${config.xdg.cacheHome}/paru
+    makepkg -si
     
     ${lib.optionalString vars.gaming ''
       ### Base packages
@@ -53,7 +61,6 @@ pkgs.writeShellScriptBin "bootstrap-distrobox" ''
       ## Install necessary packages
       paru -S --needed --noconfirm   \
       archlinux-keyring              \
-      base-devel                     \
       yay
     ''}
     
@@ -62,7 +69,7 @@ pkgs.writeShellScriptBin "bootstrap-distrobox" ''
       paru -S --needed --noconfirm \
       dbgl                         \
       dosbox-staging-git
-    elif [[ "$CONTAINER_ID" =~ ^bazzite-arch-gaming ]]; then
+    elif [[ "$CONTAINER_ID" =~ ^arch-gaming ]]; then
       # Games/emulators/tools
       paru -S --needed --noconfirm \
       archipelagomw-bin            \

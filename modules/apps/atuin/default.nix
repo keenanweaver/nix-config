@@ -23,8 +23,8 @@ in
         settings = {
           history_filter = [
             "^btop$"
-            "^distrobox enter bazzite-arch-exodos$"
-            "^distrobox enter bazzite-arch-gaming$"
+            "^distrobox enter exodos$"
+            "^distrobox enter arch-gaming$"
             "^bash$"
             "^cd$"
             "^exit$"

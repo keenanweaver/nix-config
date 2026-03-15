@@ -56,17 +56,17 @@ in
           {
             name = "archipelago";
             bin = "/opt/Archipelago/ArchipelagoLauncher";
-            container = "bazzite-arch-gaming";
+            container = "arch-gaming";
           }
           {
             name = "bizhawk";
             bin = "/usr/bin/bizhawk";
-            container = "bazzite-arch-gaming";
+            container = "arch-gaming";
           }
           {
             name = "daikatana";
             bin = "${config.home.homeDirectory}/Games/daikatana/daikatana";
-            container = "bazzite-arch-gaming";
+            container = "arch-gaming";
           }
           {
             name = "dbgl";
@@ -94,22 +94,22 @@ in
           {
             name = "jazzjackrabbit";
             bin = "/usr/bin/jazzjackrabbit";
-            container = "bazzite-arch-gaming";
+            container = "arch-gaming";
           }
           {
             name = "lab3d-sdl";
             bin = "/usr/bin/lab3d-sdl";
-            container = "bazzite-arch-gaming";
+            container = "arch-gaming";
           }
           {
             name = "obs-gamecapture";
             bin = "/usr/bin/obs-gamecapture";
-            container = "bazzite-arch-gaming";
+            container = "arch-gaming";
           }
           {
             name = "portproton";
             bin = "/usr/bin/portproton";
-            container = "bazzite-arch-gaming";
+            container = "arch-gaming";
             extraEnv = {
               GTK_THEME = "Breeze-Dark";
               PIPEWIRE_NODE = "Game";
@@ -119,17 +119,17 @@ in
           {
             name = "supermarioworld";
             bin = "/usr/bin/supermarioworld";
-            container = "bazzite-arch-gaming";
+            container = "arch-gaming";
           }
           {
             name = "xash3d";
             bin = "/usr/bin/xash3d";
-            container = "bazzite-arch-gaming";
+            container = "arch-gaming";
           }
           {
             name = "zeldalttp";
             bin = "/usr/bin/zeldalttp";
-            container = "bazzite-arch-gaming";
+            container = "arch-gaming";
           }
         ];
       in
@@ -156,9 +156,9 @@ in
                   init = true;
                   replace = true;
                 };
-                bazzite-arch-gaming = lib.mkIf cfg.gaming {
-                  #home = "${config.xdg.dataHome}/distrobox/bazzite-arch-gaming";
-                  image = "ghcr.io/ublue-os/bazzite-arch:latest";
+                arch-gaming = lib.mkIf cfg.gaming {
+                  #home = "${config.xdg.dataHome}/distrobox/arch-gaming";
+                  image = "docker.io/library/archlinux:latest";
                   init = true;
                   replace = true;
                 };
