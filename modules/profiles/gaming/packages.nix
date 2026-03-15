@@ -70,7 +70,6 @@ with pkgs;
     sdlpop # Prince of Persia
     #serious-sam-classic-vulkan
     sm64ex
-    theforceengine # Dark Forces / Outlaws
     urbanterror
     vvvvvv
     wipeout-rewrite
