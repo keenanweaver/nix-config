@@ -62,6 +62,7 @@ in
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
         })
+        inputs.kwin-effects-glass.packages.${stdenv.hostPlatform.system}.default
         klassy
         kdePackages.qtstyleplugin-kvantum
         plasma-panel-colorizer

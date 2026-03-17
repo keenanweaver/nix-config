@@ -1,6 +1,9 @@
 [Global]
 LookAndFeelSet=Catppuccin-Mocha-Lavender
-RefreshedConfig=6.5.2
+RefreshedConfig=6.5.3
 
 [Style]
 MenuOpacity=70
+
+[Windeco]
+ButtonShape=ShapeFullHeightRectangle

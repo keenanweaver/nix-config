@@ -206,12 +206,17 @@
             };
             kwalletrc.Wallet."First Use" = false;
             kwinrc = {
+              Effect-blurplus.BlurMatching = false;
+              Effect-blurplus.BlurNonMatching = true;
+              Effect-blurplus.BlurStrength = 6;
+              Effect-blurplus.RefractionStrength = 3;
               Effect-windowview.BorderActivateAll = 9;
               MouseBindings.CommandTitlebarWheel = "Change Opacity";
               Plugins.MoveWindowToCenterEnabled = true;
               #Plugins.alwaysopenonprimaryscreen = Enabled;
               #Plugins.center-new-windowsEnabled = true;
               #Plugins.forceblurEnabled = true;
+              Plugins.glassEnabled = true;
               Plugins.kinetic_fadingpopupsEnabled = true;
               Plugins.kinetic_scaleEnabled = true;
               Plugins.kinetic_squashEnabled = true;
@@ -250,6 +255,14 @@
               Windows.RollOverDesktops = true;
               Xwayland.XwaylandEavesdrops = "Combinations";
               Xwayland.XwaylandEavesdropsMouse = true;
+            };
+            spectaclerc = {
+              General = {
+                autoSaveImage = true;
+                clipboardGroup = "PostScreenshotCopyImage";
+                launchAction = "DoNotTakeScreenshot";
+                useReleaseToCapture = true;
+              };
             };
             session = {
               general.askForConfirmationOnLogout = true;
@@ -314,7 +327,7 @@
             edgeBarrier = 0;
             effects = {
               blur = {
-                enable = true;
+                enable = false;
                 strength = 3;
                 noiseStrength = 3;
               };
@@ -408,6 +421,22 @@
             allowWindowsToRememberPositions = true;
           };
           window-rules = [
+            # https://reddit.com/r/cachyos/comments/1rufws5/title_fullscreen_firefox_and_spectacle_screen/
+            {
+              description = "Disable VRR for Spectacle";
+              match = {
+                window-class = {
+                  value = "org.kde.spectacle";
+                  type = "exact";
+                };
+              };
+              apply = {
+                adaptivesync = {
+                  value = false;
+                  apply = "force";
+                };
+              };
+            }
             {
               description = "haruna";
               match = {

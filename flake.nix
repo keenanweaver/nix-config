@@ -153,6 +153,10 @@
     };
 
     # KDE
+    kwin-effects-glass = {
+      url = "github:4v3ngR/kwin-effects-glass";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     kwin-effects-kinetic = {
       url = "github:gurrgur/kwin-effects-kinetic";
       flake = false;
