@@ -2,7 +2,7 @@
 
 (final: prev: {
   fooyin = prev.callPackage ./fooyin { };
-  distrobox = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.distrobox_git;
+  #distrobox = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.distrobox_git;
   gamemode = prev.gamemode.overrideAttrs {
     version = "1.8.2-unstable-09-04-2025";
     src = prev.fetchFromGitHub {
@@ -27,7 +27,7 @@
       hash = "sha256-F8dbAaklWw8te/0988/bPR+b532rMYVCanWJvdeiekw=";
     };
   };
-  #mangohud = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.mangohud_git;
+  mangohud = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.mangohud_git;
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nero-umu = prev.nero-umu.overrideAttrs {
     version = "1.2.0-unstable-02-23-2026";

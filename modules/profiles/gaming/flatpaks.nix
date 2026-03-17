@@ -22,11 +22,6 @@
         ];
       };
     };
-    "dev.opengoal.OpenGOAL" = {
-      Context = {
-        filesystems = [ "${config.home.homeDirectory}/Games/opengoal" ];
-      };
-    };
     "info.cemu.Cemu" = {
       Context = {
         filesystems = [
@@ -128,7 +123,6 @@
     "com.richwhitehouse.BigPEmu"
     "com.supermodel3.Supermodel"
     "dev.ares.ares"
-    "dev.opengoal.OpenGOAL"
     "info.beyondallreason.bar"
     "info.cemu.Cemu"
     "info.exult.exult"
