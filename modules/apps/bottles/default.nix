@@ -102,7 +102,6 @@ in
               Environment = {
                 PROTON_ENABLE_HDR = "1";
                 PROTON_FSR4_RDNA3_UPGRADE = "1";
-                PROTON_USE_NTSYNC = "1";
                 PROTON_USE_WOW64 = "1";
               };
               "Session Bus Policy" = {
@@ -119,7 +118,7 @@ in
             "bottles" = lib.mkIf cfg.enableNative {
               name = "Bottles";
               comment = "Run Windows software";
-              exec = "env PROTON_ENABLE_HDR=1 PROTON_USE_NTSYNC=1 PROTON_USE_WOW64=1 PIPEWIRE_NODE=Game PULSE_SINK=Game bottles %u";
+              exec = "env PROTON_ENABLE_HDR=1 PROTON_USE_WOW64=1 PIPEWIRE_NODE=Game PULSE_SINK=Game bottles %u";
               terminal = false;
               icon = "com.usebottles.bottles";
               type = "Application";

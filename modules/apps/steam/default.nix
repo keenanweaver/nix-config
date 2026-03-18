@@ -40,7 +40,6 @@ in
           PROTON_ENABLE_HDR = true;
           PROTON_ENABLE_WAYLAND = true;
           PROTON_FSR4_RDNA3_UPGRADE = true;
-          PROTON_USE_NTSYNC = true;
           PROTON_USE_WOW64 = true;
         };
         # https://github.com/NixOS/nixpkgs/issues/279893#issuecomment-2425213386
