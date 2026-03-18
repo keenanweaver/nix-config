@@ -27,7 +27,7 @@
       hash = "sha256-F8dbAaklWw8te/0988/bPR+b532rMYVCanWJvdeiekw=";
     };
   };
-  mangohud = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.mangohud_git;
+  #mangohud = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.mangohud_git;
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nero-umu = prev.nero-umu.overrideAttrs {
     version = "1.2.0-unstable-02-23-2026";
@@ -48,35 +48,44 @@
   };
   openxcom = prev.openxcom.overrideAttrs {
     pname = "openxcom-extended";
-    version = "8.5.5";
+    version = "8.5.7";
     src = prev.fetchFromGitHub {
       owner = "MeridianOXC";
       repo = "OpenXcom";
-      rev = "9a10ae28b844d92d621817b302b0eb1655175653";
-      hash = "sha256-dhXLYCSv8aQ7zMGLCmH7Os6YSBaVhB5MnLakSV87Kcg=";
+      rev = "c262501159360a4cc03b08c64951b870fe3e374c";
+      hash = "sha256-75WuMyGAAiXotF4pNHSmih35YxlxvS1SifM059pF0F0=";
     };
   };
   proton-cachyos-x86_64-v4 =
     inputs.nix-gaming-edge.packages.${final.stdenv.hostPlatform.system}.proton-cachyos-x86_64-v4;
   proton-dw = inputs.dw-proton.packages.${final.stdenv.hostPlatform.system}.dw-proton;
   proton-em = final.callPackage ./proton-em { };
-  proton-ge = final.proton-ge-bin.override {
-    steamDisplayName = "Proton GE";
-  };
   /*
-    proton-ge =
-     (prev.proton-ge-bin.override {
-       steamDisplayName = "Proton GE";
-     }).overrideAttrs
-       (old: rec {
-         version = "GE-Proton10-32";
-         src = prev.fetchzip {
-           url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
-           hash = "sha256-NxZ4OJUYQdRNQTb62jRET6Ef14LEhynOASIMPvwWeNA=";
-         };
-       });
+    proton-ge = final.proton-ge-bin.override {
+      steamDisplayName = "Proton GE";
+    };
   */
+  proton-ge =
+    (prev.proton-ge-bin.override {
+      steamDisplayName = "Proton GE";
+    }).overrideAttrs
+      (old: rec {
+        version = "GE-Proton10-33";
+        src = prev.fetchzip {
+          url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
+          hash = "sha256-vuPqz9vD/B1H6IFA7Wi/YEPbklNTbVbEZ2Erm62kBnk=";
+        };
+      });
   relive = prev.callPackage ./relive { };
   rsdkv3 = prev.callPackage ./rsdk/v3 { };
+  kdePackages = prev.kdePackages.overrideScope (
+    kde-final: kde-prev: {
+      spectacle = kde-prev.spectacle.override {
+        tesseractLanguages = [
+          "eng"
+        ];
+      };
+    }
+  );
   xlink-kai = prev.callPackage ./xlink-kai { };
 })

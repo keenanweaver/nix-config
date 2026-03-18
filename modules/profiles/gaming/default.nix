@@ -208,7 +208,7 @@ in
               "${simracing-hwdb}/90-fanatec.hwdb"
               "${simracing-hwdb}/90-heusinkveld.hwdb"
               "${simracing-hwdb}/90-leo-bodnar.hwdb"
-              "${simracing-hwdb}/90-logitech.hwdb"
+              "${simracing-hwdb}/090-logitech.hwdb"
               "${simracing-hwdb}/90-mmos.hwdb"
               "${simracing-hwdb}/90-oddor.hwdb"
               "${simracing-hwdb}/90-shh.hwdb"
