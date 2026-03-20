@@ -45,6 +45,9 @@
     ];
     kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
     kernelParams = [
+      # Fake display for Sunshine https://mattducharme.dev/posts/fake-linux-display/
+      "drm.edid_firmware=HDMI-A-1:edid/gbt-aorus-fo27q3.bin"
+      "video=HDMI-A-1:2560x1440@120e"
       #"amd_3d_vcache.x3d_mode=cache" # AMD V-Cache https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
       "amd_iommu=on"
       "amd_pstate=active" # https://wiki.archlinux.org/title/CPU_frequency_scaling#Autonomous_frequency_scaling
@@ -94,6 +97,12 @@
       };
     };
     cpu.amd.updateMicrocode = true;
+    firmware = [
+      (pkgs.runCommandNoCC "edid-gbt-aorus-fo27q3" { } ''
+        mkdir -p $out/lib/firmware/edid
+        cp ${./gbt-aorus-fo27q3.bin} $out/lib/firmware/edid/gbt-aorus-fo27q3.bin
+      '')
+    ];
   };
 
   networking = {

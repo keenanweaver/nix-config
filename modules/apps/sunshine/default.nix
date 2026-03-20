@@ -37,6 +37,8 @@
     services.sunshine =
       let
         primaryDisplay = "DP-1";
+        secondaryDisplay = "DP-3";
+        sunshineDisplay = "HDMI-A-1";
       in
       {
         enable = true;
@@ -60,9 +62,13 @@
                         kdePackages.libkscreen
                       ];
                       text = ''
-                        kscreen-doctor output.${primaryDisplay}.hdr.enable
-                        kscreen-doctor output.${primaryDisplay}.wcg.enable
-                        kscreen-doctor output.${primaryDisplay}.mode.2560x1440@120
+                        kscreen-doctor output.${sunshineDisplay}.enable
+                        kscreen-doctor output.${sunshineDisplay}.hdr.enable
+                        kscreen-doctor output.${sunshineDisplay}.wcg.enable
+                        kscreen-doctor output.${sunshineDisplay}.mode.2560x1440@120
+
+                        kscreen-doctor output.${primaryDisplay}.disable
+                        kscreen-doctor output.${secondaryDisplay}.disable
                       '';
                     });
                   undo =
@@ -73,10 +79,9 @@
                         kdePackages.libkscreen
                       ];
                       text = ''
-                        kscreen-doctor output.${primaryDisplay}.hdr.disable
-                        kscreen-doctor output.${primaryDisplay}.wcg.disable
-                        kscreen-doctor output.${primaryDisplay}.wcg.enable
-                        kscreen-doctor output.${primaryDisplay}.mode.2560x1440@360
+                        kscreen-doctor output.${primaryDisplay}.enable
+                        kscreen-doctor output.${secondaryDisplay}.enable                    
+                        kscreen-doctor output.${sunshineDisplay}.disable
                       '';
                     });
                 }
@@ -92,16 +97,21 @@
             }
             {
               name = "Steam Big Picture";
+              detached = [
+                "${lib.getExe' pkgs.util-linux "setsid"} ${lib.getExe pkgs.steam} steam://open/bigpicture"
+              ];
+              prep-cmd = {
+                do = "";
+                undo = [
+                  "${lib.getExe' pkgs.util-linux "setsid"} ${lib.getExe pkgs.steam} steam://close/bigpicture"
+                ];
+              };
               image-path = "steam.png";
-              detached = [ "${lib.getExe pkgs.steam} steam://open/bigpicture" ];
-              auto-detach = "true";
-              wait-all = "true";
-              exit-timeout = "5";
             }
           ];
         };
         settings = {
-          output_name = 1;
+          output_name = 0; # Fake display
         };
       };
     home-manager.users.${username} = {
