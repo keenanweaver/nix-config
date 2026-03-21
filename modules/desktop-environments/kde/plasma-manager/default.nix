@@ -216,7 +216,7 @@
               #Plugins.alwaysopenonprimaryscreen = Enabled;
               #Plugins.center-new-windowsEnabled = true;
               #Plugins.forceblurEnabled = true;
-              Plugins.glassEnabled = true;
+              Plugins.glassEnabled = false;
               Plugins.kinetic_fadingpopupsEnabled = true;
               Plugins.kinetic_scaleEnabled = true;
               Plugins.kinetic_squashEnabled = true;

@@ -26,6 +26,8 @@ pkgs.writeShellScriptBin "bootstrap-distrobox" ''
       echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" | sudo tee -a /etc/pacman.conf;
     fi
 
+    sudo pacman -Syu
+
     ## Set up paru
     rm -rf ${config.xdg.cacheHome}/paru
     sudo pacman -S --needed --noconfirm base-devel
