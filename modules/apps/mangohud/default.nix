@@ -36,6 +36,98 @@ in
         pkgs,
         ...
       }:
+      let
+        mangohud-hdr = pkgs.writeShellApplication {
+          name = "mangohud-hdr";
+          runtimeInputs = with pkgs; [
+            kdePackages.libkscreen
+            jq
+          ];
+          text = ''
+            if kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .hdr' | grep -q "true"; then
+              echo "Enabled"
+            else
+              echo "Disabled"
+            fi
+          '';
+        };
+        mangohud-wcg = pkgs.writeShellApplication {
+          name = "mangohud-wcg";
+          runtimeInputs = with pkgs; [
+            kdePackages.libkscreen
+            jq
+          ];
+          text = ''
+            if kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .wcg' | grep -q "true"; then
+              echo "Enabled"
+            else
+              echo "Disabled"
+            fi
+          '';
+        };
+        mangohud-vrr = pkgs.writeShellApplication {
+          name = "mangohud-vrr";
+          runtimeInputs = with pkgs; [
+            kdePackages.libkscreen
+            jq
+          ];
+          text = ''
+            if kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .vrrPolicy != 0' | grep -q "true"; then
+              echo "Enabled"
+            else
+              echo "Disabled"
+            fi
+          '';
+        };
+        mangohud-pstate = pkgs.writeShellApplication {
+          name = "mangohud-pstate";
+          runtimeInputs = with pkgs; [ bat ];
+          text = ''
+            bat --plain \
+              /sys/devices/system/cpu/amd_pstate/status \
+              /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference
+          '';
+        };
+        mangohud-vcache = pkgs.writeShellApplication {
+          name = "mangohud-vcache";
+          runtimeInputs = with pkgs; [ bat ];
+          text = ''
+            bat --plain /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode
+          '';
+        };
+        mangohud-os = pkgs.writeShellApplication {
+          name = "mangohud-os";
+          runtimeInputs = with pkgs; [ ripgrep ];
+          text = ''
+            (rg -Nw PRETTY_NAME /run/host/etc/os-release 2>/dev/null \
+              || rg -Nw PRETTY_NAME /run/current-system/etc/os-release 2>/dev/null \
+              || rg -Nw PRETTY_NAME /etc/os-release) \
+              | cut -d= -f2 | tr -d '"'
+          '';
+        };
+        mangohud-runtime = pkgs.writeShellApplication {
+          name = "mangohud-runtime";
+          runtimeInputs = with pkgs; [ ripgrep ];
+          text = ''
+            if [ -n "''${CONTAINER_ID:-}" ]; then
+              echo "[Distrobox] ''${CONTAINER_ID}"
+            elif [ -n "''${FLATPAK_ID:-}" ]; then
+              echo "[Flatpak] ''${FLATPAK_ID}"
+            elif rg -Nw PRETTY_NAME /etc/os-release | rg -q "Steam Runtime"; then
+              rg -Nw PRETTY_NAME /etc/os-release | cut -d= -f2 | tr -d '"'
+            else
+              echo "Native"
+            fi
+          '';
+        };
+        mangohud-kernel = pkgs.writeShellApplication {
+          name = "mangohud-kernel";
+          runtimeInputs = with pkgs; [ coreutils ];
+          text = ''
+            uname -r
+          '';
+        };
+      in
       {
         home.file = {
           # https://gitlab.freedesktop.org/drm/amd/-/issues/3166#note_2277578
@@ -49,7 +141,7 @@ in
               ###############
               ##  Display  ##
               ###############
-              fps_limit=357,0,240,120,60,30
+              fps_limit=328,0,240,120,60,30
               fps_limit_method=early
               vsync=1
               gl_vsync=0
@@ -131,21 +223,21 @@ in
               ## Custom ##
               ############
               custom_text=HDR
-              exec=if ($(${lib.getExe kdePackages.libkscreen} --json | ${lib.getExe jq} -r '.outputs[] | select(.name == "${primaryMonitor}") | .hdr') = "true"); then echo "Enabled"; else echo "Disabled"; fi
+              exec=${lib.getExe mangohud-hdr}
               custom_text=WCG
-              exec=if ($(${lib.getExe kdePackages.libkscreen} --json | ${lib.getExe jq} -r '.outputs[] | select(.name == "${primaryMonitor}") | .wcg') = "true"); then echo "Enabled"; else echo "Disabled"; fi
+              exec=${lib.getExe mangohud-wcg}
               custom_text=VRR
-              exec=if ($(${lib.getExe kdePackages.libkscreen} --json | ${lib.getExe jq} -r '.outputs[] | select(.name == "${primaryMonitor}") | .vrrPolicy != 0')); then echo "Enabled"; else echo "Disabled"; fi
+              exec=${lib.getExe mangohud-vrr}
               custom_text=P-State
-              exec=echo $(${lib.getExe bat} --plain /sys/devices/system/cpu/amd_pstate/status /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference)
+              exec=${lib.getExe mangohud-pstate}
               custom_text=V-Cache
-              exec=echo $(${lib.getExe bat} --plain /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode)
+              exec=${lib.getExe mangohud-vcache}
               custom_text=OS
-              exec=${lib.getExe ripgrep} -w PRETTY_NAME /etc/os-release | ${lib.getExe' coreutils "cut"} -d '=' -f2 | ${lib.getExe' coreutils "tr"} -d '"'
-              custom_text=Distrobox
-              exec=${lib.getExe bash} -c '[ -n "''${CONTAINER_ID}" ] && echo Yes || echo No'
+              exec=${lib.getExe mangohud-os}
+              custom_text=Runtime
+              exec=${lib.getExe mangohud-runtime}
               custom_text=Kernel
-              exec=${lib.getExe' coreutils "uname"} -r
+              exec=${lib.getExe mangohud-kernel}
 
               ########
               ## UI ##
@@ -159,6 +251,8 @@ in
               legacy_layout=0 # For scripts that rely on the new layout
               font_file=${atkinson-hyperlegible-next}/share/fonts/opentype/AtkinsonHyperlegibleNext-Bold.otf
               font_size=30
+              width=450
+              height=450
               ${lib.optionalString config.catppuccin.enable ''
                 # Catppuccin theming
                 background_color=1E1E2E
@@ -182,7 +276,7 @@ in
           };
           mangohud-presets = {
             enable = true;
-            text = '''';
+            text = "";
             target = "${config.xdg.configHome}/MangoHud/presets.conf";
           };
         };
