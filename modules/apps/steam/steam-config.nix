@@ -39,6 +39,9 @@ in
         helldivers2 = {
           id = 553850;
           launchOptions = {
+            args = [
+              "+connect_lobby -1" # Skip intro
+            ];
             env = {
               WINE_CPU_TOPOLOGY = "8:1,2,3,4,5,6,7,16"; # https://github.com/ValveSoftware/Proton/issues/7486#issuecomment-2683254539
             };
@@ -74,7 +77,16 @@ in
           id = 225840;
           launchOptions = {
             env = {
-              PROTON_ENABLE_WAYLAND = lib.mkForce false;
+              PROTON_ENABLE_WAYLAND = lib.mkForce false; # Allows mouse to be OBS captured
+            };
+          };
+        };
+        teardown = {
+          id = 1167630;
+          launchOptions = {
+            env = {
+              MESA_LOADER_DRIVER_OVERRIDE = lib.mkForce null; # Zink and MangoHud do not mix for some reason
+              PROTON_ENABLE_WAYLAND = lib.mkForce false; # Game crashes after splash screens with Wayland
             };
           };
         };
