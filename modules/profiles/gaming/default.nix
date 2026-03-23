@@ -193,9 +193,9 @@ in
       scx = {
         enable = true;
         package = pkgs.scx.rustscheds;
-        scheduler = "scx_lavd";
+        scheduler = "scx_cake";
         extraArgs = [
-          "--autopower"
+          "--profile gaming"
         ];
       };
       udev = {
@@ -272,10 +272,10 @@ in
             AMD_VULKAN_ICD = "RADV";
             MESA_SHADER_CACHE_MAX_SIZE = "16G";
             # https://reddit.com/r/linux_gaming/comments/1mg8vtl/low_latency_gaming_guide/
-            MESA_VK_WSI_PRESENT_MODE = "fifo";
+            MESA_VK_WSI_PRESENT_MODE = "immediate"; # Test if screen tears w/o VRR
             #SDL_VIDEODRIVER = "wayland,x11"; # SDL2
             #SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3
-            #ENABLE_LAYER_MESA_ANTI_LAG = 1;
+            ENABLE_LAYER_MESA_ANTI_LAG = 1;
           };
         };
 
