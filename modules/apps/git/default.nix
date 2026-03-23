@@ -61,6 +61,7 @@ in
           includes = [ { path = "${config.xdg.configHome}/git/mocha.gitconfig"; } ];
           package = pkgs.gitFull;
           signing = {
+            format = "openpgp";
             signByDefault = true;
             key = "0926B70C6A27AAE1";
           };

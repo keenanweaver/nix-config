@@ -27,7 +27,7 @@
       hash = "sha256-F8dbAaklWw8te/0988/bPR+b532rMYVCanWJvdeiekw=";
     };
   };
-  #mangohud = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.mangohud_git;
+  mangohud = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.mangohud_git;
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nero-umu = prev.nero-umu.overrideAttrs {
     version = "1.2.0-unstable-02-23-2026";
@@ -48,12 +48,12 @@
   };
   openxcom = prev.openxcom.overrideAttrs {
     pname = "openxcom-extended";
-    version = "8.5.7";
+    version = "8.5.8";
     src = prev.fetchFromGitHub {
       owner = "MeridianOXC";
       repo = "OpenXcom";
-      rev = "c262501159360a4cc03b08c64951b870fe3e374c";
-      hash = "sha256-75WuMyGAAiXotF4pNHSmih35YxlxvS1SifM059pF0F0=";
+      rev = "6017f5fec3f6738ae1e997f307a079a1eec28db5";
+      hash = "sha256-0Y3IgrUtKznmN+EGEZbBJVIKKhnQoqkvB/jxnARi2fk=";
     };
   };
   proton-cachyos-x86_64-v4 =
@@ -70,10 +70,10 @@
       steamDisplayName = "Proton GE";
     }).overrideAttrs
       (old: rec {
-        version = "GE-Proton10-33";
+        version = "GE-Proton10-34";
         src = prev.fetchzip {
           url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
-          hash = "sha256-vuPqz9vD/B1H6IFA7Wi/YEPbklNTbVbEZ2Erm62kBnk=";
+          hash = "sha256-lzPsYYcrp5NoT3B0WFj3o10Z7tXx7xva1wEP3edeuqM=";
         };
       });
   relive = prev.callPackage ./relive { };

@@ -28,8 +28,8 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "ludouzi";
     repo = "fooyin";
-    rev = "3868e633a270fdb40e253147a6ae8f9e50d7d49b";
-    hash = "sha256-gucvYf+W1w6T6323PTbYQjkLAdK+9t0z+8wfncSIkUY=";
+    rev = "07fcd137728806aa98c0b3df73f27f43547adfc8";
+    hash = "sha256-1NeLjWz99p6GKx/6q73+9Q9jVPr3/mNUDxiWk9epMhs=";
   };
 
   buildInputs = [
