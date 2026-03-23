@@ -119,7 +119,7 @@ in
           qobuz-player
           qpwgraph
           qtscrcpy
-          stoat-desktop
+          #stoat-desktop
           rssguard
           rustdesk-flutter
           signal-desktop

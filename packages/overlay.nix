@@ -78,14 +78,5 @@
       });
   relive = prev.callPackage ./relive { };
   rsdkv3 = prev.callPackage ./rsdk/v3 { };
-  kdePackages = prev.kdePackages.overrideScope (
-    kde-final: kde-prev: {
-      spectacle = kde-prev.spectacle.override {
-        tesseractLanguages = [
-          "eng"
-        ];
-      };
-    }
-  );
   xlink-kai = prev.callPackage ./xlink-kai { };
 })

@@ -5,10 +5,9 @@
 * `PROTON_ENABLE_WAYLAND=1` will disable mouse capture in OBS when using `obs-gamecapture`
 * Refer to `pkgs.proton-ge-bin` as `pkgs.proton-ge-bin.steamcompattool` outside Steam [Reference](https://github.com/NixOS/nixpkgs/issues/388413#issuecomment-2708811793)
 * Get useful udev info like this: `udevadm info -n /dev/input/by-id/usb-your-joystick-name | grep -E 'ID_VENDOR_ID|ID_MODEL_ID|ID_MODEL'`
-* VRR Setup:
+* VRR Setup: [Reference](https://reddit.com/r/linux_gaming/comments/1s02mor/whats_the_linux_equivalent_to_nvidia_control/obssnhd/?context=3#obssnhd)
   * In-game: uncap FPS, disable v-sync, exclusive fullscreen
-  * KDE: Adaptive Sync set to 'Automatic'
-  * MangoHud: `vsync=2`, `gl_vsync=1`, `fps_limit=352` 97% of your refresh rate
-  * DXVK: `dxvk.tearFree = True`
+  * KDE: Adaptive Sync set to 'Automatic', Screen tearing unchecked
+  * MangoHud: `fps_limit=328`
 * Sunshine: Keep KDE HDR setting to 'Prefer color accuracy' or colors are wrong
   * `KWIN_DRM_NO_AMS=1` breaks HDR streaming. Do not use.

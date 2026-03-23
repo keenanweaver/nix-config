@@ -35,7 +35,7 @@ in
             container,
             args ? "${lib.getExe' pkgs.obs-studio-plugins.obs-vkcapture "obs-gamecapture"} ${config.programs.mangohud.package}/bin/mangohud",
             extraEnv ? {
-              MANGOHUD_CONFIG = "${config.xdg.configHome}/MangoHud/MangoHud.conf";
+              MANGOHUD_CONFIGFILE = "${config.xdg.configHome}/MangoHud/MangoHud.conf";
               PIPEWIRE_NODE = "Game";
               PULSE_SINK = "Game";
             },

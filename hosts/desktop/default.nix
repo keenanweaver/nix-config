@@ -98,7 +98,7 @@
     };
     cpu.amd.updateMicrocode = true;
     firmware = [
-      (pkgs.runCommandNoCC "edid-gbt-aorus-fo27q3" { } ''
+      (pkgs.runCommand "edid-gbt-aorus-fo27q3" { } ''
         mkdir -p $out/lib/firmware/edid
         cp ${./gbt-aorus-fo27q3.bin} $out/lib/firmware/edid/gbt-aorus-fo27q3.bin
       '')
@@ -272,8 +272,8 @@
             enable = false;
             # https://github.com/doitsujin/dxvk/issues/4096#issuecomment-2204077526
             text = ''
-              d3d9.maxFrameRate = 357
-              dxgi.maxFrameRate = 357
+              d3d9.maxFrameRate = 328
+              dxgi.maxFrameRate = 328
               dxgi.syncInterval = 1
             '';
             target = "${config.xdg.configHome}/dxvk/dxvk.conf";

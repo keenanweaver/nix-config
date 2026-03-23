@@ -297,8 +297,9 @@ in
           userDirs = {
             enable = true;
             createDirectories = true;
-            templates = null;
             publicShare = null;
+            templates = null;
+            setSessionVariables = true;
           };
         };
       };

@@ -65,6 +65,9 @@ in
           qtimageformats
           qtsvg # https://github.com/NixOS/nixpkgs/issues/325225
           sddm-kcm
+          (spectacle.override {
+            tesseractLanguages = [ "eng" ];
+          })
           svgpart
           syntax-highlighting
           tokodon
