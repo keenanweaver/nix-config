@@ -21,7 +21,7 @@ in
     };
     soundFont = lib.mkOption {
       type = lib.types.path;
-      default = "${pkgs.soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2";
+      default = "${pkgs.soundfont-generaluser-gs}/share/soundfonts/GeneralUser-GS.sf2";
     };
     soundService = lib.mkOption {
       type = lib.types.enum [

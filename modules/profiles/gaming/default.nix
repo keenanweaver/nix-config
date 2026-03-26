@@ -18,7 +18,6 @@ in
 
   config = lib.mkIf cfg.enable {
     # Custom modules
-    apollo.enable = false;
     bottles.enable = true;
     cdemu.enable = true;
     coolercontrol.enable = true;

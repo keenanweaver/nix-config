@@ -70,7 +70,7 @@ in
     comment = "A fast and efficient umu manager, just as the Romans designed";
     exec =
       audioCapture
-      + "PROTON_FSR4_RDNA3_UPGRADE=1 ENABLE_LSFG=1 "
+      + "PROTON_FSR4_RDNA3_UPGRADE=1 MESA_LOADER_DRIVER_OVERRIDE=zink ENABLE_LSFG=1 "
       + (lib.getExe pkgs.nero-umu);
     icon = "xyz.TOS.Nero";
     categories = [ "Game" ];

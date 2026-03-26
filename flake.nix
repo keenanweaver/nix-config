@@ -58,9 +58,6 @@
       url = "github:Whovian9369/aaru-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    apollo = {
-      url = "github:nil-andreas/apollo-flake";
-    };
     dw-proton.url = "github:imaviso/dwproton-flake";
     lsfg-vk-flake = {
       url = "github:pabloaul/lsfg-vk-flake/main";
@@ -207,7 +204,6 @@
 
               ./hosts/desktop
 
-              apollo.nixosModules.x86_64-linux.default
               catppuccin.nixosModules.catppuccin
               disko.nixosModules.disko
               ./hosts/desktop/disko.nix
@@ -275,7 +271,6 @@
 
               ./hosts/laptop
 
-              apollo.nixosModules.x86_64-linux.default
               catppuccin.nixosModules.catppuccin
               disko.nixosModules.disko
               ./hosts/laptop/disko.nix

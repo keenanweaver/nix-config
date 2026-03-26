@@ -75,7 +75,7 @@
           text = ''
             sudo -u ${username} setsid steam steam://close/bigpicture
           ''
-          + prepDisplay.text;
+          + restoreDisplay.text;
         };
       in
       {

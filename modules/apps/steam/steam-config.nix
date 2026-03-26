@@ -69,6 +69,10 @@ in
             };
           };
         };
+        ron = {
+          id = 1144200;
+          compatTool = config.programs.steam.config.defaultCompatTool;
+        };
         sf6 = {
           id = 1364780;
           compatTool = config.programs.steam.config.defaultCompatTool;
@@ -85,7 +89,7 @@ in
           id = 1167630;
           launchOptions = {
             env = {
-              MESA_LOADER_DRIVER_OVERRIDE = lib.mkForce null; # Zink and MangoHud do not mix for some reason
+              MESA_LOADER_DRIVER_OVERRIDE = lib.mkForce false; # Zink and MangoHud do not mix for some reason
               PROTON_ENABLE_WAYLAND = lib.mkForce false; # Game crashes after splash screens with Wayland
             };
           };

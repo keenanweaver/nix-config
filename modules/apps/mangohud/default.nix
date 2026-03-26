@@ -42,9 +42,10 @@ in
           runtimeInputs = with pkgs; [
             kdePackages.libkscreen
             jq
+            ripgrep
           ];
           text = ''
-            if kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .hdr' | grep -q "true"; then
+            if kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .hdr' | rg -q "true"; then
               echo "Enabled"
             else
               echo "Disabled"
@@ -56,9 +57,10 @@ in
           runtimeInputs = with pkgs; [
             kdePackages.libkscreen
             jq
+            ripgrep
           ];
           text = ''
-            if kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .wcg' | grep -q "true"; then
+            if kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .wcg' | rg -q "true"; then
               echo "Enabled"
             else
               echo "Disabled"
@@ -70,9 +72,10 @@ in
           runtimeInputs = with pkgs; [
             kdePackages.libkscreen
             jq
+            ripgrep
           ];
           text = ''
-            if kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .vrrPolicy != 0' | grep -q "true"; then
+            if kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .vrrPolicy != 0' | rg -q "true"; then
               echo "Enabled"
             else
               echo "Disabled"

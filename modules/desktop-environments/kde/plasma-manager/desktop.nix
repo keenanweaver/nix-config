@@ -297,8 +297,11 @@
           {
             description = "fluxer";
             match = {
+              title = {
+                value = "Fluxer";
+              };
               window-class = {
-                value = "electron fluxer_desktop";
+                value = "electron";
                 type = "exact";
               };
             };

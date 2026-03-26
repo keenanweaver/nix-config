@@ -39,13 +39,6 @@
     };
   };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
-  openttd = prev.openttd.overrideAttrs {
-    postPatch = ''
-      substituteInPlace src/music/fluidsynth.cpp \
-        --replace-fail "/usr/share/soundfonts/default.sf2" \
-          "${final.soundfont-generaluser}/share/soundfonts/GeneralUser-GS.sf2"
-    '';
-  };
   openxcom = prev.openxcom.overrideAttrs {
     pname = "openxcom-extended";
     version = "8.5.8";
