@@ -84,18 +84,31 @@ in
         };
         mangohud-pstate = pkgs.writeShellApplication {
           name = "mangohud-pstate";
-          runtimeInputs = with pkgs; [ bat ];
           text = ''
-            bat --plain \
-              /sys/devices/system/cpu/amd_pstate/status \
-              /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference
+            cat /sys/devices/system/cpu/amd_pstate/status \
+                /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference | tr '\n' ' '
+          '';
+        };
+        mangohud-cpu-governor = pkgs.writeShellApplication {
+          name = "mangohud-cpu-governor";
+          text = ''
+            cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+          '';
+        };
+        mangohud-scx = pkgs.writeShellApplication {
+          name = "mangohud-scx";
+          text = ''
+            if [ -f /sys/kernel/sched_ext/root/ops ]; then
+              cat /sys/kernel/sched_ext/root/ops
+            else
+              echo "None"
+            fi
           '';
         };
         mangohud-vcache = pkgs.writeShellApplication {
           name = "mangohud-vcache";
-          runtimeInputs = with pkgs; [ bat ];
           text = ''
-            bat --plain /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode
+            cat /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode
           '';
         };
         mangohud-os = pkgs.writeShellApplication {
@@ -145,8 +158,9 @@ in
               ##  Display  ##
               ###############
               fps_limit=328,0,240,120,60,30
-              fps_limit_method=early
-              vsync=1
+              #fps_limit_method=early
+              #vsync=1
+              vulkan_present_mode=immediate
               gl_vsync=0
 
               ###########
@@ -163,13 +177,14 @@ in
               pci_dev=0000:03:00.0
               fps
               fps_color_change
-              fps_metrics=avg,0.01
+              fps_metrics=avg,0.01,0.001
               fps_value=30,60
+              engine_version
               frame_timing
-              frame_timing_detailed
               gpu_stats
               gpu_temp
               gpu_core_clock
+              gpu_mem_clock
               gpu_power
               gpu_power_limit
               gpu_load_change
@@ -227,14 +242,18 @@ in
               ############
               custom_text=HDR
               exec=${lib.getExe mangohud-hdr}
-              custom_text=WCG
-              exec=${lib.getExe mangohud-wcg}
               custom_text=VRR
               exec=${lib.getExe mangohud-vrr}
+              custom_text=WCG
+              exec=${lib.getExe mangohud-wcg}
               custom_text=P-State
               exec=${lib.getExe mangohud-pstate}
+              custom_text=Governor
+              exec=${lib.getExe mangohud-cpu-governor}
               custom_text=V-Cache
               exec=${lib.getExe mangohud-vcache}
+              custom_text=SCX
+              exec=${lib.getExe mangohud-scx}
               custom_text=OS
               exec=${lib.getExe mangohud-os}
               custom_text=Runtime
@@ -254,7 +273,8 @@ in
               legacy_layout=0 # For scripts that rely on the new layout
               font_file=${atkinson-hyperlegible-next}/share/fonts/opentype/AtkinsonHyperlegibleNext-Bold.otf
               font_size=30
-              width=450
+              font_size_secondary=20
+              width=570
               height=450
               ${lib.optionalString config.catppuccin.enable ''
                 # Catppuccin theming
