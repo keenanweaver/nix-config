@@ -214,7 +214,7 @@ Run the commands:
     mv "$GAMESDIR"/oddworld/ae/app/* "$GAMESDIR"/oddworld/ae && rm -rf "$GAMESDIR"/oddworld/ae/{app,tmp}
     ## Perfect Dark
     mkdir -p "$XDG_DATA_HOME"/perfectdark/data
-    wget -P "$XDG_DATA_HOME"/perfectdark/data https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Perfect%20Dark%20%28USA%29%20%28Rev%201%29.zip
+    wget -P "$XDG_DATA_HOME"/perfectdark/data # TODO: Find new link
     fd -a -d 1 -e zip . "$XDG_DATA_HOME"/perfectdark/data -x ouch d -y {} -d "$XDG_DATA_HOME"/perfectdark/data
     fd -a -d 1 -e z64 . "$XDG_DATA_HOME"/perfectdark/data -x mv {} "$XDG_DATA_HOME"/perfectdark/data/pd.ntsc-final.z64
     fd -a -d 1 -e zip . "$XDG_DATA_HOME"/perfectdark/data -x rm {}
@@ -225,7 +225,7 @@ Run the commands:
     mv "$GAMESDIR"/rollercoaster-tycoon/rct-1/app/* "$GAMESDIR"/rollercoaster-tycoon/rct-1 && rm -rf "$GAMESDIR"/rollercoaster-tycoon/rct-1/{app,tmp}
     ## Super Mario 64
     mkdir -p "$GAMESDIR"/mario-64
-    wget -P "$GAMESDIR"/mario-64 https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Super%20Mario%2064%20%28USA%29.zip
+    wget -P "$GAMESDIR"/mario-64 # TODO: Find new link
     fd 'Mario' -a -d 1 -e zip "$GAMESDIR"/mario-64 -x ouch d -y {} -d "$GAMESDIR"/mario-64
     fd 'Mario' -a -d 1 -e z64 "$GAMESDIR"/mario-64 -x mv {} "$GAMESDIR"/mario-64/baserom.us.z64
     nix-store --add-fixed sha256 "$GAMESDIR"/mario-64/baserom.us.z64
@@ -246,7 +246,7 @@ Run the commands:
     wget -P "$GAMESDIR"/sonic/sonic-cd https://archive.org/download/sonic-rsdk-data/Sonic%20CD/data.rsdk
     ## Starfox 64
     mkdir -p "$GAMESDIR"/starfox-64
-    wget -P "$GAMESDIR"/starfox-64 https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Star%20Fox%2064%20%28USA%29%20%28Rev%201%29.zip
+    wget -P "$GAMESDIR"/starfox-64 # TODO: Find new link
     fd 'Star Fox' -a -d 1 -e zip "$GAMESDIR"/starfox-64 -x ouch d -y {} -d "$GAMESDIR"/starfox-64
     fd -a -d 1 -e zip . "$GAMESDIR"/starfox-64 -x rm {}
     ## Theme Hospital
@@ -269,8 +269,8 @@ Run the commands:
     fd -a -d 1 -e exe . "$MNTDIR/Backups/GOG/xcom_terror_from_the_deep" -x ls -t | head -n1 | xargs innoextract -g -d "$XDG_DATA_HOME"/openxcom/TFTD
     ## Zelda 64
     mkdir -p "$GAMESDIR"/zelda-64
-    wget -P "$GAMESDIR"/zelda-64 https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Legend%20of%20Zelda%2C%20The%20-%20Majora%27s%20Mask%20%28USA%29.zip
-    wget -P "$GAMESDIR"/zelda-64 https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Nintendo%2064%20%28BigEndian%29/Legend%20of%20Zelda%2C%20The%20-%20Ocarina%20of%20Time%20%28USA%29%20%28Rev%202%29.zip
+    wget -P "$GAMESDIR"/zelda-64 # TODO: Find new link
+    wget -P "$GAMESDIR"/zelda-64 # TODO: Find new link
     fd Ocarina -a -d 1 -e zip "$GAMESDIR"/zelda-64 -x ouch d -y {} -d "$GAMESDIR"/zelda-64/.oot
     fd Majora -a -d 1 -e zip "$GAMESDIR"/zelda-64 -x ouch d -y {} -d "$GAMESDIR"/zelda-64/.mm
     fd Ocarina -a -d 1 -e z64 "$GAMESDIR"/zelda-64/.oot -x mv {} "$GAMESDIR"/zelda-64
