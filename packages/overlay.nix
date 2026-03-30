@@ -1,8 +1,8 @@
 { inputs }:
 
 (final: prev: {
-  fooyin = prev.callPackage ./fooyin { };
   #distrobox = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.distrobox_git;
+  fooyin = prev.callPackage ./fooyin { };
   gamemode = prev.gamemode.overrideAttrs {
     version = "1.8.2-unstable-09-04-2025";
     src = prev.fetchFromGitHub {
@@ -53,22 +53,9 @@
     inputs.nix-gaming-edge.packages.${final.stdenv.hostPlatform.system}.proton-cachyos-x86_64-v4;
   proton-dw = inputs.dw-proton.packages.${final.stdenv.hostPlatform.system}.dw-proton;
   proton-em = final.callPackage ./proton-em { };
-  /*
-    proton-ge = final.proton-ge-bin.override {
-      steamDisplayName = "Proton GE";
-    };
-  */
-  proton-ge =
-    (prev.proton-ge-bin.override {
-      steamDisplayName = "Proton GE";
-    }).overrideAttrs
-      (old: rec {
-        version = "GE-Proton10-34";
-        src = prev.fetchzip {
-          url = "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${version}/${version}.tar.gz";
-          hash = "sha256-lzPsYYcrp5NoT3B0WFj3o10Z7tXx7xva1wEP3edeuqM=";
-        };
-      });
+  proton-ge = final.proton-ge-bin.override {
+    steamDisplayName = "Proton GE";
+  };
   relive = prev.callPackage ./relive { };
   rsdkv3 = prev.callPackage ./rsdk/v3 { };
   xlink-kai = prev.callPackage ./xlink-kai { };

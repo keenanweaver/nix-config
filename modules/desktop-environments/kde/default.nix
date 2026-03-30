@@ -65,9 +65,19 @@ in
           qtimageformats
           qtsvg # https://github.com/NixOS/nixpkgs/issues/325225
           sddm-kcm
-          (spectacle.override {
-            tesseractLanguages = [ "eng" ];
-          })
+          (
+            (spectacle.override {
+              tesseractLanguages = [ "eng" ];
+            }).overrideAttrs
+            {
+              patches = [
+                (pkgs.fetchpatch {
+                  url = "https://raw.githubusercontent.com/getsolus/packages/9c22e23a2407d11810d00e497d6843cc92230dc6/packages/s/spectacle/files/0001-Revert-Fix-tesseract-not-being-found-on-Fedora.patch";
+                  hash = "sha256-fZsqXGViN9YsQbXAJ2K44R2upnLbOhL2+8ZHfIA3/Xc=";
+                })
+              ];
+            }
+          )
           svgpart
           syntax-highlighting
           tokodon

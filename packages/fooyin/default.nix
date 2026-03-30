@@ -19,17 +19,18 @@
   SDL2,
   icu,
   soundtouch,
+  soxr,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fooyin";
-  version = "0.9.2-unstable-03-26-2026";
+  version = "0.10.1";
 
   src = fetchFromGitHub {
     owner = "ludouzi";
     repo = "fooyin";
-    rev = "cdee62a29b20e8c24ef6b95dac4249c82cf8e868";
-    hash = "sha256-WLihRVL+pHn9jy+X8y68KPC6G4ZDvhOokJiA3sndXuM=";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-GA05S2CXEs956Mkdj2KFie2CraSvLSiTIbyPJkKUDxo=";
   };
 
   buildInputs = [
@@ -42,6 +43,7 @@ stdenv.mkDerivation (finalAttrs: {
     icu
     kdsingleapplication
     soundtouch
+    soxr
     # output plugins
     alsa-lib
     pipewire

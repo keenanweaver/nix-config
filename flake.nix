@@ -217,7 +217,7 @@
               nix-flatpak.nixosModules.nix-flatpak
               nix-gaming-edge.nixosModules.default
               nur.modules.nixos.default
-              nyx-loner.nixosModules.default
+              #nyx-loner.nixosModules.default
               sops-nix.nixosModules.sops
               ucodenix.nixosModules.default
               yeetmouse.nixosModules.default
@@ -243,7 +243,7 @@
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
                     nvf.homeManagerModules.default
-                    nyx-loner.homeManagerModules.default
+                    #nyx-loner.homeManagerModules.default
                     plasma-manager.homeModules.plasma-manager
                     sops-nix.homeManagerModules.sops
                     steam-config-nix.homeModules.default
@@ -282,7 +282,7 @@
               niri.nixosModules.niri
               nix-flatpak.nixosModules.nix-flatpak
               nur.modules.nixos.default
-              nyx-loner.nixosModules.default
+              #nyx-loner.nixosModules.default
               sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
               {
@@ -311,7 +311,7 @@
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
                     nvf.homeManagerModules.default
-                    nyx-loner.homeManagerModules.default
+                    #nyx-loner.homeManagerModules.default
                     plasma-manager.homeModules.plasma-manager
                     sops-nix.homeManagerModules.sops
                   ];

@@ -30,6 +30,7 @@ in
               "x-systemd.idle-timeout=600"
               "noauto"
               "noatime"
+              "nofail"
             ];
           };
         })
