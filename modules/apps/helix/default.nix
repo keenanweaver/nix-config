@@ -24,7 +24,6 @@ in
             marksman
             nixd
             nixfmt
-            nodePackages.prettier
             pgformatter
             (python3.withPackages (
               p:

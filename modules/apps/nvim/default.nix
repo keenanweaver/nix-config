@@ -72,7 +72,6 @@ in
             vscode-langservers-extracted
             lua-language-server
             marksman
-            nodePackages.yaml-language-server
             tree-sitter
             yamllint
           ];
@@ -114,7 +113,6 @@ in
                 dockerfile-language-server
                 vscode-langservers-extracted
                 marksman
-                nodePackages.yaml-language-server
                 yamllint
               ];
               formatter = {
