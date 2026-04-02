@@ -36,20 +36,7 @@ in
       };
     };
 
-    # Fix long boot times by adjusting service dependencies
-    systemd.services = {
-      "network-addresses-${adapter}" = {
-        before = lib.mkForce [ ];
-        wantedBy = lib.mkForce [
-          "network-link-${adapter}.service"
-          "zerotierone.service"
-          "multi-user.target"
-        ];
-      };
-      "network-link-${adapter}" = {
-        before = lib.mkForce [ ];
-        wantedBy = lib.mkForce [ "multi-user.target" ];
-      };
-    };
+    # Fix long boot time
+    systemd.services."network-addresses-${adapter}".wantedBy = lib.mkForce [ ];
   };
 }
