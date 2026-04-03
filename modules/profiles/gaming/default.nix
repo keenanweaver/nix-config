@@ -178,7 +178,7 @@ in
       };
       hardware = {
         openrgb = {
-          enable = false;
+          enable = true;
           package = pkgs.openrgb-with-all-plugins;
         };
       };

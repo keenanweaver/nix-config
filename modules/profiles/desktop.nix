@@ -124,7 +124,7 @@ in
           rustdesk-flutter
           signal-desktop
           varia
-          #winboat
+          winboat
         ];
         xdg = {
           desktopEntries = {

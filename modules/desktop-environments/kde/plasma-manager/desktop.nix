@@ -299,13 +299,15 @@
             match = {
               title = {
                 value = "Fluxer";
+                type = "substring";
               };
               window-class = {
                 value = "electron";
-                type = "exact";
+                type = "substring";
               };
             };
             apply = {
+              desktopfile = "fluxer";
               ignoregeometry = {
                 value = true;
               };
