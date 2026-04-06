@@ -70,6 +70,7 @@ with pkgs;
     sdlpop # Prince of Persia
     #serious-sam-classic-vulkan
     sm64ex
+    sonic3air
     urbanterror
     vvvvvv
     wipeout-rewrite

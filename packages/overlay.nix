@@ -58,5 +58,6 @@
   };
   relive = prev.callPackage ./relive { };
   rsdkv3 = prev.callPackage ./rsdk/v3 { };
+  sonic3air = prev.callPackage ./sonic3air { };
   xlink-kai = prev.callPackage ./xlink-kai { };
 })

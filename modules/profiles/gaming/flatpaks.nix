@@ -171,7 +171,6 @@
     "org.openjkdf2.OpenJKDF2"
     "org.pegasus_frontend.Pegasus"
     "org.ppsspp.PPSSPP"
-    "org.sonic3air.Sonic3AIR"
     "org.srb2.SRB2"
     "vet.rsc.OpenRSC.Launcher"
   ];
