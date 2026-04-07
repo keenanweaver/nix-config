@@ -56,6 +56,7 @@ with pkgs;
     isle-portable
     jazz2
     #katawa-shoujo-re-engineered
+    inputs.nix-gaming-edge.packages.${stdenv.hostPlatform.system}.opengoal-launcher
     openjk # Jedi Academy
     openloco
     openomf

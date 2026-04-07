@@ -2,6 +2,14 @@
 
 (final: prev: {
   #distrobox = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.distrobox_git;
+  doomrunner = prev.doomrunner.overrideAttrs {
+    src = prev.fetchFromGitHub {
+      owner = "Youda008";
+      repo = "DoomRunner";
+      rev = "0e3d5d5a98ebbb73420be6f6d68aef00285e1ab8";
+      hash = "sha256-jEXY0RoSKLE3fpdAygyUahaLRlz4X8Xnq+talZwrSRM=";
+    };
+  };
   fooyin = prev.callPackage ./fooyin { };
   gamemode = prev.gamemode.overrideAttrs {
     version = "1.8.2-unstable-09-04-2025";
