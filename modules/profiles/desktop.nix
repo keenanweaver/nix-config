@@ -116,7 +116,7 @@ in
           picard
           projectm-sdl-cpp
           puddletag
-          qobuz-player
+          qbz
           qpwgraph
           qtscrcpy
           #stoat-desktop

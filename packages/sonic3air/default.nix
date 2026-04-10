@@ -33,7 +33,7 @@ stdenv.mkDerivation (finalAttrs: {
     makeWrapper "$out/lib/sonic3air/sonic3air_linux" "$out/bin/sonic3air" \
       --chdir "$out/lib/sonic3air"
 
-    install -Dm444 data/icon.png "$out/share/icons/hicolor/256x256/apps/sonic3air.png"
+    install -Dm444 data/icon.png "$out/share/icons/hicolor/64x64/apps/sonic3air.png"
 
     runHook postInstall
   '';
