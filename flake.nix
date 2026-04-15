@@ -58,7 +58,6 @@
       url = "github:Whovian9369/aaru-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dw-proton.url = "github:imaviso/dwproton-flake";
     lsfg-vk-flake = {
       url = "github:pabloaul/lsfg-vk-flake/main";
       inputs.nixpkgs.follows = "nixpkgs";

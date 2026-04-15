@@ -271,8 +271,8 @@ in
             AMD_VULKAN_ICD = "RADV";
             MESA_SHADER_CACHE_MAX_SIZE = "16G";
             # https://reddit.com/r/linux_gaming/comments/1mg8vtl/low_latency_gaming_guide/
-            #SDL_VIDEODRIVER = "wayland,x11"; # SDL2
-            #SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3
+            SDL_VIDEODRIVER = "wayland,x11"; # SDL2
+            SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3
             ENABLE_LAYER_MESA_ANTI_LAG = 1;
           };
         };

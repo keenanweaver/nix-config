@@ -137,7 +137,7 @@ in
             }
             {
               type = "swap";
-              key = "├󰓡 Zram";
+              key = "├󰓡 Swap";
               keyColor = "green";
             }
             {

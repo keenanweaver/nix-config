@@ -1,4 +1,4 @@
-{ lib, username, ... }:
+{ username, ... }:
 {
   fileSystems."/" = {
     fsType = "tmpfs";
@@ -66,6 +66,10 @@
     ];
   };
 
-  # Disable swap
-  swapDevices = lib.mkForce [ ];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
+  ];
 }
