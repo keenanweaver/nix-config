@@ -55,6 +55,18 @@ in
             ];
           };
         };
+        l4d2 = {
+          id = 550;
+          launchOptions = {
+            env = {
+              STEAM_COMPAT_RUNTIME_SDL3 = true;
+            };
+            args = [
+              "-novid"
+              "-vulkan"
+            ];
+          };
+        };
         ns2 = {
           id = 4920;
           compatTool = config.programs.steam.config.defaultCompatTool;
@@ -63,9 +75,19 @@ in
           id = 282440;
           launchOptions = {
             env = {
+              PROTON_DXVK_LOWLATENCY = true;
               # https://steamcommunity.com/sharedfiles/filedetails/?id=3642772367
               # mesa_glthread = "false";
               # MESA_GL_VERSION_OVERRIDE = "3.2";
+            };
+          };
+        };
+        reflex = {
+          id = 328070;
+          launchOptions = {
+            env = {
+              PROTON_DXVK_LOWLATENCY = true;
+              #PROTON_ENABLE_WAYLAND = lib.mkForce false; # Workshop
             };
           };
         };

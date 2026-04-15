@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  vars,
   username,
   ...
 }:
@@ -88,12 +89,54 @@ in
       };
     };
 
-    home-manager.users.${username} =
+    xdg.mime =
+      let
+        audioPlayer = "org.fooyin.fooyin.desktop";
+        browser = "app.zen_browser.zen.desktop";
+        editor = "org.kde.kate.desktop";
+        imageViewer = "org.kde.gwenview.desktop";
+        pdfViewer = "org.kde.okular.desktop";
+        videoPlayer = "org.kde.haruna.desktop";
+      in
       {
-        pkgs,
-        vars,
-        ...
-      }:
+        enable = true;
+        defaultApplications = {
+          "audio/*" = audioPlayer;
+          "image/*" = imageViewer;
+          "video/*" = videoPlayer;
+          "text/*" = editor;
+          "text/html" = browser;
+          "text/plain" = editor;
+          "application/json" = editor;
+          "application/pdf" = pdfViewer;
+          "application/toml" = editor;
+          "application/x-bat" = editor;
+          "application/xhtml+xml" = browser;
+          "application/xml" = editor;
+          "application/x-shellscript" = editor;
+          "application/x-yaml" = editor;
+          "inode/directory" = "org.kde.dolphin.desktop";
+          "x-scheme-handler/bottles" = "com.usebottles.bottles.desktop";
+          "x-scheme-handler/http" = browser;
+          "x-scheme-handler/https" = browser;
+          "x-scheme-handler/sgnl" = "signal.desktop";
+          "x-scheme-handler/signalcaptcha" = "signal.desktop";
+          "x-scheme-handler/terminal" = "org.wezfurlong.wezterm.desktop";
+        }
+        // lib.optionalAttrs vars.gaming {
+          "application/x-alcohol" = "cdemu-client.desktop";
+          "application/x-cue" = "cdemu-client.desktop";
+          "application/x-dosexec" = "nero-umu.desktop";
+          "application/x-ms-ne-executable" = "nero-umu.desktop";
+          "application/vnd.microsoft.portable-executable" = "nero-umu.desktop";
+          "application/x-gd-rom-cue" = "cdemu-client.desktop";
+          "application/x-msdownload" = "nero-umu.desktop";
+          "x-scheme-handler/ror2mm" = "r2modman.desktop";
+        };
+      };
+
+    home-manager.users.${username} =
+      { pkgs, ... }:
       {
         home.packages = with pkgs; [
           audacious
@@ -151,75 +194,7 @@ in
                   StartupWMClass = "foobar2000";
                 };
               };
-            qobuz =
-              let
-                icon = pkgs.fetchurl {
-                  url = "https://img.icons8.com/ios/50/FFFFFF/qobuz.png";
-                  hash = "sha256-G7q/S8Svta+zd/ayv+GEE7luHQqnRDCxHe2uIuCecig=";
-                };
-              in
-              {
-                name = "Qobuz";
-                comment = "Launch Qobuz using Bottles.";
-                exec = "bottles-cli run -p Qobuz -b Qobuz";
-                icon = "${icon}";
-                categories = [
-                  "AudioVideo"
-                  "Player"
-                  "Audio"
-                ];
-                noDisplay = false;
-                startupNotify = true;
-                settings = {
-                  StartupWMClass = "Qobuz";
-                };
-              };
           };
-          mimeApps =
-            let
-              audioPlayer = "org.fooyin.fooyin.desktop";
-              browser = "app.zen_browser.zen.desktop";
-              editor = "org.kde.kate.desktop";
-              imageViewer = "org.kde.gwenview.desktop";
-              pdfViewer = "org.kde.okular.desktop";
-              videoPlayer = "org.kde.haruna.desktop";
-            in
-            {
-              enable = true;
-              defaultApplications = {
-                "audio/*" = audioPlayer;
-                "image/*" = imageViewer;
-                "video/*" = videoPlayer;
-                "text/*" = editor;
-                "text/html" = browser;
-                "text/plain" = editor;
-                "application/json" = editor;
-                "application/pdf" = pdfViewer;
-                "application/toml" = editor;
-                "application/x-bat" = editor;
-                "application/xhtml+xml" = browser;
-                "application/xml" = editor;
-                "application/x-shellscript" = editor;
-                "application/x-yaml" = editor;
-                "inode/directory" = "org.kde.dolphin.desktop";
-                "x-scheme-handler/bottles" = "com.usebottles.bottles.desktop";
-                "x-scheme-handler/http" = browser;
-                "x-scheme-handler/https" = browser;
-                "x-scheme-handler/sgnl" = "signal.desktop";
-                "x-scheme-handler/signalcaptcha" = "signal.desktop";
-                "x-scheme-handler/terminal" = "org.wezfurlong.wezterm.desktop";
-              }
-              // lib.optionalAttrs vars.gaming {
-                "application/x-alcohol" = "cdemu-client.desktop";
-                "application/x-cue" = "cdemu-client.desktop";
-                "application/x-dosexec" = "nero-umu.desktop";
-                "application/x-ms-ne-executable" = "nero-umu.desktop";
-                "application/vnd.microsoft.portable-executable" = "nero-umu.desktop";
-                "application/x-gd-rom-cue" = "cdemu-client.desktop";
-                "application/x-msdownload" = "nero-umu.desktop";
-                "x-scheme-handler/ror2mm" = "r2modman.desktop";
-              };
-            };
         };
       };
   };

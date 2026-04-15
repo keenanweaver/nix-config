@@ -198,7 +198,7 @@
                     "applications:org.squidowl.halloy.desktop"
                     "applications:signal.desktop"
                     "applications:info.mumble.Mumble.desktop"
-                    "applications:qobuz.desktop"
+                    "applications:QBZ.desktop"
                     "applications:foobar2000.desktop"
                     "applications:org.fooyin.fooyin.desktop"
                     "applications:org.kde.neochat.desktop"
@@ -556,31 +556,6 @@
               size = {
                 value = "1534,740";
                 apply = "initially";
-              };
-            };
-          }
-          {
-            description = "qobuz";
-            match = {
-              window-class = {
-                value = "qobuz";
-                type = "regex";
-              };
-            };
-            apply = {
-              ignoregeometry = {
-                value = true;
-              };
-              position = {
-                value = "1026,646";
-              };
-              screen = {
-                value = 1;
-                apply = "force";
-              };
-              size = {
-                value = "1534,740";
-                apply = "force";
               };
             };
           }
