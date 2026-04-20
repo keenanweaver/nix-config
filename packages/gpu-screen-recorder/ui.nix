@@ -8,6 +8,7 @@
   makeWrapper,
   gpu-screen-recorder,
   gpu-screen-recorder-notification,
+  pango,
   libx11,
   libxrender,
   libxrandr,
@@ -26,12 +27,12 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "gpu-screen-recorder-ui";
-  version = "1.10.9";
+  version = "1.11.4";
 
   src = fetchgit {
     url = "https://repo.dec05eba.com/gpu-screen-recorder-ui";
     tag = finalAttrs.version;
-    hash = "sha256-y5ZwUHyng9LARB1Bb2CIedqmcRCBNp/T+2gYwoD75gY=";
+    hash = "sha256-KnMXffdrddRM5pXiC+rKipYlPO0SwIikozxWk1xda3w=";
   };
 
   patches = [
@@ -59,6 +60,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   buildInputs = [
+    pango
     libx11
     libxrender
     libxrandr

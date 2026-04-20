@@ -36,14 +36,6 @@
         ];
       };
     };
-    "io.github.ryubing.Ryujinx" = {
-      Context = {
-        filesystems = [
-          "!home"
-          "${config.home.homeDirectory}/Games/switch"
-        ];
-      };
-    };
     "io.github.strikerx3.ymir" = {
       Context = {
         filesystems = [
@@ -132,7 +124,6 @@
       sha256 = "13wca95yngfwl1y0c05y0b2w7aa8k3nkhvk46wsrxjvw3shb35im";
     }
     "io.github.randovania.Randovania"
-    "io.github.ryubing.Ryujinx"
     "io.github.strikerx3.ymir"
     "net.fsuae.FS-UAE"
     "net.kuribo64.melonDS"

@@ -30,7 +30,7 @@ in
     fzf.enable = true;
     git.enable = true;
     gpg.enable = true;
-    helix.enable = true;
+    helix.enable = false;
     home-managerConfig.enable = true;
     jq.enable = true;
     jujutsu.enable = false;

@@ -17,8 +17,6 @@ in
     home-manager.users.${username} = {
       programs.lsd = {
         enable = true;
-        enableBashIntegration = true;
-        enableZshIntegration = true;
         settings = {
           color = {
             when = "always";

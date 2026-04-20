@@ -42,7 +42,7 @@
         panels = [
           # Primary
           {
-            height = 54;
+            height = 38;
             location = "bottom";
             floating = false;
             screen = 0;
@@ -157,7 +157,7 @@
           }
           # Secondary
           {
-            height = 54;
+            height = 38;
             location = "bottom";
             floating = false;
             screen = 1;
@@ -290,7 +290,7 @@
                 apply = "force";
               };
               size = {
-                value = "1026,646";
+                value = "1026,662";
               };
             };
           }
@@ -399,7 +399,31 @@
                 value = true;
               };
               position = {
-                value = "1026,646";
+                value = "1026,662";
+              };
+              screen = {
+                value = 1;
+                apply = "force";
+              };
+              size = {
+                value = "1534,741";
+              };
+            };
+          }
+          {
+            description = "qbz";
+            match = {
+              window-class = {
+                value = "qbz";
+                type = "exact";
+              };
+            };
+            apply = {
+              ignoregeometry = {
+                value = true;
+              };
+              position = {
+                value = "1026,662";
               };
               screen = {
                 value = 1;
@@ -509,7 +533,7 @@
                 apply = "force";
               };
               size = {
-                value = "611,647";
+                value = "611,662";
               };
             };
           }
@@ -579,7 +603,7 @@
                 apply = "force";
               };
               size = {
-                value = "697,646";
+                value = "697,662";
               };
             };
           }
@@ -644,7 +668,7 @@
                 apply = "initially";
               };
               position = {
-                value = "0,646";
+                value = "0,662";
               };
               screen = {
                 value = 1;

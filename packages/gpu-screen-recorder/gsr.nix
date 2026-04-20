@@ -13,8 +13,10 @@
   ffmpeg,
   wayland,
   wayland-scanner,
+  vulkan-loader,
   vulkan-headers,
   pipewire,
+  libcap,
   libdrm,
   libva,
   libglvnd,
@@ -29,12 +31,12 @@
 
 stdenv.mkDerivation rec {
   pname = "gpu-screen-recorder";
-  version = "5.12.5";
+  version = "5.13.1";
 
   src = fetchgit {
     url = "https://repo.dec05eba.com/${pname}";
     tag = version;
-    hash = "sha256-cw3IejeWFhuFSzUgK2sv4LEa2ohHNx6C3T7+GhHljsY=";
+    hash = "sha256-T5xk06tGJK30wLa12gTCRNnvwPyv8Yhi9NufD6eXIbg=";
   };
 
   nativeBuildInputs = [
@@ -46,12 +48,14 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     libxcomposite
+    libcap
     libpulseaudio
     dbus
     ffmpeg
     pipewire
     wayland
     wayland-scanner
+    vulkan-loader
     vulkan-headers
     libdrm
     libva

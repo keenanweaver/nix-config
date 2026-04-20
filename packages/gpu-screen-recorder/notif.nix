@@ -12,17 +12,18 @@
   libglvnd,
   wayland,
   wayland-scanner,
+  pango,
   gitUpdater,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "gpu-screen-recorder-notification";
-  version = "1.1.1";
+  version = "1.2.1";
 
   src = fetchgit {
     url = "https://repo.dec05eba.com/gpu-screen-recorder-notification";
     tag = finalAttrs.version;
-    hash = "sha256-WMuHiXNdGPMLlf6DZJGNC/PJgnycRAvRhnW8m104/t0=";
+    hash = "sha256-A9tjbX7vxOAwX0h7bks2svEkLHeJ47G3QLOy2uRbz2I=";
   };
 
   postPatch = ''
@@ -46,6 +47,7 @@ stdenv.mkDerivation (finalAttrs: {
     libglvnd
     wayland
     wayland-scanner
+    pango
   ];
 
   passthru.updateScript = gitUpdater { };

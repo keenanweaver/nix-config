@@ -52,7 +52,6 @@
       "amd_iommu=on"
       "amd_pstate=active" # https://wiki.archlinux.org/title/CPU_frequency_scaling#Autonomous_frequency_scaling
       "amdgpu.mcbp=0"
-      "microcode.amd_sha_check=off"
       # AMDGPU freezing randomly https://gitlab.freedesktop.org/drm/amd/-/issues/4141
       # https://gitlab.freedesktop.org/mesa/mesa/-/issues/14250#note_3181015
       # https://reddit.com/r/linux_gaming/comments/1q1bg71/8_threads_in_2_weeks_amd_gpus_crashing_on/nx5zixu/?context=3#nx5zixu
@@ -291,6 +290,7 @@
         ];
         sessionVariables = {
           #DXVK_CONFIG_FILE = "${config.xdg.configHome}/dxvk/dxvk.conf";
+          KWIN_DISABLE_TONEMAPPING = "1";
           WAYLANDDRV_PRIMARY_MONITOR = "DP-1"; # https://reddit.com/r/linux_gaming/comments/1louxm2/fix_for_wine_wayland_using_wrong_monitor/
           WINE_CPU_TOPOLOGY = "15:1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"; # 7950X3D
         };

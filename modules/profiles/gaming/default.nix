@@ -19,7 +19,7 @@ in
   config = lib.mkIf cfg.enable {
     # Custom modules
     bottles.enable = true;
-    cdemu.enable = true;
+    cdemu.enable = false;
     coolercontrol.enable = true;
     fluidsynth.enable = true;
     gamemode.enable = true;
@@ -128,7 +128,7 @@ in
 
     programs = {
       perfect-dark-git.enable = true;
-      shipwright-git.enable = true;
+      shipwright-git.enable = false;
       sm64coopdx = {
         enable = true;
         coopNet.openFirewall = true;
@@ -192,10 +192,7 @@ in
       scx = {
         enable = true;
         package = pkgs.scx.rustscheds;
-        scheduler = "scx_cake";
-        extraArgs = [
-          "--profile gaming"
-        ];
+        scheduler = "scx_bpfland";
       };
       udev = {
         extraHwdb =
