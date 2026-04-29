@@ -102,6 +102,7 @@ in
       xpadneo.enable = true;
       yeetmouse = {
         enable = false;
+        sensitivity = 1.0;
       };
     };
 

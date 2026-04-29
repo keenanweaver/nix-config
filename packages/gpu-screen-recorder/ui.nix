@@ -27,12 +27,12 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "gpu-screen-recorder-ui";
-  version = "1.11.4";
+  version = "1.11.6";
 
   src = fetchgit {
     url = "https://repo.dec05eba.com/gpu-screen-recorder-ui";
     tag = finalAttrs.version;
-    hash = "sha256-KnMXffdrddRM5pXiC+rKipYlPO0SwIikozxWk1xda3w=";
+    hash = "sha256-/JSSiZ/URZnYf628zydX3Wr8R9Y9m0rh+ccgfpmq7Xk=";
   };
 
   patches = [
@@ -44,9 +44,6 @@ stdenv.mkDerivation (finalAttrs: {
       --replace-fail "libGL.so.1" "${lib.getLib libglvnd}/lib/libGL.so.1" \
       --replace-fail "libGLX.so.0" "${lib.getLib libglvnd}/lib/libGLX.so.0" \
       --replace-fail "libEGL.so.1" "${lib.getLib libglvnd}/lib/libEGL.so.1"
-
-    substituteInPlace extra/gpu-screen-recorder-ui.service \
-      --replace-fail "ExecStart=gsr-ui" "ExecStart=$out/bin/gsr-ui"
 
     substituteInPlace gpu-screen-recorder.desktop \
       --replace-fail "Exec=gsr-ui" "Exec=$out/bin/gsr-ui"

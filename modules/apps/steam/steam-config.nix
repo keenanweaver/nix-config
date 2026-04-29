@@ -16,7 +16,7 @@ in
 {
   enable = true;
   closeSteam = true;
-  defaultCompatTool = "Proton CachyOS x86_64-v4";
+  defaultCompatTool = "Proton-CachyOS Latest";
   apps =
     lib.mapAttrs
       (

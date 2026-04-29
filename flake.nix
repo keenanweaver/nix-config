@@ -111,7 +111,7 @@
     };
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
     yeetmouse = {
-      url = "github:AndyFilter/YeetMouse?dir=nix";
+      url = "github:delet-this/YeetMouse/fix-nix-quirk?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
