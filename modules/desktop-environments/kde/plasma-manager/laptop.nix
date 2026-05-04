@@ -34,7 +34,7 @@
       };
       panels = [
         {
-          height = 54;
+          height = 38;
           location = "bottom";
           floating = false;
           widgets = [

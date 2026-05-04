@@ -36,9 +36,8 @@ in
     home-manager.users.${username} =
       { pkgs, ... }:
       {
-        programs.vscode = {
+        programs.vscodium = {
           enable = true;
-          package = pkgs.vscodium;
           profiles = {
             default = {
               enableExtensionUpdateCheck = false;

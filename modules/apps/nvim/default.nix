@@ -28,8 +28,8 @@ in
             };
             coding = {
               blink.enable = true;
-              mini_snippets.enable = true;
-              mini_surround.enable = true;
+              mini-snippets.enable = true;
+              mini-surround.enable = true;
               yanky.enable = true;
             };
             formatting = {
@@ -47,15 +47,13 @@ in
             };
             linting = {
               eslint.enable = true;
-              none_ls.enable = true;
             };
             ui = {
-              treesitter_context.enable = true;
+              treesitter-context.enable = true;
             };
             util = {
               gh.enable = true;
               project.enable = true;
-              mini_hipatterns.enable = true;
               rest.enable = true;
             };
           };

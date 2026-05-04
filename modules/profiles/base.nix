@@ -297,6 +297,7 @@ in
           userDirs = {
             enable = true;
             createDirectories = true;
+            projects = null;
             publicShare = null;
             templates = null;
             setSessionVariables = true;

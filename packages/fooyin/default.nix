@@ -20,17 +20,18 @@
   icu,
   soundtouch,
   soxr,
+  zlib,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fooyin";
-  version = "0.10.3";
+  version = "0.10.5";
 
   src = fetchFromGitHub {
     owner = "ludouzi";
     repo = "fooyin";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-mrERtHhmfEfK79pSEYFILW9WebtKVhbuXdQ52WTGa5A=";
+    hash = "sha256-f/hUn/4xq9JaayzZ3Fd+U5ep0qA/eVNivQOAgr41tYc=";
   };
 
   buildInputs = [
@@ -44,6 +45,7 @@ stdenv.mkDerivation (finalAttrs: {
     kdsingleapplication
     soundtouch
     soxr
+    zlib
     # output plugins
     alsa-lib
     pipewire
