@@ -50,7 +50,7 @@ in
       };
       extraCompatPackages = with pkgs; [
         inputs.nyx-loner.packages.${stdenv.hostPlatform.system}.luxtorpeda
-        proton-cachyos-x86_64-v4
+        proton-cachyos
         proton-dw
         proton-em
         proton-ge

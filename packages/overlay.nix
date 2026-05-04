@@ -18,15 +18,6 @@
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif.nix { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };
   inter = prev.callPackage ./inter { };
-  lutris-unwrapped = prev.lutris-unwrapped.overrideAttrs {
-    version = "0.5.22";
-    src = prev.fetchFromGitHub {
-      owner = "lutris";
-      repo = "lutris";
-      rev = "def0df605df42f25ee7a2d43a68ec7a3897cbc9a";
-      hash = "sha256-F8dbAaklWw8te/0988/bPR+b532rMYVCanWJvdeiekw=";
-    };
-  };
   mangohud = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.mangohud_git;
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nero-umu = prev.nero-umu.overrideAttrs {
@@ -39,18 +30,21 @@
     };
   };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
+  openldap = prev.openldap.overrideAttrs {
+    doCheck = !prev.stdenv.hostPlatform.isi686;
+  };
   openxcom = prev.openxcom.overrideAttrs {
     pname = "openxcom-extended";
-    version = "8.5.8";
+    version = "8.6.1";
     src = prev.fetchFromGitHub {
       owner = "MeridianOXC";
       repo = "OpenXcom";
-      rev = "6017f5fec3f6738ae1e997f307a079a1eec28db5";
-      hash = "sha256-0Y3IgrUtKznmN+EGEZbBJVIKKhnQoqkvB/jxnARi2fk=";
+      rev = "602847529e79bde07aa73bb5d5fde11fef74ebc1";
+      hash = "sha256-f+reHdXBsmGyc0a/JVjM82uLvHQ3LJw1gz8HiBkZW+s=";
     };
   };
-  proton-cachyos-x86_64-v4 =
-    inputs.nix-gaming-edge.packages.${final.stdenv.hostPlatform.system}.proton-cachyos-x86_64-v4;
+  proton-cachyos =
+    inputs.nix-gaming-edge.packages.${final.stdenv.hostPlatform.system}.proton-cachyos;
   proton-dw = final.dwproton-bin.override {
     steamDisplayName = "Proton DW";
   };

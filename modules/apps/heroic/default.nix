@@ -29,13 +29,13 @@ in
           proton-links-proton-cachyos-heroic = {
             enable = cfg.enableNative;
             source =
-              pkgs.proton-cachyos-x86_64-v4.steamcompattool;
+              pkgs.proton-cachyos.steamcompattool;
             target = "${config.xdg.configHome}/heroic/tools/proton/proton-cachyos-nix";
           };
           proton-links-proton-cachyos-flatpak-heroic = {
             enable = cfg.enableFlatpak;
             source =
-              pkgs.proton-cachyos-x86_64-v4.steamcompattool;
+              pkgs.proton-cachyos.steamcompattool;
             target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-cachyos-nix";
           };
           proton-links-proton-dw-heroic = {
