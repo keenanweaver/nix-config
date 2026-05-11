@@ -18,7 +18,7 @@ in
 
   config = lib.mkIf cfg.enable {
     # Custom modules
-    bottles.enable = true;
+    bottles.enable = false;
     cdemu.enable = false;
     coolercontrol.enable = true;
     fluidsynth.enable = true;
@@ -29,7 +29,7 @@ in
       ui.enable = true;
     };
     heroic.enable = true;
-    lutris.enable = true;
+    lutris.enable = false;
     mangohud.enable = true;
     nero-umu.enable = true;
     nonfree.enable = true;
@@ -193,7 +193,10 @@ in
       scx = {
         enable = true;
         package = pkgs.scx.rustscheds;
-        scheduler = "scx_bpfland";
+        scheduler = "scx_cake";
+        extraArgs = [
+          "--profile gaming"
+        ];
       };
       udev = {
         extraHwdb =
@@ -305,7 +308,21 @@ in
         };
         xdg = {
           autostart.entries = with pkgs; [
-            "${nuked-sc55}/share/applications/Nuked-SC55_silent.desktop"
+            (
+              makeDesktopItem {
+                name = "nuked-sc55-autostart";
+                desktopName = "Nuked SC-55 (autostart)";
+                comment = "Roland SC-55 MIDI emulator";
+                exec = "env PIPEWIRE_NODE=MIDI PULSE_SINK=MIDI ${lib.getExe nuked-sc55} --no-lcd --romset mk1-v1.21";
+                terminal = false;
+                categories = [
+                  "Audio"
+                  "AudioVideo"
+                ];
+                noDisplay = true;
+              }
+              + "/share/applications/nuked-sc55-autostart.desktop"
+            )
           ];
           desktopEntries = import ./desktop-entries.nix {
             inherit

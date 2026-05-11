@@ -2,75 +2,93 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  fetchzip,
   cmake,
   ninja,
-  alsa-lib,
   pkg-config,
+  alsa-lib,
   SDL2,
-  makeDesktopItem,
-  copyDesktopItems,
+  rtmidi,
+  versionCheckHook,
+  nix-update-script,
 }:
+
+let
+  roms = fetchzip {
+    url = "https://archive.org/download/nuked-sc-55-clap-rom-files/Nuked-SC55-CLAP-ROM-files.zip";
+    hash = "sha256-/wrFgtHgzsW0jDb04lYdiJRgzFvZzYvhmumsb5q79rI=";
+    stripRoot = false;
+  };
+in
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "nuked-sc55";
-  version = "0.3.1-unstable-10-13-2025";
+  version = "0.7.0";
 
   src = fetchFromGitHub {
-    owner = "nukeykt";
+    owner = "jcmoyer";
     repo = "Nuked-SC55";
-    rev = "dd2f525f15fe4580a8fbc59535170651ca559f59";
-    hash = "sha256-dFyHxY5neVm6L59JBNwtIfsPZV8S/7G/1wL+2oUpHX0=";
+    rev = "a48ef92e4bb85355a57a6ff2250d942f835f3503";
+    hash = "sha256-SyEoyH0fz2GmlXWGyDGvVezK5kHFJlmsax8qWEkcp4k=";
     fetchSubmodules = true;
   };
 
-  patches = [
-    ./basepath.patch
-  ];
+  strictDeps = true;
+  __structuredAttrs = true;
 
   nativeBuildInputs = [
     cmake
     ninja
     pkg-config
-    copyDesktopItems
+    versionCheckHook
   ];
 
   buildInputs = [
-    alsa-lib
     SDL2
+    rtmidi
+  ]
+  ++ lib.optionals stdenv.hostPlatform.isLinux [
+    alsa-lib
   ];
+
+  doInstallCheck = true;
 
   cmakeFlags = [
-    (lib.cmakeFeature "CMAKE_BUILD_TYPE" "Release") # https://github.com/nukeykt/Nuked-SC55/issues/100
+    (lib.cmakeBool "USE_RTMIDI" (!stdenv.hostPlatform.isWindows))
   ];
 
-  # Hardcode the $out path to the back.data file
-  postPatch = ''
-    sed -i 's|@out@|'"''${out}"'|g' src/mcu.cpp
+  postInstall = ''
+    local rombase="$out/share/nuked-sc55"
+    mkdir -p "$rombase"
+
+    for romdir in \
+      ${roms}/Nuked-SC55-CLAP-ROM-files/Nuked-SC55-Resources/ROMs/* \
+      ${roms}/Nuked-SC55-CLAP-ROM-files/Extras/*
+    do
+      local setname
+      setname="$(basename "$romdir")"
+      for romfile in "$romdir"/*; do
+        local filename
+        filename="$(basename "$romfile")"
+        cp "$romfile" "$rombase/''${setname}_''${filename}"
+      done
+    done
   '';
 
-  desktopItems = [
-    (makeDesktopItem {
-      name = "Nuked-SC55";
-      exec = "env PIPEWIRE_NODE=MIDI PULSE_SINK=MIDI nuked-sc55";
-      desktopName = "Nuked-SC55";
-      comment = "Roland SC-55 series emulation";
-      categories = [ "Game" ];
-    })
-    (makeDesktopItem {
-      name = "Nuked-SC55_silent";
-      exec = "env PIPEWIRE_NODE=MIDI PULSE_SINK=MIDI nuked-sc55 -i";
-      desktopName = "Nuked-SC55 (silent)";
-      comment = "Roland SC-55 series emulation";
-      categories = [ "Game" ];
-    })
-  ];
+  passthru.updateScript = nix-update-script {
+    extraArgs = [ "--version=branch" ];
+  };
 
   meta = {
-    description = "Roland SC-55 series emulation";
-    homepage = "https://github.com/nukeykt/Nuked-SC55";
-    license = lib.licenses.unfree; # FIXME: nix-init did not find a license
+    description = "Roland SC-55 series emulation (jcmoyer fork with library backend and MIDI renderer)";
+    homepage = "https://github.com/jcmoyer/Nuked-SC55";
+    license = lib.licenses.unfree;
     maintainers = with lib.maintainers; [ keenanweaver ];
     mainProgram = "nuked-sc55";
-    platforms = lib.platforms.all;
+    platforms = lib.platforms.linux ++ lib.platforms.darwin;
+    sourceProvenance = with lib.sourceTypes; [
+      fromSource # nuked-sc55
+      binaryNativeCode # ROMs
+    ];
   };
 })
