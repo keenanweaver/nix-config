@@ -24,10 +24,6 @@ in
     fluidsynth.enable = true;
     gamemode.enable = true;
     gamescope.enable = true;
-    gsr = {
-      enable = true;
-      ui.enable = true;
-    };
     heroic.enable = true;
     lutris.enable = false;
     mangohud.enable = true;
@@ -128,6 +124,13 @@ in
     ];
 
     programs = {
+      gsr = {
+        enable = true;
+        overlayUI = {
+          enable = true;
+          autoStart = true;
+        };
+      };
       perfect-dark-git.enable = true;
       shipwright-git.enable = false;
       sm64coopdx = {
@@ -279,6 +282,20 @@ in
         };
 
         programs = {
+          plasma.hotkeys.commands.gsr-save-replay = {
+            name = "Save GSR Replay";
+            key = "Meta+Alt+]";
+            command = lib.getExe (
+              pkgs.writeShellApplication {
+                name = "gsr-save-replay";
+                runtimeInputs = [ pkgs.killall ];
+                text = ''
+                  killall -SIGUSR1 gpu-screen-recorder
+                '';
+              }
+            );
+            comment = "Save GPU Screen Recorder replay";
+          };
           prismlauncher.enable = true;
         };
 
