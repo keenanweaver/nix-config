@@ -94,6 +94,11 @@ in
         ron = {
           id = 1144200;
           compatTool = config.programs.steam.config.defaultCompatTool;
+          launchOptions = {
+            env = {
+              WINEDLLOVERRIDES = "dxgi=n,b"; # Optiscaler
+            };
+          };
         };
         sf6 = {
           id = 1364780;

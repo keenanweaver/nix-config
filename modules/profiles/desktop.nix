@@ -28,7 +28,7 @@ in
     vesktop.enable = true;
     vscode.enable = true;
     wezterm.enable = true;
-    wireshark.enable = true;
+    wireshark.enable = false;
     zen-browser.enable = true;
 
     # System

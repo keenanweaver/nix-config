@@ -122,7 +122,7 @@ in
           micro = {
             transparent = true;
           };
-          vscode = {
+          vscodium = {
             profiles.default = {
               accent = "${accent-lower}";
             };
@@ -473,7 +473,7 @@ in
               wallpaper = "${wallpaper}";
             };
           };
-          vscode = {
+          vscodium = {
             profiles = {
               default = {
                 userSettings = {

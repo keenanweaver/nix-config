@@ -29,7 +29,7 @@ with pkgs;
     knossosnet
     ## HOMM
     fheroes2
-    vcmi
+    #vcmi
     ## Morrowind
     inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-validator
     tes3cmd

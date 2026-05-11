@@ -4,23 +4,25 @@
   fetchFromGitHub,
   cmake,
   pkg-config,
-  alsa-lib,
-  ffmpeg,
-  kdePackages,
-  kdsingleapplication,
-  pipewire,
+  qt6Packages,
   taglib,
-  libebur128,
-  libvgm,
+  ffmpeg,
+  icu,
+  zlib,
+  alsa-lib,
+  pipewire,
+  SDL2,
+  kdsingleapplication,
   libsndfile,
-  libarchive,
   libopenmpt,
   game-music-emu,
-  SDL2,
-  icu,
+  libarchive,
+  libebur128,
   soundtouch,
   soxr,
-  zlib,
+  #libvgm,
+  versionCheckHook,
+  nix-update-script,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -34,11 +36,22 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-f/hUn/4xq9JaayzZ3Fd+U5ep0qA/eVNivQOAgr41tYc=";
   };
 
+  __structuredAttrs = true;
+  strictDeps = true;
+
+  nativeBuildInputs = [
+    cmake
+    pkg-config
+    qt6Packages.qttools
+    qt6Packages.wrapQtAppsHook
+    versionCheckHook
+  ];
+
   buildInputs = [
-    kdePackages.qcoro
-    kdePackages.qtbase
-    kdePackages.qtsvg
-    kdePackages.qtwayland
+    qt6Packages.qcoro
+    qt6Packages.qtbase
+    qt6Packages.qtsvg
+    qt6Packages.qtwayland
     taglib
     ffmpeg
     icu
@@ -52,37 +65,35 @@ stdenv.mkDerivation (finalAttrs: {
     SDL2
     # input plugins
     libebur128
-    libvgm
+    #libvgm
     libsndfile
     libarchive
     libopenmpt
     game-music-emu
   ];
 
-  nativeBuildInputs = [
-    cmake
-    pkg-config
-    kdePackages.qttools
-    kdePackages.wrapQtAppsHook
-  ];
-
   cmakeFlags = [
     (lib.cmakeBool "BUILD_TESTING" finalAttrs.finalPackage.doCheck)
-    # we need INSTALL_FHS to be true as the various artifacts are otherwise just dumped in the root
-    # of $out and the fixupPhase cleans things up anyway
+    # INSTALL_FHS must be true so build artifacts land in well-known paths;
+    # fixupPhase handles the rest
     (lib.cmakeBool "INSTALL_FHS" true)
   ];
 
   env.LANG = "C.UTF-8";
 
+  doInstallCheck = true;
+
+  passthru.updateScript = nix-update-script { };
+
   meta = {
     description = "Customisable music player";
     homepage = "https://www.fooyin.org/";
-    changelog = "https://github.com/fooyin/fooyin/blob/${finalAttrs.src.rev}/CHANGELOG.md";
-    downloadPage = "https://github.com/fooyin/fooyin";
+    changelog = "https://github.com/fooyin/fooyin/blob/v${finalAttrs.version}/CHANGELOG.md";
+    downloadPage = "https://github.com/fooyin/fooyin/releases";
     mainProgram = "fooyin";
     license = lib.licenses.gpl3Only;
     maintainers = with lib.maintainers; [ peterhoeg ];
     platforms = lib.platforms.linux;
+    sourceProvenance = with lib.sourceTypes; [ fromSource ];
   };
 })
