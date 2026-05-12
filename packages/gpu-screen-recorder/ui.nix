@@ -26,6 +26,7 @@
   pango,
   pkg-config,
   stdenv,
+  libxkbcommon,
   wayland-scanner,
   wayland,
   wrapperDir ? "/run/wrappers/bin",
@@ -33,12 +34,12 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "gpu-screen-recorder-ui";
-  version = "1.11.8";
+  version = "1.12.0";
 
   src = fetchgit {
     url = "https://repo.dec05eba.com/gpu-screen-recorder-ui";
     tag = finalAttrs.version;
-    hash = "sha256-wDoeDiUAQHggJr3qaRoY5Q3Hw4JuuZ7Etw/Up6Ypp/o=";
+    hash = "sha256-VfWZkwfYrSENqDgRFsCAdJOMdPweCFyfxDTNZyIXm9o=";
   };
 
   nativeBuildInputs = [
@@ -63,6 +64,7 @@ stdenv.mkDerivation (finalAttrs: {
     libdrm
     dbus
     linuxHeaders
+    libxkbcommon
     wayland
     wayland-scanner
     pango

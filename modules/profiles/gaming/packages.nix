@@ -104,7 +104,7 @@ with pkgs;
     ## Modding
     hedgemodmanager
     limo
-    inputs.just-one-more-repo.packages.${stdenv.hostPlatform.system}.r2modman
+    #inputs.just-one-more-repo.packages.${stdenv.hostPlatform.system}.r2modman
     ## Other
     adwsteamgtk
     chiaki-ng

@@ -26,6 +26,7 @@
 * Beyerdynamic DT 880 Premium 600 OHM Headphones
 ### Game
 
+* 8BitDo Arcade Controller
 * 8BitDo Arcade Stick for Xbox
 * GameSir Cyclone 2 Wireless Controller
 * Junkfood Snack Box MICRO XL
