@@ -100,7 +100,6 @@ in
                 ];
               };
               Environment = {
-                PROTON_ENABLE_HDR = "1";
                 PROTON_FSR4_RDNA3_UPGRADE = "1";
               };
               "Session Bus Policy" = {
