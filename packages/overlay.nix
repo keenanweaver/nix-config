@@ -18,6 +18,7 @@
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif.nix { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };
   inter = prev.callPackage ./inter { };
+  low-latency-layer = prev.callPackage ./low-latency-layer { };
   mangohud = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.mangohud_git;
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nero-umu = prev.nero-umu.overrideAttrs {

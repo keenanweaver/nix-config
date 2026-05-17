@@ -50,6 +50,12 @@ in
         hitmanwoa = {
           id = 1659040;
           launchOptions = {
+            env = {
+              # low-latency-layer
+              LOW_LATENCY_LAYER_REFLEX = true;
+              LOW_LATENCY_LAYER_SPOOF_NVIDIA = true;
+              PROTON_FORCE_NVAPI = true;
+            };
             args = [
               "-skip_launcher"
             ];
@@ -70,6 +76,17 @@ in
         ns2 = {
           id = 4920;
           compatTool = config.programs.steam.config.defaultCompatTool;
+        };
+        quakechampions = {
+          id = 611500;
+          launchOptions = {
+            env = {
+              # low-latency-layer
+              LOW_LATENCY_LAYER_REFLEX = true;
+              LOW_LATENCY_LAYER_SPOOF_NVIDIA = true;
+              PROTON_FORCE_NVAPI = true;
+            };
+          };
         };
         quakelive = {
           id = 282440;
