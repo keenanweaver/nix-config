@@ -94,7 +94,7 @@ in
 
     hardware = {
       graphics.extraPackages = with pkgs; [
-        low-latency-layer
+        inputs.nix-gaming.packages.${stdenv.hostPlatform.system}.low-latency-layer
       ];
       uinput.enable = true;
       xone.enable = true;
@@ -129,13 +129,10 @@ in
     programs = {
       gsr = {
         enable = true;
-        overlayUI = {
-          enable = true;
-          autoStart = true;
-        };
+        ui.enable = true;
       };
       perfect-dark-git.enable = true;
-      shipwright-git.enable = false;
+      shipwright-git.enable = true;
       sm64coopdx = {
         enable = true;
         coopNet.openFirewall = true;
@@ -199,10 +196,7 @@ in
       scx = {
         enable = true;
         package = pkgs.scx.rustscheds;
-        scheduler = "scx_cake";
-        extraArgs = [
-          "--profile gaming"
-        ];
+        scheduler = "scx_pandemonium";
       };
       udev = {
         extraHwdb =
@@ -272,6 +266,7 @@ in
               )
             );
           sessionVariables = {
+            DXVK_HDR = "1";
             RPG2K_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2000";
             RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2003";
             # https://wiki.cachyos.org/configuration/gaming/#increase-maximum-shader-cache-size
