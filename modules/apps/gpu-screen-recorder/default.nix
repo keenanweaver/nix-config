@@ -11,7 +11,7 @@ let
     inherit (config.security) wrapperDir;
   };
 
-  uiPackage = cfg.uiPackage.override {
+  uiPackage = cfg.ui.package.override {
     gpu-screen-recorder = package;
     inherit (config.security) wrapperDir;
   };
@@ -20,8 +20,6 @@ in
   options = {
     programs.gsr = {
       package = lib.mkPackageOption pkgs "gpu-screen-recorder" { };
-      uiPackage = lib.mkPackageOption pkgs "gpu-screen-recorder-ui" { };
-      notifPackage = lib.mkPackageOption pkgs "gpu-screen-recorder-notification" { };
 
       enable = lib.mkOption {
         type = lib.types.bool;
@@ -32,17 +30,10 @@ in
         '';
       };
 
-      overlayUI = {
+      ui = {
         enable = lib.mkEnableOption "the GPU Screen Recorder overlay UI";
-
-        autoStart = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = ''
-            Whether to start the GPU Screen Recorder overlay UI automatically
-            on login via a systemd user service.
-          '';
-        };
+        package = lib.mkPackageOption pkgs "gpu-screen-recorder-ui" { };
+        notifPackage = lib.mkPackageOption pkgs "gpu-screen-recorder-notification" { };
       };
     };
   };
@@ -60,10 +51,10 @@ in
         };
       }
 
-      (lib.mkIf cfg.overlayUI.enable {
+      (lib.mkIf cfg.ui.enable {
         environment.systemPackages = [
-          cfg.uiPackage
-          cfg.notifPackage
+          cfg.ui.package
+          cfg.ui.notifPackage
         ];
 
         security.wrappers."gsr-global-hotkeys" = {
@@ -71,16 +62,6 @@ in
           group = "root";
           capabilities = "cap_setuid+ep";
           source = lib.getExe' uiPackage "gsr-global-hotkeys";
-        };
-
-        systemd.user.services."gpu-screen-recorder-ui" = lib.mkIf cfg.overlayUI.autoStart {
-          description = "GPU Screen Recorder UI";
-          wantedBy = [ "graphical-session.target" ];
-          partOf = [ "graphical-session.target" ];
-          serviceConfig = {
-            ExecStart = "${lib.getExe' uiPackage "gsr-ui"} launch-daemon";
-            Restart = "on-failure";
-          };
         };
       })
     ]

@@ -38,6 +38,7 @@ in
         };
         helldivers2 = {
           id = 553850;
+          compatTool = config.programs.steam.config.defaultCompatTool;
           launchOptions = {
             args = [
               "+connect_lobby -1" # Skip intro
@@ -50,12 +51,6 @@ in
         hitmanwoa = {
           id = 1659040;
           launchOptions = {
-            env = {
-              # low-latency-layer
-              LOW_LATENCY_LAYER_REFLEX = true;
-              LOW_LATENCY_LAYER_SPOOF_NVIDIA = true;
-              PROTON_FORCE_NVAPI = true;
-            };
             args = [
               "-skip_launcher"
             ];
@@ -82,6 +77,7 @@ in
           launchOptions = {
             env = {
               # low-latency-layer
+              MANGOHUD_CONFIG = "read_cfg,fps_limit=0"; # https://github.com/Korthos-Software/low_latency_layer/issues/3#issuecomment-4504312483
               LOW_LATENCY_LAYER_REFLEX = true;
               LOW_LATENCY_LAYER_SPOOF_NVIDIA = true;
               PROTON_FORCE_NVAPI = true;

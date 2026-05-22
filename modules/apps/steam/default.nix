@@ -37,6 +37,7 @@ in
         extraEnv = {
           PIPEWIRE_NODE = "Game";
           PULSE_SINK = "Game";
+          PROTON_ENABLE_HDR = true;
           PROTON_ENABLE_WAYLAND = true;
           PROTON_FSR4_RDNA3_UPGRADE = true;
         };

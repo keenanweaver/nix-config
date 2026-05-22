@@ -45,6 +45,7 @@
     ];
     kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
     kernelParams = [
+      "amdgpu.audio=0"
       # Fake display for Sunshine https://mattducharme.dev/posts/fake-linux-display/
       "drm.edid_firmware=HDMI-A-1:edid/gbt-aorus-fo27q3.bin"
       "video=HDMI-A-1:2560x1440@120e"

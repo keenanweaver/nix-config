@@ -6,6 +6,7 @@
   libglvnd,
   libx11,
   libxext,
+  libxkbcommon,
   libxrandr,
   libxrender,
   makeWrapper,
@@ -14,7 +15,6 @@
   pango,
   pkg-config,
   stdenv,
-  libxkbcommon,
   wayland-scanner,
   wayland,
 }:
@@ -42,8 +42,8 @@ stdenv.mkDerivation (finalAttrs: {
     libx11
     libxrandr
     libxrender
-    libxext
     libxkbcommon
+    libxext
     wayland
     wayland-scanner
     gsettings-desktop-schemas
@@ -63,7 +63,7 @@ stdenv.mkDerivation (finalAttrs: {
   passthru.updateScript = gitUpdater { };
 
   meta = {
-    description = "Notification in the style of ShadowPlay.";
+    description = "Notification in the style of ShadowPlay";
     homepage = "https://git.dec05eba.com/gpu-screen-recorder-notification/about";
     license = lib.licenses.gpl3Only;
     mainProgram = "gsr-notify";
@@ -71,5 +71,6 @@ stdenv.mkDerivation (finalAttrs: {
       AhmedAmr
     ];
     platforms = [ "x86_64-linux" ];
+    sourceProvenance = with lib.sourceTypes; [ fromSource ];
   };
 })
