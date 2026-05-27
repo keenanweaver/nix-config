@@ -133,10 +133,10 @@ in
       };
       perfect-dark-git.enable = true;
       shipwright-git.enable = true;
-      sm64coopdx = {
-        enable = true;
-        coopNet.openFirewall = true;
-      };
+      #sm64coopdx = {
+      #  enable = true;
+      #  coopNet.openFirewall = true;
+      #};
       spaghetti-kart-git.enable = true;
       starship-sf64.enable = true;
     };
@@ -267,6 +267,7 @@ in
             );
           sessionVariables = {
             DXVK_HDR = "1";
+            LOW_LATENCY_LAYER = "1";
             RPG2K_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2000";
             RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2003";
             # https://wiki.cachyos.org/configuration/gaming/#increase-maximum-shader-cache-size

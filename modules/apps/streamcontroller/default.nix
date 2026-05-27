@@ -31,7 +31,7 @@ in
         name = "40-streamdeck.rules";
         text = builtins.readFile (fetchurl {
           url = "https://raw.githubusercontent.com/streamduck-org/elgato-streamdeck/main/40-streamdeck.rules";
-          hash = "sha256-vAEkW8SDxR0KUFUSp39fRahaVcnU9e+L7eyjZn9IkbA=";
+          hash = "sha256-kxIzSbFTTzLXCfjuNvqBh+6SHCrvr31d84UUFxtHUBg=";
         });
         destination = "/etc/udev/rules.d/40-streamdeck.rules";
       })

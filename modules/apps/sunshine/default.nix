@@ -92,8 +92,40 @@
             }
             {
               name = "Steam Big Picture";
+              prep-cmd = [
+                {
+                  do =
+                    with pkgs;
+                    lib.getExe (writeShellApplication {
+                      name = "sunshine-steam-do";
+                      runtimeInputs = [
+                        kdePackages.libkscreen
+                      ];
+                      text = ''
+                        kscreen-doctor output.${primaryDisplay}.hdr.enable
+                        kscreen-doctor output.${primaryDisplay}.wcg.enable
+                        kscreen-doctor output.${primaryDisplay}.mode.2560x1440@120
+                      '';
+                    });
+                  undo =
+                    with pkgs;
+                    lib.getExe (writeShellApplication {
+                      name = "sunshine-steam-undo";
+                      runtimeInputs = [
+                        kdePackages.libkscreen
+                      ];
+                      text = ''
+                        kscreen-doctor output.${primaryDisplay}.hdr.disable
+                        kscreen-doctor output.${primaryDisplay}.wcg.disable
+                        kscreen-doctor output.${primaryDisplay}.wcg.enable
+                        kscreen-doctor output.${primaryDisplay}.mode.2560x1440@360
+                        setsid steam steam://close/bigpicture
+                      '';
+                    });
+                }
+              ];
               image-path = "steam.png";
-              detached = [ "${lib.getExe pkgs.steam} steam://open/bigpicture" ];
+              detached = [ "setsid steam steam://open/bigpicture" ];
               auto-detach = "true";
               wait-all = "true";
               exit-timeout = "5";

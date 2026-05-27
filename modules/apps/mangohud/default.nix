@@ -2,6 +2,7 @@
   lib,
   config,
   username,
+  inputs,
   ...
 }:
 let
@@ -207,6 +208,7 @@ in
               core_load_change
               core_load
               core_bars
+              core_type
 
               #########
               ## RAM ##
