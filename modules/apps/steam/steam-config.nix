@@ -44,6 +44,7 @@ in
               "+connect_lobby -1" # Skip intro
             ];
             env = {
+              PROTON_FSR4_RDNA3_UPGRADE = lib.mkForce false; # FSR4 crashes the game
               WINE_CPU_TOPOLOGY = "8:1,2,3,4,5,6,7,16"; # https://github.com/ValveSoftware/Proton/issues/7486#issuecomment-2683254539
             };
           };

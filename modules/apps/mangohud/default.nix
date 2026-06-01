@@ -100,7 +100,7 @@ in
           name = "mangohud-scx";
           text = ''
             if [ -f /sys/kernel/sched_ext/root/ops ]; then
-              cat /sys/kernel/sched_ext/root/ops
+              cat /sys/kernel/sched_ext/root/ops | cut -f1 -d"_"
             else
               echo "None"
             fi

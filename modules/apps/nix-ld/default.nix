@@ -22,7 +22,8 @@ in
         (steam-run.args.multiPkgs pkgs)
         ++ (heroic.args.multiPkgs pkgs)
         ++ (lutris.args.multiPkgs pkgs)
-        ++ [ # https://reddit.com/r/NixOS/comments/1r8igex/help_on_a_game/o6812nx/?context=3#o6812nx
+        ++ [
+          # https://reddit.com/r/NixOS/comments/1r8igex/help_on_a_game/o6812nx/?context=3#o6812nx
           stdenv.cc.cc
           zlib
           zstd

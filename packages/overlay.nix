@@ -13,7 +13,7 @@
     };
   };
   game-wrapper = prev.callPackage ./game-wrapper { };
-  gamescope = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.gamescope_git;
+  #gamescope = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.gamescope_git;
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder/gsr.nix { };
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif.nix { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };
@@ -42,9 +42,6 @@
     };
   };
   nuked-sc55 = prev.callPackage ./nuked-sc55 { };
-  openldap = prev.openldap.overrideAttrs {
-    doCheck = !prev.stdenv.hostPlatform.isi686;
-  };
   openxcom = prev.openxcom.overrideAttrs {
     pname = "openxcom-extended";
     version = "8.6.1";
@@ -55,7 +52,6 @@
       hash = "sha256-f+reHdXBsmGyc0a/JVjM82uLvHQ3LJw1gz8HiBkZW+s=";
     };
   };
-  proton-cachyos = inputs.nix-gaming-edge.packages.${final.stdenv.hostPlatform.system}.proton-cachyos;
   proton-dw = final.dwproton-bin.override {
     steamDisplayName = "Proton DW";
   };

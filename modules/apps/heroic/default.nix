@@ -23,19 +23,23 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} =
-      { config, pkgs, ... }:
+      {
+        config,
+        inputs,
+        pkgs,
+        ...
+      }:
       {
         home.file = {
           proton-links-proton-cachyos-heroic = {
             enable = cfg.enableNative;
             source =
-              pkgs.proton-cachyos.steamcompattool;
+              inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos.steamcompattool.steamcompattool;
             target = "${config.xdg.configHome}/heroic/tools/proton/proton-cachyos-nix";
           };
           proton-links-proton-cachyos-flatpak-heroic = {
             enable = cfg.enableFlatpak;
-            source =
-              pkgs.proton-cachyos.steamcompattool;
+            source = inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos.steamcompattool;
             target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-cachyos-nix";
           };
           proton-links-proton-dw-heroic = {

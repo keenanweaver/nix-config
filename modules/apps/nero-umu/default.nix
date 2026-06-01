@@ -15,14 +15,18 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} =
-      { config, pkgs, ... }:
+      {
+        config,
+        inputs,
+        pkgs,
+        ...
+      }:
       {
         home = {
           file = {
             proton-links-proton-cachyos-nero = {
               enable = true;
-              source =
-                pkgs.proton-cachyos.steamcompattool;
+              source = inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos.steamcompattool;
               target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-proton-cachyos-nero-nix";
             };
             proton-links-proton-dw-nero = {

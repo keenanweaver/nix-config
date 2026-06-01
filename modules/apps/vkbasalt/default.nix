@@ -26,7 +26,9 @@ in
           file = {
             vkbasalt-default-config =
               let
-                reshade = "${inputs.nix-reshade.packages.${pkgs.stdenv.hostPlatform.system}.reshade-shaders}/reshade-shaders";
+                reshade = "${
+                  inputs.nix-reshade.packages.${pkgs.stdenv.hostPlatform.system}.reshade-shaders
+                }/reshade-shaders";
               in
               {
                 enable = true;

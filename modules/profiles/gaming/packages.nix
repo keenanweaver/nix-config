@@ -50,8 +50,9 @@ with pkgs;
     abuse
     arx-libertatis # Arx Fatalis
     augustus # Caesar 3
-    bolt-launcher # RuneScape
+    #bolt-launcher # RuneScape
     corsix-th # Theme Hospital
+    dusklight
     gamma-launcher
     isle-portable
     jazz2

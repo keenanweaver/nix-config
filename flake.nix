@@ -18,6 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nyx-loner.url = "github:lonerOrz/nyx-loner";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
@@ -204,6 +205,7 @@
               ./hosts/desktop
 
               catppuccin.nixosModules.catppuccin
+              chaotic.nixosModules.default
               disko.nixosModules.disko
               ./hosts/desktop/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB" ]; }
@@ -216,7 +218,6 @@
               nix-flatpak.nixosModules.nix-flatpak
               nix-gaming-edge.nixosModules.default
               nur.modules.nixos.default
-              #nyx-loner.nixosModules.default
               sops-nix.nixosModules.sops
               ucodenix.nixosModules.default
               yeetmouse.nixosModules.default
@@ -242,7 +243,6 @@
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
                     nvf.homeManagerModules.default
-                    #nyx-loner.homeManagerModules.default
                     plasma-manager.homeModules.plasma-manager
                     sops-nix.homeManagerModules.sops
                     steam-config-nix.homeModules.default
@@ -271,6 +271,7 @@
               ./hosts/laptop
 
               catppuccin.nixosModules.catppuccin
+              chaotic.nixosModules.default
               disko.nixosModules.disko
               ./hosts/laptop/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/nvme-eui.5cd2e48231514cb8" ]; }
@@ -281,7 +282,6 @@
               niri.nixosModules.niri
               nix-flatpak.nixosModules.nix-flatpak
               nur.modules.nixos.default
-              #nyx-loner.nixosModules.default
               sops-nix.nixosModules.sops
               home-manager.nixosModules.home-manager
               {
@@ -310,7 +310,6 @@
                     nix-index-database.homeModules.nix-index
                     nur.modules.homeManager.default
                     nvf.homeManagerModules.default
-                    #nyx-loner.homeManagerModules.default
                     plasma-manager.homeModules.plasma-manager
                     sops-nix.homeManagerModules.sops
                   ];

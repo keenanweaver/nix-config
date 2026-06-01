@@ -46,7 +46,7 @@ in
         sessionVariables = {
           # https://github.com/nowrep/obs-vkcapture/issues/14#issuecomment-3222379615
           # https://github.com/Korthos-Software/low_latency_layer/issues/5#issuecomment-4475215147
-          VK_INSTANCE_LAYERS = "VK_LAYER_KORTHOS_low_latency:VK_LAYER_MANGOHUD_overlay_x86:VK_LAYER_MANGOHUD_overlay_x86_64";
+          #VK_INSTANCE_LAYERS = "VK_LAYER_KORTHOS_low_latency:VK_LAYER_MANGOHUD_overlay_x86:VK_LAYER_MANGOHUD_overlay_x86_64";
         }
         // lib.optionalAttrs cfg.silenceOutput {
           OBS_VKCAPTURE_QUIET = "1";

@@ -164,7 +164,7 @@ in
       };
       sudo = {
         execWheelOnly = true;
-        extraConfig = ''Defaults !lecture,env_reset,pwfeedback'';
+        extraConfig = "Defaults !lecture,env_reset,pwfeedback";
         extraRules = [
           {
             commands =
