@@ -19,7 +19,6 @@
       inputs.home-manager.follows = "home-manager";
     };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    nyx-loner.url = "github:lonerOrz/nyx-loner";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nix-index-database = {

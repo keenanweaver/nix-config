@@ -118,6 +118,10 @@ in
           id = 1364780;
           compatTool = config.programs.steam.config.defaultCompatTool;
         };
+        straftat = {
+          id = 2386720;
+          compatTool = config.programs.steam.config.defaultCompatTool;
+        };
         svencoop = {
           id = 225840;
           launchOptions = {

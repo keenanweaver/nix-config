@@ -1,7 +1,7 @@
 { inputs }:
 
 (final: prev: {
-  #distrobox = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.distrobox_git;
+  #distrobox = inputs.chaotic.packages.${final.stdenv.hostPlatform.system}.distrobox_git;
   fooyin = prev.callPackage ./fooyin { };
   gamemode = prev.gamemode.overrideAttrs {
     version = "1.8.2-unstable-09-04-2025";
@@ -13,24 +13,22 @@
     };
   };
   game-wrapper = prev.callPackage ./game-wrapper { };
-  #gamescope = inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.gamescope_git;
+  #gamescope = inputs.chaotic.packages.${final.stdenv.hostPlatform.system}.gamescope_git;
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder/gsr.nix { };
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif.nix { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };
   inter = prev.callPackage ./inter { };
-  mangohud =
-    inputs.nyx-loner.packages.${final.stdenv.hostPlatform.system}.mangohud_git.overrideAttrs
-      (
-        finalAttrs: prevAttrs: {
-          patches = prevAttrs.patches ++ [
-            (prev.fetchpatch {
-              # X3D Cores https://github.com/flightlessmango/MangoHud/pull/1984
-              url = "https://github.com/flightlessmango/MangoHud/pull/1984.patch";
-              hash = "sha256-4JErvglfYSJQMBwf5BewtkNHYyUOiNoXqMb+d6d6UE0=";
-            })
-          ];
-        }
-      );
+  mangohud = inputs.chaotic.packages.${final.stdenv.hostPlatform.system}.mangohud_git.overrideAttrs (
+    finalAttrs: prevAttrs: {
+      patches = prevAttrs.patches ++ [
+        (prev.fetchpatch {
+          # X3D Cores https://github.com/flightlessmango/MangoHud/pull/1984
+          url = "https://github.com/flightlessmango/MangoHud/pull/1984.patch";
+          hash = "sha256-4JErvglfYSJQMBwf5BewtkNHYyUOiNoXqMb+d6d6UE0=";
+        })
+      ];
+    }
+  );
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nero-umu = prev.nero-umu.overrideAttrs {
     version = "1.2.0-unstable-02-23-2026";

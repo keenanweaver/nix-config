@@ -48,7 +48,7 @@ in
         privateTmp = false; # https://github.com/NixOS/nixpkgs/issues/381923
       };
       extraCompatPackages = with pkgs; [
-        inputs.nyx-loner.packages.${stdenv.hostPlatform.system}.luxtorpeda
+        inputs.chaotic.packages.${stdenv.hostPlatform.system}.luxtorpeda
         proton-cachyos
         proton-dw
         proton-em
