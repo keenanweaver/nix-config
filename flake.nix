@@ -162,19 +162,6 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # DMS
-    dms = {
-      url = "github:AvengeMedia/DankMaterialShell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    dms-plugin-registry = {
-      url = "github:AvengeMedia/dms-plugin-registry";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
   outputs =
     { nixpkgs, home-manager, ... }@inputs:
@@ -208,8 +195,6 @@
               disko.nixosModules.disko
               ./hosts/desktop/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB" ]; }
-              dms.nixosModules.dank-material-shell
-              dms-plugin-registry.modules.default
               impermanence.nixosModules.impermanence
               just-one-more-repo.nixosModules.default
               lsfg-vk-flake.nixosModules.default
@@ -274,8 +259,6 @@
               disko.nixosModules.disko
               ./hosts/laptop/disko.nix
               { _module.args.disks = [ "/dev/disk/by-id/nvme-eui.5cd2e48231514cb8" ]; }
-              dms.nixosModules.dank-material-shell
-              dms-plugin-registry.modules.default
               impermanence.nixosModules.impermanence
               just-one-more-repo.nixosModules.default
               niri.nixosModules.niri

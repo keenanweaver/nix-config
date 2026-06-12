@@ -36,6 +36,7 @@ in
   config = lib.mkIf cfg.enable {
     catppuccin = {
       enable = true;
+      autoEnable = true;
       cache.enable = false;
       accent = "${accent-lower}";
       flavor = "${flavor-lower}";
@@ -105,6 +106,7 @@ in
       {
         catppuccin = {
           enable = true;
+          autoEnable = true;
           accent = "${accent-lower}";
           flavor = "${flavor-lower}";
           cache.enable = false;

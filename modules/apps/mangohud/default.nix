@@ -157,11 +157,8 @@ in
               ###############
               ##  Display  ##
               ###############
-              fps_limit=328,0,240,120,60,30
-              #fps_limit_method=early
-              #vsync=1
-              vulkan_present_mode=immediate
-              gl_vsync=0
+              fps_limit=324,0,240,120,60,30
+              vulkan_present_mode=mailbox
 
               ###########
               ## Binds ##

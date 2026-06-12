@@ -261,8 +261,8 @@
             enable = false;
             # https://github.com/doitsujin/dxvk/issues/4096#issuecomment-2204077526
             text = ''
-              d3d9.maxFrameRate = 328
-              dxgi.maxFrameRate = 328
+              d3d9.maxFrameRate = 324
+              dxgi.maxFrameRate = 324
               dxgi.syncInterval = 1
             '';
             target = "${config.xdg.configHome}/dxvk/dxvk.conf";
