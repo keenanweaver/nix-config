@@ -18,6 +18,7 @@
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif.nix { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };
   inter = prev.callPackage ./inter { };
+  lgogdownloader = prev.callPackage ./lgogdownloader { };
   mangohud = inputs.chaotic.packages.${final.stdenv.hostPlatform.system}.mangohud_git.overrideAttrs (
     finalAttrs: prevAttrs: {
       patches = prevAttrs.patches ++ [
