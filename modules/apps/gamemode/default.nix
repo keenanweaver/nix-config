@@ -42,13 +42,18 @@ in
                   kdePackages.libkscreen
                   kdePackages.qttools
                   libnotify
+                  scx-loader
                 ];
                 text = ''
-                  notify-send -t 3000 -u low "GameMode" "GameMode started<br>Disabling Night Light" -i ${icon} -a "GameMode"
+                  scxctl switch --sched scx_cake --mode gaming
 
-                  if [ "$(qdbus org.kde.KWin /org/kde/KWin/NightLight org.kde.KWin.NightLight.running)" = "true" ]; then
-                    qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Toggle Night Color"
-                  fi
+                  notify-send -t 3000 -u low "GameMode" \
+                    "GameMode started<br>Disabling Night Light<br>Enabling scx_cake" \
+                    -i ${icon} -a "GameMode"
+
+                  #if [ "$(qdbus org.kde.KWin /org/kde/KWin/NightLight org.kde.KWin.NightLight.running)" = "true" ]; then
+                  #  qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Toggle Night Color"
+                  #fi
                 '';
               }
             );
@@ -59,13 +64,18 @@ in
                   kdePackages.libkscreen
                   kdePackages.qttools
                   libnotify
+                  scx-loader
                 ];
                 text = ''
-                  notify-send -t 3000 -u low "GameMode" "GameMode stopped<br>Enabling Night Light" -i ${icon} -a "GameMode"
+                  scxctl restore
 
-                  if [ "$(qdbus org.kde.KWin /org/kde/KWin/NightLight org.kde.KWin.NightLight.running)" = "false" ]; then
-                    qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Toggle Night Color"
-                  fi
+                  notify-send -t 3000 -u low "GameMode" \
+                    "GameMode stopped<br>Enabling Night Light<br>Enabling scx_pandemonium" \
+                    -i ${icon} -a "GameMode"
+
+                  #if [ "$(qdbus org.kde.KWin /org/kde/KWin/NightLight org.kde.KWin.NightLight.running)" = "false" ]; then
+                  #  qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Toggle Night Color"
+                  #fi
                 '';
               }
             );

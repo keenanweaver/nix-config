@@ -170,6 +170,15 @@ in
           }
         ];
       };
+      # scxctl - disable password prompt
+      polkit.extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          if (action.id.toLowerCase().indexOf("org.scx.loader") === 0 &&
+              (subject.isInGroup("wheel") || subject.isInGroup("gamemode"))) {
+            return polkit.Result.YES;
+          }
+        });
+      '';
     };
 
     services = {
@@ -191,10 +200,23 @@ in
         enable = true;
         ui.enable = true;
       };
-      scx = {
+      scx-loader = {
         enable = true;
-        package = pkgs.scx.rustscheds;
-        scheduler = "scx_pandemonium";
+        config = {
+          default_sched = "scx_pandemonium";
+          scheds = {
+            scx_cake = {
+              gaming_mode = [
+                "--profile"
+                "gaming"
+              ];
+              lowlatency_mode = [
+                "--profile"
+                "esports"
+              ];
+            };
+          };
+        };
       };
       udev = {
         extraHwdb =
@@ -264,8 +286,6 @@ in
               )
             );
           sessionVariables = {
-            DXVK_HDR = "1";
-            LOW_LATENCY_LAYER = "1";
             RPG2K_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2000";
             RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2003";
             # https://wiki.cachyos.org/configuration/gaming/#increase-maximum-shader-cache-size
