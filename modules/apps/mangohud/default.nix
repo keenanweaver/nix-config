@@ -86,7 +86,7 @@ in
           name = "mangohud-pstate";
           text = ''
             cat /sys/devices/system/cpu/amd_pstate/status \
-                /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference | tr '\n' ' '
+                /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference | xargs
           '';
         };
         mangohud-cpu-governor = pkgs.writeShellApplication {

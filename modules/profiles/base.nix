@@ -132,7 +132,6 @@ in
 
     services = {
       cron.enable = true;
-      dbus.implementation = "broker";
       earlyoom = {
         enable = true;
         freeMemThreshold = 5;

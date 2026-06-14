@@ -175,6 +175,8 @@ in
             extraConfig = {
               gtk-decoration-layout = "icon:minimize,maximize,close";
               gtk-enable-animations = true;
+              gtk-font-rendering = "manual";
+              gtk-hint-font-metrics = true;
               gtk-primary-button-warps-slider = true;
               gtk-sound-theme-name = "ocean";
               gtk-xft-antialias = 1;

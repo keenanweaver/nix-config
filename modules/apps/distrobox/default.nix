@@ -156,12 +156,14 @@ in
                   init = true;
                   replace = true;
                 };
-                arch-gaming = lib.mkIf cfg.gaming {
-                  #home = "${config.xdg.dataHome}/distrobox/arch-gaming";
-                  image = "docker.io/library/archlinux:latest";
-                  init = true;
-                  replace = true;
-                };
+                /*
+                  arch-gaming = lib.mkIf cfg.gaming {
+                                 #home = "${config.xdg.dataHome}/distrobox/arch-gaming";
+                                 image = "docker.io/library/archlinux:latest";
+                                 init = true;
+                                 replace = true;
+                               };
+                */
               };
               enableSystemdUnit = true;
               settings = {

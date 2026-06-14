@@ -81,6 +81,7 @@ in
               MANGOHUD_CONFIG = "read_cfg,fps_limit=0"; # https://github.com/Korthos-Software/low_latency_layer/issues/3#issuecomment-4504312483
               LOW_LATENCY_LAYER_REFLEX = true;
               LOW_LATENCY_LAYER_SPOOF_NVIDIA = true;
+              PROTON_DXVK_LOWLATENCY = true;
               PROTON_FORCE_NVAPI = true;
             };
           };
