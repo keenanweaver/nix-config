@@ -50,13 +50,14 @@ in
                     "FR"
                   ];
                   "capture.props" = {
-                    "media.class" = "Audio/Sink";
                     "node.name" = name;
-                    "node.description" = name;
+                    "node.description" = "${name} [virtual]";
+                    "media.class" = "Audio/Sink";
                   };
                   "playback.props" = {
-                    "node.name" = "${name}_m";
-                    "node.description" = name;
+                    "node.name" = "${name}.output";
+                    "node.passive" = true;
+                    "target.object" = "@DEFAULT_SINK@";
                   };
                 };
               };
