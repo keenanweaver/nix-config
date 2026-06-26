@@ -12,6 +12,15 @@ let
       ];
     };
   };
+  lowlatency = pkgs.writeShellApplication {
+    name = "lowlatency";
+    runtimeInputs = with pkgs; [
+      scx-loader
+    ];
+    text = ''
+      scxctl switch --sched scx_cake --mode lowlatency
+    '';
+  };
 in
 {
   enable = true;
@@ -44,7 +53,6 @@ in
               "+connect_lobby -1" # Skip intro
             ];
             env = {
-              PROTON_FSR4_RDNA3_UPGRADE = lib.mkForce false; # FSR4 crashes the game
               WINE_CPU_TOPOLOGY = "8:1,2,3,4,5,6,7,16"; # https://github.com/ValveSoftware/Proton/issues/7486#issuecomment-2683254539
             };
           };
@@ -81,29 +89,36 @@ in
               MANGOHUD_CONFIG = "read_cfg,fps_limit=0"; # https://github.com/Korthos-Software/low_latency_layer/issues/3#issuecomment-4504312483
               LOW_LATENCY_LAYER_REFLEX = true;
               LOW_LATENCY_LAYER_SPOOF_NVIDIA = true;
-              PROTON_DXVK_LOWLATENCY = true;
               PROTON_FORCE_NVAPI = true;
             };
+            preHook = ''
+              ${lib.getExe lowlatency}
+            '';
           };
         };
         quakelive = {
           id = 282440;
           launchOptions = {
             env = {
-              PROTON_DXVK_LOWLATENCY = true;
               # https://steamcommunity.com/sharedfiles/filedetails/?id=3642772367
               # mesa_glthread = "false";
               # MESA_GL_VERSION_OVERRIDE = "3.2";
             };
+            preHook = ''
+              ${lib.getExe lowlatency}
+            '';
           };
         };
         reflex = {
           id = 328070;
           launchOptions = {
             env = {
-              PROTON_DXVK_LOWLATENCY = true;
+              MANGOHUD_CONFIG = "read_cfg,fps_limit=0";
               #PROTON_ENABLE_WAYLAND = lib.mkForce false; # Workshop
             };
+            preHook = ''
+              ${lib.getExe lowlatency}
+            '';
           };
         };
         ron = {
