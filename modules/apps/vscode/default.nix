@@ -58,6 +58,7 @@ in
                 "editor.minimap.renderCharacters" = false;
                 "editor.renderControlCharacters" = true;
                 "editor.semanticHighlighting.enabled" = true;
+                "editor.stickyScroll.enabled" = true;
                 "editor.tabCompletion" = "on";
                 "editor.wordWrap" = "on";
                 "git.allowForcePush" = true;

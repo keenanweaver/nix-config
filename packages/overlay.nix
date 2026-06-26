@@ -4,22 +4,22 @@
   #distrobox = inputs.chaotic.packages.${final.stdenv.hostPlatform.system}.distrobox_git;
   fooyin = prev.callPackage ./fooyin { };
   gamemode = prev.gamemode.overrideAttrs {
-    version = "1.8.2-unstable-09-04-2025";
+    version = "1.8.2-unstable-06-15-2026";
     src = prev.fetchFromGitHub {
       owner = "FeralInteractive";
       repo = "gamemode";
-      rev = "f0a569a5199974751a4a75ebdc41c8f0b8e4c909";
-      hash = "sha256-9DB8iWiyrM4EJ94ERC5SE9acrhqeI00BF1wU0umeNFg=";
+      rev = "a74b8106a2236d1f2696aa44c93bc4c8ef13b42e";
+      hash = "sha256-k5pq83KceoPS/bGVur6jhvKNXGJr1KBD0v6YNGB7RMY=";
     };
   };
   game-wrapper = prev.callPackage ./game-wrapper { };
-  gamescope = inputs.chaotic.packages.${final.stdenv.hostPlatform.system}.gamescope_git;
+  gamescope = inputs.chaotic.legacyPackages.${final.stdenv.hostPlatform.system}.gamescope_git;
   gpu-screen-recorder = prev.callPackage ./gpu-screen-recorder/gsr.nix { };
   gpu-screen-recorder-notification = prev.callPackage ./gpu-screen-recorder/notif.nix { };
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };
   inter = prev.callPackage ./inter { };
   lgogdownloader = prev.callPackage ./lgogdownloader { };
-  mangohud = inputs.chaotic.packages.${final.stdenv.hostPlatform.system}.mangohud_git.overrideAttrs (
+  mangohud = inputs.chaotic.legacyPackages.${final.stdenv.hostPlatform.system}.mangohud_git.overrideAttrs (
     finalAttrs: prevAttrs: {
       patches = prevAttrs.patches ++ [
         (prev.fetchpatch {

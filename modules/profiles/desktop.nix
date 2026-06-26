@@ -136,7 +136,7 @@ in
       };
 
     home-manager.users.${username} =
-      { pkgs, ... }:
+      { pkgs, inputs, ... }:
       {
         home.packages = with pkgs; [
           audacious
@@ -162,13 +162,27 @@ in
           qbz
           qpwgraph
           qtscrcpy
-          #stoat-desktop
           rssguard
           rustdesk-flutter
           signal-desktop
           varia
           winboat
         ];
+        programs = {
+          claude-code = {
+            enable = true;
+            package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
+            enableMcpIntegration = true;
+          };
+          mcp = {
+            enable = true;
+            servers = {
+              nix = {
+                command = lib.getExe pkgs.mcp-nixos;
+              };
+            };
+          };
+        };
         xdg = {
           desktopEntries = {
             foobar2000 =

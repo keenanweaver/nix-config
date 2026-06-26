@@ -33,13 +33,12 @@ in
         home.file = {
           proton-links-proton-cachyos-heroic = {
             enable = cfg.enableNative;
-            source =
-              inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos.steamcompattool.steamcompattool;
+            source = inputs.chaotic.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos + "/bin";
             target = "${config.xdg.configHome}/heroic/tools/proton/proton-cachyos-nix";
           };
           proton-links-proton-cachyos-flatpak-heroic = {
             enable = cfg.enableFlatpak;
-            source = inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos.steamcompattool;
+            source = inputs.chaotic.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos + "/bin";
             target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-cachyos-nix";
           };
           proton-links-proton-dw-heroic = {

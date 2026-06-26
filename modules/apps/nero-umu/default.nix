@@ -26,7 +26,7 @@ in
           file = {
             proton-links-proton-cachyos-nero = {
               enable = true;
-              source = inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos.steamcompattool;
+              source = inputs.chaotic.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos + "/bin";
               target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-proton-cachyos-nero-nix";
             };
             proton-links-proton-dw-nero = {

@@ -51,6 +51,7 @@
     };
 
     lazyvim.url = "github:pfassina/lazyvim-nix";
+    llm-agents.url = "github:numtide/llm-agents.nix";
     ucodenix.url = "github:e-tho/ucodenix";
 
     # Gaming

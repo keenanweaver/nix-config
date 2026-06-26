@@ -31,8 +31,8 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "Sude-";
     repo = "lgogdownloader";
-    rev = "144f46c02770e48c4c5570239a899f2f71048979";
-    hash = "sha256-RiMaZhr5IVFHY79aWz9Zo2/YwPlBsn1uTxumQP+crP4=";
+    rev = "97a8a974dad48ba7d448536acc0b8c948d86d91b";
+    hash = "sha256-ZxqUmwTTwNZ7Qz1Y2wfZx1tXAsi19F7L938iCnQRoFQ=";
   };
 
   nativeBuildInputs = [

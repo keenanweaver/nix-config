@@ -194,12 +194,12 @@
                   launchers = [
                     "applications:org.wezfurlong.wezterm.desktop"
                     "applications:vesktop.desktop"
-                    "applications:fluxer.desktop"
-                    "applications:org.squidowl.halloy.desktop"
+                    "applications:fluxer-desktop.desktop"
+                    #"applications:org.squidowl.halloy.desktop"
                     "applications:signal.desktop"
                     "applications:info.mumble.Mumble.desktop"
                     "applications:QBZ.desktop"
-                    "applications:foobar2000.desktop"
+                    #"applications:foobar2000.desktop"
                     "applications:org.fooyin.fooyin.desktop"
                     "applications:org.kde.neochat.desktop"
                     "applications:org.kde.tokodon.desktop"
@@ -298,16 +298,12 @@
             description = "fluxer";
             match = {
               title = {
-                value = "Fluxer";
-                type = "substring";
-              };
-              window-class = {
-                value = "electron";
-                type = "substring";
+                value = "fluxer fluxer_app";
+                type = "exact";
               };
             };
             apply = {
-              desktopfile = "fluxer";
+              desktopfile = "fluxer-desktop";
               ignoregeometry = {
                 value = true;
               };
@@ -319,7 +315,7 @@
                 apply = "force";
               };
               size = {
-                value = "1026,646";
+                value = "1026,662";
               };
             };
           }

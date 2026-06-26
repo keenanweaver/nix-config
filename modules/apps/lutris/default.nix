@@ -38,7 +38,7 @@ in
           };
           proton-links-proton-cachyos-flatpak-lutris = {
             enable = cfg.enableFlatpak;
-            source = inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos.steamcompattool;
+            source = inputs.chaotic.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos + "/bin";
             target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-cachyos-nix";
           };
           proton-links-proton-dw-flatpak-lutris = {
@@ -67,7 +67,6 @@ in
             winetricks
           ];
           protonPackages = with pkgs; [
-            inputs.nix-gaming-edge.packages.${stdenv.hostPlatform.system}.proton-cachyos
             proton-dw
             proton-em
             proton-ge

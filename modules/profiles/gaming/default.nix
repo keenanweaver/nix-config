@@ -18,14 +18,14 @@ in
 
   config = lib.mkIf cfg.enable {
     # Custom modules
-    bottles.enable = false;
-    cdemu.enable = false;
+    bottles.enable = true;
+    cdemu.enable = true;
     coolercontrol.enable = true;
     fluidsynth.enable = true;
     gamemode.enable = true;
     gamescope.enable = true;
     heroic.enable = true;
-    lutris.enable = false;
+    lutris.enable = true;
     mangohud.enable = true;
     nero-umu.enable = true;
     nonfree.enable = true;
@@ -68,13 +68,7 @@ in
       };
     };
 
-    drivers.mesa-git = {
-      enable = true;
-      enableCache = false;
-      cacheCleanup = {
-        enable = false;
-      };
-    };
+    chaotic.mesa-git.enable = true;
 
     environment = {
       etc = {
@@ -131,10 +125,10 @@ in
       };
       perfect-dark-git.enable = true;
       shipwright-git.enable = true;
-      #sm64coopdx = {
-      #  enable = true;
-      #  coopNet.openFirewall = true;
-      #};
+      sm64coopdx = {
+        enable = true;
+        coopNet.openFirewall = true;
+      };
       spaghetti-kart-git.enable = true;
       starship-sf64.enable = true;
     };
@@ -182,11 +176,6 @@ in
     };
 
     services = {
-      ananicy = {
-        enable = false;
-        package = pkgs.ananicy-cpp;
-        rulesProvider = pkgs.ananicy-rules-cachyos;
-      };
       hardware = {
         openrgb = {
           enable = true;

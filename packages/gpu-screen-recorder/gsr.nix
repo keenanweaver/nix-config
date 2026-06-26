@@ -35,8 +35,8 @@ stdenv.mkDerivation rec {
 
   src = fetchgit {
     url = "https://repo.dec05eba.com/${pname}";
-    tag = version;
-    hash = "sha256-rGjS21eY2XfcdRwmKE2hJO1+FIXAmmBJ4y2oKgSwoRM=";
+    rev = "dcbef3eb5ac877a4ad405d1a703ac5519e130cc3";
+    hash = "sha256-i1eSaug87BZ4c0J8qEo6+iZ1oK7ZmrFXqRbU1P64OPc=";
   };
 
   nativeBuildInputs = [

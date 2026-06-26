@@ -37,7 +37,6 @@ in
         extraEnv = {
           PIPEWIRE_NODE = "Game";
           PULSE_SINK = "Game";
-          #PROTON_ENABLE_HDR = true;
           PROTON_ENABLE_WAYLAND = true;
           PROTON_FSR4_RDNA3_UPGRADE = true;
         };
@@ -48,7 +47,7 @@ in
         privateTmp = false; # https://github.com/NixOS/nixpkgs/issues/381923
       };
       extraCompatPackages = with pkgs; [
-        inputs.chaotic.packages.${stdenv.hostPlatform.system}.luxtorpeda
+        inputs.chaotic.legacyPackages.${stdenv.hostPlatform.system}.luxtorpeda
         proton-cachyos
         proton-dw
         proton-em
