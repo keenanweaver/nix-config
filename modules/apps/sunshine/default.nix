@@ -41,7 +41,7 @@
       {
         enable = true;
         autoStart = true;
-        capSysAdmin = true;
+        capSysAdmin = true; # Set to false to fix non-desktop https://github.com/NixOS/nixpkgs/issues/463989
         openFirewall = true;
         applications = {
           env = {
@@ -120,6 +120,8 @@
                         kscreen-doctor output.${primaryDisplay}.wcg.enable
                         kscreen-doctor output.${primaryDisplay}.mode.2560x1440@360
                         setsid steam steam://close/bigpicture
+                        sleep 5
+                        pkill -TERM steam
                       '';
                     });
                 }

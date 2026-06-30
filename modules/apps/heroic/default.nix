@@ -33,12 +33,12 @@ in
         home.file = {
           proton-links-proton-cachyos-heroic = {
             enable = cfg.enableNative;
-            source = inputs.chaotic.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos + "/bin";
+            source = inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos.steamcompattool;
             target = "${config.xdg.configHome}/heroic/tools/proton/proton-cachyos-nix";
           };
           proton-links-proton-cachyos-flatpak-heroic = {
             enable = cfg.enableFlatpak;
-            source = inputs.chaotic.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos + "/bin";
+            source = inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos.steamcompattool;
             target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-cachyos-nix";
           };
           proton-links-proton-dw-heroic = {
@@ -60,16 +60,6 @@ in
             enable = cfg.enableFlatpak;
             source = pkgs.proton-em.steamcompattool;
             target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-em-nix";
-          };
-          proton-links-proton-ge-heroic = {
-            enable = cfg.enableNative;
-            source = pkgs.proton-ge.steamcompattool;
-            target = "${config.xdg.configHome}/heroic/tools/proton/proton-ge-nix";
-          };
-          proton-links-proton-ge-flatpak-heroic = {
-            enable = cfg.enableFlatpak;
-            source = pkgs.proton-ge.steamcompattool;
-            target = ".var/app/com.heroicgameslauncher.hgl/config/heroic/tools/proton/proton-ge-nix";
           };
         };
         home.packages = with pkgs; lib.mkIf cfg.enableNative [ heroic ];

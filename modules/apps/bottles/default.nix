@@ -40,12 +40,12 @@ in
             };
             proton-links-proton-cachyos-bottles = {
               enable = cfg.enableNative;
-              source = inputs.chaotic.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos + "/bin";
+              source = inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos.steamcompattool;
               target = "${config.xdg.dataHome}/bottles/runners/proton-cachyos-nix";
             };
             proton-links-proton-cachyos-flatpak-bottles = {
               enable = cfg.enableFlatpak;
-              source = inputs.chaotic.legacyPackages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos + "/bin";
+              source = inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos.steamcompattool;
               target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos-nix";
             };
             proton-links-proton-dw-bottles = {
@@ -67,16 +67,6 @@ in
               enable = cfg.enableFlatpak;
               source = pkgs.proton-em.steamcompattool;
               target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-em-nix";
-            };
-            proton-links-proton-ge-bottles = {
-              enable = cfg.enableNative;
-              source = pkgs.proton-ge.steamcompattool;
-              target = "${config.xdg.dataHome}/bottles/runners/proton-ge-nix";
-            };
-            proton-links-proton-ge-flatpak-bottles = {
-              enable = cfg.enableFlatpak;
-              source = pkgs.proton-ge.steamcompattool;
-              target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-ge-nix";
             };
           };
           packages = lib.mkIf cfg.enableNative [

@@ -19,17 +19,19 @@
   gpu-screen-recorder-ui = prev.callPackage ./gpu-screen-recorder/ui.nix { };
   inter = prev.callPackage ./inter { };
   lgogdownloader = prev.callPackage ./lgogdownloader { };
-  mangohud = inputs.chaotic.legacyPackages.${final.stdenv.hostPlatform.system}.mangohud_git.overrideAttrs (
-    finalAttrs: prevAttrs: {
-      patches = prevAttrs.patches ++ [
-        (prev.fetchpatch {
-          # X3D Cores https://github.com/flightlessmango/MangoHud/pull/1984
-          url = "https://github.com/flightlessmango/MangoHud/pull/1984.patch";
-          hash = "sha256-4JErvglfYSJQMBwf5BewtkNHYyUOiNoXqMb+d6d6UE0=";
-        })
-      ];
-    }
-  );
+  mangohud =
+    inputs.chaotic.legacyPackages.${final.stdenv.hostPlatform.system}.mangohud_git.overrideAttrs
+      (
+        finalAttrs: prevAttrs: {
+          patches = prevAttrs.patches ++ [
+            (prev.fetchpatch {
+              # X3D Cores https://github.com/flightlessmango/MangoHud/pull/1984
+              url = "https://github.com/flightlessmango/MangoHud/pull/1984.patch";
+              hash = "sha256-4JErvglfYSJQMBwf5BewtkNHYyUOiNoXqMb+d6d6UE0=";
+            })
+          ];
+        }
+      );
   moondeck-buddy = prev.callPackage ./moondeck-buddy { };
   nero-umu = prev.nero-umu.overrideAttrs {
     version = "1.2.0-unstable-02-23-2026";
@@ -51,13 +53,11 @@
       hash = "sha256-f+reHdXBsmGyc0a/JVjM82uLvHQ3LJw1gz8HiBkZW+s=";
     };
   };
+  pnpm_10_29_2 = final.pnpm_10;
   proton-dw = final.dwproton-bin.override {
     steamDisplayName = "Proton DW";
   };
   proton-em = final.callPackage ./proton-em { };
-  proton-ge = final.proton-ge-bin.override {
-    steamDisplayName = "Proton GE";
-  };
   relive = prev.callPackage ./relive { };
   rsdkv3 = prev.callPackage ./rsdk/v3 { };
   sonic3air = prev.callPackage ./sonic3air { };

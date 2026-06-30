@@ -297,9 +297,9 @@
           {
             description = "fluxer";
             match = {
-              title = {
-                value = "fluxer fluxer_app";
-                type = "exact";
+              window-class = {
+                value = "fluxer";
+                type = "substring";
               };
             };
             apply = {

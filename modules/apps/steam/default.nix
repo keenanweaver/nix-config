@@ -51,7 +51,6 @@ in
         proton-cachyos
         proton-dw
         proton-em
-        proton-ge
       ];
       localNetworkGameTransfers.openFirewall = true;
       protontricks.enable = true;

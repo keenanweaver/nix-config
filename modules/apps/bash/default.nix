@@ -15,17 +15,17 @@ in
   };
   config = lib.mkIf cfg.enable {
     programs.bash = {
-      blesh.enable = true;
+      blesh.enable = false;
     };
     home-manager.users.${username} =
-      { config, pkgs, ... }:
+      { config, ... }:
       {
         programs.bash = {
           enable = true;
           historyFile = "${config.xdg.dataHome}/bash/.bash_history";
           initExtra = ''
             cd() {
-              builtin cd "$@" && ${lib.getExe pkgs.lsd} -la
+              builtin cd "$@" && lsd -la
             }
           '';
         };

@@ -114,9 +114,6 @@ in
             enable = true;
             accent = "${accent-lower}";
           };
-          fzf = {
-            accent = "${accent-lower}";
-          };
           lazygit = {
             accent = "${accent-lower}";
           };

@@ -43,7 +43,7 @@
       "kvm-amd"
       "tcp_bbr"
     ];
-    kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
+    kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-zen4;
     kernelParams = [
       "amdgpu.audio=0"
       # Fake display for Sunshine https://mattducharme.dev/posts/fake-linux-display/
