@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  inputs,
 }:
 let
   defaultOptions = {
@@ -24,8 +25,9 @@ let
 in
 {
   enable = true;
-  closeSteam = true;
-  defaultCompatTool = "Proton-CachyOS Latest";
+  onSteamRunning = "close";
+  defaultCompatTool =
+    inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos;
   apps =
     lib.mapAttrs
       (
@@ -36,16 +38,16 @@ in
         ]
       )
       {
-        hl = {
+        "Half-Life" = {
           id = 70;
         };
-        hlbs = {
+        "Half-Life: Blue Shift" = {
           id = 130;
         };
-        hlof = {
+        "Half-Life: Opposing Force" = {
           id = 50;
         };
-        helldivers2 = {
+        "Helldivers 2" = {
           id = 553850;
           compatTool = config.programs.steam.config.defaultCompatTool;
           launchOptions = {
@@ -57,7 +59,7 @@ in
             };
           };
         };
-        hitmanwoa = {
+        "Hitman: World of Assassination" = {
           id = 1659040;
           launchOptions = {
             args = [
@@ -65,7 +67,7 @@ in
             ];
           };
         };
-        l4d2 = {
+        "Left 4 Dead 2" = {
           id = 550;
           launchOptions = {
             env = {
@@ -77,11 +79,11 @@ in
             ];
           };
         };
-        ns2 = {
+        "Natural Selection 2" = {
           id = 4920;
           compatTool = config.programs.steam.config.defaultCompatTool;
         };
-        quakechampions = {
+        "Quake Champions" = {
           id = 611500;
           launchOptions = {
             env = {
@@ -96,7 +98,7 @@ in
             '';
           };
         };
-        quakelive = {
+        "Quake Live" = {
           id = 282440;
           launchOptions = {
             env = {
@@ -109,7 +111,7 @@ in
             '';
           };
         };
-        reflex = {
+        "Reflex Arena" = {
           id = 328070;
           launchOptions = {
             env = {
@@ -121,7 +123,7 @@ in
             '';
           };
         };
-        ron = {
+        "Ready or Not" = {
           id = 1144200;
           compatTool = config.programs.steam.config.defaultCompatTool;
           launchOptions = {
@@ -130,15 +132,15 @@ in
             };
           };
         };
-        sf6 = {
+        "Street Fighter 6" = {
           id = 1364780;
           compatTool = config.programs.steam.config.defaultCompatTool;
         };
-        straftat = {
+        "STRAFTAT" = {
           id = 2386720;
           compatTool = config.programs.steam.config.defaultCompatTool;
         };
-        svencoop = {
+        "Sven Co-op" = {
           id = 225840;
           launchOptions = {
             env = {
@@ -146,7 +148,7 @@ in
             };
           };
         };
-        teardown = {
+        "Teardown" = {
           id = 1167630;
           launchOptions = {
             env = {

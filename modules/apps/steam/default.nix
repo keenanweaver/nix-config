@@ -80,7 +80,14 @@ in
           ];
         };
         # https://github.com/different-name/steam-config-nix
-        programs.steam.config = import ./steam-config.nix { inherit lib pkgs config; };
+        programs.steam.config = import ./steam-config.nix {
+          inherit
+            lib
+            pkgs
+            config
+            inputs
+            ;
+        };
         services.flatpak = lib.mkIf cfg.enableFlatpak {
           overrides = {
             "com.valvesoftware.Steam" = {
