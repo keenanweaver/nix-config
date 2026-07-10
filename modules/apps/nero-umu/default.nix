@@ -15,31 +15,9 @@ in
   };
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} =
-      {
-        config,
-        inputs,
-        pkgs,
-        ...
-      }:
+      { pkgs, ... }:
       {
         home = {
-          file = {
-            proton-links-proton-cachyos-nero = {
-              enable = true;
-              source = inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos.steamcompattool;
-              target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-proton-cachyos-nero-nix";
-            };
-            proton-links-proton-dw-nero = {
-              enable = true;
-              source = pkgs.proton-dw.steamcompattool;
-              target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-proton-dw-nero-nix";
-            };
-            proton-links-proton-em-nero = {
-              enable = true;
-              source = pkgs.proton-em.steamcompattool;
-              target = "${config.xdg.dataHome}/Steam/compatibilitytools.d/GE-Proton10-proton-em-nero-nix";
-            };
-          };
           packages = with pkgs; [
             nero-umu
           ];

@@ -30,29 +30,6 @@ in
         ...
       }:
       {
-        home.file = {
-          wine-links-kron4ek-lutris-flatpak = {
-            enable = cfg.enableFlatpak;
-            source = inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.wine-tkg;
-            target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/kron4ek-nix";
-          };
-          proton-links-proton-cachyos-flatpak-lutris = {
-            enable = cfg.enableFlatpak;
-            source =
-              inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos.steamcompattool;
-            target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-cachyos-nix";
-          };
-          proton-links-proton-dw-flatpak-lutris = {
-            enable = cfg.enableFlatpak;
-            source = pkgs.proton-dw.steamcompattool;
-            target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-dw-nix";
-          };
-          proton-links-proton-em-flatpak-lutris = {
-            enable = cfg.enableFlatpak;
-            source = pkgs.proton-em.steamcompattool;
-            target = ".var/app/net.lutris.Lutris/data/lutris/runners/wine/proton-em-nix";
-          };
-        };
         programs.lutris = lib.mkIf cfg.enableNative {
           enable = true;
           extraPackages = with pkgs; [

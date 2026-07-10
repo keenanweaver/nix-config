@@ -2,7 +2,6 @@
   lib,
   config,
   username,
-  inputs,
   ...
 }:
 let
@@ -27,48 +26,6 @@ in
       { config, pkgs, ... }:
       {
         home = {
-          file = {
-            proton-links-kron4ek-bottles = {
-              enable = false;
-              source = inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.wine-tkg;
-              target = "${config.xdg.dataHome}/bottles/runners/kron4ek-nix";
-            };
-            proton-links-kron4ek-bottles-flatpak = {
-              enable = false;
-              source = inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.wine-tkg;
-              target = ".var/app/com.usebottles.bottles/data/bottles/runners/kron4ek-nix";
-            };
-            proton-links-proton-cachyos-bottles = {
-              enable = cfg.enableNative;
-              source = inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos.steamcompattool;
-              target = "${config.xdg.dataHome}/bottles/runners/proton-cachyos-nix";
-            };
-            proton-links-proton-cachyos-flatpak-bottles = {
-              enable = cfg.enableFlatpak;
-              source = inputs.nix-gaming-edge.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos.steamcompattool;
-              target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-cachyos-nix";
-            };
-            proton-links-proton-dw-bottles = {
-              enable = cfg.enableNative;
-              source = pkgs.proton-dw.steamcompattool;
-              target = "${config.xdg.dataHome}/bottles/runners/proton-dw-nix";
-            };
-            proton-links-proton-dw-flatpak-bottles = {
-              enable = cfg.enableFlatpak;
-              source = pkgs.proton-dw.steamcompattool;
-              target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-dw-nix";
-            };
-            proton-links-proton-em-bottles = {
-              enable = cfg.enableNative;
-              source = pkgs.proton-em.steamcompattool;
-              target = "${config.xdg.dataHome}/bottles/runners/proton-em-nix";
-            };
-            proton-links-proton-em-flatpak-bottles = {
-              enable = cfg.enableFlatpak;
-              source = pkgs.proton-em.steamcompattool;
-              target = ".var/app/com.usebottles.bottles/data/bottles/runners/proton-em-nix";
-            };
-          };
           packages = lib.mkIf cfg.enableNative [
             (pkgs.bottles.override {
               removeWarningPopup = true;
