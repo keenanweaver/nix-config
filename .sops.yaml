@@ -1,0 +1,23 @@
+keys:
+  - &keenan_gpg 4E4D81FE21BAC3265B2673320926B70C6A27AAE1
+  - &keenan_age age19dxm6ftw2mp5l8te3zhwu722j8set5qz65j3wrs59xf7rhqnqgtqjamchk
+  - &nixos-desktop age1xjulq2q0elr39xll5fu8hlfzkf8wp3ptenxwlyewskmfeel2pe8sly3xcd
+  - &nixos-htpc age1x670f3k6s6q0ee2t9t7m5eh2x6kuhl8gyw6m3k9z6u2pn0qud99qn54n4n
+  - &nixos-laptop age1r9ctdxpk2t890sx7spekvyu6r2yjhjsqn6hme9e0t3vdxdhvgdcs0swehg
+
+creation_rules:
+  - path_regex: modules/sops/secrets/nixos\.yaml$
+    key_groups:
+      - pgp:
+          - *keenan_gpg
+        age:
+          - *nixos-desktop
+          - *nixos-htpc
+          - *nixos-laptop
+
+  - path_regex: modules/sops/secrets/keenan\.yaml$
+    key_groups:
+      - pgp:
+          - *keenan_gpg
+        age:
+          - *keenan_age

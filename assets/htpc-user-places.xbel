@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xbel>
+<xbel xmlns:bookmark="http://www.freedesktop.org/standards/desktop-bookmarks" xmlns:kdepriv="http://www.kde.org/kdepriv" xmlns:mime="http://www.freedesktop.org/standards/shared-mime-info">
+ <info>
+  <metadata owner="http://www.kde.org">
+   <kde_places_version>4</kde_places_version>
+   <GroupState-Places-IsHidden>false</GroupState-Places-IsHidden>
+   <GroupState-Remote-IsHidden>true</GroupState-Remote-IsHidden>
+   <GroupState-Devices-IsHidden>false</GroupState-Devices-IsHidden>
+   <GroupState-RemovableDevices-IsHidden>false</GroupState-RemovableDevices-IsHidden>
+   <GroupState-Tags-IsHidden>false</GroupState-Tags-IsHidden>
+   <withRecentlyUsed>true</withRecentlyUsed>
+   <GroupState-RecentlySaved-IsHidden>true</GroupState-RecentlySaved-IsHidden>
+  </metadata>
+ </info>
+ <bookmark href="file:///home/keenan">
+  <title>Home</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="user-home"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1784397947/0</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/keenan/Desktop">
+  <title>Desktop</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="user-desktop"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1784397947/1</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/keenan/Documents">
+  <title>Documents</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-documents"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1784397947/2</ID>
+    <isSystemItem>true</isSystemItem>
+    <IsHidden>true</IsHidden>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/keenan/Downloads">
+  <title>Downloads</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-downloads"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1784397947/3</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///mnt/crusader">
+  <title>Crusader</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="network-server-symbolic"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1784407426/0</ID>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/keenan/Music">
+  <title>Music</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-music"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1784397947/6</ID>
+    <isSystemItem>true</isSystemItem>
+    <IsHidden>true</IsHidden>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/keenan/Pictures">
+  <title>Pictures</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-pictures"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1784397947/7</ID>
+    <isSystemItem>true</isSystemItem>
+    <IsHidden>true</IsHidden>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="file:///home/keenan/Videos">
+  <title>Videos</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-videos"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1784397947/8</ID>
+    <isSystemItem>true</isSystemItem>
+    <IsHidden>true</IsHidden>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="remote:/">
+  <title>Network</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-network"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1784397947/4</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="trash:/">
+  <title>Trash</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="user-trash"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1784397947/5</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="recentlyused:/files">
+  <title>Recent Files</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="document-open-recent"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1784397947/9</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <bookmark href="recentlyused:/locations">
+  <title>Recent Locations</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-open-recent"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1784397947/10</ID>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </bookmark>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/kde/fstab/crusader:/mnt/user/Life:/mnt/crusader/Life</UDI>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/kde/fstab/crusader:/mnt/user/Backup:/mnt/crusader/Backup</UDI>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/kde/fstab/crusader:/mnt/user/Games:/mnt/crusader/Games</UDI>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/kde/fstab/crusader:/mnt/user/Downloads:/mnt/crusader/Downloads</UDI>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/kde/fstab/crusader:/mnt/user/Projects:/mnt/crusader/Projects</UDI>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/kde/fstab/crusader:/mnt/user/Photos:/mnt/crusader/Photos</UDI>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/kde/fstab/crusader:/mnt/user/Media:/mnt/crusader/Media</UDI>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/kde/fstab/crusader:/mnt/user/Miscellaneous:/mnt/crusader/Miscellaneous</UDI>
+    <isSystemItem>true</isSystemItem>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/nvme0n1p1</UDI>
+    <isSystemItem>true</isSystemItem>
+    <uuid>f4aee09a-9f7f-459d-96ac-5cee30d20a7f</uuid>
+   </metadata>
+  </info>
+ </separator>
+ <separator>
+  <info>
+   <metadata owner="http://www.kde.org">
+    <UDI>/org/freedesktop/UDisks2/block_devices/sda2</UDI>
+    <isSystemItem>true</isSystemItem>
+    <uuid>ce8a8ad2-af63-4812-9c6f-dba34a95fdd0</uuid>
+   </metadata>
+  </info>
+ </separator>
+</xbel>

@@ -1,40 +1,35 @@
 {
-  lib,
-  config,
-  username,
-  ...
-}:
-let
-  cfg = config.server;
-in
-{
-  imports = [ ./base.nix ];
-
-  options = {
-    server = {
-      enable = lib.mkEnableOption "Enable server in NixOS";
-    };
+  flake.modules.homeManager.server-profile = { inputs, ... }: {
+    imports = [
+      inputs.nix-podman-stacks.homeModules.nps
+      inputs.quadlet-nix.homeManagerModules.quadlet
+    ];
   };
-  config = lib.mkIf cfg.enable {
-    # Custom modules
-    base.enable = true;
-    catppuccinTheming.enable = lib.mkForce false;
+  flake.modules.nixos.server-profile = { config, inputs, ... }: {
+    imports = [
+      inputs.quadlet-nix.nixosModules.quadlet
+    ];
 
-    # Server tweaks
-    boxxy.enable = lib.mkForce false;
-    direnv.enable = lib.mkForce false;
-    distrobox.enable = lib.mkForce false;
-    keyd.enable = lib.mkForce false;
-    mullvad.enable = lib.mkForce false;
-    office.enable = lib.mkForce false;
-    pipewire.enable = lib.mkForce false;
-    tailscale.enable = lib.mkForce false;
+    # https://tarow.github.io/nix-podman-stacks/docs/getting-started.html#%E2%9A%99%EF%B8%8F-prerequisites
+    boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0;
 
-    users.users.${username} = {
+    users.users.${config.my.user} = {
       autoSubUidGidRange = true;
       linger = true;
     };
 
-    home-manager.users.${username} = { };
+    virtualisation.quadlet = {
+      enable = true;
+      autoUpdate.enable = true;
+    };
+  };
+  flake-file.inputs = {
+    nix-podman-stacks = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Tarow/nix-podman-stacks";
+    };
+    quadlet-nix = {
+      url = "github:SEIAROTg/quadlet-nix";
+    };
   };
 }

@@ -1,20 +1,7 @@
 {
-  lib,
-  config,
-  username,
-  pkgs,
-  ...
-}:
-let
-  cfg = config.office;
-in
-{
-  options = {
-    office = {
-      enable = lib.mkEnableOption "Enable office in NixOS";
-    };
-  };
-  config = lib.mkIf cfg.enable {
+  flake.modules.nixos.office-profile = { config, pkgs, ... }: {
+    environment.systemPackages = with pkgs; [ libreoffice-qt ];
+
     hardware = {
       printers = {
         # https://reddit.com/r/NixOS/comments/1i76ykt/ive_hit_a_wall_with_printer_drivers_brother/m8ikamx/?context=3#m8ikamx
@@ -25,11 +12,11 @@ in
           in
           [
             {
-              name = "Brother_HL-L2460DW";
               description = "Brother HL-L2460DW";
               deviceUri = "dnssd://Brother%20HL-L2460DW._ipp._tcp.local/?uuid=${uuid}";
-              model = "drv:///brlaser.drv/brl2405.ppd";
               location = "Office";
+              model = "drv:///brlaser.drv/brl2405.ppd";
+              name = "Brother_HL-L2460DW";
             }
           ];
       };
@@ -54,14 +41,9 @@ in
         openFirewall = true;
       };
     };
-    users.users.${username}.extraGroups = [
+    users.users.${config.my.user}.extraGroups = [
       "lp"
       "scanner"
     ];
-    home-manager.users.${username} = {
-      home.packages = with pkgs; [
-        libreoffice-qt
-      ];
-    };
   };
 }
