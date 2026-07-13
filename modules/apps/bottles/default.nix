@@ -46,9 +46,6 @@ in
                   "${config.xdg.dataHome}/Steam"
                 ];
               };
-              Environment = {
-                PROTON_FSR4_RDNA3_UPGRADE = "1";
-              };
               "Session Bus Policy" = {
                 "org.freedesktop.Flatpak" = "talk";
               };

@@ -38,7 +38,6 @@ in
           PIPEWIRE_NODE = "Game";
           PULSE_SINK = "Game";
           PROTON_ENABLE_WAYLAND = true;
-          PROTON_FSR4_RDNA3_UPGRADE = true;
         };
         # https://github.com/NixOS/nixpkgs/issues/279893#issuecomment-2425213386
         extraProfile = ''
