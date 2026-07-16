@@ -45,7 +45,7 @@ in
           enableDefaultConfig = false;
           settings = {
             "*" = {
-              addKeysToAgent = "yes";
+              addKeysToAgent = "no";
             };
             bazzite = {
               hostname = "bazzite";
@@ -63,8 +63,9 @@ in
               hostname = "nixos-desktop";
               port = 6777;
             };
-            bazzite-htpc = {
-              hostname = "bazzite-htpc";
+            nixos-htpc = {
+              hostname = "nixos-htpc";
+              port = 6777;
             };
             nixos-laptop = {
               hostname = "nixos-laptop";

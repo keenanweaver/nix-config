@@ -136,6 +136,13 @@
         };
         settings = {
           output_name = 1;
+          system_tray = false;
+          csrf_allowed_origins = builtins.concatStringsSep "," [
+            "https://10.20.20.5:47990"
+            "https://nixos-desktop:47990"
+            "https://100.99.122.5:47990"
+            "https://nixos-desktop.tailffbf85.ts.net:47990"
+          ];
         };
       };
     home-manager.users.${username} = {
