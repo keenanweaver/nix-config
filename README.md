@@ -1,5 +1,7 @@
 # Keenan's NixOS Config
 
+<img src="https://github.com/user-attachments/assets/29c276e4-7192-48e5-80eb-4f5189828b07">
+
 Flake-based NixOS configuration for my machines, built on the
 **dendritic pattern** ([flake-parts](https://flake.parts) +
 [import-tree](https://github.com/vic/import-tree) +
