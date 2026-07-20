@@ -69,37 +69,6 @@
                       ];
                     };
                   };
-                  "Left 4 Dead 2" = {
-                    id = 550;
-                    launchOptions = {
-                      args = [
-                        "-novid"
-                        "-vulkan"
-                      ];
-                      env = {
-                        STEAM_COMPAT_RUNTIME_SDL3 = true;
-                      };
-                    };
-                  };
-                  "Natural Selection 2" = {
-                    compatTool = config.programs.steam.config.defaultCompatTool;
-                    id = 4920;
-                  };
-                  "Quake Champions" = {
-                    id = 611500;
-                    launchOptions = {
-                      env = {
-                        LOW_LATENCY_LAYER_REFLEX = true;
-                        LOW_LATENCY_LAYER_SPOOF_NVIDIA = true;
-                        # low-latency-layer
-                        MANGOHUD_CONFIG = "read_cfg,fps_limit=0"; # https://github.com/Korthos-Software/low_latency_layer/issues/3#issuecomment-4504312483
-                        PROTON_FORCE_NVAPI = true;
-                      };
-                      preHook = ''
-                        ${lib.getExe lowlatency}
-                      '';
-                    };
-                  };
                   "Quake Live" = {
                     id = 282440;
                     launchOptions = {
@@ -151,13 +120,8 @@
                     };
                   };
                   "Teardown" = {
+                    compatTool = config.programs.steam.config.defaultCompatTool;
                     id = 1167630;
-                    launchOptions = {
-                      env = {
-                        MESA_LOADER_DRIVER_OVERRIDE = lib.mkForce false; # Zink and MangoHud do not mix for some reason
-                        PROTON_ENABLE_WAYLAND = lib.mkForce false; # Game crashes after splash screens with Wayland
-                      };
-                    };
                   };
                 };
             defaultCompatTool = lib.mkForce defaultProton;
