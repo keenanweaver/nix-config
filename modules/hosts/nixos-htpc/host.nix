@@ -14,11 +14,11 @@
       obs
     ];
 
-    fileSystems."/home/${config.my.user}/Games" = {
+    fileSystems."/mnt/Games" = {
       options = [
         "compress=zstd:3"
+        "nofail"
       ];
-      depends = [ "/home" ];
       device = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S73WNJ0TB09290J-part1";
       fsType = "btrfs";
     };
@@ -40,5 +40,10 @@
     networking.hostName = "nixos-htpc";
 
     system.stateVersion = "26.05";
+
+    systemd.tmpfiles.rules = [
+      "d /mnt/Games 0755 ${config.my.user} users - -"
+      "L+ /home/${config.my.user}/Games - - - - /mnt/Games"
+    ];
   };
 }
