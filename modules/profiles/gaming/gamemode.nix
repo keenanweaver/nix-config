@@ -58,7 +58,7 @@
                     scxctl restore
 
                     notify-send -t 3000 -u low "GameMode" \
-                      "GameMode stopped<br>Enabling Night Light<br>Enabling scx_pandemonium" \
+                      "GameMode stopped<br>Enabling Night Light<br>Enabling ${config.services.scx-loader.config.default_sched}" \
                       -i ${icon} -a "GameMode"
 
                     if [ "$(qdbus org.kde.KWin /org/kde/KWin/NightLight org.kde.KWin.NightLight.running)" = "false" ]; then
