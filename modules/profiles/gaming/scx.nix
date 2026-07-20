@@ -14,7 +14,6 @@
 
     services.scx-loader = {
       config = {
-        default_sched = "scx_lavd";
         scheds = {
           scx_cake = {
             gaming_mode = [
