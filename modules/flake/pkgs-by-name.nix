@@ -16,5 +16,5 @@ in
   };
   flake.overlays.local = overlay;
   flake-file.inputs.pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
-  perSystem.pkgsDirectory = ../packages;
+  perSystem.pkgsDirectory = ../../packages;
 }
