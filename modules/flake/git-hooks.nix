@@ -13,6 +13,7 @@
       check-added-large-files.enable = true;
       check-case-conflicts.enable = true;
       check-merge-conflicts.enable = true;
+      check-shebang-scripts-are-executable.enable = false;
       deadnix.enable = true;
       detect-private-keys.enable = true;
       editorconfig-checker = {
@@ -21,6 +22,10 @@
           "facter\\.json$"
         ];
       };
+      end-of-file-fixer.enable = true;
+      fix-byte-order-marker.enable = true;
+      flake-checker.enable = true;
+      forbid-new-submodules.enable = true;
       just-fmt = {
         enable = true;
         entry = "${lib.getExe pkgs.just} --fmt --unstable";
@@ -29,6 +34,7 @@
         pass_filenames = false;
       };
       mdformat.enable = true;
+      mixed-line-endings.enable = true;
       nixfmt.enable = true;
       pedantix.enable = true;
       ripsecrets = {
@@ -43,6 +49,7 @@
         enable = true;
         excludes = [ "^.direnv/" ];
       };
+      trim-trailing-whitespace.enable = true;
     };
   };
 }
