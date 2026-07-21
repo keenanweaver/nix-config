@@ -46,7 +46,7 @@
                     scx-loader
                   ];
                   text = ''
-                    scxctl restore
+                    scxctl stop
 
                     notify-send -t 3000 -u low "GameMode" \
                       "GameMode stopped<br>Enabling Night Light" \
@@ -69,7 +69,7 @@
                   ];
                   text = ''
                     if [[ "$(scxctl get 2>/dev/null)" != *"Cake in LowLatency"* ]]; then
-                      scxctl switch --sched scx_cake --mode gaming
+                      scxctl start --sched scx_cake --mode gaming
                     fi
 
                     notify-send -t 3000 -u low "GameMode" \

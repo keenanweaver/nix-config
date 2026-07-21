@@ -25,7 +25,7 @@
                 scx-loader
               ];
               text = ''
-                scxctl switch --sched scx_cake --mode lowlatency
+                scxctl start --sched scx_cake --mode lowlatency
               '';
             };
           in
