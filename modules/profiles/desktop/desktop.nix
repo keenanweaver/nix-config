@@ -14,18 +14,15 @@
 
         kde
       ];
-
       environment.sessionVariables = {
         NIXOS_OZONE_WL = "1"; # Electron apps
       };
-
       hardware = {
         graphics = {
           enable = true;
           enable32Bit = true;
         };
       };
-
       nix = {
         settings = {
           extra-substituters = [
@@ -38,7 +35,6 @@
           ];
         };
       };
-
       programs = {
         appimage = {
           enable = true;
@@ -46,7 +42,6 @@
         };
         ydotool.enable = true;
       };
-
       services = {
         btrfs = {
           autoScrub = {
@@ -71,7 +66,6 @@
         };
         ucodenix.enable = true;
       };
-
       xdg.mime =
         let
           audioPlayer = "org.fooyin.fooyin.desktop";

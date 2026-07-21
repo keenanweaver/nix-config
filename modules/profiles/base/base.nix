@@ -5,7 +5,6 @@
       imports = with self.modules.homeManager; [
         catppuccin
       ];
-
       home = {
         language = {
           base = "en_US.UTF-8";
@@ -35,11 +34,8 @@
 
         catppuccin
       ];
-
       console.earlySetup = true;
-
       documentation.man.cache.enable = true;
-
       environment = {
         homeBinInPath = true;
         localBinInPath = true;
@@ -49,9 +45,7 @@
         ];
         stub-ld.enable = true;
       };
-
       i18n.defaultLocale = "en_US.UTF-8";
-
       nixpkgs.config = {
         permittedInsecurePackages = [
           "electron-40.10.5" # ?
@@ -60,13 +54,11 @@
           "pnpm-9.15.9" # Decky Loader
         ];
       };
-
       programs = {
         iotop = {
           enable = true;
         };
       };
-
       services = {
         earlyoom = {
           enable = true;
@@ -79,14 +71,12 @@
         };
         logrotate.enable = true;
       };
-
       systemd = {
         settings.Manager = {
           DefaultTimeoutStartSec = "15s";
           DefaultTimeoutStopSec = "10s";
         };
       };
-
       time.timeZone = "America/Chicago";
     };
   };

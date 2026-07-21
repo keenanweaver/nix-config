@@ -11,7 +11,6 @@
       };
     nixos.base-profile = { inputs, self, ... }: {
       imports = [ inputs.home-manager.nixosModules.home-manager ];
-
       home-manager = {
         backupFileExtension = "hm.bak";
         extraSpecialArgs = { inherit inputs self; };

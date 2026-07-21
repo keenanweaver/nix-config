@@ -295,24 +295,26 @@
           ];
         };
       };
-    nixos.gaming-profile = { inputs, ... }: {
-      nixpkgs.overlays = [
-        (final: prev: {
-          mangohud =
-            inputs.chaotic.legacyPackages.${final.stdenv.hostPlatform.system}.mangohud_git.overrideAttrs
-              (
-                _finalAttrs: prevAttrs: {
-                  patches = prevAttrs.patches ++ [
-                    (prev.fetchpatch {
-                      hash = "sha256-4JErvglfYSJQMBwf5BewtkNHYyUOiNoXqMb+d6d6UE0=";
-                      # X3D Cores https://github.com/flightlessmango/MangoHud/pull/1984
-                      url = "https://github.com/flightlessmango/MangoHud/pull/1984.patch";
-                    })
-                  ];
-                }
-              );
-        })
-      ];
-    };
+    /*
+      nixos.gaming-profile = { inputs, ... }: {
+         nixpkgs.overlays = [
+           (final: prev: {
+             mangohud =
+               inputs.chaotic.legacyPackages.${final.stdenv.hostPlatform.system}.mangohud_git.overrideAttrs
+                 (
+                   _finalAttrs: prevAttrs: {
+                     patches = prevAttrs.patches ++ [
+                       (prev.fetchpatch {
+                         hash = "sha256-4JErvglfYSJQMBwf5BewtkNHYyUOiNoXqMb+d6d6UE0=";
+                         # X3D Cores https://github.com/flightlessmango/MangoHud/pull/1984
+                         url = "https://github.com/flightlessmango/MangoHud/pull/1984.patch";
+                       })
+                     ];
+                   }
+                 );
+           })
+         ];
+       };
+    */
   };
 }

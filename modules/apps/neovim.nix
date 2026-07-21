@@ -10,7 +10,6 @@
       imports = [
         inputs.lazyvim.homeManagerModules.default
       ];
-
       home.sessionVariables = {
         EDITOR = lib.mkForce "nvim";
       };
@@ -103,7 +102,6 @@
       imports = [
         inputs.nvf.homeManagerModules.default
       ];
-
       home.sessionVariables = {
         EDITOR = lib.mkForce "nvim";
       };

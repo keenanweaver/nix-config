@@ -18,9 +18,7 @@
         base-profile
         pi-profile
       ];
-
       home.packages = with pkgs; [ lgogdownloader ];
-
       nps.stacks = {
         homeassistant.enable = true;
       };

@@ -28,7 +28,6 @@ in
       }
     );
   };
-
   config.flake.homeConfigurations = mapAttrs (
     _name:
     { module, system }:

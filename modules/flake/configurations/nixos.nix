@@ -29,7 +29,6 @@ in
       }
     );
   };
-
   config.flake = {
     checks = mkMerge (
       mapAttrsToList (name: nixos: {

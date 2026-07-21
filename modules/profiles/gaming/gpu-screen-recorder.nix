@@ -36,7 +36,6 @@
           };
         };
       };
-
       config = lib.mkIf cfg.enable (
         lib.mkMerge [
           {

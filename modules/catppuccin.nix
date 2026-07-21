@@ -36,7 +36,6 @@ in
           inputs.nvf.homeManagerModules.default
           inputs.plasma-manager.homeModules.plasma-manager
         ];
-
         catppuccin = {
           enable = true;
           accent = "${accent-lower}";
@@ -63,13 +62,11 @@ in
             accent = "${accent-lower}";
           };
         };
-
         dconf.settings = {
           "org/gnome/desktop/interface" = {
             color-scheme = "prefer-dark";
           };
         };
-
         gtk = {
           enable = true;
           cursorTheme = {
@@ -116,7 +113,6 @@ in
             };
           };
         };
-
         home = {
           file = {
             catppuccin-ghostwriter = {
@@ -499,9 +495,7 @@ in
           "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
         ];
       };
-
       programs.dconf.enable = true;
-
       services = {
         displayManager = {
           sddm = {
