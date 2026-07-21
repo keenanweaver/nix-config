@@ -30,7 +30,7 @@
         subpixel.rgba = "rgb";
       };
       packages = with pkgs; [
-        inter
+        local.inter
         liberation_ttf
         maple-mono.Normal-NF
         material-design-icons
