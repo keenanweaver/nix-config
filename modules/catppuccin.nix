@@ -27,7 +27,7 @@ in
         ...
       }:
       let
-        sans-font-pkg = pkgs.inter;
+        sans-font-pkg = pkgs.local.inter;
         wallpaper = mkWallpaper pkgs;
       in
       {
