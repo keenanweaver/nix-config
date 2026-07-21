@@ -23,7 +23,6 @@ eval:
 fix:
     statix fix .
     deadnix --edit .
-    pedantix
     nix fmt
     just --fmt --unstable
     mdformat .

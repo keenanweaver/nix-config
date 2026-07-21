@@ -2,186 +2,188 @@
 # Use `nix run .#write-flake` to regenerate it.
 {
   description = "Keenan's NixOS configuration";
+
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+
   inputs = {
     aaru = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Whovian9369/aaru-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
     catppuccin-ghostwriter = {
-      flake = false;
       url = "github:catppuccin/ghostwriter";
+      flake = false;
     };
     catppuccin-heroic = {
-      flake = false;
       url = "github:catppuccin/heroic";
+      flake = false;
     };
     catppuccin-konsole = {
-      flake = false;
       url = "github:catppuccin/konsole";
+      flake = false;
     };
     catppuccin-obs = {
-      flake = false;
       url = "github:catppuccin/obs";
+      flake = false;
     };
     catppuccin-powershell = {
-      flake = false;
       url = "github:catppuccin/powershell";
+      flake = false;
     };
     catppuccin-xresources = {
-      flake = false;
       url = "github:catppuccin/xresources";
+      flake = false;
     };
     catppuccin-zen = {
-      flake = false;
       url = "github:catppuccin/zen-browser";
+      flake = false;
     };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     disko = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-file.url = "github:vic/flake-file";
     flake-parts = {
-      inputs.nixpkgs-lib.follows = "nixpkgs-lib";
       url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs-lib";
     };
     git-hooks-nix = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     hjem = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:feel-co/hjem";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     import-tree.url = "github:vic/import-tree";
     jovian = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Jovian-Experiments/Jovian-NixOS";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     just-one-more-repo = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:ProverbialPennance/just-one-more-repo";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     kwin-effects-glass = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:4v3ngR/kwin-effects-glass";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     kwin-effects-kinetic = {
-      flake = false;
       url = "github:gurrgur/kwin-effects-kinetic";
+      flake = false;
     };
     lazyvim.url = "github:pfassina/lazyvim-nix";
     llm-agents.url = "github:numtide/llm-agents.nix";
     lsfg-vk-flake = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:pabloaul/lsfg-vk-flake/main";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     niri = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nix-citizen = {
-      inputs.nix-gaming.follows = "nix-gaming";
       url = "github:LovingMelody/nix-citizen";
+      inputs.nix-gaming.follows = "nix-gaming";
     };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nix-game-preservation = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Whovian9369/nix-game-preservation";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-gaming = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-gaming-edge = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:powerofthe69/nix-gaming-edge/nightly";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-database = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-podman-stacks = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Tarow/nix-podman-stacks";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-reshade = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:LovingMelody/nix-reshade";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-vscode-extensions = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-lib.follows = "nixpkgs";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     noctalia-greeter = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nonfree = {
-      flake = false;
       url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
+      flake = false;
     };
     nur = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nur-bandithedoge = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:bandithedoge/nur-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nvf = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     openmw-nix = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     pedantix.url = "github:swarsel/pedantix";
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     plasma-manager = {
+      url = "github:nix-community/plasma-manager";
       inputs = {
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
       };
-      url = "github:nix-community/plasma-manager";
     };
     preservation.url = "github:nix-community/preservation";
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
     rom-properties = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Whovian9369/rom-properties-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     simracing-hwdb = {
-      flake = false;
       url = "github:JacKeTUs/simracing-hwdb";
+      flake = false;
     };
     sops-nix = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     steam-config-nix = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:different-name/steam-config-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     systems.url = "github:nix-systems/default-linux";
     ucodenix.url = "github:e-tho/ucodenix";
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
     wayland-pipewire-idle-inhibit = {
-      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
   };
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

@@ -1,7 +1,7 @@
 {
   lib,
-  stdenvNoCC,
   fetchzip,
+  stdenvNoCC,
   withOTF ? true,
   withTTF ? false,
 }:
@@ -12,8 +12,8 @@ stdenvNoCC.mkDerivation rec {
 
   src = fetchzip {
     url = "https://github.com/rsms/inter/releases/download/v${version}/Inter-${version}.zip";
-    stripRoot = false;
     hash = "sha256-5vdKKvHAeZi6igrfpbOdhZlDX2/5+UvzlnCQV6DdqoQ=";
+    stripRoot = false;
   };
 
   installPhase = ''
@@ -33,10 +33,10 @@ stdenvNoCC.mkDerivation rec {
   '';
 
   meta = with lib; {
-    homepage = "https://rsms.me/inter/";
     description = "Typeface specially designed for user interfaces";
+    homepage = "https://rsms.me/inter/";
     license = licenses.ofl;
-    platforms = platforms.all;
     maintainers = with maintainers; [ demize ];
+    platforms = platforms.all;
   };
 }

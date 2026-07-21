@@ -28,8 +28,8 @@ stdenv.mkDerivation (finalAttrs: {
     description = "P2P network that offers LAN-based gaming for classic consoles";
     homepage = "https://www.teamxlink.co.uk/";
     license = lib.licenses.unfree;
-    platforms = [ "x86_64-linux" ];
     maintainers = with lib.maintainers; [ keenanweaver ];
+    platforms = [ "x86_64-linux" ];
     mainProgram = "kaiengine";
   };
 })

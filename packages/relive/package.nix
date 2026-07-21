@@ -1,22 +1,21 @@
 {
   lib,
-  fetchFromGitHub,
   stdenv,
+  fetchFromGitHub,
+  SDL2,
   cmake,
   fluidsynth,
   glew,
-  zenity,
   libX11,
-  libXrandr,
-  libXinerama,
   libXext,
-  SDL2,
+  libXinerama,
+  libXrandr,
+  zenity,
 }:
 
 stdenv.mkDerivation {
   pname = "relive";
   version = "1.0.9-unstable-05-29-2025";
-
   src = fetchFromGitHub {
     owner = "AliveTeam";
     repo = "alive_reversing";
@@ -24,11 +23,16 @@ stdenv.mkDerivation {
     hash = "sha256-w/mpu9bE+jHbRDyE5Oy47EDQd/FXfwjXqndSBe7XKC4=";
     fetchSubmodules = true;
   };
-
+  postPatch = ''
+    substituteInPlace assets/relive-ao assets/relive-ae \
+      --replace-fail "zenity" "${lib.getExe' zenity "zenity"}" \
+      --replace-fail "  relive" "  $out/bin/relive"
+    substituteInPlace assets/relive-ao.desktop assets/relive-ae.desktop \
+      --replace-fail "/usr/bin" "$out/bin"
+  '';
   nativeBuildInputs = [
     cmake
   ];
-
   buildInputs = [
     fluidsynth
     glew
@@ -39,23 +43,14 @@ stdenv.mkDerivation {
     SDL2
     zenity
   ];
-
-  postPatch = ''
-    substituteInPlace assets/relive-ao assets/relive-ae \
-      --replace-fail "zenity" "${lib.getExe' zenity "zenity"}" \
-      --replace-fail "  relive" "  $out/bin/relive"
-    substituteInPlace assets/relive-ao.desktop assets/relive-ae.desktop \
-      --replace-fail "/usr/bin" "$out/bin"
-  '';
-
   meta = {
     description = "Re-implementation of Oddworld: Abe's Exoddus and Oddworld: Abe's Oddysee";
     homepage = "https://github.com/AliveTeam/alive_reversing";
+    license = lib.licenses.mit;
     maintainers = with lib.maintainers; [
       ByteSudoer
       keenanweaver
     ];
-    license = lib.licenses.mit;
     mainProgram = "relive";
   };
 }

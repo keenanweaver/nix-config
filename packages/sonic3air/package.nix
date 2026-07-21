@@ -1,29 +1,24 @@
 {
   lib,
   stdenv,
-  fetchzip,
-  makeWrapper,
   copyDesktopItems,
+  fetchzip,
   makeDesktopItem,
+  makeWrapper,
   nix-update-script,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "sonic3air";
   version = "26.03.28.0";
-
   src = fetchzip {
     url = "https://github.com/Eukaryot/sonic3air/releases/download/v${finalAttrs.version}-stable/sonic3air_game.tar.gz";
     hash = "sha256-yJAo7Bb54DBieb0HzOP0II95njzBSFdGpv7el/5izUE=";
   };
-
-  dontBuild = true;
-
   nativeBuildInputs = [
     copyDesktopItems
     makeWrapper
   ];
-
   installPhase = ''
     runHook preInstall
 
@@ -37,20 +32,18 @@ stdenv.mkDerivation (finalAttrs: {
 
     runHook postInstall
   '';
-
   desktopItems = [
     (makeDesktopItem {
-      name = "sonic3air";
+      categories = [ "Game" ];
+      comment = "Sonic 3 Angel Island Revisited – fan-made remaster of Sonic 3 & Knuckles";
+      desktopName = "Sonic 3 A.I.R.";
       exec = "sonic3air";
       icon = "sonic3air";
-      desktopName = "Sonic 3 A.I.R.";
-      comment = "Sonic 3 Angel Island Revisited – fan-made remaster of Sonic 3 & Knuckles";
-      categories = [ "Game" ];
+      name = "sonic3air";
     })
   ];
-
+  dontBuild = true;
   passthru.updateScript = nix-update-script { };
-
   meta = {
     description = "Fan-made remaster of Sonic 3 & Knuckles built on the Oxygen Engine";
     longDescription = ''

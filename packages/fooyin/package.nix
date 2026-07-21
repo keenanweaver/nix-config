@@ -1,44 +1,41 @@
 {
-  stdenv,
   lib,
+  stdenv,
   fetchFromGitHub,
-  cmake,
-  pkg-config,
-  qt6Packages,
-  taglib,
-  ffmpeg,
-  icu,
-  zlib,
-  alsa-lib,
-  pipewire,
   SDL2,
-  kdsingleapplication,
-  libsndfile,
-  libopenmpt,
+  alsa-lib,
+  cmake,
+  ffmpeg,
   game-music-emu,
+  icu,
+  kdsingleapplication,
   libarchive,
   libebur128,
+  libopenmpt,
+  libsndfile,
+  libvgm,
+  nix-update-script,
+  pipewire,
+  pkg-config,
+  qt6Packages,
   soundtouch,
   soxr,
-  libvgm,
+  taglib,
   versionCheckHook,
-  nix-update-script,
+  zlib,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fooyin";
   version = "0.11.1";
-
+  __structuredAttrs = true;
+  strictDeps = true;
   src = fetchFromGitHub {
     owner = "ludouzi";
     repo = "fooyin";
     tag = "v${finalAttrs.version}";
     hash = "sha256-228hxjKkxE0ILzP8dnIS21R3AW9Y0+wutgcYlQdCgXc=";
   };
-
-  __structuredAttrs = true;
-  strictDeps = true;
-
   nativeBuildInputs = [
     cmake
     pkg-config
@@ -46,7 +43,6 @@ stdenv.mkDerivation (finalAttrs: {
     qt6Packages.wrapQtAppsHook
     versionCheckHook
   ];
-
   buildInputs = [
     qt6Packages.qcoro
     qt6Packages.qtbase
@@ -71,29 +67,24 @@ stdenv.mkDerivation (finalAttrs: {
     libopenmpt
     game-music-emu
   ];
-
   cmakeFlags = [
     (lib.cmakeBool "BUILD_TESTING" finalAttrs.finalPackage.doCheck)
     # INSTALL_FHS must be true so build artifacts land in well-known paths;
     # fixupPhase handles the rest
     (lib.cmakeBool "INSTALL_FHS" true)
   ];
-
   env.LANG = "C.UTF-8";
-
   doInstallCheck = true;
-
   passthru.updateScript = nix-update-script { };
-
   meta = {
     description = "Customisable music player";
     homepage = "https://www.fooyin.org/";
     changelog = "https://github.com/fooyin/fooyin/blob/v${finalAttrs.version}/CHANGELOG.md";
-    downloadPage = "https://github.com/fooyin/fooyin/releases";
-    mainProgram = "fooyin";
     license = lib.licenses.gpl3Only;
+    sourceProvenance = with lib.sourceTypes; [ fromSource ];
     maintainers = with lib.maintainers; [ peterhoeg ];
     platforms = lib.platforms.linux;
-    sourceProvenance = with lib.sourceTypes; [ fromSource ];
+    mainProgram = "fooyin";
+    downloadPage = "https://github.com/fooyin/fooyin/releases";
   };
 })
