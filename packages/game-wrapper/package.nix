@@ -2,21 +2,21 @@
 pkgs.writeShellApplication {
   name = "game-wrapper";
   runtimeEnv = {
+    DEFAULT_EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa_git}/share/glvnd/egl_vendor.d/50_mesa.json";
+    DEFAULT_GALLIUM_DRIVER = "zink";
+    DEFAULT_GLX_VENDOR_LIBRARY_NAME = "mesa";
+    DEFAULT_MESA_LOADER = "zink";
     LOW_LATENCY_LAYER = "1";
     OBS_VKCAPTURE = "1";
     PIPEWIRE_NODE = "Game";
     PULSE_SINK = "Game";
-    # zink-run https://wiki.cachyos.org/features/cachyos_settings/#zink-run
-    DEFAULT_MESA_LOADER = "zink";
-    DEFAULT_GALLIUM_DRIVER = "zink";
-    DEFAULT_GLX_VENDOR_LIBRARY_NAME = "mesa";
-    DEFAULT_EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa_git}/share/glvnd/egl_vendor.d/50_mesa.json";
   };
   runtimeInputs = with pkgs; [
     gamemode
     mangohud
     obs-studio-plugins.obs-vkcapture
   ];
+  # zink-run https://wiki.cachyos.org/features/cachyos_settings/#zink-run
   text = ''
     #   zink        - force the zink GL stack + gamemode + mangohud  (default)
     #   obs         - native GL + gamemode + obs-gamecapture + mangohud
