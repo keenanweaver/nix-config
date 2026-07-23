@@ -6,11 +6,11 @@
         containers.runtime = "podman";
         misc = {
           assume_yes = true;
-          cleanup = true;
           disable = [
             "claude_code"
             "helix"
             "home_manager"
+            "nix"
             "vim"
             "vscodium"
           ];
