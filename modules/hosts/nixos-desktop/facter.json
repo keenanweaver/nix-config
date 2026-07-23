@@ -129,7 +129,7 @@
         "module_alias": "usb:v0E8Dp0717d0100dcEFdsc02dp01icE0isc01ip01in00"
       },
       {
-        "index": 134,
+        "index": 133,
         "attached_to": 123,
         "class_list": [
           "usb",
@@ -231,7 +231,7 @@
         "module_alias": "usb:v0E8Dp0717d0100dcEFdsc02dp01icE0isc01ip01in01"
       },
       {
-        "index": 154,
+        "index": 153,
         "attached_to": 123,
         "class_list": [
           "usb",
@@ -2160,7 +2160,7 @@
         "sysfs_bus_id": "0000:00:08.1",
         "sysfs_iommu_group_id": 9,
         "unix_device_names": [
-          "/dev/input/event7"
+          "/dev/input/event0"
         ],
         "detail": {
           "function": 1,
@@ -3400,6 +3400,7 @@
           "cat_l3",
           "cdp_l3",
           "hw_pstate",
+          "pti",
           "ssbd",
           "mba",
           "perfmon_v2",
@@ -3460,8 +3461,7 @@
           "vgif",
           "x2avic",
           "v_spec_ctrl",
-          "vnmi",
-          "avx"
+          "vnmi"
         ],
         "bugs": [
           "sysret_ss_attrs",
@@ -3505,8 +3505,8 @@
     ],
     "disk": [
       {
-        "index": 106,
-        "attached_to": 95,
+        "index": 107,
+        "attached_to": 63,
         "class_list": [
           "disk",
           "block_device",
@@ -3532,38 +3532,38 @@
           "value": 0
         },
         "vendor": {
-          "hex": "c0a9",
-          "value": 49321
+          "hex": "144d",
+          "value": 5197
         },
         "sub_vendor": {
-          "hex": "c0a9",
-          "value": 49321
+          "hex": "144d",
+          "value": 5197
         },
         "device": {
-          "hex": "5419",
-          "name": "CT2000T700SSD3",
-          "value": 21529
+          "hex": "a80d",
+          "name": "Samsung SSD 990 EVO Plus 4TB",
+          "value": 43021
         },
         "sub_device": {
-          "hex": "2b00",
-          "value": 11008
+          "hex": "a801",
+          "value": 43009
         },
-        "serial": "2413E8A197BB",
-        "model": "CT2000T700SSD3",
+        "serial": "S7U8NJ0Y515050E",
+        "model": "Samsung SSD 990 EVO Plus 4TB",
         "sysfs_id": "/class/block/nvme0n1",
         "sysfs_bus_id": "nvme0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:01.2/0000:04:00.0/nvme/nvme0",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:00.0/0000:07:00.0/nvme/nvme0",
         "unix_device_names": [
-          "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB",
-          "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB_1",
-          "/dev/disk/by-id/nvme-uuid.633b97e2-744e-4140-86ed-dc9beee41d0f",
-          "/dev/disk/by-path/pci-0000:04:00.0-nvme-1",
+          "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U8NJ0Y515050E",
+          "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U8NJ0Y515050E_1",
+          "/dev/disk/by-id/nvme-eui.0025385551415b7c",
+          "/dev/disk/by-path/pci-0000:07:00.0-nvme-1",
           "/dev/nvme0n1"
         ],
         "resources": [
           {
             "type": "disk_geo",
-            "cylinders": 1907729,
+            "cylinders": 3815447,
             "heads": 64,
             "sectors": 32,
             "size": "0x0",
@@ -3572,7 +3572,7 @@
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 3907029168,
+            "value_1": 7814037168,
             "value_2": 512
           }
         ],
@@ -3586,8 +3586,8 @@
         ]
       },
       {
-        "index": 107,
-        "attached_to": 86,
+        "index": 108,
+        "attached_to": 55,
         "class_list": [
           "disk",
           "block_device",
@@ -3621,24 +3621,24 @@
           "value": 5559
         },
         "device": {
-          "hex": "5017",
-          "name": "WD_BLACK SN770 250GB",
-          "value": 20503
+          "hex": "5002",
+          "name": "WDS250G2X0C-00L350",
+          "value": 20482
         },
         "sub_device": {
-          "hex": "5017",
-          "value": 20503
+          "hex": "5002",
+          "value": 20482
         },
-        "serial": "24370T800170",
-        "model": "WD_BLACK SN770 250GB",
+        "serial": "182012421668",
+        "model": "WDS250G2X0C-00L350",
         "sysfs_id": "/class/block/nvme3n1",
         "sysfs_bus_id": "nvme3",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:08.0/0000:0c:00.0/0000:0d:00.0/0000:0e:00.0/nvme/nvme3",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:08.0/0000:0c:00.0/0000:0d:08.0/0000:13:00.0/nvme/nvme3",
         "unix_device_names": [
-          "/dev/disk/by-id/nvme-WD_BLACK_SN770_250GB_24370T800170",
-          "/dev/disk/by-id/nvme-WD_BLACK_SN770_250GB_24370T800170_1",
-          "/dev/disk/by-id/nvme-eui.e8238fa6bf530001001b448b40c1c5ea",
-          "/dev/disk/by-path/pci-0000:0e:00.0-nvme-1",
+          "/dev/disk/by-id/nvme-WDS250G2X0C-00L350_182012421668",
+          "/dev/disk/by-id/nvme-WDS250G2X0C-00L350_182012421668_1",
+          "/dev/disk/by-id/nvme-eui.1820124216680001001b444a444ea979",
+          "/dev/disk/by-path/pci-0000:13:00.0-nvme-1",
           "/dev/nvme3n1"
         ],
         "resources": [
@@ -3667,91 +3667,8 @@
         ]
       },
       {
-        "index": 108,
-        "attached_to": 46,
-        "class_list": [
-          "disk",
-          "usb",
-          "scsi",
-          "block_device"
-        ],
-        "bus_type": {
-          "hex": "0084",
-          "name": "SCSI",
-          "value": 132
-        },
-        "slot": {
-          "bus": 12,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0106",
-          "name": "Mass Storage Device",
-          "value": 262
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Disk",
-          "value": 0
-        },
-        "vendor": {
-          "hex": "154b",
-          "name": "PNY",
-          "value": 5451
-        },
-        "device": {
-          "hex": "1006",
-          "name": "USB 3.2.1 FD",
-          "value": 4102
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "PMAP",
-          "value": 0
-        },
-        "serial": "0C7E25174080",
-        "model": "PNY USB 3.2.1 FD",
-        "sysfs_id": "/class/block/sdb",
-        "sysfs_bus_id": "12:0:0:0",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:08.0/0000:0c:00.0/0000:0d:0c.0/0000:14:00.0/usb2/2-5/2-5:1.0/host12/target12:0:0/12:0:0:0",
-        "unix_device_names": [
-          "/dev/disk/by-id/usb-PNY_USB_3.2.1_FD_072148AE9504CE57-0:0",
-          "/dev/disk/by-path/pci-0000:14:00.0-usb-0:5:1.0-scsi-0:0:0:0",
-          "/dev/disk/by-path/pci-0000:14:00.0-usbv3-0:5:1.0-scsi-0:0:0:0",
-          "/dev/sdb"
-        ],
-        "unix_device_name2": "/dev/sg1",
-        "resources": [
-          {
-            "type": "disk_geo",
-            "cylinders": 15072,
-            "heads": 255,
-            "sectors": 63,
-            "size": "0x0",
-            "geo_type": "logical"
-          },
-          {
-            "type": "size",
-            "unit": "sectors",
-            "value_1": 242147328,
-            "value_2": 512
-          }
-        ],
-        "driver": "usb-storage",
-        "driver_module": "usb_storage",
-        "drivers": [
-          "sd",
-          "usb-storage"
-        ],
-        "driver_modules": [
-          "sd_mod",
-          "usb_storage"
-        ],
-        "module_alias": "usb:v154Bp1006d0110dc00dsc00dp00ic08isc06ip50in00"
-      },
-      {
         "index": 109,
-        "attached_to": 55,
+        "attached_to": 86,
         "class_list": [
           "disk",
           "block_device",
@@ -3785,24 +3702,24 @@
           "value": 5559
         },
         "device": {
-          "hex": "5002",
-          "name": "WDS250G2X0C-00L350",
-          "value": 20482
+          "hex": "5017",
+          "name": "WD_BLACK SN770 250GB",
+          "value": 20503
         },
         "sub_device": {
-          "hex": "5002",
-          "value": 20482
+          "hex": "5017",
+          "value": 20503
         },
-        "serial": "182012421668",
-        "model": "WDS250G2X0C-00L350",
+        "serial": "24370T800170",
+        "model": "WD_BLACK SN770 250GB",
         "sysfs_id": "/class/block/nvme2n1",
         "sysfs_bus_id": "nvme2",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:08.0/0000:0c:00.0/0000:0d:08.0/0000:13:00.0/nvme/nvme2",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:08.0/0000:0c:00.0/0000:0d:00.0/0000:0e:00.0/nvme/nvme2",
         "unix_device_names": [
-          "/dev/disk/by-id/nvme-WDS250G2X0C-00L350_182012421668",
-          "/dev/disk/by-id/nvme-WDS250G2X0C-00L350_182012421668_1",
-          "/dev/disk/by-id/nvme-eui.1820124216680001001b444a444ea979",
-          "/dev/disk/by-path/pci-0000:13:00.0-nvme-1",
+          "/dev/disk/by-id/nvme-WD_BLACK_SN770_250GB_24370T800170",
+          "/dev/disk/by-id/nvme-WD_BLACK_SN770_250GB_24370T800170_1",
+          "/dev/disk/by-id/nvme-eui.e8238fa6bf530001001b448b40c1c5ea",
+          "/dev/disk/by-path/pci-0000:0e:00.0-nvme-1",
           "/dev/nvme2n1"
         ],
         "resources": [
@@ -3832,7 +3749,7 @@
       },
       {
         "index": 110,
-        "attached_to": 63,
+        "attached_to": 95,
         "class_list": [
           "disk",
           "block_device",
@@ -3858,38 +3775,38 @@
           "value": 0
         },
         "vendor": {
-          "hex": "144d",
-          "value": 5197
+          "hex": "c0a9",
+          "value": 49321
         },
         "sub_vendor": {
-          "hex": "144d",
-          "value": 5197
+          "hex": "c0a9",
+          "value": 49321
         },
         "device": {
-          "hex": "a80d",
-          "name": "Samsung SSD 990 EVO Plus 4TB",
-          "value": 43021
+          "hex": "5419",
+          "name": "CT2000T700SSD3",
+          "value": 21529
         },
         "sub_device": {
-          "hex": "a801",
-          "value": 43009
+          "hex": "2b00",
+          "value": 11008
         },
-        "serial": "S7U8NJ0Y515050E",
-        "model": "Samsung SSD 990 EVO Plus 4TB",
+        "serial": "2413E8A197BB",
+        "model": "CT2000T700SSD3",
         "sysfs_id": "/class/block/nvme1n1",
         "sysfs_bus_id": "nvme1",
-        "sysfs_device_link": "/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:00.0/0000:07:00.0/nvme/nvme1",
+        "sysfs_device_link": "/devices/pci0000:00/0000:00:01.2/0000:04:00.0/nvme/nvme1",
         "unix_device_names": [
-          "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U8NJ0Y515050E",
-          "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U8NJ0Y515050E_1",
-          "/dev/disk/by-id/nvme-eui.0025385551415b7c",
-          "/dev/disk/by-path/pci-0000:07:00.0-nvme-1",
+          "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB",
+          "/dev/disk/by-id/nvme-CT2000T700SSD3_2413E8A197BB_1",
+          "/dev/disk/by-id/nvme-uuid.633b97e2-744e-4140-86ed-dc9beee41d0f",
+          "/dev/disk/by-path/pci-0000:04:00.0-nvme-1",
           "/dev/nvme1n1"
         ],
         "resources": [
           {
             "type": "disk_geo",
-            "cylinders": 3815447,
+            "cylinders": 1907729,
             "heads": 64,
             "sectors": 32,
             "size": "0x0",
@@ -3898,7 +3815,7 @@
           {
             "type": "size",
             "unit": "sectors",
-            "value_1": 7814037168,
+            "value_1": 3907029168,
             "value_2": 512
           }
         ],
@@ -4080,7 +3997,7 @@
     "hub": [
       {
         "index": 113,
-        "attached_to": 133,
+        "attached_to": 132,
         "class_list": [
           "usb",
           "hub"
@@ -4178,7 +4095,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.3 xhci-hcd",
+          "name": "Linux 7.1.3-cachyos-lto xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -4192,7 +4109,7 @@
           "value": 0
         },
         "serial": "0000:7a:00.0",
-        "model": "Linux 7.1.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.1.3-cachyos-lto xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.2/0000:18:00.0/0000:19:02.0/0000:7a:00.0/usb6/6-0:1.0",
         "sysfs_bus_id": "6-0:1.0",
         "detail": {
@@ -4234,7 +4151,7 @@
       },
       {
         "index": 121,
-        "attached_to": 143,
+        "attached_to": 142,
         "class_list": [
           "usb",
           "hub"
@@ -4342,7 +4259,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.3 xhci-hcd",
+          "name": "Linux 7.1.3-cachyos-lto xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -4356,7 +4273,7 @@
           "value": 0
         },
         "serial": "0000:16:00.0",
-        "model": "Linux 7.1.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.1.3-cachyos-lto xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:16:00.0/usb3/3-0:1.0",
         "sysfs_bus_id": "3-0:1.0",
         "resources": [
@@ -4407,7 +4324,7 @@
         "module_alias": "usb:v1D6Bp0002d0701dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 126,
+        "index": 125,
         "attached_to": 57,
         "class_list": [
           "usb",
@@ -4429,7 +4346,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.3 xhci-hcd",
+          "name": "Linux 7.1.3-cachyos-lto xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -4443,7 +4360,7 @@
           "value": 0
         },
         "serial": "0000:7c:00.3",
-        "model": "Linux 7.1.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.1.3-cachyos-lto xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:7c:00.3/usb7/7-0:1.0",
         "sysfs_bus_id": "7-0:1.0",
         "resources": [
@@ -4494,7 +4411,7 @@
         "module_alias": "usb:v1D6Bp0002d0701dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 129,
+        "index": 128,
         "attached_to": 91,
         "class_list": [
           "usb",
@@ -4516,7 +4433,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.3 xhci-hcd",
+          "name": "Linux 7.1.3-cachyos-lto xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -4530,7 +4447,7 @@
           "value": 0
         },
         "serial": "0000:7c:00.4",
-        "model": "Linux 7.1.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.1.3-cachyos-lto xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:7c:00.4/usb10/10-0:1.0",
         "sysfs_bus_id": "10-0:1.0",
         "detail": {
@@ -4571,7 +4488,7 @@
         "module_alias": "usb:v1D6Bp0003d0701dc09dsc00dp03ic09isc00ip00in00"
       },
       {
-        "index": 132,
+        "index": 131,
         "attached_to": 121,
         "class_list": [
           "usb",
@@ -4658,8 +4575,8 @@
         "module_alias": "usb:v2109p2817d0794dc09dsc00dp02ic09isc00ip02in00"
       },
       {
-        "index": 133,
-        "attached_to": 155,
+        "index": 132,
+        "attached_to": 154,
         "class_list": [
           "usb",
           "hub"
@@ -4735,7 +4652,7 @@
         "module_alias": "usb:v2109p0817d0783dc09dsc00dp03ic09isc00ip00in00"
       },
       {
-        "index": 135,
+        "index": 134,
         "attached_to": 94,
         "class_list": [
           "usb",
@@ -4757,7 +4674,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.3 xhci-hcd",
+          "name": "Linux 7.1.3-cachyos-lto xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -4771,7 +4688,7 @@
           "value": 0
         },
         "serial": "0000:16:00.0",
-        "model": "Linux 7.1.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.1.3-cachyos-lto xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:16:00.0/usb4/4-0:1.0",
         "sysfs_bus_id": "4-0:1.0",
         "detail": {
@@ -4812,7 +4729,7 @@
         "module_alias": "usb:v1D6Bp0003d0701dc09dsc00dp03ic09isc00ip00in00"
       },
       {
-        "index": 139,
+        "index": 138,
         "attached_to": 57,
         "class_list": [
           "usb",
@@ -4834,7 +4751,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.3 xhci-hcd",
+          "name": "Linux 7.1.3-cachyos-lto xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -4848,7 +4765,7 @@
           "value": 0
         },
         "serial": "0000:7c:00.3",
-        "model": "Linux 7.1.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.1.3-cachyos-lto xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:7c:00.3/usb8/8-0:1.0",
         "sysfs_bus_id": "8-0:1.0",
         "detail": {
@@ -4889,7 +4806,7 @@
         "module_alias": "usb:v1D6Bp0003d0701dc09dsc00dp03ic09isc00ip00in00"
       },
       {
-        "index": 143,
+        "index": 142,
         "attached_to": 46,
         "class_list": [
           "usb",
@@ -4911,7 +4828,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.3 xhci-hcd",
+          "name": "Linux 7.1.3-cachyos-lto xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -4925,7 +4842,7 @@
           "value": 0
         },
         "serial": "0000:14:00.0",
-        "model": "Linux 7.1.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.1.3-cachyos-lto xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:08.0/0000:0c:00.0/0000:0d:0c.0/0000:14:00.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -4976,7 +4893,7 @@
         "module_alias": "usb:v1D6Bp0002d0701dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 144,
+        "index": 143,
         "attached_to": 93,
         "class_list": [
           "usb",
@@ -4998,7 +4915,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.3 xhci-hcd",
+          "name": "Linux 7.1.3-cachyos-lto xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -5012,7 +4929,7 @@
           "value": 0
         },
         "serial": "0000:7d:00.0",
-        "model": "Linux 7.1.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.1.3-cachyos-lto xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.3/0000:7d:00.0/usb11/11-0:1.0",
         "sysfs_bus_id": "11-0:1.0",
         "resources": [
@@ -5063,7 +4980,7 @@
         "module_alias": "usb:v1D6Bp0002d0701dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 146,
+        "index": 145,
         "attached_to": 54,
         "class_list": [
           "usb",
@@ -5085,7 +5002,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.3 xhci-hcd",
+          "name": "Linux 7.1.3-cachyos-lto xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -5099,7 +5016,7 @@
           "value": 0
         },
         "serial": "0000:7a:00.0",
-        "model": "Linux 7.1.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.1.3-cachyos-lto xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.2/0000:18:00.0/0000:19:02.0/0000:7a:00.0/usb5/5-0:1.0",
         "sysfs_bus_id": "5-0:1.0",
         "resources": [
@@ -5150,7 +5067,7 @@
         "module_alias": "usb:v1D6Bp0002d0701dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 149,
+        "index": 148,
         "attached_to": 91,
         "class_list": [
           "usb",
@@ -5172,7 +5089,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.3 xhci-hcd",
+          "name": "Linux 7.1.3-cachyos-lto xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -5186,7 +5103,7 @@
           "value": 0
         },
         "serial": "0000:7c:00.4",
-        "model": "Linux 7.1.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.1.3-cachyos-lto xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:7c:00.4/usb9/9-0:1.0",
         "sysfs_bus_id": "9-0:1.0",
         "resources": [
@@ -5237,7 +5154,7 @@
         "module_alias": "usb:v1D6Bp0002d0701dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 155,
+        "index": 154,
         "attached_to": 46,
         "class_list": [
           "usb",
@@ -5259,7 +5176,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.3 xhci-hcd",
+          "name": "Linux 7.1.3-cachyos-lto xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -5273,7 +5190,7 @@
           "value": 0
         },
         "serial": "0000:14:00.0",
-        "model": "Linux 7.1.3 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.1.3-cachyos-lto xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:08.0/0000:0c:00.0/0000:0d:0c.0/0000:14:00.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -5317,7 +5234,7 @@
     "keyboard": [
       {
         "index": 116,
-        "attached_to": 132,
+        "attached_to": 131,
         "class_list": [
           "keyboard",
           "usb"
@@ -5363,7 +5280,7 @@
           "/dev/input/by-id/usb-8BitDo_8BitDo_Retro_Keyboard_Receiver-if02-event-kbd",
           "/dev/input/by-path/pci-0000:14:00.0-usb-0:2.4.4:1.2-event-kbd",
           "/dev/input/by-path/pci-0000:14:00.0-usbv2-0:2.4.4:1.2-event-kbd",
-          "/dev/input/event15"
+          "/dev/input/event9"
         ],
         "resources": [
           {
@@ -5419,7 +5336,7 @@
       },
       {
         "index": 118,
-        "attached_to": 132,
+        "attached_to": 131,
         "class_list": [
           "keyboard",
           "usb"
@@ -5465,7 +5382,7 @@
           "/dev/input/by-id/usb-2dc8_8BitDo_Retro_18_Numpad_B0FB23A0A8-if01-event-kbd",
           "/dev/input/by-path/pci-0000:14:00.0-usb-0:2.4.2:1.1-event-kbd",
           "/dev/input/by-path/pci-0000:14:00.0-usbv2-0:2.4.2:1.1-event-kbd",
-          "/dev/input/event13"
+          "/dev/input/event7"
         ],
         "resources": [
           {
@@ -5520,7 +5437,7 @@
         "module_alias": "usb:v2DC8p5204d0114dc00dsc00dp00ic03isc01ip01in01"
       },
       {
-        "index": 128,
+        "index": 127,
         "attached_to": 121,
         "class_list": [
           "keyboard",
@@ -5645,6 +5562,229 @@
     "monitor": [
       {
         "index": 104,
+        "attached_to": 36,
+        "class_list": [
+          "monitor"
+        ],
+        "base_class": {
+          "hex": "0100",
+          "name": "Monitor",
+          "value": 256
+        },
+        "sub_class": {
+          "hex": "0002",
+          "name": "LCD Monitor",
+          "value": 2
+        },
+        "vendor": {
+          "hex": "1c54",
+          "value": 7252
+        },
+        "device": {
+          "hex": "2723",
+          "name": "AORUS FO27Q3",
+          "value": 10019
+        },
+        "serial": "24290B008240",
+        "model": "AORUS FO27Q3",
+        "resources": [
+          {
+            "type": "monitor",
+            "width": 1024,
+            "height": 768,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 1024,
+            "height": 768,
+            "vertical_frequency": 70,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 1024,
+            "height": 768,
+            "vertical_frequency": 75,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 1152,
+            "height": 864,
+            "vertical_frequency": 75,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 1280,
+            "height": 1024,
+            "vertical_frequency": 75,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 1280,
+            "height": 720,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 1280,
+            "height": 960,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 2560,
+            "height": 1440,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 640,
+            "height": 480,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 640,
+            "height": 480,
+            "vertical_frequency": 67,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 640,
+            "height": 480,
+            "vertical_frequency": 72,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 640,
+            "height": 480,
+            "vertical_frequency": 75,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 720,
+            "height": 400,
+            "vertical_frequency": 70,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 800,
+            "height": 600,
+            "vertical_frequency": 56,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 800,
+            "height": 600,
+            "vertical_frequency": 60,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 800,
+            "height": 600,
+            "vertical_frequency": 72,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 800,
+            "height": 600,
+            "vertical_frequency": 75,
+            "interlaced": false
+          },
+          {
+            "type": "monitor",
+            "width": 832,
+            "height": 624,
+            "vertical_frequency": 75,
+            "interlaced": false
+          },
+          {
+            "type": "size",
+            "unit": "mm",
+            "value_1": 590,
+            "value_2": 334
+          }
+        ],
+        "detail": {
+          "manufacture_year": 2024,
+          "manufacture_week": 29,
+          "vertical_sync": {
+            "min": 48,
+            "max": 105
+          },
+          "horizontal_sync": {
+            "min": 255,
+            "max": 255
+          },
+          "horizontal_sync_timings": {
+            "disp": 2560,
+            "sync_start": 2608,
+            "sync_end": 2640,
+            "total": 2720
+          },
+          "vertical_sync_timings": {
+            "disp": 1440,
+            "sync_start": 1443,
+            "sync_end": 1448,
+            "total": 1481
+          },
+          "clock": 241500,
+          "width": 2560,
+          "height": 1440,
+          "width_millimetres": 590,
+          "height_millimetres": 334,
+          "horizontal_flag": 45,
+          "vertical_flag": 43,
+          "vendor": "",
+          "name": "AORUS FO27Q3"
+        },
+        "driver_info": {
+          "type": "display",
+          "width": 2560,
+          "height": 1440,
+          "vertical_sync": {
+            "min": 48,
+            "max": 105
+          },
+          "horizontal_sync": {
+            "min": 255,
+            "max": 255
+          },
+          "bandwidth": 0,
+          "horizontal_sync_timings": {
+            "disp": 2560,
+            "sync_start": 2608,
+            "sync_end": 2640,
+            "total": 2720
+          },
+          "vertical_sync_timings": {
+            "disp": 1440,
+            "sync_start": 1443,
+            "sync_end": 1448,
+            "total": 1481
+          },
+          "horizontal_flag": 45,
+          "vertical_flag": 43
+        }
+      },
+      {
+        "index": 105,
         "attached_to": 36,
         "class_list": [
           "monitor"
@@ -5791,7 +5931,7 @@
         }
       },
       {
-        "index": 105,
+        "index": 106,
         "attached_to": 36,
         "class_list": [
           "monitor"
@@ -6017,7 +6157,7 @@
     "mouse": [
       {
         "index": 120,
-        "attached_to": 132,
+        "attached_to": 131,
         "class_list": [
           "mouse",
           "usb"
@@ -6124,8 +6264,8 @@
         "module_alias": "usb:v2DC8p5201d0103dc00dsc00dp00ic03isc01ip02in00"
       },
       {
-        "index": 142,
-        "attached_to": 132,
+        "index": 141,
+        "attached_to": 131,
         "class_list": [
           "mouse",
           "usb"
@@ -6232,7 +6372,7 @@
         "module_alias": "usb:v2DC8p5204d0114dc00dsc00dp00ic03isc01ip02in00"
       },
       {
-        "index": 153,
+        "index": 152,
         "attached_to": 121,
         "class_list": [
           "mouse",
@@ -6389,7 +6529,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 97
+            "address": 57
           },
           {
             "type": "phwaddr",
@@ -6503,7 +6643,7 @@
     ],
     "network_interface": [
       {
-        "index": 157,
+        "index": 156,
         "attached_to": 0,
         "class_list": [
           "network_interface"
@@ -6549,7 +6689,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 97
+            "address": 57
           },
           {
             "type": "phwaddr",
@@ -7193,7 +7333,7 @@
         "module_alias": "usb:v26CEp0A0Bd0002dcEFdsc02dp01ic01isc02ip20in02"
       },
       {
-        "index": 125,
+        "index": 124,
         "attached_to": 123,
         "class_list": [
           "sound",
@@ -7299,8 +7439,8 @@
         "module_alias": "usb:v26CEp0A0Bd0002dcEFdsc02dp01ic01isc01ip20in00"
       },
       {
-        "index": 127,
-        "attached_to": 143,
+        "index": 126,
+        "attached_to": 142,
         "class_list": [
           "sound",
           "usb"
@@ -7391,8 +7531,8 @@
         "module_alias": "usb:v17A0p0241d0102dc00dsc00dp00ic01isc02ip00in01"
       },
       {
-        "index": 131,
-        "attached_to": 143,
+        "index": 130,
+        "attached_to": 142,
         "class_list": [
           "sound",
           "usb"
@@ -7497,7 +7637,7 @@
         "module_alias": "usb:v30BEp100Cd0100dcEFdsc02dp01ic01isc01ip20in00"
       },
       {
-        "index": 137,
+        "index": 136,
         "attached_to": 123,
         "class_list": [
           "sound",
@@ -7603,7 +7743,7 @@
         "module_alias": "usb:v26CEp0A0Bd0002dcEFdsc02dp01ic01isc02ip20in05"
       },
       {
-        "index": 141,
+        "index": 140,
         "attached_to": 123,
         "class_list": [
           "sound",
@@ -7709,7 +7849,7 @@
         "module_alias": "usb:v26CEp0A0Bd0002dcEFdsc02dp01ic01isc02ip20in03"
       },
       {
-        "index": 145,
+        "index": 144,
         "attached_to": 123,
         "class_list": [
           "sound",
@@ -7815,8 +7955,8 @@
         "module_alias": "usb:v26CEp0A0Bd0002dcEFdsc02dp01ic01isc02ip20in01"
       },
       {
-        "index": 147,
-        "attached_to": 143,
+        "index": 146,
+        "attached_to": 142,
         "class_list": [
           "sound",
           "usb"
@@ -7893,7 +8033,7 @@
           },
           "interface_protocol": 0,
           "interface_number": 2,
-          "interface_alternate_setting": 0
+          "interface_alternate_setting": 1
         },
         "hotplug": "usb",
         "driver": "snd-usb-audio",
@@ -7907,8 +8047,8 @@
         "module_alias": "usb:v17A0p0241d0102dc00dsc00dp00ic01isc02ip00in02"
       },
       {
-        "index": 151,
-        "attached_to": 143,
+        "index": 150,
+        "attached_to": 142,
         "class_list": [
           "sound",
           "usb"
@@ -7984,7 +8124,7 @@
           },
           "interface_protocol": 32,
           "interface_number": 1,
-          "interface_alternate_setting": 0,
+          "interface_alternate_setting": 3,
           "interface_association": {
             "function_class": {
               "hex": "0001",
@@ -8013,8 +8153,8 @@
         "module_alias": "usb:v30BEp100Cd0100dcEFdsc02dp01ic01isc02ip20in01"
       },
       {
-        "index": 152,
-        "attached_to": 143,
+        "index": 151,
+        "attached_to": 142,
         "class_list": [
           "sound",
           "usb"
@@ -8614,7 +8754,7 @@
       },
       {
         "index": 119,
-        "attached_to": 149,
+        "attached_to": 148,
         "class_list": [
           "usb",
           "unknown"
@@ -8707,8 +8847,8 @@
         "module_alias": "usb:v3537p0575d0121dc00dsc00dp00ic03isc00ip00in00"
       },
       {
-        "index": 130,
-        "attached_to": 143,
+        "index": 129,
+        "attached_to": 142,
         "class_list": [
           "usb",
           "unknown"
@@ -8791,7 +8931,7 @@
         "module_alias": "usb:v1E71p300Cd0201dc00dsc00dp00icFFisc00ip00in00"
       },
       {
-        "index": 136,
+        "index": 135,
         "attached_to": 123,
         "class_list": [
           "usb",
@@ -8835,12 +8975,6 @@
         "model": "Elgato Stream Deck MK.2",
         "sysfs_id": "/devices/pci0000:00/0000:00:02.1/0000:05:00.0/0000:06:0c.0/0000:16:00.0/usb3/3-5/3-5:1.0",
         "sysfs_bus_id": "3-5:1.0",
-        "unix_device_names": [
-          "/dev/input/by-id/usb-Elgato_Stream_Deck_MK.2_A00SA4442PRLWM-event-if00",
-          "/dev/input/by-path/pci-0000:16:00.0-usb-0:5:1.0-event",
-          "/dev/input/by-path/pci-0000:16:00.0-usbv2-0:5:1.0-event",
-          "/dev/input/event3"
-        ],
         "resources": [
           {
             "type": "baud",
@@ -8878,19 +9012,19 @@
           "interface_alternate_setting": 0
         },
         "hotplug": "usb",
-        "driver": "usbhid",
-        "driver_module": "usbhid",
+        "driver": "usbfs",
+        "driver_module": "usbcore",
         "drivers": [
-          "usbhid"
+          "usbfs"
         ],
         "driver_modules": [
-          "usbhid"
+          "usbcore"
         ],
         "module_alias": "usb:v0FD9p0080d0440dc00dsc00dp00ic03isc00ip00in00"
       },
       {
-        "index": 138,
-        "attached_to": 132,
+        "index": 137,
+        "attached_to": 131,
         "class_list": [
           "usb",
           "unknown"
@@ -8980,8 +9114,8 @@
         "module_alias": "usb:v2DC8p5204d0114dc00dsc00dp00ic03isc00ip00in02"
       },
       {
-        "index": 140,
-        "attached_to": 132,
+        "index": 139,
+        "attached_to": 131,
         "class_list": [
           "usb",
           "unknown"
@@ -9071,7 +9205,7 @@
         "module_alias": "usb:v2DC8p5201d0103dc00dsc00dp00ic03isc00ip00in01"
       },
       {
-        "index": 148,
+        "index": 147,
         "attached_to": 121,
         "class_list": [
           "usb",
@@ -9162,8 +9296,8 @@
         "module_alias": "usb:v046DpC547d0402dc00dsc00dp00ic03isc00ip00in02"
       },
       {
-        "index": 150,
-        "attached_to": 143,
+        "index": 149,
+        "attached_to": 142,
         "class_list": [
           "usb",
           "unknown"
@@ -9254,8 +9388,8 @@
         "module_alias": "usb:v1E71p300Cd0201dc00dsc00dp00ic03isc00ip00in01"
       },
       {
-        "index": 156,
-        "attached_to": 144,
+        "index": 155,
+        "attached_to": 143,
         "class_list": [
           "usb",
           "unknown"
@@ -9294,7 +9428,10 @@
         "sysfs_id": "/devices/pci0000:00/0000:00:08.3/0000:7d:00.0/usb11/11-1/11-1:1.0",
         "sysfs_bus_id": "11-1:1.0",
         "unix_device_names": [
-          "/dev/input/js0"
+          "/dev/input/by-id/usb-ASRock_LED_Controller_A02019100900-event-if00",
+          "/dev/input/by-path/pci-0000:7d:00.0-usb-0:1:1.0-event",
+          "/dev/input/by-path/pci-0000:7d:00.0-usbv2-0:1:1.0-event",
+          "/dev/input/event3"
         ],
         "resources": [
           {
