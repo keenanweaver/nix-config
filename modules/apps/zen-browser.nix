@@ -237,7 +237,7 @@
                     name = "NixOS Options";
                     urls = [
                       {
-                        template = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
+                        template = "https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
                       }
                     ];
                   };
@@ -247,7 +247,7 @@
                     name = "NixOS Packages";
                     urls = [
                       {
-                        template = "https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
+                        template = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
                       }
                     ];
                   };
