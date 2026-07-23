@@ -151,11 +151,6 @@ in
               source = "${inputs.catppuccin-powershell}";
               target = "${config.xdg.dataHome}/powershell/Modules/Catppuccin";
             };
-            catppuccin-zen-flatpak = {
-              enable = true;
-              source = "${inputs.catppuccin-zen}/themes/${flavor-upper}/${accent-upper}";
-              target = ".var/app/app.zen_browser.zen/.zen/${osConfig.my.user}/chrome";
-            };
             cursor-theme-default = {
               enable = false;
               target = "${config.xdg.dataHome}/icons/default/index.theme";

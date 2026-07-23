@@ -6,6 +6,7 @@
         kde
         llm
         plasma-manager
+        zen-browser
       ];
     };
     nixos.desktop-profile = {
@@ -69,7 +70,7 @@
       xdg.mime =
         let
           audioPlayer = "org.fooyin.fooyin.desktop";
-          browser = "app.zen_browser.zen.desktop";
+          browser = "zen-beta.desktop";
           editor = "org.kde.kate.desktop";
           imageViewer = "org.kde.gwenview.desktop";
           pdfViewer = "org.kde.okular.desktop";

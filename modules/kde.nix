@@ -537,19 +537,6 @@
                     };
                   };
                 }
-                {
-                  apply = {
-                    apply = "force";
-                    desktopfile = "app.zen_browser.zen";
-                  };
-                  description = "icon: zen browser";
-                  match = {
-                    window-class = {
-                      type = "regex";
-                      value = "zen";
-                    };
-                  };
-                }
               ];
               windows = {
                 allowWindowsToRememberPositions = true;
