@@ -2,6 +2,13 @@
   configurations.nixos.nixos-desktop.module = {
     services.lact = {
       settings = {
+        apply_settings_timer = 5;
+        auto_switch_profiles = true;
+        daemon = {
+          admin_group = "wheel";
+          disable_clocks_cleanup = false;
+          log_level = "info";
+        };
         gpus = {
           # Undervolted
           "1002:744C-1EAE:7901-0000:03:00.0" = {
@@ -37,6 +44,7 @@
             };
           };
         };
+        version = 5;
       };
     };
   };
