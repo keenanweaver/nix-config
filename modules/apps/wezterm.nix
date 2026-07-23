@@ -101,7 +101,7 @@
           { key = 'Tab', mods = 'CTRL|SHIFT', action = act.ActivateTabRelative(-1) },
           { key = ']', mods = 'ALT', action = act.ActivateTabRelative(1) },
           { key = '[', mods = 'ALT', action = act.ActivateTabRelative(-1) },
-          
+
           -- Tab navigation by number
           { key = '1', mods = 'ALT', action = act.ActivateTab(0) },
           { key = '2', mods = 'ALT', action = act.ActivateTab(1) },
@@ -112,60 +112,60 @@
           { key = '7', mods = 'ALT', action = act.ActivateTab(6) },
           { key = '8', mods = 'ALT', action = act.ActivateTab(7) },
           { key = '9', mods = 'ALT', action = act.ActivateTab(8) },
-          
+
           -- Pane splitting
           { key = '"', mods = 'CTRL|SHIFT', action = act.SplitVertical{ domain = 'CurrentPaneDomain' } },
           { key = '%', mods = 'CTRL|SHIFT', action = act.SplitHorizontal{ domain = 'CurrentPaneDomain' } },
           { key = 'h', mods = 'CTRL|SHIFT', action = act.SplitHorizontal{ domain = 'CurrentPaneDomain' } },
           { key = 'v', mods = 'CTRL|SHIFT', action = act.SplitVertical{ domain = 'CurrentPaneDomain' } },
-          
+
           -- Pane navigation
           { key = 'LeftArrow', mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection 'Left' },
           { key = 'RightArrow', mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection 'Right' },
           { key = 'UpArrow', mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection 'Up' },
           { key = 'DownArrow', mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection 'Down' },
-          
+
           -- Pane resizing
           { key = 'LeftArrow', mods = 'CTRL|SHIFT|ALT', action = act.AdjustPaneSize{ 'Left', 5 } },
           { key = 'RightArrow', mods = 'CTRL|SHIFT|ALT', action = act.AdjustPaneSize{ 'Right', 5 } },
           { key = 'UpArrow', mods = 'CTRL|SHIFT|ALT', action = act.AdjustPaneSize{ 'Up', 5 } },
           { key = 'DownArrow', mods = 'CTRL|SHIFT|ALT', action = act.AdjustPaneSize{ 'Down', 5 } },
-          
+
           -- Close pane
           { key = 'x', mods = 'CTRL|SHIFT', action = act.CloseCurrentPane{ confirm = true } },
           { key = 'q', mods = 'CTRL|SHIFT', action = act.QuitApplication },
-          
+
           -- Font size
           { key = '+', mods = 'CTRL', action = act.IncreaseFontSize },
           { key = '-', mods = 'CTRL', action = act.DecreaseFontSize },
           { key = '0', mods = 'CTRL', action = act.ResetFontSize },
-          
+
           -- Copy/Paste
           { key = 'c', mods = 'CTRL|SHIFT', action = act.CopyTo 'Clipboard' },
           { key = 'v', mods = 'CTRL|SHIFT', action = act.PasteFrom 'Clipboard' },
-          
+
           -- Scrollback
           { key = 'PageUp', mods = 'SHIFT', action = act.ScrollByPage(-1) },
           { key = 'PageDown', mods = 'SHIFT', action = act.ScrollByPage(1) },
-          
+
           -- Search
           { key = 'f', mods = 'CTRL|SHIFT', action = act.Search 'CurrentSelectionOrEmptyString' },
-          
+
           -- Command palette
           { key = 'p', mods = 'CTRL|SHIFT', action = act.ActivateCommandPalette },
-          
+
           -- Toggle fullscreen
           { key = 'F11', mods = 'NONE', action = act.ToggleFullScreen },
-          
+
           -- Quick select mode (for URLs, paths, etc.)
           { key = 'Space', mods = 'CTRL|SHIFT', action = act.QuickSelect },
-          
+
           -- Copy mode (vim-like navigation)
           { key = 'X', mods = 'CTRL|SHIFT', action = act.ActivateCopyMode },
-          
+
           -- Show launcher menu
           { key = 'l', mods = 'CTRL|SHIFT', action = act.ShowLauncher },
-          
+
           -- Clear scrollback
           { key = 'k', mods = 'CTRL|SHIFT', action = act.ClearScrollback 'ScrollbackAndViewport' },
         }
@@ -201,36 +201,36 @@
         -- Startup configuration with multiple tabs and split pane
         wezterm.on('gui-startup', function(cmd)
           local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
-          
+
           -- First tab: zsh (top) and bash (bottom) split
           pane:send_text 'clear && zsh\n'
           local bash_pane = pane:split{ direction = 'Bottom', size = 0.1 }
           bash_pane:send_text 'clear && bash\n'
           tab:set_title('zsh/bash')
-          
+
           -- Activate the top pane (zsh/bash)
           pane:activate()
-          
+
           -- Tab 2: btop
           local tab2, pane2, window2 = window:spawn_tab{}
           pane2:send_text 'btop\n'
           tab2:set_title('btop')
-          
+
           -- Tab 3: nvtop
           local tab3, pane3, window3 = window:spawn_tab{}
           pane3:send_text 'nvtop\n'
           tab3:set_title('nvtop')
-          
+
           -- Tab 4: kmon
           local tab4, pane4, window4 = window:spawn_tab{}
           pane4:send_text 'kmon\n'
           tab4:set_title('kmon')
-          
+
           -- Tab 5: yazi
           local tab5, pane5, window5 = window:spawn_tab{}
           pane5:send_text 'yazi\n'
           tab5:set_title('yazi')
-          
+
           -- Tab 6: sshs
           local tab6, pane6, window6 = window:spawn_tab{}
           pane6:send_text 'sshs\n'
@@ -238,12 +238,12 @@
 
           -- Tab 7: distrobox with automatic container splits (horizontal only)
           local tab7, pane7, window7 = window:spawn_tab{}
-          
+
           -- Get list of distrobox containers
           local success, stdout, stderr = wezterm.run_child_process({
             'distrobox', 'list', '--no-color'
           })
-          
+
           if success then
             local containers = {}
             -- Parse distrobox list output, skip header lines
@@ -251,7 +251,7 @@
             for line in stdout:gmatch("[^\r\n]+") do
               table.insert(lines, line)
             end
-            
+
             -- Extract container names (first column after header)
             for i = 2, #lines do
               local name = lines[i]:match("^(%S+)")
@@ -259,18 +259,18 @@
                 table.insert(containers, name)
               end
             end
-            
+
             if #containers > 0 then
               -- Enter first container in the main pane
               pane7:send_text('distrobox-enter ' .. containers[1] .. '\n')
-              
+
               -- Create horizontal splits only for additional containers
               local current_pane = pane7
               for i = 2, #containers do
                 current_pane = current_pane:split{ direction = 'Bottom', size = 0.5 }
                 current_pane:send_text('distrobox-enter ' .. containers[i] .. '\n')
               end
-              
+
               tab7:set_title('distrobox (' .. #containers .. ')')
             else
               -- No containers found, just show distrobox list
@@ -288,12 +288,12 @@
           local tab8, pane8, window8 = window:spawn_tab{}
           pane8:send_text 'fastfetch\n'
           tab8:set_title('fastfetch')
-          
+
           -- Tab 9: neo
           local tab9, pane9, window9 = window:spawn_tab{}
           pane9:send_text 'neo -Da -b 2\n'
           tab9:set_title('neo')
-          
+
           -- Go back to first tab
           tab:activate()
         end)
@@ -339,7 +339,7 @@
         wezterm.on('update-right-status', function(window, pane)
           local date = wezterm.strftime '%Y-%m-%d %H:%M:%S'
           local battery = '''
-          
+
           for _, b in ipairs(wezterm.battery_info()) do
             battery = string.format('%.0f%%', b.state_of_charge * 100)
           end

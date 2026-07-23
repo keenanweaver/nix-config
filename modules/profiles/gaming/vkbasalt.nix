@@ -42,7 +42,7 @@
                 reshade = ${reshade}/shaders/reshade.fxh
                 reshadeui = ${reshade}/shaders/reshadeui.fxh
                 tridither = ${reshade}/shaders/tridither.fxh
-                uimask = ${reshade}/shaders/uimask.fx 
+                uimask = ${reshade}/shaders/uimask.fx
               '';
             };
         };

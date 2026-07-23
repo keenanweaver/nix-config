@@ -31,7 +31,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   preFixup = ''
     substituteInPlace "$steamcompattool/compatibilitytool.vdf" \
       --replace-fail "proton-EM-${finalAttrs.version}" "${steamDisplayName}" \
-      --replace-fail "-proton" ""     
+      --replace-fail "-proton" ""
   '';
   dontBuild = true;
   dontConfigure = true;
