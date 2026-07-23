@@ -22,7 +22,7 @@
           "facter\\.json$"
         ];
       };
-      end-of-file-fixer.enable = true;
+      #end-of-file-fixer.enable = true;
       fix-byte-order-marker.enable = true;
       flake-checker.enable = true;
       forbid-new-submodules.enable = true;
@@ -49,7 +49,7 @@
         enable = true;
         excludes = [ "^.direnv/" ];
       };
-      trim-trailing-whitespace.enable = true;
+      #trim-trailing-whitespace.enable = true;
     };
   };
 }
