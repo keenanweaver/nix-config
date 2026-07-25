@@ -83,6 +83,7 @@
 
           amd
           flatpak-games
+          llm
 
           fluxer
           freetube

@@ -4,7 +4,6 @@
     homeManager.desktop-profile = {
       imports = with self.modules.homeManager; [
         kde
-        llm
         plasma-manager
         zen-browser
       ];

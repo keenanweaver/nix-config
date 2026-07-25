@@ -27,6 +27,7 @@
 
         #niri
         #noctalia
+        llm
 
         fluxer
         freetube
