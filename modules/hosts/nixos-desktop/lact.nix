@@ -1,5 +1,5 @@
 {
-  configurations.nixos.nixos-desktop.module = {
+  configurations.nixos.nixos-desktop.module = { lib, pkgs, ... }: {
     services.lact = {
       settings = {
         apply_settings_timer = 5;
@@ -9,31 +9,22 @@
           disable_clocks_cleanup = false;
           log_level = "info";
         };
-        gpus = {
+        gpus."1002:744C-1EAE:7901-0000:03:00.0" = {
           # Undervolted
-          "1002:744C-1EAE:7901-0000:03:00.0" = {
-            fan_control_enabled = false;
-            performance_level = "auto";
-            power_cap = 305.0;
-            pwfw_options = {
-              zero_rpm = true;
-            };
-            voltage_offset = -50;
-          };
+          fan_control_enabled = false;
+          performance_level = "auto";
+          pmfw_options.zero_rpm = true;
+          power_cap = 305.0;
+          voltage_offset = -50;
         };
         profiles = {
           # Idea from https://gitlab.freedesktop.org/drm/amd/-/issues/3618#note_2981844
-          Gaming = {
+          "Gaming" = {
             gpus = {
               "1002:744C-1EAE:7901-0000:03:00.0" = {
                 fan_control_enabled = false;
                 performance_level = "high";
-                pwfw_options = {
-                  zero_rpm = true;
-                };
-                # Alternative setup:
-                # performance_level = "manual";
-                # power_profile_mode_index = 1;
+                pmfw_options.zero_rpm = true;
               };
             };
             rule = {
@@ -47,5 +38,8 @@
         version = 6;
       };
     };
+    # Not sure why I have to do this.
+    systemd.services.lactd.serviceConfig.ExecStartPre =
+      "${lib.getExe' pkgs.coreutils "rm"} -f /run/lactd.sock";
   };
 }

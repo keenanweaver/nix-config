@@ -38,11 +38,9 @@
                 };
             defaultCompatTool = lib.mkForce defaultProton;
             nonSteamApps = {
-              /*
-                "Bottles" = {
-                             target = lib.getExe pkgs.bottles;
-                           };
-              */
+              "Bottles" = {
+                target = lib.getExe pkgs.bottles;
+              };
               "Dusklight" = {
                 launchOptions.wrappers = [ (lib.getExe pkgs.local.game-wrapper) ];
                 target = lib.getExe pkgs.dusklight;

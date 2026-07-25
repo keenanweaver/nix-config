@@ -67,8 +67,8 @@
           jiq
           lazyjournal
           magic-wormhole-rs
-          #mkvtoolnix-cli
-          #patool
+          mkvtoolnix-cli
+          patool
           play
           podman-tui
           streamrip
@@ -144,7 +144,7 @@
           augustus # Caesar 3
           bolt-launcher # RuneScape
           corsix-th # Theme Hospital
-          gamma-launcher
+          #gamma-launcher
           isle-portable
           jazz2
           katawa-shoujo-re-engineered
@@ -183,7 +183,7 @@
           oversteer
           sc-controller
           ## Launchers & utils
-          #goverlay
+          goverlay
           ## Modding
           hedgemodmanager
           limo
