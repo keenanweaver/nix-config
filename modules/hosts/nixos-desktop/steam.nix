@@ -16,6 +16,9 @@
                 wrappers = [
                   (lib.getExe pkgs.local.game-wrapper)
                 ];
+                preHook = ''
+                  ${lib.getExe lowlatency}
+                '';
               };
             };
             defaultProton = "Proton-CachyOS Latest";
@@ -67,19 +70,20 @@
                       args = [
                         "-skip_launcher"
                       ];
+                      env = {
+                        PROTON_VKD3D_LOWLATENCY = true;
+                      };
                     };
                   };
                   "Quake Live" = {
                     id = 282440;
                     launchOptions = {
                       env = {
+                        PROTON_DXVK_LOWLATENCY = true;
                         # https://steamcommunity.com/sharedfiles/filedetails/?id=3642772367
                         # mesa_glthread = "false";
                         # MESA_GL_VERSION_OVERRIDE = "3.2";
                       };
-                      preHook = ''
-                        ${lib.getExe lowlatency}
-                      '';
                     };
                   };
                   "Ready or Not" = {
@@ -96,16 +100,20 @@
                     launchOptions = {
                       env = {
                         MANGOHUD_CONFIG = "read_cfg,fps_limit=0";
+                        PROTON_DXVK_LOWLATENCY = true;
                         #PROTON_ENABLE_WAYLAND = lib.mkForce false; # Workshop
                       };
-                      preHook = ''
-                        ${lib.getExe lowlatency}
-                      '';
                     };
                   };
                   "STRAFTAT" = {
                     compatTool = config.programs.steam.config.defaultCompatTool;
                     id = 2386720;
+                    launchOptions = {
+                      env = {
+                        MANGOHUD_CONFIG = "read_cfg,fps_limit=0";
+                        PROTON_DXVK_LOWLATENCY = true;
+                      };
+                    };
                   };
                   "Street Fighter 6" = {
                     compatTool = config.programs.steam.config.defaultCompatTool;

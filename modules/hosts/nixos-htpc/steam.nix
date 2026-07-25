@@ -10,24 +10,22 @@
       home-manager.users.${config.my.user} = {
         programs.steam.config =
           let
-            defaultOptions = {
-              launchOptions = {
-                env = { };
-                wrappers = [
-                  (lib.getExe pkgs.local.game-wrapper)
-                ];
-              };
-            };
+            bare = pkg: { target = lib.getExe pkg; };
             defaultProton = "Proton-CachyOS Latest";
+            wrapped = pkg: {
+              launchOptions.wrappers = [ wrapper ];
+              target = lib.getExe pkg;
+            };
+            wrapper = lib.getExe pkgs.local.game-wrapper;
           in
           {
             apps =
               lib.mapAttrs
                 (
-                  _: options:
+                  _: opts:
                   lib.mkMerge [
-                    options
-                    defaultOptions
+                    opts
+                    { launchOptions.wrappers = [ wrapper ]; }
                   ]
                 )
                 {
@@ -36,56 +34,23 @@
                     id = 1364780;
                   };
                 };
+
             defaultCompatTool = lib.mkForce defaultProton;
-            nonSteamApps = {
-              "Bottles" = {
-                target = lib.getExe pkgs.bottles;
-              };
-              "Dusklight" = {
-                launchOptions.wrappers = [ (lib.getExe pkgs.local.game-wrapper) ];
-                target = lib.getExe pkgs.dusklight;
-              };
-              "Heroic Games Launcher" = {
-                target = lib.getExe pkgs.heroic;
-              };
-              "Moonlight" = {
-                target = lib.getExe pkgs.moonlight-qt;
-              };
-              "One Must Fall 2097" = {
-                launchOptions.wrappers = [ (lib.getExe pkgs.local.game-wrapper) ];
-                target = lib.getExe pkgs.openomf;
-              };
-              "Pegasus Frontend" = {
-                target = lib.getExe pkgs.pegasus-frontend;
-              };
-              "SM64CoopDX" = {
-                launchOptions.wrappers = [ (lib.getExe pkgs.local.game-wrapper) ];
-                target = lib.getExe pkgs.sm64coopdx;
-              };
-              "Ship of Harkinian" = {
-                launchOptions.wrappers = [ (lib.getExe pkgs.local.game-wrapper) ];
-                target = lib.getExe pkgs.shipwright-git;
-              };
-              "Sonic 3: Angel Island Revisited" = {
-                launchOptions.wrappers = [ (lib.getExe pkgs.local.game-wrapper) ];
-                target = lib.getExe pkgs.local.sonic3air;
-              };
-              "Spaghetti Kart" = {
-                launchOptions.wrappers = [ (lib.getExe pkgs.local.game-wrapper) ];
-                target = lib.getExe pkgs.spaghetti-kart-git;
-              };
-              "Starship SF64" = {
-                launchOptions.wrappers = [ (lib.getExe pkgs.local.game-wrapper) ];
-                target = lib.getExe pkgs.starship-sf64;
-              };
-              "Wipeout Rewrite" = {
-                launchOptions.wrappers = [ (lib.getExe pkgs.local.game-wrapper) ];
-                target = lib.getExe pkgs.wipeout-rewrite;
-              };
-              "Zelda64Recomp" = {
-                launchOptions.wrappers = [ (lib.getExe pkgs.local.game-wrapper) ];
-                target = lib.getExe pkgs.zelda64recomp;
-              };
+
+            nonSteamApps = lib.mapAttrs (_: opts: { startIn = null; } // opts) {
+              "Bottles" = bare pkgs.bottles;
+              "Dusklight" = wrapped pkgs.dusklight;
+              "Heroic Games Launcher" = bare pkgs.heroic;
+              "Moonlight" = bare pkgs.moonlight-qt;
+              "One Must Fall 2097" = wrapped pkgs.openomf;
+              "Pegasus Frontend" = bare pkgs.pegasus-frontend;
+              "SM64CoopDX" = wrapped pkgs.sm64coopdx;
+              "Ship of Harkinian" = wrapped pkgs.shipwright-git;
+              "Sonic 3: Angel Island Revisited" = wrapped pkgs.local.sonic3air;
+              "Spaghetti Kart" = wrapped pkgs.spaghetti-kart-git;
+              "Starship SF64" = wrapped pkgs.starship-sf64;
+              "Wipeout Rewrite" = wrapped pkgs.wipeout-rewrite;
+              "Zelda64Recomp" = wrapped pkgs.zelda64recomp;
             };
           };
       };
