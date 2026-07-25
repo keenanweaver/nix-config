@@ -24,11 +24,13 @@
             "${inputs.simracing-hwdb}/90-vrs.hwdb"
           ]
         );
+
       packages = with pkgs; [
         game-devices-udev-rules
         (writeTextFile {
           destination = "/etc/udev/rules.d/40-logitech-g920.rules";
           name = "40-logitech-g920.rules";
+
           text = ''
             ATTR{idVendor}=="046d", ATTR{idProduct}=="c261", RUN+="${lib.getExe usb-modeswitch} -c '/etc/usb_modeswitch.d/046d:c261'"
           '';
@@ -36,6 +38,7 @@
         (writeTextFile {
           destination = "/etc/udev/rules.d/70-easysmx.rules";
           name = "70-easysmx.rules";
+
           text = ''
             # EasySMX X05
             ACTION!="remove", SUBSYSTEM=="usb", ATTR{idProduct}=="0091", ATTR{idVendor}=="2f24", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
@@ -44,6 +47,7 @@
         (writeTextFile {
           destination = "/etc/udev/rules.d/70-gamesir.rules";
           name = "70-gamesir.rules";
+
           text = ''
             # GameSir Cyclone 2 Wireless Controller; USB
             ## Nintendo Switch
@@ -63,6 +67,7 @@
         (writeTextFile {
           destination = "/etc/udev/rules.d/70-8bitdo.rules";
           name = "70-8bitdo.rules";
+
           text = ''
             # 8BitDo Arcade Stick; Bluetooth (X-mode)
             ACTION!="remove", SUBSYSTEM=="input", ATTRS{name}=="8BitDo Arcade Stick", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
@@ -81,6 +86,7 @@
         (writeTextFile {
           destination = "/etc/udev/rules.d/70-flight-stick.rules";
           name = "70-flight-stick.rules";
+
           text = ''
             # Thrustmaster
             ACTION!="remove", KERNEL=="hidraw*", ATTRS{idVendor}=="044f", ATTRS{idProduct}=="*", MODE="0660", TAG+="uaccess"
@@ -110,6 +116,7 @@
         (writeTextFile {
           destination = "/etc/udev/rules.d/51-disable-DS3-and-DS4-motion-controls.rules";
           name = "51-disable-DS3-and-DS4-motion-controls.rules";
+
           text = ''
             ACTION!="remove", SUBSYSTEM=="input", ATTRS{name}=="*Controller Motion Sensors", RUN+="${lib.getExe' coreutils "rm"} %E{DEVNAME}", ENV{ID_INPUT_JOYSTICK}=""
           '';
@@ -118,6 +125,7 @@
         (writeTextFile {
           destination = "/etc/udev/rules.d/51-disable-dualsense-sound-and-vibration.rules";
           name = "51-disable-dualsense-sound-and-vibration.rules";
+
           text = ''
             ACTION!="remove", KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", MODE="0660", TAG+="uaccess"
             ACTION!="remove", KERNEL=="hidraw*", KERNELS=="*054C:0CE6*", MODE="0660", TAG+="uaccess"

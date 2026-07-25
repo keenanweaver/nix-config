@@ -13,15 +13,18 @@
             target = "${config.home.homeDirectory}/Music/soundfonts/default.sf2";
           };
         };
+
         sessionVariables = {
           SDL_SOUNDFONTS = soundFont;
         };
       };
+
       services.fluidsynth = {
         inherit soundFont;
         enable = true;
         soundService = "pipewire-pulse";
       };
+
       systemd.user.services.fluidsynth = {
         Service = {
           Environment = [

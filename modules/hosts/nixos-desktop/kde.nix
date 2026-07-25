@@ -10,13 +10,14 @@
           };
         };
       };
+
       programs.plasma = {
         input = {
           mice = [
             {
-              enable = true;
               acceleration = 0;
               accelerationProfile = "none";
+              enable = true;
               leftHanded = false;
               middleButtonEmulation = false;
               name = "Logitech G502 X LS";
@@ -26,15 +27,16 @@
               vendorId = "046d";
             }
             {
-              enable = true;
               acceleration = 0;
               accelerationProfile = "none";
+              enable = true;
               name = "Logitech USB Receiver";
               productId = "c547";
               vendorId = "046d";
             }
           ];
         };
+
         panels = [
           # Primary
           {
@@ -42,6 +44,7 @@
             height = 38;
             location = "bottom";
             screen = 0;
+
             widgets = [
               {
                 kickoff =
@@ -70,26 +73,32 @@
                     rows.multirowView = "never";
                     showTooltips = true;
                   };
+
                   behavior = {
                     grouping = {
                       clickAction = "cycle";
                       method = "byProgramName";
                     };
+
                     middleClickAction = "newInstance";
                     newTasksAppearOn = "right";
+
                     showTasks = {
                       onlyInCurrentActivity = false;
                       onlyInCurrentDesktop = false;
                       onlyInCurrentScreen = true;
                       onlyMinimized = false;
                     };
+
                     sortingMethod = "manually";
                     unhideOnAttentionNeeded = true;
+
                     wheel = {
                       ignoreMinimizedTasks = true;
                       switchBetweenTasks = true;
                     };
                   };
+
                   launchers = [
                     "applications:org.kde.dolphin.desktop"
                     "preferred://browser"
@@ -106,10 +115,12 @@
                   Appearance = {
                     displayBorder = "true";
                   };
+
                   General = {
                     forceLayout = "full";
                   };
                 };
+
                 name = "com.github.tilorenz.compact_pager";
               }
               {
@@ -122,6 +133,7 @@
                         };
                       };
                     };
+
                     hidden = [
                       "CoolerControl"
                       "KTailctl"
@@ -157,6 +169,7 @@
             height = 38;
             location = "bottom";
             screen = 1;
+
             widgets = [
               {
                 iconTasks = {
@@ -167,26 +180,32 @@
                     rows.multirowView = "never";
                     showTooltips = true;
                   };
+
                   behavior = {
                     grouping = {
                       clickAction = "cycle";
                       method = "byProgramName";
                     };
+
                     middleClickAction = "newInstance";
                     newTasksAppearOn = "right";
+
                     showTasks = {
                       onlyInCurrentActivity = false;
                       onlyInCurrentDesktop = false;
                       onlyInCurrentScreen = true;
                       onlyMinimized = false;
                     };
+
                     sortingMethod = "manually";
                     unhideOnAttentionNeeded = true;
+
                     wheel = {
                       ignoreMinimizedTasks = true;
                       switchBetweenTasks = true;
                     };
                   };
+
                   launchers = [
                     "applications:org.wezfurlong.wezterm.desktop"
                     "applications:vesktop.desktop"
@@ -208,10 +227,12 @@
                   Appearance = {
                     displayBorder = "true";
                   };
+
                   General = {
                     forceLayout = "full";
                   };
                 };
+
                 name = "com.github.tilorenz.compact_pager";
               }
               {
@@ -220,10 +241,12 @@
                     refreshPeriod = "900";
                     stationID = "KNEOMAHA544";
                   };
+
                   Units = {
                     unitsChoice = "1";
                   };
                 };
+
                 name = "com.github.k-donn.plasmoid-wunderground";
               }
               "org.kde.plasma.marginsseparator"
@@ -241,23 +264,29 @@
             ];
           }
         ];
+
         powerdevil.AC = {
           autoSuspend.action = "nothing";
+
           turnOffDisplay = {
             idleTimeout = 900;
           };
         };
+
         window-rules = [
           {
             apply = {
               ignoregeometry = {
                 value = true;
               };
+
               screen = {
                 value = 0;
               };
             };
+
             description = "Move portal windows to primary screen";
+
             match = {
               window-class = {
                 match-whole = false;
@@ -271,18 +300,23 @@
               ignoregeometry = {
                 value = true;
               };
+
               position = {
                 value = "0,0";
               };
+
               screen = {
                 apply = "force";
                 value = 1;
               };
+
               size = {
                 value = "1026,662";
               };
             };
+
             description = "vesktop";
+
             match = {
               window-class = {
                 type = "exact";
@@ -293,21 +327,27 @@
           {
             apply = {
               desktopfile = "fluxer-desktop";
+
               ignoregeometry = {
                 value = true;
               };
+
               position = {
                 value = "0,0";
               };
+
               screen = {
                 apply = "force";
                 value = 1;
               };
+
               size = {
                 value = "1026,662";
               };
             };
+
             description = "fluxer";
+
             match = {
               window-class = {
                 type = "substring";
@@ -320,18 +360,23 @@
               ignoregeometry = {
                 value = true;
               };
+
               position = {
                 value = "0,0";
               };
+
               screen = {
                 apply = "force";
                 value = 1;
               };
+
               size = {
                 value = "1026,646";
               };
             };
+
             description = "halloy";
+
             match = {
               window-class = {
                 type = "exact";
@@ -346,7 +391,9 @@
                 value = false;
               };
             };
+
             description = "dosbox";
+
             match = {
               window-class = {
                 type = "regex";
@@ -359,18 +406,23 @@
               ignoregeometry = {
                 value = true;
               };
+
               position = {
                 apply = "force";
                 value = "0,646";
               };
+
               screen = {
                 value = 1;
               };
+
               size = {
                 value = "1026,740";
               };
             };
+
             description = "foobar2000";
+
             match = {
               window-class = {
                 type = "regex";
@@ -383,18 +435,23 @@
               ignoregeometry = {
                 value = true;
               };
+
               position = {
                 value = "1026,662";
               };
+
               screen = {
                 apply = "force";
                 value = 1;
               };
+
               size = {
                 value = "1534,741";
               };
             };
+
             description = "fooyin";
+
             match = {
               window-class = {
                 type = "regex";
@@ -407,18 +464,23 @@
               ignoregeometry = {
                 value = true;
               };
+
               position = {
                 value = "1026,662";
               };
+
               screen = {
                 apply = "force";
                 value = 1;
               };
+
               size = {
                 value = "1534,741";
               };
             };
+
             description = "qbz";
+
             match = {
               window-class = {
                 type = "exact";
@@ -431,7 +493,9 @@
               apply = "force";
               desktopfile = "org.azahar_emu.Azahar";
             };
+
             description = "icon: azahar";
+
             match = {
               window-class = {
                 type = "regex";
@@ -444,7 +508,9 @@
               apply = "force";
               desktopfile = "org.drdteam.Doomseeker";
             };
+
             description = "icon: doomseeker";
+
             match = {
               window-class = {
                 type = "regex";
@@ -457,7 +523,9 @@
               apply = "force";
               desktopfile = "faugus-launcher";
             };
+
             description = "icon: faugus";
+
             match = {
               window-class = {
                 type = "regex";
@@ -470,7 +538,9 @@
               apply = "force";
               desktopfile = "com.heroicgameslauncher.hgl";
             };
+
             description = "icon: heroic";
+
             match = {
               window-class = {
                 type = "regex";
@@ -483,7 +553,9 @@
               apply = "force";
               desktopfile = "net.kuribo64.melonDS";
             };
+
             description = "icon: melonDS";
+
             match = {
               window-class = {
                 type = "regex";
@@ -496,7 +568,9 @@
               apply = "force";
               desktopfile = "net.pcsx2.PCSX2";
             };
+
             description = "icon: pcsx2";
+
             match = {
               window-class = {
                 type = "regex";
@@ -509,23 +583,29 @@
               ignoregeometry = {
                 value = true;
               };
+
               position = {
                 value = "1723,0";
               };
+
               screen = {
                 apply = "force";
                 value = 1;
               };
+
               size = {
                 value = "611,662";
               };
             };
+
             description = "mumble";
+
             match = {
               window-class = {
                 type = "regex";
                 value = "mumble";
               };
+
               window-types = [ "normal" ];
             };
           }
@@ -534,17 +614,22 @@
               desktops = {
                 value = "Desktop_2"; # Social desktop
               };
+
               position = {
                 value = "0,0";
               };
+
               screen = {
                 value = 1;
               };
+
               size = {
                 value = "1273,961";
               };
             };
+
             description = "neochat";
+
             match = {
               window-class = {
                 match-whole = false;
@@ -558,16 +643,20 @@
               position = {
                 value = "1026,646";
               };
+
               screen = {
                 apply = "initially";
                 value = 1;
               };
+
               size = {
                 apply = "initially";
                 value = "1534,740";
               };
             };
+
             description = "obs";
+
             match = {
               window-class = {
                 type = "exact";
@@ -580,18 +669,23 @@
               ignoregeometry = {
                 value = true;
               };
+
               position = {
                 value = "1026,0";
               };
+
               screen = {
                 apply = "force";
                 value = 1;
               };
+
               size = {
                 value = "697,662";
               };
             };
+
             description = "signal";
+
             match = {
               window-class = {
                 type = "regex";
@@ -605,17 +699,21 @@
                 apply = "force";
                 value = "2334,0";
               };
+
               screen = {
                 apply = "force";
                 value = 1;
               };
             };
+
             description = "steam friends list";
+
             match = {
               title = {
                 type = "exact";
                 value = "Friends list";
               };
+
               window-class = {
                 type = "exact";
                 value = "steam";
@@ -627,17 +725,22 @@
               desktops = {
                 value = "Desktop_2"; # Social desktop
               };
+
               position = {
                 value = "1287,0";
               };
+
               screen = {
                 value = 1;
               };
+
               size = {
                 value = "1287,961";
               };
             };
+
             description = "tokodon";
+
             match = {
               window-class = {
                 match-whole = false;
@@ -652,17 +755,22 @@
                 apply = "initially";
                 value = true;
               };
+
               position = {
                 value = "0,662";
               };
+
               screen = {
                 value = 1;
               };
+
               size = {
                 value = "1026,740";
               };
             };
+
             description = "wezterm";
+
             match = {
               window-class = {
                 type = "regex";
@@ -677,7 +785,9 @@
                 value = false;
               };
             };
+
             description = "spectacle";
+
             match = {
               window-class = {
                 type = "regex";

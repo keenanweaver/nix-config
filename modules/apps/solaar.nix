@@ -8,6 +8,7 @@
            ];
       */
     };
+
     nixos.solaar = {
       hardware.logitech = {
         wireless = {

@@ -231,28 +231,34 @@
           */
           (writeShellApplication {
             name = "script-exodos-nuked";
+
             runtimeEnv = {
               EXODOS = "/mnt/crusader/Games/eXo/eXoDOS/eXo/eXoDOS";
             };
+
             runtimeInputs = [
               fd
               sd
             ];
+
             text = ''
               fd -t file "run.bat" $EXODOS -x sd 'CONFIG -set "mididevice=fluidsynth"' 'CONFIG -set "mididevice=soundcanvas"' {}
             '';
           })
           (writeShellApplication {
             name = "script-momw-update";
+
             runtimeEnv = {
               MODLIST = "i-heart-vanilla-directors-cut";
             };
+
             runtimeInputs = [
               inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.momw-configurator
               inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-validator
               inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.umo
               tes3cmd
             ];
+
             text = ''
               umo sync "$MODLIST"
               umo install "$MODLIST"
@@ -261,24 +267,29 @@
             '';
           })
         ];
+
         programs = {
           plasma.hotkeys.commands.gsr-save-replay = {
             command = lib.getExe (
               pkgs.writeShellApplication {
                 name = "gsr-save-replay";
                 runtimeInputs = [ pkgs.killall ];
+
                 text = ''
                   killall -SIGUSR1 gpu-screen-recorder
                 '';
               }
             );
+
             comment = "Save GPU Screen Recorder replay";
             key = "Meta+Alt+]";
             name = "Save GSR Replay";
           };
+
           prismlauncher.enable = true;
         };
       };
+
     programs = {
       k3b.enable = true;
       perfect-dark-git.enable = true;

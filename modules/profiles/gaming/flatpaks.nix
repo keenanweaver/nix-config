@@ -9,17 +9,20 @@
             ];
           };
         };
+
         global = {
           Context = {
             filesystems = [
               "xdg-run/discord-ipc-*"
             ];
           };
+
           Environment = {
             #PIPEWIRE_NODE = "Game";
             PULSE_SINK = "Game";
           };
         };
+
         "info.cemu.Cemu" = {
           Context = {
             filesystems = [
@@ -27,6 +30,7 @@
             ];
           };
         };
+
         "info.exult.exult" = {
           Context = {
             filesystems = [
@@ -34,6 +38,7 @@
             ];
           };
         };
+
         "io.github.strikerx3.ymir" = {
           Context = {
             filesystems = [
@@ -43,6 +48,7 @@
             ];
           };
         };
+
         "net.fsuae.FS-UAE" = {
           Context = {
             filesystems = [
@@ -50,6 +56,7 @@
             ];
           };
         };
+
         "net.kuribo64.melonDS" = {
           Context = {
             filesystems = [
@@ -58,6 +65,7 @@
             ];
           };
         };
+
         "net.pcsx2.PCSX2" = {
           Context = {
             filesystems = [
@@ -66,6 +74,7 @@
             ];
           };
         };
+
         "net.rpcs3.RPCS3" = {
           Context = {
             filesystems = [
@@ -74,6 +83,7 @@
             ];
           };
         };
+
         "org.DolphinEmu.dolphin-emu" = {
           Context = {
             filesystems = [
@@ -81,6 +91,7 @@
             ];
           };
         };
+
         "org.azahar_emu.Azahar" = {
           Context = {
             filesystems = [
@@ -88,6 +99,7 @@
             ];
           };
         };
+
         "org.flycast.Flycast" = {
           Context = {
             filesystems = [
@@ -95,6 +107,7 @@
             ];
           };
         };
+
         "org.mamedev.MAME" = {
           Context = {
             filesystems = [
@@ -104,6 +117,7 @@
           };
         };
       };
+
       packages = [
         "app.xemu.xemu"
         "com.fightcade.Fightcade"

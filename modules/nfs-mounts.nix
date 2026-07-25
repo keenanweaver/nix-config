@@ -4,11 +4,16 @@
       cifs-utils
       nfs-utils
     ];
+
     fileSystems = builtins.listToAttrs (
       map
         (mount: {
           name = "/mnt/crusader/${mount}";
+
           value = {
+            device = "crusader:/mnt/user/${mount}";
+            fsType = "nfs";
+
             options = [
               "x-systemd.automount"
               "x-systemd.idle-timeout=600"
@@ -16,8 +21,6 @@
               "noatime"
               "nofail"
             ];
-            device = "crusader:/mnt/user/${mount}";
-            fsType = "nfs";
           };
         })
         [
@@ -31,6 +34,7 @@
           "Projects"
         ]
     );
+
     services.rpcbind.enable = true;
   };
 }

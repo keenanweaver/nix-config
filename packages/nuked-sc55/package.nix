@@ -24,8 +24,7 @@ in
 stdenv.mkDerivation {
   pname = "nuked-sc55";
   version = "0.7.0";
-  __structuredAttrs = true;
-  strictDeps = true;
+
   src = fetchFromGitHub {
     owner = "jcmoyer";
     repo = "Nuked-SC55";
@@ -33,12 +32,17 @@ stdenv.mkDerivation {
     hash = "sha256-SyEoyH0fz2GmlXWGyDGvVezK5kHFJlmsax8qWEkcp4k=";
     fetchSubmodules = true;
   };
+
+  __structuredAttrs = true;
+  strictDeps = true;
+
   nativeBuildInputs = [
     cmake
     ninja
     pkg-config
     versionCheckHook
   ];
+
   buildInputs = [
     SDL2
     rtmidi
@@ -46,9 +50,11 @@ stdenv.mkDerivation {
   ++ lib.optionals stdenv.hostPlatform.isLinux [
     alsa-lib
   ];
+
   cmakeFlags = [
     (lib.cmakeBool "USE_RTMIDI" (!stdenv.hostPlatform.isWindows))
   ];
+
   postInstall = ''
     local rombase="$out/share/nuked-sc55"
     mkdir -p "$rombase"
@@ -66,18 +72,23 @@ stdenv.mkDerivation {
       done
     done
   '';
+
   doInstallCheck = true;
+
   passthru.updateScript = nix-update-script {
     extraArgs = [ "--version=branch" ];
   };
+
   meta = {
     description = "Roland SC-55 series emulation (jcmoyer fork with library backend and MIDI renderer)";
     homepage = "https://github.com/jcmoyer/Nuked-SC55";
     license = lib.licenses.unfree;
+
     sourceProvenance = with lib.sourceTypes; [
       fromSource # nuked-sc55
       binaryNativeCode # ROMs
     ];
+
     maintainers = with lib.maintainers; [ keenanweaver ];
     platforms = lib.platforms.linux ++ lib.platforms.darwin;
     mainProgram = "nuked-sc55";

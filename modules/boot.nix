@@ -9,17 +9,22 @@
             "kernel.sysrq" = 4;
           };
         };
+
         kernelParams = [
           "nowatchdog"
         ];
+
         loader = {
           efi.canTouchEfiVariables = true;
+
           limine = {
-            enable = true;
             additionalFiles = {
               "efi/memtest86/mt86plus.efi" = "${pkgs.memtest86plus}/mt86plus.efi";
               "efi/netbootxyz/netboot.xyz.efi" = "${pkgs.netbootxyz-efi}";
             };
+
+            enable = true;
+
             extraEntries = ''
               /Tools
               //MemTest86+
@@ -32,6 +37,7 @@
                 path: boot():/limine/efi/netbootxyz/netboot.xyz.efi
             '';
           };
+
           timeout = 1;
         };
       };

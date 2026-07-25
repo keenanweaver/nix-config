@@ -1,6 +1,8 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.gaming-profile =
+  flake = {
+    modules = {
+      homeManager.gaming-profile =
     { lib, pkgs, ... }:
     let
       steamCompatTools = with pkgs; [
@@ -11,18 +13,24 @@
     {
       programs.lutris.protonPackages = steamCompatTools;
 
-      systemd.user.services.protonplus-update = {
+      systemd = {
+        user = {
+          services.protonplus-update = {
         Service = {
           ExecStart = "${lib.getExe pkgs.protonplus} update all";
           ExecStartPost = "${lib.getExe pkgs.libnotify} --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus 'ProtonPlus' 'Proton runners updated'";
           Type = "oneshot";
         };
+
         Unit.Description = "Update runners for protonplus";
       };
-      systemd.user.timers.protonplus-update = {
+
+          timers.protonplus-update = {
         Install.WantedBy = [ "timers.target" ];
         Timer.OnStartupSec = "5s";
         Unit.Description = "Run protonplus update on boot";
+      };
+        };
       };
 
       xdg.dataFile = lib.genAttrs' steamCompatTools (
@@ -32,7 +40,8 @@
         }
       );
     };
-  flake.modules.nixos.gaming-profile =
+
+      nixos.gaming-profile =
     { pkgs, ... }:
     let
       steamCompatTools = with pkgs; [
@@ -49,4 +58,6 @@
 
       programs.steam.extraCompatPackages = steamCompatTools;
     };
+    };
+  };
 }

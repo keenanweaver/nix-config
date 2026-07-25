@@ -1,11 +1,18 @@
 {
+  flake-file.inputs = {
+    preservation.url = "github:nix-community/preservation";
+  };
+
   flake.modules.nixos.base-profile = { inputs, ... }: {
     imports = [
       inputs.preservation.nixosModules.default
     ];
+
     fileSystems."/persist".neededForBoot = true;
+
     preservation = {
       enable = true;
+
       preserveAt."/persist" = {
         directories = [
           "/var/db/sudo/lectured"
@@ -19,6 +26,7 @@
           "/var/lib/systemd"
           "/var/log"
         ];
+
         files = [
           {
             file = "/etc/machine-id";
@@ -51,19 +59,21 @@
         ];
       };
     };
-    systemd.services.systemd-machine-id-commit = {
+
+    systemd = {
+      services.systemd-machine-id-commit = {
       serviceConfig.ExecStart = [
         ""
         "systemd-machine-id-setup --commit --root /persist"
       ];
+
       unitConfig.ConditionPathIsMountPoint = [
         ""
         "/persist/etc/machine-id"
       ];
     };
-    systemd.suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
-  };
-  flake-file.inputs = {
-    preservation.url = "github:nix-community/preservation";
+
+      suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
+    };
   };
 }

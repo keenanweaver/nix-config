@@ -1,12 +1,14 @@
 {
   flake.modules.homeManager.base-profile = {
     programs.nh = {
-      enable = true;
+      flake = "/mnt/crusader/Projects/Codeberg/nix-config-dendritic";
+
       clean = {
         enable = true;
         extraArgs = "--keep-since 14d --keep 3 --optimise";
       };
-      flake = "/mnt/crusader/Projects/Codeberg/nix-config-dendritic";
+
+      enable = true;
     };
   };
 }

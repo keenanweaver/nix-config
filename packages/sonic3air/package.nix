@@ -11,14 +11,17 @@
 stdenv.mkDerivation (finalAttrs: {
   pname = "sonic3air";
   version = "26.03.28.0";
+
   src = fetchzip {
     url = "https://github.com/Eukaryot/sonic3air/releases/download/v${finalAttrs.version}-stable/sonic3air_game.tar.gz";
     hash = "sha256-yJAo7Bb54DBieb0HzOP0II95njzBSFdGpv7el/5izUE=";
   };
+
   nativeBuildInputs = [
     copyDesktopItems
     makeWrapper
   ];
+
   installPhase = ''
     runHook preInstall
 
@@ -32,6 +35,7 @@ stdenv.mkDerivation (finalAttrs: {
 
     runHook postInstall
   '';
+
   desktopItems = [
     (makeDesktopItem {
       categories = [ "Game" ];
@@ -42,10 +46,13 @@ stdenv.mkDerivation (finalAttrs: {
       name = "sonic3air";
     })
   ];
+
   dontBuild = true;
   passthru.updateScript = nix-update-script { };
+
   meta = {
     description = "Fan-made remaster of Sonic 3 & Knuckles built on the Oxygen Engine";
+
     longDescription = ''
       Sonic 3 A.I.R. (Angel Island Revisited) is a non-profit fan game that brings
       Sonic 3 & Knuckles into a modern engine with widescreen support, higher
@@ -56,6 +63,7 @@ stdenv.mkDerivation (finalAttrs: {
 
       Tip: Place `Sonic_Knuckles_wSonic3.bin` at ~/.local/share/Sonic3AIR
     '';
+
     homepage = "https://sonic3air.org/";
     license = lib.licenses.gpl3Only;
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];

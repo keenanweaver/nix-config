@@ -32,21 +32,25 @@
 stdenv.mkDerivation rec {
   pname = "gpu-screen-recorder";
   version = "5.15.1";
+
   src = fetchgit {
     url = "https://repo.dec05eba.com/${pname}";
     tag = version;
     hash = "sha256-nYkol0bidSwjSJIsBYsT0BE8ouMmOActWQZQCOsJvw8=";
   };
+
   postPatch = ''
     substituteInPlace src/capture/v4l2.c \
       --replace-fail "libturbojpeg.so.0" "${lib.getLib libjpeg_turbo}/lib/libturbojpeg.so.0"
   '';
+
   nativeBuildInputs = [
     pkg-config
     makeWrapper
     meson
     ninja
   ];
+
   buildInputs = [
     libxcomposite
     libcap
@@ -65,6 +69,7 @@ stdenv.mkDerivation rec {
     libxrandr
     libxfixes
   ];
+
   mesonFlags = [
     # Install the upstream systemd unit
     (lib.mesonBool "systemd" true)
@@ -74,6 +79,7 @@ stdenv.mkDerivation rec {
     (lib.mesonBool "capabilities" false)
     (lib.mesonBool "nvidia_suspend_fix" false)
   ];
+
   postInstall = ''
     mkdir $out/bin/.wrapped
     mv $out/bin/gpu-screen-recorder $out/bin/.wrapped/
@@ -87,15 +93,19 @@ stdenv.mkDerivation rec {
       --prefix PATH : "${wrapperDir}" \
       --suffix PATH : "$out/bin"
   '';
+
   passthru.updateScript = gitUpdater { };
+
   meta = {
     description = "Screen recorder that has minimal impact on system performance by recording a window using the GPU only";
     homepage = "https://git.dec05eba.com/gpu-screen-recorder/about/";
     license = lib.licenses.gpl3Only;
+
     maintainers = with lib.maintainers; [
       babbaj
       js6pak
     ];
+
     platforms = [ "x86_64-linux" ];
     mainProgram = "gpu-screen-recorder";
   };

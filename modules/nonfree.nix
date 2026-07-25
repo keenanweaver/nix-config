@@ -1,4 +1,11 @@
 {
+  flake-file.inputs = {
+    nonfree = {
+      flake = false;
+      url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
+    };
+  };
+
   flake.modules.homeManager.desktop-profile =
     { lib, inputs, ... }:
     {
@@ -19,6 +26,7 @@
             builtins.listToAttrs (
               map (x: {
                 name = x;
+
                 value = {
                   source = "${dir}/${x}";
                 };
@@ -27,10 +35,4 @@
         in
         toHomeFiles "${inputs.nonfree}";
     };
-  flake-file.inputs = {
-    nonfree = {
-      flake = false;
-      url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
-    };
-  };
 }

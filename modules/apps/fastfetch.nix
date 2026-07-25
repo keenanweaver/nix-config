@@ -2,10 +2,12 @@
   flake.modules.homeManager.base-profile = {
     programs.fastfetch = {
       enable = true;
+
       settings = {
         display = {
           separator = " ";
         };
+
         modules = [
           {
             keyWidth = 10;

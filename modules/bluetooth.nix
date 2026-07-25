@@ -2,6 +2,7 @@
   flake.modules.nixos.desktop-profile = {
     hardware.bluetooth = {
       enable = true;
+
       settings = {
         General = {
           AutoEnable = false;

@@ -10,16 +10,20 @@
         wipeout-rewrite
         zelda64recomp
       ];
+
       services.flatpak.packages = [
         "net.retrodeck.retrodeck"
       ];
     };
+
     programs = {
       shipwright-git.enable = true;
+
       sm64coopdx = {
-        enable = true;
         coopNet.openFirewall = true;
+        enable = true;
       };
+
       spaghetti-kart-git.enable = true;
       starship-sf64.enable = true;
     };

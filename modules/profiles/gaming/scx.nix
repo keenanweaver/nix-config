@@ -20,6 +20,7 @@
               "--profile"
               "gaming"
             ];
+
             lowlatency_mode = [
               "--profile"
               "esports"
@@ -27,6 +28,7 @@
           };
         };
       };
+
       enable = true;
     };
   };

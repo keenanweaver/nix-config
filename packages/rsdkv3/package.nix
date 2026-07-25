@@ -15,6 +15,7 @@
 stdenv.mkDerivation (finalAttrs: {
   pname = "rsdkv3";
   version = "1.3.3";
+
   src = fetchFromGitHub {
     owner = "RSDKModding";
     repo = "RSDKv3-Decompilation";
@@ -22,11 +23,13 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-M7AABw9fK4crJqIvpL+KGDlVa0eN+ZouRqC9oEBWRIA=";
     fetchSubmodules = true;
   };
+
   nativeBuildInputs = [
     cmake
     pkg-config
     installShellFiles
   ];
+
   buildInputs = [
     glew
     sdl2-compat
@@ -34,6 +37,7 @@ stdenv.mkDerivation (finalAttrs: {
     libtheora
     libvorbis
   ];
+
   installPhase = ''
     runHook preInstall
 
@@ -42,6 +46,7 @@ stdenv.mkDerivation (finalAttrs: {
 
     runHook postInstall
   '';
+
   meta = {
     description = "Full Decompilation of Sonic CD (2011) & Retro Engine (v3)";
     homepage = "https://github.com/RSDKModding/RSDKv3-Decompilation";

@@ -28,14 +28,17 @@
 stdenv.mkDerivation (finalAttrs: {
   pname = "fooyin";
   version = "0.11.1";
-  __structuredAttrs = true;
-  strictDeps = true;
+
   src = fetchFromGitHub {
     owner = "ludouzi";
     repo = "fooyin";
     tag = "v${finalAttrs.version}";
     hash = "sha256-228hxjKkxE0ILzP8dnIS21R3AW9Y0+wutgcYlQdCgXc=";
   };
+
+  __structuredAttrs = true;
+  strictDeps = true;
+
   nativeBuildInputs = [
     cmake
     pkg-config
@@ -43,6 +46,7 @@ stdenv.mkDerivation (finalAttrs: {
     qt6Packages.wrapQtAppsHook
     versionCheckHook
   ];
+
   buildInputs = [
     qt6Packages.qcoro
     qt6Packages.qtbase
@@ -67,15 +71,18 @@ stdenv.mkDerivation (finalAttrs: {
     libopenmpt
     game-music-emu
   ];
+
   cmakeFlags = [
     (lib.cmakeBool "BUILD_TESTING" finalAttrs.finalPackage.doCheck)
     # INSTALL_FHS must be true so build artifacts land in well-known paths;
     # fixupPhase handles the rest
     (lib.cmakeBool "INSTALL_FHS" true)
   ];
+
   env.LANG = "C.UTF-8";
   doInstallCheck = true;
   passthru.updateScript = nix-update-script { };
+
   meta = {
     description = "Customisable music player";
     homepage = "https://www.fooyin.org/";

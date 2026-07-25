@@ -1,5 +1,10 @@
 { inputs, ... }:
 {
+  flake-file.inputs.sops-nix = {
+    inputs.nixpkgs.follows = "nixpkgs";
+    url = "github:Mic92/sops-nix";
+  };
+
   flake.modules = {
     homeManager.base-profile =
       {
@@ -16,12 +21,15 @@
               osConfig.sops.secrets."users/${config.home.username}/age-key".path
             else
               "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+
           defaultSopsFile = ./secrets + "/${config.home.username}.yaml";
+
           secrets = {
             "libera_pass" = { };
           };
         };
       };
+
     nixos.base-profile =
       { config, ... }:
       let
@@ -36,9 +44,5 @@
           defaultSopsFile = ./secrets/nixos.yaml;
         };
       };
-  };
-  flake-file.inputs.sops-nix = {
-    inputs.nixpkgs.follows = "nixpkgs";
-    url = "github:Mic92/sops-nix";
   };
 }

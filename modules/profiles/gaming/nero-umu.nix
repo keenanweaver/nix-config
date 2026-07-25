@@ -3,6 +3,7 @@
     homeManager.gaming-profile = { pkgs, ... }: {
       home.packages = with pkgs; [ nero-umu ];
     };
+
     nixos.gaming-profile = {
       nixpkgs.overlays = [
         (_final: prev: {
@@ -13,6 +14,7 @@
               repo = "Nero-umu";
               rev = "ed64319af88c6d2d6cebfb1d15cf33ead07d3756";
             };
+
             version = "1.2.0-unstable-07-13-2026";
           };
         })

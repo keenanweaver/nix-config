@@ -50,6 +50,7 @@
         "tipc"
         "x25"
       ];
+
       kernel = {
         sysctl = {
           # Hardening https://madaidans-insecurities.github.io/guides/linux-hardening.html#sysctl and https://github.com/sioodmy/dotfiles/blob/main/system/core/schizo.nix
@@ -90,6 +91,7 @@
           "vm.unprivileged_userfaultfd" = 0;
         };
       };
+
       kernelParams = [
         # Hardening https://madaidans-insecurities.github.io/guides/linux-hardening.html#boot-parameters
         #"debugfs=off" OpenSnitch
@@ -105,29 +107,36 @@
         "vsyscall=none"
       ];
     };
+
     networking = {
       firewall = {
         enable = true;
       };
     };
+
     security = {
       pam = {
         services = {
           login = {
             enableKwallet = true;
+
             gnupg = {
               enable = true;
             };
           };
+
           sddm = {
             enableKwallet = true;
+
             gnupg = {
               enable = true;
             };
           };
         };
+
         sshAgentAuth.enable = true;
       };
+
       polkit = {
         # UDisks https://gist.github.com/Scrumplex/8f528c1f63b5f4bfabe14b0804adaba7
         extraConfig = ''
@@ -140,16 +149,18 @@
           });
         '';
       };
+
       sudo = {
         execWheelOnly = true;
         extraConfig = "Defaults !lecture,env_reset,pwfeedback";
+
         extraRules = [
           {
             commands =
               map
                 (command: {
-                  options = [ "NOPASSWD" ];
                   command = "/run/current-system/sw/bin/${command}";
+                  options = [ "NOPASSWD" ];
                 })
                 [
                   "poweroff"
@@ -159,6 +170,7 @@
                   "shutdown"
                   "systemctl"
                 ];
+
             users = [ "${config.my.user}" ];
           }
         ];

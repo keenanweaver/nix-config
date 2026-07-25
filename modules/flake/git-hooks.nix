@@ -1,55 +1,61 @@
 { inputs, ... }:
 {
-  imports = [
-    inputs.git-hooks-nix.flakeModule
-    inputs.pedantix.flakeModules.git-hooks
-  ];
-  flake-file.inputs.git-hooks-nix = {
-    inputs.nixpkgs.follows = "nixpkgs";
-    url = "github:cachix/git-hooks.nix";
+  flake-file.inputs = {
+    git-hooks = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:cachix/git-hooks.nix";
+    };
+
+    json-sort.url = "github:drupol/json-sort";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
   };
-  perSystem = { lib, pkgs, ... }: {
-    pre-commit.settings.hooks = {
-      check-added-large-files.enable = true;
-      check-case-conflicts.enable = true;
-      check-merge-conflicts.enable = true;
-      check-shebang-scripts-are-executable.enable = false;
-      deadnix.enable = true;
-      detect-private-keys.enable = true;
-      editorconfig-checker = {
-        enable = true;
-        excludes = [
-          "facter\\.json$"
-        ];
+
+  imports = [
+    inputs.treefmt-nix.flakeModule
+    inputs.git-hooks.flakeModule
+    inputs.pedantix.flakeModules.default
+  ];
+
+  perSystem = { pkgs, ... }: {
+    treefmt = {
+      imports = [
+        inputs.json-sort.treefmtModules.default
+      ];
+
+      programs = {
+        deadnix.enable = true;
+        json-sort.enable = true;
+        jsonfmt.enable = true;
+        just.enable = true;
+
+        nixfmt = {
+          enable = true;
+          package = pkgs.nixfmt-rs;
+        };
+
+        pedantix = {
+          enable = true;
+
+          excludes = [
+            "flake.nix"
+          ];
+
+          settings = {
+            lets.sort = true;
+            preset = "nixos-module";
+          };
+        };
+
+        shfmt.enable = true;
+        statix.enable = true;
+        yamlfmt.enable = true;
       };
-      #end-of-file-fixer.enable = true;
-      fix-byte-order-marker.enable = true;
-      flake-checker.enable = true;
-      forbid-new-submodules.enable = true;
-      just-fmt = {
-        enable = true;
-        entry = "${lib.getExe pkgs.just} --fmt --unstable";
-        files = "^(.*\\.just|[Jj]ustfile)$";
-        name = "just fmt";
-        pass_filenames = false;
+
+      projectRootFile = "flake.nix";
+
+      settings = {
+        on-unmatched = "warn";
       };
-      mdformat.enable = true;
-      mixed-line-endings.enable = true;
-      nixfmt.enable = true;
-      pedantix.enable = true;
-      ripsecrets = {
-        enable = true;
-        excludes = [ "\\.pub$" ];
-      };
-      shellcheck = {
-        enable = true;
-        excludes = [ "^\\.envrc$" ];
-      };
-      statix = {
-        enable = true;
-        excludes = [ "^.direnv/" ];
-      };
-      #trim-trailing-whitespace.enable = true;
     };
   };
 }

@@ -16,6 +16,7 @@
               repo = "gamemode";
               rev = "a74b8106a2236d1f2696aa44c93bc4c8ef13b42e";
             };
+
             version = "1.8.2-unstable-06-15-2026";
           };
         })
@@ -23,11 +24,13 @@
 
       programs.gamemode = {
         enable = true;
+
         settings = {
           cpu = {
             # https://github.com/aamaanaa/X3D-Cache-Core-Parking-on-Fedora
             park_cores = "no";
           };
+
           custom =
             let
               icon = pkgs.fetchurl {
@@ -39,12 +42,14 @@
               end = lib.getExe (
                 pkgs.writeShellApplication {
                   name = "gamemode-end";
+
                   runtimeInputs = with pkgs; [
                     kdePackages.libkscreen
                     kdePackages.qttools
                     libnotify
                     scx-loader
                   ];
+
                   text = ''
                     scxctl stop
 
@@ -58,15 +63,18 @@
                   '';
                 }
               );
+
               start = lib.getExe (
                 pkgs.writeShellApplication {
                   name = "gamemode-start";
+
                   runtimeInputs = with pkgs; [
                     kdePackages.libkscreen
                     kdePackages.qttools
                     libnotify
                     scx-loader
                   ];
+
                   text = ''
                     if [[ "$(scxctl get 2>/dev/null)" != *"Cake in LowLatency"* ]]; then
                       scxctl start --sched scx_cake --mode gaming
@@ -83,6 +91,7 @@
                 }
               );
             };
+
           general = {
             renice = 10;
           };

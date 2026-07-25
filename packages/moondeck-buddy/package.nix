@@ -23,6 +23,7 @@ in
 stdenv.mkDerivation (finalAttrs: {
   pname = "moondeck-buddy";
   version = "1.9.2";
+
   src = fetchFromGitHub {
     owner = "FrogTheFrog";
     repo = "moondeck-buddy";
@@ -30,18 +31,22 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-GhZlmdI+oa5BjEzr9bkR2sY/nVpd1nuJlT2hYYv6zGU=";
     fetchSubmodules = true;
   };
+
   nativeBuildInputs = [
     cmake
     ninja
     wrapQtAppsHook
   ];
+
   buildInputs = [
     procps
     libxrandr
     qtbase
     qtEnv
   ];
+
   passthru.updateScript = nix-update-script { };
+
   meta = {
     description = "Helper to work with moonlight on a steamdeck";
     homepage = "https://github.com/FrogTheFrog/moondeck-buddy";
