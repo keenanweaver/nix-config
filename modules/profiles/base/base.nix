@@ -37,68 +37,97 @@
       };
     };
 
-    nixos.base-profile = { pkgs, ... }: {
-      imports = with self.modules.nixos; [
-        local-packages
+    nixos.base-profile =
+      {
+        config,
+        pkgs,
+        inputs,
+        ...
+      }:
+      {
+        imports = with self.modules.nixos; [
+          local-packages
 
-        catppuccin
-      ];
-
-      console.earlySetup = true;
-      documentation.man.cache.enable = true;
-
-      environment = {
-        homeBinInPath = true;
-        localBinInPath = true;
-
-        shells = with pkgs; [
-          bash
-          zsh
+          catppuccin
         ];
 
-        stub-ld.enable = true;
-      };
+        console = {
+          earlySetup = true;
+          font = "ter-124b";
 
-      i18n.defaultLocale = "en_US.UTF-8";
+          packages = with pkgs; [
+            terminus_font
+          ];
 
-      nixpkgs.config = {
-        permittedInsecurePackages = [
-          "electron-40.10.5" # ?
-          "olm-3.2.16" # Neochat
-          "pnpm-10.29.2"
-          "pnpm-9.15.9" # Decky Loader
-        ];
-      };
-
-      programs = {
-        iotop = {
-          enable = true;
-        };
-      };
-
-      services = {
-        earlyoom = {
-          enable = true;
-          freeMemThreshold = 5;
+          useXkbConfig = true;
         };
 
-        journald = {
-          extraConfig = ''
-            SystemMaxUse=50M
+        documentation = {
+          doc.enable = false;
+          enable = false;
+          info.enable = false;
+          man.enable = false;
+          nixos.enable = false;
+        };
+
+        environment = {
+          etc.motd.text = ''
+            NixOS release: ${config.system.nixos.release}
+            Nixpkgs revision: ${inputs.nixpkgs.rev}
           '';
+
+          homeBinInPath = true;
+          localBinInPath = true;
+
+          shells = with pkgs; [
+            bash
+            zsh
+          ];
+
+          stub-ld.enable = true;
         };
 
-        logrotate.enable = true;
-      };
+        i18n.defaultLocale = "en_US.UTF-8";
 
-      systemd = {
-        settings.Manager = {
-          DefaultTimeoutStartSec = "15s";
-          DefaultTimeoutStopSec = "10s";
+        nixpkgs.config = {
+          permittedInsecurePackages = [
+            "electron-40.10.5" # ?
+            "olm-3.2.16" # Neochat
+            "pnpm-10.29.2"
+            "pnpm-9.15.9" # Decky Loader
+          ];
         };
-      };
 
-      time.timeZone = "America/Chicago";
-    };
+        programs = {
+          iotop = {
+            enable = true;
+          };
+        };
+
+        services = {
+          earlyoom = {
+            enable = true;
+            freeMemThreshold = 5;
+          };
+
+          journald = {
+            extraConfig = ''
+              SystemMaxUse=50M
+            '';
+          };
+
+          logrotate.enable = true;
+        };
+
+        systemd = {
+          settings.Manager = {
+            DefaultTimeoutStartSec = "15s";
+            DefaultTimeoutStopSec = "10s";
+          };
+        };
+
+        time.timeZone = "America/Chicago";
+        users.motdFile = "/etc/motd";
+      };
   };
 }
