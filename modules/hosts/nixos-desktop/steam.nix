@@ -69,6 +69,7 @@
                       ];
 
                       env = {
+                        PROTON_VKD3D_LOWLATENCY = true;
                         WINE_CPU_TOPOLOGY = "8:1,2,3,4,5,6,7,16"; # https://github.com/ValveSoftware/Proton/issues/7486#issuecomment-2683254539
                       };
                     };
@@ -107,6 +108,7 @@
 
                     launchOptions = {
                       env = {
+                        PROTON_USE_OPTISCALER = true;
                         WINEDLLOVERRIDES = "dxgi=n,b"; # Optiscaler
                       };
                     };
