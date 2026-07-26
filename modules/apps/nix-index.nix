@@ -6,16 +6,18 @@
     };
   };
 
-  flake.modules.homeManager.base-profile = { inputs, ... }: {
-    imports = [
-      inputs.nix-index-database.homeModules.nix-index
-    ];
+  flake.modules.homeManager.base-profile =
+    { inputs, ... }:
+    {
+      imports = [
+        inputs.nix-index-database.homeModules.nix-index
+      ];
 
-    programs.nix-index = {
-      enable = true;
-      enableBashIntegration = true;
-      enableNushellIntegration = true;
-      enableZshIntegration = true;
+      programs.nix-index = {
+        enable = true;
+        enableBashIntegration = true;
+        enableNushellIntegration = true;
+        enableZshIntegration = true;
+      };
     };
-  };
 }

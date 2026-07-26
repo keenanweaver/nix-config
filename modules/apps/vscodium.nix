@@ -126,8 +126,10 @@
         };
       };
 
-    nixos.vscodium = { inputs, ... }: {
-      nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
-    };
+    nixos.vscodium =
+      { inputs, ... }:
+      {
+        nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
+      };
   };
 }

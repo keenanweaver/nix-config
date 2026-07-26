@@ -1,75 +1,77 @@
 {
-  flake.modules.homeManager.gaming-profile = { config, ... }: {
-    services.ludusavi = {
-      backupNotification = true;
-      enable = true;
+  flake.modules.homeManager.gaming-profile =
+    { config, ... }:
+    {
+      services.ludusavi = {
+        backupNotification = true;
+        enable = true;
 
-      settings = {
-        backup = {
-          format = {
-            chosen = "zip";
-            zip.compression = "deflate";
+        settings = {
+          backup = {
+            format = {
+              chosen = "zip";
+              zip.compression = "deflate";
+            };
           };
+
+          roots = [
+            {
+              path = "${config.xdg.configHome}/heroic";
+              store = "heroic";
+            }
+            {
+              path = "${config.home.homeDirectory}/Games/Heroic";
+              store = "heroic";
+            }
+            {
+              path = "${config.xdg.dataHome}/lutris";
+              store = "lutris";
+            }
+            {
+              path = "${config.home.homeDirectory}/Games/lutris";
+              store = "lutris";
+            }
+            {
+              path = "${config.home.homeDirectory}/Games/Bottles/*";
+              store = "otherWine";
+            }
+            {
+              path = "${config.home.homeDirectory}/Games/faugus/*";
+              store = "otherWine";
+            }
+            {
+              path = "${config.home.homeDirectory}/Games/Heroic/Prefixes/default/*";
+              store = "otherWine";
+            }
+            {
+              path = "${config.home.homeDirectory}/Games/nero/*";
+              store = "otherWine";
+            }
+            {
+              path = "${config.home.homeDirectory}/Games/portproton/*";
+              store = "otherWine";
+            }
+            {
+              path = "${config.home.homeDirectory}/Games/SteamLibrary";
+              store = "steam";
+            }
+            {
+              path = "${config.xdg.dataHome}/Steam";
+              store = "steam";
+            }
+          ];
+
+          theme = "dark";
         };
+      };
 
-        roots = [
-          {
-            path = "${config.xdg.configHome}/heroic";
-            store = "heroic";
-          }
-          {
-            path = "${config.home.homeDirectory}/Games/Heroic";
-            store = "heroic";
-          }
-          {
-            path = "${config.xdg.dataHome}/lutris";
-            store = "lutris";
-          }
-          {
-            path = "${config.home.homeDirectory}/Games/lutris";
-            store = "lutris";
-          }
-          {
-            path = "${config.home.homeDirectory}/Games/Bottles/*";
-            store = "otherWine";
-          }
-          {
-            path = "${config.home.homeDirectory}/Games/faugus/*";
-            store = "otherWine";
-          }
-          {
-            path = "${config.home.homeDirectory}/Games/Heroic/Prefixes/default/*";
-            store = "otherWine";
-          }
-          {
-            path = "${config.home.homeDirectory}/Games/nero/*";
-            store = "otherWine";
-          }
-          {
-            path = "${config.home.homeDirectory}/Games/portproton/*";
-            store = "otherWine";
-          }
-          {
-            path = "${config.home.homeDirectory}/Games/SteamLibrary";
-            store = "steam";
-          }
-          {
-            path = "${config.xdg.dataHome}/Steam";
-            store = "steam";
-          }
-        ];
+      systemd.user.timers.ludusavi = {
+        Install.WantedBy = [ "timers.target" ];
 
-        theme = "dark";
+        Timer = {
+          OnBootSec = "2min";
+          OnUnitActiveSec = "24h";
+        };
       };
     };
-
-    systemd.user.timers.ludusavi = {
-      Install.WantedBy = [ "timers.target" ];
-
-      Timer = {
-        OnBootSec = "2min";
-        OnUnitActiveSec = "24h";
-      };
-    };
-  };
 }

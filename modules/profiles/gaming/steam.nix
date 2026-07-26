@@ -9,44 +9,46 @@
   flake.modules = {
     homeManager = {
       gaming-profile =
-      {
-        config,
-        lib,
-        pkgs,
-        osConfig,
-        self,
-        ...
-      }:
-      {
-        imports = with self.modules.homeManager; [
-          steam-config
-        ];
-
-        home = {
-          file = {
-            steam-beta = lib.mkIf (osConfig.networking.hostName != "nixos-htpc") {
-              enable = true;
-              target = "${config.xdg.dataHome}/Steam/package/beta";
-              text = "publicbeta";
-            };
-          };
-
-          packages = with pkgs; [
-            steamcmd
+        {
+          config,
+          lib,
+          pkgs,
+          osConfig,
+          self,
+          ...
+        }:
+        {
+          imports = with self.modules.homeManager; [
+            steam-config
           ];
+
+          home = {
+            file = {
+              steam-beta = lib.mkIf (osConfig.networking.hostName != "nixos-htpc") {
+                enable = true;
+                target = "${config.xdg.dataHome}/Steam/package/beta";
+                text = "publicbeta";
+              };
+            };
+
+            packages = with pkgs; [
+              steamcmd
+            ];
+          };
         };
-      };
 
-      steam-config = { inputs, ... }: {
-      imports = [
-        inputs.steam-config-nix.homeModules.default
-      ];
+      steam-config =
+        { inputs, ... }:
+        {
+          imports = [
+            inputs.steam-config-nix.homeModules.default
+          ];
 
-      programs.steam.config = {
-        enable = true;
-        onSteamRunning = "close";
-      };
-    };
+          programs.steam.config = {
+            enable = true;
+            onSteamRunning = "close";
+          };
+        };
     };
 
     nixos.gaming-profile =

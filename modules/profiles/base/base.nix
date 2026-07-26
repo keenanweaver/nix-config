@@ -5,37 +5,39 @@
   };
 
   flake.modules = {
-    homeManager.base-profile = { config, ... }: {
-      imports = with self.modules.homeManager; [
-        catppuccin
-      ];
-
-      home = {
-        language = {
-          base = "en_US.UTF-8";
-          collate = "C.UTF-8";
-        };
-
-        sessionPath = [
-          "${config.home.homeDirectory}/.bin"
-          "${config.home.homeDirectory}/.local/bin"
+    homeManager.base-profile =
+      { config, ... }:
+      {
+        imports = with self.modules.homeManager; [
+          catppuccin
         ];
-      };
 
-      xdg = {
-        autostart.enable = true;
-        enable = true;
+        home = {
+          language = {
+            base = "en_US.UTF-8";
+            collate = "C.UTF-8";
+          };
 
-        userDirs = {
-          createDirectories = true;
+          sessionPath = [
+            "${config.home.homeDirectory}/.bin"
+            "${config.home.homeDirectory}/.local/bin"
+          ];
+        };
+
+        xdg = {
+          autostart.enable = true;
           enable = true;
-          projects = null;
-          publicShare = null;
-          setSessionVariables = true;
-          templates = null;
+
+          userDirs = {
+            createDirectories = true;
+            enable = true;
+            projects = null;
+            publicShare = null;
+            setSessionVariables = true;
+            templates = null;
+          };
         };
       };
-    };
 
     nixos.base-profile =
       {

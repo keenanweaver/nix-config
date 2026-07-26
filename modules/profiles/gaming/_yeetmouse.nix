@@ -6,14 +6,16 @@
     };
   };
 
-  flake.modules.nixos.gaming-profile = { inputs, ... }: {
-    imports = [
-      inputs.yeetmouse.nixosModules.default
-    ];
+  flake.modules.nixos.gaming-profile =
+    { inputs, ... }:
+    {
+      imports = [
+        inputs.yeetmouse.nixosModules.default
+      ];
 
-    hardware.yeetmouse = {
-      enable = true;
-      sensitivity = 1.0;
+      hardware.yeetmouse = {
+        enable = true;
+        sensitivity = 1.0;
+      };
     };
-  };
 }

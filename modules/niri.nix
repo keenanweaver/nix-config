@@ -24,8 +24,10 @@
         };
       };
 
-    nixos.niri = { inputs, ... }: {
-      nixpkgs.overlays = [ inputs.niri.overlays.niri ];
-    };
+    nixos.niri =
+      { inputs, ... }:
+      {
+        nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+      };
   };
 }

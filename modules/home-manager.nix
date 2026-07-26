@@ -17,15 +17,17 @@
         home.stateVersion = osConfig.system.stateVersion;
       };
 
-    nixos.base-profile = { inputs, self, ... }: {
-      imports = [ inputs.home-manager.nixosModules.home-manager ];
+    nixos.base-profile =
+      { inputs, self, ... }:
+      {
+        imports = [ inputs.home-manager.nixosModules.home-manager ];
 
-      home-manager = {
-        backupFileExtension = "hm.bak";
-        extraSpecialArgs = { inherit inputs self; };
-        useGlobalPkgs = true;
-        useUserPackages = true;
+        home-manager = {
+          backupFileExtension = "hm.bak";
+          extraSpecialArgs = { inherit inputs self; };
+          useGlobalPkgs = true;
+          useUserPackages = true;
+        };
       };
-    };
   };
 }

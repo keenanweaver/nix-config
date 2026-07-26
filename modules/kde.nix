@@ -22,39 +22,41 @@
 
   flake.modules = {
     homeManager = {
-      kde = { config, inputs, ... }: {
-        home = {
-          file = {
-            dolphinui = {
-              enable = true;
-              target = "${config.xdg.dataHome}/kxmlgui5/dolphin/dolphinui.rc";
-              text = builtins.readFile ./../assets/dolphinui.rc;
+      kde =
+        { config, inputs, ... }:
+        {
+          home = {
+            file = {
+              dolphinui = {
+                enable = true;
+                target = "${config.xdg.dataHome}/kxmlgui5/dolphin/dolphinui.rc";
+                text = builtins.readFile ./../assets/dolphinui.rc;
+              };
+
+              kinetic-effects = {
+                enable = true;
+                recursive = true;
+                source = "${inputs.kwin-effects-kinetic}";
+                target = "${config.xdg.dataHome}/kwin/effects";
+              };
+
+              purposerc = {
+                enable = true;
+                target = "${config.xdg.configHome}/purposerc";
+
+                text = ''
+                  [plugins]
+                  disabled=emailplugin,imgurplugin,nextcloudplugin,pastebinplugin,purpose_gdrive,telegramplugin,youtubeplugin
+                '';
+              };
             };
 
-            kinetic-effects = {
-              enable = true;
-              recursive = true;
-              source = "${inputs.kwin-effects-kinetic}";
-              target = "${config.xdg.dataHome}/kwin/effects";
+            sessionVariables = {
+              GDK_BACKEND = "wayland";
+              QT_QPA_PLATFORM = "wayland";
             };
-
-            purposerc = {
-              enable = true;
-              target = "${config.xdg.configHome}/purposerc";
-
-              text = ''
-                [plugins]
-                disabled=emailplugin,imgurplugin,nextcloudplugin,pastebinplugin,purpose_gdrive,telegramplugin,youtubeplugin
-              '';
-            };
-          };
-
-          sessionVariables = {
-            GDK_BACKEND = "wayland";
-            QT_QPA_PLATFORM = "wayland";
           };
         };
-      };
 
       plasma-manager =
         {
@@ -681,160 +683,162 @@
         };
     };
 
-    nixos.kde = { config, pkgs, ... }: {
-      environment = {
-        plasma6.excludePackages = with pkgs.kdePackages; [ elisa ];
+    nixos.kde =
+      { config, pkgs, ... }:
+      {
+        environment = {
+          plasma6.excludePackages = with pkgs.kdePackages; [ elisa ];
 
-        sessionVariables = {
-          GDK_DEBUG = "portals"; # KDE filepicker
+          sessionVariables = {
+            GDK_DEBUG = "portals"; # KDE filepicker
+          };
+
+          systemPackages =
+            with pkgs;
+            with pkgs.kdePackages;
+            [
+              # https://github.com/shvedes/awesome-kde
+              arianna
+              breeze
+              ffmpegthumbnailer
+              filelight
+              icoutils
+              kaccounts-providers
+              kcalc
+              kdenetwork-filesharing
+              kdesu
+              kdialog
+              kdotool
+              kfind
+              kget
+              kgpg
+              kio-fuse
+              kirigami-addons
+              kjournald
+              kmousetool
+              kompare
+              krfb
+              ksshaskpass
+              ksystemlog
+              #kzones
+              markdownpart
+              plasma-browser-integration
+              packagekit-qt # Discover store
+              qt6.qtwebengine
+              qtimageformats
+              qtsvg # https://github.com/NixOS/nixpkgs/issues/325225
+              sddm-kcm
+              (spectacle.override {
+                tesseractLanguages = [ "eng" ];
+              })
+              svgpart
+              syntax-highlighting
+            ];
         };
 
-        systemPackages =
-          with pkgs;
-          with pkgs.kdePackages;
-          [
-            # https://github.com/shvedes/awesome-kde
-            arianna
-            breeze
-            ffmpegthumbnailer
-            filelight
-            icoutils
-            kaccounts-providers
-            kcalc
-            kdenetwork-filesharing
-            kdesu
-            kdialog
-            kdotool
-            kfind
-            kget
-            kgpg
-            kio-fuse
-            kirigami-addons
-            kjournald
-            kmousetool
-            kompare
-            krfb
-            ksshaskpass
-            ksystemlog
-            #kzones
-            markdownpart
-            plasma-browser-integration
-            packagekit-qt # Discover store
-            qt6.qtwebengine
-            qtimageformats
-            qtsvg # https://github.com/NixOS/nixpkgs/issues/325225
-            sddm-kcm
-            (spectacle.override {
-              tesseractLanguages = [ "eng" ];
-            })
-            svgpart
-            syntax-highlighting
-          ];
-      };
-
-      nixpkgs.overlays = [
-        (final: prev: {
-          kdePackages = prev.kdePackages.overrideScope (
-            _kdeFinal: kdePrev: {
-              # https://old.reddit.com/r/NixOS/comments/1pdtc3v/kde_plasma_is_slow_compared_to_any_other_distro/
-              # https://github.com/NixOS/nixpkgs/issues/126590#issuecomment-3194531220
-              plasma-workspace =
-                let
-                  # the package we want to override
-                  basePkg = kdePrev.plasma-workspace;
-                  # undo the XDG_DATA_DIRS injection that is usually done in the qt wrapper
-                  # script and instead inject the path of the above helper package
-                  derivedPkg = basePkg.overrideAttrs {
-                    preFixup = ''
-                      for index in "''${!qtWrapperArgs[@]}"; do
-                        if [[ ''${qtWrapperArgs[$((index+0))]} == "--prefix" ]] && [[ ''${qtWrapperArgs[$((index+1))]} == "XDG_DATA_DIRS" ]]; then
-                          unset -v "qtWrapperArgs[$((index+0))]"
-                          unset -v "qtWrapperArgs[$((index+1))]"
-                          unset -v "qtWrapperArgs[$((index+2))]"
-                          unset -v "qtWrapperArgs[$((index+3))]"
-                        fi
-                      done
-                      qtWrapperArgs=("''${qtWrapperArgs[@]}")
-                      qtWrapperArgs+=(--prefix XDG_DATA_DIRS : "${xdgdataPkg}/share")
-                      qtWrapperArgs+=(--prefix XDG_DATA_DIRS : "$out/share")
-                    '';
-                  };
-                  # a helper package that merges all the XDG_DATA_DIRS into a single directory
-                  xdgdataPkg = final.stdenv.mkDerivation {
-                    buildInputs = [ basePkg ];
-                    dontFixup = true;
-                    dontUnpack = true;
-                    dontWrapQtApps = true;
-
-                    installPhase = ''
-                      mkdir -p $out/share
-                      ( IFS=:
-                        for DIR in $XDG_DATA_DIRS; do
-                          if [[ -d "$DIR" ]]; then
-                            ${prev.lib.getExe prev.lndir} -silent "$DIR" $out
+        nixpkgs.overlays = [
+          (final: prev: {
+            kdePackages = prev.kdePackages.overrideScope (
+              _kdeFinal: kdePrev: {
+                # https://old.reddit.com/r/NixOS/comments/1pdtc3v/kde_plasma_is_slow_compared_to_any_other_distro/
+                # https://github.com/NixOS/nixpkgs/issues/126590#issuecomment-3194531220
+                plasma-workspace =
+                  let
+                    # the package we want to override
+                    basePkg = kdePrev.plasma-workspace;
+                    # undo the XDG_DATA_DIRS injection that is usually done in the qt wrapper
+                    # script and instead inject the path of the above helper package
+                    derivedPkg = basePkg.overrideAttrs {
+                      preFixup = ''
+                        for index in "''${!qtWrapperArgs[@]}"; do
+                          if [[ ''${qtWrapperArgs[$((index+0))]} == "--prefix" ]] && [[ ''${qtWrapperArgs[$((index+1))]} == "XDG_DATA_DIRS" ]]; then
+                            unset -v "qtWrapperArgs[$((index+0))]"
+                            unset -v "qtWrapperArgs[$((index+1))]"
+                            unset -v "qtWrapperArgs[$((index+2))]"
+                            unset -v "qtWrapperArgs[$((index+3))]"
                           fi
                         done
-                      )
-                    '';
+                        qtWrapperArgs=("''${qtWrapperArgs[@]}")
+                        qtWrapperArgs+=(--prefix XDG_DATA_DIRS : "${xdgdataPkg}/share")
+                        qtWrapperArgs+=(--prefix XDG_DATA_DIRS : "$out/share")
+                      '';
+                    };
+                    # a helper package that merges all the XDG_DATA_DIRS into a single directory
+                    xdgdataPkg = final.stdenv.mkDerivation {
+                      buildInputs = [ basePkg ];
+                      dontFixup = true;
+                      dontUnpack = true;
+                      dontWrapQtApps = true;
 
-                    name = "${basePkg.name}-xdgdata";
-                  };
-                in
-                derivedPkg;
-            }
-          );
-        })
-      ];
+                      installPhase = ''
+                        mkdir -p $out/share
+                        ( IFS=:
+                          for DIR in $XDG_DATA_DIRS; do
+                            if [[ -d "$DIR" ]]; then
+                              ${prev.lib.getExe prev.lndir} -silent "$DIR" $out
+                            fi
+                          done
+                        )
+                      '';
 
-      programs = {
-        fuse.userAllowOther = true;
-        kde-pim.enable = true;
-        kdeconnect.enable = true;
-        partition-manager.enable = true;
-      };
-
-      services = {
-        colord.enable = true;
-        desktopManager.plasma6.enable = true;
-
-        displayManager = {
-          autoLogin = {
-            user = "${config.my.user}";
-          };
-
-          plasma-login-manager = {
-            enable = true;
-          };
-        };
-
-        libinput = {
-          mouse.accelProfile = "flat";
-          touchpad.accelProfile = "flat";
-        };
-      };
-
-      xdg.portal = {
-        config = {
-          kde = {
-            default = [
-              "kde"
-              "gtk"
-            ];
-
-            "org.freedesktop.portal.FileChooser" = [ "kde" ];
-            "org.freedesktop.portal.OpenURI" = [ "kde" ];
-          };
-        };
-
-        enable = true;
-
-        extraPortals = with pkgs; [
-          kdePackages.xdg-desktop-portal-kde
-          xdg-desktop-portal-gtk
+                      name = "${basePkg.name}-xdgdata";
+                    };
+                  in
+                  derivedPkg;
+              }
+            );
+          })
         ];
 
-        xdgOpenUsePortal = true;
+        programs = {
+          fuse.userAllowOther = true;
+          kde-pim.enable = true;
+          kdeconnect.enable = true;
+          partition-manager.enable = true;
+        };
+
+        services = {
+          colord.enable = true;
+          desktopManager.plasma6.enable = true;
+
+          displayManager = {
+            autoLogin = {
+              user = "${config.my.user}";
+            };
+
+            plasma-login-manager = {
+              enable = true;
+            };
+          };
+
+          libinput = {
+            mouse.accelProfile = "flat";
+            touchpad.accelProfile = "flat";
+          };
+        };
+
+        xdg.portal = {
+          config = {
+            kde = {
+              default = [
+                "kde"
+                "gtk"
+              ];
+
+              "org.freedesktop.portal.FileChooser" = [ "kde" ];
+              "org.freedesktop.portal.OpenURI" = [ "kde" ];
+            };
+          };
+
+          enable = true;
+
+          extraPortals = with pkgs; [
+            kdePackages.xdg-desktop-portal-kde
+            xdg-desktop-portal-gtk
+          ];
+
+          xdgOpenUsePortal = true;
+        };
       };
-    };
   };
 }

@@ -14,26 +14,28 @@
     };
   };
 
-  perSystem = { system, ... }: {
-    _module.args.pkgs = import inputs.nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
+  perSystem =
+    { system, ... }:
+    {
+      _module.args.pkgs = import inputs.nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
 
-      overlays = [
-        inputs.chaotic.overlays.default
-        (final: _prev: {
-          master = import inputs.nixpkgs-master {
-            inherit (final) config;
-            inherit system;
-          };
-        })
-        (final: _prev: {
-          unstable = import inputs.nixpkgs-unstable {
-            inherit (final) config;
-            inherit system;
-          };
-        })
-      ];
+        overlays = [
+          inputs.chaotic.overlays.default
+          (final: _prev: {
+            master = import inputs.nixpkgs-master {
+              inherit (final) config;
+              inherit system;
+            };
+          })
+          (final: _prev: {
+            unstable = import inputs.nixpkgs-unstable {
+              inherit (final) config;
+              inherit system;
+            };
+          })
+        ];
+      };
     };
-  };
 }

@@ -1,11 +1,13 @@
 {
   flake.modules = {
-    homeManager.amd = { pkgs, ... }: {
-      home.packages = with pkgs; [
-        amdgpu_top
-        nvtopPackages.amd
-      ];
-    };
+    homeManager.amd =
+      { pkgs, ... }:
+      {
+        home.packages = with pkgs; [
+          amdgpu_top
+          nvtopPackages.amd
+        ];
+      };
 
     nixos.amd = {
       hardware = {

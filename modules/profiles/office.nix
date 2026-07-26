@@ -1,54 +1,56 @@
 {
-  flake.modules.nixos.office-profile = { config, pkgs, ... }: {
-    environment.systemPackages = with pkgs; [ libreoffice-qt ];
+  flake.modules.nixos.office-profile =
+    { config, pkgs, ... }:
+    {
+      environment.systemPackages = with pkgs; [ libreoffice-qt ];
 
-    hardware = {
-      printers = {
-        # https://reddit.com/r/NixOS/comments/1i76ykt/ive_hit_a_wall_with_printer_drivers_brother/m8ikamx/?context=3#m8ikamx
-        ensureDefaultPrinter = "Brother_HL-L2460DW";
+      hardware = {
+        printers = {
+          # https://reddit.com/r/NixOS/comments/1i76ykt/ive_hit_a_wall_with_printer_drivers_brother/m8ikamx/?context=3#m8ikamx
+          ensureDefaultPrinter = "Brother_HL-L2460DW";
 
-        ensurePrinters =
-          let
-            uuid = "e3248000-80ce-11db-8000-94ddf82d6a63";
-          in
-          [
-            {
-              description = "Brother HL-L2460DW";
-              deviceUri = "dnssd://Brother%20HL-L2460DW._ipp._tcp.local/?uuid=${uuid}";
-              location = "Office";
-              model = "drv:///brlaser.drv/brl2405.ppd";
-              name = "Brother_HL-L2460DW";
-            }
-          ];
+          ensurePrinters =
+            let
+              uuid = "e3248000-80ce-11db-8000-94ddf82d6a63";
+            in
+            [
+              {
+                description = "Brother HL-L2460DW";
+                deviceUri = "dnssd://Brother%20HL-L2460DW._ipp._tcp.local/?uuid=${uuid}";
+                location = "Office";
+                model = "drv:///brlaser.drv/brl2405.ppd";
+                name = "Brother_HL-L2460DW";
+              }
+            ];
+        };
+
+        # Scanning
+        sane = {
+          brscan5.enable = true;
+          dsseries.enable = true;
+          enable = true;
+        };
       };
 
-      # Scanning
-      sane = {
-        brscan5.enable = true;
-        dsseries.enable = true;
-        enable = true;
+      services = {
+        # Wireless printing
+        # https://reddit.com/r/NixOS/comments/k8yo9e/how_do_you_correcty_setup_a_brother_printer_in/k13rjna/?context=3
+        avahi = {
+          enable = true;
+          nssmdns4 = true;
+          openFirewall = true;
+        };
+
+        printing = {
+          drivers = with pkgs; [ brlaser ];
+          enable = true;
+          openFirewall = true;
+        };
       };
+
+      users.users.${config.my.user}.extraGroups = [
+        "lp"
+        "scanner"
+      ];
     };
-
-    services = {
-      # Wireless printing
-      # https://reddit.com/r/NixOS/comments/k8yo9e/how_do_you_correcty_setup_a_brother_printer_in/k13rjna/?context=3
-      avahi = {
-        enable = true;
-        nssmdns4 = true;
-        openFirewall = true;
-      };
-
-      printing = {
-        drivers = with pkgs; [ brlaser ];
-        enable = true;
-        openFirewall = true;
-      };
-    };
-
-    users.users.${config.my.user}.extraGroups = [
-      "lp"
-      "scanner"
-    ];
-  };
 }

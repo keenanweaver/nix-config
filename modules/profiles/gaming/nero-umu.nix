@@ -1,8 +1,10 @@
 {
   flake.modules = {
-    homeManager.gaming-profile = { pkgs, ... }: {
-      home.packages = with pkgs; [ nero-umu ];
-    };
+    homeManager.gaming-profile =
+      { pkgs, ... }:
+      {
+        home.packages = with pkgs; [ nero-umu ];
+      };
 
     nixos.gaming-profile = {
       nixpkgs.overlays = [

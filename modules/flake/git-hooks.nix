@@ -16,46 +16,143 @@
     inputs.pedantix.flakeModules.default
   ];
 
-  perSystem = { pkgs, ... }: {
-    treefmt = {
-      imports = [
-        inputs.json-sort.treefmtModules.default
-      ];
+  perSystem =
+    { pkgs, ... }:
+    {
+      pre-commit.settings.hooks = {
+        check-added-large-files.enable = true;
+        check-case-conflicts.enable = true;
+        check-json.enable = true;
+        check-merge-conflicts.enable = true;
+        check-shebang-scripts-are-executable.enable = false;
+        check-toml.enable = true;
+        check-yaml.enable = true;
+        detect-private-keys.enable = true;
 
-      programs = {
-        deadnix.enable = true;
-        json-sort.enable = true;
-        jsonfmt.enable = true;
-        just.enable = true;
-
-        nixfmt = {
-          enable = true;
-          package = pkgs.nixfmt-rs;
-        };
-
-        pedantix = {
+        editorconfig-checker = {
           enable = true;
 
           excludes = [
-            "flake.nix"
+            "facter\\.json$"
           ];
-
-          settings = {
-            lets.sort = true;
-            preset = "nixos-module";
-          };
         };
 
-        shfmt.enable = true;
-        statix.enable = true;
-        yamlfmt.enable = true;
+        end-of-file-fixer = {
+          enable = true;
+
+          excludes = [
+            "facter\\.json$"
+            "flake\\.lock$"
+          ];
+        };
+
+        fix-byte-order-marker = {
+          enable = true;
+
+          excludes = [
+            "facter\\.json$"
+            "flake\\.lock$"
+          ];
+        };
+
+        flake-checker.enable = true;
+
+        mixed-line-endings = {
+          enable = true;
+
+          excludes = [
+            "facter\\.json$"
+            "flake\\.lock$"
+          ];
+        };
+
+        no-commit-to-branch.enable = true;
+
+        ripsecrets = {
+          enable = true;
+          excludes = [ "\\.pub$" ];
+        };
+
+        treefmt.enable = true;
+
+        trim-trailing-whitespace = {
+          enable = true;
+
+          excludes = [
+            "facter\\.json$"
+            "flake\\.lock$"
+          ];
+        };
+
+        /*
+          typos = {
+                 enable = true;
+
+                 excludes = [
+                   "flake\\.lock$"
+                   "facter\\.json$"
+                 ];
+               };
+        */
       };
 
-      projectRootFile = "flake.nix";
+      treefmt = {
+        imports = [
+          inputs.json-sort.treefmtModules.default
+        ];
 
-      settings = {
-        on-unmatched = "warn";
+        programs = {
+          deadnix.enable = true;
+
+          json-sort = {
+            enable = true;
+            excludes = [ "facter.json" ];
+          };
+
+          jsonfmt = {
+            enable = true;
+            excludes = [ "facter.json" ];
+          };
+
+          just.enable = true;
+          keep-sorted.enable = true;
+          mdformat.enable = true;
+
+          nixfmt = {
+            enable = true;
+            package = pkgs.nixfmt-rs;
+          };
+
+          pedantix = {
+            enable = true;
+
+            excludes = [
+              "flake.nix"
+            ];
+          };
+
+          shellcheck.enable = true;
+          shfmt.enable = true;
+          statix.enable = true;
+          taplo.enable = true;
+          yamlfmt.enable = true;
+        };
+
+        projectRootFile = "flake.nix";
+
+        settings = {
+          global.excludes = [
+            "*facter.json"
+            "*keenan.yaml"
+            "*nixos.yaml"
+            "*.sops.yaml"
+            "flake.lock"
+          ];
+
+          json-sort.excludes = [ "facter.json" ];
+          jsonfmt.excludes = [ "facter.json" ];
+          on-unmatched = "warn";
+        };
       };
     };
-  };
 }

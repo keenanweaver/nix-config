@@ -3,18 +3,20 @@
     pedantix.url = "github:swarsel/pedantix";
   };
 
-  flake.modules.homeManager.base-profile = { inputs, ... }: {
-    imports = [
-      inputs.pedantix.homeModules.default
-    ];
+  flake.modules.homeManager.base-profile =
+    { inputs, ... }:
+    {
+      imports = [
+        inputs.pedantix.homeModules.default
+      ];
 
-    programs.pedantix = {
-      enable = true;
+      programs.pedantix = {
+        enable = true;
 
-      settings = {
-        lets.sort = true;
-        preset = "nixos-module";
+        settings = {
+          lets.sort = true;
+          preset = "nixos-module";
+        };
       };
     };
-  };
 }

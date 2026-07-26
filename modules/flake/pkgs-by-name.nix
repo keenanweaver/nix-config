@@ -15,8 +15,8 @@ in
 
   flake = {
     modules.nixos.local-packages = {
-    nixpkgs.overlays = [ overlay ];
-  };
+      nixpkgs.overlays = [ overlay ];
+    };
 
     overlays.local = overlay;
   };
