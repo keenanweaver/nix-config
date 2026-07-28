@@ -32,7 +32,6 @@
       };
 
       fileSystems = {
-        # Primary
         "/mnt/Games" = {
           device = "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U8NJ0Y515050E-part1";
           fsType = "btrfs";
@@ -43,8 +42,7 @@
           ];
         };
 
-        # Secondary
-        "/mnt/games" = {
+        "/mnt/Games2" = {
           device = "/dev/disk/by-id/ata-Samsung_SSD_870_EVO_2TB_S620NJ0R902825F-part1";
           fsType = "btrfs";
 
@@ -156,9 +154,9 @@
 
       systemd.tmpfiles.rules = [
         "d /mnt/Games 0755 ${config.my.user} users - -"
-        "d /mnt/games 0755 ${config.my.user} users - -"
+        "d /mnt/Games2 0755 ${config.my.user} users - -"
         "L+ /home/${config.my.user}/Games - - - - /mnt/Games"
-        "L+ /home/${config.my.user}/.local/share/games - - - - /mnt/games"
+        "L+ /home/${config.my.user}/.local/share/games - - - - /mnt/Games2"
       ];
     };
 }

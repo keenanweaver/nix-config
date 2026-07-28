@@ -7,7 +7,7 @@
         {
           services.ludusavi = {
             settings = {
-              backup.path = "/mnt/games/ludusavi";
+              backup.path = "/mnt/Games2/ludusavi";
 
               customGames = [
                 {
