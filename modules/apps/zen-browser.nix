@@ -86,8 +86,10 @@
 
               EnableTrackingProtection = {
                 Cryptomining = true;
+                EmailTracking = true;
                 Fingerprinting = true;
                 Locked = true;
+                SuspectedFingerprinting = true;
                 Value = true;
               };
 
@@ -356,6 +358,7 @@
                 "middlemouse.paste" = false;
                 "mousewheel.min_line_scroll_amount" = 10;
                 "services.sync.engine.workspaces" = true;
+                "signon.rememberSignons" = false;
                 "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
                 "widget.use-xdg-desktop-portal.file-picker" = true;
                 "widget.use-xdg-desktop-portal.mime-handler" = true;
