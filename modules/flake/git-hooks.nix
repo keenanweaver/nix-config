@@ -128,6 +128,7 @@
 
             excludes = [
               "flake.nix"
+              "*/package.nix"
             ];
           };
 

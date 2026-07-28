@@ -1,5 +1,4 @@
 preset = "nixos-module"
-formatter = "off"
 
 [attrs]
 merge = true
