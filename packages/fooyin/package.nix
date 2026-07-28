@@ -12,8 +12,9 @@
   libarchive,
   libebur128,
   libopenmpt,
+  libprojectm,
   libsndfile,
-  libvgm,
+  #libvgm,
   nix-update-script,
   pipewire,
   pkg-config,
@@ -27,13 +28,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fooyin";
-  version = "0.11.1";
+  version = "0.12.0";
 
   src = fetchFromGitHub {
     owner = "ludouzi";
     repo = "fooyin";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-228hxjKkxE0ILzP8dnIS21R3AW9Y0+wutgcYlQdCgXc=";
+    hash = "sha256-RZsIA93gvcTMNH+Lf4AnxdfHYQ/tgmLa+rpEQofORLE=";
   };
 
   __structuredAttrs = true;
@@ -56,6 +57,7 @@ stdenv.mkDerivation (finalAttrs: {
     ffmpeg
     icu
     kdsingleapplication
+    libprojectm
     soundtouch
     soxr
     zlib
@@ -65,7 +67,7 @@ stdenv.mkDerivation (finalAttrs: {
     SDL2
     # input plugins
     libebur128
-    libvgm
+    #libvgm
     libsndfile
     libarchive
     libopenmpt
