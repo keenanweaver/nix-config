@@ -18,64 +18,64 @@
             };
 
             bazzite = {
-              hostname = "bazzite";
-              user = "bazzite";
+              HostName = "bazzite";
+              User = "bazzite";
             };
 
             mister = {
-              hostname = "mister";
-              user = "root";
+              HostName = "mister";
+              User = "root";
             };
 
             mumble = {
-              hostname = "game-central.party";
-              port = 6777;
+              HostName = "game-central.party";
+              Port = 6777;
             };
 
             nix-unraid = {
-              hostname = "nix-unraid";
-              port = 22;
+              HostName = "nix-unraid";
+              Port = 22;
             };
 
             nixos-desktop = {
-              hostname = "nixos-desktop";
-              port = 6777;
+              HostName = "nixos-desktop";
+              Port = 6777;
             };
 
             nixos-htpc = {
-              hostname = "nixos-htpc";
-              port = 6777;
+              HostName = "nixos-htpc";
+              Port = 6777;
             };
 
             nixos-laptop = {
-              hostname = "nixos-laptop";
-              port = 6777;
+              HostName = "nixos-laptop";
+              Port = 6777;
             };
 
             opnsense = {
-              hostname = "opnsense";
+              HostName = "opnsense";
             };
 
             regretpi = {
-              hostname = "regretpi";
-              port = 22;
+              HostName = "regretpi";
+              Port = 22;
             };
 
             remorsepi = {
-              hostname = "remorsepi";
-              port = 22;
+              HostName = "remorsepi";
+              Port = 22;
             };
 
             unifi-CKG2 = {
-              hostname = "unifi";
-              port = 6777;
-              user = "keenanweaver";
+              HostName = "unifi";
+              Port = 6777;
+              User = "keenanweaver";
             };
 
             unraid = {
-              hostname = "crusader";
-              port = 6777;
-              user = "root";
+              HostName = "crusader";
+              Port = 6777;
+              User = "root";
             };
           };
         };
