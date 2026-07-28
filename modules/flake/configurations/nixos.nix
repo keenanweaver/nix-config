@@ -37,7 +37,10 @@ in
           module
         ];
 
-        specialArgs = { inherit inputs self; };
+        specialArgs = {
+          inherit inputs self;
+          inherit (inputs) nixos-raspberrypi;
+        };
       }
     ) config.configurations.nixos;
   };
