@@ -52,6 +52,10 @@
               store = "otherWine";
             }
             {
+              path = "${config.home.homeDirectory}/Games/vermouth/*";
+              store = "otherWine";
+            }
+            {
               path = "${config.home.homeDirectory}/Games/SteamLibrary";
               store = "steam";
             }
