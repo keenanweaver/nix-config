@@ -12,7 +12,7 @@
     };
 
     nixos.pi-profile =
-      { self, lib, ... }:
+      { lib, self, ... }:
       {
         imports = with self.modules.nixos; [
           server-profile
