@@ -8,9 +8,26 @@
   };
 
   flake.modules.nixos.base-profile = {
-    nixpkgs.config = {
-      allowBroken = false;
-      allowUnfree = true;
+    nixpkgs = {
+      config = {
+        allowBroken = false;
+        allowUnfree = true;
+      };
+
+      overlays = [
+        (final: _prev: {
+          nixpkgs-unstable = import inputs.nixpkgs-unstable {
+            inherit (final) config;
+            inherit (final.stdenv.hostPlatform) system;
+          };
+        })
+        (final: _prev: {
+          master = import inputs.nixpkgs-master {
+            inherit (final) config;
+            inherit (final.stdenv.hostPlatform) system;
+          };
+        })
+      ];
     };
   };
 
