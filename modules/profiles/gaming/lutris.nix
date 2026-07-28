@@ -6,7 +6,7 @@
         enable = true;
 
         winePackages = with pkgs; [
-          inputs.nix-gaming.packages.${stdenv.hostPlatform.system}.wine-tkg
+          inputs.nix-gaming.packages.${stdenv.hostPlatform.system}.wine-cachyos
         ];
       };
     };

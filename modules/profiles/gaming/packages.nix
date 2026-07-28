@@ -173,7 +173,7 @@
           ++ [
             inputs.rom-properties.packages.${system}.rp_kde6
             inputs.nur-bandithedoge.legacyPackages.${system}.winegui
-            inputs.nix-gaming.packages.${system}.wine-tkg
+            inputs.nix-gaming.packages.${system}.wine-cachyos
           ];
       };
 
