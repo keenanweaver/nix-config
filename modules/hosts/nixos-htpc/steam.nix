@@ -51,6 +51,7 @@
               "Starship SF64" = wrapped pkgs.starship-sf64;
               "Wipeout Rewrite" = wrapped pkgs.wipeout-rewrite;
               "Zelda64Recomp" = wrapped pkgs.zelda64recomp;
+              "shadPS4" = bare pkgs.shadps4-qtlauncher;
             };
           };
       };

@@ -59,7 +59,7 @@
             binsider
             csvlens
             flawz
-            glances
+            #glances
             glow
             gping
             hexyl
@@ -178,7 +178,7 @@
             mednaffe
             mesen
             scummvm
-            shadps4
+            shadps4-qtlauncher
             inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.sheepshaver-bin
             xenia-canary
             ## Input

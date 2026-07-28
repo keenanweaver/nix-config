@@ -7,7 +7,7 @@
           dusklight
           openomf
           pegasus-frontend
-          shadps4
+          shadps4-qtlauncher
           local.sonic3air
           wipeout-rewrite
           zelda64recomp
