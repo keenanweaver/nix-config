@@ -38,11 +38,6 @@
         ];
       };
 
-      programs.moonlight-qt = {
-        capSysNice = true;
-        enable = true;
-      };
-
       services.moonshine = {
         enable = true;
         openFirewall = true;

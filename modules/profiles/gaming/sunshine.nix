@@ -29,11 +29,6 @@
             48010
           ];
         };
-
-        programs.moonlight-qt = {
-          capSysNice = true;
-          enable = true;
-        };
       };
 
       sunshine =
