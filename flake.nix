@@ -85,6 +85,10 @@
       url = "github:pabloaul/lsfg-vk-flake/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    moonshine = {
+      url = "github:hgaiser/moonshine";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";

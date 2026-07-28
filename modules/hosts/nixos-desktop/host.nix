@@ -15,10 +15,11 @@
         secure-boot
         virtualization
 
+        moonshine
         obs
         solaar
         stream-controller
-        sunshine
+        #sunshine
         vscodium
       ];
 
