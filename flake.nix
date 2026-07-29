@@ -176,6 +176,10 @@
       url = "github:JacKeTUs/simracing-hwdb";
       flake = false;
     };
+    slippi = {
+      url = "github:lytedev/slippi-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
