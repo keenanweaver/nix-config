@@ -17,53 +17,12 @@ let
   sans-font = "Inter";
 in
 {
-  flake-file.inputs = {
-    catppuccin = {
-      url = "github:catppuccin/nix";
-    };
-
-    catppuccin-ghostwriter = {
-      flake = false;
-      url = "github:catppuccin/ghostwriter";
-    };
-
-    catppuccin-heroic = {
-      flake = false;
-      url = "github:catppuccin/heroic";
-    };
-
-    catppuccin-konsole = {
-      flake = false;
-      url = "github:catppuccin/konsole";
-    };
-
-    catppuccin-obs = {
-      flake = false;
-      url = "github:catppuccin/obs";
-    };
-
-    catppuccin-powershell = {
-      flake = false;
-      url = "github:catppuccin/powershell";
-    };
-
-    catppuccin-xresources = {
-      flake = false;
-      url = "github:catppuccin/xresources";
-    };
-
-    catppuccin-zen = {
-      flake = false;
-      url = "github:catppuccin/zen-browser";
-    };
-  };
-
   flake.modules = {
     homeManager = {
       catppuccin =
         {
-          config,
           lib,
+          config,
           pkgs,
           osConfig,
           ...
@@ -80,34 +39,27 @@ in
           ];
 
           catppuccin = {
+            enable = true;
             accent = "${accent-lower}";
             autoEnable = true;
             cache.enable = false;
-
             cursors = {
-              accent = "${accent-lower}";
               enable = true;
+              accent = "${accent-lower}";
             };
-
-            enable = true;
             flavor = "${flavor-lower}";
-
             lazygit = {
               accent = "${accent-lower}";
             };
-
             mangohud.enable = false;
-
             micro = {
               transparent = true;
             };
-
             vscodium = {
               profiles.default = {
                 accent = "${accent-lower}";
               };
             };
-
             yazi = {
               accent = "${accent-lower}";
             };
@@ -120,23 +72,19 @@ in
           };
 
           gtk = {
+            enable = true;
             cursorTheme = {
               name = "${cursor-theme}";
               size = 24;
             };
-
-            enable = true;
-
             font = {
-              name = "${sans-font}";
               package = sans-font-pkg;
+              name = "${sans-font}";
               size = 12;
             };
-
             gtk2 = {
               force = true;
             };
-
             gtk3 = {
               extraConfig = {
                 gtk-application-prefer-dark-theme = true;
@@ -154,7 +102,6 @@ in
                 gtk-xft-rgba = "rgb";
               };
             };
-
             gtk4 = {
               extraConfig = {
                 gtk-decoration-layout = "icon:minimize,maximize,close";
@@ -283,12 +230,12 @@ in
             };
 
             packages = with pkgs; [
-              hicolor-icon-theme
               ## GNOME
               adwaita-icon-theme
               gnome-settings-daemon
               gsettings-desktop-schemas
               gsettings-qt
+              hicolor-icon-theme
             ];
 
             sessionVariables = {
@@ -567,12 +514,11 @@ in
             wallpaper = mkWallpaper pkgs;
           in
           {
+            enable = true;
             accent = "${accent-lower}";
             autoEnable = true;
             cache.enable = false;
-            enable = true;
             flavor = "${flavor-lower}";
-
             sddm = {
               background = "${wallpaper}";
               font = "${mono-font}";
@@ -590,8 +536,8 @@ in
             flavor = "${flavor-lower}";
           })
           inputs.kwin-effects-glass.packages.${stdenv.hostPlatform.system}.default
-          klassy
           kdePackages.qtstyleplugin-kvantum
+          klassy
           plasma-panel-colorizer
           utterly-round-plasma-style
         ];
@@ -620,5 +566,45 @@ in
           };
         };
       };
+  };
+  flake-file.inputs = {
+    catppuccin = {
+      url = "github:catppuccin/nix";
+    };
+
+    catppuccin-ghostwriter = {
+      flake = false;
+      url = "github:catppuccin/ghostwriter";
+    };
+
+    catppuccin-heroic = {
+      flake = false;
+      url = "github:catppuccin/heroic";
+    };
+
+    catppuccin-konsole = {
+      flake = false;
+      url = "github:catppuccin/konsole";
+    };
+
+    catppuccin-obs = {
+      flake = false;
+      url = "github:catppuccin/obs";
+    };
+
+    catppuccin-powershell = {
+      flake = false;
+      url = "github:catppuccin/powershell";
+    };
+
+    catppuccin-xresources = {
+      flake = false;
+      url = "github:catppuccin/xresources";
+    };
+
+    catppuccin-zen = {
+      flake = false;
+      url = "github:catppuccin/zen-browser";
+    };
   };
 }

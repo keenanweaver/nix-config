@@ -1,8 +1,4 @@
 {
-  flake-file.inputs = {
-    pedantix.url = "github:swarsel/pedantix";
-  };
-
   flake.modules.homeManager.base-profile =
     { inputs, ... }:
     {
@@ -19,4 +15,7 @@
         };
       };
     };
+  flake-file.inputs = {
+    pedantix.url = "github:swarsel/pedantix";
+  };
 }

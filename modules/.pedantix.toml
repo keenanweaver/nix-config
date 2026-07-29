@@ -1,12 +1,38 @@
-preset = "nixos-module"
+formatter = "nixfmt"
+
+[args]
+first = ["self", "inputs", "lib", "config", "options", "pkgs", "osConfig"]
+last = ["<defaulted>", "..."]
 
 [attrs]
-merge = true
-blank-lines = 1
+first = ["imports", "enable", "package"]
 
 [lets]
 sort = true
 
+[inherits]
+sort = true
+
 [[overrides]]
-path = "**"
-attrs.first = ["flake-file", "imports", "flake", "perSystem"]
+path = "flake-file.inputs"
+attrs.blank-lines = 1
+
+[[overrides]]
+path = "**.systemd.services.*"
+attrs.first = ["enable", "description", "wantedBy", "after"]
+
+[[overrides]]
+path = "**.environment.systemPackages"
+lists.sort = true
+
+[[overrides]]
+path = "**.home.packages"
+lists.sort = true
+
+[[overrides]]
+path = "**.networking.firewall.allowedTCPPorts"
+lists.sort = true
+
+[[overrides]]
+path = "**.networking.firewall.allowedUDPPorts"
+lists.sort = true

@@ -1,8 +1,8 @@
 {
   configurations.nixos.nixos-desktop.module =
     {
-      config,
       lib,
+      config,
       pkgs,
       ...
     }:

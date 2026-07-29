@@ -2,9 +2,9 @@
   flake.modules = {
     homeManager.gaming-profile =
       {
+        inputs,
         config,
         pkgs,
-        inputs,
         ...
       }:
       let
@@ -13,16 +13,6 @@
       {
         home.packages =
           (with pkgs; [
-            local.game-wrapper
-            easyrpg-player
-            faugus-launcher
-            goverlay
-            oversteer
-            protonplus
-            sc-controller
-            umu-launcher
-            master.vermouth
-            winetricks
             (writeShellApplication {
               name = "doom-wad-extractor";
 
@@ -169,11 +159,21 @@
                 popd > /dev/null || exit 1
               '';
             })
+            easyrpg-player
+            faugus-launcher
+            goverlay
+            local.game-wrapper
+            master.vermouth
+            oversteer
+            protonplus
+            sc-controller
+            umu-launcher
+            winetricks
           ])
           ++ [
-            inputs.rom-properties.packages.${system}.rp_kde6
-            inputs.nur-bandithedoge.legacyPackages.${system}.winegui
             inputs.nix-gaming.packages.${system}.wine-cachyos
+            inputs.nur-bandithedoge.legacyPackages.${system}.winegui
+            inputs.rom-properties.packages.${system}.rp_kde6
           ];
       };
 

@@ -1,20 +1,9 @@
 {
-  flake-file.inputs = {
-    zen-browser = {
-      inputs = {
-        home-manager.follows = "home-manager";
-        nixpkgs.follows = "nixpkgs";
-      };
-
-      url = "github:0xc000022070/zen-browser-flake";
-    };
-  };
-
   flake.modules = {
     homeManager.zen-browser =
       {
-        pkgs,
         inputs,
+        pkgs,
         ...
       }:
       {
@@ -194,8 +183,8 @@
                 betterfox.enable = true;
 
                 catppuccin = {
-                  accent = "Lavender";
                   enable = true;
+                  accent = "Lavender";
                   flavor = "Mocha";
                 };
               };
@@ -383,5 +372,15 @@
           setAsDefaultBrowser = true;
         };
       };
+  };
+  flake-file.inputs = {
+    zen-browser = {
+      inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+
+      url = "github:0xc000022070/zen-browser-flake";
+    };
   };
 }

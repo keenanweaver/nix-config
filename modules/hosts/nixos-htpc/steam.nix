@@ -1,8 +1,8 @@
 {
   configurations.nixos.nixos-htpc.module =
     {
-      config,
       lib,
+      config,
       pkgs,
       ...
     }:

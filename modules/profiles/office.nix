@@ -26,9 +26,9 @@
 
         # Scanning
         sane = {
+          enable = true;
           brscan5.enable = true;
           dsseries.enable = true;
-          enable = true;
         };
       };
 
@@ -42,8 +42,8 @@
         };
 
         printing = {
-          drivers = with pkgs; [ brlaser ];
           enable = true;
+          drivers = with pkgs; [ brlaser ];
           openFirewall = true;
         };
       };

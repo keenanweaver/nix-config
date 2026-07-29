@@ -19,9 +19,9 @@
             input = {
               mice = [
                 {
+                  enable = true;
                   acceleration = 0;
                   accelerationProfile = "none";
-                  enable = true;
                   leftHanded = false;
                   middleButtonEmulation = false;
                   name = "Logitech G502 X LS";
@@ -31,9 +31,9 @@
                   vendorId = "046d";
                 }
                 {
+                  enable = true;
                   acceleration = 0;
                   accelerationProfile = "none";
-                  enable = true;
                   name = "Logitech USB Receiver";
                   productId = "c547";
                   vendorId = "046d";

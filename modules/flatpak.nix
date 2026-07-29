@@ -1,13 +1,9 @@
 {
-  flake-file.inputs = {
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
-  };
-
   flake.modules = {
     homeManager.desktop-profile =
       {
-        config,
         inputs,
+        config,
         osConfig,
         ...
       }:
@@ -87,9 +83,9 @@
 
     nixos.desktop-profile =
       {
+        inputs,
         config,
         pkgs,
-        inputs,
         ...
       }:
       {
@@ -108,5 +104,8 @@
         users.users.${config.my.user}.extraGroups = [ "flatpak" ];
         xdg.portal.enable = true;
       };
+  };
+  flake-file.inputs = {
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
   };
 }

@@ -1,9 +1,5 @@
-{ inputs, self, ... }:
+{ self, inputs, ... }:
 {
-  flake-file.inputs = {
-    ucodenix.url = "github:e-tho/ucodenix";
-  };
-
   flake.modules = {
     homeManager.desktop-profile = {
       imports = with self.modules.homeManager; [
@@ -47,8 +43,8 @@
 
       programs = {
         appimage = {
-          binfmt = true;
           enable = true;
+          binfmt = true;
         };
 
         ydotool.enable = true;
@@ -94,6 +90,7 @@
           videoPlayer = "org.kde.haruna.desktop";
         in
         {
+          enable = true;
           defaultApplications = {
             "application/json" = editor;
             "application/pdf" = pdfViewer;
@@ -125,9 +122,10 @@
             "x-scheme-handler/signalcaptcha" = "signal.desktop";
             "x-scheme-handler/terminal" = "org.wezfurlong.wezterm.desktop";
           };
-
-          enable = true;
         };
     };
+  };
+  flake-file.inputs = {
+    ucodenix.url = "github:e-tho/ucodenix";
   };
 }

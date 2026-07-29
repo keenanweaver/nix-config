@@ -1,11 +1,4 @@
 {
-  flake-file.inputs = {
-    lsfg-vk-flake = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:pabloaul/lsfg-vk-flake/main";
-    };
-  };
-
   flake.modules = {
     homeManager.gaming-profile =
       { config, ... }:
@@ -44,5 +37,11 @@
           ui.enable = true;
         };
       };
+  };
+  flake-file.inputs = {
+    lsfg-vk-flake = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:pabloaul/lsfg-vk-flake/main";
+    };
   };
 }

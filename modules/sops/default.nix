@@ -1,10 +1,5 @@
 { inputs, ... }:
 {
-  flake-file.inputs.sops-nix = {
-    inputs.nixpkgs.follows = "nixpkgs";
-    url = "github:Mic92/sops-nix";
-  };
-
   flake.modules = {
     homeManager.base-profile =
       {
@@ -44,5 +39,9 @@
           defaultSopsFile = ./secrets/nixos.yaml;
         };
       };
+  };
+  flake-file.inputs.sops-nix = {
+    inputs.nixpkgs.follows = "nixpkgs";
+    url = "github:Mic92/sops-nix";
   };
 }

@@ -1,8 +1,8 @@
 {
   flake.modules.homeManager.base-profile = {
     programs.fzf = {
-      defaultCommand = "fd --type f";
       enable = true;
+      defaultCommand = "fd --type f";
       enableBashIntegration = true;
       enableZshIntegration = true;
       fileWidget.options = [ "--preview bat -pp --color=always {}" ];

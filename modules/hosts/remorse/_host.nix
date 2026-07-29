@@ -2,7 +2,7 @@
 {
 
   configurations.nixos.remorse.module =
-    { config, lib, ... }:
+    { lib, config, ... }:
     {
       imports = with self.modules.nixos; [
         self.diskoConfigurations.remorse

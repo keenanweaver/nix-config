@@ -1,17 +1,10 @@
 {
-  flake-file.inputs = {
-    moonshine = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:hgaiser/moonshine";
-    };
-  };
-
   flake.modules.nixos.moonshine =
     {
-      config,
-      lib,
-      pkgs,
       inputs,
+      lib,
+      config,
+      pkgs,
       ...
     }:
     {
@@ -19,22 +12,22 @@
 
       networking.firewall = {
         allowedTCPPorts = [
-          # MoonDeck Buddy
-          59999
           # Moonlight
           47984
           47989
           48010
+          # MoonDeck Buddy
+          59999
         ];
 
         allowedUDPPorts = [
-          # Moonlight
-          5353
           47998
           47999
           48000
           48002
           48010
+          # Moonlight
+          5353
         ];
       };
 
@@ -132,4 +125,10 @@
 
       users.users.${config.my.user}.extraGroups = [ "moonshine" ];
     };
+  flake-file.inputs = {
+    moonshine = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:hgaiser/moonshine";
+    };
+  };
 }

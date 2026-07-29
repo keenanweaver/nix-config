@@ -1,5 +1,10 @@
 { inputs, ... }:
 {
+  imports = [
+    inputs.treefmt-nix.flakeModule
+    inputs.git-hooks.flakeModule
+    inputs.pedantix.flakeModules.default
+  ];
   flake-file.inputs = {
     git-hooks = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -9,13 +14,6 @@
     json-sort.url = "github:drupol/json-sort";
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };
-
-  imports = [
-    inputs.treefmt-nix.flakeModule
-    inputs.git-hooks.flakeModule
-    inputs.pedantix.flakeModules.default
-  ];
-
   perSystem =
     { pkgs, ... }:
     {

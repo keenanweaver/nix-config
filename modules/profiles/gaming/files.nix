@@ -1,9 +1,9 @@
 {
   flake.modules.homeManager.gaming-profile =
     {
+      inputs,
       config,
       pkgs,
-      inputs,
       osConfig,
       ...
     }:

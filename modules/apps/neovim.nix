@@ -1,21 +1,12 @@
 {
-  flake-file.inputs = {
-    lazyvim.url = "github:pfassina/lazyvim-nix";
-
-    nvf = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:notashelf/nvf";
-    };
-  };
-
   flake = {
     modules = {
       homeManager = {
         base-profile =
           {
+            inputs,
             lib,
             pkgs,
-            inputs,
             ...
           }:
           {
@@ -117,9 +108,9 @@
 
         nvf =
           {
+            inputs,
             lib,
             pkgs,
-            inputs,
             ...
           }:
           {
@@ -237,17 +228,14 @@
                   };
 
                   treesitter = {
+                    enable = true;
                     context = {
                       enable = true;
                     };
-
-                    enable = true;
                     fold = true;
-
                     highlight = {
                       enable = true;
                     };
-
                     indent = {
                       enable = true;
                     };
@@ -271,6 +259,14 @@
             };
           };
       };
+    };
+  };
+  flake-file.inputs = {
+    lazyvim.url = "github:pfassina/lazyvim-nix";
+
+    nvf = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:notashelf/nvf";
     };
   };
 }

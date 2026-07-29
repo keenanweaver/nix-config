@@ -80,8 +80,8 @@
 
       home-manager.users.${config.my.user} =
         {
-          config,
           lib,
+          config,
           pkgs,
           osConfig,
           ...
@@ -140,10 +140,10 @@
 
           xdg.desktopEntries = import ./_desktop-entries.nix {
             inherit
-              pkgs
-              osConfig
               config
               lib
+              osConfig
+              pkgs
               ;
           };
         };

@@ -1,8 +1,8 @@
 {
-  config,
-  lib,
-  inputs,
   self,
+  inputs,
+  lib,
+  config,
   ...
 }:
 let

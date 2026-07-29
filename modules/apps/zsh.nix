@@ -2,34 +2,30 @@
   flake.modules = {
     homeManager.base-profile =
       {
-        config,
         lib,
+        config,
         pkgs,
         ...
       }:
       {
         programs.zsh = {
+          enable = true;
           autosuggestion.enable = true;
           dotDir = "${config.xdg.configHome}/zsh";
-          enable = true;
-
           history = {
             extended = true;
             ignoreSpace = true;
             size = 999999999;
           };
-
           initContent = ''
             chpwd() {
               lsd -la
             }
             ${lib.getExe pkgs.any-nix-shell} zsh --info-right | source /dev/stdin
           '';
-
           oh-my-zsh = {
-            custom = "${config.xdg.configHome}/zsh/.zsh_custom";
             enable = true;
-
+            custom = "${config.xdg.configHome}/zsh/.zsh_custom";
             plugins = [
               "command-not-found"
               "direnv"
@@ -38,7 +34,6 @@
               "zsh-interactive-cd"
             ];
           };
-
           syntaxHighlighting = {
             enable = true;
           };

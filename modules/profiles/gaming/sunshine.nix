@@ -11,30 +11,30 @@
       gaming-profile = {
         networking.firewall = {
           allowedTCPPorts = [
-            # MoonDeck Buddy
-            59999
             # Moonlight
             47984
             47989
             48010
+            # MoonDeck Buddy
+            59999
           ];
 
           allowedUDPPorts = [
-            # Moonlight
-            5353
             47998
             47999
             48000
             48002
             48010
+            # Moonlight
+            5353
           ];
         };
       };
 
       sunshine =
         {
-          config,
           lib,
+          config,
           pkgs,
           ...
         }:
@@ -46,6 +46,7 @@
                 ;
             in
             {
+              enable = true;
               applications = {
                 apps = [
                   {
@@ -146,12 +147,9 @@
                   PATH = "$(PATH):/run/current-system/sw/bin:/etc/profiles/per-user/${config.my.user}/bin:$(HOME)/.local/bin";
                 };
               };
-
               autoStart = true;
               capSysAdmin = true; # Set to false to fix non-desktop https://github.com/NixOS/nixpkgs/issues/463989
-              enable = true;
               openFirewall = true;
-
               settings = {
                 csrf_allowed_origins = builtins.concatStringsSep "," [
                   "https://10.20.20.5:47990"

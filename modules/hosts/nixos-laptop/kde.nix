@@ -19,8 +19,8 @@
             input = {
               mice = [
                 {
-                  accelerationProfile = "none";
                   enable = true;
+                  accelerationProfile = "none";
                   leftHanded = false;
                   middleButtonEmulation = false;
                   name = "Logitech G903";
@@ -33,8 +33,8 @@
 
               touchpads = [
                 {
-                  disableWhileTyping = true;
                   enable = true;
+                  disableWhileTyping = true;
                   leftHanded = false;
                   middleButtonEmulation = false;
                   name = "DELL0B6B:00 04F3:3259 Touchpad";

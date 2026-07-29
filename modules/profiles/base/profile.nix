@@ -1,9 +1,5 @@
 { self, ... }:
 {
-  flake-file = {
-    description = "Keenan's NixOS configuration";
-  };
-
   flake.modules = {
     homeManager.base-profile =
       { config, ... }:
@@ -25,12 +21,11 @@
         };
 
         xdg = {
-          autostart.enable = true;
           enable = true;
-
+          autostart.enable = true;
           userDirs = {
-            createDirectories = true;
             enable = true;
+            createDirectories = true;
             projects = null;
             publicShare = null;
             setSessionVariables = true;
@@ -41,9 +36,9 @@
 
     nixos.base-profile =
       {
+        inputs,
         config,
         pkgs,
-        inputs,
         ...
       }:
       {
@@ -65,8 +60,8 @@
         };
 
         documentation = {
-          doc.enable = false;
           enable = false;
+          doc.enable = false;
           info.enable = false;
           man.enable = false;
           nixos.enable = false;
@@ -131,5 +126,8 @@
         time.timeZone = "America/Chicago";
         users.motdFile = "/etc/motd";
       };
+  };
+  flake-file = {
+    description = "Keenan's NixOS configuration";
   };
 }

@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.base-profile =
-    { config, lib, ... }:
+    { lib, config, ... }:
     {
       nix = {
         channel.enable = false;

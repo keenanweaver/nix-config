@@ -307,9 +307,9 @@
             line-number = "relative";
 
             lsp = {
+              enable = true;
               display-inlay-hints = true;
               display-messages = true;
-              enable = true;
               snippets = true;
             };
 

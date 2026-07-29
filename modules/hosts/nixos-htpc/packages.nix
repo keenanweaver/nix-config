@@ -5,10 +5,10 @@
       home-manager.users.${config.my.user} = {
         home.packages = with pkgs; [
           dusklight
+          local.sonic3air
           openomf
           pegasus-frontend
           shadps4-qtlauncher
-          local.sonic3air
           wipeout-rewrite
           zelda64recomp
         ];
@@ -22,8 +22,8 @@
         shipwright-git.enable = true;
 
         sm64coopdx = {
-          coopNet.openFirewall = true;
           enable = true;
+          coopNet.openFirewall = true;
         };
 
         spaghetti-kart-git.enable = true;

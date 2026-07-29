@@ -22,8 +22,8 @@
               quickemu
               spice
               spice-protocol
-              virtiofsd
               virtio-win
+              virtiofsd
               win-spice
             ];
           };
@@ -69,10 +69,10 @@
             };
 
             podman = {
+              enable = true;
               defaultNetwork.settings.dns_enabled = true;
               dockerCompat = true;
               dockerSocket.enable = true;
-              enable = true;
             };
 
             spiceUSBRedirection.enable = true;

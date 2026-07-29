@@ -1,15 +1,4 @@
 {
-  flake-file.inputs = {
-    nix-podman-stacks = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:Tarow/nix-podman-stacks";
-    };
-
-    quadlet-nix = {
-      url = "github:SEIAROTg/quadlet-nix";
-    };
-  };
-
   flake = {
     modules = {
       homeManager.server-profile =
@@ -22,7 +11,7 @@
         };
 
       nixos.server-profile =
-        { config, inputs, ... }:
+        { inputs, config, ... }:
         {
           imports = [
             inputs.quadlet-nix.nixosModules.quadlet
@@ -37,10 +26,20 @@
           };
 
           virtualisation.quadlet = {
-            autoUpdate.enable = true;
             enable = true;
+            autoUpdate.enable = true;
           };
         };
+    };
+  };
+  flake-file.inputs = {
+    nix-podman-stacks = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Tarow/nix-podman-stacks";
+    };
+
+    quadlet-nix = {
+      url = "github:SEIAROTg/quadlet-nix";
     };
   };
 }

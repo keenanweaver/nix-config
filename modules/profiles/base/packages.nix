@@ -25,8 +25,8 @@
             aspell
             aspellDicts.en
             killall
-            libnotify
             kmon
+            libnotify
             repgrep
             unrar
             unzip

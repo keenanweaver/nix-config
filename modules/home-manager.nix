@@ -1,11 +1,4 @@
 {
-  flake-file.inputs = {
-    home-manager = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager";
-    };
-  };
-
   flake.modules = {
     homeManager.base-profile =
       {
@@ -18,7 +11,7 @@
       };
 
     nixos.base-profile =
-      { inputs, self, ... }:
+      { self, inputs, ... }:
       {
         imports = [ inputs.home-manager.nixosModules.home-manager ];
 
@@ -29,5 +22,11 @@
           useUserPackages = true;
         };
       };
+  };
+  flake-file.inputs = {
+    home-manager = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+    };
   };
 }

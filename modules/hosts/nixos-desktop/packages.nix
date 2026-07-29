@@ -4,211 +4,13 @@
     {
       home-manager.users.${config.my.user} =
         {
+          inputs,
           lib,
           pkgs,
-          inputs,
           ...
         }:
         {
           home.packages = with pkgs; [
-            audacious
-            audacious-plugins
-            caligula
-            cyanrip
-            filezilla
-            local.fooyin
-            hacompanion
-            handbrake
-            haruna
-            kdePackages.isoimagewriter
-            jellyfin-tui
-            kdePackages.kdenlive
-            krita
-            losslesscut-bin
-            mangareader
-            metadata-cleaner
-            mousai
-            neo
-            kdePackages.neochat
-            okteta
-            picard
-            projectm-sdl-cpp
-            puddletag
-            qbz
-            qtscrcpy
-            rssguard
-            signal-desktop
-            kdePackages.tokodon
-            varia
-            winboat
-            # Dev #
-            codeium
-            just
-            mdformat
-            powershell
-            seer
-            bash-language-server
-            shellcheck
-            shellharden
-            shfmt
-            lua-language-server
-            # Misc
-            adguardian
-            angle-grinder
-            bandwhich
-            binsider
-            csvlens
-            flawz
-            #glances
-            glow
-            gping
-            hexyl
-            hyperfine
-            impala
-            isd
-            jiq
-            lazyjournal
-            magic-wormhole-rs
-            mkvtoolnix-cli
-            patool
-            play
-            podman-tui
-            streamrip
-            systemctl-tui
-            termscp
-            ttysvr
-            wikiman
-            yq
-            ## unix alts ##
-            choose # cut
-            doggo # dig
-            dua # du
-            duf # df
-            fuc # cp / rm
-            pigz # gz
-            procs # ps
-            sd # sed
-            writedisk # dd
-            xh # curl
-            ## Nix ##
-            comma
-            deadnix
-            manix
-            nixd
-            nix-inspect
-            nix-update
-            nixfmt
-            nixpkgs-review
-            nixos-shell
-            nvd
-            statix
-            optnix
-            ### Games ###
-            ## Doom
-            acc
-            inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.cherry-doom
-            chocolate-doom
-            crispy-doom
-            darkradiant
-            doomrunner
-            doomseeker
-            dsda-doom
-            nugget-doom
-            inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.nyan-doom
-            odamex
-            slade
-            uzdoom
-            woof-doom
-            zandronum
-            ## Freespace
-            descent3
-            dxx-rebirth
-            knossosnet
-            ## HOMM
-            fheroes2
-            vcmi
-            ## Morrowind
-            inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-validator
-            tes3cmd
-            openmw
-            ## Arma
-            arma3-unix-launcher
-            # (arma3-unix-launcher.override { buildDayZLauncher = true; })
-            ## Duke
-            rigel-engine
-            ## Wolf
-            bstone
-            ecwolf
-            etlegacy
-            ## Other
-            abuse
-            arx-libertatis # Arx Fatalis
-            augustus # Caesar 3
-            bolt-launcher # RuneScape
-            corsix-th # Theme Hospital
-            #gamma-launcher
-            isle-portable
-            jazz2
-            katawa-shoujo-re-engineered
-            inputs.nix-gaming-edge.packages.${stdenv.hostPlatform.system}.opengoal-launcher
-            openjk # Jedi Academy
-            openloco
-            openomf
-            openrct2
-            openttd
-            opentyrian
-            openxcom
-            openxray # STALKER
-            local.relive # Oddworld
-            local.rsdkv3
-            inputs.nix-citizen.packages.${stdenv.hostPlatform.system}.rsi-launcher-umu
-            sdlpop # Prince of Persia
-            sm64ex
-            local.sonic3air
-            urbanterror
-            vvvvvv
-            wipeout-rewrite
-            yarg
-
-            ## Emulators
-            _86box-with-roms
-            dosbox-staging
-            hypseus-singe
-            mednafen
-            mednaffe
-            mesen
-            scummvm
-            shadps4-qtlauncher
-            inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.sheepshaver-bin
-            xenia-canary
-            ## Input
-            oversteer
-            sc-controller
-            ## Launchers & utils
-            goverlay
-            ## Modding
-            hedgemodmanager
-            limo
-            inputs.just-one-more-repo.packages.${stdenv.hostPlatform.system}.r2modman
-            ## Other
-            adwsteamgtk
-            chiaki-ng
-            flips
-            gst_all_1.gstreamer
-            gst_all_1.gst-libav
-            gst_all_1.gst-plugins-base
-            gst_all_1.gst-plugins-good
-            gst_all_1.gst-plugins-bad
-            gst_all_1.gst-plugins-ugly
-            gswatcher
-            igir
-            innoextract
-            local.lgogdownloader
-            python314Packages.lnkparse3
-            parsec-bin
-            tochd
-            local.xlink-kai
-            xvidcore
             ## One-and-dones
             /*
               inputs.aaru.packages.${stdenv.hostPlatform.system}.default
@@ -268,6 +70,203 @@
                 umo vacuum
               '';
             })
+            ## Emulators
+            _86box-with-roms
+            ## Other
+            abuse
+            ### Games ###
+            ## Doom
+            acc
+            # Misc
+            adguardian
+            ## Other
+            adwsteamgtk
+            angle-grinder
+            ## Arma
+            arma3-unix-launcher
+            arx-libertatis # Arx Fatalis
+            audacious
+            audacious-plugins
+            augustus # Caesar 3
+            bandwhich
+            bash-language-server
+            binsider
+            bolt-launcher # RuneScape
+            ## Wolf
+            bstone
+            caligula
+            chiaki-ng
+            chocolate-doom
+            ## unix alts ##
+            choose # cut
+            # Dev #
+            codeium
+            ## Nix ##
+            comma
+            corsix-th # Theme Hospital
+            crispy-doom
+            csvlens
+            cyanrip
+            darkradiant
+            deadnix
+            ## Freespace
+            descent3
+            doggo # dig
+            doomrunner
+            doomseeker
+            dosbox-staging
+            dsda-doom
+            dua # du
+            duf # df
+            dxx-rebirth
+            ecwolf
+            etlegacy
+            ## HOMM
+            fheroes2
+            filezilla
+            flawz
+            flips
+            fuc # cp / rm
+            #glances
+            glow
+            ## Launchers & utils
+            goverlay
+            gping
+            gst_all_1.gst-libav
+            gst_all_1.gst-plugins-bad
+            gst_all_1.gst-plugins-base
+            gst_all_1.gst-plugins-good
+            gst_all_1.gst-plugins-ugly
+            gst_all_1.gstreamer
+            gswatcher
+            hacompanion
+            handbrake
+            haruna
+            ## Modding
+            hedgemodmanager
+            hexyl
+            hyperfine
+            hypseus-singe
+            igir
+            impala
+            innoextract
+            inputs.just-one-more-repo.packages.${stdenv.hostPlatform.system}.r2modman
+            inputs.nix-citizen.packages.${stdenv.hostPlatform.system}.rsi-launcher-umu
+            inputs.nix-gaming-edge.packages.${stdenv.hostPlatform.system}.opengoal-launcher
+            inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.cherry-doom
+            inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.nyan-doom
+            inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.sheepshaver-bin
+            ## Morrowind
+            inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-validator
+            isd
+            #gamma-launcher
+            isle-portable
+            jazz2
+            jellyfin-tui
+            jiq
+            just
+            katawa-shoujo-re-engineered
+            kdePackages.isoimagewriter
+            kdePackages.kdenlive
+            kdePackages.neochat
+            kdePackages.tokodon
+            knossosnet
+            krita
+            lazyjournal
+            limo
+            local.fooyin
+            local.lgogdownloader
+            local.relive # Oddworld
+            local.rsdkv3
+            local.sonic3air
+            local.xlink-kai
+            losslesscut-bin
+            lua-language-server
+            magic-wormhole-rs
+            mangareader
+            manix
+            mdformat
+            mednafen
+            mednaffe
+            mesen
+            metadata-cleaner
+            mkvtoolnix-cli
+            mousai
+            neo
+            nix-inspect
+            nix-update
+            nixd
+            nixfmt
+            nixos-shell
+            nixpkgs-review
+            nugget-doom
+            nvd
+            odamex
+            okteta
+            openjk # Jedi Academy
+            openloco
+            openmw
+            openomf
+            openrct2
+            openttd
+            opentyrian
+            openxcom
+            openxray # STALKER
+            optnix
+            ## Input
+            oversteer
+            parsec-bin
+            patool
+            picard
+            pigz # gz
+            play
+            podman-tui
+            powershell
+            procs # ps
+            projectm-sdl-cpp
+            puddletag
+            python314Packages.lnkparse3
+            qbz
+            qtscrcpy
+            # (arma3-unix-launcher.override { buildDayZLauncher = true; })
+            ## Duke
+            rigel-engine
+            rssguard
+            sc-controller
+            scummvm
+            sd # sed
+            sdlpop # Prince of Persia
+            seer
+            shadps4-qtlauncher
+            shellcheck
+            shellharden
+            shfmt
+            signal-desktop
+            slade
+            sm64ex
+            statix
+            streamrip
+            systemctl-tui
+            termscp
+            tes3cmd
+            tochd
+            ttysvr
+            urbanterror
+            uzdoom
+            varia
+            vcmi
+            vvvvvv
+            wikiman
+            winboat
+            wipeout-rewrite
+            woof-doom
+            writedisk # dd
+            xenia-canary
+            xh # curl
+            xvidcore
+            yarg
+            yq
+            zandronum
           ];
 
           programs = {

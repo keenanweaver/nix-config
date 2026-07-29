@@ -1,29 +1,8 @@
 {
-  flake-file.inputs = {
-    kwin-effects-glass = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:4v3ngR/kwin-effects-glass";
-    };
-
-    kwin-effects-kinetic = {
-      flake = false;
-      url = "github:gurrgur/kwin-effects-kinetic";
-    };
-
-    plasma-manager = {
-      inputs = {
-        home-manager.follows = "home-manager";
-        nixpkgs.follows = "nixpkgs";
-      };
-
-      url = "github:nix-community/plasma-manager";
-    };
-  };
-
   flake.modules = {
     homeManager = {
       kde =
-        { config, inputs, ... }:
+        { inputs, config, ... }:
         {
           home = {
             file = {
@@ -60,9 +39,9 @@
 
       plasma-manager =
         {
+          inputs,
           lib,
           pkgs,
-          inputs,
           osConfig,
           ...
         }:
@@ -84,6 +63,7 @@
             };
 
             kate = {
+              enable = true;
               editor = {
                 brackets = {
                   automaticallyAddClosing = true;
@@ -92,9 +72,6 @@
                   highlightRangeBetween = true;
                 };
               };
-
-              enable = true;
-
               lsp = {
                 customServers = {
                   bash = {
@@ -148,9 +125,8 @@
             };
 
             konsole = {
-              defaultProfile = "${osConfig.my.user}";
               enable = true;
-
+              defaultProfile = "${osConfig.my.user}";
               extraConfig = {
                 KonsoleWindow = {
                   RemoveWindowTitleBarAndFrame = true;
@@ -160,7 +136,6 @@
                   MenuBar = "Disabled";
                 };
               };
-
               profiles = {
                 "${osConfig.my.user}" = {
                   command = lib.getExe pkgs.zsh;
@@ -186,6 +161,7 @@
             };
 
             plasma = {
+              enable = true;
               configFile = {
                 baloofilerc = {
                   "Basic Settings".Indexing-Enabled = false;
@@ -389,7 +365,6 @@
                   systemsettings_sidebar_mode.HighlightNonDefaultSettings = true;
                 };
               };
-
               desktop = {
                 icons = {
                   alignment = "left";
@@ -426,9 +401,6 @@
                   verticalScroll = "switchVirtualDesktop";
                 };
               };
-
-              enable = true;
-
               hotkeys = {
                 commands = {
                   "Spectacle-region-clipboard" = {
@@ -446,7 +418,6 @@
                   };
                 };
               };
-
               input = {
                 keyboard = {
                   layouts = [ { layout = "us"; } ];
@@ -455,18 +426,15 @@
                   repeatRate = 25;
                 };
               };
-
               krunner = {
                 activateWhenTypingOnDesktop = false;
                 historyBehavior = "enableSuggestions";
                 position = "center";
               };
-
               kscreenlocker = {
                 autoLock = false;
                 lockOnResume = false;
               };
-
               kwin = {
                 cornerBarrier = false;
                 edgeBarrier = 0;
@@ -531,9 +499,7 @@
                   rows = 1;
                 };
               };
-
               overrideConfig = false;
-
               shortcuts = {
                 kwin = {
                   "Kill Window" = "Alt+Shift+F4";
@@ -555,7 +521,6 @@
                   "Search"
                 ];
               };
-
               spectacle.shortcuts = {
                 captureActiveWindow = "Meta+Print";
                 captureCurrentMonitor = "Print";
@@ -565,7 +530,6 @@
                 launch = "Meta+S";
                 launchWithoutCapturing = "Meta+Alt+S";
               };
-
               window-rules = [
                 # https://reddit.com/r/cachyos/comments/1rufws5/title_fullscreen_firefox_and_spectacle_screen/
                 {
@@ -668,11 +632,9 @@
                   };
                 }
               ];
-
               windows = {
                 allowWindowsToRememberPositions = true;
               };
-
               workspace = {
                 clickItemTo = "select";
                 enableMiddleClickPaste = false;
@@ -697,6 +659,9 @@
             with pkgs;
             with pkgs.kdePackages;
             [
+              (spectacle.override {
+                tesseractLanguages = [ "eng" ];
+              })
               # https://github.com/shvedes/awesome-kde
               arianna
               breeze
@@ -722,15 +687,12 @@
               ksystemlog
               #kzones
               markdownpart
-              plasma-browser-integration
               packagekit-qt # Discover store
+              plasma-browser-integration
               qt6.qtwebengine
               qtimageformats
               qtsvg # https://github.com/NixOS/nixpkgs/issues/325225
               sddm-kcm
-              (spectacle.override {
-                tesseractLanguages = [ "eng" ];
-              })
               svgpart
               syntax-highlighting
             ];
@@ -818,6 +780,7 @@
         };
 
         xdg.portal = {
+          enable = true;
           config = {
             kde = {
               default = [
@@ -829,16 +792,32 @@
               "org.freedesktop.portal.OpenURI" = [ "kde" ];
             };
           };
-
-          enable = true;
-
           extraPortals = with pkgs; [
             kdePackages.xdg-desktop-portal-kde
             xdg-desktop-portal-gtk
           ];
-
           xdgOpenUsePortal = true;
         };
       };
+  };
+  flake-file.inputs = {
+    kwin-effects-glass = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:4v3ngR/kwin-effects-glass";
+    };
+
+    kwin-effects-kinetic = {
+      flake = false;
+      url = "github:gurrgur/kwin-effects-kinetic";
+    };
+
+    plasma-manager = {
+      inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+
+      url = "github:nix-community/plasma-manager";
+    };
   };
 }

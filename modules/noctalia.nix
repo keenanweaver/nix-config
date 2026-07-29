@@ -1,15 +1,4 @@
 {
-  flake-file.inputs = {
-    noctalia = {
-      url = "github:noctalia-dev/noctalia/cachix";
-    };
-
-    noctalia-greeter = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:noctalia-dev/noctalia-greeter";
-    };
-  };
-
   flake.modules = {
     homeManager.noctalia =
       { inputs, ... }:
@@ -37,7 +26,7 @@
       };
 
     nixos.noctalia =
-      { pkgs, inputs, ... }:
+      { inputs, pkgs, ... }:
       {
         imports = [
           inputs.noctalia.nixosModules.default
@@ -77,5 +66,15 @@
           };
         };
       };
+  };
+  flake-file.inputs = {
+    noctalia = {
+      url = "github:noctalia-dev/noctalia/cachix";
+    };
+
+    noctalia-greeter = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:noctalia-dev/noctalia-greeter";
+    };
   };
 }

@@ -3,9 +3,9 @@
     homeManager = {
       obs =
         {
+          self,
           pkgs,
           osConfig,
-          self,
           ...
         }:
         {
@@ -44,8 +44,8 @@
 
       obs-flatpak =
         {
-          osConfig,
           self,
+          osConfig,
           ...
         }:
         {

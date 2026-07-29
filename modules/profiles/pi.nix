@@ -1,9 +1,5 @@
 { self, ... }:
 {
-  flake-file.inputs = {
-    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
-  };
-
   flake.modules = {
     homeManager.pi-profile = {
       imports = with self.modules.nixos; [
@@ -12,7 +8,7 @@
     };
 
     nixos.pi-profile =
-      { lib, self, ... }:
+      { self, lib, ... }:
       {
         imports = with self.modules.nixos; [
           server-profile
@@ -30,6 +26,9 @@
 
         nixpkgs.hostPlatform = lib.mkForce "aarch64-linux";
       };
+  };
+  flake-file.inputs = {
+    nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
   };
 
 }

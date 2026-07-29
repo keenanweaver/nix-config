@@ -19,9 +19,9 @@
             input = {
               mice = [
                 {
+                  enable = true;
                   acceleration = 0;
                   accelerationProfile = "none";
-                  enable = true;
                   leftHanded = false;
                   middleButtonEmulation = false;
                   name = "Shenzhen Rapoo Technology Co., Ltd. Rapoo Gaming Device";

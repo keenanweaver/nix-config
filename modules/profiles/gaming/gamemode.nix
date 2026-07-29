@@ -1,8 +1,8 @@
 {
   flake.modules.nixos.gaming-profile =
     {
-      config,
       lib,
+      config,
       pkgs,
       ...
     }:

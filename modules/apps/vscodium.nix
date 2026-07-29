@@ -1,11 +1,4 @@
 {
-  flake-file.inputs = {
-    nix-vscode-extensions = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/nix-vscode-extensions";
-    };
-  };
-
   flake.modules = {
     homeManager.vscodium =
       {
@@ -131,5 +124,11 @@
       {
         nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
       };
+  };
+  flake-file.inputs = {
+    nix-vscode-extensions = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nix-vscode-extensions";
+    };
   };
 }

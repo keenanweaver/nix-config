@@ -1,8 +1,4 @@
 {
-  flake-file.inputs = {
-    preservation.url = "github:nix-community/preservation";
-  };
-
   flake.modules.nixos.base-profile =
     { inputs, ... }:
     {
@@ -78,4 +74,7 @@
         suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
       };
     };
+  flake-file.inputs = {
+    preservation.url = "github:nix-community/preservation";
+  };
 }

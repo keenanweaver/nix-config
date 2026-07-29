@@ -1,8 +1,8 @@
 {
   flake.modules.nixos.gaming-profile =
     {
-      config,
       lib,
+      config,
       pkgs,
       ...
     }:
@@ -33,8 +33,8 @@
 
           (lib.mkIf cfg.ui.enable {
             environment.systemPackages = [
-              cfg.ui.package
               cfg.ui.notifPackage
+              cfg.ui.package
             ];
 
             security.wrappers."gsr-global-hotkeys" = {
@@ -64,8 +64,8 @@
 
           ui = {
             enable = lib.mkEnableOption "the GPU Screen Recorder overlay UI";
-            notifPackage = lib.mkPackageOption pkgs [ "local" "gpu-screen-recorder-notification" ] { };
             package = lib.mkPackageOption pkgs [ "local" "gpu-screen-recorder-ui" ] { };
+            notifPackage = lib.mkPackageOption pkgs [ "local" "gpu-screen-recorder-notification" ] { };
           };
         };
       };

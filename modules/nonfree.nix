@@ -1,13 +1,6 @@
 {
-  flake-file.inputs = {
-    nonfree = {
-      flake = false;
-      url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
-    };
-  };
-
   flake.modules.homeManager.desktop-profile =
-    { lib, inputs, ... }:
+    { inputs, lib, ... }:
     {
       # https://github.com/nix-community/home-manager/issues/3849#issuecomment-2115899992
       # Copy dotfiles recursively in home
@@ -35,4 +28,10 @@
         in
         toHomeFiles "${inputs.nonfree}";
     };
+  flake-file.inputs = {
+    nonfree = {
+      flake = false;
+      url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
+    };
+  };
 }

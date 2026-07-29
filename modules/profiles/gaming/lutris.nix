@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.gaming-profile =
-    { pkgs, inputs, ... }:
+    { inputs, pkgs, ... }:
     {
       programs.lutris = {
         enable = true;

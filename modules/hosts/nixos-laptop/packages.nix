@@ -6,33 +6,33 @@
         { pkgs, ... }:
         {
           home.packages = with pkgs; [
-            haruna
-            kdePackages.neochat
-            rssguard
-            signal-desktop
+            bash-language-server
             # Dev #
             codeium
-            just
-            mdformat
-            powershell
-            seer
-            bash-language-server
-            shellcheck
-            shellharden
-            shfmt
             ## Nix ##
             comma
             deadnix
+            haruna
+            just
+            kdePackages.neochat
             manix
-            nixd
+            mdformat
             nix-inspect
             nix-update
+            nixd
             nixfmt
-            nixpkgs-review
             nixos-shell
+            nixpkgs-review
             nvd
-            statix
             optnix
+            powershell
+            rssguard
+            seer
+            shellcheck
+            shellharden
+            shfmt
+            signal-desktop
+            statix
           ];
         };
     };

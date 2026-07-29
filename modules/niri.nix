@@ -1,16 +1,9 @@
 {
-  flake-file.inputs = {
-    niri = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:sodiboo/niri-flake";
-    };
-  };
-
   flake.modules = {
     homeManager.niri =
       {
-        pkgs,
         inputs,
+        pkgs,
         ...
       }:
       {
@@ -29,5 +22,11 @@
       {
         nixpkgs.overlays = [ inputs.niri.overlays.niri ];
       };
+  };
+  flake-file.inputs = {
+    niri = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:sodiboo/niri-flake";
+    };
   };
 }

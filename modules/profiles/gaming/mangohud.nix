@@ -2,8 +2,8 @@
   flake.modules = {
     homeManager.gaming-profile =
       {
-        config,
         lib,
+        config,
         pkgs,
         osConfig,
         ...
@@ -14,10 +14,10 @@
             let
               inherit (osConfig.host)
                 cpu
-                gpu
-                primaryMonitor
-                pciDev
                 fpsLimit
+                gpu
+                pciDev
+                primaryMonitor
                 ;
               mangohud-cpu-governor = pkgs.writeShellApplication {
                 name = "mangohud-cpu-governor";

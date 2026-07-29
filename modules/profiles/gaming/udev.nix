@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.gaming-profile =
-    { pkgs, inputs, ... }:
+    { inputs, pkgs, ... }:
     {
       services.udev = {
         extraHwdb =

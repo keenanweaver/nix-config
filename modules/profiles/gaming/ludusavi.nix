@@ -3,9 +3,8 @@
     { config, ... }:
     {
       services.ludusavi = {
-        backupNotification = true;
         enable = true;
-
+        backupNotification = true;
         settings = {
           backup = {
             format = {
