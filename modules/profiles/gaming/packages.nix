@@ -163,12 +163,12 @@
             faugus-launcher
             goverlay
             local.game-wrapper
-            master.vermouth
             openspeedrun
             oversteer
             protonplus
             sc-controller
             umu-launcher
+            vermouth
             winetricks
           ])
           ++ [

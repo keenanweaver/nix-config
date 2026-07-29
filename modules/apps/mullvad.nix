@@ -1,10 +1,8 @@
 {
-  flake.modules.nixos.desktop-profile =
-    { pkgs, ... }:
-    {
-      services.mullvad-vpn = {
-        enable = true;
-        package = pkgs.mullvad-vpn;
-      };
+  flake.modules.nixos.desktop-profile = {
+    services.mullvad-vpn = {
+      enable = true;
+      gui.enable = true;
     };
+  };
 }
