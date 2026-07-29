@@ -41,6 +41,7 @@
       };
 
       networking.hostName = "nixos-htpc";
+      nix.settings.build-dir = "/nix/build";
       system.stateVersion = "26.05";
 
       systemd.tmpfiles.rules = [

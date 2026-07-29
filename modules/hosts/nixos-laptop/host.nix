@@ -44,6 +44,7 @@
       };
 
       networking.hostName = "nixos-laptop";
+      nix.settings.build-dir = "/nix/build";
       system.stateVersion = "26.05";
     };
 }
