@@ -17,11 +17,14 @@
               fsType = "nfs";
 
               options = [
-                "x-systemd.automount"
-                "x-systemd.idle-timeout=600"
+                "_netdev"
+                "hard"
                 "noauto"
                 "noatime"
                 "nofail"
+                "x-systemd.automount"
+                "x-systemd.idle-timeout=60"
+                "x-systemd.mount-timeout=10s"
               ];
             };
           })
