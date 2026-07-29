@@ -20,22 +20,12 @@
 
           policies =
             let
-              mkExtensionEntry =
-                {
-                  id,
-                  pinned ? false,
-                }:
-                let
-                  base = {
-                    install_url = mkPluginUrl id;
-                    installation_mode = "force_installed";
-                  };
-                in
-                if pinned then base // { default_area = "navbar"; } else base;
               mkExtensionSettings = builtins.mapAttrs (
-                _: entry: if builtins.isAttrs entry then entry else mkExtensionEntry { id = entry; }
+                _: pluginId: {
+                  install_url = "https://addons.mozilla.org/firefox/downloads/latest/${pluginId}/latest.xpi";
+                  installation_mode = "force_installed";
+                }
               );
-              mkPluginUrl = id: "https://addons.mozilla.org/firefox/downloads/latest/${id}/latest.xpi";
             in
             {
               AutofillAddressEnabled = false;
@@ -83,41 +73,19 @@
               };
 
               ExtensionSettings = mkExtensionSettings {
-                "7esoorv3@alefvanoon.anonaddy.me" = mkExtensionEntry {
-                  id = "libredirect";
-                  pinned = true;
-                };
-
-                "addon@darkreader.org" = mkExtensionEntry {
-                  id = "darkreader";
-                  pinned = true;
-                };
-
+                "7esoorv3@alefvanoon.anonaddy.me" = "libredirect";
+                "addon@darkreader.org" = "darkreader";
                 "admin@fastaddons.com_AutoHighlight" = "auto_highlight";
                 "jid1-xUfzOsOFlzSOXg@jetpack" = "reddit-enhancement-suite";
                 "plasma-browser-integration@kde.org" = "plasma-integration";
                 "sponsorBlocker@ajay.app" = "sponsorblock";
-
-                "uBlock0@raymondhill.net" = mkExtensionEntry {
-                  id = "ublock-origin";
-                  pinned = true;
-                };
-
+                "uBlock0@raymondhill.net" = "ublock-origin";
                 "{00000f2a-7cde-4f20-83ed-434fcb420d71}" = "imagus";
                 "{0c2c1d5d-7040-4499-9d29-bff606d963e6}" = "gog-2nd-class-helper";
                 "{15bdb1ce-fa9d-4a00-b859-66c214263ac0}" = "get-rss-feed-url";
                 "{1be309c5-3e4f-4b99-927d-bb500eb4fa88}" = "augmented-steam";
-
-                "{446900e4-71c2-419f-a6a7-df9c091e268b}" = mkExtensionEntry {
-                  id = "bitwarden-password-manager";
-                  pinned = true;
-                };
-
-                "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = mkExtensionEntry {
-                  id = "styl-us";
-                  pinned = true;
-                };
-
+                "{446900e4-71c2-419f-a6a7-df9c091e268b}" = "bitwarden-password-manager";
+                "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = "styl-us";
                 "{891ed2be-6ca9-47d1-9466-1595afa33b80}" = "bandcamp";
                 "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" = "refined-github-";
                 "{aecec67f-0d10-4fa7-b7c7-609a2db280cf}" = "violentmonkey";

@@ -449,12 +449,6 @@ in
           services = {
             flatpak = {
               overrides = {
-                "app.zen_browser.zen" = {
-                  Environment = {
-                    GTK_THEME = "${GTK-THEME}";
-                  };
-                };
-
                 "com.fightcade.Fightcade" = {
                   Environment = {
                     GTK_THEME = "${GTK-THEME}";
