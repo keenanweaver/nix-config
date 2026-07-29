@@ -122,8 +122,6 @@
 
         packages = [
           "app.xemu.xemu"
-          "com.fightcade.Fightcade"
-          "com.fightcade.Fightcade.Wine"
           "com.github.optyfr.JRomManager"
           "com.qzandronum.Q-Zandronum"
           "com.richwhitehouse.BigPEmu"
@@ -152,31 +150,11 @@
           "org.diasurgical.DevilutionX"
           "org.DolphinEmu.dolphin-emu"
           "org.flycast.Flycast"
-          "org.freedesktop.Platform.VulkanLayer.lsfgvk/x86_64/24.08"
-          "org.freedesktop.Platform.VulkanLayer.lsfgvk/x86_64/25.08"
-          {
-            appId = "org.freedesktop.Platform.GL.mesa-git/x86_64/25.08";
-            origin = "flathub-beta";
-          }
-          {
-            appId = "org.freedesktop.Platform.GL32.mesa-git/x86_64/25.08";
-            origin = "flathub-beta";
-          }
-          {
-            appId = "org.freedesktop.Platform.GL.mesa-git/x86_64/24.08";
-            origin = "flathub-beta";
-          }
-          {
-            appId = "org.freedesktop.Platform.GL32.mesa-git/x86_64/24.08";
-            origin = "flathub-beta";
-          }
-          "org.kartkrew.RingRacers"
           "org.mamedev.MAME"
           "org.openfodder.OpenFodder"
           "org.openjkdf2.OpenJKDF2"
           "org.pegasus_frontend.Pegasus"
           "org.ppsspp.PPSSPP"
-          "org.srb2.SRB2"
           "vet.rsc.OpenRSC.Launcher"
         ];
       };

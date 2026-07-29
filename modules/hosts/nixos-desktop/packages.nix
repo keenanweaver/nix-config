@@ -70,19 +70,12 @@
                 umo vacuum
               '';
             })
-            ## Emulators
             _86box-with-roms
-            ## Other
             abuse
-            ### Games ###
-            ## Doom
             acc
-            # Misc
             adguardian
-            ## Other
             adwsteamgtk
             angle-grinder
-            ## Arma
             arma3-unix-launcher
             arx-libertatis # Arx Fatalis
             audacious
@@ -92,16 +85,12 @@
             bash-language-server
             binsider
             bolt-launcher # RuneScape
-            ## Wolf
             bstone
             caligula
             chiaki-ng
             chocolate-doom
-            ## unix alts ##
             choose # cut
-            # Dev #
             codeium
-            ## Nix ##
             comma
             corsix-th # Theme Hospital
             crispy-doom
@@ -109,7 +98,6 @@
             cyanrip
             darkradiant
             deadnix
-            ## Freespace
             descent3
             doggo # dig
             doomrunner
@@ -121,7 +109,6 @@
             dxx-rebirth
             ecwolf
             etlegacy
-            ## HOMM
             fheroes2
             filezilla
             flawz
@@ -129,7 +116,6 @@
             fuc # cp / rm
             #glances
             glow
-            ## Launchers & utils
             goverlay
             gping
             gst_all_1.gst-libav
@@ -142,7 +128,6 @@
             hacompanion
             handbrake
             haruna
-            ## Modding
             hedgemodmanager
             hexyl
             hyperfine
@@ -156,7 +141,6 @@
             inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.cherry-doom
             inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.nyan-doom
             inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.sheepshaver-bin
-            ## Morrowind
             inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-validator
             isd
             #gamma-launcher
@@ -213,7 +197,6 @@
             openxcom
             openxray # STALKER
             optnix
-            ## Input
             oversteer
             parsec-bin
             patool
@@ -229,8 +212,8 @@
             qbz
             qtscrcpy
             # (arma3-unix-launcher.override { buildDayZLauncher = true; })
-            ## Duke
             rigel-engine
+            ringracers
             rssguard
             sc-controller
             scummvm
@@ -244,6 +227,7 @@
             signal-desktop
             slade
             sm64ex
+            srb2
             statix
             streamrip
             systemctl-tui
