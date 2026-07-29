@@ -125,6 +125,7 @@
 
       users.users.${config.my.user}.extraGroups = [ "moonshine" ];
     };
+
   flake-file.inputs = {
     moonshine = {
       inputs.nixpkgs.follows = "nixpkgs";

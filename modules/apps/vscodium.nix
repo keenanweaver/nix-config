@@ -125,6 +125,7 @@
         nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
       };
   };
+
   flake-file.inputs = {
     nix-vscode-extensions = {
       inputs.nixpkgs.follows = "nixpkgs";

@@ -38,6 +38,7 @@
         };
       };
   };
+
   flake-file.inputs = {
     lsfg-vk-flake = {
       inputs.nixpkgs.follows = "nixpkgs";

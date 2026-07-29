@@ -23,6 +23,7 @@
         xdg = {
           enable = true;
           autostart.enable = true;
+
           userDirs = {
             enable = true;
             createDirectories = true;
@@ -127,6 +128,7 @@
         users.motdFile = "/etc/motd";
       };
   };
+
   flake-file = {
     description = "Keenan's NixOS configuration";
   };

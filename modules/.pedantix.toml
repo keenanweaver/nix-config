@@ -1,4 +1,6 @@
 formatter = "nixfmt"
+top-level-blank-lines = 1
+top-level-blank-lines-mode = "multiline"
 
 [args]
 first = ["self", "inputs", "lib", "config", "options", "pkgs", "osConfig"]
@@ -6,6 +8,8 @@ last = ["<defaulted>", "..."]
 
 [attrs]
 first = ["imports", "enable", "package"]
+blank-lines = 1
+blank-lines-mode = "multiline"
 
 [lets]
 sort = true

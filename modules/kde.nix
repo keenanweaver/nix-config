@@ -64,6 +64,7 @@
 
             kate = {
               enable = true;
+
               editor = {
                 brackets = {
                   automaticallyAddClosing = true;
@@ -72,6 +73,7 @@
                   highlightRangeBetween = true;
                 };
               };
+
               lsp = {
                 customServers = {
                   bash = {
@@ -127,6 +129,7 @@
             konsole = {
               enable = true;
               defaultProfile = "${osConfig.my.user}";
+
               extraConfig = {
                 KonsoleWindow = {
                   RemoveWindowTitleBarAndFrame = true;
@@ -136,6 +139,7 @@
                   MenuBar = "Disabled";
                 };
               };
+
               profiles = {
                 "${osConfig.my.user}" = {
                   command = lib.getExe pkgs.zsh;
@@ -162,6 +166,7 @@
 
             plasma = {
               enable = true;
+
               configFile = {
                 baloofilerc = {
                   "Basic Settings".Indexing-Enabled = false;
@@ -365,6 +370,7 @@
                   systemsettings_sidebar_mode.HighlightNonDefaultSettings = true;
                 };
               };
+
               desktop = {
                 icons = {
                   alignment = "left";
@@ -401,6 +407,7 @@
                   verticalScroll = "switchVirtualDesktop";
                 };
               };
+
               hotkeys = {
                 commands = {
                   "Spectacle-region-clipboard" = {
@@ -418,6 +425,7 @@
                   };
                 };
               };
+
               input = {
                 keyboard = {
                   layouts = [ { layout = "us"; } ];
@@ -426,15 +434,18 @@
                   repeatRate = 25;
                 };
               };
+
               krunner = {
                 activateWhenTypingOnDesktop = false;
                 historyBehavior = "enableSuggestions";
                 position = "center";
               };
+
               kscreenlocker = {
                 autoLock = false;
                 lockOnResume = false;
               };
+
               kwin = {
                 cornerBarrier = false;
                 edgeBarrier = 0;
@@ -499,7 +510,9 @@
                   rows = 1;
                 };
               };
+
               overrideConfig = false;
+
               shortcuts = {
                 kwin = {
                   "Kill Window" = "Alt+Shift+F4";
@@ -521,6 +534,7 @@
                   "Search"
                 ];
               };
+
               spectacle.shortcuts = {
                 captureActiveWindow = "Meta+Print";
                 captureCurrentMonitor = "Print";
@@ -530,6 +544,7 @@
                 launch = "Meta+S";
                 launchWithoutCapturing = "Meta+Alt+S";
               };
+
               window-rules = [
                 # https://reddit.com/r/cachyos/comments/1rufws5/title_fullscreen_firefox_and_spectacle_screen/
                 {
@@ -632,9 +647,11 @@
                   };
                 }
               ];
+
               windows = {
                 allowWindowsToRememberPositions = true;
               };
+
               workspace = {
                 clickItemTo = "select";
                 enableMiddleClickPaste = false;
@@ -781,6 +798,7 @@
 
         xdg.portal = {
           enable = true;
+
           config = {
             kde = {
               default = [
@@ -792,14 +810,17 @@
               "org.freedesktop.portal.OpenURI" = [ "kde" ];
             };
           };
+
           extraPortals = with pkgs; [
             kdePackages.xdg-desktop-portal-kde
             xdg-desktop-portal-gtk
           ];
+
           xdgOpenUsePortal = true;
         };
       };
   };
+
   flake-file.inputs = {
     kwin-effects-glass = {
       inputs.nixpkgs.follows = "nixpkgs";

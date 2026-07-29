@@ -91,6 +91,7 @@
         in
         {
           enable = true;
+
           defaultApplications = {
             "application/json" = editor;
             "application/pdf" = pdfViewer;
@@ -125,6 +126,7 @@
         };
     };
   };
+
   flake-file.inputs = {
     ucodenix.url = "github:e-tho/ucodenix";
   };

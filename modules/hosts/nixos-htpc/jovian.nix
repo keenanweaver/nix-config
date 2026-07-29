@@ -60,6 +60,7 @@
       systemd.services.steam-cef-debug = lib.mkIf config.jovian.decky-loader.enable {
         description = "Create Steam CEF debugging file";
         wantedBy = [ "multi-user.target" ];
+
         serviceConfig = {
           ExecStart = "${lib.getExe pkgs.bash} -c 'mkdir -p ~/.steam/steam && [ ! -f ~/.steam/steam/.cef-enable-remote-debugging ] && touch ~/.steam/steam/.cef-enable-remote-debugging || true'";
           Type = "oneshot";
@@ -67,6 +68,7 @@
         };
       };
     };
+
   flake-file.inputs = {
     jovian = {
       inputs.nixpkgs.follows = "nixpkgs";

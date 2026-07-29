@@ -23,6 +23,7 @@
         };
       };
   };
+
   flake-file.inputs = {
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";

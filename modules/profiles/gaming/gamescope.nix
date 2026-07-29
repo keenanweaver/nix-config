@@ -51,6 +51,7 @@
 
         programs.gamescope = {
           enable = true;
+
           package = pkgs.gamescope.overrideAttrs (
             _final: prev: {
               # https://github.com/ValveSoftware/gamescope/issues/1622
@@ -68,6 +69,7 @@
                 ];
             }
           );
+
           capSysNice = false; # 'true' breaks gamescope for Steam https://github.com/NixOS/nixpkgs/issues/292620#issuecomment-2143529075
         };
       };

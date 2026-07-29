@@ -15,6 +15,7 @@
         };
       };
     };
+
   flake-file.inputs = {
     pedantix.url = "github:swarsel/pedantix";
   };

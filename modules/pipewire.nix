@@ -18,10 +18,12 @@
           services = {
             pipewire = {
               enable = true;
+
               alsa = {
                 enable = true;
                 support32Bit = true;
               };
+
               extraConfig = {
                 pipewire = {
                   "11-virtual-devices" =
@@ -70,8 +72,10 @@
                   };
                 };
               };
+
               jack.enable = true;
               pulse.enable = true;
+
               wireplumber = {
                 enable = true;
 

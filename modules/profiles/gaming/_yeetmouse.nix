@@ -11,6 +11,7 @@
         sensitivity = 1.0;
       };
     };
+
   flake-file.inputs = {
     yeetmouse = {
       inputs.nixpkgs.follows = "nixpkgs";

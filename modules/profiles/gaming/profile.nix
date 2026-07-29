@@ -13,6 +13,7 @@
         imports = [
           inputs.wayland-pipewire-idle-inhibit.homeModules.default
         ];
+
         home.sessionVariables = {
           # https://wiki.cachyos.org/configuration/gaming/#increase-maximum-shader-cache-size
           AMD_VULKAN_ICD = "RADV";
@@ -24,6 +25,7 @@
           SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3
           #ENABLE_LAYER_MESA_ANTI_LAG = 1;
         };
+
         services = {
           wayland-pipewire-idle-inhibit = {
             enable = true;
@@ -42,6 +44,7 @@
             };
           };
         };
+
         xdg.desktopEntries = import ./_desktop-entries.nix {
           inherit
             config
@@ -63,6 +66,7 @@
           inputs.just-one-more-repo.nixosModules.default
           inputs.nix-gaming-edge.nixosModules.default
         ];
+
         boot = {
           extraModulePackages = with config.boot.kernelPackages; [
             zenergy
@@ -86,11 +90,13 @@
             "preempt=full" # https://reddit.com/r/linux_gaming/comments/1g0g7i0/god_of_war_ragnarok_crackling_audio/lr8j475/?context=3#lr8j475
           ];
         };
+
         hardware = {
           uinput.enable = true;
           xone.enable = true;
           xpadneo.enable = true;
         };
+
         nix.settings = {
           extra-substituters = [
             "https://bandithedoge.cachix.org"
@@ -106,10 +112,12 @@
             "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
           ];
         };
+
         nixpkgs.overlays = [
           inputs.umu.overlays.default
           inputs.nix-cachyos-kernel.overlays.pinned
         ];
+
         security = {
           pam = {
             loginLimits = [
@@ -144,6 +152,7 @@
         };
       };
   };
+
   flake-file.inputs = {
     aaru = {
       inputs.nixpkgs.follows = "nixpkgs";

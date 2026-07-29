@@ -28,6 +28,7 @@
         in
         toHomeFiles "${inputs.nonfree}";
     };
+
   flake-file.inputs = {
     nonfree = {
       flake = false;

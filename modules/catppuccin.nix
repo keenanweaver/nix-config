@@ -43,23 +43,30 @@ in
             accent = "${accent-lower}";
             autoEnable = true;
             cache.enable = false;
+
             cursors = {
               enable = true;
               accent = "${accent-lower}";
             };
+
             flavor = "${flavor-lower}";
+
             lazygit = {
               accent = "${accent-lower}";
             };
+
             mangohud.enable = false;
+
             micro = {
               transparent = true;
             };
+
             vscodium = {
               profiles.default = {
                 accent = "${accent-lower}";
               };
             };
+
             yazi = {
               accent = "${accent-lower}";
             };
@@ -73,18 +80,22 @@ in
 
           gtk = {
             enable = true;
+
             cursorTheme = {
               name = "${cursor-theme}";
               size = 24;
             };
+
             font = {
               package = sans-font-pkg;
               name = "${sans-font}";
               size = 12;
             };
+
             gtk2 = {
               force = true;
             };
+
             gtk3 = {
               extraConfig = {
                 gtk-application-prefer-dark-theme = true;
@@ -102,6 +113,7 @@ in
                 gtk-xft-rgba = "rgb";
               };
             };
+
             gtk4 = {
               extraConfig = {
                 gtk-decoration-layout = "icon:minimize,maximize,close";
@@ -519,6 +531,7 @@ in
             autoEnable = true;
             cache.enable = false;
             flavor = "${flavor-lower}";
+
             sddm = {
               background = "${wallpaper}";
               font = "${mono-font}";
@@ -567,6 +580,7 @@ in
         };
       };
   };
+
   flake-file.inputs = {
     catppuccin = {
       url = "github:catppuccin/nix";

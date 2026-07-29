@@ -14,6 +14,7 @@
 
     services.scx-loader = {
       enable = true;
+
       config = {
         scheds = {
           scx_cake = {

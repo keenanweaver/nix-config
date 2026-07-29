@@ -229,13 +229,17 @@
 
                   treesitter = {
                     enable = true;
+
                     context = {
                       enable = true;
                     };
+
                     fold = true;
+
                     highlight = {
                       enable = true;
                     };
+
                     indent = {
                       enable = true;
                     };
@@ -261,6 +265,7 @@
       };
     };
   };
+
   flake-file.inputs = {
     lazyvim.url = "github:pfassina/lazyvim-nix";
 

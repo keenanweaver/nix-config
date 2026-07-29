@@ -47,6 +47,7 @@
             in
             {
               enable = true;
+
               applications = {
                 apps = [
                   {
@@ -147,9 +148,11 @@
                   PATH = "$(PATH):/run/current-system/sw/bin:/etc/profiles/per-user/${config.my.user}/bin:$(HOME)/.local/bin";
                 };
               };
+
               autoStart = true;
               capSysAdmin = true; # Set to false to fix non-desktop https://github.com/NixOS/nixpkgs/issues/463989
               openFirewall = true;
+
               settings = {
                 csrf_allowed_origins = builtins.concatStringsSep "," [
                   "https://10.20.20.5:47990"

@@ -49,6 +49,7 @@
       {
         programs.steam = {
           enable = true;
+
           package = pkgs.steam.override {
             extraEnv = {
               PIPEWIRE_NODE = "Game";
@@ -63,15 +64,18 @@
 
             privateTmp = false; # https://github.com/NixOS/nixpkgs/issues/381923
           };
+
           extraCompatPackages = with pkgs; [
             inputs.chaotic.legacyPackages.${stdenv.hostPlatform.system}.luxtorpeda
           ];
+
           localNetworkGameTransfers.openFirewall = true;
           protontricks.enable = true;
           remotePlay.openFirewall = true;
         };
       };
   };
+
   flake-file.inputs = {
     steam-config-nix = {
       inputs.nixpkgs.follows = "nixpkgs";

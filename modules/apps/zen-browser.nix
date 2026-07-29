@@ -373,6 +373,7 @@
         };
       };
   };
+
   flake-file.inputs = {
     zen-browser = {
       inputs = {

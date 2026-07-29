@@ -5,6 +5,7 @@
       services.ludusavi = {
         enable = true;
         backupNotification = true;
+
         settings = {
           backup = {
             format = {

@@ -21,10 +21,12 @@
 
             limine = {
               enable = true;
+
               additionalFiles = {
                 "efi/memtest86/mt86plus.efi" = "${pkgs.memtest86plus}/mt86plus.efi";
                 "efi/netbootxyz/netboot.xyz.efi" = "${pkgs.netbootxyz-efi}";
               };
+
               extraEntries = ''
                 /Tools
                 //MemTest86+
