@@ -49,27 +49,6 @@
                 fd -t file "run.bat" $EXODOS -x sd 'CONFIG -set "mididevice=fluidsynth"' 'CONFIG -set "mididevice=soundcanvas"' {}
               '';
             })
-            (writeShellApplication {
-              name = "script-momw-update";
-
-              runtimeEnv = {
-                MODLIST = "i-heart-vanilla-directors-cut";
-              };
-
-              runtimeInputs = [
-                inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.momw-configurator
-                inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-validator
-                inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.umo
-                tes3cmd
-              ];
-
-              text = ''
-                umo sync "$MODLIST"
-                umo install "$MODLIST"
-                momw-configurator config "$MODLIST" --run-navmeshtool --run-validator
-                umo vacuum
-              '';
-            })
             _86box-with-roms
             abuse
             acc
@@ -232,7 +211,6 @@
             streamrip
             systemctl-tui
             termscp
-            tes3cmd
             tochd
             ttysvr
             urbanterror
