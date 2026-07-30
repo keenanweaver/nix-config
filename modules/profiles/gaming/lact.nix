@@ -1,10 +1,7 @@
 {
-  flake.modules.nixos.gaming-profile =
-    { pkgs, ... }:
-    {
-      services.lact = {
-        enable = true;
-        package = pkgs.master.lact;
-      };
+  flake.modules.nixos.gaming-profile = {
+    services.lact = {
+      enable = true;
     };
+  };
 }
