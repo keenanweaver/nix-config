@@ -145,10 +145,10 @@
 
           xdg.desktopEntries = import ./_desktop-entries.nix {
             inherit
-              config
               lib
-              osConfig
+              config
               pkgs
+              osConfig
               ;
           };
         };

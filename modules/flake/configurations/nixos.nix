@@ -38,7 +38,7 @@ in
         ];
 
         specialArgs = {
-          inherit inputs self;
+          inherit self inputs;
           inherit (inputs) nixos-raspberrypi;
         };
       }

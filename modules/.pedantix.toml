@@ -10,11 +10,14 @@ last = ["<defaulted>", "..."]
 first = ["imports", "enable", "package"]
 blank-lines = 1
 blank-lines-mode = "multiline"
+merge = true
 
 [lets]
 sort = true
 
 [inherits]
+first = ["self", "inputs", "lib", "config", "options", "pkgs", "osConfig"]
+last = ["<defaulted>", "..."]
 sort = true
 
 [[overrides]]
