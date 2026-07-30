@@ -1,6 +1,8 @@
 {
   configurations.nixos.nixos-desktop.module = {
     boot = {
+      blacklistedKernelModules = [ "snd_hda_intel" ];
+
       kernel.sysctl = {
         "vm.page-cluster" = 0;
         "vm.swappiness" = 1;
@@ -16,15 +18,15 @@
         #"amd_3d_vcache.x3d_mode=cache" # AMD V-Cache https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
         "amd_iommu=on"
         "amd_pstate=active" # https://wiki.archlinux.org/title/CPU_frequency_scaling#Autonomous_frequency_scaling
-        "amdgpu.mcbp=0"
+        #"amdgpu.mcbp=0"
         # AMDGPU freezing randomly https://gitlab.freedesktop.org/drm/amd/-/issues/4141
         # https://gitlab.freedesktop.org/mesa/mesa/-/issues/14250#note_3181015
         # https://reddit.com/r/linux_gaming/comments/1q1bg71/8_threads_in_2_weeks_amd_gpus_crashing_on/nx5zixu/?context=3#nx5zixu
         # Run 'sudo cat /sys/kernel/debug/dri/128/amdgpu_gpu_recover' to fix
-        "amdgpu.runpm=0"
-        "amdgpu.dcdebugmask=0x10"
-        "amdgpu.aspm=0"
-        "amdgpu.gpu_recovery=1"
+        #"amdgpu.runpm=0"
+        #"amdgpu.dcdebugmask=0x10"
+        #"amdgpu.aspm=0"
+        #"amdgpu.gpu_recovery=1"
       ];
 
       loader = {
