@@ -182,7 +182,7 @@
           "d /mnt/Games 0755 ${config.my.user} users - -"
           "d /mnt/Games2 0755 ${config.my.user} users - -"
           "L+ /home/${config.my.user}/Games - - - - /mnt/Games"
-          "L+ /home/${config.my.user}/Games2 - - - - /mnt/Games2"
+          #"L+ /home/${config.my.user}/Games2 - - - - /mnt/Games2"
         ];
       };
     };
