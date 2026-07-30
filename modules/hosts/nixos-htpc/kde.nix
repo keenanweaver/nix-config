@@ -14,7 +14,6 @@
               };
             };
           };
-
           programs.plasma = {
             input = {
               mice = [
@@ -32,14 +31,12 @@
                 }
               ];
             };
-
             panels = [
               {
                 floating = false;
                 height = 38;
                 location = "bottom";
                 screen = 0;
-
                 widgets = [
                   {
                     kickerdash = {
@@ -57,32 +54,26 @@
                         rows.multirowView = "never";
                         showTooltips = true;
                       };
-
                       behavior = {
                         grouping = {
                           clickAction = "cycle";
                           method = "byProgramName";
                         };
-
                         middleClickAction = "newInstance";
                         newTasksAppearOn = "right";
-
                         showTasks = {
                           onlyInCurrentActivity = false;
                           onlyInCurrentDesktop = false;
                           onlyInCurrentScreen = true;
                           onlyMinimized = false;
                         };
-
                         sortingMethod = "manually";
                         unhideOnAttentionNeeded = true;
-
                         wheel = {
                           ignoreMinimizedTasks = true;
                           switchBetweenTasks = true;
                         };
                       };
-
                       launchers = [
                         "applications:org.kde.dolphin.desktop"
                         "preferred://browser"
@@ -100,12 +91,10 @@
                         refreshPeriod = "900";
                         stationID = "KNEOMAHA544";
                       };
-
                       Units = {
                         unitsChoice = "1";
                       };
                     };
-
                     name = "com.github.k-donn.plasmoid-wunderground";
                   }
                   {
@@ -118,7 +107,6 @@
                             };
                           };
                         };
-
                         hidden = [
                           "CoolerControl"
                           "KTailctl"

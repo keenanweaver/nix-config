@@ -10,7 +10,6 @@
         imports = [
           inputs.niri.homeModules.niri
         ];
-
         programs.niri = {
           enable = true;
           package = pkgs.niri-unstable;
@@ -23,7 +22,6 @@
         nixpkgs.overlays = [ inputs.niri.overlays.niri ];
       };
   };
-
   flake-file.inputs = {
     niri = {
       inputs.nixpkgs.follows = "nixpkgs";

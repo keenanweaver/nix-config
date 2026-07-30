@@ -9,12 +9,10 @@
           };
         };
       };
-
       packages = [
         "com.fightcade.Fightcade"
         "com.fightcade.Fightcade.Wine"
       ];
-
     };
   };
 }

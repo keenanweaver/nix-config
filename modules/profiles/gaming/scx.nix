@@ -11,10 +11,8 @@
         });
       '';
     };
-
     services.scx-loader = {
       enable = true;
-
       config = {
         scheds = {
           scx_cake = {
@@ -22,7 +20,6 @@
               "--profile"
               "gaming"
             ];
-
             lowlatency_mode = [
               "--profile"
               "esports"

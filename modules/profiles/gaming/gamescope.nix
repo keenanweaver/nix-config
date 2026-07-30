@@ -13,7 +13,6 @@
             scb-config = {
               enable = true;
               target = "${config.xdg.configHome}/scopebuddy/scb.conf";
-
               text = ''
                 SCB_AUTO_RES=1
                 SCB_AUTO_HDR=1
@@ -22,12 +21,10 @@
               '';
             };
           };
-
           packages = [
             inputs.just-one-more-repo.packages.${pkgs.stdenv.hostPlatform.system}.scopebuddy
           ];
         };
-
         services.flatpak = {
           packages = [
             "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08"
@@ -48,15 +45,12 @@
             gamescope = inputs.chaotic.legacyPackages.x86_64-linux.gamescope_git;
           })
         ];
-
         programs.gamescope = {
           enable = true;
-
           package = pkgs.gamescope.overrideAttrs (
             _final: prev: {
               # https://github.com/ValveSoftware/gamescope/issues/1622
               NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];
-
               patches =
                 with pkgs;
                 prev.patches
@@ -69,7 +63,6 @@
                 ];
             }
           );
-
           capSysNice = false; # 'true' breaks gamescope for Steam https://github.com/NixOS/nixpkgs/issues/292620#issuecomment-2143529075
         };
       };

@@ -9,14 +9,12 @@
       }:
       {
         imports = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
-
         home = {
           sessionPath = [
             "/var/lib/flatpak/exports/bin"
             "${config.xdg.dataHome}/flatpak/exports/bin"
           ];
         };
-
         services.flatpak = {
           overrides = {
             global = {
@@ -39,20 +37,17 @@
                   "xdg-data/icons:ro"
                 ];
               };
-
               Environment = {
                 # Wrong cursor in flatpaks fix
                 XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
               };
             };
-
             "io.github.ungoogled_software.ungoogled_chromium" = {
               Environment = {
                 PIPEWIRE_NODE = "Browser";
                 PULSE_SINK = "Browser";
               };
             };
-
             "net.mullvad.MullvadBrowser" = {
               Environment = {
                 PIPEWIRE_NODE = "Browser";
@@ -60,12 +55,10 @@
               };
             };
           };
-
           packages = [
             "io.github.ungoogled_software.ungoogled_chromium"
             "net.mullvad.MullvadBrowser"
           ];
-
           remotes = [
             {
               location = "https://flathub.org/repo/flathub.flatpakrepo";
@@ -76,7 +69,6 @@
               name = "flathub-beta";
             }
           ];
-
           uninstallUnmanaged = false;
         };
       };
@@ -90,22 +82,18 @@
       }:
       {
         imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
-
         environment.systemPackages = with pkgs; [
           flatpak-builder
           xdg-dbus-proxy
         ];
-
         preservation.preserveAt."/persist".directories = [
           "/var/lib/flatpak"
         ];
-
         services.flatpak.enable = true;
         users.users.${config.my.user}.extraGroups = [ "flatpak" ];
         xdg.portal.enable = true;
       };
   };
-
   flake-file.inputs = {
     nix-flatpak.url = "github:gmodena/nix-flatpak";
   };

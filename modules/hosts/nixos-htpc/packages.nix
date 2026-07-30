@@ -10,14 +10,12 @@
       imports = [
         inputs.slippi.nixosModules.default
       ];
-
       home-manager.users.${config.my.user} =
         { inputs, config, ... }:
         {
           imports = [
             inputs.slippi.homeManagerModules.default
           ];
-
           home.packages = with pkgs; [
             dusklight
             local.sonic3air
@@ -28,39 +26,31 @@
             wipeout-rewrite
             zelda64recomp
           ];
-
           services.flatpak.packages = [
             "net.retrodeck.retrodeck"
           ];
-
           slippi-launcher = {
             enable = true;
             isoPath = "${config.home.homeDirectory}/Games/retrodeck/roms/gc/Super Smash Bros. Melee (USA) (En,Ja) (Rev 2).rvz";
             rootSlpPath = "${config.home.homeDirectory}/Games/slippi";
           };
         };
-
       nix.settings = {
         extra-substituters = [ "https://slippi-nix.cachix.org" ];
-
         extra-trusted-public-keys = [
           "slippi-nix.cachix.org-1:2qnPHiOxTRpzgLEtx6K4kXq/ySDg7zHEJ58J6xNDvBo="
         ];
       };
-
       programs = {
         shipwright-git.enable = true;
-
         sm64coopdx = {
           enable = true;
           coopNet.openFirewall = true;
         };
-
         spaghetti-kart-git.enable = true;
         starship-sf64.enable = true;
       };
     };
-
   flake-file.inputs = {
     slippi = {
       inputs.nixpkgs.follows = "nixpkgs";

@@ -35,16 +35,13 @@
             */
             (writeShellApplication {
               name = "script-exodos-nuked";
-
               runtimeEnv = {
                 EXODOS = "/mnt/crusader/Games/eXo/eXoDOS/eXo/eXoDOS";
               };
-
               runtimeInputs = [
                 fd
                 sd
               ];
-
               text = ''
                 fd -t file "run.bat" $EXODOS -x sd 'CONFIG -set "mididevice=fluidsynth"' 'CONFIG -set "mididevice=soundcanvas"' {}
               '';
@@ -230,29 +227,24 @@
             yq
             zandronum
           ];
-
           programs = {
             plasma.hotkeys.commands.gsr-save-replay = {
               command = lib.getExe (
                 pkgs.writeShellApplication {
                   name = "gsr-save-replay";
                   runtimeInputs = [ pkgs.killall ];
-
                   text = ''
                     killall -SIGUSR1 gpu-screen-recorder
                   '';
                 }
               );
-
               comment = "Save GPU Screen Recorder replay";
               key = "Meta+Alt+]";
               name = "Save GSR Replay";
             };
-
             prismlauncher.enable = true;
           };
         };
-
       programs = {
         k3b.enable = true;
         perfect-dark-git.enable = true;

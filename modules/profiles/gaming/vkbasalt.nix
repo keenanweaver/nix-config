@@ -18,7 +18,6 @@
             {
               enable = true;
               target = "${config.xdg.configHome}/vkBasalt/vkBasalt.conf";
-
               text = ''
                 depthCapture = off
                 effects = smaa
@@ -47,13 +46,11 @@
               '';
             };
         };
-
         packages = with pkgs; [
           vkbasalt
           vkbasalt-cli
         ];
       };
-
       services.flatpak = {
         overrides = {
           global = {
@@ -64,7 +61,6 @@
             };
           };
         };
-
         packages = [
           "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/24.08"
           "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/25.08"

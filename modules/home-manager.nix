@@ -14,7 +14,6 @@
       { self, inputs, ... }:
       {
         imports = [ inputs.home-manager.nixosModules.home-manager ];
-
         home-manager = {
           backupFileExtension = "hm.bak";
           extraSpecialArgs = { inherit self inputs; };
@@ -23,7 +22,6 @@
         };
       };
   };
-
   flake-file.inputs = {
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";

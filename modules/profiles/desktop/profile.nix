@@ -15,41 +15,34 @@
 
         kde
       ];
-
       environment.sessionVariables = {
         NIXOS_OZONE_WL = "1"; # Electron apps
       };
-
       hardware = {
         graphics = {
           enable = true;
           enable32Bit = true;
         };
       };
-
       nix = {
         settings = {
           extra-substituters = [
             "https://attic.xuyh0120.win/lantian" # https://github.com/xddxdd/nix-cachyos-kernel?tab=readme-ov-file#binary-cache
             "https://nix-cache.tokidoki.dev/tokidoki"
           ];
-
           extra-trusted-public-keys = [
             "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
             "tokidoki:MD4VWt3kK8Fmz3jkiGoNRJIW31/QAm7l1Dcgz2Xa4hk="
           ];
         };
       };
-
       programs = {
         appimage = {
           enable = true;
           binfmt = true;
         };
-
         ydotool.enable = true;
       };
-
       services = {
         btrfs = {
           autoScrub = {
@@ -57,13 +50,10 @@
             interval = "weekly";
           };
         };
-
         fstrim.enable = true;
         fwupd.enable = true;
-
         tuned = {
           enable = true;
-
           ppdSettings = {
             profiles = {
               balanced = "balanced";
@@ -71,15 +61,12 @@
               power-saver = "desktop-powersave";
             };
           };
-
           settings = {
             dynamic_tuning = true;
           };
         };
-
         ucodenix.enable = true;
       };
-
       xdg.mime =
         let
           audioPlayer = "org.fooyin.fooyin.desktop";
@@ -91,7 +78,6 @@
         in
         {
           enable = true;
-
           defaultApplications = {
             "application/json" = editor;
             "application/pdf" = pdfViewer;
@@ -126,7 +112,6 @@
         };
     };
   };
-
   flake-file.inputs = {
     ucodenix.url = "github:e-tho/ucodenix";
   };

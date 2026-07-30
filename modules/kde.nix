@@ -11,32 +11,27 @@
                 target = "${config.xdg.dataHome}/kxmlgui5/dolphin/dolphinui.rc";
                 text = builtins.readFile ./../assets/dolphinui.rc;
               };
-
               kinetic-effects = {
                 enable = true;
                 recursive = true;
                 source = "${inputs.kwin-effects-kinetic}";
                 target = "${config.xdg.dataHome}/kwin/effects";
               };
-
               purposerc = {
                 enable = true;
                 target = "${config.xdg.configHome}/purposerc";
-
                 text = ''
                   [plugins]
                   disabled=emailplugin,imgurplugin,nextcloudplugin,pastebinplugin,purpose_gdrive,telegramplugin,youtubeplugin
                 '';
               };
             };
-
             sessionVariables = {
               GDK_BACKEND = "wayland";
               QT_QPA_PLATFORM = "wayland";
             };
           };
         };
-
       plasma-manager =
         {
           inputs,
@@ -49,11 +44,9 @@
           imports = [
             inputs.plasma-manager.homeModules.plasma-manager
           ];
-
           programs = {
             ghostwriter = {
               enable = true;
-
               general = {
                 session = {
                   openLastFileOnStartup = true;
@@ -61,10 +54,8 @@
                 };
               };
             };
-
             kate = {
               enable = true;
-
               editor = {
                 brackets = {
                   automaticallyAddClosing = true;
@@ -73,7 +64,6 @@
                   highlightRangeBetween = true;
                 };
               };
-
               lsp = {
                 customServers = {
                   bash = {
@@ -81,75 +71,60 @@
                       (lib.getExe pkgs.bash-language-server)
                       "start"
                     ];
-
                     highlightingModeRegex = "^Bash$";
                     url = "https://github.com/bash-lsp/bash-language-server";
                   };
-
                   json = {
                     command = [
                       (lib.getExe pkgs.vscode-json-languageserver)
                       "--stdio"
                     ];
-
                     highlightingModeRegex = "^JSON$";
                     url = "https://github.com/microsoft/vscode/tree/main/extensions/json-language-features/server";
                   };
-
                   markdown = {
                     command = [ (lib.getExe pkgs.marksman) ];
                     highlightingModeRegex = "^Markdown$";
                     url = "https://github.com/artempyanykh/marksman";
                   };
-
                   nix = {
                     command = [ (lib.getExe pkgs.nixd) ];
                     highlightingModeRegex = "^Nix$";
-
                     settings.nixd = {
                       formatting.command = [ (lib.getExe pkgs.nixfmt) ];
                     };
-
                     url = "https://github.com/nix-community/nixd";
                   };
-
                   yaml = {
                     command = [
                       (lib.getExe pkgs.yaml-language-server)
                       "--stdio"
                     ];
-
                     highlightingModeRegex = "^YAML$";
                     url = "https://github.com/redhat-developer/yaml-language-server";
                   };
                 };
               };
             };
-
             konsole = {
               enable = true;
               defaultProfile = "${osConfig.my.user}";
-
               extraConfig = {
                 KonsoleWindow = {
                   RemoveWindowTitleBarAndFrame = true;
                 };
-
                 MainWindow = {
                   MenuBar = "Disabled";
                 };
               };
-
               profiles = {
                 "${osConfig.my.user}" = {
                   command = lib.getExe pkgs.zsh;
                 };
               };
             };
-
             okular = {
               enable = true;
-
               general = {
                 obeyDrm = false;
                 openFileInTabs = true;
@@ -158,30 +133,24 @@
                 viewMode = "Facing";
                 zoomMode = "fitWidth";
               };
-
               performance = {
                 enableTransparencyEffects = true;
               };
             };
-
             plasma = {
               enable = true;
-
               configFile = {
                 baloofilerc = {
                   "Basic Settings".Indexing-Enabled = false;
                 };
-
                 dolphinrc = {
                   ContentDisplay.UsePermissionsFormat = "CombinedFormat";
                   "Desktop Entry".DefaultProfile = "${osConfig.my.user}.profile";
-
                   DetailsMode = {
                     HighlightEntireRow = false;
                     PreviewSize = 48;
                     SidePadding = 0;
                   };
-
                   General = {
                     FilterBar = true;
                     GlobalViewProps = false;
@@ -191,14 +160,11 @@
                     SplitView = true;
                     UseTabForSwitchingSplitView = true;
                   };
-
                   IconsMode.PreviewSize = 112;
-
                   "KFileDialog Settings" = {
                     "Places Icons Auto-resize" = false;
                     "Places Icons Static Size" = 22;
                   };
-
                   MainWindow.ToolBarsMovable = "Disabled";
                   "MainWindow/Toolbar mainToolBar".ToolButtonStyle = "IconOnly";
                   PlacesPanel.IconSize = 32;
@@ -206,22 +172,18 @@
                   Search.Location = "Everywhere";
                   "Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
                 };
-
                 kcminputrc = {
                   Keyboard.RepeatDelay = 250;
                 };
-
                 kded5rc = {
                   Module-device_automounter.autoload = false;
                   Module-gtkconfig.autoload = false;
                 };
-
                 kdeglobals = {
                   KDE = {
                     AnimationDurationFactor = 0.25;
                     ShowDeleteCommand = true;
                   };
-
                   "KFileDialog Settings" = {
                     "Allow Expansion" = true;
                     "Automatically select filename extension" = true;
@@ -242,25 +204,20 @@
                     "Speedbar Width" = 133;
                     "View Style" = "DetailTree";
                   };
-
                   KScreen.XwaylandClientsScale = false; # Steam workaround
                   PreviewSettings.MaximumRemoteSize = 2147483648;
                 };
-
                 kiorc = {
                   Confirmations = {
                     ConfirmDelete = true;
                     ConfirmEmptyTrash = true;
                     ConfirmTrash = false;
                   };
-
                   "Executable scripts".behaviourOnLaunch = "alwaysAsk";
                 };
-
                 klaunchrc = {
                   BusyCursorSettings.Bouncing = false;
                 };
-
                 kservicemenurc.Show = {
                   WriteCdImage = false;
                   compressfileitemaction = true;
@@ -277,9 +234,7 @@
                   tagsfileitemaction = true;
                   wallpaperfileitemaction = true;
                 };
-
                 kwalletrc.Wallet."First Use" = false;
-
                 kwinrc = {
                   Effect-blurplus = {
                     BlurMatching = false;
@@ -287,10 +242,8 @@
                     BlurStrength = 6;
                     RefractionStrength = 3;
                   };
-
                   Effect-windowview.BorderActivateAll = 9;
                   MouseBindings.CommandTitlebarWheel = "Change Opacity";
-
                   Plugins = {
                     MoveWindowToCenterEnabled = true;
                     contrastEnabled = true;
@@ -308,7 +261,6 @@
                     kzonesEnabled = false;
                     restoreToScreenEnabled = true;
                   };
-
                   #Plugins.alwaysopenonprimaryscreen = Enabled;
                   #Plugins.center-new-windowsEnabled = true;
                   #Plugins.forceblurEnabled = true;
@@ -328,34 +280,28 @@
                     InactiveShadowSize = 10;
                     ShadowSize = 10;
                   };
-
                   Script-forceblur = {
                     #Script-alwaysopenonprimaryscreen.classList = "steam\nsteamwebhelper\nmumble\ninfo.mumble.Mumble\nstrawberry\nobs\narmcord\nsignal";
                     blurExceptMatching = true;
                     blurMatching = false;
                   };
-
                   TabBox.LayoutName = "thumbnail_grid";
                   TabBoxAlternative.LayoutName = "thumbnails";
                   Tiling.padding = 4;
-
                   Windows = {
                     ActiveMouseScreen = false;
                     Placement = "Centered";
                     RollOverDesktops = true;
                   };
-
                   Xwayland = {
                     XwaylandEavesdrops = "Combinations";
                     XwaylandEavesdropsMouse = true;
                   };
                 };
-
                 session = {
                   general.askForConfirmationOnLogout = true;
                   sessionRestore.restoreOpenApplicationsOnLogin = "startWithEmptySession";
                 };
-
                 spectaclerc = {
                   General = {
                     autoSaveImage = true;
@@ -364,19 +310,16 @@
                     useReleaseToCapture = true;
                   };
                 };
-
                 systemsettingsrc = {
                   "KFileDialog Settings".detailViewIconSize = 16;
                   systemsettings_sidebar_mode.HighlightNonDefaultSettings = true;
                 };
               };
-
               desktop = {
                 icons = {
                   alignment = "left";
                   arrangement = "leftToRight";
                   folderPreviewPopups = true;
-
                   previewPlugins = [
                     "appimagethumbnail"
                     "audiothumbnail"
@@ -393,21 +336,17 @@
                     "svgthumbnail"
                     "textthumbnail"
                   ];
-
                   size = 3;
-
                   sorting = {
                     foldersFirst = true;
                   };
                 };
-
                 mouseActions = {
                   middleClick = "paste";
                   rightClick = "contextMenu";
                   verticalScroll = "switchVirtualDesktop";
                 };
               };
-
               hotkeys = {
                 commands = {
                   "Spectacle-region-clipboard" = {
@@ -416,7 +355,6 @@
                     key = "Meta+Shift+Print";
                     name = "Launch Spectacle with region capture";
                   };
-
                   "wezterm" = {
                     command = "wezterm";
                     comment = "Launch wezterm";
@@ -425,7 +363,6 @@
                   };
                 };
               };
-
               input = {
                 keyboard = {
                   layouts = [ { layout = "us"; } ];
@@ -434,29 +371,24 @@
                   repeatRate = 25;
                 };
               };
-
               krunner = {
                 activateWhenTypingOnDesktop = false;
                 historyBehavior = "enableSuggestions";
                 position = "center";
               };
-
               kscreenlocker = {
                 autoLock = false;
                 lockOnResume = false;
               };
-
               kwin = {
                 cornerBarrier = false;
                 edgeBarrier = 0;
-
                 effects = {
                   blur = {
                     enable = false;
                     noiseStrength = 3;
                     strength = 3;
                   };
-
                   cube.enable = true;
                   desktopSwitching.animation = "slide";
                   dimAdminMode.enable = false;
@@ -466,75 +398,59 @@
                   translucency.enable = true;
                   wobblyWindows.enable = false;
                 };
-
                 nightLight = {
                   enable = true;
-
                   location = {
                     latitude = "41.205500";
                     longitude = "-96.208814";
                   };
-
                   mode = "times";
-
                   temperature = {
                     day = 6500;
                     night = 3300;
                   };
-
                   time = {
                     evening = "20:00";
                     morning = "07:30";
                   };
-
                   transitionTime = 30;
                 };
-
                 titlebarButtons = {
                   left = null;
-
                   right = [
                     "minimize"
                     "maximize"
                     "close"
                   ];
                 };
-
                 virtualDesktops = {
                   names = [
                     "Main"
                     "Social"
                   ];
-
                   number = 2;
                   rows = 1;
                 };
               };
-
               overrideConfig = false;
-
               shortcuts = {
                 kwin = {
                   "Kill Window" = "Alt+Shift+F4";
                   "Toggle Night Color" = "Meta+Shift+N";
                   "Window Maximize" = "Meta+PgUp";
                   "Window Minimize" = "Meta+PgDown";
-
                   "Window Move Center" = [
                     "Meta+C"
                     "Meta+."
                   ];
-
                   "Window No Border" = "Meta+Shift+B";
                 };
-
                 "services/org.kde.krunner.desktop"."_launch" = [
                   "Meta+Space"
                   "Alt+F2"
                   "Search"
                 ];
               };
-
               spectacle.shortcuts = {
                 captureActiveWindow = "Meta+Print";
                 captureCurrentMonitor = "Print";
@@ -544,7 +460,6 @@
                 launch = "Meta+S";
                 launchWithoutCapturing = "Meta+Alt+S";
               };
-
               window-rules = [
                 # https://reddit.com/r/cachyos/comments/1rufws5/title_fullscreen_firefox_and_spectacle_screen/
                 {
@@ -554,9 +469,7 @@
                       value = false;
                     };
                   };
-
                   description = "Disable VRR for Spectacle";
-
                   match = {
                     window-class = {
                       type = "exact";
@@ -570,15 +483,12 @@
                       apply = "initially";
                       value = true;
                     };
-
                     maximizevert = {
                       apply = "initially";
                       value = true;
                     };
                   };
-
                   description = "haruna";
-
                   match = {
                     window-class = {
                       type = "regex";
@@ -591,9 +501,7 @@
                     apply = "force";
                     desktopfile = "freetube.desktop";
                   };
-
                   description = "icon: freetube";
-
                   match = {
                     window-class = {
                       type = "regex";
@@ -606,9 +514,7 @@
                     apply = "force";
                     desktopfile = "startcenter";
                   };
-
                   description = "icon: libreoffice";
-
                   match = {
                     window-class = {
                       type = "regex";
@@ -621,9 +527,7 @@
                     apply = "force";
                     desktopfile = "signal";
                   };
-
                   description = "icon: signal";
-
                   match = {
                     window-class = {
                       type = "regex";
@@ -636,9 +540,7 @@
                     apply = "force";
                     desktopfile = "virt-manager";
                   };
-
                   description = "icon: virt-manager";
-
                   match = {
                     window-class = {
                       type = "regex";
@@ -647,11 +549,9 @@
                   };
                 }
               ];
-
               windows = {
                 allowWindowsToRememberPositions = true;
               };
-
               workspace = {
                 clickItemTo = "select";
                 enableMiddleClickPaste = false;
@@ -667,11 +567,9 @@
       {
         environment = {
           plasma6.excludePackages = with pkgs.kdePackages; [ elisa ];
-
           sessionVariables = {
             GDK_DEBUG = "portals"; # KDE filepicker
           };
-
           systemPackages =
             with pkgs;
             with pkgs.kdePackages;
@@ -714,7 +612,6 @@
               syntax-highlighting
             ];
         };
-
         nixpkgs.overlays = [
           (final: prev: {
             kdePackages = prev.kdePackages.overrideScope (
@@ -748,7 +645,6 @@
                       dontFixup = true;
                       dontUnpack = true;
                       dontWrapQtApps = true;
-
                       installPhase = ''
                         mkdir -p $out/share
                         ( IFS=:
@@ -759,7 +655,6 @@
                           done
                         )
                       '';
-
                       name = "${basePkg.name}-xdgdata";
                     };
                   in
@@ -768,59 +663,48 @@
             );
           })
         ];
-
         programs = {
           fuse.userAllowOther = true;
           kde-pim.enable = true;
           kdeconnect.enable = true;
           partition-manager.enable = true;
         };
-
         services = {
           colord.enable = true;
           desktopManager.plasma6.enable = true;
-
           displayManager = {
             autoLogin = {
               user = "${config.my.user}";
             };
-
             plasma-login-manager = {
               enable = true;
             };
           };
-
           libinput = {
             mouse.accelProfile = "flat";
             touchpad.accelProfile = "flat";
           };
         };
-
         xdg.portal = {
           enable = true;
-
           config = {
             kde = {
               default = [
                 "kde"
                 "gtk"
               ];
-
               "org.freedesktop.portal.FileChooser" = [ "kde" ];
               "org.freedesktop.portal.OpenURI" = [ "kde" ];
             };
           };
-
           extraPortals = with pkgs; [
             kdePackages.xdg-desktop-portal-kde
             xdg-desktop-portal-gtk
           ];
-
           xdgOpenUsePortal = true;
         };
       };
   };
-
   flake-file.inputs = {
     kwin-effects-glass = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -837,7 +721,6 @@
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
       };
-
       url = "github:nix-community/plasma-manager";
     };
   };

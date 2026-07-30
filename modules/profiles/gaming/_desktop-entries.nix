@@ -20,20 +20,16 @@ in
         "Game"
         "RolePlaying"
       ];
-
       comment = "Play RPG Maker games";
       exec = wrap + execBin + execArgs;
       icon = "easyrpg-player";
       name = "EasyRPG Player [${osConfig.my.user}]";
-
       settings = {
         StartupWMClass = "EasyRPG Player";
       };
-
       startupNotify = true;
       terminal = false;
     };
-
   gog-galaxy =
     let
       icon = pkgs.fetchurl {
@@ -48,26 +44,21 @@ in
       icon = "${icon}";
       name = "GOG Galaxy [${osConfig.my.user}]";
       noDisplay = false;
-
       settings = {
         StartupWMClass = "GOG Galaxy";
       };
-
       startupNotify = true;
     };
-
   nero-umu = {
     categories = [ "Game" ];
     comment = "A fast and efficient umu manager, just as the Romans designed";
     exec = audioCapture + "ENABLE_LSFG=1 " + (lib.getExe pkgs.nero-umu);
     icon = "xyz.TOS.Nero";
-
     mimeType = [
       "application/x-ms-dos-executable"
       "application/x-msi"
       "application/x-bat"
     ];
-
     name = "Nero-UMU [${osConfig.my.user}]";
     noDisplay = false;
     startupNotify = true;

@@ -1,5 +1,6 @@
 formatter = "nixfmt"
 top-level-blank-lines = 1
+top-level-blank-lines-depth = 2
 top-level-blank-lines-mode = "multiline"
 
 [args]
@@ -8,8 +9,8 @@ last = ["<defaulted>", "..."]
 
 [attrs]
 first = ["imports", "enable", "package"]
-blank-lines = 1
-blank-lines-mode = "multiline"
+blank-lines = 0
+blank-lines-mode = "all"
 merge = true
 
 [lets]
@@ -23,6 +24,11 @@ sort = true
 [[overrides]]
 path = "flake-file.inputs"
 attrs.blank-lines = 1
+
+[[overrides]]
+path = "**.flake.modules"
+attrs.blank-lines = 1
+attrs.blank-lines-mode = "multiline"
 
 [[overrides]]
 path = "**.systemd.services.*"

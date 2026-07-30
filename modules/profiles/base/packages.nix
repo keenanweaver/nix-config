@@ -8,7 +8,6 @@
             current-packages = {
               enable = true;
               target = "${config.xdg.configHome}/packages-hm";
-
               text =
                 let
                   formatted-hm = builtins.concatStringsSep "\n" sortedUnique;
@@ -18,7 +17,6 @@
                 formatted-hm;
             };
           };
-
           packages = with pkgs; [
             ## System ##
             (_7zz.override { enableUnfree = true; })
@@ -51,7 +49,6 @@
               in
               formatted;
           };
-
           systemPackages = with pkgs; [
             lm_sensors
             pciutils

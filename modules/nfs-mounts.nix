@@ -6,16 +6,13 @@
         cifs-utils
         nfs-utils
       ];
-
       fileSystems = builtins.listToAttrs (
         map
           (mount: {
             name = "/mnt/crusader/${mount}";
-
             value = {
               device = "crusader:/mnt/user/${mount}";
               fsType = "nfs";
-
               options = [
                 "_netdev"
                 "hard"
@@ -39,7 +36,6 @@
             "Projects"
           ]
       );
-
       services.rpcbind.enable = true;
     };
 }

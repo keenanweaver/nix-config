@@ -9,7 +9,6 @@
     }:
     {
       imports = [ inputs.moonshine.nixosModules.default ];
-
       networking.firewall = {
         allowedTCPPorts = [
           # Moonlight
@@ -19,7 +18,6 @@
           # MoonDeck Buddy
           59999
         ];
-
         allowedUDPPorts = [
           47998
           47999
@@ -30,17 +28,14 @@
           5353
         ];
       };
-
       services.moonshine = {
         enable = true;
         openFirewall = true;
-
         settings =
           let
             steamKill = lib.getExe (
               pkgs.writeShellApplication {
                 name = "steam-kill";
-
                 text = ''
                   if pgrep -x steam >/dev/null; then
                       steam -shutdown &>/dev/null
@@ -64,16 +59,13 @@
                     };
                   in
                   icon;
-
                 command = [
                   "${lib.getExe pkgs.steam}"
                   "steam://open/bigpicture"
                 ];
-
                 pre_command = [
                   [ steamKill ]
                 ];
-
                 title = "Steam";
               }
               {
@@ -85,12 +77,10 @@
                     };
                   in
                   icon;
-
                 command = [ "${lib.getExe pkgs.heroic}" ];
                 title = "Heroic Games Launcher";
               }
             ];
-
             application_scanner = [
               {
                 boxart =
@@ -101,31 +91,24 @@
                     };
                   in
                   icon;
-
                 command = [
                   "${lib.getExe pkgs.steam}"
                   "-bigpicture"
                   "steam://rungameid/{game_id}"
                 ];
-
                 library = "$HOME/.local/share/Steam";
-
                 pre_command = [
                   [ steamKill ]
                 ];
-
                 type = "steam";
               }
             ];
           };
-
         uid = 1000;
         user = config.my.user;
       };
-
       users.users.${config.my.user}.extraGroups = [ "moonshine" ];
     };
-
   flake-file.inputs = {
     moonshine = {
       inputs.nixpkgs.follows = "nixpkgs";

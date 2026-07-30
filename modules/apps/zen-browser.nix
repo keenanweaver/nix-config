@@ -10,14 +10,11 @@
         imports = [
           inputs.zen-browser.homeModules.beta
         ];
-
         home.sessionVariables = {
           MOZ_ENABLE_WAYLAND = 1;
         };
-
         programs.zen-browser = {
           enable = true;
-
           policies =
             let
               mkExtensionSettings = builtins.mapAttrs (
@@ -30,7 +27,6 @@
             {
               AutofillAddressEnabled = false;
               AutofillCreditCardEnabled = false;
-
               Cookies = {
                 Allow = [
                   "https://claude.ai"
@@ -49,12 +45,10 @@
                   "https://twitch.tv"
                   "https://zoom-platform.com"
                 ];
-
                 Behavior = "reject-tracker";
                 BehaviorPrivateBrowsing = "reject-tracker";
                 Locked = true;
               };
-
               DisableAppUpdate = true;
               DisableFeedbackCommands = true;
               DisableFirefoxStudies = true;
@@ -62,7 +56,6 @@
               DisablePocket = true;
               DisableTelemetry = true;
               DontCheckDefaultBrowser = true;
-
               EnableTrackingProtection = {
                 Cryptomining = true;
                 EmailTracking = true;
@@ -71,7 +64,6 @@
                 SuspectedFingerprinting = true;
                 Value = true;
               };
-
               ExtensionSettings = mkExtensionSettings {
                 "7esoorv3@alefvanoon.anonaddy.me" = "libredirect";
                 "addon@darkreader.org" = "darkreader";
@@ -91,23 +83,19 @@
                 "{aecec67f-0d10-4fa7-b7c7-609a2db280cf}" = "violentmonkey";
                 "{b5501fd1-7084-45c5-9aa6-567c2fcf5dc6}" = "ruffle_rs";
               };
-
               FirefoxHome = {
                 Locked = true;
                 Search = false;
                 SponsoredTopSites = false;
                 TopSites = false;
               };
-
               GenerativeAI = {
                 Enabled = false;
                 Locked = true;
               };
-
               NoDefaultBookmarks = true;
               OfferToSaveLogins = false;
             };
-
           profiles.default =
             let
               pins = {
@@ -119,21 +107,18 @@
                   isGroup = true;
                   position = 200;
                 };
-
                 "NixOS Manual" = {
                   folderParentId = pins."NixOS".id;
                   id = "c4804f6b-4523-4a33-99e4-c1f545390ad8";
                   position = 202;
                   url = "https://nixos.org/manual/nixos/unstable/";
                 };
-
                 "NixOS Status" = {
                   folderParentId = pins."NixOS".id;
                   id = "a018d0d9-4186-43bd-800e-821304da849e";
                   position = 201;
                   url = "https://status.nixos.org/";
                 };
-
                 "Nixpkgs Reference Manual" = {
                   folderParentId = pins."NixOS".id;
                   id = "8db8f1ff-f387-4eba-ab6b-2f03b1fe2291";
@@ -146,23 +131,18 @@
               inherit pins;
               pinsForce = true;
               pinsForceAction = "demote";
-
               presets = {
                 betterfox.enable = true;
-
                 catppuccin = {
                   enable = true;
                   accent = "Lavender";
                   flavor = "Mocha";
                 };
               };
-
               search = {
                 default = "kagi";
-
                 engines = {
                   "amazondotcom-us".metaData.hidden = true;
-
                   arch-wiki =
                     let
                       icon = pkgs.fetchurl {
@@ -176,9 +156,7 @@
                       name = "Arch Wiki";
                       urls = [ { template = "https://archwiki.org/wiki/Special:Search?search={searchTerms}&go=1"; } ];
                     };
-
                   "bing".metaData.hidden = true;
-
                   doom-wiki =
                     let
                       icon = pkgs.fetchurl {
@@ -192,15 +170,12 @@
                       name = "DoomWiki";
                       urls = [ { template = "https://doomwiki.org/wiki/Special:Search?search={searchTerms}&go=1"; } ];
                     };
-
                   "ebay".metaData.hidden = true;
-
                   github = {
                     definedAliases = [ "@gh" ];
                     name = "GitHub";
                     urls = [ { template = "https://github.com/search?q={searchTerms}"; } ];
                   };
-
                   gogdb =
                     let
                       icon = pkgs.fetchurl {
@@ -214,15 +189,12 @@
                       name = "GOGdb";
                       urls = [ { template = "https://www.gogdb.org/products?search={searchTerms}"; } ];
                     };
-
                   "google".metaData.hidden = true;
-
                   home-manager = {
                     definedAliases = [ "@hm" ];
                     name = "Home Manager Options";
                     urls = [ { template = "https://home-manager-options.extranix.com/?query={searchTerms}"; } ];
                   };
-
                   kagi =
                     let
                       icon = pkgs.fetchurl {
@@ -236,31 +208,26 @@
                       name = "Kagi";
                       urls = [ { template = "https://kagi.com/search?q={searchTerms}"; } ];
                     };
-
                   nixpkgs-options = {
                     definedAliases = [ "@nixo" ];
                     icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
                     name = "NixOS Options";
-
                     urls = [
                       {
                         template = "https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
                       }
                     ];
                   };
-
                   nixpkgs-packages = {
                     definedAliases = [ "@nixp" ];
                     icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
                     name = "NixOS Packages";
-
                     urls = [
                       {
                         template = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
                       }
                     ];
                   };
-
                   pcgw =
                     let
                       icon = pkgs.fetchurl {
@@ -272,7 +239,6 @@
                       inherit icon;
                       definedAliases = [ "@pcgw" ];
                       name = "PCGamingWiki";
-
                       urls = [
                         {
                           template = "https://www.pcgamingwiki.com/w/index.php?search={searchTerms}&title=Special%3ASearch";
@@ -280,10 +246,8 @@
                       ];
                     };
                 };
-
                 force = true;
               };
-
               settings = {
                 "browser.aboutConfig.showWarning" = false;
                 "browser.compactmode.show" = true;
@@ -336,19 +300,16 @@
                 "zen.workspaces.show-workspace-indicator" = true;
               };
             };
-
           setAsDefaultBrowser = true;
         };
       };
   };
-
   flake-file.inputs = {
     zen-browser = {
       inputs = {
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
       };
-
       url = "github:0xc000022070/zen-browser-flake";
     };
   };

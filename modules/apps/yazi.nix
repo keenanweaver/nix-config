@@ -5,7 +5,6 @@
       enableBashIntegration = true;
       enableNushellIntegration = true;
       enableZshIntegration = true;
-
       settings = {
         manager = {
           linemode = "mtime";
@@ -17,7 +16,6 @@
           sort_sensitive = false;
         };
       };
-
       shellWrapperName = "y";
     };
   };

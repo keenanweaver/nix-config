@@ -13,34 +13,27 @@
           # https://reddit.com/r/kde/comments/1bjgajv/fractional_scaling_still_seems_to_look_worse_than/kvshkoz/?context=3
           QT_SCALE_FACTOR_ROUNDING_POLICY = "RoundPreferFloor";
         };
-
         fonts = {
           fontDir = {
             enable = true;
           };
-
           fontconfig = {
             allowBitmaps = false;
-
             defaultFonts = {
               monospace = [
                 "Maple Mono Normal NF"
                 "Liberation Mono"
               ];
-
               sansSerif = [
                 "Inter"
                 "Liberation Sans"
               ];
-
               serif = [
                 "Liberation Serif"
               ];
             };
-
             subpixel.rgba = "rgb";
           };
-
           packages = with pkgs; [
             local.inter
             liberation_ttf

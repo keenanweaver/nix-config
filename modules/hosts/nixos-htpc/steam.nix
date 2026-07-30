@@ -19,7 +19,6 @@
                   "run"
                   id
                 ];
-
                 target = "/run/current-system/sw/bin/flatpak";
               };
               wrapped = pkg: {
@@ -44,9 +43,7 @@
                       id = 1364780;
                     };
                   };
-
               defaultCompatTool = lib.mkForce defaultProton;
-
               nonSteamApps = lib.mapAttrs (_: opts: { startIn = null; } // opts) {
                 "Bottles" = bare pkgs.bottles;
                 "Dusklight" = wrapped pkgs.dusklight;

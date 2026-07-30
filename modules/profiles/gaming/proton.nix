@@ -11,7 +11,6 @@
       in
       {
         programs.lutris.protonPackages = steamCompatTools;
-
         systemd = {
           user = {
             services.protonplus-update = {
@@ -20,10 +19,8 @@
                 ExecStartPost = "${lib.getExe pkgs.libnotify} --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus 'ProtonPlus' 'Proton runners updated'";
                 Type = "oneshot";
               };
-
               Unit.Description = "Update runners for protonplus";
             };
-
             timers.protonplus-update = {
               Install.WantedBy = [ "timers.target" ];
               Timer.OnStartupSec = "5s";
@@ -31,7 +28,6 @@
             };
           };
         };
-
         xdg.dataFile = lib.genAttrs' steamCompatTools (
           tool:
           lib.nameValuePair "Steam/compatibilitytools.d/${lib.getName tool}" {
@@ -54,7 +50,6 @@
             proton-cachyos = inputs.nix-gaming-edge.packages.${prev.stdenv.hostPlatform.system}.proton-cachyos;
           })
         ];
-
         programs.steam.extraCompatPackages = steamCompatTools;
       };
   };

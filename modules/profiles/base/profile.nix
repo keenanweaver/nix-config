@@ -7,23 +7,19 @@
         imports = with self.modules.homeManager; [
           catppuccin
         ];
-
         home = {
           language = {
             base = "en_US.UTF-8";
             collate = "C.UTF-8";
           };
-
           sessionPath = [
             "${config.home.homeDirectory}/.bin"
             "${config.home.homeDirectory}/.local/bin"
           ];
         };
-
         xdg = {
           enable = true;
           autostart.enable = true;
-
           userDirs = {
             enable = true;
             createDirectories = true;
@@ -48,18 +44,14 @@
 
           catppuccin
         ];
-
         console = {
           earlySetup = true;
           font = "ter-124b";
-
           packages = with pkgs; [
             terminus_font
           ];
-
           useXkbConfig = true;
         };
-
         documentation = {
           enable = false;
           doc.enable = false;
@@ -67,26 +59,20 @@
           man.enable = false;
           nixos.enable = false;
         };
-
         environment = {
           etc.motd.text = ''
             NixOS release: ${config.system.nixos.release}
             Nixpkgs revision: ${inputs.nixpkgs.rev}
           '';
-
           homeBinInPath = true;
           localBinInPath = true;
-
           shells = with pkgs; [
             bash
             zsh
           ];
-
           stub-ld.enable = true;
         };
-
         i18n.defaultLocale = "en_US.UTF-8";
-
         nixpkgs.config = {
           permittedInsecurePackages = [
             "electron-40.10.5" # ?
@@ -95,40 +81,33 @@
             "pnpm-9.15.9" # Decky Loader
           ];
         };
-
         programs = {
           iotop = {
             enable = true;
           };
         };
-
         services = {
           earlyoom = {
             enable = true;
             freeMemThreshold = 5;
           };
-
           journald = {
             extraConfig = ''
               SystemMaxUse=50M
             '';
           };
-
           logrotate.enable = true;
         };
-
         systemd = {
           settings.Manager = {
             DefaultTimeoutStartSec = "15s";
             DefaultTimeoutStopSec = "10s";
           };
         };
-
         time.timeZone = "America/Chicago";
         users.motdFile = "/etc/motd";
       };
   };
-
   flake-file = {
     description = "Keenan's NixOS configuration";
   };

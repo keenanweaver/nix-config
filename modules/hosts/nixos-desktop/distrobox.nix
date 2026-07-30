@@ -10,7 +10,6 @@
               init = true;
             };
           };
-
           enableSystemdUnit = true;
         };
       };

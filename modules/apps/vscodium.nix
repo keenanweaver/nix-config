@@ -28,19 +28,16 @@
       {
         programs.vscodium = {
           enable = true;
-
           profiles = {
             default = {
               enableExtensionUpdateCheck = false;
               enableUpdateCheck = false;
-
               extensions =
                 marketplace-extensions
                 ++ (with pkgs.vscode-extensions; [
                   visualjj.visualjj
                   editorconfig.editorconfig
                 ]);
-
               userSettings =
                 let
                   flake = "(builtins.getFlake (builtins.toString ./. ))";
@@ -48,22 +45,18 @@
                 in
                 {
                   "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
-
                   "[powershell]" = {
                     "editor.renderControlCharacters" = true;
                     "editor.renderWhitespace" = "all";
                     "files.autoGuessEncoding" = true;
                     "files.trimTrailingWhitespace" = true;
                   };
-
                   "chat.disableAIFeatures" = true;
                   "claudeCode.preferredLocation" = "panel";
-
                   "codeium.enableConfig" = {
                     "*" = true;
                     "nix" = true;
                   };
-
                   "editor.fontFamily" = "'Maple Mono Normal NF', 'monospace', monospace";
                   "editor.fontLigatures" = true;
                   "editor.fontSize" = 18;
@@ -85,20 +78,16 @@
                   "nix.enableLanguageServer" = true;
                   "nix.formatterPath" = lib.getExe pkgs.nixfmt;
                   "nix.serverPath" = lib.getExe pkgs.nixd;
-
                   "nix.serverSettings" = {
                     "nixd" = {
                       "nixpkgs"."expr" = "import ${flake}.inputs.nixpkgs { }";
-
                       "options" = {
                         "home-manager"."expr" =
                           "${flake}.nixosConfigurations.${host}.options.home-manager.users.type.getSubOptions []";
-
                         "nixos"."expr" = "${flake}.nixosConfigurations.${host}.options";
                       };
                     };
                   };
-
                   "powershell.integratedConsole.focusConsoleOnExecute" = false;
                   "powershell.integratedConsole.showOnStartup" = false;
                   "powershell.powerShellAdditionalExePaths"."exePath" = lib.getExe pkgs.powershell;
@@ -125,7 +114,6 @@
         nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
       };
   };
-
   flake-file.inputs = {
     nix-vscode-extensions = {
       inputs.nixpkgs.follows = "nixpkgs";

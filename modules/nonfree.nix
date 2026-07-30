@@ -19,7 +19,6 @@
             builtins.listToAttrs (
               map (x: {
                 name = x;
-
                 value = {
                   source = "${dir}/${x}";
                 };
@@ -28,7 +27,6 @@
         in
         toHomeFiles "${inputs.nonfree}";
     };
-
   flake-file.inputs = {
     nonfree = {
       flake = false;

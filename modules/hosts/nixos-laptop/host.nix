@@ -20,10 +20,8 @@
         solaar
         vscodium
       ];
-
       boot.loader.limine.style.interface.resolution = "1920x1080";
       hardware.facter.reportPath = ./facter.json;
-
       home-manager.users.${config.my.user} = {
         imports = with self.modules.homeManager; [
           base-profile
@@ -42,7 +40,6 @@
           vscodium
         ];
       };
-
       networking.hostName = "nixos-laptop";
       nix.settings.build-dir = "/nix/build";
       system.stateVersion = "26.05";

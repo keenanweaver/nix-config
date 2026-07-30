@@ -4,7 +4,6 @@
     {
       programs.nix-ld = {
         enable = true;
-
         libraries =
           with pkgs;
           (steam-run.args.multiPkgs pkgs)
