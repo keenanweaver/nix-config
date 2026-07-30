@@ -158,7 +158,25 @@
       system.stateVersion = "26.05";
 
       systemd = {
-        services."network-addresses-wlp11s0".wantedBy = lib.mkForce [ ];
+        services = {
+          # TODO: I went dendritic and now I can't reboot.
+          force-umount-nfs = {
+            wantedBy = [ "multi-user.target" ];
+
+            before = [
+              "network.target"
+              "shutdown.target"
+            ];
+
+            serviceConfig = {
+              ExecStop = "${lib.getExe' pkgs.util-linux "umount"} -f -l -a -t nfs,nfs4";
+              RemainAfterExit = true;
+              Type = "oneshot";
+            };
+          };
+
+          "network-addresses-wlp11s0".wantedBy = lib.mkForce [ ];
+        };
 
         tmpfiles.rules = [
           "d /mnt/Games 0755 ${config.my.user} users - -"
