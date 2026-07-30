@@ -1,7 +1,12 @@
 { self, ... }:
 {
   configurations.nixos.nixos-desktop.module =
-    { config, pkgs, ... }:
+    {
+      lib,
+      config,
+      pkgs,
+      ...
+    }:
     {
       imports = with self.modules.nixos; [
         self.diskoConfigurations.nixos-desktop
@@ -152,11 +157,15 @@
       powerManagement.cpuFreqGovernor = "ondemand";
       system.stateVersion = "26.05";
 
-      systemd.tmpfiles.rules = [
-        "d /mnt/Games 0755 ${config.my.user} users - -"
-        "d /mnt/Games2 0755 ${config.my.user} users - -"
-        "L+ /home/${config.my.user}/Games - - - - /mnt/Games"
-        "L+ /home/${config.my.user}/Games2 - - - - /mnt/Games2"
-      ];
+      systemd = {
+        services."network-addresses-wlp11s0".wantedBy = lib.mkForce [ ];
+
+        tmpfiles.rules = [
+          "d /mnt/Games 0755 ${config.my.user} users - -"
+          "d /mnt/Games2 0755 ${config.my.user} users - -"
+          "L+ /home/${config.my.user}/Games - - - - /mnt/Games"
+          "L+ /home/${config.my.user}/Games2 - - - - /mnt/Games2"
+        ];
+      };
     };
 }
