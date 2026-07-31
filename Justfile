@@ -30,6 +30,7 @@ fix:
 # ══ 3) pre-rebuild maintenance ══════════════════════════════
 pre:
     nix run .#write-flake
+    nix run .#write-lock
     git add -N .
     nix flake check
 

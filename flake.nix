@@ -77,7 +77,7 @@
     nix-reshade.url = "github:LovingMelody/nix-reshade";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
-    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-lib.follows = "nixpkgs";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs-unstable.url = "github:/nixos/nixpkgs/nixpkgs-unstable";
