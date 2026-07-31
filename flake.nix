@@ -7,7 +7,6 @@
 
   inputs = {
     aaru.url = "github:Whovian9369/aaru-nix-flake";
-    allfollow.url = "github:spikespaz/allfollow";
     catppuccin.url = "github:catppuccin/nix";
     catppuccin-ghostwriter = {
       url = "github:catppuccin/ghostwriter";
@@ -38,10 +37,7 @@
       flake = false;
     };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    disko.url = "github:nix-community/disko";
     flake-file.url = "github:vic/flake-file";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -54,7 +50,6 @@
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
     json-sort.url = "github:drupol/json-sort";
     just-one-more-repo.url = "github:ProverbialPennance/just-one-more-repo";
-    kwin-effects-glass.url = "github:4v3ngR/kwin-effects-glass";
     kwin-effects-kinetic = {
       url = "github:gurrgur/kwin-effects-kinetic";
       flake = false;
@@ -64,6 +59,10 @@
     lsfg-vk-flake.url = "github:pabloaul/lsfg-vk-flake/main";
     moonshine.url = "github:hgaiser/moonshine";
     niri.url = "github:sodiboo/niri-flake";
+    nix-auto-follow = {
+      url = "github:fzakaria/nix-auto-follow";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nix-citizen = {
       url = "github:LovingMelody/nix-citizen";
@@ -96,10 +95,7 @@
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
-      inputs = {
-        home-manager.follows = "home-manager";
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs.home-manager.follows = "home-manager";
     };
     preservation.url = "github:nix-community/preservation";
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
@@ -119,10 +115,7 @@
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
-      inputs = {
-        home-manager.follows = "home-manager";
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs.home-manager.follows = "home-manager";
     };
   };
 }

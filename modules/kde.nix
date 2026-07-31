@@ -247,7 +247,6 @@
                   Plugins = {
                     MoveWindowToCenterEnabled = true;
                     contrastEnabled = true;
-                    glassEnabled = false;
                     kinetic_fadingpopupsEnabled = true;
                     kinetic_scaleEnabled = true;
                     kinetic_squashEnabled = true;
@@ -706,18 +705,13 @@
       };
   };
   flake-file.inputs = {
-    kwin-effects-glass.url = "github:4v3ngR/kwin-effects-glass";
-
     kwin-effects-kinetic = {
       flake = false;
       url = "github:gurrgur/kwin-effects-kinetic";
     };
 
     plasma-manager = {
-      inputs = {
-        home-manager.follows = "home-manager";
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs.home-manager.follows = "home-manager";
       url = "github:nix-community/plasma-manager";
     };
   };
