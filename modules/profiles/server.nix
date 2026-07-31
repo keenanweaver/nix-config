@@ -28,13 +28,8 @@
       };
   };
   flake-file.inputs = {
-    nix-podman-stacks = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:Tarow/nix-podman-stacks";
-    };
+    nix-podman-stacks.url = "github:Tarow/nix-podman-stacks";
 
-    quadlet-nix = {
-      url = "github:SEIAROTg/quadlet-nix";
-    };
+    quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
   };
 }

@@ -11,9 +11,6 @@
       };
     };
   flake-file.inputs = {
-    yeetmouse = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:AndyFilter/YeetMouse?dir=nix";
-    };
+    yeetmouse.url = "github:AndyFilter/YeetMouse?dir=nix";
   };
 }

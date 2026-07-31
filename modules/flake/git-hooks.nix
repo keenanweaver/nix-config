@@ -6,10 +6,7 @@
     inputs.pedantix.flakeModules.default
   ];
   flake-file.inputs = {
-    git-hooks = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:cachix/git-hooks.nix";
-    };
+    git-hooks.url = "github:cachix/git-hooks.nix";
 
     json-sort.url = "github:drupol/json-sort";
 

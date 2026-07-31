@@ -706,10 +706,7 @@
       };
   };
   flake-file.inputs = {
-    kwin-effects-glass = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:4v3ngR/kwin-effects-glass";
-    };
+    kwin-effects-glass.url = "github:4v3ngR/kwin-effects-glass";
 
     kwin-effects-kinetic = {
       flake = false;
