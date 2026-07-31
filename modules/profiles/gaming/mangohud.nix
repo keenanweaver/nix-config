@@ -2,6 +2,7 @@
   flake.modules = {
     homeManager.gaming-profile =
       {
+        inputs,
         lib,
         config,
         pkgs,
@@ -278,6 +279,7 @@
         };
         programs.mangohud = {
           enable = true;
+          package = inputs.chaotic.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mangohud_git;
         };
         services.flatpak = {
           overrides = {
@@ -295,26 +297,29 @@
           ];
         };
       };
+
     /*
-      nixos.gaming-profile = { inputs, ... }: {
-         nixpkgs.overlays = [
-           (final: prev: {
-             mangohud =
-               inputs.chaotic.legacyPackages.${final.stdenv.hostPlatform.system}.mangohud_git.overrideAttrs
-                 (
-                   _finalAttrs: prevAttrs: {
-                     patches = prevAttrs.patches ++ [
-                       (prev.fetchpatch {
-                         hash = "sha256-4JErvglfYSJQMBwf5BewtkNHYyUOiNoXqMb+d6d6UE0=";
-                         # X3D Cores https://github.com/flightlessmango/MangoHud/pull/1984
-                         url = "https://github.com/flightlessmango/MangoHud/pull/1984.patch";
-                       })
-                     ];
-                   }
-                 );
-           })
-         ];
-       };
+      nixos.gaming-profile =
+         { inputs, ... }:
+         {
+           nixpkgs.overlays = [
+             (final: prev: {
+               mangohud =
+                 inputs.chaotic.legacyPackages.${final.stdenv.hostPlatform.system}.mangohud_git.overrideAttrs
+                   (
+                     _finalAttrs: prevAttrs: {
+                       patches = prevAttrs.patches ++ [
+                         (prev.fetchpatch {
+                           # X3D Cores: https://github.com/flightlessmango/MangoHud/pull/1984
+                           url = "https://github.com/flightlessmango/MangoHud/pull/1984.patch";
+                           hash = "sha256-HnwzMJmlPSQ36YzBmkHtPtv1WQmcfB+uozhQtRNj4V0=";
+                         })
+                       ];
+                     }
+                   );
+             })
+           ];
+         };
     */
   };
 }

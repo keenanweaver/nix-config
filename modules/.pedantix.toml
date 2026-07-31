@@ -49,3 +49,9 @@ lists.sort = true
 [[overrides]]
 path = "**.networking.firewall.allowedUDPPorts"
 lists.sort = true
+
+[[overrides]]
+path = "**.nixpkgs.overlays.**"
+attrs.sort = false
+lets.sort = false
+inherits.sort = false

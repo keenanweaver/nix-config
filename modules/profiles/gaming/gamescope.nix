@@ -48,22 +48,21 @@
         programs.gamescope = {
           enable = true;
           package = pkgs.gamescope.overrideAttrs (
-            _final: prev: {
+            _finalAttrs: prevAttrs: {
               # https://github.com/ValveSoftware/gamescope/issues/1622
-              NIX_CFLAGS_COMPILE = [ "-fno-fast-math" ];
-              patches =
-                with pkgs;
-                prev.patches
-                ++ [
-                  # Fix Gamescope not closing
-                  (fetchpatch {
-                    hash = "sha256-eIHhgonP6YtSqvZx2B98PT1Ej4/o0pdU+4ubdiBgBM4=";
-                    url = "https://github.com/ValveSoftware/gamescope/pull/1908.patch";
-                  })
-                ];
+              NIX_CFLAGS_COMPILE = "-fno-fast-math";
+              patches = prevAttrs.patches ++ [
+                # Fix Gamescope not closing
+                (pkgs.fetchpatch {
+                  hash = "sha256-eIHhgonP6YtSqvZx2B98PT1Ej4/o0pdU+4ubdiBgBM4=";
+                  # https://github.com/ValveSoftware/gamescope/pull/1908
+                  url = "https://github.com/ValveSoftware/gamescope/pull/1908.patch";
+                })
+              ];
             }
           );
-          capSysNice = false; # 'true' breaks gamescope for Steam https://github.com/NixOS/nixpkgs/issues/292620#issuecomment-2143529075
+          # 'true' breaks gamescope for Steam: https://github.com/NixOS/nixpkgs/issues/292620#issuecomment-2143529075
+          capSysNice = false;
         };
       };
   };

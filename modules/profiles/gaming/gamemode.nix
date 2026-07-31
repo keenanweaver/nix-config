@@ -9,15 +9,15 @@
     {
       nixpkgs.overlays = [
         (_final: prev: {
-          gamemode = prev.gamemode.overrideAttrs {
+          gamemode = prev.gamemode.overrideAttrs (_oldAttrs: {
+            version = "1.8.2-unstable-2026-06-15";
             src = prev.fetchFromGitHub {
               hash = "sha256-k5pq83KceoPS/bGVur6jhvKNXGJr1KBD0v6YNGB7RMY=";
               owner = "FeralInteractive";
               repo = "gamemode";
               rev = "a74b8106a2236d1f2696aa44c93bc4c8ef13b42e";
             };
-            version = "1.8.2-unstable-06-15-2026";
-          };
+          });
         })
       ];
       programs.gamemode = {
