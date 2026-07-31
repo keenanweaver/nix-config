@@ -6,7 +6,10 @@
     inputs.pedantix.flakeModules.default
   ];
   flake-file.inputs = {
-    git-hooks.url = "github:cachix/git-hooks.nix";
+    git-hooks = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:cachix/git-hooks.nix";
+    };
 
     json-sort.url = "github:drupol/json-sort";
 
@@ -42,7 +45,7 @@
           "flake\\.lock$"
         ];
       };
-      #flake-checker.enable = true;
+      flake-checker.enable = true;
       mixed-line-endings = {
         enable = true;
         excludes = [

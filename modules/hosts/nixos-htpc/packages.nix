@@ -52,6 +52,9 @@
       };
     };
   flake-file.inputs = {
-    slippi.url = "github:lytedev/slippi-nix";
+    slippi = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:lytedev/slippi-nix";
+    };
   };
 }

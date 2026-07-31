@@ -110,6 +110,9 @@
       users.users.${config.my.user}.extraGroups = [ "moonshine" ];
     };
   flake-file.inputs = {
-    moonshine.url = "github:hgaiser/moonshine";
+    moonshine = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:hgaiser/moonshine";
+    };
   };
 }

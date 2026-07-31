@@ -138,11 +138,20 @@
       };
   };
   flake-file.inputs = {
-    aaru.url = "github:Whovian9369/aaru-nix-flake";
+    aaru = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Whovian9369/aaru-nix-flake";
+    };
 
-    jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+    jovian = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Jovian-Experiments/Jovian-NixOS";
+    };
 
-    just-one-more-repo.url = "github:ProverbialPennance/just-one-more-repo";
+    just-one-more-repo = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:ProverbialPennance/just-one-more-repo";
+    };
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
@@ -151,19 +160,40 @@
       url = "github:LovingMelody/nix-citizen";
     };
 
-    nix-game-preservation.url = "github:Whovian9369/nix-game-preservation";
+    nix-game-preservation = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Whovian9369/nix-game-preservation";
+    };
 
-    nix-gaming.url = "github:fufexan/nix-gaming";
+    nix-gaming = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:fufexan/nix-gaming";
+    };
 
-    nix-gaming-edge.url = "github:powerofthe69/nix-gaming-edge/nightly";
+    nix-gaming-edge = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:powerofthe69/nix-gaming-edge/nightly";
+    };
 
-    nix-reshade.url = "github:LovingMelody/nix-reshade";
+    nix-reshade = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:LovingMelody/nix-reshade";
+    };
 
-    nur-bandithedoge.url = "github:bandithedoge/nur-packages";
+    nur-bandithedoge = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:bandithedoge/nur-packages";
+    };
 
-    openmw-nix.url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
+    openmw-nix = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
+    };
 
-    rom-properties.url = "github:Whovian9369/rom-properties-nix-flake";
+    rom-properties = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Whovian9369/rom-properties-nix-flake";
+    };
 
     simracing-hwdb = {
       flake = false;
@@ -172,6 +202,9 @@
 
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
 
-    wayland-pipewire-idle-inhibit.url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
+    wayland-pipewire-idle-inhibit = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
+    };
   };
 }

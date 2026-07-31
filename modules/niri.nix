@@ -23,6 +23,9 @@
       };
   };
   flake-file.inputs = {
-    niri.url = "github:sodiboo/niri-flake";
+    niri = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:sodiboo/niri-flake";
+    };
   };
 }

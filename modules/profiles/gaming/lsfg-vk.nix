@@ -36,6 +36,9 @@
       };
   };
   flake-file.inputs = {
-    lsfg-vk-flake.url = "github:pabloaul/lsfg-vk-flake/main";
+    lsfg-vk-flake = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:pabloaul/lsfg-vk-flake/main";
+    };
   };
 }

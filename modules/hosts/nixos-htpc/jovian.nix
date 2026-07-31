@@ -60,6 +60,9 @@
       };
     };
   flake-file.inputs = {
-    jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+    jovian = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Jovian-Experiments/Jovian-NixOS";
+    };
   };
 }

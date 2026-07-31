@@ -227,6 +227,9 @@
   flake-file.inputs = {
     lazyvim.url = "github:pfassina/lazyvim-nix";
 
-    nvf.url = "github:notashelf/nvf";
+    nvf = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:notashelf/nvf";
+    };
   };
 }

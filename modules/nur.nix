@@ -10,6 +10,9 @@
       };
   };
   flake-file.inputs = {
-    nur.url = "github:nix-community/NUR";
+    nur = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/NUR";
+    };
   };
 }
