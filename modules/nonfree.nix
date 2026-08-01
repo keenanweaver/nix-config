@@ -19,18 +19,15 @@
             builtins.listToAttrs (
               map (x: {
                 name = x;
-                value = {
-                  source = "${dir}/${x}";
-                };
+                value.source = "${dir}/${x}";
               }) (listFilesRecursive dir "")
             );
         in
         toHomeFiles "${inputs.nonfree}";
     };
-  flake-file.inputs = {
-    nonfree = {
-      flake = false;
-      url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
-    };
+
+  flake-file.inputs.nonfree = {
+    flake = false;
+    url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
   };
 }

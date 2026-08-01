@@ -1,57 +1,48 @@
 formatter = "nixfmt"
+inherit-placement = "front"
+
 top-level-blank-lines = 1
 top-level-blank-lines-depth = 2
 top-level-blank-lines-mode = "multiline"
 
 [args]
 first = ["self", "inputs", "lib", "config", "options", "pkgs", "osConfig"]
-last = ["<defaulted>", "..."]
+last = ["specialArgs", "<defaulted>", "..."]
 
 [attrs]
 first = ["imports", "enable", "package"]
-blank-lines = 0
-blank-lines-mode = "all"
-merge = true
+flatten = true
+blank-lines = 1
+blank-lines-mode = "multiline"
 
 [lets]
 sort = true
 
 [inherits]
-first = ["self", "inputs", "lib", "config", "options", "pkgs", "osConfig"]
-last = ["<defaulted>", "..."]
 sort = true
 
 [[overrides]]
-path = "flake-file.inputs"
-attrs.blank-lines = 1
+path = "**.overrideAttrs"
+attrs.first = ["pname", "version", "src"]
 
 [[overrides]]
-path = "**.flake.modules"
-attrs.blank-lines = 1
-attrs.blank-lines-mode = "multiline"
+path = "**.fetch*"
+attrs.first = ["url", "owner", "repo", "rev", "tag"]
+
+[[overrides]]
+path = "**.nixpkgs.overlays"
+lists.sort = false
+[[overrides]]
+path = "**.nixpkgs.overlays.**"
+attrs.sort = false
 
 [[overrides]]
 path = "**.systemd.services.*"
-attrs.first = ["enable", "description", "wantedBy", "after"]
-
-[[overrides]]
-path = "**.environment.systemPackages"
-lists.sort = true
+attrs.first = ["enable", "description", "wantedBy", "after", "wants"]
 
 [[overrides]]
 path = "**.home.packages"
 lists.sort = true
-
 [[overrides]]
-path = "**.networking.firewall.allowedTCPPorts"
+path = "**.environment.systemPackages"
 lists.sort = true
-
-[[overrides]]
-path = "**.networking.firewall.allowedUDPPorts"
-lists.sort = true
-
-[[overrides]]
-path = "**.nixpkgs.overlays.**"
-attrs.sort = false
-lets.sort = false
-inherits.sort = false

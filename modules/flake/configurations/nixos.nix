@@ -24,6 +24,7 @@ in
         };
       }) config.flake.nixosConfigurations
     );
+
     nixosConfigurations = mapAttrs (
       _name:
       { module, system }:
@@ -35,18 +36,21 @@ in
           }
           module
         ];
+
         specialArgs = {
-          inherit self inputs;
+          inherit inputs self;
           inherit (inputs) nixos-raspberrypi;
         };
       }
     ) config.configurations.nixos;
   };
+
   options.configurations.nixos = mkOption {
     type = types.lazyAttrsOf (
       types.submodule {
         options = {
           module = mkOption { type = types.deferredModule; };
+
           system = mkOption {
             default = "x86_64-linux";
             type = types.str;

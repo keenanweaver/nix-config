@@ -14,18 +14,18 @@
       { self, inputs, ... }:
       {
         imports = [ inputs.home-manager.nixosModules.home-manager ];
+
         home-manager = {
           backupFileExtension = "hm.bak";
-          extraSpecialArgs = { inherit self inputs; };
+          extraSpecialArgs = { inherit inputs self; };
           useGlobalPkgs = true;
           useUserPackages = true;
         };
       };
   };
-  flake-file.inputs = {
-    home-manager = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager";
-    };
+
+  flake-file.inputs.home-manager = {
+    inputs.nixpkgs.follows = "nixpkgs";
+    url = "github:nix-community/home-manager";
   };
 }

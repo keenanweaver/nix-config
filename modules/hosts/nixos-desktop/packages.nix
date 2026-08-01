@@ -9,23 +9,26 @@
           pkgs,
           ...
         }:
+        let
+          inherit (pkgs.stdenv.hostPlatform) system;
+        in
         {
           home.packages = with pkgs; [
             ## One-and-dones
             /*
-              inputs.aaru.packages.${stdenv.hostPlatform.system}.default
-                 inputs.nix-game-preservation.packages.${stdenv.hostPlatform.system}.dic-git-full
+              inputs.aaru.packages.${system}.default
+                 inputs.nix-game-preservation.packages.${system}.dic-git-full
                  glxinfo
                  jpsxdec
                  mame.tools
                  mmv
-                 inputs.nix-game-preservation.packages.${stdenv.hostPlatform.system}.ndecrypt-git
+                 inputs.nix-game-preservation.packages.${system}.ndecrypt-git
                  nsz
-                 inputs.nix-game-preservation.packages.${stdenv.hostPlatform.system}.sabretools-git
-                 inputs.nix-game-preservation.packages.${stdenv.hostPlatform.system}.unshieldsharp-git
+                 inputs.nix-game-preservation.packages.${system}.sabretools-git
+                 inputs.nix-game-preservation.packages.${system}.unshieldsharp-git
                  openspeedrun
                  ps3-disc-dumper
-                 inputs.nix-game-preservation.packages.${stdenv.hostPlatform.system}.redumper-git
+                 inputs.nix-game-preservation.packages.${system}.redumper-git
                  renderdoc
                  vgmplay-libvgm
                  vgmstream
@@ -35,13 +38,13 @@
             */
             (writeShellApplication {
               name = "script-exodos-nuked";
-              runtimeEnv = {
-                EXODOS = "/mnt/crusader/Games/eXo/eXoDOS/eXo/eXoDOS";
-              };
+              runtimeEnv.EXODOS = "/mnt/crusader/Games/eXo/eXoDOS/eXo/eXoDOS";
+
               runtimeInputs = [
                 fd
                 sd
               ];
+
               text = ''
                 fd -t file "run.bat" $EXODOS -x sd 'CONFIG -set "mididevice=fluidsynth"' 'CONFIG -set "mididevice=soundcanvas"' {}
               '';
@@ -53,14 +56,14 @@
             adwsteamgtk
             angle-grinder
             arma3-unix-launcher
-            arx-libertatis # Arx Fatalis
+            arx-libertatis
             audacious
             audacious-plugins
-            augustus # Caesar 3
+            augustus
             bandwhich
             bash-language-server
             binsider
-            bolt-launcher # RuneScape
+            bolt-launcher
             bstone
             caligula
             chiaki-ng
@@ -68,7 +71,7 @@
             choose # cut
             codeium
             comma
-            corsix-th # Theme Hospital
+            corsix-th
             crispy-doom
             csvlens
             cyanrip
@@ -90,16 +93,10 @@
             flawz
             flips
             fuc # cp / rm
-            #glances
+            glances
             glow
             goverlay
             gping
-            gst_all_1.gst-libav
-            gst_all_1.gst-plugins-bad
-            gst_all_1.gst-plugins-base
-            gst_all_1.gst-plugins-good
-            gst_all_1.gst-plugins-ugly
-            gst_all_1.gstreamer
             gswatcher
             hacompanion
             handbrake
@@ -111,13 +108,13 @@
             igir
             impala
             innoextract
-            inputs.just-one-more-repo.packages.${stdenv.hostPlatform.system}.r2modman
-            inputs.nix-citizen.packages.${stdenv.hostPlatform.system}.rsi-launcher-umu
-            inputs.nix-gaming-edge.packages.${stdenv.hostPlatform.system}.opengoal-launcher
-            inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.cherry-doom
-            inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.nyan-doom
-            inputs.nur-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.sheepshaver-bin
-            inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-validator
+            inputs.just-one-more-repo.packages.${system}.r2modman
+            inputs.nix-citizen.packages.${system}.rsi-launcher-umu
+            inputs.nix-gaming-edge.packages.${system}.opengoal-launcher
+            inputs.nur-bandithedoge.legacyPackages.${system}.cherry-doom
+            inputs.nur-bandithedoge.legacyPackages.${system}.nyan-doom
+            inputs.nur-bandithedoge.legacyPackages.${system}.sheepshaver-bin
+            inputs.openmw-nix.packages.${system}.openmw-validator
             isd
             #gamma-launcher
             isle-portable
@@ -128,6 +125,7 @@
             katawa-shoujo-re-engineered
             kdePackages.isoimagewriter
             kdePackages.kdenlive
+            kdePackages.kigo
             kdePackages.neochat
             kdePackages.tokodon
             knossosnet
@@ -136,7 +134,7 @@
             limo
             local.fooyin
             local.lgogdownloader
-            local.relive # Oddworld
+            local.relive
             local.rsdkv3
             local.sonic3air
             local.xlink-kai
@@ -163,7 +161,7 @@
             nvd
             odamex
             okteta
-            openjk # Jedi Academy
+            openjk
             openloco
             openmw
             openomf
@@ -171,7 +169,7 @@
             openttd
             opentyrian
             openxcom
-            openxray # STALKER
+            openxray
             optnix
             oversteer
             parsec-bin
@@ -187,14 +185,13 @@
             python314Packages.lnkparse3
             qbz
             qtscrcpy
-            # (arma3-unix-launcher.override { buildDayZLauncher = true; })
             rigel-engine
             ringracers
             rssguard
             sc-controller
             scummvm
             sd # sed
-            sdlpop # Prince of Persia
+            sdlpop
             seer
             shadps4-qtlauncher
             shellcheck
@@ -227,24 +224,29 @@
             yq
             zandronum
           ];
+
           programs = {
             plasma.hotkeys.commands.gsr-save-replay = {
               command = lib.getExe (
                 pkgs.writeShellApplication {
                   name = "gsr-save-replay";
                   runtimeInputs = [ pkgs.killall ];
+
                   text = ''
                     killall -SIGUSR1 gpu-screen-recorder
                   '';
                 }
               );
+
               comment = "Save GPU Screen Recorder replay";
               key = "Meta+Alt+]";
               name = "Save GSR Replay";
             };
+
             prismlauncher.enable = true;
           };
         };
+
       programs = {
         k3b.enable = true;
         perfect-dark-git.enable = true;

@@ -13,6 +13,7 @@
         imports = [
           inputs.wayland-pipewire-idle-inhibit.homeModules.default
         ];
+
         home.sessionVariables = {
           # https://wiki.cachyos.org/configuration/gaming/#increase-maximum-shader-cache-size
           AMD_VULKAN_ICD = "RADV";
@@ -24,27 +25,30 @@
           SDL_VIDEO_DRIVER = "wayland"; # SDL3
           #ENABLE_LAYER_MESA_ANTI_LAG = 1;
         };
-        services = {
-          wayland-pipewire-idle-inhibit = {
-            enable = true;
-            settings = {
-              idle_inhibitor = "d-bus";
-              media_minimum_duration = 5;
-              sink_whitelist = [
-                { name = "Browser"; }
-                { name = "Game"; }
-                { name = "Music"; }
-              ];
-              verbosity = "WARN";
-            };
+
+        services.wayland-pipewire-idle-inhibit = {
+          enable = true;
+
+          settings = {
+            idle_inhibitor = "d-bus";
+            media_minimum_duration = 5;
+
+            sink_whitelist = [
+              { name = "Browser"; }
+              { name = "Game"; }
+              { name = "Music"; }
+            ];
+
+            verbosity = "WARN";
           };
         };
+
         xdg.desktopEntries = import ./_desktop-entries.nix {
           inherit
-            lib
             config
-            pkgs
+            lib
             osConfig
+            pkgs
             ;
         };
       };
@@ -60,19 +64,21 @@
           inputs.just-one-more-repo.nixosModules.default
           inputs.nix-gaming-edge.nixosModules.default
         ];
+
         boot = {
           extraModulePackages = with config.boot.kernelPackages; [
             zenergy
           ];
-          kernel = {
-            sysctl = {
-              "vm.max_map_count" = 2147483642;
-              "vm.mmap_min_addr" = 0; # SheepShaver
-            };
+
+          kernel.sysctl = {
+            "vm.max_map_count" = 2147483642;
+            "vm.mmap_min_addr" = 0; # SheepShaver
           };
+
           kernelModules = [
             "zenergy"
           ];
+
           kernelParams = [
             "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
             "tsc=reliable"
@@ -80,11 +86,13 @@
             "preempt=full" # https://reddit.com/r/linux_gaming/comments/1g0g7i0/god_of_war_ragnarok_crackling_audio/lr8j475/?context=3#lr8j475
           ];
         };
+
         hardware = {
           uinput.enable = true;
           xone.enable = true;
           xpadneo.enable = true;
         };
+
         nix.settings = {
           extra-substituters = [
             "https://bandithedoge.cachix.org"
@@ -92,6 +100,7 @@
             "https://nix-gaming.cachix.org"
             "https://nix-citizen.cachix.org"
           ];
+
           extra-trusted-public-keys = [
             "bandithedoge.cachix.org-1:ZtcHw1anyEa4t6H8m3o/ctYFrwYFPAwoENSvofamE6g="
             "just-one-more-cache.cachix.org-1:4nShcKEgcUEVlJqKFrgDwoGfqLnw5KPG4UDTV02jnr4="
@@ -99,44 +108,43 @@
             "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
           ];
         };
+
         nixpkgs.overlays = [
           inputs.umu.overlays.default
           inputs.nix-cachyos-kernel.overlays.pinned
         ];
-        security = {
-          pam = {
-            loginLimits = [
-              # RPCS3
-              {
-                domain = "*";
-                item = "memlock";
-                type = "hard";
-                value = "unlimited";
-              }
-              # RPCS3
-              {
-                domain = "*";
-                item = "memlock";
-                type = "soft";
-                value = "unlimited";
-              }
-              {
-                domain = "*";
-                item = "nofile";
-                type = "-";
-                value = "2097152";
-              }
-              {
-                domain = "*";
-                item = "nofile";
-                type = "soft";
-                value = "64556";
-              }
-            ];
-          };
-        };
+
+        security.pam.loginLimits = [
+          # RPCS3
+          {
+            domain = "*";
+            item = "memlock";
+            type = "hard";
+            value = "unlimited";
+          }
+          # RPCS3
+          {
+            domain = "*";
+            item = "memlock";
+            type = "soft";
+            value = "unlimited";
+          }
+          {
+            domain = "*";
+            item = "nofile";
+            type = "-";
+            value = "2097152";
+          }
+          {
+            domain = "*";
+            item = "nofile";
+            type = "soft";
+            value = "64556";
+          }
+        ];
       };
   };
+
   flake-file.inputs = {
     aaru = {
       inputs.nixpkgs.follows = "nixpkgs";

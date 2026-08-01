@@ -22,17 +22,20 @@
                 ;
               mangohud-cpu-governor = pkgs.writeShellApplication {
                 name = "mangohud-cpu-governor";
+
                 text = ''
                   cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
                 '';
               };
               mangohud-hdr = pkgs.writeShellApplication {
                 name = "mangohud-hdr";
+
                 runtimeInputs = with pkgs; [
                   kdePackages.libkscreen
                   jq
                   ripgrep
                 ];
+
                 text = ''
                   if kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .hdr' | rg -q "true"; then
                     echo "Enabled"
@@ -44,6 +47,7 @@
               mangohud-kernel = pkgs.writeShellApplication {
                 name = "mangohud-kernel";
                 runtimeInputs = with pkgs; [ coreutils ];
+
                 text = ''
                   uname -r
                 '';
@@ -51,6 +55,7 @@
               mangohud-os = pkgs.writeShellApplication {
                 name = "mangohud-os";
                 runtimeInputs = with pkgs; [ ripgrep ];
+
                 text = ''
                   (rg -Nw PRETTY_NAME /run/host/etc/os-release 2>/dev/null \
                     || rg -Nw PRETTY_NAME /run/current-system/etc/os-release 2>/dev/null \
@@ -60,6 +65,7 @@
               };
               mangohud-pstate = pkgs.writeShellApplication {
                 name = "mangohud-pstate";
+
                 text = ''
                   cat /sys/devices/system/cpu/amd_pstate/status \
                       /sys/devices/system/cpu/cpu0/cpufreq/energy_performance_preference | xargs
@@ -68,6 +74,7 @@
               mangohud-runtime = pkgs.writeShellApplication {
                 name = "mangohud-runtime";
                 runtimeInputs = with pkgs; [ ripgrep ];
+
                 text = ''
                   if [ -n "''${CONTAINER_ID:-}" ]; then
                     echo "[Distrobox] ''${CONTAINER_ID}"
@@ -82,27 +89,32 @@
               };
               mangohud-scx = pkgs.writeShellApplication {
                 name = "mangohud-scx";
+
                 runtimeInputs = with pkgs; [
                   gawk
                   scx-loader
                 ];
+
                 text = ''
                   scxctl get | awk '{print $2}'
                 '';
               };
               mangohud-vcache = pkgs.writeShellApplication {
                 name = "mangohud-vcache";
+
                 text = ''
                   cat /sys/bus/platform/drivers/amd_x3d_vcache/AMDI0101:00/amd_x3d_mode
                 '';
               };
               mangohud-vrr = pkgs.writeShellApplication {
                 name = "mangohud-vrr";
+
                 runtimeInputs = with pkgs; [
                   kdePackages.libkscreen
                   jq
                   ripgrep
                 ];
+
                 text = ''
                   if kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .vrrPolicy != 0' | rg -q "true"; then
                     echo "Enabled"
@@ -113,11 +125,13 @@
               };
               mangohud-wcg = pkgs.writeShellApplication {
                 name = "mangohud-wcg";
+
                 runtimeInputs = with pkgs; [
                   kdePackages.libkscreen
                   jq
                   ripgrep
                 ];
+
                 text = ''
                   if kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .wcg' | rg -q "true"; then
                     echo "Enabled"
@@ -130,6 +144,7 @@
             {
               enable = true;
               target = "${config.xdg.configHome}/MangoHud/MangoHud.conf";
+
               text = ''
                 ###############
                 ##  Display  ##
@@ -271,26 +286,24 @@
                   wine_color=b4befe
                 ''}'';
             };
+
           mangohud-presets = {
             enable = true;
             target = "${config.xdg.configHome}/MangoHud/presets.conf";
             text = "";
           };
         };
+
         programs.mangohud = {
           enable = true;
           package = inputs.chaotic.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mangohud_git;
         };
+
         services.flatpak = {
-          overrides = {
-            global = {
-              Context = {
-                filesystems = [
-                  "xdg-config/MangoHud:ro"
-                ];
-              };
-            };
-          };
+          overrides.global.Context.filesystems = [
+            "xdg-config/MangoHud:ro"
+          ];
+
           packages = [
             "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
             "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/25.08"

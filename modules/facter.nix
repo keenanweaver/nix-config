@@ -1,7 +1,3 @@
 {
-  flake.modules.nixos.base-profile = {
-    hardware.facter = {
-      enable = true;
-    };
-  };
+  flake.modules.nixos.base-profile.hardware.facter.enable = true;
 }

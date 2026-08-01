@@ -6,29 +6,24 @@
     in
     {
       home = {
-        file = {
-          midi-soundfonts-default = {
-            enable = true;
-            source = soundFont;
-            target = "${config.home.homeDirectory}/Music/soundfonts/default.sf2";
-          };
+        file.midi-soundfonts-default = {
+          enable = true;
+          source = soundFont;
+          target = "${config.home.homeDirectory}/Music/soundfonts/default.sf2";
         };
-        sessionVariables = {
-          SDL_SOUNDFONTS = soundFont;
-        };
+
+        sessionVariables.SDL_SOUNDFONTS = soundFont;
       };
+
       services.fluidsynth = {
         inherit soundFont;
         enable = true;
         soundService = "pipewire-pulse";
       };
-      systemd.user.services.fluidsynth = {
-        Service = {
-          Environment = [
-            "PIPEWIRE_NODE=MIDI"
-            "PULSE_SINK=MIDI"
-          ];
-        };
-      };
+
+      systemd.user.services.fluidsynth.Service.Environment = [
+        "PIPEWIRE_NODE=MIDI"
+        "PULSE_SINK=MIDI"
+      ];
     };
 }

@@ -19,6 +19,7 @@
                   "run"
                   id
                 ];
+
                 target = "/run/current-system/sw/bin/flatpak";
               };
               wrapped = pkg: {
@@ -43,18 +44,25 @@
                       id = 1364780;
                     };
                   };
+
               defaultCompatTool = lib.mkForce defaultProton;
+
               nonSteamApps = lib.mapAttrs (_: opts: { startIn = null; } // opts) {
+                "BanjoRecomp" = wrapped pkgs.banjorecomp;
                 "Bottles" = bare pkgs.bottles;
+                "Clone Hero" = wrapped pkgs.clonehero;
                 "Dusklight" = wrapped pkgs.dusklight;
                 "Fightcade" = flatpak "com.fightcade.Fightcade";
                 "Heroic Games Launcher" = bare pkgs.heroic;
+                "Jazz² Resurrection" = wrapped pkgs.jazz2;
                 "Moon Child FE" = wrapped pkgs.moon-child-fe;
                 "Moonlight" = bare pkgs.moonlight-qt;
                 "One Must Fall 2097" = wrapped pkgs.openomf;
                 "Pegasus Frontend" = bare pkgs.pegasus-frontend;
+                "Prince of Persia" = wrapped pkgs.sdlpop;
                 "Ring Racers" = wrapped pkgs.ringracers;
                 "SM64CoopDX" = wrapped pkgs.sm64coopdx;
+                "SM64Ex" = wrapped pkgs.sm64ex;
                 "Ship of Harkinian" = wrapped pkgs.shipwright-git;
                 "Slippi" = wrapped inputs.slippi.packages.${pkgs.stdenv.hostPlatform.system}.default;
                 "Sonic 3: Angel Island Revisited" = wrapped pkgs.local.sonic3air;

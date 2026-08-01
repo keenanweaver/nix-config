@@ -11,21 +11,20 @@
         });
       '';
     };
+
     services.scx-loader = {
       enable = true;
-      config = {
-        scheds = {
-          scx_cake = {
-            gaming_mode = [
-              "--profile"
-              "gaming"
-            ];
-            lowlatency_mode = [
-              "--profile"
-              "esports"
-            ];
-          };
-        };
+
+      config.scheds.scx_cake = {
+        gaming_mode = [
+          "--profile"
+          "gaming"
+        ];
+
+        lowlatency_mode = [
+          "--profile"
+          "esports"
+        ];
       };
     };
   };

@@ -11,13 +11,9 @@
         */
       };
 
-    nixos.solaar = {
-      hardware.logitech = {
-        wireless = {
-          enable = true;
-          enableGraphical = true;
-        };
-      };
+    nixos.solaar.hardware.logitech.wireless = {
+      enable = true;
+      enableGraphical = true;
     };
   };
 }

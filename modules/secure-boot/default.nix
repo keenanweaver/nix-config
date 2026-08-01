@@ -10,10 +10,12 @@
     in
     {
       boot.loader.limine.secureBoot.enable = true;
+
       environment.systemPackages = with pkgs; [
         cryptenroll
         sbctl
       ];
+
       preservation.preserveAt."/persist".directories = [
         "/etc/secureboot"
         "/var/lib/sbctl"

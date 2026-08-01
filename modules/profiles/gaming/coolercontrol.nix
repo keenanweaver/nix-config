@@ -15,13 +15,13 @@
           liquidctl
           lm_sensors
         ];
+
         preservation.preserveAt."/persist".directories = [
           "/etc/coolercontrol"
           "/var/lib/coolercontrol"
         ];
-        programs.coolercontrol = {
-          enable = true;
-        };
+
+        programs.coolercontrol.enable = true;
       };
   };
 }

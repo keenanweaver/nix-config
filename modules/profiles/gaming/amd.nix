@@ -9,17 +9,17 @@
         ];
       };
 
-    nixos.amd = {
-      hardware = {
-        amdgpu = {
-          initrd.enable = true;
-          overdrive = {
-            enable = true;
-            ppfeaturemask = "0xffffffff";
-          };
+    nixos.amd.hardware = {
+      amdgpu = {
+        initrd.enable = true;
+
+        overdrive = {
+          enable = true;
+          ppfeaturemask = "0xffffffff";
         };
-        cpu.amd.updateMicrocode = true;
       };
+
+      cpu.amd.updateMicrocode = true;
     };
   };
 }
