@@ -10,10 +10,10 @@
       {
         programs.vscodium = {
           enable = true;
-          enableMcpIntegration = true;
 
           profiles.default = {
             enableExtensionUpdateCheck = false;
+            enableMcpIntegration = true;
             enableUpdateCheck = false;
 
             extensions =
@@ -21,7 +21,6 @@
                 anthropic.claude-code
                 ban.spellright
                 christian-kohler.path-intellisense
-                Codeium.codeium
                 eamodio.gitlens
                 formulahendry.code-runner
                 foxundermoon.shell-format
