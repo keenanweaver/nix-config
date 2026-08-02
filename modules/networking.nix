@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.base-profile = {
+  flake.modules.nixos.base-profile = { config, ... }: {
     boot.initrd.systemd.network.wait-online.enable = false;
 
     networking = {
@@ -74,5 +74,9 @@
         LLMNR = "false";
       };
     };
+
+    users.users.${config.my.user}.extraGroups = [
+      "networkmanager"
+    ];
   };
 }

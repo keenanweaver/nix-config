@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.gaming-profile =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       hardware.i2c.enable = true;
 
@@ -8,5 +8,9 @@
         enable = true;
         package = pkgs.openrgb-with-all-plugins;
       };
+
+      users.users.${config.my.user}.extraGroups = [
+        "i2c"
+      ];
     };
 }

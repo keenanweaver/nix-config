@@ -14,9 +14,7 @@
 
       users.users.${config.my.user} = {
         extraGroups = [
-          "i2c"
           "input"
-          "networkmanager"
           "plugdev"
           "uinput"
           "video"
