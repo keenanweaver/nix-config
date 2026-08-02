@@ -13,6 +13,7 @@
   libebur128,
   libopenmpt,
   libprojectm,
+  libpulseaudio,
   libsndfile,
   #libvgm,
   nix-update-script,
@@ -28,13 +29,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "fooyin";
-  version = "0.12.0";
+  version = "0.12.1";
 
   src = fetchFromGitHub {
     owner = "ludouzi";
     repo = "fooyin";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-RZsIA93gvcTMNH+Lf4AnxdfHYQ/tgmLa+rpEQofORLE=";
+    hash = "sha256-TdmMnfR4duRDIApOQ5U3H3KwTVnlPKZG0sM3obpSU2w=";
   };
 
   __structuredAttrs = true;
@@ -63,6 +64,7 @@ stdenv.mkDerivation (finalAttrs: {
     zlib
     # output plugins
     alsa-lib
+    libpulseaudio
     pipewire
     SDL2
     # input plugins
