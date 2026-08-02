@@ -20,12 +20,14 @@
     pre-commit.settings.hooks = {
       check-added-large-files.enable = true;
       check-case-conflicts.enable = true;
+      check-executables-have-shebangs.enable = true;
       check-json.enable = true;
       check-merge-conflicts.enable = true;
-      check-shebang-scripts-are-executable.enable = false;
+      check-shebang-scripts-are-executable.enable = true;
+      check-symlinks.enable = true;
       check-toml.enable = true;
       check-yaml.enable = true;
-      detect-private-keys.enable = true;
+      commitizen.enable = true;
 
       editorconfig-checker = {
         enable = true;
@@ -35,63 +37,23 @@
         ];
       };
 
-      end-of-file-fixer = {
+      no-commit-to-branch = {
         enable = true;
-
-        excludes = [
-          "facter\\.json$"
-          "flake\\.lock$"
-        ];
+        settings.branch = [ "main" ];
       };
 
-      fix-byte-order-marker = {
-        enable = true;
-
-        excludes = [
-          "facter\\.json$"
-          "flake\\.lock$"
-        ];
-      };
-
-      flake-checker.enable = true;
-
-      mixed-line-endings = {
-        enable = true;
-
-        excludes = [
-          "facter\\.json$"
-          "flake\\.lock$"
-        ];
-      };
-
-      no-commit-to-branch.enable = true;
+      pre-commit-hook-ensure-sops.enable = true;
 
       ripsecrets = {
         enable = true;
-        excludes = [ "\\.pub$" ];
-      };
-
-      treefmt.enable = true;
-
-      trim-trailing-whitespace = {
-        enable = true;
 
         excludes = [
-          "facter\\.json$"
-          "flake\\.lock$"
+          "\\.pub$"
+          "modules/sops/.*"
         ];
       };
 
-      /*
-        typos = {
-               enable = true;
-
-               excludes = [
-                 "flake\\.lock$"
-                 "facter\\.json$"
-               ];
-             };
-      */
+      treefmt.enable = true;
     };
 
     treefmt = {
@@ -100,18 +62,12 @@
       ];
 
       programs = {
+        actionlint.enable = true;
+        cue.enable = true;
         deadnix.enable = true;
-
-        json-sort = {
-          enable = true;
-          excludes = [ "facter.json" ];
-        };
-
-        jsonfmt = {
-          enable = true;
-          excludes = [ "facter.json" ];
-        };
-
+        dos2unix.enable = true;
+        json-sort.enable = true;
+        jsonfmt.enable = true;
         just.enable = true;
         keep-sorted.enable = true;
         mdformat.enable = true;
@@ -126,27 +82,44 @@
           ];
         };
 
+        qmlformat.enable = true;
         shellcheck.enable = true;
         shfmt.enable = true;
-        statix.enable = true;
+
+        statix = {
+          enable = true;
+          disabled-lints = [ "repeated_keys" ];
+        };
+
         taplo.enable = true;
+        toml-sort.enable = true;
+        xmllint.enable = true;
         yamlfmt.enable = true;
       };
 
       projectRootFile = "flake.nix";
 
       settings = {
+        formatter = {
+          deadnix.priority = 1;
+          nixfmt.priority = 3;
+          pedantix.priority = 4;
+          statix.priority = 2;
+        };
+
         global.excludes = [
           "*facter.json"
           "*keenan.yaml"
           "*nixos.yaml"
           "*.sops.yaml"
           "flake.lock"
+          "result"
+          "result-*"
+          ".direnv/*"
+          "*.age"
         ];
 
-        json-sort.excludes = [ "facter.json" ];
-        jsonfmt.excludes = [ "facter.json" ];
-        on-unmatched = "warn";
+        on-unmatched = "info";
       };
     };
   };

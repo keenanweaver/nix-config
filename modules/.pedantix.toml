@@ -1,6 +1,5 @@
 formatter = "nixfmt"
 inherit-placement = "front"
-
 top-level-blank-lines = 1
 top-level-blank-lines-depth = 2
 top-level-blank-lines-mode = "multiline"
@@ -15,10 +14,10 @@ flatten = true
 blank-lines = 1
 blank-lines-mode = "multiline"
 
-[lets]
+[inherits]
 sort = true
 
-[inherits]
+[lets]
 sort = true
 
 [[overrides]]
@@ -32,6 +31,7 @@ attrs.first = ["url", "owner", "repo", "rev", "tag"]
 [[overrides]]
 path = "**.nixpkgs.overlays"
 lists.sort = false
+
 [[overrides]]
 path = "**.nixpkgs.overlays.**"
 attrs.sort = false
@@ -43,6 +43,7 @@ attrs.first = ["enable", "description", "wantedBy", "after", "wants"]
 [[overrides]]
 path = "**.home.packages"
 lists.sort = true
+
 [[overrides]]
 path = "**.environment.systemPackages"
 lists.sort = true
