@@ -13,6 +13,7 @@
       { inputs, config, ... }:
       {
         imports = [
+          inputs.microvm.nixosModules.microvm
           inputs.quadlet-nix.nixosModules.quadlet
         ];
 
@@ -32,6 +33,11 @@
   };
 
   flake-file.inputs = {
+    microvm = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:microvm-nix/microvm.nix";
+    };
+
     nix-podman-stacks = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Tarow/nix-podman-stacks";

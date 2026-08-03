@@ -82,6 +82,10 @@
       url = "github:pabloaul/lsfg-vk-flake/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    microvm = {
+      url = "github:microvm-nix/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     moonshine = {
       url = "github:hgaiser/moonshine";
       inputs.nixpkgs.follows = "nixpkgs";
