@@ -95,6 +95,7 @@
             fuc # cp / rm
             glances
             glow
+            gnugo
             goverlay
             gping
             gswatcher
