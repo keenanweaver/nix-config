@@ -68,6 +68,10 @@
       url = "github:ProverbialPennance/just-one-more-repo";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    kineticwe = {
+      url = "gitlab:theblackdon/kineticwe";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     kwin-effects-kinetic = {
       url = "github:gurrgur/kwin-effects-kinetic";
       flake = false;
