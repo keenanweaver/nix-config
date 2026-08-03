@@ -173,6 +173,93 @@
               default = "kagi";
 
               engines = {
+                "Home Manager Options" = {
+                  definedAliases = [ "@hm" ];
+
+                  urls = [
+                    {
+                      params = [
+                        {
+                          name = "query";
+                          value = "{searchTerms}";
+                        }
+                        {
+                          name = "release";
+                          value = "master";
+                        }
+                      ];
+
+                      template = "https://home-manager-options.extranix.com/";
+                    }
+                  ];
+                };
+
+                "Nix Options" = {
+                  definedAliases = [ "@nixo" ];
+                  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
+                  urls = [
+                    {
+                      params = [
+                        {
+                          name = "channel";
+                          value = "unstable";
+                        }
+                        {
+                          name = "query";
+                          value = "{searchTerms}";
+                        }
+                      ];
+
+                      template = "https://search.nixos.org/options";
+                    }
+                  ];
+                };
+
+                "Nix Packages" = {
+                  definedAliases = [ "@nixp" ];
+                  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
+                  urls = [
+                    {
+                      params = [
+                        {
+                          name = "type";
+                          value = "packages";
+                        }
+                        {
+                          name = "channel";
+                          value = "unstable";
+                        }
+                        {
+                          name = "query";
+                          value = "{searchTerms}";
+                        }
+                      ];
+
+                      template = "https://search.nixos.org/packages";
+                    }
+                  ];
+                };
+
+                "NixOS Wiki" = {
+                  definedAliases = [ "@nixw" ];
+                  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+
+                  urls = [
+                    {
+                      params = [
+                        {
+                          name = "search";
+                          value = "{searchTerms}";
+                        }
+                      ];
+
+                      template = "https://wiki.nixos.org/w/index.php";
+                    }
+                  ];
+                };
+
                 "amazondotcom-us".metaData.hidden = true;
 
                 arch-wiki =
@@ -229,12 +316,6 @@
 
                 "google".metaData.hidden = true;
 
-                home-manager = {
-                  definedAliases = [ "@hm" ];
-                  name = "Home Manager Options";
-                  urls = [ { template = "https://home-manager-options.extranix.com/?query={searchTerms}"; } ];
-                };
-
                 kagi =
                   let
                     icon = pkgs.fetchurl {
@@ -248,30 +329,6 @@
                     name = "Kagi";
                     urls = [ { template = "https://kagi.com/search?q={searchTerms}"; } ];
                   };
-
-                nixpkgs-options = {
-                  definedAliases = [ "@nixo" ];
-                  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                  name = "NixOS Options";
-
-                  urls = [
-                    {
-                      template = "https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
-                    }
-                  ];
-                };
-
-                nixpkgs-packages = {
-                  definedAliases = [ "@nixp" ];
-                  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                  name = "NixOS Packages";
-
-                  urls = [
-                    {
-                      template = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={searchTerms}";
-                    }
-                  ];
-                };
 
                 pcgw =
                   let
