@@ -48,7 +48,7 @@
               defaultCompatTool = lib.mkForce defaultProton;
 
               nonSteamApps = lib.mapAttrs (_: opts: { startIn = null; } // opts) {
-                "BanjoRecomp" = wrapped pkgs.banjorecomp;
+                #"BanjoRecomp" = wrapped pkgs.banjorecomp;
                 "Bottles" = bare pkgs.bottles;
                 "Clone Hero" = wrapped pkgs.clonehero;
                 "Dusklight" = wrapped pkgs.dusklight;
