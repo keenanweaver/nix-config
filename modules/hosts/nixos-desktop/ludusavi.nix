@@ -165,7 +165,14 @@
               }
             ];
 
-            restore.path = "${config.home.homeDirectory}/Games/games/ludusavi";
+            restore.path = "/mnt/Games2/ludusavi";
+
+            roots = [
+              {
+                path = "/mnt/Games2/SteamLibrary";
+                store = "steam";
+              }
+            ];
           };
         };
     };
