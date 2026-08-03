@@ -21,8 +21,8 @@
           RPG2K3_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2003";
           RPG2K_RTP_PATH = "${config.home.homeDirectory}/Games/rpg-maker/RTP/2000";
           # https://reddit.com/r/linux_gaming/comments/1mg8vtl/low_latency_gaming_guide/
-          SDL_VIDEODRIVER = "wayland"; # SDL2
-          SDL_VIDEO_DRIVER = "wayland"; # SDL3
+          SDL_VIDEODRIVER = "wayland,x11"; # SDL2
+          SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3
           #ENABLE_LAYER_MESA_ANTI_LAG = 1;
         };
 
