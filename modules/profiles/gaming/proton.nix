@@ -40,14 +40,30 @@
             runners = {
               "Proton-CachyOS Latest" = "proton-cachyos";
             };
+            update-runners = pkgs.writeShellApplication {
+              name = "protonplus-update-runners";
+
+              runtimeInputs = with pkgs; [
+                gnugrep
+                libnotify
+                protonplus
+              ];
+
+              text = ''
+                output="$(protonplus update all 2>&1 || true)"
+                echo "$output"
+                if grep -qF 'Successfully updated' <<< "$output"; then
+                  notify-send --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus 'ProtonPlus' 'Proton runners updated'
+                fi
+              '';
+            };
           in
           {
             services.protonplus-update = {
               Install.WantedBy = [ "graphical-session.target" ];
 
               Service = {
-                ExecStart = "${lib.getExe pkgs.protonplus} update all";
-                ExecStartPost = "${lib.getExe pkgs.libnotify} --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus 'ProtonPlus' 'Proton runners updated'";
+                ExecStart = "${lib.getExe update-runners}";
                 ExecStartPre = "${lib.getExe install-runners}";
                 Type = "oneshot";
               };
