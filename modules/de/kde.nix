@@ -9,7 +9,7 @@
               dolphinui = {
                 enable = true;
                 target = "${config.xdg.dataHome}/kxmlgui5/dolphin/dolphinui.rc";
-                text = builtins.readFile ./../assets/dolphinui.rc;
+                text = builtins.readFile ../../assets/dolphinui.rc;
               };
 
               kinetic-effects = {

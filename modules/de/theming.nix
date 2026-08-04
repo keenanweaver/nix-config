@@ -128,13 +128,13 @@ in
               catppuccin-konsole-transparent = {
                 enable = true;
                 target = "${config.xdg.dataHome}/konsole/catppuccin-${flavor-lower}-transparent.colorscheme";
-                text = builtins.readFile ../assets/theming/catppuccin-mocha-transparent.colorscheme;
+                text = builtins.readFile ../../assets/theming/catppuccin-mocha-transparent.colorscheme;
               };
 
               catppuccin-krita = {
                 enable = true;
                 target = "${config.xdg.dataHome}/krita/color-schemes/Catppuccin${flavor-upper}${accent-upper}.colors";
-                text = builtins.readFile ../assets/theming/krita/CatppuccinMochaLavender.colors;
+                text = builtins.readFile ../../assets/theming/krita/CatppuccinMochaLavender.colors;
               };
 
               catppuccin-obs-flatpak = {
@@ -163,7 +163,7 @@ in
               darkly-config = {
                 enable = false;
                 target = "${config.xdg.configHome}/darklyrc";
-                text = builtins.readFile ../assets/theming/darklyrc;
+                text = builtins.readFile ../../assets/theming/darklyrc;
               };
 
               # Flatpak theming issue workarounds
@@ -176,25 +176,25 @@ in
               gtk3-config-gtk = {
                 enable = true;
                 target = "${config.xdg.configHome}/gtk-3.0/gtk.css";
-                text = builtins.readFile ../assets/theming/gtk-3.0/gtk.css;
+                text = builtins.readFile ../../assets/theming/gtk-3.0/gtk.css;
               };
 
               gtk4-config-gtk = {
                 enable = true;
                 target = "${config.xdg.configHome}/gtk-4.0/gtk.css";
-                text = builtins.readFile ../assets/theming/gtk-4.0/gtk.css;
+                text = builtins.readFile ../../assets/theming/gtk-4.0/gtk.css;
               };
 
               klassy-config = {
                 enable = true;
                 target = "${config.xdg.configHome}/klassy/klassyrc";
-                text = builtins.readFile ../assets/theming/klassyrc;
+                text = builtins.readFile ../../assets/theming/klassyrc;
               };
 
               kvantum-config = {
                 enable = true;
                 recursive = true;
-                source = ../assets/theming/Kvantum;
+                source = ../../assets/theming/Kvantum;
                 target = "${config.xdg.configHome}/Kvantum";
               };
 
@@ -211,7 +211,7 @@ in
               wallpapers = {
                 enable = true;
                 recursive = true;
-                source = ../assets/theming/wallpapers;
+                source = ../../assets/theming/wallpapers;
                 target = "${config.home.homeDirectory}/Pictures/wallpapers";
               };
             };

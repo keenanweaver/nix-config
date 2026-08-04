@@ -1,0 +1,21 @@
+# TODO
+
+## Hacks
+
+These are hacks/temporary workarounds that should be reverted once upstream/other sources add them.
+
+- N/A
+
+## Flake
+
+- Set up CI/CD
+  - [Renovate Bot](https://docs.renovatebot.com/). Flake updates, other dependencies I may refer to in the config. (i.e., artifacts that use fetchurl like DXVK config)
+  - Workflows for MRs
+- Protect `dendritic` branch
+- Consider tagging commits as releases
+- Consider Cachix/other caching
+- Consider 'flattening' `flake.lock`. See: https://flake-file.denful.dev/guides/lock-flattening/
+
+## Config
+
+- Add configs for work

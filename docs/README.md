@@ -72,8 +72,12 @@
 
 # Hosts
 
-See [HOSTS.md](./HOSTS.md) for host specific information
+See [HOSTS.md](./HOSTS.md) for host specific information.
 
 # Games
 
-See [GAMES.md](./GAMES.md) for game information
+See [GAMES.md](./GAMES.md) for game information.
+
+# TODO
+
+See [TODO.md](./TODO.md) for TODO items.
