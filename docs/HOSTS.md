@@ -41,7 +41,6 @@
 - GameSir Cyclone 2 Wireless Controller
 - Junkfood Snack Box MICRO XL
 - Logitech G920 Racing Wheel
-- Sony Dualsense Controller
 
 ### Other
 
@@ -65,6 +64,31 @@
 - Advanced/AMD CBS/SMU Common Options -> CPPC Dynamic Preferred Cores: **Driver** ([AMD 3D VCache CCD cores](https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer))
 - Boot -> CSM: **Disabled**
 - Boot -> Fast Boot: **Disabled**
+
+# `nixos-htpc`
+
+## Hardware
+
+- [ASRock B550M PRO4](https://www.asrock.com/mb/AMD/B550M%20Pro4/index.asp)
+- AMD Ryzen 7 5800X
+- XFX Swift AMD Radeon RX 9070XT Triple Fan Gaming Edition
+- ARCTIC Freezer 36 - Single-Tower CPU Cooler
+- Lian Li A3-mATX-WD-26.3L Micro Form Factor Chassis
+
+## Peripherals
+
+### Input
+
+- Keychron K1 Pro QMK/VIA Wireless Custom Mechanical Keyboard
+- Rapoo VT9PRO 4K Wireless Gaming Mouse
+
+### Game
+
+- 8BitDo Ultimate 2 Wireless Controller
+- 8BitDo Ultimate 2C
+- 8BitDo Ultimate Wireless Controller
+- EasySMX X05
+- Sony Dualsense Controller
 
 # `nixos-laptop`
 
