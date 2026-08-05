@@ -9,7 +9,7 @@
     }:
     {
       imports = [
-        inputs.jovian.nixosModules.default
+        inputs.chaotic.vendored.jovian.nixosModules.default
       ];
 
       home-manager.users.${config.my.user}.home.file."Desktop/Return-to-Gaming-Mode.desktop".source =
@@ -61,9 +61,4 @@
         };
       };
     };
-
-  flake-file.inputs.jovian = {
-    inputs.nixpkgs.follows = "nixpkgs";
-    url = "github:Jovian-Experiments/Jovian-NixOS";
-  };
 }
