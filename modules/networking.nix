@@ -1,7 +1,5 @@
 {
   flake.modules.nixos.base-profile = { config, ... }: {
-    boot.initrd.systemd.network.wait-online.enable = false;
-
     networking = {
       hosts = {
         "10.20.1.1" = [
