@@ -44,7 +44,7 @@
               name = "protonplus-update-runners";
 
               runtimeInputs = with pkgs; [
-                gnugrep
+                gnused
                 libnotify
                 protonplus
               ];
@@ -52,8 +52,18 @@
               text = ''
                 output="$(protonplus update all 2>&1 || true)"
                 echo "$output"
-                if grep -qF 'Successfully updated' <<< "$output"; then
-                  notify-send --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus 'ProtonPlus' 'Proton runners updated'
+
+                updated="$(
+                  printf '%s\n' "$output" \
+                    | sed -n \
+                        -e 's/\x1b\[[0-9;]*[a-zA-Z]//g' \
+                        -e 's/.*\r//' \
+                        -e 's/^Successfully updated //p'
+                )"
+
+                if [[ -n "$updated" ]]; then
+                  list="''${updated//$'\n'/, }"
+                  notify-send --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus 'ProtonPlus' "Updated: $list"
                 fi
               '';
             };
