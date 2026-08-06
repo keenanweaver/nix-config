@@ -2,6 +2,12 @@
   flake.modules.nixos.gaming-profile =
     { inputs, pkgs, ... }:
     {
+      hardware = {
+        uinput.enable = true;
+        xone.enable = true;
+        xpadneo.enable = true;
+      };
+
       services.udev = {
         extraHwdb =
           with builtins;

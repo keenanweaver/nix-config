@@ -37,10 +37,14 @@
         ];
       };
 
+      forbid-new-submodules.enable = true;
+
       no-commit-to-branch = {
         enable = true;
         settings.branch = [ "main" ];
       };
+
+      #lychee.enable = true;
 
       pre-commit-hook-ensure-sops.enable = true;
 

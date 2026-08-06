@@ -87,12 +87,6 @@
           ];
         };
 
-        hardware = {
-          uinput.enable = true;
-          xone.enable = true;
-          xpadneo.enable = true;
-        };
-
         nix.settings = {
           extra-substituters = [
             "https://bandithedoge.cachix.org"
