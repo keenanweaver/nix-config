@@ -7,7 +7,6 @@ pkgs.writeShellApplication {
     DEFAULT_GALLIUM_DRIVER = "zink";
     DEFAULT_GLX_VENDOR_LIBRARY_NAME = "mesa";
     DEFAULT_MESA_LOADER = "zink";
-    LOW_LATENCY_LAYER = "1";
     OBS_VKCAPTURE = "1";
     PIPEWIRE_NODE = "Game";
     PULSE_SINK = "Game";
@@ -38,7 +37,7 @@ pkgs.writeShellApplication {
     fi
 
     if [[ "$mode" == "passthrough" ]]; then
-      unset OBS_VKCAPTURE LOW_LATENCY_LAYER
+      unset OBS_VKCAPTURE
       exec "$@"
     fi
 
@@ -74,7 +73,7 @@ pkgs.writeShellApplication {
     if [[ "$in_gamescope" == true ]]; then
       want_mangohud=false
       want_obscapture=false
-      unset OBS_VKCAPTURE LOW_LATENCY_LAYER
+      unset OBS_VKCAPTURE
     fi
 
     if [[ "$want_obscapture" == true ]]; then cmd+=(obs-gamecapture); fi

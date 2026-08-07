@@ -97,8 +97,8 @@
                       id = 1144200;
 
                       launchOptions.env = {
+                        LOW_LATENCY_LAYER = true;
                         PROTON_USE_OPTISCALER = true;
-                        WINEDLLOVERRIDES = "dxgi=n,b"; # Optiscaler
                       };
                     };
 
