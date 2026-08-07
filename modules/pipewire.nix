@@ -56,7 +56,7 @@
                 ];
               in
               {
-                "context.modules" = [ (map mkLoopbackModule virtualDevices) ];
+                "context.modules" = map mkLoopbackModule virtualDevices;
               };
 
             pipewire-pulse."10-resample-quality"."stream.properties"."resample.quality" = 10;
