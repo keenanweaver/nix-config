@@ -37,6 +37,8 @@
 
           programs.steam.config = {
             enable = true;
+            displayRatesAsBits = false;
+            notifications = true;
             onSteamRunning = "close";
           };
         };
