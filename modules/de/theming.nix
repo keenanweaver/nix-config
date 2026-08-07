@@ -173,10 +173,11 @@ in
                 target = "${config.xdg.dataHome}/fonts/inter";
               };
 
-              gtk3-config-gtk = {
+              gtk3-config = {
                 enable = true;
-                target = "${config.xdg.configHome}/gtk-3.0/gtk.css";
-                text = builtins.readFile ../../assets/theming/gtk-3.0/gtk.css;
+                recursive = true;
+                source = ../../assets/theming/gtk-3.0;
+                target = "${config.xdg.configHome}/gtk-3.0";
               };
 
               gtk4-config-gtk = {

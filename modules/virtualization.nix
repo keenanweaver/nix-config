@@ -3,17 +3,9 @@
     base-profile =
       { config, pkgs, ... }:
       {
-        boot = {
-          extraModprobeConfig = ''
-            options kvm_amd nested=1
-            options kvm ignore_msrs=1 report_ignored_msrs=0
-          '';
-
-          kernel.sysctl."net.ipv4.ip_forward" = 1;
-        };
+        boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
         environment.systemPackages = with pkgs; [
-          #docker-compose
           podlet
           quickemu
           spice

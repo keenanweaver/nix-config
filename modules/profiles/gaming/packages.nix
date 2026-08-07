@@ -159,14 +159,10 @@
                 popd > /dev/null || exit 1
               '';
             })
-            easyrpg-player
             faugus-launcher
-            goverlay
             local.game-wrapper
             openspeedrun
-            oversteer
             protonplus
-            sc-controller
             umu-launcher
             vermouth
             winetricks

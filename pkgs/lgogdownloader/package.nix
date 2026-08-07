@@ -27,8 +27,8 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "Sude-";
     repo = "lgogdownloader";
-    rev = "cc2c4530159f79c17ac2905c603e12af9889d216";
-    hash = "sha256-2rtRyUStbkADP0ioJ49oFH3b41TsDst7jmguQRqbTa0=";
+    rev = "bc0a075ac241f169d2f30e84b5012d156a777e7d";
+    hash = "sha256-F9VHHOESOBElM2V3AnZblv+k9PACScf2YpDnrCZYGt0=";
   };
 
   __structuredAttrs = true;
