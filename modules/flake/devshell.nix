@@ -11,6 +11,7 @@
           nix-diff
           nix-output-monitor
           nix-tree
+          nvd
           sbctl
           sops
           ssh-to-age

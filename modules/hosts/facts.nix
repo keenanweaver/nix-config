@@ -1,42 +1,62 @@
 {
-  flake.modules.nixos.base-profile =
-    { lib, ... }:
-    {
-      options.host = {
-        cpu = lib.mkOption {
-          default = "";
-          type = lib.types.str;
-        };
+  flake = {
+    lib.mkFactAssertions =
+      config: facts:
+      map (fact: {
+        assertion = config.host.${fact} != "";
 
-        fpsLimit = lib.mkOption {
-          default = "";
-          type = lib.types.str;
-        };
+        message = ''
+          host.${fact} is required by a profile imported on '${config.networking.hostName}', but is unset.
+          Set it in modules/hosts/${config.networking.hostName}/facts.nix.
+        '';
+      }) facts;
 
-        gpu = lib.mkOption {
-          default = "";
-          type = lib.types.str;
-        };
+    modules.nixos.base-profile =
+      { lib, ... }:
+      let
+        mkFact =
+          type: default: description:
+          lib.mkOption { inherit default description type; };
 
-        pciDev = lib.mkOption {
-          default = "";
-          type = lib.types.str;
-        };
+        mkStrFact = mkFact lib.types.str "";
+      in
+      {
+        options.host = {
+          cpu = mkStrFact ''
+            Marketing name of the CPU, e.g. "7950X3D". Displayed by MangoHud.
+          '';
 
-        primaryMonitor = lib.mkOption {
-          default = "";
-          type = lib.types.str;
-        };
+          cpuHasVcache = mkFact lib.types.bool false ''
+            Whether the CPU binds the amd_x3d_vcache driver, i.e. whether
+            /sys/bus/platform/drivers/amd_x3d_vcache exists. True only for
+            multi-CCD X3D parts such as the 7950X3D; false for the 5800X.
+          '';
 
-        ztAdapter = lib.mkOption {
-          default = "";
-          type = lib.types.str;
-        };
+          fpsLimit = mkStrFact ''
+            MangoHud fps_limit cycle, e.g. "324,0,240,120,60,30".
+          '';
 
-        ztConcurrency = lib.mkOption {
-          default = 2;
-          type = lib.types.int;
+          gpu = mkStrFact ''
+            Marketing name of the GPU, e.g. "7900XTX". Displayed by MangoHud.
+          '';
+
+          pciDev = mkStrFact ''
+            PCI address of the GPU MangoHud should report on, e.g. "0000:03:00.0".
+          '';
+
+          primaryMonitor = mkStrFact ''
+            kscreen output name of the primary display, e.g. "DP-1". Used for
+            HDR/VRR/WCG queries and Sunshine mode switching.
+          '';
+
+          ztAdapter = mkStrFact ''
+            ZeroTier interface name for the joined network, e.g. "zt6ntckupu".
+          '';
+
+          ztConcurrency = mkFact lib.types.int 2 ''
+            ZeroTier worker thread count. Roughly the physical core count.
+          '';
         };
       };
-    };
+  };
 }

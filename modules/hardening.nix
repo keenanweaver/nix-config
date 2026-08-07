@@ -57,7 +57,6 @@
           # Hardening https://madaidans-insecurities.github.io/guides/linux-hardening.html#sysctl and https://github.com/sioodmy/dotfiles/blob/main/system/core/schizo.nix
           "dev.tty.ldisc_autoload" = 0;
           "kernel.dmesg_restrict" = 1;
-          "kernel.kexec_load_disabled" = 1;
           "kernel.kptr_restrict" = 2;
           "kernel.printk" = "3 3 3 3";
           "kernel.unprivileged_bpf_disabled" = 1;

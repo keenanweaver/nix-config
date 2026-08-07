@@ -45,6 +45,7 @@
 
       services = {
         displayManager.plasma-login-manager.enable = lib.mkForce false; # Conflicts with Jovian
+        pulseaudio.enable = lib.mkForce false;
         scx.enable = lib.mkForce false; # Conflicts with scx-loader
       };
 

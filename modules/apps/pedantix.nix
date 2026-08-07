@@ -16,5 +16,8 @@
       };
     };
 
-  flake-file.inputs.pedantix.url = "github:swarsel/pedantix";
+  flake-file.inputs.pedantix = {
+    inputs.nixpkgs.follows = "nixpkgs";
+    url = "github:swarsel/pedantix";
+  };
 }

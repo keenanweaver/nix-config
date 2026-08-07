@@ -45,7 +45,7 @@
     };
 
     nixos.gaming-profile =
-      { inputs, pkgs, ... }:
+      { pkgs, ... }:
       {
         programs.steam = {
           enable = true;
@@ -65,10 +65,7 @@
             privateTmp = false; # https://github.com/NixOS/nixpkgs/issues/381923
           };
 
-          extraCompatPackages = with pkgs; [
-            inputs.chaotic.legacyPackages.${stdenv.hostPlatform.system}.luxtorpeda
-          ];
-
+          extraCompatPackages = with pkgs; [ luxtorpeda ];
           localNetworkGameTransfers.openFirewall = true;
           protontricks.enable = true;
           remotePlay.openFirewall = true;

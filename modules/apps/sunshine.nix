@@ -31,12 +31,15 @@
 
       sunshine =
         {
+          self,
           lib,
           config,
           pkgs,
           ...
         }:
         {
+          assertions = self.lib.mkFactAssertions config [ "primaryMonitor" ];
+
           services.sunshine =
             let
               inherit (config.host)

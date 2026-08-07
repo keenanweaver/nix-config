@@ -50,6 +50,7 @@
 
     nixos.gaming-profile =
       {
+        self,
         inputs,
         config,
         ...
@@ -58,6 +59,15 @@
         imports = [
           inputs.just-one-more-repo.nixosModules.default
           inputs.nix-gaming-edge.nixosModules.default
+        ];
+
+        assertions = self.lib.mkFactAssertions config [
+          "cpu"
+          "fpsLimit"
+          "gpu"
+          "pciDev"
+          "primaryMonitor"
+          "ztAdapter"
         ];
 
         boot = {
@@ -85,7 +95,7 @@
         nix.settings = {
           extra-substituters = [
             "https://bandithedoge.cachix.org"
-            "https://just-one-more-cache.cachix.org/"
+            "https://just-one-more-cache.cachix.org"
             "https://nix-gaming.cachix.org"
             "https://nix-citizen.cachix.org"
           ];

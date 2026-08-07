@@ -506,15 +506,5 @@ in
       flake = false;
       url = "github:catppuccin/powershell";
     };
-
-    catppuccin-xresources = {
-      flake = false;
-      url = "github:catppuccin/xresources";
-    };
-
-    catppuccin-zen = {
-      flake = false;
-      url = "github:catppuccin/zen-browser";
-    };
   };
 }

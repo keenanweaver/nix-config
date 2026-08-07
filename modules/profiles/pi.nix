@@ -1,7 +1,7 @@
 { self, ... }:
 {
   flake.modules = {
-    homeManager.pi-profile.imports = with self.modules.nixos; [
+    homeManager.pi-profile.imports = with self.modules.homeManager; [
       server-profile
     ];
 
@@ -12,7 +12,7 @@
           server-profile
         ];
 
-        nixConfig = {
+        nix.settings = {
           extra-substituters = [
             "https://nixos-raspberrypi.cachix.org"
           ];

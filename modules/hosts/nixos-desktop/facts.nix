@@ -1,6 +1,7 @@
 {
   configurations.nixos.nixos-desktop.module.host = {
     cpu = "7950X3D";
+    cpuHasVcache = true;
     fpsLimit = "324,0,240,120,60,30";
     gpu = "7900XTX";
     pciDev = "0000:03:00.0";

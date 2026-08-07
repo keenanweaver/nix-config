@@ -6,5 +6,8 @@
     inputs.disko.nixosModules.disko
   ];
 
-  flake-file.inputs.disko.url = "github:nix-community/disko";
+  flake-file.inputs.disko = {
+    inputs.nixpkgs.follows = "nixpkgs";
+    url = "github:nix-community/disko";
+  };
 }

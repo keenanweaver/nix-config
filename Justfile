@@ -50,12 +50,6 @@ update-switch: && switch
 test:
     nh os test . -H {{ host }}
 
-switch-fast:
-    nix run .#write-flake
-    git add flake.nix flake.lock
-    git add -N .
-    nh os switch . -H {{ host }}
-
 diff:
     nh os build . -H {{ host }} -o result
     nvd diff /run/current-system result

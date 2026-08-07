@@ -103,7 +103,7 @@
             obs-flatpak
             retroarch
             solaar
-            sunshine
+            #sunshine
             vesktop
             vscodium
           ];
@@ -148,7 +148,6 @@
         };
 
       networking.hostName = "nixos-desktop";
-      powerManagement.cpuFreqGovernor = "ondemand";
       system.stateVersion = "26.05";
 
       systemd = {

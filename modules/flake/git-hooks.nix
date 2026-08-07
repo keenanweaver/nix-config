@@ -12,8 +12,15 @@
       url = "github:cachix/git-hooks.nix";
     };
 
-    json-sort.url = "github:drupol/json-sort";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
+    json-sort = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:drupol/json-sort";
+    };
+
+    treefmt-nix = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:numtide/treefmt-nix";
+    };
   };
 
   perSystem = _: {
@@ -43,8 +50,6 @@
         enable = true;
         settings.branch = [ "main" ];
       };
-
-      #lychee.enable = true;
 
       pre-commit-hook-ensure-sops.enable = true;
 

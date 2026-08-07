@@ -21,7 +21,7 @@
       config = lib.mkIf cfg.enable (
         lib.mkMerge [
           {
-            environment.systemPackages = [ cfg.package ];
+            environment.systemPackages = [ package ];
 
             security.wrappers."gsr-kms-server" = {
               capabilities = "cap_sys_admin+ep";
@@ -34,7 +34,7 @@
           (lib.mkIf cfg.ui.enable {
             environment.systemPackages = [
               cfg.ui.notifPackage
-              cfg.ui.package
+              uiPackage
             ];
 
             security.wrappers."gsr-global-hotkeys" = {

@@ -41,16 +41,6 @@
               how = "symlink";
             }
             {
-              configureParent = true;
-              file = "/etc/ssh/ssh_host_rsa_key";
-              how = "symlink";
-            }
-            {
-              configureParent = true;
-              file = "/etc/ssh/ssh_host_rsa_key.pub";
-              how = "symlink";
-            }
-            {
               file = "/var/lib/systemd/random-seed";
               how = "symlink";
             }

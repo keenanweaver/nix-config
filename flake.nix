@@ -31,16 +31,11 @@
       url = "github:catppuccin/powershell";
       flake = false;
     };
-    catppuccin-xresources = {
-      url = "github:catppuccin/xresources";
-      flake = false;
-    };
-    catppuccin-zen = {
-      url = "github:catppuccin/zen-browser";
-      flake = false;
-    };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    disko.url = "github:nix-community/disko";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-file.url = "github:vic/flake-file";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -48,10 +43,6 @@
     };
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hjem = {
-      url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
@@ -63,13 +54,12 @@
       url = "github:Jovian-Experiments/Jovian-NixOS";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    json-sort.url = "github:drupol/json-sort";
-    just-one-more-repo = {
-      url = "github:ProverbialPennance/just-one-more-repo";
+    json-sort = {
+      url = "github:drupol/json-sort";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    kineticwe = {
-      url = "gitlab:theblackdon/kineticwe";
+    just-one-more-repo = {
+      url = "github:ProverbialPennance/just-one-more-repo";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     kwin-effects-kinetic = {
@@ -88,10 +78,6 @@
     };
     moonshine = {
       url = "github:hgaiser/moonshine";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    niri = {
-      url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
@@ -134,14 +120,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-lib.follows = "nixpkgs";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    noctalia.url = "github:noctalia-dev/noctalia/cachix";
-    noctalia-greeter = {
-      url = "github:noctalia-dev/noctalia-greeter";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nonfree = {
       url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
       flake = false;
@@ -162,7 +142,10 @@
       url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    pedantix.url = "github:swarsel/pedantix";
+    pedantix = {
+      url = "github:swarsel/pedantix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
@@ -191,14 +174,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     systems.url = "github:nix-systems/default-linux";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     ucodenix.url = "github:e-tho/ucodenix";
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
     wayland-pipewire-idle-inhibit = {
       url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.home-manager.follows = "home-manager";

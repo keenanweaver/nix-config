@@ -1,6 +1,8 @@
 {
   flake.modules.nixos = {
-    base-profile =
+    desktop-profile.programs.virt-manager.enable = true;
+
+    virtualization =
       { config, pkgs, ... }:
       {
         boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
@@ -9,7 +11,6 @@
           podlet
           quickemu
           spice
-          spice-protocol
           virtio-win
           virtiofsd
           win-spice
@@ -66,7 +67,5 @@
           };
         };
       };
-
-    virtualization.programs.virt-manager.enable = true;
   };
 }

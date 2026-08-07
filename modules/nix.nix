@@ -6,7 +6,6 @@
         channel.enable = false;
 
         settings = {
-          auto-optimise-store = true;
           builders-use-substitutes = true;
           connect-timeout = 5;
           download-buffer-size = 500 * 1024 * 1024;
