@@ -14,9 +14,6 @@
         virtualization
         wireless
 
-        #niri
-        #noctalia
-
         solaar
         vscodium
       ];
@@ -28,8 +25,6 @@
         base-profile
         desktop-profile
 
-        #niri
-        #noctalia
         llm
 
         fluxer

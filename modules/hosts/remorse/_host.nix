@@ -2,7 +2,7 @@
 {
 
   configurations.nixos.remorse.module =
-    { lib, config, ... }:
+    { config, ... }:
     {
       imports = with self.modules.nixos; [
         self.diskoConfigurations.remorse
@@ -49,8 +49,6 @@
         wireless.enable = false;
       };
 
-      nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
-
       services = {
         cockpit = {
           enable = true;
@@ -59,7 +57,7 @@
 
         freshrss = {
           enable = true;
-          passwordFile = config.sops.secrets.unraid.ntfy.password.path;
+          passwordFile = config.sops.secrets."unraid/ntfy/password".path;
         };
 
         netdata.enable = true;
@@ -67,6 +65,7 @@
         uptime-kuma.enable = true;
       };
 
+      sops.secrets."unraid/ntfy/password" = { };
       system.stateVersion = "26.05";
     };
 }

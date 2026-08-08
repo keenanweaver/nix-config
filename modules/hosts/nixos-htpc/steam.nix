@@ -53,6 +53,7 @@
                 "Clone Hero" = wrapped pkgs.clonehero;
                 "Dusklight" = wrapped pkgs.dusklight;
                 "Fightcade" = flatpak "com.fightcade.Fightcade";
+                "Ghostship" = wrapped pkgs.ghostship;
                 "Heroic Games Launcher" = bare pkgs.heroic;
                 "Jazz² Resurrection" = wrapped pkgs.jazz2;
                 "Moon Child FE" = wrapped pkgs.moon-child-fe;

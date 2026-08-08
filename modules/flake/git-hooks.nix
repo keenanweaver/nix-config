@@ -71,8 +71,6 @@
       ];
 
       programs = {
-        actionlint.enable = true;
-        cue.enable = true;
         deadnix.enable = true;
         dos2unix.enable = true;
         json-sort.enable = true;

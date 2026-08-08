@@ -1,7 +1,7 @@
 { self, ... }:
 {
   configurations.nixos.regret.module =
-    { config, ... }:
+    { inputs, config, ... }:
     {
       imports =
         with self.modules.nixos;
@@ -41,6 +41,11 @@
           persistRepoData = true;
           platform = "forgejo";
         };
+      };
+
+      sops.secrets = {
+        "renovate/github_token" = { };
+        "renovate/renovate_key" = { };
       };
     };
 }

@@ -54,6 +54,7 @@
       };
 
       programs = {
+        ghostship.enable = true;
         shipwright-git.enable = true;
 
         sm64coopdx = {
