@@ -38,12 +38,12 @@ stdenv.mkDerivation (finalAttrs: {
 
   desktopItems = [
     (makeDesktopItem {
+      name = "sonic3air";
       categories = [ "Game" ];
       comment = "Sonic 3 Angel Island Revisited – fan-made remaster of Sonic 3 & Knuckles";
       desktopName = "Sonic 3 A.I.R.";
       exec = "sonic3air";
       icon = "sonic3air";
-      name = "sonic3air";
     })
   ];
 

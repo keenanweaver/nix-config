@@ -19,6 +19,7 @@
               inputs.aaru.packages.${system}.default
                  inputs.nix-game-preservation.packages.${system}.dic-git-full
                  glxinfo
+                 itch-dl
                  jpsxdec
                  mame.tools
                  mmv

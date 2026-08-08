@@ -51,21 +51,6 @@
                     "Half-Life: Blue Shift".id = 130;
                     "Half-Life: Opposing Force".id = 50;
 
-                    "Helldivers 2" = {
-                      args = [
-                        "+connect_lobby -1" # Skip intro
-                      ];
-
-                      compatTool = config.programs.steam.config.defaultCompatTool;
-
-                      env = {
-                        PROTON_VKD3D_LOWLATENCY = true;
-                        WINE_CPU_TOPOLOGY = "8:1,2,3,4,5,6,7,16"; # https://github.com/ValveSoftware/Proton/issues/7486#issuecomment-2683254539
-                      };
-
-                      id = 553850;
-                    };
-
                     "Hitman: World of Assassination" = {
                       args = [
                         "-skip_launcher"
@@ -73,17 +58,6 @@
 
                       env.PROTON_VKD3D_LOWLATENCY = true;
                       id = 1659040;
-                    };
-
-                    "Quake Live" = {
-                      env = {
-                        PROTON_DXVK_LOWLATENCY = true;
-                        # https://steamcommunity.com/sharedfiles/filedetails/?id=3642772367
-                        # mesa_glthread = "false";
-                        # MESA_GL_VERSION_OVERRIDE = "3.2";
-                      };
-
-                      id = 282440;
                     };
 
                     "Ready or Not" = {

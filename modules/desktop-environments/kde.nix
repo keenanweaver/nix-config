@@ -51,15 +51,6 @@
           ];
 
           programs = {
-            ghostwriter = {
-              enable = true;
-
-              general.session = {
-                openLastFileOnStartup = true;
-                rememberRecentFiles = true;
-              };
-            };
-
             kate = {
               enable = true;
 
