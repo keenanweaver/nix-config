@@ -1,0 +1,35 @@
+{
+  flake.modules.nixos.base-profile = { inputs, ... }: {
+    imports = [
+      inputs.chaotic.nixosModules.default
+      inputs.nur.modules.nixos.default
+    ];
+
+    nixpkgs.overlays = [ inputs.nur.overlays.default ];
+  };
+
+  flake-file.inputs = {
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
+    nur = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/NUR";
+    };
+
+    /*
+      hjem = {
+         inputs.nixpkgs.follows = "nixpkgs";
+         url = "github:feel-co/hjem";
+       };
+    */
+
+    /*
+      nixpak = {
+         inputs.nixpkgs.follows = "nixpkgs";
+         url = "github:nixpak/nixpak";
+       };
+    */
+
+    #wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+  };
+}

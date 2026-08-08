@@ -5,7 +5,7 @@
       cryptenroll = pkgs.writeShellApplication {
         name = "cryptenroll";
         runtimeInputs = [ pkgs.systemd ];
-        text = builtins.readFile ./cryptenroll.sh;
+        text = builtins.readFile ../../assets/cryptenroll.sh;
       };
     in
     {

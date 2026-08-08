@@ -2,6 +2,7 @@
 {
   flake.modules = {
     homeManager.desktop-profile.imports = with self.modules.homeManager; [
+      catppuccin
       kde
       plasma-manager
       zen-browser

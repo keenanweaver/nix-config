@@ -4,7 +4,7 @@
       {
         lib,
         pkgs,
-        osConfig,
+        osConfig ? null,
         ...
       }:
       {
@@ -42,7 +42,6 @@
             userSettings =
               let
                 flake = "(builtins.getFlake (builtins.toString ./. ))";
-                host = osConfig.networking.hostName;
               in
               {
                 "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
@@ -88,12 +87,13 @@
 
                 "nix.serverSettings"."nixd" = {
                   "nixpkgs"."expr" = "import ${flake}.inputs.nixpkgs { }";
-
+                }
+                // lib.optionalAttrs (osConfig != null) {
                   "options" = {
                     "home-manager"."expr" =
-                      "${flake}.nixosConfigurations.${host}.options.home-manager.users.type.getSubOptions []";
+                      "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options.home-manager.users.type.getSubOptions []";
 
-                    "nixos"."expr" = "${flake}.nixosConfigurations.${host}.options";
+                    "nixos"."expr" = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options";
                   };
                 };
 

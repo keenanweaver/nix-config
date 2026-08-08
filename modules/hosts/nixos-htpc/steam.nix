@@ -15,7 +15,7 @@
               bare = pkg: { target = lib.getExe pkg; };
               defaultProton = "Proton-CachyOS Latest";
               flatpak = id: {
-                launchOptions.args = [
+                args = [
                   "run"
                   id
                 ];
@@ -23,8 +23,8 @@
                 target = "/run/current-system/sw/bin/flatpak";
               };
               wrapped = pkg: {
-                launchOptions.wrappers = [ wrapper ];
                 target = lib.getExe pkg;
+                wrappers = [ wrapper ];
               };
               wrapper = lib.getExe pkgs.local.game-wrapper;
             in
@@ -35,7 +35,7 @@
                     _: opts:
                     lib.mkMerge [
                       opts
-                      { launchOptions.wrappers = [ wrapper ]; }
+                      { wrappers = [ wrapper ]; }
                     ]
                   )
                   {

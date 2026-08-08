@@ -4,10 +4,6 @@
     homeManager.base-profile =
       { config, ... }:
       {
-        imports = with self.modules.homeManager; [
-          catppuccin
-        ];
-
         home = {
           language = {
             base = "en_US.UTF-8";
