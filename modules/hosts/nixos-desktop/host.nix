@@ -97,6 +97,7 @@
 
             fluxer
             freetube
+            ghostty
             halloy
             mumble
             obs
