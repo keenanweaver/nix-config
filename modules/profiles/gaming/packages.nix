@@ -162,7 +162,6 @@
             faugus-launcher
             local.game-wrapper
             openspeedrun
-            protonplus
             umu-launcher
             vermouth
             winetricks
