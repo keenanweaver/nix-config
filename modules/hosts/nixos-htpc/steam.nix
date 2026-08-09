@@ -12,7 +12,7 @@
         {
           programs.steam.config =
             let
-              bare = pkg: { target = lib.getExe pkg; };
+              bare = pkg: { target = userBin pkg; };
               defaultProton = "Proton-CachyOS Latest";
               flatpak = id: {
                 args = [
@@ -22,11 +22,18 @@
 
                 target = "/run/current-system/sw/bin/flatpak";
               };
-              wrapped = pkg: {
-                target = lib.getExe pkg;
+              sysBare = pkg: { target = sysBin pkg; };
+              sysBin = pkg: "/run/current-system/sw/bin/${baseNameOf (lib.getExe pkg)}";
+              sysWrapped = pkg: {
+                target = sysBin pkg;
                 wrappers = [ wrapper ];
               };
-              wrapper = lib.getExe pkgs.local.game-wrapper;
+              userBin = pkg: "/etc/profiles/per-user/${config.my.user}/bin/${baseNameOf (lib.getExe pkg)}";
+              wrapped = pkg: {
+                target = userBin pkg;
+                wrappers = [ wrapper ];
+              };
+              wrapper = "/etc/profiles/per-user/${config.my.user}/bin/${baseNameOf (lib.getExe pkgs.local.game-wrapper)}";
             in
             {
               apps =
@@ -53,23 +60,23 @@
                 "Clone Hero" = wrapped pkgs.clonehero;
                 "Dusklight" = wrapped pkgs.dusklight;
                 "Fightcade" = flatpak "com.fightcade.Fightcade";
-                "Ghostship" = wrapped pkgs.ghostship;
+                "Ghostship" = sysWrapped pkgs.ghostship;
                 "Heroic Games Launcher" = bare pkgs.heroic;
                 "Jazz² Resurrection" = wrapped pkgs.jazz2;
                 "Moon Child FE" = wrapped pkgs.moon-child-fe;
-                "Moonlight" = bare pkgs.moonlight-qt;
+                "Moonlight" = sysBare pkgs.moonlight-qt;
                 "One Must Fall 2097" = wrapped pkgs.openomf;
                 "Pegasus Frontend" = bare pkgs.pegasus-frontend;
                 "Prince of Persia" = wrapped pkgs.sdlpop;
                 "Ring Racers" = wrapped pkgs.ringracers;
-                "SM64CoopDX" = wrapped pkgs.sm64coopdx;
+                "SM64CoopDX" = sysWrapped pkgs.sm64coopdx;
                 "SM64Ex" = wrapped pkgs.sm64ex;
-                "Ship of Harkinian" = wrapped pkgs.shipwright-git;
+                "Ship of Harkinian" = sysWrapped pkgs.shipwright-git;
                 "Slippi" = wrapped inputs.slippi.packages.${pkgs.stdenv.hostPlatform.system}.default;
                 "Sonic 3: Angel Island Revisited" = wrapped pkgs.local.sonic3air;
                 "Sonic Robo Blast 2" = wrapped pkgs.srb2;
-                "Spaghetti Kart" = wrapped pkgs.spaghetti-kart-git;
-                "Starship SF64" = wrapped pkgs.starship-sf64;
+                "Spaghetti Kart" = sysWrapped pkgs.spaghetti-kart-git;
+                "Starship SF64" = sysWrapped pkgs.starship-sf64;
                 "Wipeout Rewrite" = wrapped pkgs.wipeout-rewrite;
                 "Zelda64Recomp" = wrapped pkgs.zelda64recomp;
                 "shadPS4" = bare pkgs.shadps4-qtlauncher;
