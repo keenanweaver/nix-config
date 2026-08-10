@@ -7,7 +7,7 @@ default:
 
 # ══ 1) check / lint ═════════════════════════════════════════
 check:
-    nix flake check
+    nix flake check --log-format internal-json -v |& nom --json
 
 eval:
     nix build --dry-run .#nixosConfigurations.{{ host }}.config.system.build.toplevel
@@ -38,7 +38,7 @@ update:
     nix flake update
     nix run .#write-flake
     git add flake.nix flake.lock
-    nix flake check
+    nix flake check --log-format internal-json -v |& nom --json
 
 update-boot: && boot
     just update
