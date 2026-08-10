@@ -10,6 +10,7 @@
 
   flake-file.inputs = {
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    multiverse.url = "github:fzakaria/nixpkgs-multiverse";
 
     nur = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,19 +18,17 @@
     };
 
     /*
-      hjem = {
-         inputs.nixpkgs.follows = "nixpkgs";
-         url = "github:feel-co/hjem";
-       };
-    */
+        hjem = {
+           inputs.nixpkgs.follows = "nixpkgs";
+           url = "github:feel-co/hjem";
+         };
 
-    /*
-      nixpak = {
-         inputs.nixpkgs.follows = "nixpkgs";
-         url = "github:nixpak/nixpak";
-       };
-    */
+        nixpak = {
+           inputs.nixpkgs.follows = "nixpkgs";
+           url = "github:nixpak/nixpak";
+         };
 
-    #wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+      wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+    */
   };
 }
