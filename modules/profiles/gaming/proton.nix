@@ -1,4 +1,3 @@
-{ inputs, ... }:
 {
   flake.modules = {
     homeManager.gaming-profile =
@@ -20,7 +19,7 @@
               runtimeInputs = with pkgs; [
                 gnugrep
                 libnotify
-                protonplus
+                local.protonplus
               ];
 
               text = ''
@@ -79,12 +78,6 @@
         ];
       in
       {
-        nixpkgs.overlays = [
-          (_final: prev: {
-            proton-cachyos = inputs.nix-gaming-edge.packages.${prev.stdenv.hostPlatform.system}.proton-cachyos;
-          })
-        ];
-
         programs.steam.extraCompatPackages = steamCompatTools;
       };
   };

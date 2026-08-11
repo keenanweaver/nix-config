@@ -111,6 +111,7 @@
         nixpkgs.overlays = [
           inputs.umu.overlays.default
           inputs.nix-cachyos-kernel.overlays.pinned
+          inputs.nix-gaming-edge.overlays.default
         ];
 
         security.pam.loginLimits = [
@@ -148,11 +149,6 @@
     aaru = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Whovian9369/aaru-nix-flake";
-    };
-
-    jovian = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:Jovian-Experiments/Jovian-NixOS";
     };
 
     just-one-more-repo = {

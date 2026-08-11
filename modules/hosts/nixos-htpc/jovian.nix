@@ -12,17 +12,31 @@
         inputs.chaotic.vendored.jovian.nixosModules.default
       ];
 
-      home-manager.users.${config.my.user}.home.file."Desktop/Return-to-Gaming-Mode.desktop".source =
-        (pkgs.makeDesktopItem {
-          desktopName = "Return to Gaming Mode";
-          exec = "steamosctl switch-to-game-mode";
-          icon = "steam";
-          name = "Return-to-Gaming-Mode";
-          startupNotify = false;
-          terminal = false;
-          type = "Application";
-        })
-        + "/share/applications/Return-to-Gaming-Mode.desktop";
+      home-manager.users.${config.my.user}.home.file = {
+        "Desktop/Reboot-to-UEFI.desktop".source =
+          (pkgs.makeDesktopItem {
+            desktopName = "Reboot to UEFI";
+            exec = "systemctl reboot --firmware-setup";
+            icon = "system-reboot-symbolic";
+            name = "Reboot-to-UEFI";
+            startupNotify = false;
+            terminal = false;
+            type = "Application";
+          })
+          + "/share/applications/Reboot-to-UEFI.desktop";
+
+        "Desktop/Return-to-Gaming-Mode.desktop".source =
+          (pkgs.makeDesktopItem {
+            desktopName = "Return to Gaming Mode";
+            exec = "steamosctl switch-to-game-mode";
+            icon = "steam";
+            name = "Return-to-Gaming-Mode";
+            startupNotify = false;
+            terminal = false;
+            type = "Application";
+          })
+          + "/share/applications/Return-to-Gaming-Mode.desktop";
+      };
 
       jovian = {
         decky-loader.enable = true;

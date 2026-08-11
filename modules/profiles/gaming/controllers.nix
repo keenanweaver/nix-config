@@ -43,6 +43,7 @@
 
           packages = with pkgs; [
             game-devices-udev-rules
+            oversteer
             (writeTextFile {
               destination = "/etc/udev/rules.d/40-logitech-g920.rules";
               name = "40-logitech-g920.rules";

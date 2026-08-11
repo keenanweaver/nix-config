@@ -50,10 +50,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     import-tree.url = "github:vic/import-tree";
-    jovian = {
-      url = "github:Jovian-Experiments/Jovian-NixOS";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     json-sort = {
       url = "github:drupol/json-sort";
       inputs.nixpkgs.follows = "nixpkgs";
