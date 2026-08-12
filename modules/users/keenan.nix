@@ -21,7 +21,6 @@
         users.users.${config.my.user} = {
           extraGroups = [
             "input"
-            "plugdev"
             "uinput"
             "video"
             "wheel"

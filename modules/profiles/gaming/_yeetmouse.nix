@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.gaming-profile =
-    { inputs, ... }:
+    { inputs, config, ... }:
     {
       imports = [
         inputs.yeetmouse.nixosModules.default
@@ -9,6 +9,15 @@
       hardware.yeetmouse = {
         enable = true;
         sensitivity = 1.0;
+      };
+
+      preservation.preserveAt."/persist".files = [
+        "/etc/yeetmouse.conf"
+      ];
+
+      users = {
+        groups.yeetmouse = { };
+        users.${config.my.user}.extraGroups = [ "yeetmouse" ];
       };
     };
 

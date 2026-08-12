@@ -31,6 +31,7 @@
             shadps4-qtlauncher
             sm64ex
             wipeout-rewrite
+            yarg
             zelda64recomp
           ];
 

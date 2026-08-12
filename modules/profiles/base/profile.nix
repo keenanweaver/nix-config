@@ -47,21 +47,11 @@
 
         console = {
           earlySetup = true;
-          font = "ter-124b";
+          font = "ter-v28b";
 
           packages = with pkgs; [
             terminus_font
           ];
-
-          useXkbConfig = true;
-        };
-
-        documentation = {
-          enable = false;
-          doc.enable = false;
-          info.enable = false;
-          man.enable = false;
-          nixos.enable = false;
         };
 
         environment = {
@@ -115,5 +105,8 @@
       };
   };
 
-  flake-file.description = "Keenan's NixOS configuration";
+  flake-file = {
+    description = "Keenan's NixOS configuration";
+    style.sep.inputs = "\n\n";
+  };
 }
