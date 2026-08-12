@@ -1,12 +1,7 @@
 {
   flake.modules = {
     homeManager.gaming-profile =
-      {
-        inputs,
-        config,
-        pkgs,
-        ...
-      }:
+      { config, pkgs, ... }:
       {
         home = {
           file.scb-config = {
@@ -21,8 +16,8 @@
             '';
           };
 
-          packages = [
-            inputs.just-one-more-repo.packages.${pkgs.stdenv.hostPlatform.system}.scopebuddy
+          packages = with pkgs; [
+            scopebuddy
           ];
         };
 

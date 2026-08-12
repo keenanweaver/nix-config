@@ -27,7 +27,6 @@
                  nsz
                  inputs.nix-game-preservation.packages.${system}.sabretools-git
                  inputs.nix-game-preservation.packages.${system}.unshieldsharp-git
-                 openspeedrun
                  ps3-disc-dumper
                  inputs.nix-game-preservation.packages.${system}.redumper-git
                  renderdoc
@@ -94,6 +93,7 @@
             flawz
             flips
             fuc # cp / rm
+            #gamma-launcher
             glances
             glow
             gnugo
@@ -111,14 +111,12 @@
             impala
             innoextract
             inputs.just-one-more-repo.packages.${system}.r2modman
-            inputs.nix-citizen.packages.${system}.rsi-launcher-umu
-            inputs.nix-gaming-edge.packages.${system}.opengoal-launcher
+            inputs.nix-citizen.packages.${system}.rsi-launcher
             inputs.nur-bandithedoge.legacyPackages.${system}.cherry-doom
             inputs.nur-bandithedoge.legacyPackages.${system}.nyan-doom
             inputs.nur-bandithedoge.legacyPackages.${system}.sheepshaver-bin
             inputs.openmw-nix.packages.${system}.openmw-validator
             isd
-            #gamma-launcher
             isle-portable
             jazz2
             jellyfin-tui
@@ -163,6 +161,7 @@
             nvd
             odamex
             okteta
+            opengoal-launcher
             openjk
             openloco
             openmw

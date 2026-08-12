@@ -1,9 +1,9 @@
 {
   flake.modules.homeManager.fluxer =
-    { inputs, pkgs, ... }:
+    { pkgs, ... }:
     {
       home.packages = with pkgs; [
-        inputs.nix-gaming-edge.packages.${stdenv.hostPlatform.system}.fluxer-desktop-canary
+        fluxer-desktop-canary
       ];
     };
 }

@@ -111,7 +111,6 @@
         nixpkgs.overlays = [
           inputs.umu.overlays.default
           inputs.nix-cachyos-kernel.overlays.pinned
-          inputs.nix-gaming-edge.overlays.default
         ];
 
         security.pam.loginLimits = [

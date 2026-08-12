@@ -5,7 +5,10 @@
       inputs.nur.modules.nixos.default
     ];
 
-    nixpkgs.overlays = [ inputs.nur.overlays.default ];
+    nixpkgs.overlays = [
+      inputs.nix-gaming-edge.overlays.default
+      inputs.nur.overlays.default
+    ];
   };
 
   flake-file.inputs = {
