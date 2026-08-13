@@ -185,6 +185,11 @@
                 };
 
                 kdeglobals = {
+                  General = {
+                    TerminalApplication = "ghostty --gtk-single-instance=true";
+                    TerminalService = "com.mitchellh.ghostty.desktop";
+                  };
+
                   KDE = {
                     AnimationDurationFactor = 0.25;
                     ShowDeleteCommand = true;

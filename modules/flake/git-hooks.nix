@@ -25,7 +25,15 @@
 
   perSystem = _: {
     pre-commit.settings.hooks = {
-      check-added-large-files.enable = true;
+      check-added-large-files = {
+        enable = true;
+
+        excludes = [
+          "\\.png"
+          "\\.jpg"
+        ];
+      };
+
       check-case-conflicts.enable = true;
       check-executables-have-shebangs.enable = true;
       check-json.enable = true;

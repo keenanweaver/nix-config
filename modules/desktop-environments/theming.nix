@@ -7,14 +7,9 @@ let
   flavor-lower = "mocha";
   flavor-upper = "Mocha";
   icon-theme = "Papirus-Dark";
-  mkWallpaper =
-    pkgs:
-    pkgs.fetchurl {
-      hash = "sha256-vSzbsrAg6EalV5FzvHPQRS1qdhjJpDSjda4M+s8ACU4=";
-      url = "https://w.wallhaven.cc/full/2k/wallhaven-2kpexy.jpg";
-    };
   mono-font = "Maple Mono Normal NF";
   sans-font = "Inter";
+  wallpaper = ../../assets/theming/wallpapers/wallhaven-2kpexy.jpg;
 in
 {
   flake.modules = {
@@ -29,7 +24,6 @@ in
         }:
         let
           sans-font-pkg = pkgs.local.inter;
-          wallpaper = mkWallpaper pkgs;
         in
         {
           imports = [
@@ -207,13 +201,6 @@ in
                   Import-Module Catppuccin
                   $Flavor = $Catppuccin['${flavor-upper}']
                 '';
-              };
-
-              wallpapers = {
-                enable = true;
-                recursive = true;
-                source = ../../assets/theming/wallpapers;
-                target = "${config.home.homeDirectory}/Pictures/wallpapers";
               };
             };
 
@@ -431,23 +418,19 @@ in
       {
         imports = [ inputs.catppuccin.nixosModules.catppuccin ];
 
-        catppuccin =
-          let
-            wallpaper = mkWallpaper pkgs;
-          in
-          {
-            enable = true;
-            accent = "${accent-lower}";
-            autoEnable = true;
-            cache.enable = false;
-            flavor = "${flavor-lower}";
+        catppuccin = {
+          enable = true;
+          accent = "${accent-lower}";
+          autoEnable = true;
+          cache.enable = false;
+          flavor = "${flavor-lower}";
 
-            sddm = {
-              background = "${wallpaper}";
-              font = "${mono-font}";
-              fontSize = "11";
-            };
+          sddm = {
+            background = "${wallpaper}";
+            font = "${mono-font}";
+            fontSize = "11";
           };
+        };
 
         environment.systemPackages = with pkgs; [
           (catppuccin-kde.override {

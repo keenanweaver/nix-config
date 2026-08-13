@@ -25,15 +25,31 @@ pre:
 hooks:
     nix develop -c pre-commit run --all-files
 
-# ══ 4) build for next boot ══════════════════════════════════
+# ══ 4) iteration / dev feedback ══════════════════════════════
+# quick build, just to see whether it compiles (leaves ./result)
+build:
+    nh os build . -H {{ host }}
+
+# try the configuration without committing to it as the boot entry
+test:
+    nh os test . -H {{ host }}
+
+diff:
+    nh os build . -H {{ host }} -o result
+    nvd diff /run/current-system result
+
+repl:
+    nix repl .#nixosConfigurations.{{ host }}
+
+# ══ 5) build for next boot ══════════════════════════════════
 boot: pre
     nh os boot . -H {{ host }}
 
-# ══ 5) build + switch now ═══════════════════════════════════
+# ══ 6) build + switch now ═══════════════════════════════════
 switch: pre
     nh os switch . -H {{ host }}
 
-# ══ 6) update inputs, then boot / switch ════════════════════
+# ══ 7) update inputs, then boot / switch ════════════════════
 update:
     nix flake update
     nix run .#write-flake
@@ -46,16 +62,9 @@ update-boot: && boot
 update-switch: && switch
     just update
 
-# ══ iteration / maintenance helpers ═════════════════════════
-test:
-    nh os test . -H {{ host }}
-
-diff:
-    nh os build . -H {{ host }} -o result
-    nvd diff /run/current-system result
-
-repl:
-    nix repl .#nixosConfigurations.{{ host }}
+# ══ 8) maintenance ═══════════════════════════════════════════
+clean:
+    nh clean all
 
 # ══ Secrets ═════════════════════════════════════════════════
 sops-edit file:

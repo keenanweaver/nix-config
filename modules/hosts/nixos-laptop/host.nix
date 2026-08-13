@@ -31,7 +31,6 @@
         freetube
         halloy
         mumble
-        solaar
         vesktop
         vscodium
       ];

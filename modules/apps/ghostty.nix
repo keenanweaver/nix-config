@@ -15,6 +15,7 @@
           cursor-style-blink = false;
           font-family = config.programs.plasma.fonts.fixedWidth.family;
           font-size = config.programs.plasma.fonts.fixedWidth.pointSize;
+          maximize = true;
           mouse-hide-while-typing = true;
           scrollback-limit = 10000;
           window-decoration = "server";

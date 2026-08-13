@@ -103,7 +103,6 @@
             obs
             obs-flatpak
             retroarch
-            solaar
             #sunshine
             vesktop
             vscodium
