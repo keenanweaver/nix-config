@@ -15,6 +15,7 @@
         sops.secrets = {
           "users/${config.my.user}/age-key".owner = "${config.my.user}";
           "users/${config.my.user}/github_access_token" = { };
+          "users/${config.my.user}/github_pat" = { };
           "users/${config.my.user}/password".neededForUsers = true;
         };
 
