@@ -19,11 +19,15 @@
         ];
 
         "10.20.20.15" = [
-          "bazzite-htpc"
+          "nixos-htpc"
         ];
 
         "10.20.20.17" = [
           "nixos-unraid"
+        ];
+
+        "10.20.20.20" = [
+          "nixos-laptop"
         ];
 
         "10.20.20.29" = [
@@ -31,7 +35,7 @@
         ];
 
         "10.20.20.30" = [
-          "remorsepi"
+          "remorse"
         ];
 
         "10.20.20.31" = [
@@ -45,6 +49,10 @@
         "10.20.20.33" = [
           "maniacpi"
         ];
+
+        "10.20.20.5" = [
+          "nixos-desktop"
+        ];
       };
 
       networkmanager.enable = true;
@@ -57,6 +65,18 @@
       "/etc/wireguard"
       "/var/lib/NetworkManager"
     ];
+
+    services.avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+
+      publish = {
+        enable = true;
+        addresses = true;
+        workstation = true;
+      };
+    };
 
     services.resolved = {
       enable = true;
