@@ -49,7 +49,7 @@
 
         settings =
           let
-            heroicExe = "/run/current-system/sw/bin/heroic";
+            heroicExe = lib.getExe pkgs.heroic;
             heroicLaunch = pkgs.writeShellApplication {
               name = "moonshine-heroic-launch";
 
@@ -80,7 +80,7 @@
               '';
             };
             heroicShutdownExe = lib.getExe' heroicShutdown "moonshine-heroic-shutdown";
-            steamExe = "/run/current-system/sw/bin/steam";
+            steamExe = lib.getExe pkgs.steam;
             steamLaunch = pkgs.writeShellApplication {
               name = "moonshine-steam-launch";
 
@@ -117,9 +117,17 @@
           {
             application = [
               {
+                boxart =
+                  let
+                    icon = pkgs.fetchurl {
+                      hash = "sha256-DRHwibH9TqqqSl/LZd19zfWE0qe1RTjb8uSbPMtAbTQ=";
+                      url = "https://cdn2.steamgriddb.com/grid/2b1c6cedeaf9571589e3dc9d51ba20e5.png";
+                    };
+                  in
+                  icon;
+
                 command = [
                   heroicLaunchExe
-                  "steam://open/bigpicture"
                 ];
 
                 title = "Heroic";
