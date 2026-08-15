@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.desktop-profile =
+  flake.modules.homeManager.gaming-profile =
     { inputs, lib, ... }:
     {
       # https://github.com/nix-community/home-manager/issues/3849#issuecomment-2115899992
