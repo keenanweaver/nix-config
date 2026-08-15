@@ -16,47 +16,30 @@
         ];
 
         services.flatpak = {
-          overrides = {
-            global = {
-              Context.filesystems = [
-                "/nix/store:ro"
-                "/run/current-system/sw/bin:ro"
-                "/run/media/${osConfig.my.user}:ro"
-                # Theming
-                "${config.home.homeDirectory}/.icons:ro"
-                "${config.home.homeDirectory}/.themes:ro"
-                "xdg-config/fontconfig:ro"
-                "xdg-config/gtkrc:ro"
-                "xdg-config/gtkrc-2.0:ro"
-                "xdg-config/gtk-2.0:ro"
-                "xdg-config/gtk-3.0:ro"
-                "xdg-config/gtk-4.0:ro"
-                "xdg-data/fonts:ro"
-                "xdg-data/themes:ro"
-                "xdg-data/icons:ro"
-              ];
+          overrides.global = {
+            Context.filesystems = [
+              "/nix/store:ro"
+              "/run/current-system/sw/bin:ro"
+              "/run/media/${osConfig.my.user}:ro"
+              # Theming
+              "${config.home.homeDirectory}/.icons:ro"
+              "${config.home.homeDirectory}/.themes:ro"
+              "xdg-config/fontconfig:ro"
+              "xdg-config/gtkrc:ro"
+              "xdg-config/gtkrc-2.0:ro"
+              "xdg-config/gtk-2.0:ro"
+              "xdg-config/gtk-3.0:ro"
+              "xdg-config/gtk-4.0:ro"
+              "xdg-data/fonts:ro"
+              "xdg-data/themes:ro"
+              "xdg-data/icons:ro"
+            ];
 
-              Environment = {
-                # Wrong cursor in flatpaks fix
-                XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
-              };
-            };
-
-            "io.github.ungoogled_software.ungoogled_chromium".Environment = {
-              PIPEWIRE_NODE = "Browser";
-              PULSE_SINK = "Browser";
-            };
-
-            "net.mullvad.MullvadBrowser".Environment = {
-              PIPEWIRE_NODE = "Browser";
-              PULSE_SINK = "Browser";
+            Environment = {
+              # Wrong cursor in flatpaks fix
+              XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
             };
           };
-
-          packages = [
-            "io.github.ungoogled_software.ungoogled_chromium"
-            "net.mullvad.MullvadBrowser"
-          ];
 
           remotes = [
             {

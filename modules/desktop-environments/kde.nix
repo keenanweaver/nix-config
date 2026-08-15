@@ -608,7 +608,12 @@
     };
 
     nixos.kde =
-      { config, pkgs, ... }:
+      {
+        lib,
+        config,
+        pkgs,
+        ...
+      }:
       {
         environment = {
           plasma6.excludePackages = with pkgs.kdePackages; [ elisa ];
@@ -660,60 +665,6 @@
             ];
         };
 
-        nixpkgs.overlays = [
-          (final: prev: {
-            kdePackages = prev.kdePackages.overrideScope (
-              _kdeFinal: kdePrev: {
-                # https://old.reddit.com/r/NixOS/comments/1pdtc3v/kde_plasma_is_slow_compared_to_any_other_distro/
-                # https://github.com/NixOS/nixpkgs/issues/126590#issuecomment-3194531220
-                plasma-workspace =
-                  let
-                    # the package we want to override
-                    basePkg = kdePrev.plasma-workspace;
-                    # undo the XDG_DATA_DIRS injection that is usually done in the qt wrapper
-                    # script and instead inject the path of the above helper package
-                    derivedPkg = basePkg.overrideAttrs {
-                      preFixup = ''
-                        for index in "''${!qtWrapperArgs[@]}"; do
-                          if [[ ''${qtWrapperArgs[$((index+0))]} == "--prefix" ]] && [[ ''${qtWrapperArgs[$((index+1))]} == "XDG_DATA_DIRS" ]]; then
-                            unset -v "qtWrapperArgs[$((index+0))]"
-                            unset -v "qtWrapperArgs[$((index+1))]"
-                            unset -v "qtWrapperArgs[$((index+2))]"
-                            unset -v "qtWrapperArgs[$((index+3))]"
-                          fi
-                        done
-                        qtWrapperArgs=("''${qtWrapperArgs[@]}")
-                        qtWrapperArgs+=(--prefix XDG_DATA_DIRS : "${xdgdataPkg}/share")
-                        qtWrapperArgs+=(--prefix XDG_DATA_DIRS : "$out/share")
-                      '';
-                    };
-                    # a helper package that merges all the XDG_DATA_DIRS into a single directory
-                    xdgdataPkg = final.stdenv.mkDerivation {
-                      buildInputs = [ basePkg ];
-                      dontFixup = true;
-                      dontUnpack = true;
-                      dontWrapQtApps = true;
-
-                      installPhase = ''
-                        mkdir -p $out/share
-                        ( IFS=:
-                          for DIR in $XDG_DATA_DIRS; do
-                            if [[ -d "$DIR" ]]; then
-                              ${prev.lib.getExe prev.lndir} -silent "$DIR" $out
-                            fi
-                          done
-                        )
-                      '';
-
-                      name = "${basePkg.name}-xdgdata";
-                    };
-                  in
-                  derivedPkg;
-              }
-            );
-          })
-        ];
-
         programs = {
           fuse.userAllowOther = true;
           kde-pim.enable = true;
@@ -733,6 +684,18 @@
           libinput = {
             mouse.accelProfile = "flat";
             touchpad.accelProfile = "flat";
+          };
+        };
+
+        # Plasma slowness fix
+        # https://github.com/NixOS/nixpkgs/issues/363068#issuecomment-5209282821
+        systemd.services.kde-slowness-fix = {
+          description = "KDE slowness workaround";
+          wantedBy = [ "multi-user.target" ];
+
+          serviceConfig = {
+            ExecStart = "${lib.getExe pkgs.bash} -c 'mkdir -p ~/.local/share/plasma/desktoptheme/default/translucent && touch ~/.local/share/plasma/desktoptheme/default/translucent/colors || true'";
+            Type = "oneshot";
           };
         };
 

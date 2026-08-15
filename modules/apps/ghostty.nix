@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.ghostty =
+  flake.modules.homeManager.desktop-profile =
     { config, ... }:
     {
       programs.ghostty = {
