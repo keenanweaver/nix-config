@@ -58,13 +58,21 @@
                 #"BanjoRecomp" = wrapped pkgs.banjorecomp;
                 "Bottles" = bare pkgs.bottles;
                 "Clone Hero" = wrapped pkgs.clonehero;
-                "Dusklight" = wrapped pkgs.dusklight;
+                #"Dusklight" = wrapped pkgs.dusklight;
                 "Fightcade" = flatpak "com.fightcade.Fightcade";
-                "Ghostship" = sysWrapped pkgs.ghostship;
-                "Heroic Games Launcher" = bare pkgs.heroic;
+
+                #"Ghostship" = sysWrapped pkgs.ghostship;
+
+                # https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/issues/4721#issuecomment-5296588981
+                "Heroic Games Launcher" = (bare pkgs.heroic) // {
+                  args = [
+                    "--no-sandbox"
+                  ];
+                };
+
                 "Jazz² Resurrection" = wrapped pkgs.jazz2;
                 "Moon Child FE" = wrapped pkgs.moon-child-fe;
-                "Moonlight" = sysBare pkgs.moonlight-qt;
+                "Moonlight" = sysBare pkgs.master.moonlight-qt;
                 "One Must Fall 2097" = wrapped pkgs.openomf;
                 "Pegasus Frontend" = bare pkgs.pegasus-frontend;
                 "Prince of Persia" = wrapped pkgs.sdlpop;
@@ -75,8 +83,8 @@
                 "Slippi" = wrapped inputs.slippi.packages.${pkgs.stdenv.hostPlatform.system}.default;
                 "Sonic 3: Angel Island Revisited" = wrapped pkgs.local.sonic3air;
                 "Sonic Robo Blast 2" = wrapped pkgs.srb2;
-                "Spaghetti Kart" = sysWrapped pkgs.spaghetti-kart-git;
-                "Starship SF64" = sysWrapped pkgs.starship-sf64;
+                #"Spaghetti Kart" = sysWrapped pkgs.spaghetti-kart-git;
+                #"Starship SF64" = sysWrapped pkgs.starship-sf64;
                 "Wipeout Rewrite" = wrapped pkgs.wipeout-rewrite;
                 "YARG" = wrapped pkgs.yarg;
                 "Zelda64Recomp" = wrapped pkgs.zelda64recomp;

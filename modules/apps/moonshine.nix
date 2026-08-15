@@ -10,6 +10,18 @@
     {
       imports = [ inputs.moonshine.nixosModules.default ];
 
+      chaotic.mesa-git.extraPackages =
+        let
+          wsiLayer = pkgs.runCommand "moonshine-wsi-layer" { } ''
+            install -Dm644 \
+              ${config.services.moonshine.package}/share/vulkan/implicit_layer.d/VkLayer_moonshine_wsi.json \
+              $out/share/vulkan/implicit_layer.d/VkLayer_moonshine_wsi.json
+          '';
+        in
+        lib.mkIf config.chaotic.mesa-git.enable [
+          wsiLayer
+        ];
+
       networking.firewall = {
         allowedTCPPorts = [
           # Moonlight
@@ -37,103 +49,114 @@
 
         settings =
           let
-            fetchIcon =
-              gridId: hash:
-              pkgs.fetchurl {
-                inherit hash;
-                url = "https://cdn2.steamgriddb.com/grid/${gridId}.png";
-              };
-            heroicExe = lib.getExe pkgs.heroic;
-            heroicIcon = fetchIcon "2b1c6cedeaf9571589e3dc9d51ba20e5" "sha256-DRHwibH9TqqqSl/LZd19zfWE0qe1RTjb8uSbPMtAbTQ=";
-            heroicKill = mkKill { name = "heroic"; };
-            lutrisExe = lib.getExe pkgs.lutris;
-            lutrisIcon = fetchIcon "3b0d861c2cf5ed4d7b139ee277c8a04a" "sha256-ssrFE/Q1vAB0nWqnX2yOXy3NW/ckfVUGFt3kS6jOZuw=";
-            lutrisKill = mkKill { name = "lutris"; };
-            mkKill =
-              {
-                name,
-                bin ? name,
-                shutdownCmd ? null,
-              }:
-              lib.getExe (
-                pkgs.writeShellApplication {
-                  name = "${name}-kill";
+            heroicExe = "/run/current-system/sw/bin/heroic";
+            heroicLaunch = pkgs.writeShellApplication {
+              name = "moonshine-heroic-launch";
 
-                  text = ''
-                    if pgrep -x ${bin} >/dev/null; then
-                        ${lib.optionalString (shutdownCmd != null) "${shutdownCmd}\n    "}for _ in {1..30}; do
-                            ! pgrep -x ${bin} >/dev/null && break
-                            sleep 1
-                        done
-                    fi
-                  '';
-                }
-              );
-            steamExe = lib.getExe pkgs.steam;
-            steamIcon = fetchIcon "39c2966989c4f0091a99eef7f1d09c09" "sha256-YZmRA0mMU6Ez6PxskyNasCspGRMeduh+L7JzZ5NQE6I=";
-            steamKill = mkKill {
-              name = "steam";
-              shutdownCmd = "${steamExe} -shutdown &>/dev/null";
+              text = ''
+                ${heroicShutdownExe}
+                exec ${heroicExe} "$@"
+              '';
             };
+            heroicLaunchExe = lib.getExe' heroicLaunch "moonshine-heroic-launch";
+            heroicShutdown = pkgs.writeShellApplication {
+              name = "moonshine-heroic-shutdown";
+
+              runtimeInputs = with pkgs; [
+                procps
+                coreutils
+              ];
+
+              text = ''
+                pat='^/nix/store/[^ ]*electron .*/opt/heroic/resources/app.asar'
+                pgrep -f "$pat" >/dev/null || exit 0
+                pkill -f "$pat" || true
+                for _ in {1..30}; do
+                  pgrep -f "$pat" >/dev/null || exit 0
+                  sleep 1
+                done
+                echo "heroic still up after 30s, sending SIGKILL" >&2
+                pkill -9 -f "$pat" || true
+              '';
+            };
+            heroicShutdownExe = lib.getExe' heroicShutdown "moonshine-heroic-shutdown";
+            steamExe = "/run/current-system/sw/bin/steam";
+            steamLaunch = pkgs.writeShellApplication {
+              name = "moonshine-steam-launch";
+
+              text = ''
+                ${steamShutdownExe}
+                exec ${steamExe} "$@"
+              '';
+            };
+            steamLaunchExe = lib.getExe' steamLaunch "moonshine-steam-launch";
+            steamShutdown = pkgs.writeShellApplication {
+              name = "moonshine-steam-shutdown";
+
+              runtimeInputs = with pkgs; [
+                procps
+                coreutils
+              ];
+
+              text = ''
+                pgrep -x steam >/dev/null || exit 0
+
+                ${steamExe} -shutdown >/dev/null 2>&1 || true
+
+                for _ in {1..30}; do
+                  pgrep -x steam >/dev/null || exit 0
+                  sleep 1
+                done
+
+                echo "steam still up after 30s, sending SIGTERM" >&2
+                pkill -x steam || true
+              '';
+            };
+            steamShutdownExe = lib.getExe' steamShutdown "moonshine-steam-shutdown";
           in
           {
             application = [
               {
-                boxart = steamIcon;
-
                 command = [
-                  steamExe
+                  heroicLaunchExe
                   "steam://open/bigpicture"
                 ];
 
-                pre_command = [ [ steamKill ] ];
-                title = "Steam";
+                title = "Heroic";
               }
               {
-                boxart = heroicIcon;
-                command = [ heroicExe ];
-                post_command = [ [ heroicKill ] ];
-                title = "Heroic Games Launcher";
+                command = [
+                  steamLaunchExe
+                  "steam://open/bigpicture"
+                ];
+
+                title = "Steam";
               }
             ];
 
             application_scanner = [
               {
-                boxart = lutrisIcon;
-
                 command = [
-                  lutrisExe
-                  "lutris:rungame/{slug}"
+                  steamLaunchExe
+                  "steam://rungameid/{game_id}"
                 ];
 
-                post_command = [ [ lutrisKill ] ];
-                type = "lutris";
+                library = "$HOME/.local/share/Steam";
+                type = "steam";
               }
               {
-                boxart = heroicIcon;
-
                 command = [
-                  heroicExe
+                  heroicLaunchExe
                   "--no-gui"
                   "heroic://launch?appName={app_name}&runner={runner}"
                 ];
 
                 type = "heroic";
               }
-              {
-                boxart = steamIcon;
-
-                command = [
-                  steamExe
-                  "-bigpicture"
-                  "steam://rungameid/{game_id}"
-                ];
-
-                library = "$HOME/.local/share/Steam";
-                pre_command = [ [ steamKill ] ];
-                type = "steam";
-              }
             ];
+
+            compositor.gpu = config.host.pciDev;
+            logFilter = "moonshine=info,moonshine_core::tls=error";
           };
 
         uid = 1000;

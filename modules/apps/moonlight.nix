@@ -1,6 +1,9 @@
 {
-  flake.modules.nixos.gaming-profile.programs.moonlight-qt = {
-    enable = true;
-    capSysNice = true;
+  flake.modules.nixos.gaming-profile = { pkgs, ... }: {
+    programs.moonlight-qt = {
+      enable = true;
+      package = pkgs.master.moonlight-qt;
+      capSysNice = true;
+    };
   };
 }
