@@ -72,7 +72,7 @@
 
                 "Jazz² Resurrection" = wrapped pkgs.jazz2;
                 "Moon Child FE" = wrapped pkgs.moon-child-fe;
-                "Moonlight" = sysBare pkgs.master.moonlight-qt;
+                "Moonlight" = sysBare pkgs.moonlight-qt;
                 "One Must Fall 2097" = wrapped pkgs.openomf;
                 "Pegasus Frontend" = bare pkgs.pegasus-frontend;
                 "Prince of Persia" = wrapped pkgs.sdlpop;
