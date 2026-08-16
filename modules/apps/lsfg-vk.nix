@@ -20,19 +20,13 @@
       };
 
     nixos.gaming-profile =
-      {
-        inputs,
-        lib,
-        config,
-        pkgs,
-        ...
-      }:
+      { inputs, pkgs, ... }:
       {
         imports = [
           inputs.lsfg-vk-flake.nixosModules.default
         ];
 
-        chaotic.mesa-git.extraPackages = lib.mkIf config.chaotic.mesa-git.enable [
+        chaotic.mesa-git.extraPackages = [
           pkgs.lsfg-vk
         ];
 

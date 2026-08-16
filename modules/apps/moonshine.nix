@@ -18,7 +18,7 @@
               $out/share/vulkan/implicit_layer.d/VkLayer_moonshine_wsi.json
           '';
         in
-        lib.mkIf config.chaotic.mesa-git.enable [
+        [
           wsiLayer
         ];
 
