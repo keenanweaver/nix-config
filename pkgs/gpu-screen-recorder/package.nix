@@ -6,7 +6,6 @@
   fetchgit,
   ffmpeg,
   gitUpdater,
-  libcap,
   libdrm,
   libglvnd,
   libjpeg_turbo,
@@ -23,25 +22,24 @@
   pipewire,
   pkg-config,
   vulkan-headers,
-  vulkan-loader,
   wayland,
   wayland-scanner,
   wrapperDir ? "/run/wrappers/bin",
 }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "gpu-screen-recorder";
   version = "6.0.0";
 
   src = fetchgit {
-    url = "https://repo.dec05eba.com/${pname}";
-    tag = version;
+    url = "https://repo.dec05eba.com/gpu-screen-recorder";
+    tag = finalAttrs.version;
     hash = "sha256-DGaPCIH+gTjC07rlB5z3RJBl6SV3Dy/4T97Mg/gcAkM=";
   };
 
   postPatch = ''
-    substituteInPlace src/capture/v4l2.c \
-      --replace-fail "libturbojpeg.so.0" "${lib.getLib libjpeg_turbo}/lib/libturbojpeg.so.0"
+    substituteInPlace src/capture/v4l2.c src/image_writer.c \
+      --replace-fail "libturbojpeg.so.0" "${lib.getLib libjpeg_turbo}/lib/libturbojpeg${stdenv.hostPlatform.extensions.sharedLibrary}"
   '';
 
   nativeBuildInputs = [
@@ -53,14 +51,12 @@ stdenv.mkDerivation rec {
 
   buildInputs = [
     libxcomposite
-    libcap
     libpulseaudio
     dbus
     ffmpeg
     pipewire
     wayland
     wayland-scanner
-    vulkan-loader
     vulkan-headers
     libdrm
     libva
@@ -106,7 +102,7 @@ stdenv.mkDerivation rec {
       js6pak
     ];
 
-    platforms = [ "x86_64-linux" ];
+    platforms = lib.platforms.linux;
     mainProgram = "gpu-screen-recorder";
   };
-}
+})

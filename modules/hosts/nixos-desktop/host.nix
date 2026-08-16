@@ -68,14 +68,18 @@
         };
       };
 
-      hardware.facter.reportPath = ./facter.json;
+      hardware = {
+        facter.reportPath = ./facter.json;
 
-      hardware.firmware = [
-        (pkgs.runCommand "edid-gbt-aorus-fo27q3" { } ''
-          mkdir -p $out/lib/firmware/edid
-          cp ${./gbt-aorus-fo27q3.bin} $out/lib/firmware/edid/gbt-aorus-fo27q3.bin
-        '')
-      ];
+        /*
+          firmware = [
+                 (pkgs.runCommand "edid-gbt-aorus-fo27q3" { } ''
+                   mkdir -p $out/lib/firmware/edid
+                   cp ${./gbt-aorus-fo27q3.bin} $out/lib/firmware/edid/gbt-aorus-fo27q3.bin
+                 '')
+               ];
+        */
+      };
 
       home-manager.users.${config.my.user} =
         {
@@ -147,6 +151,7 @@
         };
 
       networking.hostName = "nixos-desktop";
+      services.hardware.openrgb.motherboard = "amd";
       system.stateVersion = "26.05";
 
       systemd = {
@@ -174,7 +179,6 @@
           "d /mnt/Games 0755 ${config.my.user} users - -"
           "d /mnt/Games2 0755 ${config.my.user} users - -"
           "L+ /home/${config.my.user}/Games - - - - /mnt/Games"
-          #"L+ /home/${config.my.user}/Games2 - - - - /mnt/Games2"
         ];
       };
     };

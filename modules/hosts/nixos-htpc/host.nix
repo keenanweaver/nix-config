@@ -40,6 +40,7 @@
 
       networking.hostName = "nixos-htpc";
       nix.settings.build-dir = "/nix/build";
+      services.hardware.openrgb.motherboard = "amd";
       system.stateVersion = "26.05";
 
       systemd.tmpfiles.rules = [
