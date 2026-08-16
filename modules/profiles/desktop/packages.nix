@@ -3,7 +3,7 @@
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
-        gearlever
+        #gearlever
         qpwgraph
         rustdesk-flutter
       ];

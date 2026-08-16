@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  inherit (config.flake.lib) packageListText;
+in
 {
   flake.modules = {
     homeManager.base-profile =
@@ -7,14 +11,7 @@
           file.current-packages = {
             enable = true;
             target = "${config.xdg.configHome}/packages-hm";
-
-            text =
-              let
-                formatted-hm = builtins.concatStringsSep "\n" sortedUnique;
-                packages = map (p: "${p.name}") config.home.packages;
-                sortedUnique = builtins.sort builtins.lessThan (pkgs.lib.lists.unique packages);
-              in
-              formatted-hm;
+            text = packageListText pkgs config.home.packages;
           };
 
           packages = with pkgs; [
@@ -40,13 +37,7 @@
       { config, pkgs, ... }:
       {
         environment = {
-          etc."packages".text =
-            let
-              formatted = builtins.concatStringsSep "\n" sortedUnique;
-              packages = map (p: "${p.name}") config.environment.systemPackages;
-              sortedUnique = builtins.sort builtins.lessThan (pkgs.lib.lists.unique packages);
-            in
-            formatted;
+          etc."packages".text = packageListText pkgs config.environment.systemPackages;
 
           systemPackages = with pkgs; [
             lm_sensors

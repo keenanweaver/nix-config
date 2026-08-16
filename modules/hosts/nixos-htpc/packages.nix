@@ -21,7 +21,7 @@
           home.packages = with pkgs; [
             #banjorecomp
             clonehero
-            dusklight
+            #dusklight
             jazz2
             local.sonic3air
             moon-child-fe
@@ -55,7 +55,7 @@
       };
 
       programs = {
-        ghostship.enable = true;
+        #ghostship.enable = true;
         shipwright-git.enable = true;
 
         sm64coopdx = {
@@ -63,8 +63,8 @@
           coopNet.openFirewall = true;
         };
 
-        spaghetti-kart-git.enable = true;
-        starship-sf64.enable = true;
+        #spaghetti-kart-git.enable = true;
+        #starship-sf64.enable = true;
       };
     };
 

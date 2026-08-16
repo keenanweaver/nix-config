@@ -3,6 +3,7 @@
     { lib, pkgs, ... }:
     {
       services.lact.settings = {
+        version = 6;
         apply_settings_timer = 5;
         auto_switch_profiles = true;
 
@@ -36,8 +37,6 @@
             };
           };
         };
-
-        version = 6;
       };
 
       # Not sure why I have to do this.

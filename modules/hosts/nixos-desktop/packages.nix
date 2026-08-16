@@ -14,28 +14,17 @@
         in
         {
           home.packages = with pkgs; [
-            ## One-and-dones
-            /*
-              inputs.aaru.packages.${system}.default
-                 inputs.nix-game-preservation.packages.${system}.dic-git-full
-                 glxinfo
-                 itch-dl
-                 jpsxdec
-                 mame.tools
-                 mmv
-                 inputs.nix-game-preservation.packages.${system}.ndecrypt-git
-                 nsz
-                 inputs.nix-game-preservation.packages.${system}.sabretools-git
-                 inputs.nix-game-preservation.packages.${system}.unshieldsharp-git
-                 ps3-disc-dumper
-                 inputs.nix-game-preservation.packages.${system}.redumper-git
-                 renderdoc
-                 vgmplay-libvgm
-                 vgmstream
-                 vgmtools
-                 vgmtrans
-                 vulkan-tools
-            */
+            (openxcom.overrideAttrs {
+              pname = "openxcom-extended";
+              version = "8.6.4";
+
+              src = pkgs.fetchFromGitHub {
+                owner = "MeridianOXC";
+                repo = "OpenXcom";
+                rev = "a077141b4102d669cce42155478d2f6404953605";
+                hash = "sha256-KflGWJgUW4kVzCxDJxSq96dz638mfphiiOSyBkC1sY4=";
+              };
+            })
             (writeShellApplication {
               name = "script-exodos-nuked";
               runtimeEnv.EXODOS = "/mnt/crusader/Games/eXo/eXoDOS/eXo/eXoDOS";
@@ -74,7 +63,7 @@
             corsix-th
             crispy-doom
             csvlens
-            cyanrip
+            #cyanrip
             darkradiant
             deadnix
             descent3
@@ -151,6 +140,7 @@
             mkvtoolnix-cli
             mousai
             neo
+            nicotine-plus
             nix-inspect
             nix-update
             nixd
@@ -169,7 +159,6 @@
             openrct2
             openttd
             opentyrian
-            openxcom
             openxray
             optnix
             oversteer
@@ -224,6 +213,27 @@
             yarg
             yq
             zandronum
+            /*
+              inputs.aaru.packages.${system}.default
+                 inputs.nix-game-preservation.packages.${system}.dic-git-full
+                 glxinfo
+                 itch-dl
+                 jpsxdec
+                 mame.tools
+                 mmv
+                 inputs.nix-game-preservation.packages.${system}.ndecrypt-git
+                 nsz
+                 inputs.nix-game-preservation.packages.${system}.sabretools-git
+                 inputs.nix-game-preservation.packages.${system}.unshieldsharp-git
+                 ps3-disc-dumper
+                 inputs.nix-game-preservation.packages.${system}.redumper-git
+                 renderdoc
+                 vgmplay-libvgm
+                 vgmstream
+                 vgmtools
+                 vgmtrans
+                 vulkan-tools
+            */
           ];
 
           programs = {

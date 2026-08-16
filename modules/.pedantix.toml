@@ -9,7 +9,7 @@ first = ["self", "inputs", "lib", "config", "options", "pkgs", "osConfig"]
 last = ["specialArgs", "<defaulted>", "..."]
 
 [attrs]
-first = ["imports", "enable", "package"]
+first = ["imports", "enable", "package", "pname", "version", "src"]
 flatten = true
 blank-lines = 1
 blank-lines-mode = "multiline"
@@ -21,12 +21,8 @@ sort = true
 sort = true
 
 [[overrides]]
-path = "**.overrideAttrs"
-attrs.first = ["pname", "version", "src"]
-
-[[overrides]]
-path = "**.fetch*"
-attrs.first = ["url", "owner", "repo", "rev", "tag"]
+path = "**.src"
+attrs.first = ["url", "owner", "repo", "rev", "tag", "hash"]
 
 [[overrides]]
 path = "**.nixpkgs.overlays"
