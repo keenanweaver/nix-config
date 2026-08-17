@@ -14,17 +14,17 @@
             (writeShellScriptBin "bootstrap-distrobox" ''
               if [[ "$CONTAINER_ID" =~ ^exodos ]]; then
                 sudo apt install -y          \
-                alsa                         \
-                ffmpeg                       \
-                kdialog                      \
-                konsole                      \
-                libnss3                      \
-                libslirp0                    \
-                lsb-release                  \
-                openjdk-21-jre               \
-                pipewire                     \
-                plasma-desktop               \
-                wireplumber
+                  alsa                       \
+                  ffmpeg                     \
+                  kdialog                    \
+                  konsole                    \
+                  libnss3                    \
+                  libslirp0                  \
+                  lsb-release                \
+                  openjdk-21-jre             \
+                  pipewire                   \
+                  plasma-desktop             \
+                  wireplumber
 
                 sudo ln -s ${config.xdg.dataHome}/distrobox/exodos/dosbox/dosbox /usr/bin/dosbox
                 sudo ln -s ${config.xdg.dataHome}/distrobox/exodos/dbgl/dbgl /usr/bin/dbgl
@@ -32,16 +32,16 @@
                 # Build obs-gamecapture
                 rm -rf ${config.xdg.cacheHome}/obs-vkcapture
                 sudo apt install -y          \
-                cmake                        \
-                libobs-dev                   \
-                libvulkan-dev                \
-                libgl1-mesa-dev              \
-                libegl1-mesa-dev             \
-                libx11-dev                   \
-                libxcb1-dev                  \
-                libwayland-dev               \
-                wayland-protocols            \
-                pkg-config
+                  cmake                      \
+                  libobs-dev                 \
+                  libvulkan-dev              \
+                  libgl1-mesa-dev            \
+                  libegl1-mesa-dev           \
+                  libx11-dev                 \
+                  libxcb1-dev                \
+                  libwayland-dev             \
+                  wayland-protocols          \
+                  pkg-config
                 git clone https://github.com/nowrep/obs-vkcapture.git ${config.xdg.cacheHome}/obs-vkcapture
                 pushd ${config.xdg.cacheHome}/obs-vkcapture
                 mkdir build && cd build

@@ -24,15 +24,11 @@
         ];
       };
     nixos.gaming-profile =
-      {
-        inputs,
-        pkgs,
-        ...
-      }:
+      { pkgs, ... }:
       {
         nixpkgs.overlays = [
           (_final: _prev: {
-            gamescope = inputs.chaotic.legacyPackages.x86_64-linux.gamescope_git;
+            gamescope = pkgs.gamescope_git;
           })
         ];
         programs.gamescope = {

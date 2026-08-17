@@ -367,8 +367,8 @@
                 nightLight = {
                   enable = true;
                   location = {
-                    latitude = "41.205500";
-                    longitude = "-96.208814";
+                    latitude = "41.117901";
+                    longitude = "-95.910009";
                   };
                   mode = "times";
                   temperature = {

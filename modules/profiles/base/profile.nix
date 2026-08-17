@@ -37,8 +37,6 @@
       {
         imports = with self.modules.nixos; [
           local-packages
-
-          catppuccin
         ];
         console = {
           earlySetup = true;
@@ -64,7 +62,6 @@
         nixpkgs.config.permittedInsecurePackages = [
           "electron-40.10.5" # ?
           "olm-3.2.16" # Neochat
-          "pnpm-10.29.2"
           "pnpm-9.15.9" # Decky Loader
         ];
         programs.iotop.enable = true;

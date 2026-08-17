@@ -1,7 +1,6 @@
 {
   flake.modules.homeManager.gaming-profile =
     {
-      inputs,
       lib,
       config,
       pkgs,
@@ -326,7 +325,7 @@
       };
       programs.mangohud = {
         enable = true;
-        package = inputs.chaotic.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mangohud_git;
+        package = pkgs.mangohud_git;
       };
       services.flatpak = {
         overrides.global.Context.filesystems = [

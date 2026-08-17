@@ -16,7 +16,6 @@
             else
               "${config.home.homeDirectory}/.config/sops/age/keys.txt";
           defaultSopsFile = ./secrets + "/${config.home.username}.yaml";
-          secrets."libera_pass" = { };
         };
       };
     nixos.base-profile =
