@@ -13,9 +13,7 @@ in
             target = "${config.xdg.configHome}/packages-hm";
             text = packageListText pkgs config.home.packages;
           };
-
           packages = with pkgs; [
-            ## System ##
             (_7zz.override { enableUnfree = true; })
             aspell
             aspellDicts.en
@@ -32,13 +30,11 @@ in
           ];
         };
       };
-
     nixos.base-profile =
       { config, pkgs, ... }:
       {
         environment = {
           etc."packages".text = packageListText pkgs config.environment.systemPackages;
-
           systemPackages = with pkgs; [
             lm_sensors
             pciutils

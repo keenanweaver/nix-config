@@ -15,17 +15,14 @@
           (with pkgs; [
             (writeShellApplication {
               name = "doom-wad-extractor";
-
               runtimeEnv = {
                 IDGAMESARCHIVE_PATH = "/mnt/crusader/Games/Games/Doom/idgames";
                 OUTPUT_PATH = "${config.home.homeDirectory}/Games/doom/doom/pwads";
               };
-
               runtimeInputs = [
                 fd
                 unzip
               ];
-
               text = ''
                 # Check if search pattern was provided
                 if [ $# -eq 0 ]; then
@@ -172,7 +169,6 @@
             inputs.rom-properties.packages.${system}.rp_kde6
           ];
       };
-
     nixos.gaming-profile.programs.gsr = {
       enable = true;
       ui.enable = true;

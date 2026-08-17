@@ -15,14 +15,12 @@
             (writeShellApplication {
               name = "momw-update";
               runtimeEnv.MODLIST = "i-heart-vanilla-directors-cut";
-
               runtimeInputs = [
                 inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.momw-configurator
                 inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-validator
                 inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.umo
                 tes3cmd
               ];
-
               text = ''
                 umo sync "$MODLIST"
                 umo install "$MODLIST"
@@ -31,10 +29,8 @@
               '';
             })
           ];
-
           sops = {
             secrets.nexus_pat = { };
-
             templates."umomwd-config.json" =
               let
                 staticConfig = {
@@ -50,7 +46,6 @@
                     NEXUS_API_KEY = config.sops.placeholder.nexus_pat;
                   }
                 );
-
                 mode = "0600";
                 path = "${config.xdg.configHome}/umomwd/config.json";
               };

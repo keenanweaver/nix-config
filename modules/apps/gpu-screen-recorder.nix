@@ -22,7 +22,6 @@
         lib.mkMerge [
           {
             environment.systemPackages = [ cfg.package ];
-
             security.wrappers."gsr-kms-server" = {
               capabilities = "cap_sys_admin+ep";
               group = "root";
@@ -36,7 +35,6 @@
               cfg.ui.notifPackage
               cfg.ui.package
             ];
-
             security.wrappers."gsr-global-hotkeys" = {
               capabilities = "cap_setuid+ep";
               group = "root";
@@ -46,21 +44,16 @@
           })
         ]
       );
-
       options.programs.gsr = {
         enable = lib.mkOption {
           default = false;
-
           description = ''
             Whether to install gpu-screen-recorder and generate setcap
             wrappers for promptless recording.
           '';
-
           type = lib.types.bool;
         };
-
         package = lib.mkPackageOption pkgs [ "local" "gpu-screen-recorder" ] { };
-
         ui = {
           enable = lib.mkEnableOption "the GPU Screen Recorder overlay UI";
           package = lib.mkPackageOption pkgs [ "local" "gpu-screen-recorder-ui" ] { };

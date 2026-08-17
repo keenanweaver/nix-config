@@ -17,7 +17,6 @@
           {
             enable = true;
             target = "${config.xdg.configHome}/vkBasalt/vkBasalt.conf";
-
             text = ''
               depthCapture = off
               effects = smaa
@@ -45,18 +44,15 @@
               uimask = ${reshade}/shaders/uimask.fx
             '';
           };
-
         packages = with pkgs; [
           vkbasalt
           vkbasalt-cli
         ];
       };
-
       services.flatpak = {
         overrides.global.Context.filesystems = [
           "xdg-config/vkBasalt:ro"
         ];
-
         packages = [
           "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/24.08"
           "org.freedesktop.Platform.VulkanLayer.vkBasalt/x86_64/25.08"

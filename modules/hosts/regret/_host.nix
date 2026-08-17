@@ -16,22 +16,35 @@
           trusted-nix-caches
           raspberry-pi-4.base
         ]);
-
-      home-manager.users.${config.my.user}.imports = with self.modules.homeManager; [
-        base-profile
-        pi-profile
-      ];
-
+      home-manager.users.${config.my.user} = {
+        imports = with self.modules.homeManager; [
+          base-profile
+          pi-profile
+        ];
+        virtualisation.quadlet.containers.mister-retroarch-save-sync = {
+          autoStart = true;
+          containerConfig = {
+            autoUpdate = "registry";
+            environments = {
+              RETROARCH_CORES = "FCEUmm, Snes9x, Gambatte, mGBA, Genesis Plus GX, Beetle PSX HW, Mupen64Plus-Next";
+              TZ = config.time.timeZone;
+            };
+            image = "ghcr.io/juaniwck/mister-retroarch-save-sync:latest";
+            volumes = [
+              "/mnt/retroarch:/retroarch"
+              "/mnt/mister/saves:/mister/saves"
+            ];
+          };
+          serviceConfig.Restart = "unless-stopped";
+        };
+      };
       services.renovate = {
         enable = true;
-
         credentials = {
           GITHUB_TOKEN = config.sops.secrets."renovate/github_token".path;
           RENOVATE_TOKEN = config.sops.secrets."renovate/renovate_key".path;
         };
-
         schedule = "*-*-* 00/2:00:00";
-
         settings = {
           autodiscover = false;
           endpoint = "https://codeberg.org";
@@ -42,7 +55,6 @@
           platform = "forgejo";
         };
       };
-
       sops.secrets = {
         "renovate/github_token" = { };
         "renovate/renovate_key" = { };

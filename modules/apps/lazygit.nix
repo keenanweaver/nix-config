@@ -4,7 +4,6 @@
     enableBashIntegration = true;
     enableNushellIntegration = true;
     enableZshIntegration = true;
-
     settings = {
       gui.mouseEvents = false;
       promptToReturnFromSubprocess = false;

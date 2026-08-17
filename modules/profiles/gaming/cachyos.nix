@@ -13,13 +13,11 @@
         "vm.dirty_writeback_centisecs" = 1500;
         "vm.vfs_cache_pressure" = 50;
       };
-
       services.udev.packages = with pkgs; [
         # https://wiki.cachyos.org/configuration/general_system_tweaks/#how-to-enable-adios
         (writeTextFile {
           destination = "/etc/udev/rules.d/60-ioschedulers.rules";
           name = "60-ioschedulers.rules";
-
           text = ''
             # HDD
             ACTION!="remove", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
@@ -33,13 +31,11 @@
         (writeTextFile {
           destination = "/etc/udev/rules.d/69-hdparm.rules";
           name = "69-hdparm.rules";
-
           text = ''
             ACTION!="remove", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", RUN+="${lib.getExe hdparm} -B 254 -S 0 /dev/%k"
           '';
         })
       ];
-
       systemd.settings.Manager = {
         # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/systemd/system.conf.d/10-limits.conf
         DefaultLimitNOFILE = "2048:2097152";

@@ -9,12 +9,10 @@
       lib.mkIf (osConfig != null) {
         home.stateVersion = osConfig.system.stateVersion;
       };
-
     nixos.base-profile =
       { self, inputs, ... }:
       {
         imports = [ inputs.home-manager.nixosModules.home-manager ];
-
         home-manager = {
           backupFileExtension = "hm.bak";
           extraSpecialArgs = { inherit inputs self; };
@@ -23,7 +21,6 @@
         };
       };
   };
-
   flake-file.inputs.home-manager = {
     inputs.nixpkgs.follows = "nixpkgs";
     url = "github:nix-community/home-manager";

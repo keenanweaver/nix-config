@@ -7,69 +7,55 @@
           "com.richwhitehouse.BigPEmu".Context.filesystems = [
             "!home"
           ];
-
           global = {
             Context.filesystems = [
               "xdg-run/discord-ipc-*"
             ];
-
             Environment = {
               #PIPEWIRE_NODE = "Game";
               PULSE_SINK = "Game";
             };
           };
-
           "info.cemu.Cemu".Context.filesystems = [
             "${config.home.homeDirectory}/Games/cemu"
           ];
-
           "info.exult.exult".Context.filesystems = [
             "${config.home.homeDirectory}/Music/soundfonts:ro"
           ];
-
           "io.github.strikerx3.ymir".Context.filesystems = [
             "!/mnt"
             "/mnt/crusader/Games/Rom/CHD/Sega Saturn"
             "/mnt/crusader/Games/Mister/Saturn"
           ];
-
           "net.fsuae.FS-UAE".Context.filesystems = [
             "!home"
           ];
-
           "net.kuribo64.melonDS".Context.filesystems = [
             "!home"
             "/mnt/crusader/Games/Backups/Myrient/No-Intro"
           ];
-
           "net.pcsx2.PCSX2".Context.filesystems = [
             "host"
             "/mnt/crusader/Games/Rom/CHD/Sony Playstation 2"
           ];
-
           "net.rpcs3.RPCS3".Context.filesystems = [
             "!home"
             "${config.home.homeDirectory}/Games/roms/rpcs3"
           ];
-
           "org.DolphinEmu.dolphin-emu".Context.filesystems = [
             "/mnt/crusader/Games/Rom/CHD/Nintendo GameCube"
           ];
-
           "org.azahar_emu.Azahar".Context.filesystems = [
             "${config.home.homeDirectory}/Games/3ds"
           ];
-
           "org.flycast.Flycast".Context.filesystems = [
             "/mnt/crusader/Games/Rom/CHD/Sega Dreamcast"
           ];
-
           "org.mamedev.MAME".Context.filesystems = [
             "/mnt/crusader/Games/Rom/Other/MAME"
             "!home"
           ];
         };
-
         packages = [
           "app.xemu.xemu"
           "com.github.optyfr.JRomManager"

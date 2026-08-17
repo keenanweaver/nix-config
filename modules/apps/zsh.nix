@@ -12,13 +12,11 @@
           enable = true;
           autosuggestion.enable = true;
           dotDir = "${config.xdg.configHome}/zsh";
-
           history = {
             extended = true;
             ignoreSpace = true;
             size = 999999999;
           };
-
           initContent = ''
             chpwd() {
               lsd -la
@@ -29,11 +27,9 @@
               gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
             fi
           '';
-
           oh-my-zsh = {
             enable = true;
             custom = "${config.xdg.configHome}/zsh/.zsh_custom";
-
             plugins = [
               "command-not-found"
               "direnv"
@@ -42,11 +38,9 @@
               "zsh-interactive-cd"
             ];
           };
-
           syntaxHighlighting.enable = true;
         };
       };
-
     nixos.base-profile.programs.zsh.enable = true;
   };
 }

@@ -19,7 +19,6 @@
                   "run"
                   id
                 ];
-
                 target = "/run/current-system/sw/bin/flatpak";
               };
               sysBare = pkg: { target = sysBin pkg; };
@@ -51,16 +50,13 @@
                       id = 1364780;
                     };
                   };
-
               defaultCompatTool = lib.mkForce defaultProton;
-
               nonSteamApps = lib.mapAttrs (_: opts: { startIn = null; } // opts) {
                 #"BanjoRecomp" = wrapped pkgs.banjorecomp;
                 "Bottles" = bare pkgs.bottles;
                 "Clone Hero" = wrapped pkgs.clonehero;
                 #"Dusklight" = wrapped pkgs.dusklight;
                 "Fightcade" = flatpak "com.fightcade.Fightcade";
-
                 #"Ghostship" = sysWrapped pkgs.ghostship;
 
                 # https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/issues/4721#issuecomment-5296588981
@@ -69,7 +65,6 @@
                     "--no-sandbox"
                   ];
                 };
-
                 "Jazz² Resurrection" = wrapped pkgs.jazz2;
                 "Moon Child FE" = wrapped pkgs.moon-child-fe;
                 "Moonlight" = sysBare pkgs.moonlight-qt;

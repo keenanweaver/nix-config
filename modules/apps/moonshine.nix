@@ -9,7 +9,6 @@
     }:
     {
       imports = [ inputs.moonshine.nixosModules.default ];
-
       chaotic.mesa-git.extraPackages =
         let
           wsiLayer = pkgs.runCommand "moonshine-wsi-layer" { } ''
@@ -21,7 +20,6 @@
         [
           wsiLayer
         ];
-
       networking.firewall = {
         allowedTCPPorts = [
           # Moonlight
@@ -31,7 +29,6 @@
           # MoonDeck Buddy
           59999
         ];
-
         allowedUDPPorts = [
           47998
           47999
@@ -42,17 +39,14 @@
           5353
         ];
       };
-
       services.moonshine = {
         enable = true;
         openFirewall = true;
-
         settings =
           let
             heroicExe = lib.getExe pkgs.heroic;
             heroicLaunch = pkgs.writeShellApplication {
               name = "moonshine-heroic-launch";
-
               text = ''
                 ${heroicShutdownExe}
                 exec ${heroicExe} "$@"
@@ -61,12 +55,10 @@
             heroicLaunchExe = lib.getExe' heroicLaunch "moonshine-heroic-launch";
             heroicShutdown = pkgs.writeShellApplication {
               name = "moonshine-heroic-shutdown";
-
               runtimeInputs = with pkgs; [
                 procps
                 coreutils
               ];
-
               text = ''
                 pat='^/nix/store/[^ ]*electron .*/opt/heroic/resources/app.asar'
                 pgrep -f "$pat" >/dev/null || exit 0
@@ -83,7 +75,6 @@
             steamExe = lib.getExe pkgs.steam;
             steamLaunch = pkgs.writeShellApplication {
               name = "moonshine-steam-launch";
-
               text = ''
                 ${steamShutdownExe}
                 exec ${steamExe} "$@"
@@ -92,12 +83,10 @@
             steamLaunchExe = lib.getExe' steamLaunch "moonshine-steam-launch";
             steamShutdown = pkgs.writeShellApplication {
               name = "moonshine-steam-shutdown";
-
               runtimeInputs = with pkgs; [
                 procps
                 coreutils
               ];
-
               text = ''
                 pgrep -x steam >/dev/null || exit 0
 
@@ -125,11 +114,9 @@
                     };
                   in
                   icon;
-
                 command = [
                   heroicLaunchExe
                 ];
-
                 title = "Heroic";
               }
               {
@@ -137,18 +124,15 @@
                   steamLaunchExe
                   "steam://open/bigpicture"
                 ];
-
                 title = "Steam";
               }
             ];
-
             application_scanner = [
               {
                 command = [
                   steamLaunchExe
                   "steam://rungameid/{game_id}"
                 ];
-
                 library = "$HOME/.local/share/Steam";
                 type = "steam";
               }
@@ -158,22 +142,17 @@
                   "--no-gui"
                   "heroic://launch?appName={app_name}&runner={runner}"
                 ];
-
                 type = "heroic";
               }
             ];
-
             compositor.gpu = config.host.pciDev;
             logFilter = "moonshine=info,moonshine_core::tls=error";
           };
-
         uid = 1000;
         user = config.my.user;
       };
-
       users.users.${config.my.user}.extraGroups = [ "moonshine" ];
     };
-
   flake-file.inputs.moonshine = {
     inputs.nixpkgs.follows = "nixpkgs";
     url = "github:hgaiser/moonshine";

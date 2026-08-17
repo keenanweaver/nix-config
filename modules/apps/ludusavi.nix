@@ -5,13 +5,11 @@
       services.ludusavi = {
         enable = true;
         backupNotification = true;
-
         settings = {
           backup.format = {
             chosen = "zip";
             zip.compression = "deflate";
           };
-
           roots = [
             {
               path = "${config.xdg.configHome}/heroic";
@@ -62,14 +60,11 @@
               store = "steam";
             }
           ];
-
           theme = "dark";
         };
       };
-
       systemd.user.timers.ludusavi = {
         Install.WantedBy = [ "timers.target" ];
-
         Timer = {
           OnBootSec = "2min";
           OnUnitActiveSec = "24h";

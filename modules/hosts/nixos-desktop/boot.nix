@@ -1,14 +1,12 @@
 {
   configurations.nixos.nixos-desktop.module.boot = {
     blacklistedKernelModules = [ "snd_hda_intel" ];
-
     kernel.sysctl = {
       "vm.page-cluster" = 0;
       "vm.swappiness" = 1;
       "vm.watermark_boost_factor" = 0;
       "vm.watermark_scale_factor" = 125;
     };
-
     kernelParams = [
       "amdgpu.audio=0"
       # Fake display for Sunshine https://mattducharme.dev/posts/fake-linux-display/
@@ -27,7 +25,6 @@
       #"amdgpu.aspm=0"
       #"amdgpu.gpu_recovery=1"
     ];
-
     loader.limine = {
       extraEntries =
         let
@@ -39,7 +36,6 @@
               protocol: efi
               path: uuid(${windowspartuuid}):/EFI/Microsoft/Boot/bootmgfw.efi
         '';
-
       resolution = "2560x1440x32";
       style.interface.resolution = "2560x1440";
     };

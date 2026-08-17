@@ -9,12 +9,10 @@
       }:
       {
         imports = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
-
         home.sessionPath = [
           "/var/lib/flatpak/exports/bin"
           "${config.xdg.dataHome}/flatpak/exports/bin"
         ];
-
         services.flatpak = {
           overrides.global = {
             Context.filesystems = [
@@ -34,13 +32,11 @@
               "xdg-data/themes:ro"
               "xdg-data/icons:ro"
             ];
-
             Environment = {
               # Wrong cursor in flatpaks fix
               XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
             };
           };
-
           remotes = [
             {
               location = "https://flathub.org/repo/flathub.flatpakrepo";
@@ -51,11 +47,9 @@
               name = "flathub-beta";
             }
           ];
-
           uninstallUnmanaged = false;
         };
       };
-
     nixos.desktop-profile =
       {
         inputs,
@@ -65,21 +59,17 @@
       }:
       {
         imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
-
         environment.systemPackages = with pkgs; [
           flatpak-builder
           xdg-dbus-proxy
         ];
-
         preservation.preserveAt."/persist".directories = [
           "/var/lib/flatpak"
         ];
-
         services.flatpak.enable = true;
         users.users.${config.my.user}.extraGroups = [ "flatpak" ];
         xdg.portal.enable = true;
       };
   };
-
   flake-file.inputs.nix-flatpak.url = "github:gmodena/nix-flatpak";
 }

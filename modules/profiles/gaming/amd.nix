@@ -8,7 +8,6 @@
             amdgpu_top
             nvtopPackages.amd
           ];
-
           sessionVariables = {
             # https://wiki.cachyos.org/configuration/gaming/#increase-maximum-shader-cache-size
             AMD_VULKAN_ICD = "RADV";
@@ -17,17 +16,14 @@
           };
         };
       };
-
     nixos.amd.hardware = {
       amdgpu = {
         initrd.enable = true;
-
         overdrive = {
           enable = true;
           ppfeaturemask = "0xffffffff";
         };
       };
-
       cpu.amd.updateMicrocode = true;
     };
   };
