@@ -10,6 +10,7 @@
           auth_rpcgss = false;
           cdrom-related = false;
           grace = false;
+          intelme-related = true;
           joystick-drivers = false;
           lockd = false;
           nfs = false;
@@ -21,10 +22,8 @@
           nfsv3 = false;
           nfsv4 = false;
           rpcsec_gss_krb5 = false;
-          secureblue-additional = true;
           sunrpc = false;
           udf = false; # PS3 games
-          unused-filesystems = true;
         };
         preset = [
           "compatibility"
@@ -33,10 +32,7 @@
         settings = {
           kernel.strict-iommu = false; # if true, boot doesn't work
           misc.nix-wheel = true;
-          network = {
-            random-mac = false;
-            tcp-sack = true;
-          };
+          network.random-mac = false;
         };
       };
       security = {
