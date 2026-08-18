@@ -1,12 +1,12 @@
 {
   flake.modules.nixos.gaming-profile =
-    { inputs, pkgs, ... }:
+    { pkgs, ... }:
     {
-      chaotic.mesa-git.extraPackages = [
-        inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.low-latency-layer
+      chaotic.mesa-git.extraPackages = with pkgs; [
+        low-latency-layer
       ];
-      hardware.graphics.extraPackages = [
-        inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.low-latency-layer
+      hardware.graphics.extraPackages = with pkgs; [
+        low-latency-layer
       ];
     };
 }

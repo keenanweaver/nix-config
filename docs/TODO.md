@@ -30,7 +30,6 @@ These are hacks/temporary workarounds that should be reverted once upstream/othe
 - Add configs for Niri and Noctalia if I decide to move to that.
 - Flatpak runtimes: update all runtimes to 26.08 when available. gamescope, lsfg-vk, mangohud, obs, vkbasalt, mesa-git
 - [Ghostty](../modules/apps/ghostty.nix). Explore various options.
-- [GPU Screen Recorder](../modules/apps/gpu-screen-recorder.nix). Remove module when upstreamed.
 - [Helix](../modules/apps/helix.nix). Cleanup or remove.
 - Plymouth. Consider Steam theme for `nixos-htpc`
 - [Sunshine](../modules/apps/sunshine.nix). Remove if Moonshine suits my needs. Also remove fake display EDID stuff.
