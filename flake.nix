@@ -99,6 +99,10 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-mineral = {
+      url = "github:cynicsketch/nix-mineral";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-podman-stacks = {
       url = "github:Tarow/nix-podman-stacks";
       inputs.nixpkgs.follows = "nixpkgs";

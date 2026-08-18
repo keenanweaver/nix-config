@@ -35,6 +35,6 @@
         };
       };
     };
-    nixos.base-profile.programs.git.enable = true;
+    #nixos.base-profile.programs.git.enable = true;
   };
 }

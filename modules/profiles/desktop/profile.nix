@@ -13,6 +13,7 @@
         imports = with self.modules.nixos; [
           inputs.ucodenix.nixosModules.default
 
+          catppuccin
           kde
         ];
         boot.kernelParams = lib.mkIf config.services.ucodenix.enable [ "microcode.amd_sha_check=off" ];
@@ -40,6 +41,16 @@
             binfmt = true;
           };
           ydotool.enable = true;
+        };
+        security.pam.services = {
+          login = {
+            enableKwallet = true;
+            gnupg.enable = true;
+          };
+          sddm = {
+            enableKwallet = true;
+            gnupg.enable = true;
+          };
         };
         services = {
           btrfs.autoScrub = {

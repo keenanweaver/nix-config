@@ -26,6 +26,7 @@ My previous, non-dendritic config is located in the `main` branch of this repo. 
 - **Impermanence** -- `tmpfs` root, persistent state on `btrfs` subvolumes,
   declared via the [preservation](https://github.com/nix-community/preservation)
   module and [disko](https://github.com/nix-community/disko).
+- **Hardening** with [nix-mineral](https://cynicsketch.github.io/nix-mineral/)
 - **Secrets** with [sops-nix](https://github.com/Mic92/sops-nix)
 - **Secure Boot** support (`sbctl`) and reproducible bare-metal installs via
   [nixos-anywhere](https://github.com/nix-community/nixos-anywhere) +
