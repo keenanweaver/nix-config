@@ -28,6 +28,8 @@
                 umo vacuum
               '';
             })
+            inputs.openmw-nix.packages.${system}.openmw-validator
+            openmw
           ];
           sops = {
             secrets.nexus_pat = { };
@@ -52,4 +54,8 @@
           };
         };
     };
+  flake-file.inputs.openmw-nix = {
+    inputs.nixpkgs.follows = "nixpkgs";
+    url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
+  };
 }

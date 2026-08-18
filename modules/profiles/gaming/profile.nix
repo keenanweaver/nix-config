@@ -162,10 +162,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:bandithedoge/nur-packages";
     };
-    openmw-nix = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
-    };
     rom-properties = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Whovian9369/rom-properties-nix-flake";

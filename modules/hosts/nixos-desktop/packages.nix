@@ -101,7 +101,6 @@
             inputs.nur-bandithedoge.legacyPackages.${system}.cherry-doom
             inputs.nur-bandithedoge.legacyPackages.${system}.nyan-doom
             inputs.nur-bandithedoge.legacyPackages.${system}.sheepshaver-bin
-            inputs.openmw-nix.packages.${system}.openmw-validator
             isd
             isle-portable
             jazz2
@@ -151,7 +150,6 @@
             opengoal-launcher
             openjk
             openloco
-            openmw
             openomf
             openrct2
             openttd
