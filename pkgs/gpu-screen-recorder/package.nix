@@ -74,6 +74,8 @@ stdenv.mkDerivation (finalAttrs: {
     # Handle by the module
     (lib.mesonBool "capabilities" false)
     (lib.mesonBool "nvidia_suspend_fix" false)
+    # Disable upstream static ffmpeg build
+    (lib.mesonBool "ffmpeg_static" false)
   ];
 
   postInstall = ''
