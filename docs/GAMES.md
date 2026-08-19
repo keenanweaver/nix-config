@@ -1,3 +1,7 @@
+## Notes
+
+- Tailscale while connected to exit node opnsense breaks P2P games like Street Fighter 6 private lobbies.
+
 ## Set up games
 
 Enter a nix shell:
