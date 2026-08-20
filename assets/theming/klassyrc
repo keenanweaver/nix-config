@@ -1,9 +1,12 @@
 [Global]
 LookAndFeelSet=Catppuccin-Mocha-Lavender
-RefreshedConfig=6.5.3
 
 [Style]
 MenuOpacity=70
 
 [Windeco]
-ButtonShape=ShapeFullHeightRectangle
+AnimationsSpeedRelativeSystem=8
+
+[SystemIconGeneration]
+KlassyDarkIconThemeInherits=Papirus-Dark
+KlassyIconThemeInherits=Papirus

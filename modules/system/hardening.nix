@@ -33,7 +33,13 @@
       };
       nix-mineral = {
         enable = true;
-        filesystems.normal."/home".enable = false;
+        filesystems.normal = {
+          "/etc".enable = false;
+          "/home".enable = false;
+          "/var".enable = false;
+          "/var/lib".enable = false;
+          "/var/log".enable = false;
+        };
         kernel-modules.disable = {
           auth_rpcgss = false;
           cdrom-related = false;
