@@ -4,9 +4,9 @@
     {
       boot.kernel.sysctl = {
         # https://github.com/CachyOS/CachyOS-Settings/blob/master/usr/lib/sysctl.d/70-cachyos-settings.conf
-        "fs.file-max" = 2097152;
+        #"fs.file-max" = 2097152;
         "kernel.split_lock_mitigate" = 0;
-        "net.core.netdev_max_backlog" = 4096;
+        #"net.core.netdev_max_backlog" = 4096;
         "net.ipv4.tcp_fin_timeout" = 5;
         "vm.dirty_background_bytes" = 67108864;
         "vm.dirty_bytes" = 268435456;

@@ -1,8 +1,36 @@
 {
   flake.modules.nixos.base-profile =
-    { inputs, config, ... }:
+    {
+      inputs,
+      lib,
+      config,
+      ...
+    }:
     {
       imports = [ inputs.nix-mineral.nixosModules.nix-mineral ];
+      # https://github.com/k4yt3x/sysctl
+      boot.kernel.sysctl = {
+        "fs.file-max" = 9223372036854775807;
+        "fs.inotify.max_user_watches" = 524288;
+        "kernel.panic" = 10;
+        "kernel.pid_max" = 4194304;
+        "net.core.netdev_max_backlog" = 250000;
+        "net.core.optmem_max" = 40960;
+        "net.core.rmem_default" = 8388608;
+        "net.core.rmem_max" = 536870912;
+        "net.core.wmem_default" = 8388608;
+        "net.core.wmem_max" = 536870912;
+        "net.ipv4.ip_local_port_range" = "1024 65535";
+        "net.ipv4.tcp_adv_win_scale" = -2;
+        "net.ipv4.tcp_base_mss" = 1024;
+        "net.ipv4.tcp_congestion_control" = "bbr";
+        "net.ipv4.tcp_mtu_probing" = lib.mkIf (config.networking.hostName != "nixos-htpc") 1;
+        "net.ipv4.tcp_notsent_lowat" = 131072;
+        "net.ipv4.tcp_rmem" = "8192 262144 536870912";
+        "net.ipv4.tcp_slow_start_after_idle" = 0;
+        "net.ipv4.tcp_synack_retries" = 5;
+        "net.ipv4.tcp_wmem" = "4096 16384 536870912";
+      };
       nix-mineral = {
         enable = true;
         filesystems.normal."/home".enable = false;
@@ -30,25 +58,22 @@
           "performance"
         ];
         settings = {
-          kernel.strict-iommu = false; # if true, boot doesn't work
+          kernel.strict-iommu = lib.mkIf (config.networking.hostName == "nixos-laptop") false; # if true, boot doesn't work
           misc.nix-wheel = true;
           network.random-mac = false;
         };
       };
       security = {
         pam.sshAgentAuth.enable = true;
-        polkit = {
-          # UDisks https://gist.github.com/Scrumplex/8f528c1f63b5f4bfabe14b0804adaba7
-          extraConfig = ''
-            polkit.addRule(function(action, subject) {
-                if (subject.isInGroup("wheel")) {
-                    if (action.id.startsWith("org.freedesktop.udisks2.")) {
-                        return polkit.Result.YES;
-                    }
-                }
-            });
-          '';
-        };
+        polkit.extraConfig = ''
+          polkit.addRule(function(action, subject) {
+              if (subject.isInGroup("wheel")) {
+                  if (action.id.startsWith("org.freedesktop.udisks2.")) {
+                      return polkit.Result.YES;
+                  }
+              }
+          });
+        '';
         sudo = {
           execWheelOnly = true;
           extraConfig = "Defaults !lecture,!pwfeedback";
