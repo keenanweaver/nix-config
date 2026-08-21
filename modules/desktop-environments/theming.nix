@@ -23,7 +23,7 @@ in
           ...
         }:
         let
-          sans-font-pkg = pkgs.local.inter;
+          sans-font-pkg = pkgs.inter;
         in
         {
           imports = [
@@ -142,7 +142,7 @@ in
               # Flatpak theming issue workarounds
               flatpak-font = {
                 enable = true;
-                source = "${pkgs.local.inter}/share/fonts/opentype";
+                source = "${pkgs.inter}/share/fonts/opentype";
                 target = "${config.xdg.dataHome}/fonts/inter";
               };
               gtk3-config = {
