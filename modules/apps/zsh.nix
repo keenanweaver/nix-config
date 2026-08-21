@@ -22,10 +22,6 @@
               lsd -la
             }
             ${lib.getExe pkgs.any-nix-shell} zsh --info-right | source /dev/stdin
-
-            if [[ -n "$SSH_CONNECTION" ]]; then
-              gpg-connect-agent updatestartuptty /bye >/dev/null 2>&1
-            fi
           '';
           oh-my-zsh = {
             enable = true;

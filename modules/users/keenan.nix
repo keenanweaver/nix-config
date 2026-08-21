@@ -16,6 +16,11 @@
           "users/${config.my.user}/github_access_token" = { };
           "users/${config.my.user}/github_pat" = { };
           "users/${config.my.user}/password".neededForUsers = true;
+          "users/${config.my.user}/ssh/id_ed25519" = {
+            mode = "0400";
+            owner = "${config.my.user}";
+            path = "/home/${config.my.user}/.ssh/id_ed25519";
+          };
         };
         users.users.${config.my.user} = {
           extraGroups = [

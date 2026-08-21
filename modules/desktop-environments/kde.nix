@@ -544,7 +544,6 @@
               kdotool
               kfind
               kget
-              kgpg
               kio-fuse
               kirigami-addons
               kjournald
