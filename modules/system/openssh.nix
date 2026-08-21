@@ -11,10 +11,18 @@
           enable = true;
           enableDefaultConfig = false;
           settings = {
-            "*".addKeysToAgent = "no";
+            "*".addKeysToAgent = "yes";
             bazzite = {
               HostName = "bazzite";
               User = "bazzite";
+            };
+            "codeberg.org" = {
+              identitiesOnly = true;
+              identityFile = "~/.ssh/id_ed25519";
+            };
+            "github.com" = {
+              identitiesOnly = true;
+              identityFile = "~/.ssh/id_ed25519";
             };
             mister = {
               HostName = "mister";
@@ -48,6 +56,10 @@
             remorsepi = {
               HostName = "remorsepi";
               Port = 22;
+            };
+            "tangled.org" = {
+              identitiesOnly = true;
+              identityFile = "~/.ssh/id_ed25519";
             };
             unifi-CKG2 = {
               HostName = "unifi";
