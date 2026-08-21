@@ -1,6 +1,6 @@
 {
-  flake.modules = {
-    homeManager.base-profile.programs = {
+  flake.modules.homeManager.base-profile = { lib, osConfig, ... }: {
+    programs = {
       delta = {
         enable = true;
         enableGitIntegration = true;
@@ -30,11 +30,15 @@
           };
         };
         signing = {
-          format = "openpgp";
+          format = "ssh";
           signByDefault = true;
+        }
+        // lib.optionalAttrs (osConfig != null) {
+          key = builtins.head (
+            lib.filter (l: l != "") (lib.splitString "\n" (builtins.readFile osConfig.my.sshKeys))
+          );
         };
       };
     };
-    #nixos.base-profile.programs.git.enable = true;
   };
 }

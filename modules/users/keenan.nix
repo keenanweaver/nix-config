@@ -27,18 +27,22 @@
           ];
           hashedPasswordFile = config.sops.secrets."users/${config.my.user}/password".path;
           isNormalUser = true;
-          openssh.authorizedKeys.keyFiles = [
-            (pkgs.fetchurl {
-              hash = "sha256-eSpmgfMYpExkI7l1ko55hytutvalj7QJHtsQEzUw99I=";
-              name = "keenan-ssh-keys";
-              url = "https://codeberg.org/Keenan.keys";
-            })
-          ];
+          openssh.authorizedKeys.keyFiles = [ config.my.sshKeys ];
         };
       };
-      options.my.user = lib.mkOption {
-        default = "keenan";
-        type = lib.types.str;
+      options.my = {
+        sshKeys = lib.mkOption {
+          default = pkgs.fetchurl {
+            hash = "sha256-/LqvDPutUsla5ZKQRRcq8JU5ULaKqJU5S13RJkUR2Ek=";
+            name = "keenan-ssh-keys";
+            url = "https://codeberg.org/Keenan.keys";
+          };
+          type = lib.types.package;
+        };
+        user = lib.mkOption {
+          default = "keenan";
+          type = lib.types.str;
+        };
       };
     };
 }

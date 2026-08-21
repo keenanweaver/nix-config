@@ -61,6 +61,7 @@
             };
           };
         };
+        services.ssh-agent.enable = true;
       };
     nixos.base-profile =
       { config, ... }:
