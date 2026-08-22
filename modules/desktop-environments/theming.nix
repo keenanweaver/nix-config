@@ -44,6 +44,7 @@ in
             lazygit.accent = "${accent-lower}";
             mangohud.enable = false;
             micro.transparent = true;
+            nvim.enable = false;
             vscodium.profiles.default.accent = "${accent-lower}";
             yazi.accent = "${accent-lower}";
           };
@@ -108,7 +109,7 @@ in
               catppuccin-konsole-transparent = {
                 enable = true;
                 target = "${config.xdg.dataHome}/konsole/catppuccin-${flavor-lower}-transparent.colorscheme";
-                text = builtins.readFile ../../assets/theming/catppuccin-mocha-transparent.colorscheme;
+                text = builtins.readFile ../../assets/theming/catppuccin-${flavor-lower}-transparent.colorscheme;
               };
               catppuccin-krita = {
                 enable = true;
@@ -231,20 +232,32 @@ in
             };
             lazyvim.plugins.colorscheme = ''
               return {
-                "catppuccin/nvim",
-                opts = { flavour = "mocha", transparent_background = true },
+                {
+                  "catppuccin/nvim",
+                  name = "catppuccin",
+                  lazy = true,
+                },
                 {
                   "LazyVim/LazyVim",
                   opts = {
-                    colorscheme = "catppuccin",
+                    colorscheme = function()
+                      require("catppuccin").setup({
+                        flavour = "mocha",
+                        transparent_background = true,
+                        float = {
+                          transparent = true,
+                        },
+                      })
+                      vim.cmd.colorscheme("catppuccin")
+                    end,
                   },
-                }
+                },
               }
             '';
             nvf.settings.vim.theme = {
               enable = true;
               name = "catppuccin";
-              style = "mocha";
+              style = "${flavor-lower}";
               transparent = true;
             };
             plasma = {

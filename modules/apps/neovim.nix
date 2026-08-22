@@ -17,6 +17,7 @@
           extraPackages = with pkgs; [
             bash-language-server
             clang
+            clang-tools
             shellcheck
             shellharden
             shfmt
@@ -29,6 +30,11 @@
             marksman
             tree-sitter
             yamllint
+            ruff
+            basedpyright
+            python3
+            rust-analyzer
+            vscode-extensions.vadimcn.vscode-lldb
           ];
           extras = {
             ai.claudecode.enable = true;
@@ -38,13 +44,18 @@
               mini-surround.enable = true;
               yanky.enable = true;
             };
+            dap.core.enable = true;
+            editor.overseer.enable = true;
             formatting.prettier.enable = true;
             lang = {
+              clangd.enable = true;
               cmake.enable = true;
               docker.enable = true;
               git.enable = true;
               json.enable = true;
               nix.enable = true;
+              python.enable = true;
+              rust.enable = true;
               terraform.enable = true;
               toml.enable = true;
               yaml.enable = true;
@@ -53,6 +64,7 @@
             ui.treesitter-context.enable = true;
             util = {
               gh.enable = true;
+              mini-hipatterns.enable = true;
               project.enable = true;
               rest.enable = true;
             };
