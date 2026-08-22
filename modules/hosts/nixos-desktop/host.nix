@@ -37,6 +37,7 @@
           options = [
             "compress=zstd:3"
             "nofail"
+            "x-systemd.device-timeout=10"
           ];
         };
         "/mnt/Games2" = {
