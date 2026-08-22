@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base-profile = { lib, osConfig, ... }: {
+  flake.modules.homeManager.profile-base = { lib, osConfig, ... }: {
     programs = {
       delta = {
         enable = true;

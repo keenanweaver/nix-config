@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.base-profile = { inputs, ... }: {
+  flake.modules.nixos.profile-base = { inputs, ... }: {
     imports = [
       inputs.chaotic.nixosModules.default
       inputs.nur.modules.nixos.default

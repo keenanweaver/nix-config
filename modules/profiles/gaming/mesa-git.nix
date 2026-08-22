@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    homeManager.gaming-profile.services.flatpak = {
+    homeManager.profile-gaming.services.flatpak = {
       overrides.global.Environment.FLATPAK_GL_DRIVERS = "mesa-git";
       packages = [
         {
@@ -21,6 +21,6 @@
         }
       ];
     };
-    nixos.gaming-profile.chaotic.mesa-git.enable = true;
+    nixos.profile-gaming.chaotic.mesa-git.enable = true;
   };
 }

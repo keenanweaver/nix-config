@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base-profile.programs.topgrade = {
+  flake.modules.homeManager.profile-base.programs.topgrade = {
     enable = true;
     settings = {
       containers.runtime = "podman";

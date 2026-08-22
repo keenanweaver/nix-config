@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base-profile.programs.devenv = {
+  flake.modules.homeManager.profile-base.programs.devenv = {
     enable = true;
     enableBashIntegration = true;
     enableNushellIntegration = true;

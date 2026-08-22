@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    homeManager.desktop-profile =
+    homeManager.profile-desktop =
       {
         inputs,
         config,
@@ -50,7 +50,7 @@
           uninstallUnmanaged = false;
         };
       };
-    nixos.desktop-profile =
+    nixos.profile-desktop =
       {
         inputs,
         config,

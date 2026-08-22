@@ -1,6 +1,6 @@
 { inputs, lib, ... }:
 {
-  flake.modules.nixos.base-profile.nixpkgs = {
+  flake.modules.nixos.profile-base.nixpkgs = {
     config = {
       allowBroken = false;
       allowUnfree = true;

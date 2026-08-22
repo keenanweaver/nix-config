@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base-profile.programs.atuin = {
+  flake.modules.homeManager.profile-base.programs.atuin = {
     enable = true;
     enableBashIntegration = true;
     enableNushellIntegration = true;

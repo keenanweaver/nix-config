@@ -1,13 +1,13 @@
 {
   flake.modules = {
-    homeManager.gaming-profile =
+    homeManager.profile-gaming =
       { pkgs, ... }:
       {
         xdg.autostart.entries = [
           "${pkgs.coolercontrol.coolercontrol-gui}/share/applications/org.coolercontrol.CoolerControl.desktop"
         ];
       };
-    nixos.gaming-profile =
+    nixos.profile-gaming =
       { pkgs, ... }:
       {
         environment.systemPackages = with pkgs; [

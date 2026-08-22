@@ -9,7 +9,7 @@
           Set it in modules/hosts/${config.networking.hostName}/facts.nix.
         '';
       }) facts;
-    modules.nixos.base-profile =
+    modules.nixos.profile-base =
       { lib, ... }:
       let
         mkFact =

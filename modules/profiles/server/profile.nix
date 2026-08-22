@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    homeManager.server-profile =
+    homeManager.profile-server =
       { inputs, ... }:
       {
         imports = [
@@ -8,7 +8,7 @@
           inputs.quadlet-nix.homeManagerModules.quadlet
         ];
       };
-    nixos.server-profile =
+    nixos.profile-server =
       { inputs, config, ... }:
       {
         imports = [

@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base-profile =
+  flake.modules.homeManager.profile-base =
     { config, ... }:
     {
       home.shellAliases = {

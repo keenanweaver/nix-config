@@ -7,8 +7,8 @@
       imports = with self.modules.nixos; [
         self.diskoConfigurations.remorse
 
-        base-profile
-        pi-profile
+        profile-base
+        profile-pi
       ];
       fileSystems."/" = {
         device = "/dev/disk/by-label/NIXOS_SD";
@@ -19,8 +19,8 @@
         { pkgs, ... }:
         {
           imports = with self.modules.homeManager; [
-            base-profile
-            pi-profile
+            profile-base
+            profile-pi
           ];
           home.packages = with pkgs; [ local.lgogdownloader ];
           nps.stacks.homeassistant.enable = true;

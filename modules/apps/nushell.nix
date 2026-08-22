@@ -1,3 +1,3 @@
 {
-  flake.modules.homeManager.base-profile.programs.nushell.enable = true;
+  flake.modules.homeManager.profile-base.programs.nushell.enable = true;
 }

@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    homeManager.desktop-profile =
+    homeManager.profile-desktop =
       { pkgs, ... }:
       {
         home.packages = with pkgs; [ ktailctl ];
@@ -8,7 +8,7 @@
           "${ktailctl}/share/applications/org.fkoehler.KTailctl.desktop"
         ];
       };
-    nixos.desktop-profile = {
+    nixos.profile-desktop = {
       preservation.preserveAt."/persist".directories = [
         "/var/lib/tailscale"
       ];

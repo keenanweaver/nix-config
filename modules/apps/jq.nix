@@ -1,3 +1,3 @@
 {
-  flake.modules.homeManager.base-profile.programs.jq.enable = true;
+  flake.modules.homeManager.profile-base.programs.jq.enable = true;
 }

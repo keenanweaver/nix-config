@@ -1,6 +1,6 @@
 {
   flake.modules.nixos = {
-    desktop-profile.programs.virt-manager.enable = true;
+    profile-desktop.programs.virt-manager.enable = true;
     virtualization =
       { config, pkgs, ... }:
       {

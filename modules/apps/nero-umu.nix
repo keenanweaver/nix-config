@@ -1,11 +1,11 @@
 {
   flake.modules = {
-    homeManager.gaming-profile =
+    homeManager.profile-gaming =
       { pkgs, ... }:
       {
         home.packages = with pkgs; [ nero-umu ];
       };
-    nixos.gaming-profile.nixpkgs.overlays = [
+    nixos.profile-gaming.nixpkgs.overlays = [
       (_final: prev: {
         nero-umu = prev.nero-umu.overrideAttrs (_oldAttrs: {
           version = "1.2.0-unstable-2026-07-18";

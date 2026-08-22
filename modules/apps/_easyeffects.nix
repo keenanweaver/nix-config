@@ -1,3 +1,3 @@
 {
-  flake.modules.homeManager.desktop-profile.services.easyeffects.enable = true;
+  flake.modules.homeManager.profile-desktop.services.easyeffects.enable = true;
 }

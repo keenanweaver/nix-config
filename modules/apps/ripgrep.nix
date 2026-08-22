@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base-profile.programs.ripgrep = {
+  flake.modules.homeManager.profile-base.programs.ripgrep = {
     enable = true;
     arguments = [ "-uuu" ];
   };

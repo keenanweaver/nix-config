@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.desktop-profile = {
+  flake.modules.nixos.profile-desktop = {
     preservation.preserveAt."/persist".directories = [
       "/etc/mullvad-vpn"
     ];

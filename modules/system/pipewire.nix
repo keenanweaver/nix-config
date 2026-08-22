@@ -1,6 +1,6 @@
 {
   flake.modules.nixos = {
-    desktop-profile =
+    profile-desktop =
       { pkgs, ... }:
       {
         environment.systemPackages = with pkgs; [
@@ -82,7 +82,7 @@
           };
         };
       };
-    gaming-profile.services.pipewire.wireplumber.extraConfig."51-disable-dualsense-audio"."monitor.alsa.rules" =
+    profile-gaming.services.pipewire.wireplumber.extraConfig."51-disable-dualsense-audio"."monitor.alsa.rules" =
       [
         {
           actions.update-props."node.disabled" = true;

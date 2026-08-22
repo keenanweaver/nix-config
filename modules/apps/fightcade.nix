@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.gaming-profile = {
+  flake.modules.homeManager.profile-gaming = {
     # fc2jsons come from non-free flake input
     services.flatpak = {
       overrides."com.fightcade.Fightcade".Environment.USE_DXVK = "1";

@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.gaming-profile = {
+  flake.modules.nixos.profile-gaming = {
     # Disable password prompt
     security.polkit.extraConfig = ''
       polkit.addRule(function(action, subject) {

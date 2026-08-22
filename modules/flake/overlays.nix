@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.base-profile.nixpkgs.overlays = [
+  flake.modules.nixos.profile-base.nixpkgs.overlays = [
     (_final: prev: {
       klassy = prev.klassy.overrideAttrs (
         finalAttrs: _prevAttrs: {

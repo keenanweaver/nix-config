@@ -1,3 +1,3 @@
 {
-  flake.modules.homeManager.base-profile.programs.rclone.enable = true;
+  flake.modules.homeManager.profile-base.programs.rclone.enable = true;
 }

@@ -1,3 +1,3 @@
 {
-  flake.modules.nixos.base-profile.boot.zswap.enable = true;
+  flake.modules.nixos.profile-base.boot.zswap.enable = true;
 }

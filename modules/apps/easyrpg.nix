@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.gaming-profile = { config, pkgs, ... }: {
+  flake.modules.homeManager.profile-gaming = { config, pkgs, ... }: {
     home = {
       packages = with pkgs; [
         easyrpg-player

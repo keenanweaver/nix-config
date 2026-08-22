@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    homeManager.gaming-profile =
+    homeManager.profile-gaming =
       {
         inputs,
         lib,
@@ -42,7 +42,7 @@
             ;
         };
       };
-    nixos.gaming-profile =
+    nixos.profile-gaming =
       {
         self,
         inputs,

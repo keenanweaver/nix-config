@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    homeManager.base-profile =
+    homeManager.profile-base =
       { config, ... }:
       {
         programs.bash = {
@@ -13,6 +13,6 @@
           '';
         };
       };
-    nixos.base-profile.programs.bash.blesh.enable = true;
+    nixos.profile-base.programs.bash.blesh.enable = true;
   };
 }

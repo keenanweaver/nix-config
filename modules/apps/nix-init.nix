@@ -1,3 +1,3 @@
 {
-  flake.modules.homeManager.base-profile.programs.nix-init.enable = true;
+  flake.modules.homeManager.profile-base.programs.nix-init.enable = true;
 }

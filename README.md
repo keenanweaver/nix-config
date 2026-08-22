@@ -64,7 +64,7 @@ My previous, non-dendritic config is located in the `main` branch of this repo. 
 │   ├── sops/                 # secrets
 │   └── secure-boot/          # Secure Boot (sbctl) configuration
 ├── packages/                 # custom packages (pkgs-by-name-for-flake-parts)
-├── assets/                   # wallpapers, theming assets
+├── assets/                   # non-nix files
 └── docs/                     # notes
 ```
 

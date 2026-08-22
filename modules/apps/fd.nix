@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base-profile.programs.fd = {
+  flake.modules.homeManager.profile-base.programs.fd = {
     enable = true;
     extraOptions = [
       "--no-ignore"

@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base-profile.programs.tealdeer = {
+  flake.modules.homeManager.profile-base.programs.tealdeer = {
     enable = true;
     settings.display = {
       compact = false;

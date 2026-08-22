@@ -6,9 +6,9 @@
       imports = with self.modules.nixos; [
         self.diskoConfigurations.nixos-laptop
 
-        base-profile
-        desktop-profile
-        office-profile
+        profile-base
+        profile-desktop
+        profile-office
 
         secure-boot
         virtualization
@@ -18,10 +18,9 @@
         vscodium
       ];
       boot.loader.limine.style.interface.resolution = "1920x1080";
-      hardware.facter.reportPath = ./facter.json;
       home-manager.users.${config.my.user}.imports = with self.modules.homeManager; [
-        base-profile
-        desktop-profile
+        profile-base
+        profile-desktop
 
         llm
 

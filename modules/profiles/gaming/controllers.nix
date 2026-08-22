@@ -1,12 +1,12 @@
 {
   flake.modules = {
-    homeManager.gaming-profile = { pkgs, ... }: {
+    homeManager.profile-gaming = { pkgs, ... }: {
       home.packages = with pkgs; [
         oversteer
         sc-controller
       ];
     };
-    nixos.gaming-profile =
+    nixos.profile-gaming =
       { inputs, pkgs, ... }:
       {
         hardware = {

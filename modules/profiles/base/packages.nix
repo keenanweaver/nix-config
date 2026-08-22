@@ -4,7 +4,7 @@ let
 in
 {
   flake.modules = {
-    homeManager.base-profile =
+    homeManager.profile-base =
       { config, pkgs, ... }:
       {
         home = {
@@ -30,7 +30,7 @@ in
           ];
         };
       };
-    nixos.base-profile =
+    nixos.profile-base =
       { config, pkgs, ... }:
       {
         environment = {

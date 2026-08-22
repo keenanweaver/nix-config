@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    homeManager.gaming-profile =
+    homeManager.profile-gaming =
       { config, ... }:
       {
         services.flatpak = {
@@ -16,7 +16,7 @@
           ];
         };
       };
-    nixos.gaming-profile =
+    nixos.profile-gaming =
       { inputs, pkgs, ... }:
       {
         imports = [

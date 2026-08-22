@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base-profile.programs.pay-respects = {
+  flake.modules.homeManager.profile-base.programs.pay-respects = {
     enable = true;
     enableBashIntegration = true;
     enableNushellIntegration = true;

@@ -1,3 +1,3 @@
 {
-  flake.modules.homeManager.base-profile.programs.btop.enable = true;
+  flake.modules.homeManager.profile-base.programs.btop.enable = true;
 }

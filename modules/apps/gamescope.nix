@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    homeManager.gaming-profile =
+    homeManager.profile-gaming =
       { config, pkgs, ... }:
       {
         home = {
@@ -23,7 +23,7 @@
           "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/25.08"
         ];
       };
-    nixos.gaming-profile =
+    nixos.profile-gaming =
       { pkgs, ... }:
       {
         nixpkgs.overlays = [

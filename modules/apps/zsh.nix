@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    homeManager.base-profile =
+    homeManager.profile-base =
       {
         lib,
         config,
@@ -37,6 +37,6 @@
           syntaxHighlighting.enable = true;
         };
       };
-    nixos.base-profile.programs.zsh.enable = true;
+    nixos.profile-base.programs.zsh.enable = true;
   };
 }

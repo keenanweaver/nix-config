@@ -11,10 +11,10 @@
       imports = with self.modules.nixos; [
         self.diskoConfigurations.nixos-desktop
 
-        base-profile
-        desktop-profile
-        gaming-profile
-        office-profile
+        profile-base
+        profile-desktop
+        profile-gaming
+        profile-office
 
         amd
         secure-boot
@@ -61,18 +61,6 @@
           ];
         };
       };
-      hardware = {
-        facter.reportPath = ./facter.json;
-
-        /*
-          firmware = [
-                 (pkgs.runCommand "edid-gbt-aorus-fo27q3" { } ''
-                   mkdir -p $out/lib/firmware/edid
-                   cp ${./gbt-aorus-fo27q3.bin} $out/lib/firmware/edid/gbt-aorus-fo27q3.bin
-                 '')
-               ];
-        */
-      };
       home-manager.users.${config.my.user} =
         {
           lib,
@@ -83,9 +71,9 @@
         }:
         {
           imports = with self.modules.homeManager; [
-            base-profile
-            desktop-profile
-            gaming-profile
+            profile-base
+            profile-desktop
+            profile-gaming
 
             amd
             flatpak-games

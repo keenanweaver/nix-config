@@ -1,3 +1,3 @@
 {
-  flake.modules.nixos.gaming-profile.services.lact.enable = true;
+  flake.modules.nixos.profile-gaming.services.lact.enable = true;
 }

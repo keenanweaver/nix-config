@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.modules = {
-    homeManager.base-profile =
+    homeManager.profile-base =
       {
         config,
         osConfig ? null,
@@ -15,10 +15,10 @@
               osConfig.sops.secrets."users/${config.home.username}/age-key".path
             else
               "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-          defaultSopsFile = ./secrets + "/${config.home.username}.yaml";
+          defaultSopsFile = ../../assets/secrets + "/${config.home.username}.yaml";
         };
       };
-    nixos.base-profile =
+    nixos.profile-base =
       { config, ... }:
       let
         isEd25519 = key: key.type == "ed25519";
@@ -28,7 +28,7 @@
         imports = [ inputs.sops-nix.nixosModules.sops ];
         sops = {
           age.sshKeyPaths = map (key: key.path) keys;
-          defaultSopsFile = ./secrets/nixos.yaml;
+          defaultSopsFile = ../../assets/secrets/nixos.yaml;
         };
       };
   };

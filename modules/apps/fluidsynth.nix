@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.gaming-profile =
+  flake.modules.homeManager.profile-gaming =
     { config, pkgs, ... }:
     let
       soundFont = "${pkgs.soundfont-generaluser-gs}/share/soundfonts/GeneralUser-GS.sf2";

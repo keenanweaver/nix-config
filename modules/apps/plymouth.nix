@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.base-profile.boot = {
+  flake.modules.nixos.profile-base.boot = {
     consoleLogLevel = 0;
     initrd = {
       systemd.enable = true;

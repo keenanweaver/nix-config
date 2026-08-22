@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.base-profile = { config, ... }: {
+  flake.modules.nixos.profile-base = { config, ... }: {
     networking = {
       hosts = {
         "10.20.1.1" = [

@@ -364,7 +364,7 @@ in
             "Xft.rgba" = "rgb";
           };
         };
-      gaming-profile.home.file.catppuccin-heroic = {
+      profile-gaming.home.file.catppuccin-heroic = {
         enable = true;
         source = "${inputs.catppuccin-heroic}/themes/catppuccin-${flavor-lower}-${accent-lower}.css";
         target = "Games/Heroic/catppuccin-${flavor-lower}-${accent-lower}.css";

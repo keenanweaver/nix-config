@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    homeManager.base-profile =
+    homeManager.profile-base =
       {
         lib,
         osConfig ? null,
@@ -9,7 +9,7 @@
       lib.mkIf (osConfig != null) {
         home.stateVersion = osConfig.system.stateVersion;
       };
-    nixos.base-profile =
+    nixos.profile-base =
       { self, inputs, ... }:
       {
         imports = [ inputs.home-manager.nixosModules.home-manager ];

@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    homeManager.base-profile =
+    homeManager.profile-base =
       { pkgs, ... }:
       {
         home.packages = with pkgs; [
@@ -75,7 +75,7 @@
         };
         services.ssh-agent.enable = true;
       };
-    nixos.base-profile =
+    nixos.profile-base =
       { config, ... }:
       {
         services.openssh = {

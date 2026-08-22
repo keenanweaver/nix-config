@@ -86,7 +86,7 @@ init-host host:
 gen-host-key host:
     mkdir -p /tmp/extra-files/{{ host }}/persist/etc/ssh
     ssh-keygen -t ed25519 -f /tmp/extra-files/{{ host }}/persist/etc/ssh/ssh_host_ed25519_key -N "" -C "root@{{ host }}"
-    cp /tmp/extra-files/{{ host }}/persist/etc/ssh/ssh_host_ed25519_key.pub modules/hosts/{{ host }}/
+    cp /tmp/extra-files/{{ host }}/persist/etc/ssh/ssh_host_ed25519_key.pub assets/hosts/{{ host }}/
 
 # Generate secure boot signing keys
 gen-sbctl-keys host:
@@ -95,13 +95,13 @@ gen-sbctl-keys host:
 
 # Show age key derived from host SSH key (→ add to .sops.yaml, then sops-rekey)
 age-key host:
-    cat modules/hosts/{{ host }}/ssh_host_ed25519_key.pub | ssh-to-age
+    cat assets/hosts/{{ host }}/ssh_host_ed25519_key.pub | ssh-to-age
 
 # Deploy a host using nixos-anywhere.
 # The disk-encryption-keys loop is a no-op on hosts without LUKS (glob finds nothing).
 [script('bash')]
 deploy host target:
-    args=(--generate-hardware-config nixos-facter modules/hosts/{{ host }}/facter.json --flake .#{{ host }} --extra-files /tmp/extra-files/{{ host }})
+    args=(--generate-hardware-config nixos-facter assets/hosts/{{ host }}/facter.json --flake .#{{ host }} --extra-files /tmp/extra-files/{{ host }})
     for key in /tmp/extra-files/{{ host }}/persist/secrets/*.key; do
         [ -f "$key" ] && args+=(--disk-encryption-keys "${key#/tmp/extra-files/{{ host }}}" "$key")
     done

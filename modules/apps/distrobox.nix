@@ -1,12 +1,12 @@
 {
   flake.modules.homeManager = {
-    base-profile =
+    profile-base =
       { pkgs, ... }:
       {
         home.packages = with pkgs; [ distrobox-tui ];
         programs.distrobox.enable = true;
       };
-    desktop-profile =
+    profile-desktop =
       { pkgs, ... }:
       {
         home.packages = with pkgs; [ kontainer ];

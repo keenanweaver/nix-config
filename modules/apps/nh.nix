@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base-profile.programs.nh = {
+  flake.modules.homeManager.profile-base.programs.nh = {
     enable = true;
     clean = {
       enable = true;

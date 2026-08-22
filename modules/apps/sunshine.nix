@@ -7,7 +7,7 @@
         xdg.autostart.entries = [ "${pkgs.local.moondeck-buddy}/share/applications/MoonDeckBuddy.desktop" ];
       };
     nixos = {
-      gaming-profile.networking.firewall = {
+      profile-gaming.networking.firewall = {
         allowedTCPPorts = [
           # Moonlight
           47984

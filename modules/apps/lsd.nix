@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base-profile.programs.lsd = {
+  flake.modules.homeManager.profile-base.programs.lsd = {
     enable = true;
     settings = {
       color.when = "always";

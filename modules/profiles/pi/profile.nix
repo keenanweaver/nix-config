@@ -1,14 +1,14 @@
 { self, ... }:
 {
   flake.modules = {
-    homeManager.pi-profile.imports = with self.modules.homeManager; [
-      server-profile
+    homeManager.profile-pi.imports = with self.modules.homeManager; [
+      profile-server
     ];
-    nixos.pi-profile =
+    nixos.profile-pi =
       { self, lib, ... }:
       {
         imports = with self.modules.nixos; [
-          server-profile
+          profile-server
         ];
         nix.settings = {
           extra-substituters = [

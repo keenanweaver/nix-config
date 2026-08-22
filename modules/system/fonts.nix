@@ -1,7 +1,7 @@
 {
   flake.modules = {
-    homeManager.base-profile.fonts.fontconfig.enable = true;
-    nixos.base-profile =
+    homeManager.profile-base.fonts.fontconfig.enable = true;
+    nixos.profile-base =
       { pkgs, ... }:
       {
         environment.sessionVariables = {

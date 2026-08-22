@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   imports = [ inputs.disko.flakeModules.default ];
-  flake.modules.nixos.base-profile.imports = [
+  flake.modules.nixos.profile-base.imports = [
     inputs.disko.nixosModules.disko
   ];
   flake-file.inputs.disko = {

@@ -8,8 +8,8 @@
         [
           self.diskoConfigurations.regret
 
-          base-profile
-          pi-profile
+          profile-base
+          profile-pi
         ]
         ++ (with inputs.nixos-raspberrypi.nixosModules; [
           inputs.nixos-raspberrypi.lib.inject-overlays
@@ -18,8 +18,8 @@
         ]);
       home-manager.users.${config.my.user} = {
         imports = with self.modules.homeManager; [
-          base-profile
-          pi-profile
+          profile-base
+          profile-pi
         ];
         virtualisation.quadlet.containers.mister-retroarch-save-sync = {
           autoStart = true;

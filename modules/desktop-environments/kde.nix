@@ -2,7 +2,12 @@
   flake.modules = {
     homeManager = {
       kde =
-        { inputs, config, ... }:
+        {
+          inputs,
+          config,
+          osConfig,
+          ...
+        }:
         {
           home = {
             file = {
@@ -24,6 +29,11 @@
                   [plugins]
                   disabled=emailplugin,imgurplugin,nextcloudplugin,pastebinplugin,purpose_gdrive,telegramplugin,youtubeplugin
                 '';
+              };
+              user-places = {
+                enable = true;
+                target = "${config.xdg.dataHome}/user-places.xbel";
+                text = builtins.readFile ../../assets/hosts/${osConfig.networking.hostName}/user-places.xbel;
               };
             };
             sessionVariables = {

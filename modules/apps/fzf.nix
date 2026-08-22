@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base-profile.programs.fzf = {
+  flake.modules.homeManager.profile-base.programs.fzf = {
     enable = true;
     defaultCommand = "fd --type f";
     enableBashIntegration = true;

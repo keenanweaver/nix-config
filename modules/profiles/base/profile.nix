@@ -1,7 +1,7 @@
 { self, ... }:
 {
   flake.modules = {
-    homeManager.base-profile =
+    homeManager.profile-base =
       { config, ... }:
       {
         home = {
@@ -27,7 +27,7 @@
           };
         };
       };
-    nixos.base-profile =
+    nixos.profile-base =
       {
         inputs,
         config,

@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.gaming-profile =
+  flake.modules.homeManager.profile-gaming =
     { inputs, pkgs, ... }:
     {
       programs.lutris = {

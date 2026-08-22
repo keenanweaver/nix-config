@@ -1,7 +1,7 @@
 {
   flake.modules = {
     homeManager = {
-      gaming-profile =
+      profile-gaming =
         {
           self,
           lib,
@@ -39,7 +39,7 @@
           };
         };
     };
-    nixos.gaming-profile =
+    nixos.profile-gaming =
       { pkgs, ... }:
       {
         programs.steam = {

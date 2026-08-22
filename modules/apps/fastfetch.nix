@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base-profile.programs.fastfetch = {
+  flake.modules.homeManager.profile-base.programs.fastfetch = {
     enable = true;
     settings = {
       display.separator = " ";

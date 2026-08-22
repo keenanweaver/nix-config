@@ -1,6 +1,6 @@
 {
   flake.modules = {
-    homeManager.gaming-profile =
+    homeManager.profile-gaming =
       { lib, pkgs, ... }:
       let
         steamCompatTools = with pkgs; [
@@ -62,7 +62,7 @@
           }
         );
       };
-    nixos.gaming-profile =
+    nixos.profile-gaming =
       { pkgs, ... }:
       let
         steamCompatTools = with pkgs; [

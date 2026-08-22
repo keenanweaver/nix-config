@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.base-profile =
+  flake.modules.nixos.profile-base =
     {
       lib,
       config,

@@ -1,6 +1,6 @@
 {
   # https://github.com/gomaaz/Zerotier_Gaming_Fix
-  flake.modules.nixos.gaming-profile =
+  flake.modules.nixos.profile-gaming =
     { lib, config, ... }:
     let
       inherit (config.host) ztAdapter ztConcurrency;

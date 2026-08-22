@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.desktop-profile =
+  flake.modules.homeManager.profile-desktop =
     { config, ... }:
     {
       programs.wezterm = {

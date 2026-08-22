@@ -6,9 +6,9 @@
       imports = with self.modules.nixos; [
         self.diskoConfigurations.nixos-htpc
 
-        base-profile
-        desktop-profile
-        gaming-profile
+        profile-base
+        profile-desktop
+        profile-gaming
 
         amd
         secure-boot
@@ -23,11 +23,10 @@
           "nofail"
         ];
       };
-      hardware.facter.reportPath = ./facter.json;
       home-manager.users.${config.my.user}.imports = with self.modules.homeManager; [
-        base-profile
-        desktop-profile
-        gaming-profile
+        profile-base
+        profile-desktop
+        profile-gaming
 
         amd
 

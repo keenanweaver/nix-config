@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.gaming-profile =
+  flake.modules.nixos.profile-gaming =
     { pkgs, ... }:
     {
       boot.kernel.sysctl = {

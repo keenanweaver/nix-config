@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.base-profile.programs.yazi = {
+  flake.modules.homeManager.profile-base.programs.yazi = {
     enable = true;
     enableBashIntegration = true;
     enableNushellIntegration = true;
