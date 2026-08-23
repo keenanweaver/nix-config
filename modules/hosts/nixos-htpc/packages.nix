@@ -19,7 +19,7 @@
           home.packages = with pkgs; [
             #banjorecomp
             clonehero
-            #dusklight
+            dusklight
             jazz2
             local.sonic3air
             moon-child-fe

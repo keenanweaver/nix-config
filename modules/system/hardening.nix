@@ -83,25 +83,6 @@
         sudo = {
           execWheelOnly = true;
           extraConfig = "Defaults !lecture,!pwfeedback";
-          extraRules = [
-            {
-              commands =
-                map
-                  (command: {
-                    command = "/run/current-system/sw/bin/${command}";
-                    options = [ "NOPASSWD" ];
-                  })
-                  [
-                    "poweroff"
-                    "reboot"
-                    "nixos-rebuild"
-                    "nix-env"
-                    "shutdown"
-                    "systemctl"
-                  ];
-              users = [ "${config.my.user}" ];
-            }
-          ];
         };
       };
       services.fail2ban.enable = true;

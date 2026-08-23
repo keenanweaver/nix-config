@@ -1,6 +1,6 @@
 {
   configurations.nixos.nixos-laptop.module =
-    { config, ... }:
+    { lib, config, ... }:
     {
       home-manager.users.${config.my.user}.programs.plasma = {
         input = {
@@ -31,6 +31,10 @@
               vendorId = "04f3";
             }
           ];
+        };
+        kscreenlocker = {
+          autoLock = lib.mkForce true;
+          lockOnResume = lib.mkForce true;
         };
         panels = [
           {

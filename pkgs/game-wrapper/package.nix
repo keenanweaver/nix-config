@@ -23,7 +23,7 @@ pkgs.writeShellApplication {
     #   zink        - force the zink GL stack + gamemode + mangohud  (default)
     #   obs         - native GL + gamemode + obs-gamecapture + mangohud
     #   native      - no driver forcing + gamemode + mangohud
-    #   passthrough - run the command untouched (mod loaders, e.g. SRMM/Parless)
+    #   passthrough - run the command untouched (mod loaders, injectors)
     mode="''${WRAPPER_MODE:-zink}"
 
     if [[ "$#" -eq 0 ]]; then

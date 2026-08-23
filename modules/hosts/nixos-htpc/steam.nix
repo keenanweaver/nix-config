@@ -45,9 +45,9 @@
                     ]
                   )
                   {
-                    "Street Fighter 6" = {
+                    "1364780" = {
                       compatTool = defaultProton;
-                      id = 1364780;
+                      name = "Street Fighter 6";
                     };
                   };
               defaultCompatTool = lib.mkForce defaultProton;
