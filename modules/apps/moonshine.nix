@@ -1,14 +1,12 @@
 {
   flake.modules.nixos.moonshine =
     {
-      inputs,
       lib,
       config,
       pkgs,
       ...
     }:
     {
-      imports = [ inputs.moonshine.nixosModules.default ];
       chaotic.mesa-git.extraPackages =
         let
           wsiLayer = pkgs.runCommand "moonshine-wsi-layer" { } ''
@@ -41,7 +39,10 @@
       };
       services.moonshine = {
         enable = true;
-        openFirewall = true;
+        firewallInterfaces = [
+          "enp10s0"
+          "tailscale0"
+        ];
         settings =
           let
             heroicExe = lib.getExe pkgs.heroic;
@@ -148,13 +149,8 @@
             compositor.gpu = config.host.pciDev;
             logFilter = "moonshine=info,moonshine_core::tls=error";
           };
-        uid = 1000;
         user = config.my.user;
       };
       users.users.${config.my.user}.extraGroups = [ "moonshine" ];
     };
-  flake-file.inputs.moonshine = {
-    inputs.nixpkgs.follows = "nixpkgs";
-    url = "github:hgaiser/moonshine";
-  };
 }

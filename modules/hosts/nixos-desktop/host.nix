@@ -24,7 +24,6 @@
         obs
         solaar
         stream-controller
-        #sunshine
         vscodium
       ];
       boot.binfmt.emulatedSystems = [
@@ -86,7 +85,6 @@
             obs
             obs-flatpak
             retroarch
-            #sunshine
             vesktop
             vscodium
           ];
