@@ -157,6 +157,7 @@
           })
           faugus-launcher
           local.game-wrapper
+          local.portproton
           openspeedrun
           umu-launcher
           vermouth
