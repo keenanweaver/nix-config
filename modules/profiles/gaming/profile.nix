@@ -63,16 +63,10 @@
           "ztAdapter"
         ];
         boot = {
-          extraModulePackages = with config.boot.kernelPackages; [
-            zenergy
-          ];
           kernel.sysctl = {
             "vm.max_map_count" = 2147483642;
             "vm.mmap_min_addr" = 0; # SheepShaver
           };
-          kernelModules = [
-            "zenergy"
-          ];
           kernelParams = [
             "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
             "tsc=reliable"
