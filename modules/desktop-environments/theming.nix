@@ -3,7 +3,15 @@ let
   GTK-THEME = "Breeze-Dark";
   accent-lower = "lavender";
   accent-upper = "Lavender";
-  cursor-theme = "catppuccin-${flavor-lower}-${accent-lower}-cursors";
+  catppuccinCommon = {
+    enable = true;
+    accent = accent-lower;
+    autoEnable = true;
+    cache.enable = false;
+    flavor = flavor-lower;
+  };
+  cursor-theme = "catppuccin-${flavor-accent}-cursors";
+  flavor-accent = "${flavor-lower}-${accent-lower}";
   flavor-lower = "mocha";
   flavor-upper = "Mocha";
   icon-theme = "Papirus-Dark";
@@ -23,7 +31,7 @@ in
           ...
         }:
         let
-          sans-font-pkg = pkgs.inter;
+          inherit (config.catppuccin) sources;
         in
         {
           imports = [
@@ -31,33 +39,28 @@ in
             inputs.nvf.homeManagerModules.default
             inputs.plasma-manager.homeModules.plasma-manager
           ];
-          catppuccin = {
-            enable = true;
-            accent = "${accent-lower}";
-            autoEnable = true;
-            cache.enable = false;
+          catppuccin = catppuccinCommon // {
             cursors = {
               enable = true;
-              accent = "${accent-lower}";
+              accent = accent-lower;
             };
-            flavor = "${flavor-lower}";
-            lazygit.accent = "${accent-lower}";
+            lazygit.accent = accent-lower;
             mangohud.enable = false;
             micro.transparent = true;
             nvim.enable = false;
-            vscodium.profiles.default.accent = "${accent-lower}";
-            yazi.accent = "${accent-lower}";
+            vscodium.profiles.default.accent = accent-lower;
+            yazi.enable = false;
           };
           dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
           gtk = {
             enable = true;
             cursorTheme = {
-              name = "${cursor-theme}";
+              name = cursor-theme;
               size = 24;
             };
             font = {
-              package = sans-font-pkg;
-              name = "${sans-font}";
+              package = pkgs.inter;
+              name = sans-font;
               size = 12;
             };
             gtk2.force = true;
@@ -93,8 +96,8 @@ in
             file = {
               catppuccin-ghostwriter = {
                 enable = true;
-                source = "${inputs.catppuccin-ghostwriter}/themes/catppuccin-${flavor-lower}-${accent-lower}.json";
-                target = "${config.xdg.dataHome}/ghostwriter/themes/catppuccin-${flavor-lower}-${accent-lower}.json";
+                source = "${inputs.catppuccin-ghostwriter}/themes/catppuccin-${flavor-accent}.json";
+                target = "${config.xdg.dataHome}/ghostwriter/themes/catppuccin-${flavor-accent}.json";
               };
               catppuccin-gtk = {
                 enable = true;
@@ -126,6 +129,18 @@ in
                 enable = true;
                 source = "${inputs.catppuccin-powershell}";
                 target = "${config.xdg.dataHome}/powershell/Modules/Catppuccin";
+              };
+              catppuccin-yazi = {
+                enable = true;
+                target = "${config.xdg.configHome}/yazi/theme.toml";
+                text = lib.replaceStrings [ ''overall = { bg = "#1e1e2e" }'' ] [ ''overall = { bg = "reset" }'' ] (
+                  builtins.readFile "${sources.yazi}/${flavor-lower}/catppuccin-${flavor-accent}.toml"
+                );
+              };
+              catppuccin-yazi-tmtheme = {
+                enable = true;
+                source = "${sources.bat}/Catppuccin ${flavor-upper}.tmTheme";
+                target = "${config.xdg.configHome}/yazi/Catppuccin-${flavor-lower}.tmTheme";
               };
               cursor-theme-default = {
                 enable = false;
@@ -189,7 +204,7 @@ in
               GSETTINGS_BACKEND = "keyfile";
               GTK_USE_PORTAL = "1";
               LS_COLORS = "$(${lib.getExe pkgs.vivid} generate catppuccin-${flavor-lower})";
-              XCURSOR_NAME = "${cursor-theme}";
+              XCURSOR_NAME = cursor-theme;
               XCURSOR_SIZE = "24";
             };
           };
@@ -198,7 +213,7 @@ in
             btop.settings.theme_background = false;
             freetube.settings.baseTheme = "catppuccin${flavor-upper}";
             halloy.settings.font = {
-              family = "${mono-font}";
+              family = mono-font;
               size = 20;
             };
             helix = {
@@ -209,14 +224,14 @@ in
               };
             };
             kate.editor.font = {
-              family = "${mono-font}";
+              family = mono-font;
               pointSize = 14;
             };
             konsole.profiles = {
               "${osConfig.my.user}" = {
                 colorScheme = "catppuccin-${flavor-lower}-transparent";
                 font = {
-                  name = "${mono-font}";
+                  name = mono-font;
                   size = 14;
                 };
               };
@@ -242,7 +257,7 @@ in
                   opts = {
                     colorscheme = function()
                       require("catppuccin").setup({
-                        flavour = "mocha",
+                        flavour = "${flavor-lower}",
                         transparent_background = true,
                         float = {
                           transparent = true,
@@ -257,7 +272,7 @@ in
             nvf.settings.vim.theme = {
               enable = true;
               name = "catppuccin";
-              style = "${flavor-lower}";
+              style = flavor-lower;
               transparent = true;
             };
             plasma = {
@@ -267,27 +282,27 @@ in
               };
               fonts = {
                 fixedWidth = {
-                  family = "${mono-font}";
+                  family = mono-font;
                   pointSize = 14;
                 };
                 general = {
-                  family = "${sans-font}";
+                  family = sans-font;
                   pointSize = 12;
                 };
                 menu = {
-                  family = "${sans-font}";
+                  family = sans-font;
                   pointSize = 12;
                 };
                 small = {
-                  family = "${sans-font}";
+                  family = sans-font;
                   pointSize = 12;
                 };
                 toolbar = {
-                  family = "${sans-font}";
+                  family = sans-font;
                   pointSize = 12;
                 };
                 windowTitle = {
-                  family = "${sans-font}";
+                  family = sans-font;
                   pointSize = 12;
                 };
               };
@@ -303,10 +318,10 @@ in
                 # plasma-apply-cursortheme --list-themes
                 cursor = {
                   size = 24;
-                  theme = "${cursor-theme}";
+                  theme = cursor-theme;
                 };
                 # Icons
-                iconTheme = "${icon-theme}";
+                iconTheme = icon-theme;
                 # System sounds
                 soundTheme = "ocean";
                 # Splash Screen
@@ -325,75 +340,42 @@ in
             };
           };
           services = {
-            flatpak.overrides."com.fightcade.Fightcade".Environment.GTK_THEME = "${GTK-THEME}";
+            flatpak.overrides."com.fightcade.Fightcade".Environment.GTK_THEME = GTK-THEME;
             xsettingsd.settings = {
-              "Gtk/CursorThemeName" = "${cursor-theme}";
+              "Gtk/CursorThemeName" = cursor-theme;
               "Gtk/CursorThemeSize" = 24;
               "Gtk/FontName" = "${sans-font},  12";
-              "Net/IconThemeName" = "${icon-theme}";
-              "Net/ThemeName" = "${GTK-THEME}";
+              "Net/IconThemeName" = icon-theme;
+              "Net/ThemeName" = GTK-THEME;
             };
-          };
-          xresources.properties = {
-            # Catppuccin
-            "*background" = "#1E1E2E";
-            "*color0" = "#45475A";
-            "*color1" = "#F38BA8";
-            "*color10" = "#A6E3A1";
-            "*color11" = "#F9E2AF";
-            "*color12" = "#89B4FA";
-            "*color13" = "#F5C2E7";
-            "*color14" = "#94E2D5";
-            "*color15" = "#A6ADC8";
-            "*color2" = "#A6E3A1";
-            "*color3" = "#F9E2AF";
-            "*color4" = "#89B4FA";
-            "*color5" = "#F5C2E7";
-            "*color6" = "#94E2D5";
-            "*color7" = "#BAC2DE";
-            "*color8" = "#585B70";
-            "*color9" = "#F38BA8";
-            "*foreground" = "#CDD6F4";
-            "Xcursor.size" = 24;
-            "Xcursor.theme" = "${cursor-theme}";
-            "Xft.antialias" = 1;
-            "Xft.autohint" = 1;
-            "Xft.hinting" = 1;
-            "Xft.hintstyle" = "hintfull";
-            "Xft.lcdfilter" = "lcddefault";
-            "Xft.rgba" = "rgb";
           };
         };
       profile-gaming.home.file.catppuccin-heroic = {
         enable = true;
-        source = "${inputs.catppuccin-heroic}/themes/catppuccin-${flavor-lower}-${accent-lower}.css";
-        target = "Games/Heroic/catppuccin-${flavor-lower}-${accent-lower}.css";
+        source = "${inputs.catppuccin-heroic}/themes/catppuccin-${flavor-accent}.css";
+        target = "Games/Heroic/catppuccin-${flavor-accent}.css";
       };
     };
     nixos.catppuccin =
       { pkgs, ... }:
       {
         imports = [ inputs.catppuccin.nixosModules.catppuccin ];
-        catppuccin = {
-          enable = true;
-          accent = "${accent-lower}";
-          autoEnable = true;
-          cache.enable = false;
-          flavor = "${flavor-lower}";
+        boot.kernelParams = [ "fbcon=font:TER16x32" ];
+        catppuccin = catppuccinCommon // {
           sddm = {
             background = "${wallpaper}";
-            font = "${mono-font}";
+            font = mono-font;
             fontSize = "11";
           };
         };
         environment.systemPackages = with pkgs; [
           (catppuccin-kde.override {
-            accents = [ "${accent-lower}" ];
-            flavour = [ "${flavor-lower}" ];
+            accents = [ accent-lower ];
+            flavour = [ flavor-lower ];
           })
           (catppuccin-papirus-folders.override {
-            accent = "${accent-lower}";
-            flavor = "${flavor-lower}";
+            accent = accent-lower;
+            flavor = flavor-lower;
           })
           kdePackages.qtstyleplugin-kvantum
           klassy
@@ -409,7 +391,7 @@ in
           ];
         };
         programs.dconf.enable = true;
-        services.displayManager.sddm.settings.Theme.CursorTheme = "${cursor-theme}";
+        services.displayManager.sddm.settings.Theme.CursorTheme = cursor-theme;
       };
   };
   flake-file.inputs = {
