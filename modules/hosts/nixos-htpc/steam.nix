@@ -55,7 +55,7 @@
                 #"BanjoRecomp" = wrapped pkgs.banjorecomp;
                 "Bottles" = bare pkgs.bottles;
                 "Clone Hero" = wrapped pkgs.clonehero;
-                #"Dusklight" = wrapped pkgs.dusklight;
+                "Dusklight" = wrapped pkgs.dusklight;
                 "Fightcade" = flatpak "com.fightcade.Fightcade";
                 #"Ghostship" = sysWrapped pkgs.ghostship;
 

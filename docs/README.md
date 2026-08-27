@@ -1,3 +1,12 @@
+<!--toc:start-->
+
+- [Installation](#installation)
+- [Hosts](#hosts)
+- [Games](#games)
+- [TODO](#todo)
+
+<!--toc:end-->
+
 # Installation
 
 1. Boot system with NixOS ISO, change password for SSH
@@ -72,12 +81,16 @@
 
 # Hosts
 
-See [HOSTS.md](./HOSTS.md) for host specific information.
+See [HOSTS.md][def] for host specific information.
 
 # Games
 
-See [GAMES.md](./GAMES.md) for game information.
+See [GAMES.md][def2] for game information.
 
 # TODO
 
-See [TODO.md](./TODO.md) for TODO items.
+See [TODO.md][def3] for TODO items.
+
+[def]: ./HOSTS.md
+[def2]: ./GAMES.md
+[def3]: ./TODO.md
