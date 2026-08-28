@@ -66,6 +66,11 @@ update-switch: && switch
 clean:
     nh clean all
 
+# ══ Git ══════════════════════════════════════════════════════
+# Push the current branch to both Codeberg and Tangled
+push:
+    git pushall
+
 # ══ Secrets ═════════════════════════════════════════════════
 sops-edit file:
     sops modules/sops/secrets/{{ file }}
