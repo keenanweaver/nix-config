@@ -3,7 +3,7 @@
     { inputs, ... }:
     {
       imports = [
-        inputs.pedantix.homeModules.default
+        inputs.omniflake.flakes.pedantix.homeModules.default
       ];
       programs.pedantix = {
         enable = true;
@@ -13,8 +13,4 @@
         };
       };
     };
-  flake-file.inputs.pedantix = {
-    inputs.nixpkgs.follows = "nixpkgs";
-    url = "github:swarsel/pedantix";
-  };
 }

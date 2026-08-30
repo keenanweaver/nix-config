@@ -9,7 +9,7 @@
     }:
     {
       imports = [
-        inputs.chaotic.vendored.jovian.nixosModules.default
+        inputs.omniflake.flakes.nyx.vendored.jovian.nixosModules.default
       ];
       home-manager.users.${config.my.user}.home.file = {
         "Desktop/Reboot-to-UEFI.desktop".source =

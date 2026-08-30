@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 let
   GTK-THEME = "Breeze-Dark";
   accent-lower = "lavender";
@@ -36,8 +36,8 @@ in
         {
           imports = [
             inputs.catppuccin.homeModules.catppuccin
-            inputs.nvf.homeManagerModules.default
-            inputs.plasma-manager.homeModules.plasma-manager
+            inputs.omniflake.flakes.nvf.homeManagerModules.default
+            self.lib.plasmaManager.homeModules.plasma-manager
           ];
           catppuccin = catppuccinCommon // {
             cursors = {

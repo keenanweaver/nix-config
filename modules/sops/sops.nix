@@ -8,7 +8,7 @@
         ...
       }:
       {
-        imports = [ inputs.sops-nix.homeManagerModules.sops ];
+        imports = [ inputs.omniflake.flakes.sops-nix.homeManagerModules.sops ];
         sops = {
           age.keyFile =
             if osConfig != null then
@@ -25,15 +25,11 @@
         keys = builtins.filter isEd25519 config.services.openssh.hostKeys;
       in
       {
-        imports = [ inputs.sops-nix.nixosModules.sops ];
+        imports = [ inputs.omniflake.flakes.sops-nix.nixosModules.sops ];
         sops = {
           age.sshKeyPaths = map (key: key.path) keys;
           defaultSopsFile = ../../assets/secrets/nixos.yaml;
         };
       };
-  };
-  flake-file.inputs.sops-nix = {
-    inputs.nixpkgs.follows = "nixpkgs";
-    url = "github:Mic92/sops-nix";
   };
 }

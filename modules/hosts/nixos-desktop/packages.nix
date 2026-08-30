@@ -4,6 +4,7 @@
     {
       home-manager.users.${config.my.user} =
         {
+          self,
           inputs,
           lib,
           pkgs,
@@ -97,11 +98,10 @@
             igir
             impala
             innoextract
-            inputs.just-one-more-repo.packages.${system}.r2modman
-            inputs.nix-citizen.packages.${system}.rsi-launcher
-            inputs.nur-bandithedoge.legacyPackages.${system}.cherry-doom
-            inputs.nur-bandithedoge.legacyPackages.${system}.nyan-doom
-            inputs.nur-bandithedoge.legacyPackages.${system}.sheepshaver-bin
+            inputs.omniflake.flakes.just-one-more-repo.packages.${system}.r2modman
+            inputs.omniflake.flakes.nur-packages-bandithedoge.legacyPackages.${system}.cherry-doom
+            inputs.omniflake.flakes.nur-packages-bandithedoge.legacyPackages.${system}.nyan-doom
+            inputs.omniflake.flakes.nur-packages-bandithedoge.legacyPackages.${system}.sheepshaver-bin
             isd
             isle-portable
             jazz2
@@ -178,6 +178,7 @@
             sd # sed
             sdlpop
             seer
+            self.lib.nixCitizen.packages.${system}.rsi-launcher
             shadps4-qtlauncher
             shellcheck
             shellharden

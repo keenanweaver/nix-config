@@ -11,7 +11,7 @@
       { lib, config, ... }:
       {
         imports = with self.modules.nixos; [
-          inputs.ucodenix.nixosModules.default
+          inputs.omniflake.flakes.ucodenix.nixosModules.default
 
           catppuccin
           kde
@@ -109,5 +109,4 @@
           };
       };
   };
-  flake-file.inputs.ucodenix.url = "github:e-tho/ucodenix";
 }

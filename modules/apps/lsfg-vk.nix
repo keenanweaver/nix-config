@@ -20,7 +20,7 @@
       { inputs, pkgs, ... }:
       {
         imports = [
-          inputs.lsfg-vk-flake.nixosModules.default
+          inputs.omniflake.flakes.lsfg-vk-flake.nixosModules.default
         ];
         chaotic.mesa-git.extraPackages = [
           pkgs.lsfg-vk
@@ -30,9 +30,5 @@
           ui.enable = true;
         };
       };
-  };
-  flake-file.inputs.lsfg-vk-flake = {
-    inputs.nixpkgs.follows = "nixpkgs";
-    url = "github:pabloaul/lsfg-vk-flake/main";
   };
 }

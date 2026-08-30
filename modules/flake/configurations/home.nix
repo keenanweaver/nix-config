@@ -16,7 +16,7 @@ in
   config.flake.homeConfigurations = mapAttrs (
     _name:
     { module, system }:
-    inputs.home-manager.lib.homeManagerConfiguration {
+    inputs.omniflake.flakes.home-manager.lib.homeManagerConfiguration {
       extraSpecialArgs = { inherit inputs self; };
       modules = [
         (

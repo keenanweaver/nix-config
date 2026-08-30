@@ -1,4 +1,8 @@
+{ inputs, ... }:
 {
+  flake.lib.nixCitizen = inputs.omniflake.lib.load "nix-citizen" (
+    inputs.omniflake.lib.foundations // { nix-gaming = inputs.omniflake.flakes.nix-gaming; }
+  );
   flake.modules = {
     homeManager.profile-gaming =
       {
@@ -51,8 +55,8 @@
       }:
       {
         imports = [
-          inputs.just-one-more-repo.nixosModules.default
-          inputs.nix-gaming-edge.nixosModules.default
+          inputs.omniflake.flakes.just-one-more-repo.nixosModules.default
+          inputs.omniflake.flakes.nix-gaming-edge.nixosModules.default
         ];
         assertions = self.lib.mkFactAssertions config [
           "cpu"
@@ -90,7 +94,7 @@
         };
         nixpkgs.overlays = [
           inputs.umu.overlays.default
-          inputs.nix-cachyos-kernel.overlays.pinned
+          inputs.omniflake.flakes.nix-cachyos-kernel.overlays.pinned
         ];
         security.pam.loginLimits = [
           # RPCS3
@@ -126,35 +130,6 @@
     aaru = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Whovian9369/aaru-nix-flake";
-    };
-    just-one-more-repo = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:ProverbialPennance/just-one-more-repo";
-    };
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-    nix-citizen = {
-      inputs.nix-gaming.follows = "nix-gaming";
-      url = "github:LovingMelody/nix-citizen";
-    };
-    nix-game-preservation = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:Whovian9369/nix-game-preservation";
-    };
-    nix-gaming = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:fufexan/nix-gaming";
-    };
-    nix-gaming-edge = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:powerofthe69/nix-gaming-edge/nightly";
-    };
-    nix-reshade = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:LovingMelody/nix-reshade";
-    };
-    nur-bandithedoge = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:bandithedoge/nur-packages";
     };
     rom-properties = {
       inputs.nixpkgs.follows = "nixpkgs";

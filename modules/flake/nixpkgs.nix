@@ -32,7 +32,7 @@
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          inputs.chaotic.overlays.default
+          inputs.omniflake.flakes.nyx.overlays.default
           (final: _prev: {
             master = import inputs.nixpkgs-master {
               inherit (final) config;

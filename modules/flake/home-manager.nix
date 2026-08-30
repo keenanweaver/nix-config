@@ -12,7 +12,7 @@
     nixos.profile-base =
       { self, inputs, ... }:
       {
-        imports = [ inputs.home-manager.nixosModules.home-manager ];
+        imports = [ inputs.omniflake.flakes.home-manager.nixosModules.home-manager ];
         home-manager = {
           backupFileExtension = "hm.bak";
           extraSpecialArgs = { inherit inputs self; };
@@ -20,9 +20,5 @@
           useUserPackages = true;
         };
       };
-  };
-  flake-file.inputs.home-manager = {
-    inputs.nixpkgs.follows = "nixpkgs";
-    url = "github:nix-community/home-manager";
   };
 }

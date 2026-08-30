@@ -1,23 +1,18 @@
 {
   flake.modules.nixos.profile-base = { inputs, ... }: {
     imports = [
-      inputs.chaotic.nixosModules.default
-      inputs.nur.modules.nixos.default
+      inputs.omniflake.flakes.nyx.nixosModules.default
+      inputs.omniflake.flakes.nur.modules.nixos.default
     ];
     nixpkgs.overlays = [
-      inputs.nix-gaming-edge.overlays.default
-      inputs.nur.overlays.default
+      inputs.omniflake.flakes.nix-gaming-edge.overlays.default
+      inputs.omniflake.flakes.nur.overlays.default
     ];
   };
   flake-file.inputs = {
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    multiverse.url = "github:fzakaria/nixpkgs-multiverse";
-    nur = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/NUR";
-    };
-
     /*
+        multiverse.url = "github:fzakaria/nixpkgs-multiverse";
+
         hjem = {
            inputs.nixpkgs.follows = "nixpkgs";
            url = "github:feel-co/hjem";

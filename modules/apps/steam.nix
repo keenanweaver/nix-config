@@ -29,7 +29,7 @@
         { inputs, ... }:
         {
           imports = [
-            inputs.steam-config-nix.homeModules.default
+            inputs.omniflake.flakes.steam-config-nix.homeModules.default
           ];
           programs.steam.config = {
             enable = true;
@@ -62,9 +62,5 @@
           remotePlay.openFirewall = true;
         };
       };
-  };
-  flake-file.inputs.steam-config-nix = {
-    inputs.nixpkgs.follows = "nixpkgs";
-    url = "github:different-name/steam-config-nix";
   };
 }

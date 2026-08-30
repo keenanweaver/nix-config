@@ -75,7 +75,9 @@
                 "SM64CoopDX" = sysWrapped pkgs.sm64coopdx;
                 "SM64Ex" = wrapped pkgs.sm64ex;
                 "Ship of Harkinian" = sysWrapped pkgs.shipwright-git;
-                "Slippi" = wrapped inputs.slippi.packages.${pkgs.stdenv.hostPlatform.system}.default;
+                "Slippi" =
+                  wrapped
+                    inputs.omniflake.flakes.slippi-nix.packages.${pkgs.stdenv.hostPlatform.system}.default;
                 "Sonic 3: Angel Island Revisited" = wrapped pkgs.local.sonic3air;
                 "Sonic Robo Blast 2" = wrapped pkgs.srb2;
                 #"Spaghetti Kart" = sysWrapped pkgs.spaghetti-kart-git;

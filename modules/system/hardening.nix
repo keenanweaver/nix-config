@@ -7,7 +7,7 @@
       ...
     }:
     {
-      imports = [ inputs.nix-mineral.nixosModules.nix-mineral ];
+      imports = [ inputs.omniflake.flakes.nix-mineral.nixosModules.nix-mineral ];
       # https://github.com/k4yt3x/sysctl
       boot.kernel.sysctl = {
         "fs.file-max" = 9223372036854775807;
@@ -87,8 +87,4 @@
       };
       services.fail2ban.enable = true;
     };
-  flake-file.inputs.nix-mineral = {
-    inputs.nixpkgs.follows = "nixpkgs";
-    url = "github:cynicsketch/nix-mineral";
-  };
 }

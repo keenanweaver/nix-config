@@ -3,7 +3,7 @@
     { inputs, ... }:
     {
       imports = [
-        inputs.preservation.nixosModules.default
+        inputs.omniflake.flakes.preservation.nixosModules.default
       ];
       fileSystems."/persist".neededForBoot = true;
       preservation = {
@@ -57,5 +57,4 @@
         suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
       };
     };
-  flake-file.inputs.preservation.url = "github:nix-community/preservation";
 }

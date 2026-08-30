@@ -9,7 +9,7 @@
       }:
       {
         imports = [
-          inputs.nvf.homeManagerModules.default
+          inputs.omniflake.flakes.nvf.homeManagerModules.default
         ];
         home.sessionVariables.EDITOR = lib.mkForce "nvim";
         programs.nvf = {
@@ -102,7 +102,7 @@
       }:
       {
         imports = [
-          inputs.lazyvim.homeManagerModules.default
+          inputs.omniflake.flakes.lazyvim-nix.homeManagerModules.default
         ];
         home.sessionVariables.EDITOR = lib.mkForce "nvim";
         programs.lazyvim = {
@@ -187,12 +187,5 @@
           ];
         };
       };
-  };
-  flake-file.inputs = {
-    lazyvim.url = "github:pfassina/lazyvim-nix";
-    nvf = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:notashelf/nvf";
-    };
   };
 }

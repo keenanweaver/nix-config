@@ -1,4 +1,8 @@
+{ inputs, ... }:
 {
+  flake.lib.plasmaManager = inputs.omniflake.lib.load "plasma-manager" (
+    inputs.omniflake.lib.foundations // { home-manager = inputs.omniflake.flakes.home-manager; }
+  );
   flake.modules = {
     homeManager = {
       kde =
@@ -43,10 +47,10 @@
           };
         };
       plasma-manager =
-        { inputs, osConfig, ... }:
+        { self, osConfig, ... }:
         {
           imports = [
-            inputs.plasma-manager.homeModules.plasma-manager
+            self.lib.plasmaManager.homeModules.plasma-manager
           ];
           programs.plasma = {
             enable = true;
@@ -548,14 +552,8 @@
         };
       };
   };
-  flake-file.inputs = {
-    kwin-effects-kinetic = {
-      flake = false;
-      url = "github:gurrgur/kwin-effects-kinetic";
-    };
-    plasma-manager = {
-      inputs.home-manager.follows = "home-manager";
-      url = "github:nix-community/plasma-manager";
-    };
+  flake-file.inputs.kwin-effects-kinetic = {
+    flake = false;
+    url = "github:gurrgur/kwin-effects-kinetic";
   };
 }

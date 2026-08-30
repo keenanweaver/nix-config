@@ -10,7 +10,8 @@
       programs = {
         claude-code = {
           enable = true;
-          package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
+          package =
+            inputs.omniflake.flakes.llm-agents-nix.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
           enableMcpIntegration = true;
           settings = {
             includeCoAuthoredBy = false;
@@ -23,5 +24,4 @@
         };
       };
     };
-  flake-file.inputs.llm-agents.url = "github:numtide/llm-agents.nix";
 }

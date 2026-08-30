@@ -8,7 +8,7 @@
         ...
       }:
       {
-        imports = [ inputs.nix-flatpak.homeManagerModules.nix-flatpak ];
+        imports = [ inputs.omniflake.flakes.nix-flatpak.homeManagerModules.nix-flatpak ];
         home.sessionPath = [
           "/var/lib/flatpak/exports/bin"
           "${config.xdg.dataHome}/flatpak/exports/bin"
@@ -58,7 +58,7 @@
         ...
       }:
       {
-        imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
+        imports = [ inputs.omniflake.flakes.nix-flatpak.nixosModules.nix-flatpak ];
         environment.systemPackages = with pkgs; [
           flatpak-builder
           xdg-dbus-proxy
@@ -71,5 +71,4 @@
         xdg.portal.enable = true;
       };
   };
-  flake-file.inputs.nix-flatpak.url = "github:gmodena/nix-flatpak";
 }
