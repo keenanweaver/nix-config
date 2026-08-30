@@ -14,6 +14,7 @@
       ];
       services.tailscale = {
         enable = true;
+        extraUpFlags = [ "--accept-routes=false" ];
         openFirewall = true;
         useRoutingFeatures = "both";
       };
