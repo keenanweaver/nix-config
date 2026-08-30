@@ -5,6 +5,7 @@
       let
         steamCompatTools = with pkgs; [
           proton-cachyos
+          local.proton-cachyos-wineland
         ];
       in
       {

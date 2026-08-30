@@ -80,6 +80,7 @@
                 "Sonic Robo Blast 2" = wrapped pkgs.srb2;
                 #"Spaghetti Kart" = sysWrapped pkgs.spaghetti-kart-git;
                 #"Starship SF64" = sysWrapped pkgs.starship-sf64;
+                "VVVVVV" = wrapped pkgs.vvvvvv;
                 "Wipeout Rewrite" = wrapped pkgs.wipeout-rewrite;
                 "YARG" = wrapped pkgs.yarg;
                 "Zelda64Recomp" = wrapped pkgs.zelda64recomp;

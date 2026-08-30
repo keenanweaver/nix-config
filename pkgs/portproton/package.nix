@@ -48,7 +48,7 @@ let
 in
 stdenvNoCC.mkDerivation {
   pname = "portproton";
-  version = "1.7.5-unstable-2026-01-12";
+  version = "1.7.5";
 
   src = fetchFromGitHub {
     owner = "Castro-Fidel";

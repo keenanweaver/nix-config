@@ -8,6 +8,7 @@
   libGL,
   libogg,
   libtheora,
+  nix-update-script,
   pkg-config,
 }:
 
@@ -56,6 +57,8 @@ stdenv.mkDerivation (finalAttrs: {
 
     runHook postInstall
   '';
+
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     description = "Complete decompilation of Sonic Mania (RSDKv5U engine)";

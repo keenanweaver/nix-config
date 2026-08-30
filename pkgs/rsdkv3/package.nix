@@ -8,6 +8,7 @@
   libogg,
   libtheora,
   libvorbis,
+  nix-update-script,
   pkg-config,
   sdl2-compat,
 }:
@@ -46,6 +47,8 @@ stdenv.mkDerivation (finalAttrs: {
 
     runHook postInstall
   '';
+
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     description = "Full Decompilation of Sonic CD (2011) & Retro Engine (v3)";

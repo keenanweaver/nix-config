@@ -10,6 +10,7 @@
   libXext,
   libXinerama,
   libXrandr,
+  nix-update-script,
   zenity,
 }:
 
@@ -47,6 +48,10 @@ stdenv.mkDerivation {
     SDL2
     zenity
   ];
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [ "--version=branch" ];
+  };
 
   meta = {
     description = "Re-implementation of Oddworld: Abe's Exoddus and Oddworld: Abe's Oddysee";

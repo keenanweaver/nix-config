@@ -78,6 +78,7 @@
             filezilla
             flawz
             flips
+            fooyin
             fuc # cp / rm
             #gamma-launcher
             glances
@@ -117,7 +118,6 @@
             krita
             lazyjournal
             limo
-            local.fooyin
             local.lgogdownloader
             local.relive
             local.rsdkv3
@@ -196,7 +196,6 @@
             uzdoom
             varia
             vcmi
-            vvvvvv
             wikiman
             winboat
             wipeout-rewrite

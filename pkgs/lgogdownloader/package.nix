@@ -11,6 +11,7 @@
   jsoncpp,
   liboauth,
   ninja,
+  nix-update-script,
   pkg-config,
   qt6,
   rhash,
@@ -71,6 +72,7 @@ stdenv.mkDerivation (finalAttrs: {
   '';
 
   versionCheckKeepEnvironment = [ "HOME" ];
+  passthru.updateScript = nix-update-script { };
 
   meta = {
     description = "Unofficial downloader to GOG.com for Linux users. It uses the same API as the official GOGDownloader";

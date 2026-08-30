@@ -28,6 +28,7 @@
             sdlpop
             shadps4-qtlauncher
             sm64ex
+            vvvvvv
             wipeout-rewrite
             yarg
             zelda64recomp

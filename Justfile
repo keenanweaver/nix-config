@@ -66,6 +66,22 @@ update-switch: && switch
 clean:
     nh clean all
 
+# ══ Local packages ═══════════════════════════════════════════
+# Update every local package in ./pkgs to its latest upstream version
+update-pkgs:
+    for dir in pkgs/*/; do \
+        name="$(basename "$dir")"; \
+        [ -f "${dir}package.nix" ] || continue; \
+        echo "==> updating $name"; \
+        nix-update --flake -u "$name" || echo "!! $name failed to update"; \
+    done
+    git add pkgs
+
+# Update a single local package in ./pkgs
+update-pkg name:
+    nix-update --flake -u {{ name }}
+    git add pkgs/{{ name }}
+
 # ══ Git ══════════════════════════════════════════════════════
 # Push the current branch to both Codeberg and Tangled
 push:
