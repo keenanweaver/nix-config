@@ -1,12 +1,14 @@
 {
   flake.modules.nixos.moonshine =
     {
+      inputs,
       lib,
       config,
       pkgs,
       ...
     }:
     {
+      imports = [ inputs.moonshine.nixosModules.default ];
       chaotic.mesa-git.extraPackages =
         let
           wsiLayer = pkgs.runCommand "moonshine-wsi-layer" { } ''
@@ -18,7 +20,7 @@
         [
           wsiLayer
         ];
-      networking.firewall = {
+      networking.firewall.interfaces = lib.genAttrs [ "enp10s0" "tailscale0" ] (_: {
         allowedTCPPorts = [
           # Moonlight
           47984
@@ -36,13 +38,10 @@
           # Moonlight
           5353
         ];
-      };
+      });
       services.moonshine = {
         enable = true;
-        firewallInterfaces = [
-          "enp10s0"
-          "tailscale0"
-        ];
+        logFilter = "moonshine=info,moonshine_core::tls=error";
         settings =
           let
             heroicExe = lib.getExe pkgs.heroic;
@@ -62,12 +61,16 @@
               ];
               text = ''
                 pat='^/nix/store/[^ ]*electron .*/opt/heroic/resources/app.asar'
+
                 pgrep -f "$pat" >/dev/null || exit 0
+
                 pkill -f "$pat" || true
+
                 for _ in {1..30}; do
                   pgrep -f "$pat" >/dev/null || exit 0
                   sleep 1
                 done
+
                 echo "heroic still up after 30s, sending SIGKILL" >&2
                 pkill -9 -f "$pat" || true
               '';
@@ -147,10 +150,14 @@
               }
             ];
             compositor.gpu = config.host.pciDev;
-            logFilter = "moonshine=info,moonshine_core::tls=error";
           };
+        uid = 1000;
         user = config.my.user;
       };
       users.users.${config.my.user}.extraGroups = [ "moonshine" ];
     };
+  flake-file.inputs.moonshine = {
+    inputs.nixpkgs.follows = "nixpkgs";
+    url = "github:hgaiser/moonshine";
+  };
 }

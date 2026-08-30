@@ -513,6 +513,26 @@
         "type": "github"
       }
     },
+    "moonshine": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788103008,
+        "narHash": "sha256-x+ief0N7pn4o3P9aDf7jos8SWlKHQMUpc71A+K3SqyU=",
+        "owner": "hgaiser",
+        "repo": "moonshine",
+        "rev": "c87fb1ee626288792be5c1cbab857992eadb970b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hgaiser",
+        "repo": "moonshine",
+        "type": "github"
+      }
+    },
     "mygui": {
       "locked": {
         "lastModified": 1716480759,
@@ -854,6 +874,7 @@
         "import-tree": "import-tree",
         "json-sort": "json-sort",
         "kwin-effects-kinetic": "kwin-effects-kinetic",
+        "moonshine": "moonshine",
         "nix-index-database": "nix-index-database",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-raspberrypi": "nixos-raspberrypi",
