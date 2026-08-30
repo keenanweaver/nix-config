@@ -25,7 +25,12 @@
                 ${lib.concatStringsSep "\n" (
                   lib.mapAttrsToList (name: slug: ''
                     if grep -qF ${lib.escapeShellArg name} <<< "$installed"; then
-                      echo "present: ${name}"
+                      echo "checking for updates: ${name}"
+                      update_output="$(protonplus update steam-system ${lib.escapeShellArg slug} 2>&1)" || true
+                      echo "$update_output"
+                      if grep -qF "Successfully updated" <<< "$update_output"; then
+                        notify-send --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus 'ProtonPlus' 'Updated ${name}'
+                      fi
                     else
                       echo "installing missing runner: ${name} (${slug})"
                       protonplus install steam-system ${lib.escapeShellArg slug} latest || true
