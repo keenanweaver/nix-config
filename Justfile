@@ -135,4 +135,4 @@ clean-keys:
 
 # Update a deployed (remote) host — distinct from local `update-switch`
 deploy-update host target:
-    nixos-rebuild switch --flake .#{{ host }} --build-host {{ target }} --target-host {{ target }} --ask-sudo-password
+    NIX_SSHOPTS="-p 6777" nh os boot . -H {{ host }} --target-host {{ target }}
