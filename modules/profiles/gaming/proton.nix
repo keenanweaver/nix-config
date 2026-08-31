@@ -9,7 +9,7 @@
         ];
       in
       {
-        home.packages = with pkgs; [ local.protonplus ];
+        home.packages = with pkgs; [ protonplus ];
         programs.lutris.protonPackages = steamCompatTools;
         systemd.user =
           let
@@ -18,7 +18,7 @@
               runtimeInputs = with pkgs; [
                 gnugrep
                 libnotify
-                local.protonplus
+                protonplus
               ];
               text = ''
                 installed="$(protonplus list steam-system 2>/dev/null || true)"
@@ -41,7 +41,11 @@
               '';
             };
             runners = {
+              "Luxtorpeda Latest" = "luxtorpeda";
               "Proton-CachyOS Latest" = "proton-cachyos";
+              "Proton-CachyOS Wineland Latest" = "proton-cachyos-wineland";
+              "Proton-GE Latest" = "proton-ge";
+              "Proton-Tkg Latest" = "proton-tkg";
             };
           in
           {

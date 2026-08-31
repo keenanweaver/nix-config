@@ -72,7 +72,7 @@ stdenv.mkDerivation (finalAttrs: {
   '';
 
   versionCheckKeepEnvironment = [ "HOME" ];
-  passthru.updateScript = nix-update-script { };
+  passthru.updateScript = nix-update-script { extraArgs = [ "--flake" ]; };
 
   meta = {
     description = "Unofficial downloader to GOG.com for Linux users. It uses the same API as the official GOGDownloader";

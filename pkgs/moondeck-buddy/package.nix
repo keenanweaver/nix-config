@@ -45,7 +45,7 @@ stdenv.mkDerivation (finalAttrs: {
     qtEnv
   ];
 
-  passthru.updateScript = nix-update-script { };
+  passthru.updateScript = nix-update-script { extraArgs = [ "--flake" ]; };
 
   meta = {
     description = "Helper to work with moonlight on a steamdeck";

@@ -16,13 +16,13 @@
 
 stdenv.mkDerivation {
   pname = "relive";
-  version = "1.0.9-unstable-05-29-2025";
+  version = "appveyor_4227-unstable-2026-08-14";
 
   src = fetchFromGitHub {
     owner = "AliveTeam";
     repo = "alive_reversing";
-    rev = "7bf8a75de37f6f65554bf1c4a0e4b1100f0d37ae";
-    hash = "sha256-w/mpu9bE+jHbRDyE5Oy47EDQd/FXfwjXqndSBe7XKC4=";
+    rev = "4443c56338d1091894ac1be5e068a77c2ba92763";
+    hash = "sha256-hB/XtHoI3UxIJDYWkLstj/RqfQFJ7TLRV+0efvoStSU=";
     fetchSubmodules = true;
   };
 
@@ -50,7 +50,10 @@ stdenv.mkDerivation {
   ];
 
   passthru.updateScript = nix-update-script {
-    extraArgs = [ "--version=branch" ];
+    extraArgs = [
+      "--flake"
+      "--version=branch"
+    ];
   };
 
   meta = {

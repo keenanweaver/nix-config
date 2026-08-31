@@ -15,16 +15,6 @@
         in
         {
           home.packages = with pkgs; [
-            (openxcom.overrideAttrs {
-              pname = "openxcom-extended";
-              version = "8.6.4";
-              src = pkgs.fetchFromGitHub {
-                owner = "MeridianOXC";
-                repo = "OpenXcom";
-                rev = "a077141b4102d669cce42155478d2f6404953605";
-                hash = "sha256-KflGWJgUW4kVzCxDJxSq96dz638mfphiiOSyBkC1sY4=";
-              };
-            })
             (writeShellApplication {
               name = "script-exodos-nuked";
               runtimeEnv.EXODOS = "/mnt/crusader/Games/eXo/eXoDOS/eXo/eXoDOS";
@@ -98,7 +88,12 @@
             igir
             impala
             innoextract
+            inputs.omniflake.flakes.aaru-nix-flake.packages.${system}.default
             inputs.omniflake.flakes.just-one-more-repo.packages.${system}.r2modman
+            #inputs.omniflake.flakes.nix-game-preservation.packages.${system}.dic-git-full
+            #inputs.omniflake.flakes.nix-game-preservation.packages.${system}.ndecrypt-git
+            #inputs.omniflake.flakes.nix-game-preservation.packages.${system}.sabretools-git
+            #inputs.omniflake.flakes.nix-game-preservation.packages.${system}.unshieldsharp-git
             inputs.omniflake.flakes.nur-packages-bandithedoge.legacyPackages.${system}.cherry-doom
             inputs.omniflake.flakes.nur-packages-bandithedoge.legacyPackages.${system}.nyan-doom
             inputs.omniflake.flakes.nur-packages-bandithedoge.legacyPackages.${system}.sheepshaver-bin
@@ -107,6 +102,7 @@
             jazz2
             jellyfin-tui
             jiq
+            jpsxdec
             just
             katawa-shoujo-re-engineered
             kdePackages.isoimagewriter
@@ -119,6 +115,7 @@
             lazyjournal
             limo
             local.lgogdownloader
+            local.openxcom-extended
             local.relive
             local.rsdkv3
             local.sonic3air
@@ -126,6 +123,7 @@
             losslesscut-bin
             lua-language-server
             magic-wormhole-rs
+            mame.tools
             mangareader
             manix
             mdformat
@@ -143,6 +141,7 @@
             nixfmt
             nixos-shell
             nixpkgs-review
+            nsz
             nugget-doom
             nvd
             odamex
@@ -166,10 +165,12 @@
             powershell
             procs # ps
             projectm-sdl-cpp
+            ps3-disc-dumper
             puddletag
             python314Packages.lnkparse3
             qbz
             qtscrcpy
+            redumper
             rigel-engine
             ringracers
             rssguard
@@ -208,27 +209,6 @@
             yarg
             yq
             zandronum
-            /*
-              inputs.aaru.packages.${system}.default
-                 inputs.nix-game-preservation.packages.${system}.dic-git-full
-                 glxinfo
-                 itch-dl
-                 jpsxdec
-                 mame.tools
-                 mmv
-                 inputs.nix-game-preservation.packages.${system}.ndecrypt-git
-                 nsz
-                 inputs.nix-game-preservation.packages.${system}.sabretools-git
-                 inputs.nix-game-preservation.packages.${system}.unshieldsharp-git
-                 ps3-disc-dumper
-                 inputs.nix-game-preservation.packages.${system}.redumper-git
-                 renderdoc
-                 vgmplay-libvgm
-                 vgmstream
-                 vgmtools
-                 vgmtrans
-                 vulkan-tools
-            */
           ];
           programs = {
             plasma.hotkeys.commands.gsr-save-replay = {

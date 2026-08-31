@@ -1,19 +1,15 @@
 {
-  flake.modules.homeManager.profile-base =
-    { inputs, ... }:
-    {
-      imports = [
-        inputs.nix-index-database.homeModules.nix-index
-      ];
-      programs.nix-index = {
-        enable = true;
-        enableBashIntegration = true;
-        enableNushellIntegration = true;
-        enableZshIntegration = true;
-      };
+  flake.modules = {
+    homeManager.profile-base.programs.nix-index = {
+      enable = true;
+      enableBashIntegration = true;
+      enableNushellIntegration = true;
+      enableZshIntegration = true;
     };
-  flake-file.inputs.nix-index-database = {
-    inputs.nixpkgs.follows = "nixpkgs";
-    url = "github:Mic92/nix-index-database";
+    nixos.profile-base = { inputs, ... }: {
+      imports = [
+        inputs.omniflake.flakes.nix-index-database.nixosModules.default
+      ];
+    };
   };
 }

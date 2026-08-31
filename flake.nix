@@ -6,11 +6,6 @@
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
-    aaru = {
-      url = "github:Whovian9369/aaru-nix-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    catppuccin.url = "github:catppuccin/nix";
     catppuccin-ghostwriter = {
       url = "github:catppuccin/ghostwriter";
       flake = false;
@@ -45,18 +40,6 @@
       url = "github:gurrgur/kwin-effects-kinetic";
       flake = false;
     };
-    moonshine = {
-      url = "github:hgaiser/moonshine";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-index-database = {
-      url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
@@ -73,19 +56,11 @@
       url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rom-properties = {
-      url = "github:Whovian9369/rom-properties-nix-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     simracing-hwdb = {
       url = "github:JacKeTUs/simracing-hwdb";
       flake = false;
     };
     systems.url = "github:nix-systems/default-linux";
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
-    wayland-pipewire-idle-inhibit = {
-      url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 }

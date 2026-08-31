@@ -168,7 +168,7 @@
                     #"applications:org.squidowl.halloy.desktop"
                     "applications:signal.desktop"
                     "applications:info.mumble.Mumble.desktop"
-                    "applications:QBZ.desktop"
+                    "applications:qbz.desktop"
                     #"applications:foobar2000.desktop"
                     "applications:org.fooyin.fooyin.desktop"
                     "applications:org.kde.neochat.desktop"
@@ -242,7 +242,7 @@
           }
           {
             apply = {
-              desktopfile = "fluxer-desktop";
+              desktopfile = "fluxer-desktop-canary";
               ignoregeometry.value = true;
               position.value = "0,0";
               screen = {

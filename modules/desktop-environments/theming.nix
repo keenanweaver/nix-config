@@ -35,7 +35,7 @@ in
         in
         {
           imports = [
-            inputs.catppuccin.homeModules.catppuccin
+            inputs.omniflake.flakes.nix-catppuccin.homeModules.catppuccin
             inputs.omniflake.flakes.nvf.homeManagerModules.default
             self.lib.plasmaManager.homeModules.plasma-manager
           ];
@@ -359,7 +359,7 @@ in
     nixos.catppuccin =
       { pkgs, ... }:
       {
-        imports = [ inputs.catppuccin.nixosModules.catppuccin ];
+        imports = [ inputs.omniflake.flakes.nix-catppuccin.nixosModules.catppuccin ];
         boot.kernelParams = [ "fbcon=font:TER16x32" ];
         catppuccin = catppuccinCommon // {
           sddm = {
@@ -395,7 +395,6 @@ in
       };
   };
   flake-file.inputs = {
-    catppuccin.url = "github:catppuccin/nix";
     catppuccin-ghostwriter = {
       flake = false;
       url = "github:catppuccin/ghostwriter";

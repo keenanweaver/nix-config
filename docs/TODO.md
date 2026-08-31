@@ -3,7 +3,6 @@
 ## Fixes
 
 - [EasyEffects](../modules/apps/_easyeffects.nix). Hangs Pipewire on login.
-- [Fluxer](../modules/apps/fluxer.nix). Desktop entry name creates dupe on second monitor taskbar with Plasma Manager.
 - [Yeetmouse](../modules/profiles/gaming/_yeetmouse.nix) config does not save appropriately. May be an upstream issue.
 
 ## Hacks

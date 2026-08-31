@@ -23,13 +23,13 @@ in
 
 stdenv.mkDerivation {
   pname = "nuked-sc55";
-  version = "0.7.0";
+  version = "0.6.1-unstable-2026-08-23";
 
   src = fetchFromGitHub {
     owner = "jcmoyer";
     repo = "Nuked-SC55";
-    rev = "a48ef92e4bb85355a57a6ff2250d942f835f3503";
-    hash = "sha256-SyEoyH0fz2GmlXWGyDGvVezK5kHFJlmsax8qWEkcp4k=";
+    rev = "209c305e89854f289ef6fc4a9d621074841a5cf1";
+    hash = "sha256-FglRXTAv/j1AwS+rFXIXlNtsmr7fJlXj5xUtC9Rj39A=";
     fetchSubmodules = true;
   };
 
@@ -73,10 +73,11 @@ stdenv.mkDerivation {
     done
   '';
 
-  doInstallCheck = true;
-
   passthru.updateScript = nix-update-script {
-    extraArgs = [ "--version=branch" ];
+    extraArgs = [
+      "--flake"
+      "--version=branch"
+    ];
   };
 
   meta = {

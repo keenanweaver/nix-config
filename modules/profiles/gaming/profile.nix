@@ -6,7 +6,6 @@
   flake.modules = {
     homeManager.profile-gaming =
       {
-        inputs,
         lib,
         config,
         pkgs,
@@ -14,28 +13,12 @@
         ...
       }:
       {
-        imports = [
-          inputs.wayland-pipewire-idle-inhibit.homeModules.default
-        ];
         home.sessionVariables = {
           DXVK_HDR = true;
           LOW_LATENCY_LAYER = true;
           # https://reddit.com/r/linux_gaming/comments/1mg8vtl/low_latency_gaming_guide/
           SDL_VIDEODRIVER = "wayland,x11"; # SDL2
           SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3
-        };
-        services.wayland-pipewire-idle-inhibit = {
-          enable = true;
-          settings = {
-            idle_inhibitor = "d-bus";
-            media_minimum_duration = 5;
-            sink_whitelist = [
-              { name = "Browser"; }
-              { name = "Game"; }
-              { name = "Music"; }
-            ];
-            verbosity = "WARN";
-          };
         };
         xdg.desktopEntries = import ./_desktop-entries.nix {
           inherit
@@ -57,6 +40,7 @@
         imports = [
           inputs.omniflake.flakes.just-one-more-repo.nixosModules.default
           inputs.omniflake.flakes.nix-gaming-edge.nixosModules.default
+          inputs.omniflake.flakes.wayland-pipewire-idle-inhibit.nixosModules.default
         ];
         assertions = self.lib.mkFactAssertions config [
           "cpu"
@@ -124,25 +108,26 @@
             value = "64556";
           }
         ];
+        services.wayland-pipewire-idle-inhibit = {
+          enable = true;
+          settings = {
+            idle_inhibitor = "d-bus";
+            media_minimum_duration = 5;
+            sink_whitelist = [
+              { name = "Browser"; }
+              { name = "Game"; }
+              { name = "Music"; }
+            ];
+            verbosity = "WARN";
+          };
+        };
       };
   };
   flake-file.inputs = {
-    aaru = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:Whovian9369/aaru-nix-flake";
-    };
-    rom-properties = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:Whovian9369/rom-properties-nix-flake";
-    };
     simracing-hwdb = {
       flake = false;
       url = "github:JacKeTUs/simracing-hwdb";
     };
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
-    wayland-pipewire-idle-inhibit = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
-    };
   };
 }

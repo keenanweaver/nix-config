@@ -166,7 +166,7 @@
         ++ [
           inputs.omniflake.flakes.nix-gaming.packages.${system}.wine-cachyos
           inputs.omniflake.flakes.nur-packages-bandithedoge.legacyPackages.${system}.winegui
-          inputs.rom-properties.packages.${system}.rp_kde6
+          inputs.omniflake.flakes.rom-properties-nix-flake.packages.${system}.rp_kde6
         ];
     };
 }

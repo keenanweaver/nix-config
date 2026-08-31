@@ -17,6 +17,7 @@
   imagemagick,
   lsof,
   makeWrapper,
+  nix-update-script,
   openssl,
   pciutils,
   stdenvNoCC,
@@ -48,7 +49,7 @@ let
 in
 stdenvNoCC.mkDerivation {
   pname = "portproton";
-  version = "1.7.5";
+  version = "1.7.5-unstable-2026-01-12";
 
   src = fetchFromGitHub {
     owner = "Castro-Fidel";
@@ -119,6 +120,13 @@ stdenvNoCC.mkDerivation {
   '';
 
   dontBuild = true;
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--flake"
+      "--version=branch"
+    ];
+  };
 
   meta = {
     description = "Tool to easily run Windows games and software on Linux via Proton/Wine";

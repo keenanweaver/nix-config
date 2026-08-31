@@ -50,11 +50,10 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   passthru.updateScript = writeScript "update-proton-cachyos-wineland" ''
     #!/usr/bin/env nix-shell
-    #!nix-shell -i bash -p curl jq common-updater-scripts
+    #!nix-shell -i bash -p curl jq nix-update
     repo="https://api.github.com/repos/nanomatters/proton-cachyos/releases"
     tag="$(curl -sL "$repo" | jq -r 'map(select(.tag_name | startswith("cachyos-wineland-"))) | .[0].tag_name')"
-    version="''${tag#cachyos-wineland-}"
-    update-source-version proton-cachyos-wineland "$version"
+    nix-update --flake --version="$tag" proton-cachyos-wineland
   '';
 
   meta = {

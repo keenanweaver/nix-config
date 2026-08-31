@@ -72,6 +72,7 @@ update-pkgs:
     for dir in pkgs/*/; do \
         name="$(basename "$dir")"; \
         [ -f "${dir}package.nix" ] || continue; \
+        grep -q "updateScript" "${dir}package.nix" || { echo "-- $name has no updateScript, skipping"; continue; }; \
         echo "==> updating $name"; \
         nix-update --flake -u "$name" || echo "!! $name failed to update"; \
     done
