@@ -123,6 +123,14 @@
           };
         };
       networking.hostName = "nixos-desktop";
+      nix.settings = {
+        extra-substituters = [
+          "https://nixos-raspberrypi.cachix.org"
+        ];
+        extra-trusted-public-keys = [
+          "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
+        ];
+      };
       services.hardware.openrgb.motherboard = "amd";
       system.stateVersion = "26.05";
       systemd = {

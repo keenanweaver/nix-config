@@ -2,7 +2,6 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  SDL2,
   alsa-lib,
   cmake,
   fetchzip,
@@ -10,6 +9,7 @@
   nix-update-script,
   pkg-config,
   rtmidi,
+  sdl2-compat,
   versionCheckHook,
 }:
 
@@ -44,7 +44,7 @@ stdenv.mkDerivation {
   ];
 
   buildInputs = [
-    SDL2
+    sdl2-compat
     rtmidi
   ]
   ++ lib.optionals stdenv.hostPlatform.isLinux [

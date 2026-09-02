@@ -3,17 +3,21 @@ keys:
   - &nixos-desktop age10deahc5z99qrxx24jr8l85z6ar39u9cskw2r089lra94hzfmgf7sedrsxf
   - &nixos-htpc age1x670f3k6s6q0ee2t9t7m5eh2x6kuhl8gyw6m3k9z6u2pn0qud99qn54n4n
   - &nixos-laptop age1r9ctdxpk2t890sx7spekvyu6r2yjhjsqn6hme9e0t3vdxdhvgdcs0swehg
+  - &regret age148r5rsa8mm4x7ataclsc3myxsfvjscz0ujuhsr890hajc89xmf6qeazcv9
+  - &remorse age1zrcs3puk67ey3tcsrr998seacflqpz87fshm63ee0w8067au0p9qwkdzvu
 
 creation_rules:
-  - path_regex: modules/sops/secrets/nixos\.yaml$
+  - path_regex: assets/secrets/nixos\.yaml$
     key_groups:
       - age:
           - *keenan_age
           - *nixos-desktop
           - *nixos-htpc
           - *nixos-laptop
+          - *regret
+          - *remorse
 
-  - path_regex: modules/sops/secrets/keenan\.yaml$
+  - path_regex: assets/secrets/keenan\.yaml$
     key_groups:
       - age:
           - *keenan_age

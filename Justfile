@@ -90,10 +90,10 @@ push:
 
 # ══ Secrets ═════════════════════════════════════════════════
 sops-edit file:
-    sops modules/sops/secrets/{{ file }}
+    sops assets/secrets/{{ file }}
 
 sops-rekey:
-    find modules -path '*/secrets/*.yaml' -exec sops updatekeys {} \;
+    find assets/secrets -name '*.yaml' -exec sops updatekeys {} \;
 
 # ══ Host provisioning / deployment ══════════════════════════
 # List disk IDs on remote target

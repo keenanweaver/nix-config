@@ -5,7 +5,6 @@
       {
         imports = [
           inputs.omniflake.flakes.nix-podman-stacks.homeModules.nps
-          inputs.omniflake.flakes.quadlet-nix.homeManagerModules.quadlet
         ];
       };
     nixos.profile-server =

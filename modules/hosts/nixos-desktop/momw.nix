@@ -28,7 +28,7 @@
                 umo vacuum
               '';
             })
-            inputs.openmw-nix.packages.${system}.openmw-validator
+            inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-validator
             openmw
           ];
           sops = {

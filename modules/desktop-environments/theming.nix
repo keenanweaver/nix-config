@@ -35,7 +35,7 @@ in
         in
         {
           imports = [
-            inputs.omniflake.flakes.nix-catppuccin.homeModules.catppuccin
+            inputs.omniflake.flakes.catppuccin.homeModules.catppuccin
             inputs.omniflake.flakes.nvf.homeManagerModules.default
             self.lib.plasmaManager.homeModules.plasma-manager
           ];
@@ -200,6 +200,7 @@ in
               gsettings-qt
               hicolor-icon-theme
             ];
+            pointerCursor.enable = true;
             sessionVariables = {
               GSETTINGS_BACKEND = "keyfile";
               GTK_USE_PORTAL = "1";
@@ -359,7 +360,7 @@ in
     nixos.catppuccin =
       { pkgs, ... }:
       {
-        imports = [ inputs.omniflake.flakes.nix-catppuccin.nixosModules.catppuccin ];
+        imports = [ inputs.omniflake.flakes.catppuccin.nixosModules.catppuccin ];
         boot.kernelParams = [ "fbcon=font:TER16x32" ];
         catppuccin = catppuccinCommon // {
           sddm = {

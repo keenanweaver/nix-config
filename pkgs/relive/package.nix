@@ -2,7 +2,6 @@
   lib,
   stdenv,
   fetchFromGitHub,
-  SDL2,
   cmake,
   fluidsynth,
   glew,
@@ -11,18 +10,19 @@
   libXinerama,
   libXrandr,
   nix-update-script,
+  sdl3,
   zenity,
 }:
 
 stdenv.mkDerivation {
   pname = "relive";
-  version = "appveyor_4227-unstable-2026-08-14";
+  version = "appveyor_4227-unstable-2026-09-01";
 
   src = fetchFromGitHub {
     owner = "AliveTeam";
     repo = "alive_reversing";
-    rev = "4443c56338d1091894ac1be5e068a77c2ba92763";
-    hash = "sha256-hB/XtHoI3UxIJDYWkLstj/RqfQFJ7TLRV+0efvoStSU=";
+    rev = "3be8967b71b29e6e61009d291bd64dce39abf7ac";
+    hash = "sha256-SZwy3whmnvqe6yXUSN2wcPmKeUVfuNg++Fx685aXf/U=";
     fetchSubmodules = true;
   };
 
@@ -45,7 +45,7 @@ stdenv.mkDerivation {
     libXrandr
     libXinerama
     libXext
-    SDL2
+    sdl3
     zenity
   ];
 

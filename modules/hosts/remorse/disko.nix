@@ -1,22 +1,22 @@
 let
-  device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_M.2_1TB_S415NB0KC02763W";
+  device = "/dev/mmcblk0";
   mainDisk = {
     inherit device;
     content = {
       partitions = {
-        esp = {
+        firmware = {
           content = {
             format = "vfat";
             mountOptions = [ "umask=0077" ];
-            mountpoint = "/boot";
+            mountpoint = "/boot/firmware";
             type = "filesystem";
           };
-          size = "1024M";
+          size = "512M";
           type = "EF00";
         };
         root = {
           content = {
-            extraArgs = [ "-Lnixos-htpc" ];
+            extraArgs = [ "-Lremorse" ];
             subvolumes = {
               "/home" = {
                 mountOptions = [ "compress=zstd:3" ];
@@ -38,7 +38,7 @@ let
               };
               "/swap" = {
                 mountpoint = "/swap";
-                swap.swapfile.size = "8G";
+                swap.swapfile.size = "4G";
               };
             };
             type = "btrfs";
@@ -52,14 +52,14 @@ let
   };
 in
 {
-  flake.diskoConfigurations.nixos-htpc.disko.devices = {
+  flake.diskoConfigurations.remorse.disko.devices = {
     disk.main = mainDisk;
     nodev."/" = {
       fsType = "tmpfs";
       mountOptions = [
         "defaults"
         "mode=755"
-        "size=8G"
+        "size=2G"
       ];
     };
   };

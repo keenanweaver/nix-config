@@ -1,12 +1,13 @@
 {
   flake.modules.nixos.profile-base =
     {
+      self,
       lib,
       config,
-      pkgs,
       ...
     }:
     {
+      imports = [ self.modules.nixos.ssh-keys ];
       config = {
         nix.extraOptions = "!include ${
           config.sops.secrets."users/${config.my.user}/github_access_token".path
@@ -35,19 +36,9 @@
           openssh.authorizedKeys.keyFiles = [ config.my.sshKeys ];
         };
       };
-      options.my = {
-        sshKeys = lib.mkOption {
-          default = pkgs.fetchurl {
-            hash = "sha256-/LqvDPutUsla5ZKQRRcq8JU5ULaKqJU5S13RJkUR2Ek=";
-            name = "keenan-ssh-keys";
-            url = "https://codeberg.org/Keenan.keys";
-          };
-          type = lib.types.package;
-        };
-        user = lib.mkOption {
-          default = "keenan";
-          type = lib.types.str;
-        };
+      options.my.user = lib.mkOption {
+        default = "keenan";
+        type = lib.types.str;
       };
     };
 }

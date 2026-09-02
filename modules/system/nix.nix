@@ -11,6 +11,7 @@
           experimental-features = [
             "flakes"
             "nix-command"
+            "pipe-operators"
           ];
           extra-substituters = [
             "https://nix-community.cachix.org"
@@ -31,4 +32,9 @@
         };
       };
     };
+  flake-file.nixConfig.extra-experimental-features = [
+    "flakes"
+    "nix-command"
+    "pipe-operators"
+  ];
 }
