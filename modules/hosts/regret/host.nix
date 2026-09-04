@@ -34,6 +34,7 @@
         credentials = {
           GITHUB_TOKEN = config.sops.secrets."renovate/github_access_token".path;
           RENOVATE_GIT_PRIVATE_KEY = config.sops.secrets."renovate/git_signing".path;
+          RENOVATE_HOST_RULES = config.sops.secrets."renovate/nonfree_host_rules".path;
           RENOVATE_TOKEN = config.sops.secrets."renovate/codeberg_bot_pat".path;
         };
         runtimePackages = with pkgs; [
@@ -134,7 +135,7 @@
             {
               matchManagers = [ "custom.regex" ];
               postUpgradeTasks = {
-                commands = [ "nix-update --flake -u {{basename packageFileDir}}" ];
+                commands = [ ''nix-update --flake -u {{replace "^pkgs/" "" packageFileDir}}'' ];
                 executionMode = "branch";
                 fileFilters = [ "pkgs/**" ];
               };
@@ -150,6 +151,7 @@
         "renovate/codeberg_bot_pat" = { };
         "renovate/git_signing" = { };
         "renovate/github_access_token" = { };
+        "renovate/nonfree_host_rules" = { };
       };
       system.stateVersion = "26.05";
       /*
