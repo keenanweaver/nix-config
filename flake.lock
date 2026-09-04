@@ -234,11 +234,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788306937,
-        "narHash": "sha256-lbrI1UYVpFgKSsyrU9oeF7FHfnu8nLD9ja0ou9f2rxk=",
+        "lastModified": 1788450739,
+        "narHash": "sha256-glZLQlzIn1fXH6PazR2iUmTo7kzzyYSshrWhLS9TqCU=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "f16b25b8c3d2809b87925d0b76652d7821a75c68",
+        "rev": "31729ca8cbdb4fa927b34e5f4353e6a83f39e993",
         "type": "github"
       },
       "original": {
@@ -365,11 +365,11 @@
     },
     "import-tree": {
       "locked": {
-        "lastModified": 1788275959,
-        "narHash": "sha256-doeyg/EY8joBaZhELfVrSGjAm6pFtp2p0UgQv/Wwgh0=",
+        "lastModified": 1788467110,
+        "narHash": "sha256-ljEMTXP/rH0tOvDzc9gzwww6KcHRPRnEHzd9lK48V7s=",
         "owner": "denful",
         "repo": "import-tree",
-        "rev": "e9177dd0d600162a6410ea6019c796cff7a636c3",
+        "rev": "eb1b52eaecc57f7c136d07ae8a93e724dfecac46",
         "type": "github"
       },
       "original": {
@@ -551,11 +551,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1788446444,
-        "narHash": "sha256-m24l1p++9rUvbpF2pqnL2b6lmfw99YX6V+SmP/cQ8pc=",
+        "lastModified": 1788523300,
+        "narHash": "sha256-HRlfCPLSKAHOnbn+QxuEvWvug0yqU8oHZHLbO5snJQE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d90bf113a0fff1769738ee79c3b12fdf44ed8776",
+        "rev": "074b06a122e9f3e245e17fdc1199c3481c8b70b5",
         "type": "github"
       },
       "original": {
@@ -638,12 +638,12 @@
         "rev": "317223f99a0188757464b3a860a66cdca722d060",
         "shallow": true,
         "type": "git",
-        "url": "ssh://git@github.com/keenanweaver/nix-nonfree.git"
+        "url": "https://github.com/keenanweaver/nix-nonfree.git"
       },
       "original": {
         "shallow": true,
         "type": "git",
-        "url": "ssh://git@github.com/keenanweaver/nix-nonfree.git"
+        "url": "https://github.com/keenanweaver/nix-nonfree.git"
       }
     },
     "omniflake": {
@@ -657,11 +657,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1788436951,
-        "narHash": "sha256-I86awMc8P2wvIwdbhf6Wt88WOOwulgjk0XyuXskKQ0U=",
+        "lastModified": 1788523636,
+        "narHash": "sha256-FIImO19AAlPNORpzcQMrL2Pn7d2vgC3UYsMbKgf8PFQ=",
         "owner": "fzakaria",
         "repo": "omniflake",
-        "rev": "8af2e5937f3ca8093cb315e59229ee0baeb9acf4",
+        "rev": "768e8f0b7e668518f0115a8cf6badc3b5da371f0",
         "type": "github"
       },
       "original": {

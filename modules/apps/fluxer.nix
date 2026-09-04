@@ -3,7 +3,7 @@
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
-        fluxer-desktop-canary
+        fluxer-desktop
       ];
     };
 }

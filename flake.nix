@@ -53,7 +53,7 @@
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nonfree = {
-      url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
+      url = "git+https://github.com/keenanweaver/nix-nonfree.git?shallow=1";
       flake = false;
     };
     omniflake = {
