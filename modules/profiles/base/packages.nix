@@ -19,7 +19,6 @@ in
             aspellDicts.en
             killall
             kmon
-            libnotify
             repgrep
             unrar
             unzip
@@ -33,14 +32,7 @@ in
     nixos.profile-base =
       { config, pkgs, ... }:
       {
-        environment = {
-          etc."packages".text = packageListText pkgs config.environment.systemPackages;
-          systemPackages = with pkgs; [
-            lm_sensors
-            pciutils
-            xdg-user-dirs
-          ];
-        };
+        environment.etc."packages".text = packageListText pkgs config.environment.systemPackages;
       };
   };
 }

@@ -8,7 +8,12 @@
       zen-browser
     ];
     nixos.profile-desktop =
-      { lib, config, ... }:
+      {
+        lib,
+        config,
+        pkgs,
+        ...
+      }:
       {
         imports = with self.modules.nixos; [
           inputs.omniflake.flakes.ucodenix.nixosModules.default
@@ -17,14 +22,27 @@
           kde
         ];
         boot.kernelParams = lib.mkIf config.services.ucodenix.enable [ "microcode.amd_sha_check=off" ];
-        environment.sessionVariables = {
-          ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-          NIXOS_OZONE_WL = "1";
+        console = {
+          font = "ter-v28b";
+          packages = with pkgs; [
+            terminus_font
+          ];
+        };
+        environment = {
+          sessionVariables = {
+            ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+            NIXOS_OZONE_WL = "1";
+          };
+          stub-ld.enable = true;
         };
         hardware.graphics = {
           enable = true;
           enable32Bit = true;
         };
+        my.permittedInsecurePackages = [
+          "electron-40.10.5" # ?
+          "olm-3.2.16" # Neochat
+        ];
         nix.settings = {
           extra-substituters = [
             "https://attic.xuyh0120.win/lantian" # https://github.com/xddxdd/nix-cachyos-kernel?tab=readme-ov-file#binary-cache

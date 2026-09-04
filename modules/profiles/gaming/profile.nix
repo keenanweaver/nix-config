@@ -1,8 +1,4 @@
-{ inputs, ... }:
 {
-  flake.lib.nixCitizen = inputs.omniflake.lib.load "nix-citizen" (
-    inputs.omniflake.lib.foundations // { nix-gaming = inputs.omniflake.flakes.nix-gaming; }
-  );
   flake.modules = {
     homeManager.profile-gaming =
       {

@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.profile-base =
+  flake.modules.homeManager.profile-desktop =
     { inputs, ... }:
     {
       imports = [

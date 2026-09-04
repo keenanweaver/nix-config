@@ -1,25 +1,34 @@
 { inputs, lib, ... }:
 {
-  flake.modules.nixos.profile-base.nixpkgs = {
-    config = {
-      allowBroken = false;
-      allowUnfree = true;
+  flake.modules.nixos.profile-base =
+    { lib, config, ... }:
+    {
+      config.nixpkgs = {
+        config = {
+          allowBroken = false;
+          allowUnfree = true;
+          permittedInsecurePackages = config.my.permittedInsecurePackages;
+        };
+        overlays = [
+          (final: _prev: {
+            nixpkgs-unstable = import inputs.nixpkgs-unstable {
+              inherit (final) config;
+              inherit (final.stdenv.hostPlatform) system;
+            };
+          })
+          (final: _prev: {
+            master = import inputs.nixpkgs-master {
+              inherit (final) config;
+              inherit (final.stdenv.hostPlatform) system;
+            };
+          })
+        ];
+      };
+      options.my.permittedInsecurePackages = lib.mkOption {
+        default = [ ];
+        type = lib.types.listOf lib.types.str;
+      };
     };
-    overlays = [
-      (final: _prev: {
-        nixpkgs-unstable = import inputs.nixpkgs-unstable {
-          inherit (final) config;
-          inherit (final.stdenv.hostPlatform) system;
-        };
-      })
-      (final: _prev: {
-        master = import inputs.nixpkgs-master {
-          inherit (final) config;
-          inherit (final.stdenv.hostPlatform) system;
-        };
-      })
-    ];
-  };
   flake-file.inputs = {
     nixpkgs.url = lib.mkForce "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";

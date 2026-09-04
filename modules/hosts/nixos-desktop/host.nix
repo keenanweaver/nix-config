@@ -25,6 +25,8 @@
         solaar
         stream-controller
         vscodium
+
+        star-citizen
       ];
       boot.binfmt.emulatedSystems = [
         "aarch64-linux"
