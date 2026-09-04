@@ -58,9 +58,7 @@
             enable = true;
             freeMemThreshold = 5;
           };
-          journald.extraConfig = ''
-            SystemMaxUse=50M
-          '';
+          journald.settings.Journal.SystemMaxUse = "50M";
           logrotate.enable = true;
         };
         systemd.settings.Manager = {

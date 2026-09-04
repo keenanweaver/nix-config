@@ -3,7 +3,7 @@
     { lib, pkgs, ... }:
     {
       services.lact.settings = {
-        version = 6;
+        version = 7;
         apply_settings_timer = 5;
         auto_switch_profiles = true;
         daemon = {

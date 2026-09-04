@@ -74,13 +74,13 @@ update-pkgs:
         [ -f "${dir}package.nix" ] || continue; \
         grep -q "updateScript" "${dir}package.nix" || { echo "-- $name has no updateScript, skipping"; continue; }; \
         echo "==> updating $name"; \
-        nix-update --flake -u "$name" || echo "!! $name failed to update"; \
+        nix-update --flake "$name" || echo "!! $name failed to update"; \
     done
     git add pkgs
 
 # Update a single local package in ./pkgs
-update-pkg name:
-    nix-update --flake -u {{ name }}
+update-pkg name version="stable":
+    nix-update --flake --version={{ version }} {{ name }}
     git add pkgs/{{ name }}
 
 # ══ Git ══════════════════════════════════════════════════════

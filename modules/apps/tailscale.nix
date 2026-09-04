@@ -8,16 +8,19 @@
           "${ktailctl}/share/applications/org.fkoehler.KTailctl.desktop"
         ];
       };
-    nixos.profile-base = {
-      preservation.preserveAt."/persist".directories = [
-        "/var/lib/tailscale"
-      ];
-      services.tailscale = {
-        enable = true;
-        extraUpFlags = [ "--accept-routes=false" ];
-        openFirewall = true;
-        useRoutingFeatures = "both";
+    nixos.profile-base =
+      { config, ... }:
+      {
+        preservation.preserveAt."/persist".directories = [
+          "/var/lib/tailscale"
+        ];
+        services.tailscale = {
+          enable = true;
+          extraUpFlags = [ "--accept-routes=false" ];
+          openFirewall = true;
+          permitCertUid = config.my.user;
+          useRoutingFeatures = "both";
+        };
       };
-    };
   };
 }

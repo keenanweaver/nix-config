@@ -157,7 +157,7 @@
             oversteer
             parsec-bin
             patool
-            picard
+            #picard
             pigz # gz
             play
             podman-tui
@@ -165,7 +165,7 @@
             procs # ps
             projectm-sdl-cpp
             ps3-disc-dumper
-            puddletag
+            #puddletag
             python314Packages.lnkparse3
             qbz
             qtscrcpy
