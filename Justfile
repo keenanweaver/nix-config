@@ -130,6 +130,19 @@ deploy host target:
     args+=({{ target }})
     nix run github:nix-community/nixos-anywhere -- "${args[@]}"
 
+# Build a flashable SD card image (sdImage-based Pi hosts) with the host's
+# SSH key pre-seeded — run gen-host-key + age-key + sops-rekey first.
+sd-image host:
+    nix build .#nixosConfigurations.{{ host }}.config.system.build.sdImage --impure --print-out-paths
+
+# Probe an already-booted host's real hardware and save the report.
+# nixos-anywhere does this itself before installing; sd-image hosts build
+# blind (no live target yet), so this is the post-boot equivalent — run it
+# once after first boot, then redeploy so the accurate report takes effect.
+facter host target:
+    ssh {{ target }} -- nix run github:numtide/nixos-facter -- -o /tmp/facter.json
+    scp {{ target }}:/tmp/facter.json assets/hosts/{{ host }}/facter.json
+
 # Clean up temporary key material
 clean-keys:
     rm -rf /tmp/extra-files

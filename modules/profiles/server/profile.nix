@@ -11,7 +11,6 @@
       { inputs, config, ... }:
       {
         imports = [
-          inputs.omniflake.flakes.microvm-nix.nixosModules.microvm
           inputs.omniflake.flakes.quadlet-nix.nixosModules.quadlet
         ];
         # https://tarow.github.io/nix-podman-stacks/docs/getting-started.html#%E2%9A%99%EF%B8%8F-prerequisites

@@ -27,6 +27,6 @@
     };
   flake-file.inputs.nonfree = {
     flake = false;
-    url = "git+ssh://git@github.com/keenanweaver/nix-nonfree.git?shallow=1";
+    url = "git+https://github.com/keenanweaver/nix-nonfree.git?shallow=1";
   };
 }

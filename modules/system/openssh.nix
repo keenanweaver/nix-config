@@ -49,13 +49,13 @@
               Port = 6777;
             };
             opnsense.HostName = "opnsense";
-            regretpi = {
-              HostName = "regretpi";
-              Port = 22;
+            regret = {
+              HostName = "regret";
+              Port = 6777;
             };
-            remorsepi = {
-              HostName = "remorsepi";
-              Port = 22;
+            remorse = {
+              HostName = "remorse";
+              Port = 6777;
             };
             "tangled.org" = {
               identitiesOnly = true;

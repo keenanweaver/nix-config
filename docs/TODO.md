@@ -27,3 +27,4 @@ These are hacks/temporary workarounds that should be reverted once upstream/othe
 - [Ghostty](../modules/apps/ghostty.nix). Explore various options.
 - [Helix](../modules/apps/helix.nix). Cleanup or remove.
 - Plymouth. Consider Steam theme for `nixos-htpc`
+- MiSTer/`nixos-htpc` save sync in `regret` pi

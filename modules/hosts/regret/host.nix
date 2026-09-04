@@ -12,8 +12,6 @@
       imports =
         with self.modules.nixos;
         [
-          self.diskoConfigurations.regret
-
           profile-base
           profile-pi
         ]
@@ -21,6 +19,7 @@
           inputs.nixos-raspberrypi.lib.inject-overlays
           trusted-nix-caches
           raspberry-pi-4.base
+          sd-image
         ]);
       boot.kernelPackages =
         lib.mkForce
@@ -37,15 +36,61 @@
           RENOVATE_GIT_PRIVATE_KEY = config.sops.secrets."renovate/git_signing".path;
           RENOVATE_TOKEN = config.sops.secrets."renovate/codeberg_bot_pat".path;
         };
+        runtimePackages = with pkgs; [
+          nix
+          nix-update
+          openssh
+        ];
         schedule = "*-*-* 00/5:00:00";
         settings = {
           allowedCommands = [ "^nix-update " ];
           autodiscover = false;
           customManagers = [
             {
+              currentValueTemplate = "master";
               customType = "regex";
               datasourceTemplate = "git-refs";
-              managerFilePatterns = [ "/^pkgs/.+/package\\.nix$/" ];
+              managerFilePatterns = [ "/^pkgs/lgogdownloader/package\\.nix$/" ];
+              matchStrings = [
+                "owner = \"(?<depName>[^\"]+)\";\\s*repo = \"(?<packageName>[^\"]+)\";\\s*rev = \"(?<currentDigest>[a-f0-9]{40})\";"
+              ];
+              packageNameTemplate = "https://github.com/{{{depName}}}/{{{packageName}}}";
+            }
+            {
+              currentValueTemplate = "master";
+              customType = "regex";
+              datasourceTemplate = "git-refs";
+              managerFilePatterns = [ "/^pkgs/nuked-sc55/package\\.nix$/" ];
+              matchStrings = [
+                "owner = \"(?<depName>[^\"]+)\";\\s*repo = \"(?<packageName>[^\"]+)\";\\s*rev = \"(?<currentDigest>[a-f0-9]{40})\";"
+              ];
+              packageNameTemplate = "https://github.com/{{{depName}}}/{{{packageName}}}";
+            }
+            {
+              currentValueTemplate = "oxce-plus";
+              customType = "regex";
+              datasourceTemplate = "git-refs";
+              managerFilePatterns = [ "/^pkgs/openxcom-extended/package\\.nix$/" ];
+              matchStrings = [
+                "owner = \"(?<depName>[^\"]+)\";\\s*repo = \"(?<packageName>[^\"]+)\";\\s*rev = \"(?<currentDigest>[a-f0-9]{40})\";"
+              ];
+              packageNameTemplate = "https://github.com/{{{depName}}}/{{{packageName}}}";
+            }
+            {
+              currentValueTemplate = "main";
+              customType = "regex";
+              datasourceTemplate = "git-refs";
+              managerFilePatterns = [ "/^pkgs/portproton/package\\.nix$/" ];
+              matchStrings = [
+                "owner = \"(?<depName>[^\"]+)\";\\s*repo = \"(?<packageName>[^\"]+)\";\\s*rev = \"(?<currentDigest>[a-f0-9]{40})\";"
+              ];
+              packageNameTemplate = "https://github.com/{{{depName}}}/{{{packageName}}}";
+            }
+            {
+              currentValueTemplate = "master";
+              customType = "regex";
+              datasourceTemplate = "git-refs";
+              managerFilePatterns = [ "/^pkgs/relive/package\\.nix$/" ];
               matchStrings = [
                 "owner = \"(?<depName>[^\"]+)\";\\s*repo = \"(?<packageName>[^\"]+)\";\\s*rev = \"(?<currentDigest>[a-f0-9]{40})\";"
               ];
@@ -92,12 +137,8 @@
           persistRepoData = true;
           platform = "forgejo";
           repositories = [ "Keenan/nix-config" ];
-          runtimePackages = with pkgs; [
-            nix
-            nix-update
-          ];
-          validateSettings = true;
         };
+        validateSettings = true;
       };
       sops.secrets = {
         "renovate/codeberg_bot_pat" = { };
@@ -105,21 +146,23 @@
         "renovate/github_access_token" = { };
       };
       system.stateVersion = "26.05";
-      virtualisation.quadlet.containers.mister-retroarch-save-sync = {
-        autoStart = true;
-        containerConfig = {
-          autoUpdate = "registry";
-          environments = {
-            RETROARCH_CORES = "FCEUmm, Snes9x, Gambatte, mGBA, Genesis Plus GX, Beetle PSX HW, Mupen64Plus-Next";
-            TZ = config.time.timeZone;
-          };
-          image = "ghcr.io/juaniwck/mister-retroarch-save-sync:latest";
-          volumes = [
-            "/mnt/retroarch:/retroarch"
-            "/mnt/mister/saves:/mister/saves"
-          ];
-        };
-        serviceConfig.Restart = "unless-stopped";
-      };
+      /*
+        virtualisation.quadlet.containers.mister-retroarch-save-sync = {
+             autoStart = true;
+             containerConfig = {
+               autoUpdate = "registry";
+               environments = {
+                 RETROARCH_CORES = "FCEUmm, Snes9x, Gambatte, mGBA, Genesis Plus GX, Beetle PSX HW, Mupen64Plus-Next";
+                 TZ = config.time.timeZone;
+               };
+               image = "ghcr.io/juaniwck/mister-retroarch-save-sync:latest";
+               volumes = [
+                 "/mnt/retroarch:/retroarch"
+                 "/mnt/mister/saves:/mister/saves"
+               ];
+             };
+             serviceConfig.Restart = "unless-stopped";
+           };
+      */
     };
 }

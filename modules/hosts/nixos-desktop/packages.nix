@@ -4,7 +4,6 @@
     {
       home-manager.users.${config.my.user} =
         {
-          self,
           inputs,
           lib,
           pkgs,
@@ -179,7 +178,6 @@
             sd # sed
             sdlpop
             seer
-            self.lib.nixCitizen.packages.${system}.rsi-launcher
             shadps4-qtlauncher
             shellcheck
             shellharden

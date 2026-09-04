@@ -49,6 +49,9 @@
           enableZram = lib.mkForce false; # Conflicts with zswap
         };
       };
+      my.permittedInsecurePackages = [
+        "pnpm-9.15.9" # Decky Loader
+      ];
       preservation.preserveAt."/persist".directories = [ "/var/lib/decky-loader" ];
       services = {
         displayManager.plasma-login-manager.enable = lib.mkForce false; # Conflicts with Jovian
