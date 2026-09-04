@@ -50,6 +50,7 @@
               currentValueTemplate = "master";
               customType = "regex";
               datasourceTemplate = "git-refs";
+              depNameTemplate = "{{{packageName}}}";
               managerFilePatterns = [ "/^pkgs/lgogdownloader/package\\.nix$/" ];
               matchStrings = [
                 "owner = \"(?<depName>[^\"]+)\";\\s*repo = \"(?<packageName>[^\"]+)\";\\s*rev = \"(?<currentDigest>[a-f0-9]{40})\";"
@@ -60,6 +61,7 @@
               currentValueTemplate = "master";
               customType = "regex";
               datasourceTemplate = "git-refs";
+              depNameTemplate = "{{{packageName}}}";
               managerFilePatterns = [ "/^pkgs/nuked-sc55/package\\.nix$/" ];
               matchStrings = [
                 "owner = \"(?<depName>[^\"]+)\";\\s*repo = \"(?<packageName>[^\"]+)\";\\s*rev = \"(?<currentDigest>[a-f0-9]{40})\";"
@@ -70,6 +72,7 @@
               currentValueTemplate = "oxce-plus";
               customType = "regex";
               datasourceTemplate = "git-refs";
+              depNameTemplate = "{{{packageName}}}";
               managerFilePatterns = [ "/^pkgs/openxcom-extended/package\\.nix$/" ];
               matchStrings = [
                 "owner = \"(?<depName>[^\"]+)\";\\s*repo = \"(?<packageName>[^\"]+)\";\\s*rev = \"(?<currentDigest>[a-f0-9]{40})\";"
@@ -80,6 +83,7 @@
               currentValueTemplate = "main";
               customType = "regex";
               datasourceTemplate = "git-refs";
+              depNameTemplate = "{{{packageName}}}";
               managerFilePatterns = [ "/^pkgs/portproton/package\\.nix$/" ];
               matchStrings = [
                 "owner = \"(?<depName>[^\"]+)\";\\s*repo = \"(?<packageName>[^\"]+)\";\\s*rev = \"(?<currentDigest>[a-f0-9]{40})\";"
@@ -90,6 +94,7 @@
               currentValueTemplate = "master";
               customType = "regex";
               datasourceTemplate = "git-refs";
+              depNameTemplate = "{{{packageName}}}";
               managerFilePatterns = [ "/^pkgs/relive/package\\.nix$/" ];
               matchStrings = [
                 "owner = \"(?<depName>[^\"]+)\";\\s*repo = \"(?<packageName>[^\"]+)\";\\s*rev = \"(?<currentDigest>[a-f0-9]{40})\";"
@@ -116,6 +121,7 @@
             }
           ];
           endpoint = "https://codeberg.org";
+          extends = [ "config:recommended" ];
           gitAuthor = "Keenan-Renovate <keenan-renovate@noreply.codeberg.org>";
           lockFileMaintenance = {
             enabled = true;
@@ -128,7 +134,7 @@
             {
               matchManagers = [ "custom.regex" ];
               postUpgradeTasks = {
-                commands = [ ''nix-update --flake -u "$(basename {{{packageFileDir}}})"'' ];
+                commands = [ "nix-update --flake -u {{basename packageFileDir}}" ];
                 executionMode = "branch";
                 fileFilters = [ "pkgs/**" ];
               };
