@@ -8,7 +8,7 @@
           "${ktailctl}/share/applications/org.fkoehler.KTailctl.desktop"
         ];
       };
-    nixos.profile-desktop = {
+    nixos.profile-base = {
       preservation.preserveAt."/persist".directories = [
         "/var/lib/tailscale"
       ];
