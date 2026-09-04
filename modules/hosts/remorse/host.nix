@@ -13,8 +13,6 @@
       imports =
         with self.modules.nixos;
         [
-          self.diskoConfigurations.remorse
-
           profile-base
           profile-pi
         ]
@@ -22,6 +20,7 @@
           inputs.nixos-raspberrypi.lib.inject-overlays
           trusted-nix-caches
           raspberry-pi-4.base
+          sd-image
         ]);
       boot.kernelPackages =
         lib.mkForce
