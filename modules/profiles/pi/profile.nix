@@ -61,6 +61,7 @@
         '';
         services.btrfs.autoScrub.enable = lib.mkForce false;
         system.boot.loader.kernelFile = lib.mkForce "Image";
+        zramSwap.enable = true;
       };
   };
   flake-file.inputs.nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";

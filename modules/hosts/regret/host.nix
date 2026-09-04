@@ -29,10 +29,11 @@
         profile-pi
       ];
       networking.hostName = "regret";
+      nix.settings.allowed-users = lib.mkDefault [ "renovate" ];
       services.renovate = {
         enable = true;
         credentials = {
-          GITHUB_TOKEN = config.sops.secrets."renovate/github_access_token".path;
+          GITHUB_COM_TOKEN = config.sops.secrets."renovate/github_access_token".path;
           RENOVATE_GIT_PRIVATE_KEY = config.sops.secrets."renovate/git_signing".path;
           RENOVATE_HOST_RULES = config.sops.secrets."renovate/nonfree_host_rules".path;
           RENOVATE_TOKEN = config.sops.secrets."renovate/codeberg_bot_pat".path;
@@ -41,10 +42,36 @@
           nix
           nix-update
           openssh
+          (writeShellApplication {
+            name = "oxce-update";
+            runtimeInputs = [
+              curl
+              git
+              jq
+              nix-update
+            ];
+            text = ''
+              sha="$1"
+              attr="$2"
+              message=$(curl -sf "https://api.github.com/repos/MeridianOXC/OpenXcom/commits/$sha" | jq -r .commit.message)
+              case "$message" in
+                *OXCE*)
+                  nix-update --flake -u "$attr"
+                  ;;
+                *)
+                  echo "Skipping non-OXCE commit $sha: $message" >&2
+                  git checkout -- "pkgs/$attr/package.nix"
+                  ;;
+              esac
+            '';
+          })
         ];
         schedule = "*-*-* 00/5:00:00";
         settings = {
-          allowedCommands = [ "^nix-update " ];
+          allowedCommands = [
+            "^nix-update "
+            "^oxce-update "
+          ];
           autodiscover = false;
           customManagers = [
             {
@@ -139,6 +166,19 @@
                 executionMode = "branch";
                 fileFilters = [ "pkgs/**" ];
               };
+            }
+            {
+              matchFileNames = [ "pkgs/openxcom-extended/package.nix" ];
+              matchManagers = [ "custom.regex" ];
+              postUpgradeTasks = {
+                commands = [ "oxce-update {{{newDigest}}} openxcom-extended" ];
+                executionMode = "branch";
+                fileFilters = [ "pkgs/**" ];
+              };
+            }
+            {
+              matchDatasources = [ "git-refs" ];
+              prBodyDefinitions.Change = "[`{{{displayFrom}}}` → `{{{displayTo}}}`]({{{sourceUrl}}}/compare/{{{currentDigest}}}...{{{newDigest}}})";
             }
           ];
           persistRepoData = true;
