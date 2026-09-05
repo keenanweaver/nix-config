@@ -4,7 +4,7 @@ keys:
   - &nixos-htpc age1x670f3k6s6q0ee2t9t7m5eh2x6kuhl8gyw6m3k9z6u2pn0qud99qn54n4n
   - &nixos-laptop age1r9ctdxpk2t890sx7spekvyu6r2yjhjsqn6hme9e0t3vdxdhvgdcs0swehg
   - &regret age1v9e2jkf77uf7tv5gmjymf2uea4hsys9ervmc7d0wyjn5fu3wr59sfjx89f
-  - &remorse age1zrcs3puk67ey3tcsrr998seacflqpz87fshm63ee0w8067au0p9qwkdzvu
+  - &remorse age1mpwsnd5z9akcjwp0n2zdk565rt5r9ajhpm39drfvw4cfh6a6sstq5eehev
 
 creation_rules:
   - path_regex: assets/secrets/nixos\.yaml$

@@ -209,13 +209,13 @@
           "name": "Disk",
           "value": 0
         },
-        "serial": "0x34573716",
+        "serial": "0x35552923",
         "model": "Disk",
         "sysfs_id": "/class/block/mmcblk0",
         "sysfs_bus_id": "mmc0:59b4",
         "sysfs_device_link": "/devices/platform/emmc2bus/fe340000.mmc/mmc_host/mmc0/mmc0:59b4",
         "unix_device_names": [
-          "/dev/disk/by-id/mmc-USD00_0x34573716",
+          "/dev/disk/by-id/mmc-USD00_0x35552923",
           "/dev/disk/by-path/platform-fe340000.mmc",
           "/dev/mmcblk0"
         ],
@@ -541,7 +541,7 @@
         "sysfs_id": "/class/block/zram0",
         "unix_device_names": [
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/0893fb92-081a-4908-953b-df5c2e8a77e1",
+          "/dev/disk/by-uuid/8ec73bb2-1c86-418f-96b0-bf139c4c2fd9",
           "/dev/zram0"
         ],
         "resources": [
@@ -1059,7 +1059,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 57
+            "address": 51
           },
           {
             "type": "phwaddr",
@@ -1231,7 +1231,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 57
+            "address": 51
           },
           {
             "type": "phwaddr",
@@ -1251,6 +1251,28 @@
       },
       {
         "index": 37,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
+        "index": 38,
         "attached_to": 12,
         "class_list": [
           "network_interface"
@@ -1284,28 +1306,6 @@
         "driver": "bcmgenet",
         "drivers": [
           "bcmgenet"
-        ]
-      },
-      {
-        "index": 39,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_names": [
-          "lo"
         ]
       }
     ],

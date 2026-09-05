@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml xmlns:frss="https://freshrss.org/opml" version="2.0">
+  <head>
+    <title>FreshRSS</title>
+    <dateCreated>Fri, 04 Sep 2026 08:52:35 -0500</dateCreated>
+  </head>
+  <body>
+    <outline text="Games">
+      <outline text="GOG.com" type="rss" xmlUrl="https://www.gog.com/frontpage/rss" htmlUrl="http://www.gog.com/frontpage/rss" description="The latest news for GOG.com"/>
+      <outline text="The Digital Antiquarian" type="rss" xmlUrl="https://www.filfre.net/feed/" htmlUrl="https://www.filfre.net/" description="A history of computer entertainment and digital culture by Jimmy Maher"/>
+      <outline text="Thrilling Tales of Old Video Games" type="rss" xmlUrl="https://www.thrillingtalesofoldvideogames.com/?format=rss" htmlUrl="https://www.thrillingtalesofoldvideogames.com/"/>
+    </outline>
+    <outline text="NixOS">
+      <outline text="bstone" type="rss" xmlUrl="https://github.com/bibendovsky/bstone/releases.atom" htmlUrl="https://github.com/bibendovsky/bstone/releases"/>
+      <outline text="crispy-doom" type="rss" xmlUrl="https://github.com/fabiangreffrath/crispy-doom/releases.atom" htmlUrl="https://github.com/fabiangreffrath/crispy-doom/releases"/>
+      <outline text="DoomRunner" type="rss" xmlUrl="https://github.com/Youda008/DoomRunner/releases.atom" htmlUrl="https://github.com/Youda008/DoomRunner/releases"/>
+      <outline text="game-devices-udev" type="rss" xmlUrl="https://codeberg.org/fabiscafe/game-devices-udev/releases.rss" htmlUrl="https://codeberg.org/fabiscafe/game-devices-udev/release" description="udev rules for game-devices"/>
+      <outline text="GeneralUser-GS" type="rss" xmlUrl="https://github.com/mrbumpy409/GeneralUser-GS/commits.atom" htmlUrl="https://github.com/mrbumpy409/GeneralUser-GS/commits/main"/>
+      <outline text="HeroicGamesLauncher" type="rss" xmlUrl="https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases.atom" htmlUrl="https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases"/>
+      <outline text="Nero-umu" type="rss" xmlUrl="https://github.com/SeongGino/Nero-umu/releases.atom" htmlUrl="https://github.com/SeongGino/Nero-umu/releases"/>
+      <outline text="openomf" type="rss" xmlUrl="https://github.com/omf2097/openomf/releases.atom" htmlUrl="https://github.com/omf2097/openomf/releases"/>
+      <outline text="OpenRCT2" type="rss" xmlUrl="https://github.com/OpenRCT2/OpenRCT2/releases.atom" htmlUrl="https://github.com/OpenRCT2/OpenRCT2/releases"/>
+      <outline text="RigelEngine" type="rss" xmlUrl="https://github.com/lethal-guitar/RigelEngine/releases.atom" htmlUrl="https://github.com/lethal-guitar/RigelEngine/releases"/>
+      <outline text="tochd" type="rss" xmlUrl="https://github.com/thingsiplay/tochd/releases.atom" htmlUrl="https://github.com/thingsiplay/tochd/releases"/>
+      <outline text="UZDoom" type="rss" xmlUrl="https://github.com/UZDoom/UZDoom/releases.atom" htmlUrl="https://github.com/UZDoom/UZDoom/releases"/>
+      <outline text="woof" type="rss" xmlUrl="https://github.com/fabiangreffrath/woof/releases.atom" htmlUrl="https://github.com/fabiangreffrath/woof/releases"/>
+    </outline>
+  </body>
+</opml>

@@ -28,44 +28,42 @@
         in
         {
           home.packages = [ ntfyCertRenew ];
-          nps = {
-            externalStorageBaseDir = "${config.home.homeDirectory}/external";
-            hostIP4Address = "10.20.20.31";
-            stacks.ntfy = {
-              enable = true;
-              settings = {
-                auth-default-access = "deny-all";
-                auth-users = [
-                  "${config.home.username}:{{ file.Read `${
-                    config.sops.secrets."ntfy/admin_password_hash".path
-                  }` }}:admin"
-                ];
-                cert-file = "/var/lib/ntfy/certs/ntfy.crt";
-                key-file = "/var/lib/ntfy/certs/ntfy.key";
-                listen-http = ":80";
-                listen-https = ":443";
-              };
+          nps.stacks.ntfy = {
+            enable = true;
+            settings = {
+              auth-default-access = "deny-all";
+              auth-users = [
+                "${config.home.username}:{{ file.Read `${
+                  config.sops.secrets."ntfy/admin_password_hash".path
+                }` }}:admin"
+              ];
+              cert-file = "/var/lib/ntfy/certs/ntfy.crt";
+              key-file = "/var/lib/ntfy/certs/ntfy.key";
+              listen-http = ":80";
+              listen-https = ":443";
             };
           };
           services.podman.containers.ntfy.ports = [ "443:443" ];
           sops.secrets."ntfy/admin_password_hash" = { };
-          systemd.user.services.ntfy-cert-renew = {
-            Service = {
-              ExecStart = lib.getExe ntfyCertRenew;
-              Type = "oneshot";
+          systemd.user = {
+            services.ntfy-cert-renew = {
+              Service = {
+                ExecStart = lib.getExe ntfyCertRenew;
+                Type = "oneshot";
+              };
+              Unit = {
+                After = [ "podman-ntfy.service" ];
+                Description = "Renew Tailscale TLS certificate for ntfy";
+              };
             };
-            Unit = {
-              After = [ "podman-ntfy.service" ];
-              Description = "Renew Tailscale TLS certificate for ntfy";
+            timers.ntfy-cert-renew = {
+              Install.WantedBy = [ "timers.target" ];
+              Timer = {
+                OnBootSec = "1m";
+                OnUnitActiveSec = "1d";
+              };
+              Unit.Description = "Periodically renew Tailscale TLS certificate for ntfy";
             };
-          };
-          systemd.user.timers.ntfy-cert-renew = {
-            Install.WantedBy = [ "timers.target" ];
-            Timer = {
-              OnBootSec = "1m";
-              OnUnitActiveSec = "1d";
-            };
-            Unit.Description = "Periodically renew Tailscale TLS certificate for ntfy";
           };
         };
       networking.firewall.interfaces = {

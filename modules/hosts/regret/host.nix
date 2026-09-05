@@ -24,10 +24,18 @@
       boot.kernelPackages =
         lib.mkForce
           inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi4;
-      home-manager.users.${config.my.user}.imports = with self.modules.homeManager; [
-        profile-base
-        profile-pi
-      ];
+      home-manager.users.${config.my.user} =
+        { config, ... }:
+        {
+          imports = with self.modules.homeManager; [
+            profile-base
+            profile-pi
+          ];
+          nps = {
+            externalStorageBaseDir = "${config.home.homeDirectory}/external";
+            hostIP4Address = "10.20.20.31";
+          };
+        };
       networking.hostName = "regret";
       system.stateVersion = "26.05";
       /*

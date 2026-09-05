@@ -134,7 +134,7 @@ sd-image host:
     nix build .#nixosConfigurations.{{ host }}.config.system.build.sdImage --impure --print-out-paths
 
 facter host target:
-    ssh {{ target }} -- nix run github:numtide/nixos-facter -- -o /tmp/facter.json
+    ssh -t {{ target }} -- sudo nix run github:numtide/nixos-facter -- -o /tmp/facter.json '&&' sudo chmod 644 /tmp/facter.json
     scp {{ target }}:/tmp/facter.json assets/hosts/{{ host }}/facter.json
 
 # Clean up temporary key material

@@ -1,6 +1,5 @@
 { self, ... }:
 {
-
   configurations.nixos.remorse.module =
     {
       inputs,
@@ -26,21 +25,15 @@
         lib.mkForce
           inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi4;
       home-manager.users.${config.my.user} =
-        { config, pkgs, ... }:
+        { config, ... }:
         {
           imports = with self.modules.homeManager; [
             profile-base
             profile-pi
           ];
-          home.packages = with pkgs; [ local.lgogdownloader ];
           nps = {
             externalStorageBaseDir = "${config.home.homeDirectory}/external";
             hostIP4Address = "10.20.20.30";
-            stacks = {
-              freshrss.enable = true;
-              homeassistant.enable = true;
-              homepage.enable = true;
-            };
           };
         };
       networking = {
