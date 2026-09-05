@@ -634,16 +634,15 @@
       "locked": {
         "lastModified": 1778523740,
         "narHash": "sha256-0QOJlZQ1+bQe4/WimlfmZrr2EaxBacNOfADMiC6TQRs=",
-        "ref": "refs/heads/main",
+        "owner": "keenanweaver",
+        "repo": "nix-nonfree",
         "rev": "317223f99a0188757464b3a860a66cdca722d060",
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/keenanweaver/nix-nonfree.git"
+        "type": "github"
       },
       "original": {
-        "shallow": true,
-        "type": "git",
-        "url": "https://github.com/keenanweaver/nix-nonfree.git"
+        "owner": "keenanweaver",
+        "repo": "nix-nonfree",
+        "type": "github"
       }
     },
     "omniflake": {

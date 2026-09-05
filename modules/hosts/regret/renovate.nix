@@ -28,7 +28,7 @@
           gitAuthor = "Keenan-Renovate <keenan-renovate@noreply.codeberg.org>";
           lockFileMaintenance = {
             enabled = true;
-            extends = [ "schedule:daily" ];
+            schedule = [ "at any time" ];
           };
           nix.enabled = true;
           onboardingConfigFileName = "renovate.json";

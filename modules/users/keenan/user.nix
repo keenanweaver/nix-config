@@ -14,9 +14,9 @@
           !include ${config.sops.secrets."nonfree_repo_access_token".path}
         '';
         sops.secrets = {
-          "nonfree_repo_access_token" = { };
+          "nonfree_repo_access_token".owner = "${config.my.user}";
           "users/${config.my.user}/age-key".owner = "${config.my.user}";
-          "users/${config.my.user}/github_access_token" = { };
+          "users/${config.my.user}/github_access_token".owner = "${config.my.user}";
           "users/${config.my.user}/github_pat" = { };
           "users/${config.my.user}/password".neededForUsers = true;
           "users/${config.my.user}/ssh/id_ed25519" = {
