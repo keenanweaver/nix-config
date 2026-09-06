@@ -33,12 +33,14 @@
           supportedFilesystems.zfs = lib.mkForce false;
           zswap.enable = lib.mkForce false;
         };
-        fileSystems."/".autoResize = lib.mkForce true;
-        fileSystems."/persist" = {
-          device = "/persist";
-          fsType = "none";
-          neededForBoot = true;
-          options = [ "bind" ];
+        fileSystems = {
+          "/".autoResize = lib.mkForce true;
+          "/persist" = {
+            device = "/persist";
+            fsType = "none";
+            neededForBoot = true;
+            options = [ "bind" ];
+          };
         };
         hardware = {
           deviceTree.enable = lib.mkForce false;
@@ -64,5 +66,4 @@
         zramSwap.enable = true;
       };
   };
-  flake-file.inputs.nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
 }

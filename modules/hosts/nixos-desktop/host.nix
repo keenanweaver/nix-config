@@ -89,6 +89,8 @@
             retroarch
             vesktop
             vscodium
+
+            doom
           ];
           home = {
             packages = with pkgs; [

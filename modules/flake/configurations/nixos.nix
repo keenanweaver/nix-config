@@ -37,7 +37,7 @@ in
         ];
         specialArgs = {
           inherit inputs self;
-          inherit (inputs) nixos-raspberrypi;
+          nixos-raspberrypi = inputs.omniflake.flakes.nixos-raspberrypi;
         };
       }
     ) config.configurations.nixos;

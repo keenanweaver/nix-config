@@ -23,6 +23,7 @@
         schedule = "*-*-* 00/5:00:00";
         settings = {
           autodiscover = false;
+          configMigration = true;
           endpoint = "https://codeberg.org";
           extends = [ "config:recommended" ];
           gitAuthor = "Keenan-Renovate <keenan-renovate@noreply.codeberg.org>";
@@ -33,8 +34,17 @@
           nix.enabled = true;
           onboardingConfigFileName = "renovate.json";
           optimizeForDisabled = true;
+          osvVulnerabilityAlerts = true;
+          packageRules = [
+            {
+              groupName = "flake inputs";
+              matchManagers = [ "nix" ];
+            }
+          ];
           persistRepoData = true;
           platform = "forgejo";
+          prConcurrentLimit = 0;
+          prHourlyLimit = 0;
           repositories = [ "Keenan/nix-config" ];
         };
         validateSettings = true;

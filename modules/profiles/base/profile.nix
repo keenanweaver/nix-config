@@ -1,32 +1,13 @@
 { self, ... }:
 {
   flake.modules = {
-    homeManager.profile-base =
-      { config, ... }:
-      {
-        home = {
-          language = {
-            base = "en_US.UTF-8";
-            collate = "C.UTF-8";
-          };
-          sessionPath = [
-            "${config.home.homeDirectory}/.bin"
-            "${config.home.homeDirectory}/.local/bin"
-          ];
-        };
-        xdg = {
-          enable = true;
-          autostart.enable = true;
-          userDirs = {
-            enable = true;
-            createDirectories = true;
-            projects = null;
-            publicShare = null;
-            setSessionVariables = true;
-            templates = null;
-          };
-        };
+    homeManager.profile-base = {
+      home.language = {
+        base = "en_US.UTF-8";
+        collate = "C.UTF-8";
       };
+      xdg.enable = true;
+    };
     nixos.profile-base =
       {
         inputs,
@@ -44,7 +25,6 @@
             NixOS release: ${config.system.nixos.release}
             Nixpkgs revision: ${inputs.nixpkgs.rev}
           '';
-          homeBinInPath = true;
           localBinInPath = true;
           shells = with pkgs; [
             bash

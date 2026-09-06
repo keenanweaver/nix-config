@@ -2,10 +2,10 @@
 {
   configurations.nixos.remorse.module =
     {
-      inputs,
       lib,
       config,
       pkgs,
+      nixos-raspberrypi,
       ...
     }:
     {
@@ -15,15 +15,15 @@
           profile-base
           profile-pi
         ]
-        ++ (with inputs.nixos-raspberrypi.nixosModules; [
-          inputs.nixos-raspberrypi.lib.inject-overlays
+        ++ (with nixos-raspberrypi.nixosModules; [
+          nixos-raspberrypi.lib.inject-overlays
           trusted-nix-caches
           raspberry-pi-4.base
           sd-image
         ]);
       boot.kernelPackages =
         lib.mkForce
-          inputs.nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi4;
+          nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi4;
       home-manager.users.${config.my.user} =
         { config, ... }:
         {

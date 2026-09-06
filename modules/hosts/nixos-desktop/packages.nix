@@ -43,22 +43,16 @@
             bstone
             caligula
             chiaki-ng
-            chocolate-doom
             choose # cut
             codeium
             comma
             corsix-th
-            crispy-doom
             csvlens
             #cyanrip
-            darkradiant
             deadnix
             descent3
             doggo # dig
-            doomrunner
-            doomseeker
             dosbox-staging
-            dsda-doom
             dua # du
             duf # df
             dxx-rebirth
@@ -93,8 +87,6 @@
             #inputs.omniflake.flakes.nix-game-preservation.packages.${system}.ndecrypt-git
             #inputs.omniflake.flakes.nix-game-preservation.packages.${system}.sabretools-git
             #inputs.omniflake.flakes.nix-game-preservation.packages.${system}.unshieldsharp-git
-            inputs.omniflake.flakes.nur-packages-bandithedoge.legacyPackages.${system}.cherry-doom
-            inputs.omniflake.flakes.nur-packages-bandithedoge.legacyPackages.${system}.nyan-doom
             inputs.omniflake.flakes.nur-packages-bandithedoge.legacyPackages.${system}.sheepshaver-bin
             isd
             isle-portable
@@ -141,9 +133,7 @@
             nixos-shell
             nixpkgs-review
             nsz
-            nugget-doom
             nvd
-            odamex
             okteta
             opengoal-launcher
             openjk
@@ -163,7 +153,6 @@
             podman-tui
             powershell
             procs # ps
-            projectm-sdl-cpp
             ps3-disc-dumper
             #puddletag
             python314Packages.lnkparse3
@@ -183,7 +172,6 @@
             shellharden
             shfmt
             signal-desktop
-            slade
             sm64ex
             srb2
             statix
@@ -193,20 +181,17 @@
             tochd
             ttysvr
             urbanterror
-            uzdoom
             varia
             vcmi
             wikiman
             winboat
             wipeout-rewrite
-            woof-doom
             writedisk # dd
             xenia-canary
             xh # curl
             xvidcore
             yarg
             yq
-            zandronum
           ];
           programs = {
             plasma.hotkeys.commands.gsr-save-replay = {

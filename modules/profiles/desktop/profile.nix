@@ -1,12 +1,25 @@
 { self, inputs, ... }:
 {
   flake.modules = {
-    homeManager.profile-desktop.imports = with self.modules.homeManager; [
-      catppuccin
-      kde
-      plasma-manager
-      zen-browser
-    ];
+    homeManager.profile-desktop = {
+      imports = with self.modules.homeManager; [
+        catppuccin
+        kde
+        plasma-manager
+        zen-browser
+      ];
+      xdg = {
+        autostart.enable = true;
+        userDirs = {
+          enable = true;
+          createDirectories = true;
+          projects = null;
+          publicShare = null;
+          setSessionVariables = true;
+          templates = null;
+        };
+      };
+    };
     nixos.profile-desktop =
       {
         lib,
