@@ -75,11 +75,15 @@
                   echo "failed to resolve nixos-unstable HEAD" >&2
                   exit 1
                 fi
-                last_sha=""
-                [ -f "$state_file" ] && last_sha=$(cat "$state_file")
+                if [ ! -f "$state_file" ]; then
+                  echo "$current_sha" > "$state_file"
+                  echo "no prior state; recording nixos-unstable HEAD ($current_sha) without starting renovate"
+                  exit 0
+                fi
+                last_sha=$(cat "$state_file")
                 if [ "$current_sha" != "$last_sha" ]; then
                   echo "$current_sha" > "$state_file"
-                  echo "nixos-unstable moved: ''${last_sha:-<none>} -> $current_sha; starting renovate"
+                  echo "nixos-unstable moved: $last_sha -> $current_sha; starting renovate"
                   systemctl start renovate.service
                 else
                   echo "nixos-unstable unchanged ($current_sha)"
