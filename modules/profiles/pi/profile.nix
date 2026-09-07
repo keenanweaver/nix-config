@@ -1,9 +1,31 @@
 { self, ... }:
 {
   flake.modules = {
-    homeManager.profile-pi.imports = with self.modules.homeManager; [
-      profile-server
-    ];
+    homeManager.profile-pi =
+      { lib, pkgs, ... }:
+      {
+        imports = with self.modules.homeManager; [
+          profile-server
+        ];
+        fonts.fontconfig.enable = lib.mkForce false;
+        programs = {
+          devenv.enable = lib.mkForce false;
+          distrobox.enable = lib.mkForce false;
+          helix.enable = lib.mkForce false;
+          lazyvim.enable = lib.mkForce false;
+          nix-search-tv.enable = lib.mkForce false;
+          yazi.extraPackages = lib.mkForce (
+            with pkgs;
+            [
+              fd
+              ripgrep
+              fzf
+              zoxide
+            ]
+          );
+          yt-dlp.enable = lib.mkForce false;
+        };
+      };
     nixos.profile-pi =
       {
         self,
@@ -41,6 +63,11 @@
             neededForBoot = true;
             options = [ "bind" ];
           };
+        };
+        fonts = {
+          fontDir.enable = lib.mkForce false;
+          fontconfig.enable = lib.mkForce false;
+          packages = lib.mkForce [ ];
         };
         hardware = {
           deviceTree.enable = lib.mkForce false;
