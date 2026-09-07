@@ -23,6 +23,7 @@
         schedule = null;
         settings = {
           autodiscover = false;
+          automerge = true;
           configMigration = true;
           endpoint = "https://codeberg.org";
           extends = [ "config:recommended" ];
