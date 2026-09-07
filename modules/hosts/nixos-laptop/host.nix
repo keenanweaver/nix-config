@@ -8,6 +8,7 @@
 
         profile-base
         profile-desktop
+        profile-niri
         profile-office
 
         secure-boot
@@ -21,6 +22,7 @@
       home-manager.users.${config.my.user}.imports = with self.modules.homeManager; [
         profile-base
         profile-desktop
+        profile-niri
 
         llm
 
