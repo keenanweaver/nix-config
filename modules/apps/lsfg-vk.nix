@@ -20,13 +20,12 @@
       { inputs, pkgs, ... }:
       {
         chaotic.mesa-git.extraPackages =
-          with inputs.omniflake.flakes.lsfg-vk-nix-nyramu.packages.${pkgs.stdenv.hostPlatform.system}; [
+          with inputs.omniflake.flakes.lsfg-vk-nix.packages.${pkgs.stdenv.hostPlatform.system}; [
             lsfg-vk
           ];
         environment.systemPackages =
-          with inputs.omniflake.flakes.lsfg-vk-nix-nyramu.packages.${pkgs.stdenv.hostPlatform.system}; [
+          with inputs.omniflake.flakes.lsfg-vk-nix.packages.${pkgs.stdenv.hostPlatform.system}; [
             lsfg-vk
-            lsfg-vk-ui
           ];
       };
   };

@@ -1,24 +1,20 @@
 {
-  flake.modules.nixos.profile-gaming =
-    { inputs, config, ... }:
-    {
-      imports = [
-        inputs.yeetmouse.nixosModules.default
-      ];
-      hardware.yeetmouse = {
-        enable = true;
-        sensitivity = 1.0;
+  flake.modules = {
+    homeManager.profile-gaming =
+      { inputs, ... }:
+      {
+        imports = [ inputs.omniflake.flakes.yeetmouse-nix.homeModules.default ];
+        programs.yeetmouse.enable = true;
       };
-      preservation.preserveAt."/persist".files = [
-        "/etc/yeetmouse.conf"
-      ];
-      users = {
-        groups.yeetmouse = { };
-        users.${config.my.user}.extraGroups = [ "yeetmouse" ];
+    nixos.profile-gaming =
+      { inputs, ... }:
+      {
+        imports = [ inputs.omniflake.flakes.yeetmouse-nix.nixosModules.default ];
+        hardware.yeetmouse = {
+          enable = true;
+          sensitivity = 1.0;
+        };
+        nixpkgs.overlays = [ inputs.omniflake.flakes.yeetmouse-nix.overlays.default ];
       };
-    };
-  flake-file.inputs.yeetmouse = {
-    inputs.nixpkgs.follows = "nixpkgs";
-    url = "github:AndyFilter/YeetMouse?dir=nix";
   };
 }
