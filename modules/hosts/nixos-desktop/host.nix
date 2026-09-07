@@ -87,6 +87,7 @@
             obs
             obs-flatpak
             retroarch
+            stream-controller
             vesktop
             vscodium
 
