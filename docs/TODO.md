@@ -22,9 +22,7 @@ These are hacks/temporary workarounds that should be reverted once upstream/othe
 ## Config
 
 - Add configs for work
-- Add configs for Niri and Noctalia if I decide to move to that.
 - Flatpak runtimes: update all runtimes to 26.08 when available. gamescope, lsfg-vk, mangohud, obs, vkbasalt, mesa-git
 - [Ghostty](../modules/apps/ghostty.nix). Explore various options.
 - [Helix](../modules/apps/helix.nix). Cleanup or remove.
-- Plymouth. Consider Steam theme for `nixos-htpc`
 - MiSTer/`nixos-htpc` save sync in `regret` pi
