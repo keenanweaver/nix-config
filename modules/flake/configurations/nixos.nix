@@ -37,11 +37,12 @@ in
         ];
         specialArgs = {
           inherit inputs self;
-          nixos-raspberrypi = inputs.omniflake.flakes.nixos-raspberrypi;
+          inherit (inputs) nixos-raspberrypi;
         };
       }
     ) config.configurations.nixos;
   };
+  config.flake-file.inputs.nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
   options.configurations.nixos = mkOption {
     type = types.lazyAttrsOf (
       types.submodule {
