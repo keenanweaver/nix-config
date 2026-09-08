@@ -8,14 +8,14 @@
 }:
 let
   hashes = {
-    x86_64 = "sha256-xEk4Df/0fBXMpTd3mFTn0ryMRpzSa8u5fOGu4Ts5hAc=";
-    x86_64-wow64 = "sha256-naQhrAr1BjCeDFTFrPvD+bY4h5LgcaTw26KyseqWIjM=";
-    x86_64_v3 = "sha256-e27t/8c34YvXda0wMSYErYsBcw9jFBgVtLQ7AyqY1p8=";
+    x86_64 = "sha256-EvKS33zxX0g7d3Hcn/jcucHHTKsrnmFhtqH6pbCuQ5Q=";
+    x86_64-wow64 = "sha256-qQqXm9V63UejYdV24pJBzZ0m8H7GMQCZzFAN2lAfwzk=";
+    x86_64_v3 = "sha256-T0v0RPUJM5RBbXHIcF6OojlrUEfo61m1FGuwaHf/+Vc=";
   };
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "proton-cachyos-wineland";
-  version = "cachyos-wineland-11.0-20260713.4-slr";
+  version = "cachyos-wineland-11.0-20260713.5-slr";
 
   src = fetchurl {
     url = "https://github.com/nanomatters/proton-cachyos/releases/download/${finalAttrs.version}/proton-${finalAttrs.version}-${variant}.tar.xz";
@@ -50,21 +50,30 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   passthru.updateScript = writeScript "update-proton-cachyos-wineland" ''
     #!/usr/bin/env nix-shell
-    #!nix-shell -i bash -p curl jq nix-update
+    #!nix-shell -i bash -p curl jq gnused nix
+    set -euo pipefail
+
     repo="https://api.github.com/repos/nanomatters/proton-cachyos/releases"
     tag="$(curl -sL "$repo" | jq -r 'map(select(.tag_name | startswith("cachyos-wineland-"))) | .[0].tag_name')"
-    nix-update --flake --version="$tag" proton-cachyos-wineland
+    if [ -z "$tag" ] || [ "$tag" = "null" ]; then
+      echo "failed to resolve latest cachyos-wineland-* release tag" >&2
+      exit 1
+    fi
+
+    file="pkgs/proton-cachyos-wineland/package.nix"
+
+    sed -i "s/version = \".*\";/version = \"$tag\";/" "$file"
+
+    for variant in x86_64 x86_64-wow64 x86_64_v3; do
+      url="https://github.com/nanomatters/proton-cachyos/releases/download/$tag/proton-$tag-$variant.tar.xz"
+      echo "prefetching $variant: $url" >&2
+      hash="$(nix store prefetch-file --json "$url" | jq -r .hash)"
+      sed -i "s|^\(\s*$variant = \)\".*\";|\1\"$hash\";|" "$file"
+    done
   '';
 
   meta = {
-    description = ''
-      CachyOS's Proton build, patched by the "wineland" fork for native
-      Wayland Steam overlay and Steam Input support.
-
-      (This is intended for use in the `programs.steam.extraCompatPackages`
-      option only.)
-    '';
-
+    description = "Native Wayland Steam overlay and Steam Input support";
     homepage = "https://github.com/nanomatters/proton-cachyos";
     license = lib.licenses.bsd3;
     sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];

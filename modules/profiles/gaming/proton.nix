@@ -73,13 +73,21 @@
         );
       };
     nixos.profile-gaming =
-      { pkgs, ... }:
+      {
+        inputs,
+        lib,
+        pkgs,
+        ...
+      }:
       let
         steamCompatTools = with pkgs; [
           proton-cachyos
         ];
       in
       {
+        nixpkgs.overlays = lib.mkAfter [
+          inputs.omniflake.flakes.proton-cachyos-nix-daaboulex.overlays.default
+        ];
         programs.steam.extraCompatPackages = steamCompatTools;
       };
   };
