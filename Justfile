@@ -74,7 +74,7 @@ update-pkgs:
         [ -f "${dir}package.nix" ] || continue; \
         grep -q "updateScript" "${dir}package.nix" || { echo "-- $name has no updateScript, skipping"; continue; }; \
         echo "==> updating $name"; \
-        nix-update --flake "$name" || echo "!! $name failed to update"; \
+        nix-update --flake --use-update-script "$name" || echo "!! $name failed to update"; \
     done
     git add pkgs
 

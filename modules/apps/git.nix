@@ -18,10 +18,8 @@
           diff.colorMoved = "default";
           merge.conflictstyle = "diff3";
           safe.directory = [
-            "/mnt/crusader/Projects/Codeberg/nix-config"
             "/mnt/crusader/Projects/Codeberg/nix-config-dendritic"
             "/mnt/crusader/Projects/GitHub/keenanweaver.github.io"
-            "/mnt/crusader/Projects/GitHub/nix-config"
             "/mnt/crusader/Projects/Gitlab/moka-pics"
           ];
           user = {
