@@ -3,19 +3,19 @@
   fetchurl,
   stdenvNoCC,
   writeScript,
-  steamDisplayName ? "Proton-CachyOS-Wineland",
+  steamDisplayName ? "Proton-Wineland",
   variant ? "x86_64",
 }:
 let
   hashes = {
-    x86_64 = "sha256-EvKS33zxX0g7d3Hcn/jcucHHTKsrnmFhtqH6pbCuQ5Q=";
-    x86_64-wow64 = "sha256-qQqXm9V63UejYdV24pJBzZ0m8H7GMQCZzFAN2lAfwzk=";
-    x86_64_v3 = "sha256-T0v0RPUJM5RBbXHIcF6OojlrUEfo61m1FGuwaHf/+Vc=";
+    x86_64 = "sha256-kjdgCVj7u08fNUGfKBp8+Yj7MPbizHXwTLmccrWjRZE=";
+    x86_64_v3 = "sha256-CoqGTFfXjfk9vkiH0Yg0I2AoZS+O0KfVRfY4dDbhGpA=";
+    x86_64_wow64 = "sha256-AqP2X5uX5IwTRKmbPfRkWz53XcXMFrRYZZS8VTvMEXk=";
   };
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
-  pname = "proton-cachyos-wineland";
-  version = "cachyos-wineland-11.0-20260713.5-slr";
+  pname = "proton-wineland";
+  version = "wineland-11.0-20260908";
 
   src = fetchurl {
     url = "https://github.com/nanomatters/proton-cachyos/releases/download/${finalAttrs.version}/proton-${finalAttrs.version}-${variant}.tar.xz";
@@ -48,15 +48,15 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   dontBuild = true;
   dontConfigure = true;
 
-  passthru.updateScript = writeScript "update-proton-cachyos-wineland" ''
+  passthru.updateScript = writeScript "update-proton-wineland" ''
     #!/usr/bin/env nix-shell
     #!nix-shell -i bash -p curl jq gnused nix
     set -euo pipefail
 
     repo="https://api.github.com/repos/nanomatters/proton-cachyos/releases"
-    tag="$(curl -sL "$repo" | jq -r 'map(select(.tag_name | startswith("cachyos-wineland-"))) | .[0].tag_name')"
+    tag="$(curl -sL "$repo" | jq -r 'map(select(.tag_name | test("^(cachyos-)?wineland-"))) | .[0].tag_name')"
     if [ -z "$tag" ] || [ "$tag" = "null" ]; then
-      echo "failed to resolve latest cachyos-wineland-* release tag" >&2
+      echo "failed to resolve latest (cachyos-)wineland-* release tag" >&2
       exit 1
     fi
 
@@ -64,7 +64,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
     sed -i "s/version = \".*\";/version = \"$tag\";/" "$file"
 
-    for variant in x86_64 x86_64-wow64 x86_64_v3; do
+    for variant in x86_64 x86_64_wow64 x86_64_v3; do
       url="https://github.com/nanomatters/proton-cachyos/releases/download/$tag/proton-$tag-$variant.tar.xz"
       echo "prefetching $variant: $url" >&2
       hash="$(nix store prefetch-file --json "$url" | jq -r .hash)"
