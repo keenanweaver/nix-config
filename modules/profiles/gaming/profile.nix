@@ -74,7 +74,7 @@
         };
         nixpkgs.overlays = [
           inputs.umu.overlays.default
-          inputs.omniflake.flakes.nix-cachyos-kernel.overlays.pinned
+          inputs.nix-cachyos-kernel.overlays.pinned
         ];
         security.pam.loginLimits = [
           # RPCS3
@@ -120,6 +120,7 @@
       };
   };
   flake-file.inputs = {
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     simracing-hwdb = {
       flake = false;
       url = "github:JacKeTUs/simracing-hwdb";
