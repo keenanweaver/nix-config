@@ -13,12 +13,10 @@
   ninja,
   nix-update-script,
   pkg-config,
-  qt6,
   rhash,
   tinyxml-2,
   versionCheckHook,
   zlib,
-  enableGui ? false,
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -28,8 +26,8 @@ stdenv.mkDerivation (finalAttrs: {
   src = fetchFromGitHub {
     owner = "Sude-";
     repo = "lgogdownloader";
-    rev = "2c46742e6ec718c035d0e699950fb3f495fbb560";
-    hash = "sha256-hSB0qTV8srTRwoQx2iEe4z1ECFMZubksAYEr5LE7KOk=";
+    rev = "82b90dbb91cd59b8c52fc39e40d32ee3a76500e6";
+    hash = "sha256-0UiNE2zKAw4ka0DvYKWVnlkpt/jyS6SFclQBxYnqxsQ=";
   };
 
   __structuredAttrs = true;
@@ -40,8 +38,7 @@ stdenv.mkDerivation (finalAttrs: {
     ninja
     pkg-config
     help2man
-  ]
-  ++ lib.optional enableGui qt6.wrapQtAppsHook;
+  ];
 
   buildInputs = [
     boost
@@ -53,14 +50,9 @@ stdenv.mkDerivation (finalAttrs: {
     rhash
     tinyxml-2
     zlib
-  ]
-  ++ lib.optionals enableGui [
-    qt6.qtbase
-    qt6.qtwebengine
   ];
 
   cmakeFlags = [
-    (lib.cmakeBool "USE_QT_GUI" enableGui)
     (lib.cmakeFeature "CMAKE_CXX_FLAGS" "-DJSONCPP_HAS_STRING_VIEW=1")
   ];
 
@@ -92,7 +84,7 @@ stdenv.mkDerivation (finalAttrs: {
       keenanweaver
     ];
 
-    platforms = lib.platforms.linux ++ lib.optionals (!enableGui) lib.platforms.darwin;
+    platforms = lib.platforms.linux ++ lib.platforms.darwin;
     mainProgram = "lgogdownloader";
   };
 })

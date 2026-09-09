@@ -6,13 +6,13 @@
 
 openxcom.overrideAttrs (_oldAttrs: {
   pname = "openxcom-extended";
-  version = "8.6.4";
+  version = "8.7.0";
 
   src = fetchFromGitHub {
     owner = "MeridianOXC";
     repo = "OpenXcom";
-    rev = "a077141b4102d669cce42155478d2f6404953605";
-    hash = "sha256-KflGWJgUW4kVzCxDJxSq96dz638mfphiiOSyBkC1sY4=";
+    rev = "a62371bbd83fba05212bcaaea2ee49af96ac989c";
+    hash = "sha256-InPoeQ6aRErCmJYPmMhrV68L3Nl3sfe7klbLfpmhK6A=";
   };
 
   passthru.updateScript = nix-update-script {

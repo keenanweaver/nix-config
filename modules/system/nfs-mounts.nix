@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.profile-base =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
         cifs-utils
@@ -37,5 +37,18 @@
           ]
       );
       services.rpcbind.enable = true;
+      systemd.services.force-umount-nfs = {
+        wantedBy = [ "multi-user.target" ];
+        before = [
+          "network.target"
+          "shutdown.target"
+        ];
+        serviceConfig = {
+          ExecStop = "${lib.getExe' pkgs.util-linux "umount"} -f -l -a -t nfs,nfs4";
+          RemainAfterExit = true;
+          Type = "oneshot";
+        };
+      };
     };
+
 }

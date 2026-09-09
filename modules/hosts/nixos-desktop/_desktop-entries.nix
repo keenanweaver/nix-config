@@ -11,7 +11,7 @@ in
 {
   dreamm =
     let
-      execBin = "${config.home.homeDirectory}/Games/dreamm/dreamm";
+      execBin = "${config.home.homeDirectory}/Games/Games2/dreamm/dreamm";
     in
     {
       categories = [
@@ -19,7 +19,7 @@ in
       ];
       comment = "Specialized emulator for playing many of your original DOS, Windows, and FM-Towns LucasArts (and LucasArts-adjacent) games";
       exec = wrap + execBin;
-      icon = "${config.home.homeDirectory}/Games/dreamm/dreamm.png";
+      icon = "${config.home.homeDirectory}/Games/Games2/dreamm/dreamm.png";
       name = "DREAMM [${osConfig.my.user}]";
       noDisplay = false;
       startupNotify = true;

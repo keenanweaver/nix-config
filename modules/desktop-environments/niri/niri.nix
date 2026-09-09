@@ -99,7 +99,7 @@
         nixpkgs.overlays = [ inputs.omniflake.flakes.niri-flake.overlays.niri ];
         programs.niri = {
           enable = true;
-          package = pkgs.niri-unstable;
+          package = pkgs.niri;
         };
       };
   };

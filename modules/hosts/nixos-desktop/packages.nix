@@ -15,6 +15,23 @@
         {
           home.packages = with pkgs; [
             (writeShellApplication {
+              name = "720pclip";
+              runtimeInputs = [
+                handbrake
+              ];
+              text = ''
+                if [ -z "$1" ]; then
+                	echo "Usage: $0 <input_video>"
+                	exit 1
+                fi
+
+                input="$1"
+                output="''${input%.*}_720p60.mp4"
+
+                HandBrakeCLI --preset="Creator 720p60" --input "$input" --output "$output"
+              '';
+            })
+            (writeShellApplication {
               name = "script-exodos-nuked";
               runtimeEnv.EXODOS = "/mnt/crusader/Games/eXo/eXoDOS/eXo/eXoDOS";
               runtimeInputs = [
