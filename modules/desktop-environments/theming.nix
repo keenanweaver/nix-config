@@ -362,13 +362,7 @@ in
       {
         imports = [ inputs.omniflake.flakes.catppuccin.nixosModules.catppuccin ];
         boot.kernelParams = [ "fbcon=font:TER16x32" ];
-        catppuccin = catppuccinCommon // {
-          sddm = {
-            background = "${wallpaper}";
-            font = mono-font;
-            fontSize = "11";
-          };
-        };
+        catppuccin = catppuccinCommon;
         environment.systemPackages = with pkgs; [
           (catppuccin-kde.override {
             accents = [ accent-lower ];
@@ -378,7 +372,7 @@ in
             accent = accent-lower;
             flavor = flavor-lower;
           })
-          kdePackages.qtstyleplugin-kvantum
+          #kdePackages.qtstyleplugin-kvantum
           klassy
           plasma-panel-colorizer
           utterly-round-plasma-style
@@ -392,7 +386,6 @@ in
           ];
         };
         programs.dconf.enable = true;
-        services.displayManager.sddm.settings.Theme.CursorTheme = cursor-theme;
       };
   };
   flake-file.inputs = {
