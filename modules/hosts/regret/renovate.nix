@@ -24,7 +24,7 @@
         settings = {
           autodiscover = false;
           automerge = true;
-          automergeType = "branch";
+          automergeType = "pr";
           configMigration = true;
           endpoint = "https://codeberg.org";
           extends = [ "config:recommended" ];
