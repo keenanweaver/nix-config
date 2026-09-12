@@ -24,7 +24,16 @@ pkgs.writeShellApplication {
     #   obs         - native GL + gamemode + obs-gamecapture + mangohud
     #   native      - no driver forcing + gamemode + mangohud
     #   passthrough - run the command untouched (mod loaders, injectors)
-    mode="''${WRAPPER_MODE:-zink}"
+    mode="''${WRAPPER_MODE:-}"
+    if [[ -z "$mode" ]]; then
+      current_compat_tool="''${STEAM_COMPAT_TOOL_PATHS-}"
+      current_compat_tool="''${current_compat_tool%%:*}"
+      if [[ "$(basename -- "$current_compat_tool")" == "proton-wineland" ]]; then
+        mode=native
+      else
+        mode=zink
+      fi
+    fi
 
     if [[ "$#" -eq 0 ]]; then
       echo "game-wrapper: no command given" >&2
