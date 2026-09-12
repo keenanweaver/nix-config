@@ -44,7 +44,7 @@
             flatpak-games
             llm
 
-            fluxer
+            #fluxer
             freetube
             halloy
             mumble

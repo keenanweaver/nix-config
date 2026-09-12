@@ -62,6 +62,7 @@
       url = "github:keenanweaver/nix-nonfree";
       flake = false;
     };
+    nyx.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     omniflake = {
       url = "github:fzakaria/omniflake";
       inputs.nixpkgs.follows = "nixpkgs";

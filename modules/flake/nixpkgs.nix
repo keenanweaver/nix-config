@@ -41,7 +41,7 @@
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          inputs.omniflake.flakes.nyx.overlays.default
+          inputs.nyx.overlays.default
           (final: _prev: {
             master = import inputs.nixpkgs-master {
               inherit (final) config;

@@ -175,7 +175,7 @@
             python314Packages.lnkparse3
             qbz
             qtscrcpy
-            redumper
+            #redumper
             rigel-engine
             ringracers
             rssguard
