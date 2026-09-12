@@ -37,7 +37,7 @@ in
       pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [ inputs.nix-vscode-extensions.overlays.default ];
+        overlays = [ inputs.omniflake.flakes.nix-vscode-extensions.overlays.default ];
       };
     }
   ) config.configurations.home-manager;

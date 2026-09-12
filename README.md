@@ -41,10 +41,8 @@ My previous, non-dendritic config is located in the `main` branch of this repo. 
 | `nixos-desktop` | Primary gaming desktop |
 | `nixos-laptop` | Laptop |
 | `nixos-htpc` | Couch gaming box |
-| `maniac` | Server |
-| `regret` | Server |
-| `remorse` | Server |
-| `vagabond` | Server |
+| `regret` | Server (Raspberry Pi 4B) |
+| `remorse` | Server (Raspberry Pi 4B) |
 
 ## Repo structure
 

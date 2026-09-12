@@ -88,7 +88,7 @@
           ];
           ports = [ 6777 ];
           settings = {
-            AllowUsers = [ "${config.my.user}" ];
+            AllowUsers = [ config.my.user ];
             KbdInteractiveAuthentication = false;
             PasswordAuthentication = false;
             PermitRootLogin = "no";

@@ -1,11 +1,6 @@
 {
   flake.modules.nixos.profile-base =
-    {
-      inputs,
-      lib,
-      config,
-      ...
-    }:
+    { inputs, ... }:
     {
       imports = [ inputs.omniflake.flakes.nix-mineral.nixosModules.nix-mineral ];
       # https://github.com/k4yt3x/sysctl
@@ -24,7 +19,7 @@
         "net.ipv4.tcp_adv_win_scale" = -2;
         "net.ipv4.tcp_base_mss" = 1024;
         "net.ipv4.tcp_congestion_control" = "bbr";
-        "net.ipv4.tcp_mtu_probing" = lib.mkIf (config.networking.hostName != "nixos-htpc") 1;
+        "net.ipv4.tcp_mtu_probing" = 1;
         "net.ipv4.tcp_notsent_lowat" = 131072;
         "net.ipv4.tcp_rmem" = "8192 262144 536870912";
         "net.ipv4.tcp_slow_start_after_idle" = 0;
@@ -64,7 +59,6 @@
           "performance"
         ];
         settings = {
-          kernel.strict-iommu = lib.mkIf (config.networking.hostName == "nixos-laptop") false; # if true, boot doesn't work
           misc.nix-wheel = true;
           network.random-mac = false;
         };

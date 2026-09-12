@@ -143,4 +143,8 @@
         };
       };
   };
+  flake-file.inputs.simracing-hwdb = {
+    flake = false;
+    url = "github:JacKeTUs/simracing-hwdb";
+  };
 }

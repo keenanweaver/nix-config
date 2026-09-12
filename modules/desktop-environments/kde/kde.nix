@@ -526,7 +526,7 @@
           colord.enable = true;
           desktopManager.plasma6.enable = true;
           displayManager = {
-            autoLogin.user = "${config.my.user}";
+            autoLogin.user = config.my.user;
             plasma-login-manager.enable = true;
           };
           libinput = {

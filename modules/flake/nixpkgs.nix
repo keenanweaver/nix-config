@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ inputs, ... }:
 {
   flake.modules.nixos.profile-base =
     { lib, config, ... }:
@@ -30,7 +30,7 @@
       };
     };
   flake-file.inputs = {
-    nixpkgs.url = lib.mkForce "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   };

@@ -26,3 +26,4 @@ These are hacks/temporary workarounds that should be reverted once upstream/othe
 - [Ghostty](../modules/apps/ghostty.nix). Explore various options.
 - [Helix](../modules/apps/helix.nix). Cleanup or remove.
 - MiSTer/`nixos-htpc` save sync in `regret` pi
+- Consider adding custom [coolercontrol](https://github.com/Daaboulex/coolercontrol-nix) module

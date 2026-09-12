@@ -25,7 +25,7 @@
           max-free = 1024 * 1024 * 1024;
           min-free = 100 * 1024 * 1024;
           trusted-users = [
-            "${config.my.user}"
+            config.my.user
             "@wheel"
           ];
           warn-dirty = false;

@@ -19,14 +19,13 @@
     nixos.profile-gaming =
       { inputs, pkgs, ... }:
       {
-        chaotic.mesa-git.extraPackages =
-          with inputs.omniflake.flakes.lsfg-vk-nix.packages.${pkgs.stdenv.hostPlatform.system}; [
-            lsfg-vk
-          ];
-        environment.systemPackages =
-          with inputs.omniflake.flakes.lsfg-vk-nix.packages.${pkgs.stdenv.hostPlatform.system}; [
-            lsfg-vk
-          ];
+        chaotic.mesa-git.extraPackages = with pkgs; [
+          lsfg-vk
+        ];
+        environment.systemPackages = with pkgs; [
+          lsfg-vk
+        ];
+        nixpkgs.overlays = [ inputs.omniflake.flakes.lsfg-vk-nix.overlays.default ];
       };
   };
 }

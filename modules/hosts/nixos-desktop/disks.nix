@@ -26,7 +26,7 @@
         "rw"
         "user"
         "exec"
-        "umask=000"
+        "umask=022"
       ];
     };
   };

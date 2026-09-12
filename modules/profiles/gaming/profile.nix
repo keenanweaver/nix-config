@@ -121,10 +121,6 @@
   };
   flake-file.inputs = {
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-    simracing-hwdb = {
-      flake = false;
-      url = "github:JacKeTUs/simracing-hwdb";
-    };
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
   };
 }

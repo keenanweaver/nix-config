@@ -13,7 +13,6 @@
 
         secure-boot
         virtualization
-        wireless
 
         solaar
         vscodium

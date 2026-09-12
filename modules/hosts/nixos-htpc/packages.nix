@@ -17,7 +17,7 @@
             inputs.omniflake.flakes.slippi-nix.homeManagerModules.default
           ];
           home.packages = with pkgs; [
-            #banjorecomp
+            banjorecomp
             clonehero
             dusklight
             jazz2
