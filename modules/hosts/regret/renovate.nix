@@ -24,11 +24,12 @@
         settings = {
           autodiscover = false;
           automerge = true;
-          automergeType = "pr";
+          automergeType = "branch";
           configMigration = true;
           endpoint = "https://codeberg.org";
           extends = [ "config:recommended" ];
           gitAuthor = "Keenan-Renovate <keenan-renovate@noreply.codeberg.org>";
+          ignoreTests = true;
           lockFileMaintenance = {
             enabled = true;
             schedule = [ "at any time" ];
@@ -96,7 +97,7 @@
           StateDirectory = "renovate-watch-nixos-unstable";
           Type = "oneshot";
         };
-        startAt = "00,06,12,18:00:00";
+        startAt = "hourly";
       };
     };
 }
