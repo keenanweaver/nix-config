@@ -65,7 +65,7 @@
             comma
             corsix-th
             csvlens
-            #cyanrip
+            cyanrip
             deadnix
             descent3
             doggo # dig
@@ -164,14 +164,14 @@
             oversteer
             parsec-bin
             patool
-            #picard
+            picard
             pigz # gz
             play
             podman-tui
             powershell
             procs # ps
             ps3-disc-dumper
-            #puddletag
+            puddletag
             python314Packages.lnkparse3
             qbz
             qtscrcpy
