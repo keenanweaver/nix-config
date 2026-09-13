@@ -1,5 +1,6 @@
 host := `hostname`
 flake := justfile_directory()
+pins := env_var('HOME') + "/.local/state/nix-config/pins"
 
 # `just` with no args lists recipes
 default:
@@ -143,4 +144,5 @@ clean-keys:
 
 # Update a deployed (remote) host — distinct from local `update-switch`
 deploy-update host target:
-    NIX_SSHOPTS="-p 6777" nh os boot . -H {{ host }} --target-host {{ target }}
+    mkdir -p {{ pins }}
+    NIX_SSHOPTS="-p 6777" nh os boot . -H {{ host }} --target-host {{ target }} -o {{ pins }}/{{ host }}
