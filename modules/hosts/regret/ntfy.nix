@@ -1,33 +1,15 @@
 {
   configurations.nixos.regret.module =
-    { config, ... }:
+    {
+      lib,
+      config,
+      pkgs,
+      ...
+    }:
     {
       home-manager.users.${config.my.user} =
+        { config, ... }:
         {
-          lib,
-          config,
-          pkgs,
-          ...
-        }:
-        let
-          certDir = "${config.nps.storageBaseDir}/ntfy/certs";
-          ntfyCertRenew = pkgs.writeShellApplication {
-            name = "ntfy-cert-renew";
-            runtimeInputs = with pkgs; [
-              jq
-              systemd
-              tailscale
-            ];
-            text = ''
-              mkdir -p "${certDir}"
-              fqdn=$(tailscale status --json | jq -r '.Self.DNSName' | sed 's/\.$//')
-              tailscale cert --cert-file="${certDir}/ntfy.crt" --key-file="${certDir}/ntfy.key" "$fqdn"
-              systemctl --user try-restart podman-ntfy.service
-            '';
-          };
-        in
-        {
-          home.packages = [ ntfyCertRenew ];
           nps.stacks.ntfy = {
             enable = true;
             settings = {
@@ -37,44 +19,35 @@
                   config.sops.secrets."ntfy/admin_password_hash".path
                 }` }}:admin"
               ];
-              cert-file = "/var/lib/ntfy/certs/ntfy.crt";
-              key-file = "/var/lib/ntfy/certs/ntfy.key";
+              cert-file = null;
+              key-file = null;
               listen-http = ":80";
-              listen-https = ":443";
+              listen-https = null;
             };
           };
-          services.podman.containers.ntfy.ports = [ "443:443" ];
           sops.secrets."ntfy/admin_password_hash" = { };
-          systemd.user = {
-            services.ntfy-cert-renew = {
-              Service = {
-                ExecStart = lib.getExe ntfyCertRenew;
-                Type = "oneshot";
-              };
-              Unit = {
-                After = [ "podman-ntfy.service" ];
-                Description = "Renew Tailscale TLS certificate for ntfy";
-              };
-            };
-            timers.ntfy-cert-renew = {
-              Install.WantedBy = [ "timers.target" ];
-              Timer = {
-                OnBootSec = "1m";
-                OnUnitActiveSec = "1d";
-              };
-              Unit.Description = "Periodically renew Tailscale TLS certificate for ntfy";
-            };
-          };
         };
-      networking.firewall.interfaces = {
-        end0.allowedTCPPorts = [
-          80
-          443
+      networking.firewall.interfaces.end0.allowedTCPPorts = [ 80 ];
+      systemd.services.ntfy-tailscale-serve = {
+        wantedBy = [ "multi-user.target" ];
+        after = [
+          "tailscaled.service"
+          "podman-ntfy.service"
         ];
-        tailscale0.allowedTCPPorts = [
-          80
-          443
+        wants = [
+          "tailscaled.service"
+          "podman-ntfy.service"
         ];
+        serviceConfig = {
+          ExecStart = "${lib.getExe pkgs.tailscale} serve --bg --https=443 http://127.0.0.1:80";
+          ExecStop = "${lib.getExe pkgs.tailscale} serve --https=443 off";
+          RemainAfterExit = true;
+          Restart = "on-failure";
+          RestartSec = "2s";
+          Type = "oneshot";
+        };
+        startLimitIntervalSec = 0;
+        unitConfig.Description = "Proxy ntfy over Tailscale HTTPS via tailscale serve";
       };
     };
 }

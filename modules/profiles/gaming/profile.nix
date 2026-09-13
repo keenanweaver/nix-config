@@ -35,7 +35,7 @@
       {
         imports = [
           inputs.omniflake.flakes.just-one-more-repo.nixosModules.default
-          inputs.omniflake.flakes.nix-gaming-edge.nixosModules.default
+          inputs.nix-gaming-edge.nixosModules.default
           inputs.omniflake.flakes.wayland-pipewire-idle-inhibit.nixosModules.default
         ];
         assertions = self.lib.mkFactAssertions config [
@@ -62,6 +62,7 @@
           extra-substituters = [
             "https://bandithedoge.cachix.org"
             "https://just-one-more-cache.cachix.org"
+            "https://nix-cache.tokidoki.dev/tokidoki"
             "https://nix-gaming.cachix.org"
             "https://nix-citizen.cachix.org"
           ];
@@ -70,6 +71,7 @@
             "just-one-more-cache.cachix.org-1:4nShcKEgcUEVlJqKFrgDwoGfqLnw5KPG4UDTV02jnr4="
             "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="
             "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+            "tokidoki:MD4VWt3kK8Fmz3jkiGoNRJIW31/QAm7l1Dcgz2Xa4hk="
           ];
         };
         nixpkgs.overlays = [

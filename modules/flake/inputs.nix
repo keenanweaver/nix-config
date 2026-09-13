@@ -9,9 +9,15 @@
       #inputs.omniflake.flakes.nix-wrapper-modules-nix-community.nixosModules.default
     ];
     nixpkgs.overlays = [
-      inputs.omniflake.flakes.nix-gaming-edge.overlays.default
+      inputs.nix-gaming-edge.overlays.default
       inputs.omniflake.flakes.nur.overlays.default
     ];
   };
-  flake-file.inputs.nyx.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+  flake-file.inputs = {
+    nix-gaming-edge = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:powerofthe69/nix-gaming-edge";
+    };
+    nyx.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+  };
 }
