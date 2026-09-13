@@ -1,7 +1,7 @@
 { self, ... }:
 {
   configurations.nixos.nixos-htpc.module =
-    { config, ... }:
+    { lib, config, ... }:
     {
       imports = with self.modules.nixos; [
         self.diskoConfigurations.nixos-htpc
@@ -15,6 +15,7 @@
 
         obs
       ];
+      boot.loader.timeout = lib.mkForce 0;
       home-manager.users.${config.my.user}.imports = with self.modules.homeManager; [
         profile-base
         profile-desktop
