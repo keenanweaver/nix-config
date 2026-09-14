@@ -22,13 +22,14 @@ pkgs.writeShellApplication {
   text = ''
     #   zink        - force the zink GL stack + gamemode + mangohud  (default)
     #   obs         - native GL + gamemode + obs-gamecapture + mangohud
-    #   native      - no driver forcing + gamemode + mangohud
+    #   native      - no driver forcing + gamemode, no mangohud
     #   passthrough - run the command untouched (mod loaders, injectors)
     mode="''${WRAPPER_MODE:-}"
     if [[ -z "$mode" ]]; then
       current_compat_tool="''${STEAM_COMPAT_TOOL_PATHS-}"
       current_compat_tool="''${current_compat_tool%%:*}"
-      if [[ "$(basename -- "$current_compat_tool")" == "proton-wineland" ]]; then
+      current_compat_tool_name="$(basename -- "$current_compat_tool")"
+      if [[ "''${current_compat_tool_name,,}" == *wineland* ]]; then
         mode=native
       else
         mode=zink
@@ -71,6 +72,8 @@ pkgs.writeShellApplication {
         want_obscapture=true
         ;;
       native)
+        want_mangohud=false
+        unset OBS_VKCAPTURE
         ;;
       *)
         echo "game-wrapper: unknown WRAPPER_MODE '$mode'" >&2

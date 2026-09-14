@@ -1,0 +1,16 @@
+# lgogdownloader blacklist: paths matching a listed pattern are skipped by
+# --download and excluded from --check-orphans, so a blacklisted file that's
+# already on disk is never flagged as an orphan either.
+#
+# Format (see Blacklist::initialize in lgogdownloader's src/blacklist.cpp):
+#   R <perl-regex>
+# - Every active line must start with the flag "R" (the only supported
+#   type), then a single space, then a Perl-syntax regex (boost::regex).
+# - The regex is matched with regex_search (substring match, not full-match)
+#   against each file's path relative to the GOG directory root, e.g.
+#   "Game Name/setup_game_name_1.0.exe".
+# - Lines starting with "#" and blank lines are ignored.
+#
+# Examples (uncomment and edit to use):
+# R Game Name/setup_game_name_1\.0\.exe
+# R ^Some Other Game/

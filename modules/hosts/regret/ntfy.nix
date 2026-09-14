@@ -8,7 +8,7 @@
     }:
     {
       home-manager.users.${config.my.user} =
-        { config, ... }:
+        { lib, config, ... }:
         {
           nps.stacks.ntfy = {
             enable = true;
@@ -19,10 +19,10 @@
                   config.sops.secrets."ntfy/admin_password_hash".path
                 }` }}:admin"
               ];
-              cert-file = null;
-              key-file = null;
+              cert-file = lib.mkForce "";
+              key-file = lib.mkForce "";
               listen-http = ":80";
-              listen-https = null;
+              listen-https = lib.mkForce "";
             };
           };
           sops.secrets."ntfy/admin_password_hash" = { };
