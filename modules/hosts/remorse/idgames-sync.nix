@@ -3,13 +3,49 @@
     { config, ... }:
     {
       home-manager.users.${config.my.user} =
-        { lib, pkgs, ... }:
+        {
+          lib,
+          config,
+          pkgs,
+          ...
+        }:
         let
           idgames-sync = pkgs.writeShellApplication {
+            excludeShellChecks = [ "SC2329" ];
             name = "idgames-sync";
-            runtimeInputs = [ pkgs.wget ];
-            text = "wget ${lib.escapeShellArgs wgetArgs}";
+            runtimeInputs = [
+              pkgs.curl
+              pkgs.wget
+            ];
+            text = ''
+              ${ntfyHelpers}
+              notify_finish() {
+                local exit_code=$1
+                if [ "$exit_code" -eq 0 ]; then
+                  ntfy_notify "idgames sync" "Finished successfully" "white_check_mark"
+                else
+                  ntfy_notify "idgames sync" "Failed (exit $exit_code)" "x" "high"
+                fi
+              }
+              trap 'notify_finish $?' EXIT
+              ntfy_notify "idgames sync" "Started" "arrow_forward"
+
+              wget ${lib.escapeShellArgs wgetArgs}
+            '';
           };
+          ntfyHelpers = ''
+            ntfy_notify() {
+              local title="$1" message="$2" tags="$3" priority="''${4:-default}"
+              curl -fsS \
+                --header "Authorization: Bearer $(cat ${lib.escapeShellArg ntfyTokenFile})" \
+                --header "Title: $title" \
+                --header "Tags: $tags" \
+                --header "Priority: $priority" \
+                --data "$message" \
+                "http://10.20.20.31/idgames" >/dev/null || true
+            }
+          '';
+          ntfyTokenFile = config.sops.secrets."ntfy/ntfybot_token".path;
           wgetArgs = [
             "--mirror"
             "--no-parent"
@@ -33,6 +69,7 @@
         in
         {
           home.packages = [ idgames-sync ];
+          sops.secrets."ntfy/ntfybot_token" = { };
           systemd.user = {
             services.idgames-sync = {
               Service = {

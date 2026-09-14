@@ -3,16 +3,37 @@
     { config, ... }:
     {
       home-manager.users.${config.my.user} =
-        { lib, pkgs, ... }:
+        {
+          lib,
+          config,
+          pkgs,
+          ...
+        }:
         let
           gog-download = pkgs.writeShellApplication {
-            excludeShellChecks = [ "SC2054" ];
+            excludeShellChecks = [
+              "SC2054"
+              "SC2329"
+            ];
             name = "gog-download";
             runtimeInputs = with pkgs; [
+              curl
               util-linux
               local.lgogdownloader
             ];
             text = ''
+              ${ntfyHelpers}
+              notify_finish() {
+                local exit_code=$1
+                if [ "$exit_code" -eq 0 ]; then
+                  ntfy_notify "GOG download" "Finished successfully" "white_check_mark"
+                else
+                  ntfy_notify "GOG download" "Failed (exit $exit_code)" "x" "high"
+                fi
+              }
+              trap 'notify_finish $?' EXIT
+              ntfy_notify "GOG download" "Started" "arrow_forward"
+
               lockfile="''${XDG_RUNTIME_DIR:-/tmp}/gog-lgogdownloader.lock"
               exec {lock_fd}>"$lockfile"
               flock --wait 3600 "$lock_fd"
@@ -79,13 +100,29 @@
             '';
           };
           gog-full-download = pkgs.writeShellApplication {
-            excludeShellChecks = [ "SC2054" ];
+            excludeShellChecks = [
+              "SC2054"
+              "SC2329"
+            ];
             name = "gog-full-download";
             runtimeInputs = with pkgs; [
+              curl
               util-linux
               local.lgogdownloader
             ];
             text = ''
+              ${ntfyHelpers}
+              notify_finish() {
+                local exit_code=$1
+                if [ "$exit_code" -eq 0 ]; then
+                  ntfy_notify "GOG full download" "Finished successfully" "white_check_mark"
+                else
+                  ntfy_notify "GOG full download" "Failed (exit $exit_code)" "x" "high"
+                fi
+              }
+              trap 'notify_finish $?' EXIT
+              ntfy_notify "GOG full download" "Started" "arrow_forward"
+
               lockfile="''${XDG_RUNTIME_DIR:-/tmp}/gog-lgogdownloader.lock"
               exec {lock_fd}>"$lockfile"
               flock --wait 3600 "$lock_fd"
@@ -148,15 +185,31 @@
             '';
           };
           gog-remove-orphans = pkgs.writeShellApplication {
-            excludeShellChecks = [ "SC2054" ];
+            excludeShellChecks = [
+              "SC2054"
+              "SC2329"
+            ];
             name = "gog-remove-orphans";
             runtimeInputs = with pkgs; [
               coreutils
+              curl
               findutils
               util-linux
               local.lgogdownloader
             ];
             text = ''
+              ${ntfyHelpers}
+              notify_finish() {
+                local exit_code=$1
+                if [ "$exit_code" -eq 0 ]; then
+                  ntfy_notify "GOG orphan cleanup" "Finished successfully" "white_check_mark"
+                else
+                  ntfy_notify "GOG orphan cleanup" "Failed (exit $exit_code)" "x" "high"
+                fi
+              }
+              trap 'notify_finish $?' EXIT
+              ntfy_notify "GOG orphan cleanup" "Started" "arrow_forward"
+
               lockfile="''${XDG_RUNTIME_DIR:-/tmp}/gog-lgogdownloader.lock"
               exec {lock_fd}>"$lockfile"
               flock --wait 3600 "$lock_fd"
@@ -256,6 +309,19 @@
           };
           gogBlacklistFile = ../../../assets/hosts/remorse/gog-blacklist.txt;
           gogDirectory = "/mnt/crusader/Games/Backups/GOG";
+          ntfyHelpers = ''
+            ntfy_notify() {
+              local title="$1" message="$2" tags="$3" priority="''${4:-default}"
+              curl -fsS \
+                --header "Authorization: Bearer $(cat ${lib.escapeShellArg ntfyTokenFile})" \
+                --header "Title: $title" \
+                --header "Tags: $tags" \
+                --header "Priority: $priority" \
+                --data "$message" \
+                "http://10.20.20.31/gog" >/dev/null || true
+            }
+          '';
+          ntfyTokenFile = config.sops.secrets."ntfy/ntfybot_token".path;
           orphanDirectoryFractionThreshold = 75;
         in
         {
@@ -265,6 +331,7 @@
             gog-remove-orphans
             pkgs.local.lgogdownloader
           ];
+          sops.secrets."ntfy/ntfybot_token" = { };
           systemd.user = {
             services = {
               gog-download = {

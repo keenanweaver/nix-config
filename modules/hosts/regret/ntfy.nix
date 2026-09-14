@@ -18,6 +18,7 @@
                 "${config.home.username}:{{ file.Read `${
                   config.sops.secrets."ntfy/admin_password_hash".path
                 }` }}:admin"
+                "ntfybot:{{ file.Read `${config.sops.secrets."ntfy/ntfybot_password_hash".path}` }}:admin"
               ];
               cert-file = lib.mkForce "";
               key-file = lib.mkForce "";
@@ -25,7 +26,10 @@
               listen-https = lib.mkForce "";
             };
           };
-          sops.secrets."ntfy/admin_password_hash" = { };
+          sops.secrets = {
+            "ntfy/admin_password_hash" = { };
+            "ntfy/ntfybot_password_hash" = { };
+          };
         };
       networking.firewall.interfaces.end0.allowedTCPPorts = [ 80 ];
       systemd.services.ntfy-tailscale-serve = {
