@@ -78,11 +78,8 @@
         };
       };
     nixos.noctalia-greeter =
-      { inputs, pkgs, ... }:
+      { pkgs, ... }:
       {
-        imports = [
-          inputs.noctalia-greeter.nixosModules.default
-        ];
         programs.noctalia-greeter = {
           enable = true;
           greeter-args = "";
@@ -97,11 +94,5 @@
         };
       };
   };
-  flake-file.inputs = {
-    noctalia.url = "github:noctalia-dev/noctalia/cachix";
-    noctalia-greeter = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:noctalia-dev/noctalia-greeter";
-    };
-  };
+  flake-file.inputs.noctalia.url = "github:noctalia-dev/noctalia/cachix";
 }

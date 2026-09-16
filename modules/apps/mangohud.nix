@@ -333,7 +333,7 @@
             "xdg-config/MangoHud:ro"
           ];
           packages = [
-            "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08"
+            "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/26.08"
             "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/25.08"
           ];
         };

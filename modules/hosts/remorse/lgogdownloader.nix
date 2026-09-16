@@ -73,7 +73,7 @@
               )
 
               set +o errexit
-              output=$(lgogdownloader "''${mainArgs[@]}" 2>&1 | tee /dev/stderr)
+              output=$(lgogdownloader "''${mainArgs[@]}" 2>&1 | tee >(cat 1>&2))
               status=$?
               set -o errexit
 
@@ -91,7 +91,7 @@
                   ]
                 }
                 set +o errexit
-                output=$(lgogdownloader "''${mainArgs[@]}" 2>&1 | tee /dev/stderr)
+                output=$(lgogdownloader "''${mainArgs[@]}" 2>&1 | tee >(cat 1>&2))
                 status=$?
                 set -o errexit
               fi
@@ -158,7 +158,7 @@
               )
 
               set +o errexit
-              output=$(lgogdownloader "''${mainArgs[@]}" 2>&1 | tee /dev/stderr)
+              output=$(lgogdownloader "''${mainArgs[@]}" 2>&1 | tee >(cat 1>&2))
               status=$?
               set -o errexit
 
@@ -176,7 +176,7 @@
                   ]
                 }
                 set +o errexit
-                output=$(lgogdownloader "''${mainArgs[@]}" 2>&1 | tee /dev/stderr)
+                output=$(lgogdownloader "''${mainArgs[@]}" 2>&1 | tee >(cat 1>&2))
                 status=$?
                 set -o errexit
               fi

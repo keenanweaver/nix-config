@@ -8,14 +8,14 @@
 }:
 let
   hashes = {
-    x86_64 = "sha256-kjdgCVj7u08fNUGfKBp8+Yj7MPbizHXwTLmccrWjRZE=";
-    x86_64_v3 = "sha256-CoqGTFfXjfk9vkiH0Yg0I2AoZS+O0KfVRfY4dDbhGpA=";
-    x86_64_wow64 = "sha256-AqP2X5uX5IwTRKmbPfRkWz53XcXMFrRYZZS8VTvMEXk=";
+    x86_64 = "sha256-n/jmbLPd6UT1G4DgHSP9arVmmIrjUk1TpfF+zJYKuwc=";
+    x86_64_v3 = "sha256-A/JE2SgYbrCm64SXFNCJZU5wa1xEeNOTqR1FQSz3c94=";
+    x86_64_wow64 = "sha256-UbL08uyHCuoakwivMC1hwKfAYdxtD1ZNad4Q98BK3Do=";
   };
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "proton-wineland";
-  version = "wineland-11.0-20260908";
+  version = "wineland-11.0-20260913";
 
   src = fetchurl {
     url = "https://github.com/nanomatters/proton-cachyos/releases/download/${finalAttrs.version}/proton-${finalAttrs.version}-${variant}.tar.xz";
@@ -60,7 +60,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
       exit 1
     fi
 
-    file="pkgs/proton-cachyos-wineland/package.nix"
+    file="pkgs/proton-wineland/package.nix"
 
     sed -i "s/version = \".*\";/version = \"$tag\";/" "$file"
 

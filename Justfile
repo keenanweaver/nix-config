@@ -81,7 +81,11 @@ update-pkgs:
 
 # Update a single local package in ./pkgs
 update-pkg name version="stable":
-    nix-update --flake --version={{ version }} {{ name }}
+    if grep -q "updateScript" "pkgs/{{ name }}/package.nix"; then \
+        nix-update --flake --use-update-script {{ name }}; \
+    else \
+        nix-update --flake --version={{ version }} {{ name }}; \
+    fi
     git add pkgs/{{ name }}
 
 # ══ Git ══════════════════════════════════════════════════════

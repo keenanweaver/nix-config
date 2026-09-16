@@ -11,6 +11,7 @@
     nixos.profile-base =
       {
         inputs,
+        lib,
         config,
         pkgs,
         ...
@@ -21,10 +22,21 @@
         ];
         console.earlySetup = true;
         environment = {
-          etc.motd.text = ''
-            NixOS release: ${config.system.nixos.release}
-            Nixpkgs revision: ${inputs.nixpkgs.rev}
-          '';
+          etc.motd.text =
+            let
+              nixpkgsDate = lib.removeSuffix "\n" (
+                builtins.readFile (
+                  pkgs.runCommand "nixpkgs-date" { } ''
+                    TZDIR=${pkgs.tzdata}/share/zoneinfo TZ=${config.time.timeZone} \
+                      date -d @${toString inputs.nixpkgs.lastModified} +'%Y-%m-%d %H:%M:%S %Z' > "$out"
+                  ''
+                )
+              );
+            in
+            ''
+              NixOS release: ${config.system.nixos.release}
+              Nixpkgs revision: ${inputs.nixpkgs.rev} (${nixpkgsDate})
+            '';
           localBinInPath = true;
           shells = with pkgs; [
             bash

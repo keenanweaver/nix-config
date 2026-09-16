@@ -19,7 +19,7 @@
           ];
         };
         services.flatpak.packages = [
-          "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/24.08"
+          "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/26.08"
           "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/25.08"
         ];
       };

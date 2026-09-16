@@ -18,7 +18,7 @@
         ];
         text = ''
           # shellcheck disable=SC2154 # STATE_DIRECTORY is set by systemd's StateDirectory=
-          state_file="$STATE_DIRECTORY/notify-merged-last-pr"
+          state_file="$STATE_DIRECTORY/notify-merged-last-sha"
 
           ntfy_notify() {
             local title="$1" message="$2" tags="$3" priority="''${4:-default}"
@@ -31,37 +31,44 @@
               "http://10.20.20.31/renovate" >/dev/null || true
           }
 
-          merged_prs=$(curl -fsS \
+          commits=$(curl -fsS \
             --header "Authorization: token $(cat ${lib.escapeShellArg codebergTokenFile})" \
-            "https://codeberg.org/api/v1/repos/Keenan/nix-config/pulls?state=closed&sort=recentupdate&limit=20" \
-            | jq -c '[.[] | select(.merged == true)]')
+            "https://codeberg.org/api/v1/repos/Keenan/nix-config/commits?sha=dendritic&limit=50")
+
+          current_sha=$(printf '%s' "$commits" | jq -r '.[0].sha')
 
           if [ ! -f "$state_file" ]; then
-            current_max=$(printf '%s' "$merged_prs" | jq -r 'map(.number) | max // 0')
-            echo "$current_max" > "$state_file"
-            echo "no prior state; recording current max merged PR (#$current_max) without notifying"
+            echo "$current_sha" > "$state_file"
+            echo "no prior state; recording current dendritic HEAD ($current_sha) without notifying"
             exit 0
           fi
-          last_seen=$(cat "$state_file")
+          last_sha=$(cat "$state_file")
 
-          mapfile -t new_numbers < <(
-            printf '%s' "$merged_prs" | jq -r --argjson last "$last_seen" \
-              '.[] | select(.number > $last) | .number'
-          )
-
-          if [ "''${#new_numbers[@]}" -eq 0 ]; then
-            echo "no new merged PRs (last seen #$last_seen)"
+          if [ "$current_sha" = "$last_sha" ]; then
+            echo "dendritic unchanged ($current_sha)"
             exit 0
           fi
 
-          for number in "''${new_numbers[@]}"; do
-            title=$(printf '%s' "$merged_prs" | jq -r --argjson n "$number" '.[] | select(.number == $n) | .title')
-            echo "notifying: merged #$number: $title"
-            ntfy_notify "Renovate" "Merged #$number: $title" "white_check_mark"
+          new_commits=$(printf '%s' "$commits" | jq -c --arg last "$last_sha" '
+            (([.[] | .sha] | index($last)) // length) as $idx
+            | [.[0:$idx][] | select(.author.login == "Keenan-Renovate")]
+            | reverse
+          ')
+
+          echo "$current_sha" > "$state_file"
+
+          count=$(printf '%s' "$new_commits" | jq 'length')
+          if [ "$count" -eq 0 ]; then
+            echo "no new renovate-authored commits on dendritic (last seen $last_sha)"
+            exit 0
+          fi
+
+          printf '%s' "$new_commits" | jq -c '.[]' | while IFS= read -r c; do
+            sha=$(printf '%s' "$c" | jq -r '.sha[0:8]')
+            subject=$(printf '%s' "$c" | jq -r '.commit.message | split("\n")[0]')
+            echo "notifying: $sha $subject"
+            ntfy_notify "Renovate" "$sha: $subject" "white_check_mark"
           done
-
-          max_number=$(printf '%s\n' "''${new_numbers[@]}" | sort -n | tail -1)
-          echo "$max_number" > "$state_file"
         '';
       };
     in
