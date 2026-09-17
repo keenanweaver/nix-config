@@ -56,6 +56,7 @@
                 "Bottles" = bare pkgs.bottles;
                 "Clone Hero" = wrapped pkgs.clonehero;
                 "Dusklight" = wrapped pkgs.dusklight;
+                "Eden" = flatpak "dev.eden_emu.eden";
                 "Fightcade" = flatpak "com.fightcade.Fightcade";
                 #"Ghostship" = sysWrapped pkgs.ghostship;
 

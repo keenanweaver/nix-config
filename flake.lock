@@ -567,11 +567,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789553430,
-        "narHash": "sha256-DGs/gBRSz3WzHIjA8wTbZCBPDOyl0HmsEGL/yV6sFac=",
+        "lastModified": 1789591693,
+        "narHash": "sha256-nFRPOYBPQTo8JXZJUooacXtpz7W5VD8Lk3kScGhN264=",
         "owner": "powerofthe69",
         "repo": "nix-gaming-edge",
-        "rev": "af218f8b24c30ef5e967e007dd71f4253e3fac9b",
+        "rev": "241ed6003fc66c988a244bd5a9c087557eaf4e45",
         "type": "github"
       },
       "original": {
@@ -676,11 +676,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1789584228,
-        "narHash": "sha256-gZPivMWB6xaOyeZk6xP/VqNrERu8fOtjXz181wic4vw=",
+        "lastModified": 1789681547,
+        "narHash": "sha256-Tyvjoah3xE4qkN1zlGcjvcFG23UUZIStTtLYjUPmnwc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "aabb9c02b5483105271283186a71dfb1f1d31bfa",
+        "rev": "841b1be37a3526e6edaff474d6a94881640d722b",
         "type": "github"
       },
       "original": {
@@ -801,11 +801,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1789564155,
-        "narHash": "sha256-lguWt1Tp9URnh5lbD/OjKZeWRkFQZqxJP07dznmFXBE=",
+        "lastModified": 1789611680,
+        "narHash": "sha256-obiNV+juEjUYDDusgYQukjLyoVsJJPmYppmjvIEfkSg=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "9c936446a9cbee712d76891c0cb2d625a6bc5411",
+        "rev": "8c52cb71b5bcafbf67bfb8e659f1fc45f882a008",
         "type": "github"
       },
       "original": {
@@ -838,11 +838,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1789567995,
-        "narHash": "sha256-/8RlVJOr6/bvJJNYMHfRZTDKkB65R8cf4hAzaCLnWZ0=",
+        "lastModified": 1789646089,
+        "narHash": "sha256-UyDDTYPZCAY188ya/qGFIu6FRRO8nqdUmYHkTkRg2/Y=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "b575291357f492ae9bd4f3130f604127374619cc",
+        "rev": "ecc8cad9bbbad5d2eb38f354c90f39daf92626a5",
         "type": "github"
       },
       "original": {
@@ -863,11 +863,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1789562055,
-        "narHash": "sha256-nMt4hztrityjZ5400/NXLVC3LqCD3Q03xJpxMr+4J+0=",
+        "lastModified": 1789648654,
+        "narHash": "sha256-AsLiYt3tDEjfSjBsXQuRHJfcrzX7L/IVdkpH14E1iNs=",
         "owner": "fzakaria",
         "repo": "omniflake",
-        "rev": "8507077ceff28634145395d6d2c150ca8ae88aa1",
+        "rev": "faae861049c233d81cfde5d3db1ef63481bd17b3",
         "type": "github"
       },
       "original": {

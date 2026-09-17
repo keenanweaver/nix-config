@@ -88,6 +88,7 @@
           statix.priority = 2;
         };
         global.excludes = [
+          ".envrc"
           "*facter.json"
           "*keenan.yaml"
           "*nixos.yaml"

@@ -15,15 +15,10 @@ These are hacks/temporary workarounds that should be reverted once upstream/othe
 
 - Consider tagging commits as releases
 - Consider Cachix/other caching
-- Consider 'flattening' `flake.lock`. See: https://flake-file.denful.dev/guides/lock-flattening/
-- Explore more Pedantix options
-- Secrets. Create more secrets, consider moving to private repo.
 
 ## Config
 
 - Add configs for work
 - Flatpak runtimes: update all runtimes to 26.08 when available. gamescope, lsfg-vk, mangohud, obs, vkbasalt, mesa-git
-- [Ghostty](../modules/apps/ghostty.nix). Explore various options.
-- [Helix](../modules/apps/helix.nix). Cleanup or remove.
 - MiSTer/`nixos-htpc` save sync in `regret` pi
 - Consider adding custom [coolercontrol](https://github.com/Daaboulex/coolercontrol-nix) module

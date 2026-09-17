@@ -34,6 +34,7 @@
             zelda64recomp
           ];
           services.flatpak.packages = [
+            "dev.eden_emu.eden"
             "net.retrodeck.retrodeck"
           ];
           slippi-launcher = {
