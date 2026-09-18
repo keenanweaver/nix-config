@@ -94,11 +94,6 @@ in
           };
           home = {
             file = {
-              catppuccin-ghostwriter = {
-                enable = true;
-                source = "${inputs.catppuccin-ghostwriter}/themes/catppuccin-${flavor-accent}.json";
-                target = "${config.xdg.dataHome}/ghostwriter/themes/catppuccin-${flavor-accent}.json";
-              };
               catppuccin-gtk = {
                 enable = true;
                 source = "${pkgs.kdePackages.breeze-gtk}/share/themes/${GTK-THEME}";
@@ -124,11 +119,6 @@ in
                 recursive = true;
                 source = "${inputs.catppuccin-obs}/themes";
                 target = ".var/app/com.obsproject.Studio/config/obs-studio/themes";
-              };
-              catppuccin-powershell = {
-                enable = true;
-                source = "${inputs.catppuccin-powershell}";
-                target = "${config.xdg.dataHome}/powershell/Modules/Catppuccin";
               };
               catppuccin-yazi = {
                 enable = true;
@@ -389,10 +379,6 @@ in
       };
   };
   flake-file.inputs = {
-    catppuccin-ghostwriter = {
-      flake = false;
-      url = "github:catppuccin/ghostwriter";
-    };
     catppuccin-heroic = {
       flake = false;
       url = "github:catppuccin/heroic";

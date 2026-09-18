@@ -32,9 +32,4 @@
         };
       };
     };
-  flake-file.nixConfig.extra-experimental-features = [
-    "flakes"
-    "nix-command"
-    "pipe-operators"
-  ];
 }

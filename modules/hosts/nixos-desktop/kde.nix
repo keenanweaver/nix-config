@@ -522,17 +522,6 @@
               value = "wezterm-gui";
             };
           }
-          {
-            apply.adaptivesync = {
-              apply = "force";
-              value = false;
-            };
-            description = "spectacle";
-            match.window-class = {
-              type = "regex";
-              value = "spectacle";
-            };
-          }
         ];
       };
     };

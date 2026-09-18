@@ -84,10 +84,6 @@
               HostName = "game-central.party";
               Port = 6777;
             };
-            nix-unraid = {
-              HostName = "nix-unraid";
-              Port = 22;
-            };
             nixos-desktop = {
               HostName = "nixos-desktop";
               Port = 6777;

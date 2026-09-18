@@ -35,7 +35,8 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     echo "${finalAttrs.pname} should not be installed into environments. Please use programs.steam.extraCompatPackages instead." > $out
 
     mkdir $steamcompattool
-    cp -r --no-preserve=mode -t $steamcompattool ./*
+    cp -r -t $steamcompattool ./*
+    chmod -R u+rwX,go+rX $steamcompattool
 
     runHook postInstall
   '';

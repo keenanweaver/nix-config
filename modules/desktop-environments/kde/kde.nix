@@ -85,15 +85,7 @@
                 Search.Location = "Everywhere";
                 "Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
               };
-              kded5rc = {
-                Module-device_automounter.autoload = false;
-                Module-gtkconfig.autoload = false;
-              };
               kdeglobals = {
-                General = {
-                  TerminalApplication = "ghostty --gtk-single-instance=true";
-                  TerminalService = "com.mitchellh.ghostty.desktop";
-                };
                 KDE = {
                   AnimationDurationFactor = 0.25;
                   ShowDeleteCommand = true;
@@ -118,7 +110,6 @@
                   "Speedbar Width" = 133;
                   "View Style" = "DetailTree";
                 };
-                KScreen.XwaylandClientsScale = false; # Steam workaround
                 PreviewSettings.MaximumRemoteSize = 2147483648;
               };
               kiorc = {
@@ -421,9 +412,7 @@
       {
         environment = {
           plasma6.excludePackages = with pkgs.kdePackages; [ elisa ];
-          sessionVariables = {
-            GDK_DEBUG = "portals"; # KDE filepicker
-          };
+          sessionVariables.GDK_DEBUG = "portals"; # KDE filepicker
           systemPackages =
             with pkgs;
             with pkgs.kdePackages;
@@ -460,7 +449,6 @@
               qt6.qtwebengine
               qtimageformats
               qtsvg # https://github.com/NixOS/nixpkgs/issues/325225
-              sddm-kcm
               svgpart
               syntax-highlighting
             ];
@@ -544,10 +532,6 @@
             "org.freedesktop.portal.FileChooser" = [ "kde" ];
             "org.freedesktop.portal.OpenURI" = [ "kde" ];
           };
-          extraPortals = with pkgs; [
-            kdePackages.xdg-desktop-portal-kde
-            xdg-desktop-portal-gtk
-          ];
           xdgOpenUsePortal = true;
         };
       };

@@ -5,19 +5,7 @@
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
-  nixConfig = {
-    extra-experimental-features = [
-      "flakes"
-      "nix-command"
-      "pipe-operators"
-    ];
-  };
-
   inputs = {
-    catppuccin-ghostwriter = {
-      url = "github:catppuccin/ghostwriter";
-      flake = false;
-    };
     catppuccin-heroic = {
       url = "github:catppuccin/heroic";
       flake = false;

@@ -16,22 +16,6 @@
         "type": "github"
       }
     },
-    "catppuccin-ghostwriter": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1761115155,
-        "narHash": "sha256-PMQcDxXMD3vfpdsy50Vr/ezS3HyrndgpwFaIuDDi448=",
-        "owner": "catppuccin",
-        "repo": "ghostwriter",
-        "rev": "f10bfd888b9df2a5fc0814a2adce67344a8f6cbb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "ghostwriter",
-        "type": "github"
-      }
-    },
     "catppuccin-heroic": {
       "flake": false,
       "locked": {
@@ -916,7 +900,6 @@
     },
     "root": {
       "inputs": {
-        "catppuccin-ghostwriter": "catppuccin-ghostwriter",
         "catppuccin-heroic": "catppuccin-heroic",
         "catppuccin-konsole": "catppuccin-konsole",
         "catppuccin-obs": "catppuccin-obs",

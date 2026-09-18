@@ -73,10 +73,7 @@
           };
           ydotool.enable = true;
         };
-        security.pam.services = {
-          login.enableKwallet = true;
-          sddm.enableKwallet = true;
-        };
+        security.pam.services.login.enableKwallet = true;
         services = {
           btrfs.autoScrub = {
             enable = true;
