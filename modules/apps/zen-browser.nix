@@ -17,6 +17,7 @@
       home.sessionVariables.MOZ_ENABLE_WAYLAND = 1;
       programs.zen-browser = {
         enable = true;
+        nativeMessagingHosts = [ pkgs.kdePackages.plasma-browser-integration ];
         policies =
           let
             mkExtensionSettings = builtins.mapAttrs (
@@ -31,7 +32,6 @@
             AutofillCreditCardEnabled = false;
             Cookies = {
               Allow = [
-                "https://claude.ai"
                 "https://codeberg.org"
                 "https://echosector.org"
                 "https://github.com"
@@ -44,6 +44,7 @@
                 "https://steamcommunity.com"
                 "https://steampowered.com"
                 "https://store.epicgames.com"
+                "https://tangled.org"
                 "https://twitch.tv"
                 "https://zoom-platform.com"
               ];
@@ -66,25 +67,29 @@
               SuspectedFingerprinting = true;
               Value = true;
             };
-            ExtensionSettings = mkExtensionSettings {
-              "7esoorv3@alefvanoon.anonaddy.me" = "libredirect";
-              "addon@darkreader.org" = "darkreader";
-              "admin@fastaddons.com_AutoHighlight" = "auto_highlight";
-              "jid1-xUfzOsOFlzSOXg@jetpack" = "reddit-enhancement-suite";
-              "plasma-browser-integration@kde.org" = "plasma-integration";
-              "sponsorBlocker@ajay.app" = "sponsorblock";
-              "uBlock0@raymondhill.net" = "ublock-origin";
-              "{00000f2a-7cde-4f20-83ed-434fcb420d71}" = "imagus";
-              "{0c2c1d5d-7040-4499-9d29-bff606d963e6}" = "gog-2nd-class-helper";
-              "{15bdb1ce-fa9d-4a00-b859-66c214263ac0}" = "get-rss-feed-url";
-              "{1be309c5-3e4f-4b99-927d-bb500eb4fa88}" = "augmented-steam";
-              "{446900e4-71c2-419f-a6a7-df9c091e268b}" = "bitwarden-password-manager";
-              "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = "styl-us";
-              "{891ed2be-6ca9-47d1-9466-1595afa33b80}" = "bandcamp";
-              "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" = "refined-github-";
-              "{aecec67f-0d10-4fa7-b7c7-609a2db280cf}" = "violentmonkey";
-              "{b5501fd1-7084-45c5-9aa6-567c2fcf5dc6}" = "ruffle_rs";
-            };
+            ExtensionSettings =
+              mkExtensionSettings {
+                "7esoorv3@alefvanoon.anonaddy.me" = "libredirect";
+                "addon@darkreader.org" = "darkreader";
+                "admin@fastaddons.com_AutoHighlight" = "auto_highlight";
+                "jid1-xUfzOsOFlzSOXg@jetpack" = "reddit-enhancement-suite";
+                "plasma-browser-integration@kde.org" = "plasma-integration";
+                "sponsorBlocker@ajay.app" = "sponsorblock";
+                "uBlock0@raymondhill.net" = "ublock-origin";
+                "{00000f2a-7cde-4f20-83ed-434fcb420d71}" = "imagus";
+                "{0c2c1d5d-7040-4499-9d29-bff606d963e6}" = "gog-2nd-class-helper";
+                "{15bdb1ce-fa9d-4a00-b859-66c214263ac0}" = "get-rss-feed-url";
+                "{1be309c5-3e4f-4b99-927d-bb500eb4fa88}" = "augmented-steam";
+                "{446900e4-71c2-419f-a6a7-df9c091e268b}" = "bitwarden-password-manager";
+                "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = "styl-us";
+                "{891ed2be-6ca9-47d1-9466-1595afa33b80}" = "bandcamp";
+                "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" = "refined-github-";
+                "{aecec67f-0d10-4fa7-b7c7-609a2db280cf}" = "violentmonkey";
+                "{b5501fd1-7084-45c5-9aa6-567c2fcf5dc6}" = "ruffle_rs";
+              }
+              // {
+                "*".installation_mode = "blocked";
+              };
             FirefoxHome = {
               Locked = true;
               Search = false;
@@ -95,46 +100,107 @@
               Enabled = false;
               Locked = true;
             };
+            HttpsOnlyMode = "force_enabled";
             NoDefaultBookmarks = true;
             OfferToSaveLogins = false;
+            SSLVersionMin = "tls1.2";
             SanitizeOnShutdown = {
               Cache = true;
+              Cookies = true;
+              Downloads = true;
               FormData = true;
+              History = true;
+              Locked = true;
+              OfflineApps = true;
+              Sessions = true;
+              SiteSettings = true;
             };
           };
         profiles.default =
           let
+            defaultSpace = "5a9a807c-9689-4e11-8cf6-162a22118ab7";
             pins = {
+              "MyNixOS" = {
+                folderParentId = pins."NixOS".id;
+                id = "b22bef9f-4359-4025-aa40-77cea0d2f3a8";
+                position = 204;
+                url = "https://mynixos.com/";
+                workspace = pins."NixOS".workspace;
+              };
               "NixOS" = {
                 editedTitle = true;
-                folderIcon = "chrome://browser/skin/zen-icons/selectable/eye.svg";
+                folderIcon = "file://${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
                 id = "d85a9026-1458-4db6-b115-346746bcc692";
                 isFolderCollapsed = false;
                 isGroup = true;
                 position = 200;
+                workspace = defaultSpace;
               };
               "NixOS Manual" = {
                 folderParentId = pins."NixOS".id;
                 id = "c4804f6b-4523-4a33-99e4-c1f545390ad8";
                 position = 202;
                 url = "https://nixos.org/manual/nixos/unstable/";
+                workspace = pins."NixOS".workspace;
               };
               "NixOS Status" = {
                 folderParentId = pins."NixOS".id;
                 id = "a018d0d9-4186-43bd-800e-821304da849e";
                 position = 201;
                 url = "https://status.nixos.org/";
+                workspace = pins."NixOS".workspace;
               };
               "Nixpkgs Reference Manual" = {
                 folderParentId = pins."NixOS".id;
                 id = "8db8f1ff-f387-4eba-ab6b-2f03b1fe2291";
                 position = 203;
                 url = "https://nixos.org/manual/nixpkgs/unstable/";
+                workspace = pins."NixOS".workspace;
               };
             };
           in
           {
             inherit pins;
+            containersForce = true;
+            extensionButtons = {
+              "nav-bar" = [
+                "uBlock0@raymondhill.net"
+                "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" # styl-us
+                "{446900e4-71c2-419f-a6a7-df9c091e268b}" # bitwarden-password-manager
+                "7esoorv3@alefvanoon.anonaddy.me" # libredirect
+              ];
+              "unified-extensions-area" = [
+                "admin@fastaddons.com_AutoHighlight"
+                "sponsorBlocker@ajay.app"
+                "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" # refined-github-
+                "{aecec67f-0d10-4fa7-b7c7-609a2db280cf}" # violentmonkey
+                "{b5501fd1-7084-45c5-9aa6-567c2fcf5dc6}" # ruffle_rs
+                "{891ed2be-6ca9-47d1-9466-1595afa33b80}" # bandcamp
+                "plasma-browser-integration@kde.org"
+                "{15bdb1ce-fa9d-4a00-b859-66c214263ac0}" # get-rss-feed-url
+                "addon@darkreader.org"
+              ];
+            };
+            liveFolders = {
+              "My issues" = {
+                github.authorMe = true;
+                id = "069ddf06-972e-43b2-8683-1ee2505b07a3";
+                kind = "github:issues";
+                position = 301;
+                workspace = defaultSpace;
+              };
+              "Pull requests" = {
+                github = {
+                  assignedMe = true;
+                  authorMe = true;
+                  reviewRequested = true;
+                };
+                id = "c66b4bfa-5f69-49e6-857e-b76ac5eb179b";
+                kind = "github:pull-requests";
+                position = 300;
+                workspace = defaultSpace;
+              };
+            };
             mods = [
               "e122b5d9-d385-4bf8-9971-e137809097d0" # No Top Sites
               "253a3a74-0cc4-47b7-8b82-996a64f030d5" # Floating History
@@ -292,6 +358,12 @@
                     name = "Kagi";
                     urls = [ { template = "https://kagi.com/search?q={searchTerms}"; } ];
                   };
+                mynixos = {
+                  definedAliases = [ "@mn" ];
+                  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                  name = "MyNixOS";
+                  urls = [ { template = "https://mynixos.com/search?q={searchTerms}"; } ];
+                };
                 pcgw =
                   let
                     icon = pkgs.fetchurl {
@@ -350,6 +422,7 @@
               "zen.tabs.show-newtab-vertical" = true;
               "zen.tabs.vertical" = true;
               "zen.theme.gradient.show-custom-colors" = true;
+              "zen.theme.hide-unified-extensions-button" = false;
               "zen.ui.migration.compact-mode-button-added" = true;
               "zen.urlbar.behavior" = "float";
               "zen.view.compact.animate-sidebar" = true;
@@ -359,7 +432,7 @@
               "zen.view.compact.show-sidebar-and-toolbar-on-hover" = true;
               "zen.view.use-single-toolbar" = false;
               "zen.welcome-screen.seen" = true;
-              "zen.window-sync.enabled" = false;
+              "zen.window-sync.enabled" = true;
               "zen.window-sync.sync-only-pinned-tabs" = true;
               "zen.workspaces.continue-where-left-off" = false;
               "zen.workspaces.enabled" = true;
