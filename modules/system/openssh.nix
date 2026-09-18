@@ -1,7 +1,58 @@
 {
   flake.modules = {
     homeManager.profile-base =
-      { pkgs, ... }:
+      {
+        lib,
+        config,
+        pkgs,
+        ...
+      }:
+      let
+        mkHostBlock =
+          {
+            name,
+            port ? null,
+            user ? null,
+          }:
+          ''
+            Host ${name}-ts
+              HostName ${name}.${tailnetDns}
+          ''
+          + lib.optionalString (user != null) "  User ${user}\n"
+          + lib.optionalString (port != null) "  Port ${toString port}\n";
+        tailnetDns = config.sops.placeholder."tailscale/tailnet_dns";
+        tailscaleHosts = [
+          {
+            name = "mister";
+            user = "root";
+          }
+          {
+            name = "crusader";
+            user = "root";
+          }
+          {
+            name = "nixos-desktop";
+            port = 6777;
+          }
+          {
+            name = "nixos-htpc";
+            port = 6777;
+          }
+          {
+            name = "nixos-laptop";
+            port = 6777;
+          }
+          {
+            name = "regret";
+            port = 6777;
+          }
+          {
+            name = "remorse";
+            port = 6777;
+          }
+          { name = "opnsense"; }
+        ];
+      in
       {
         home.packages = with pkgs; [
           lazyssh
@@ -10,6 +61,7 @@
         programs.ssh = {
           enable = true;
           enableDefaultConfig = false;
+          includes = [ config.sops.templates."ssh-tailscale.conf".path ];
           settings = {
             "*".addKeysToAgent = "yes";
             bazzite = {
@@ -74,6 +126,10 @@
           };
         };
         services.ssh-agent.enable = true;
+        sops = {
+          secrets."tailscale/tailnet_dns" = { };
+          templates."ssh-tailscale.conf".content = lib.concatMapStrings mkHostBlock tailscaleHosts;
+        };
       };
     nixos.profile-base =
       { config, ... }:
