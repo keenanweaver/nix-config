@@ -215,7 +215,7 @@
               betterfox.enable = true;
               catppuccin = {
                 enable = true;
-                accent = "Lavender";
+                accent = "Sky";
                 flavor = "Mocha";
               };
             };

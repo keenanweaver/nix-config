@@ -1,8 +1,8 @@
 { self, inputs, ... }:
 let
   GTK-THEME = "Breeze-Dark";
-  accent-lower = "lavender";
-  accent-upper = "Lavender";
+  accent-lower = "sky";
+  accent-upper = "Sky";
   catppuccinCommon = {
     enable = true;
     accent = accent-lower;
@@ -111,8 +111,13 @@ in
               };
               catppuccin-krita = {
                 enable = true;
+                source = "${
+                  pkgs.catppuccin-kde.override {
+                    accents = [ accent-lower ];
+                    flavour = [ flavor-lower ];
+                  }
+                }/share/color-schemes/Catppuccin${flavor-upper}${accent-upper}.colors";
                 target = "${config.xdg.dataHome}/krita/color-schemes/Catppuccin${flavor-upper}${accent-upper}.colors";
-                text = builtins.readFile ../../assets/theming/krita/CatppuccinMochaLavender.colors;
               };
               catppuccin-obs-flatpak = {
                 enable = true;
@@ -165,7 +170,20 @@ in
               klassy-config = {
                 enable = true;
                 target = "${config.xdg.configHome}/klassy/klassyrc";
-                text = builtins.readFile ../../assets/theming/klassyrc;
+                text = ''
+                  [Global]
+                  LookAndFeelSet=Catppuccin-${flavor-upper}-${accent-upper}
+
+                  [Style]
+                  MenuOpacity=70
+
+                  [Windeco]
+                  AnimationsSpeedRelativeSystem=8
+
+                  [SystemIconGeneration]
+                  KlassyDarkIconThemeInherits=Papirus-Dark
+                  KlassyIconThemeInherits=Papirus
+                '';
               };
               kvantum-config = {
                 enable = true;

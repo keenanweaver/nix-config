@@ -85,9 +85,9 @@
           greeter-args = "";
           settings = {
             cursor = {
-              path = "${pkgs.catppuccin-cursors.mochaLavender}/share/icons";
+              path = "${pkgs.catppuccin-cursors.mochaSky}/share/icons";
               size = 24;
-              theme = "catppuccin-mocha-lavender-cursors";
+              theme = "catppuccin-mocha-sky-cursors";
             };
             keyboard.layout = "us";
           };

@@ -428,6 +428,7 @@
               icoutils
               kaccounts-providers
               kcalc
+              kde-gtk-config
               kdenetwork-filesharing
               kdesu
               kdialog

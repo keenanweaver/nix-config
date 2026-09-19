@@ -308,7 +308,7 @@
             local foreground = '#cdd6f4' -- text
 
             if tab.is_active then
-              background = '#b4befe' -- lavender
+              background = '#89dceb' -- sky
               foreground = '#1e1e2e' -- base
             elseif hover then
               background = '#45475a' -- surface1
