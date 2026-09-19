@@ -4,12 +4,13 @@
 
 - [EasyEffects](../modules/apps/_easyeffects.nix). Hangs Pipewire on login.
 - [Yeetmouse](../modules/profiles/gaming/_yeetmouse.nix) config does not save appropriately. May be an upstream issue.
+- Klassy application style makes Dolphin selection text unreadable with Catppuccin theme, use Breeze for now.
 
 ## Hacks
 
 These are hacks/temporary workarounds that should be reverted once upstream/other sources add them.
 
-- N/A
+- [KDE slowness hack](../modules/desktop-environments/kde/kde.nix)
 
 ## Flake
 

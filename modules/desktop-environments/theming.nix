@@ -1,8 +1,8 @@
 { self, inputs, ... }:
 let
   GTK-THEME = "Breeze-Dark";
-  accent-lower = "sky";
-  accent-upper = "Sky";
+  accent-lower = "lavender";
+  accent-upper = "Lavender";
   catppuccinCommon = {
     enable = true;
     accent = accent-lower;
@@ -285,10 +285,7 @@ in
               transparent = true;
             };
             plasma = {
-              configFile = {
-                # Application Style
-                "kdeglobals"."KDE"."widgetStyle" = "Klassy";
-              };
+              configFile."kdeglobals"."KDE"."widgetStyle" = "Breeze";
               fonts = {
                 fixedWidth = {
                   family = mono-font;
