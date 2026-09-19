@@ -173,7 +173,6 @@
             ps3-disc-dumper
             puddletag
             python314Packages.lnkparse3
-            qbz
             qtscrcpy
             #redumper
             rigel-engine

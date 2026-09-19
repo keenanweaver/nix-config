@@ -7,23 +7,25 @@
       ...
     }:
     let
-      codebergTokenFile = config.sops.secrets."renovate/codeberg_bot_pat".path;
       ntfyTokenFile = config.sops.secrets."ntfy/ntfybot_token".path;
       renovateNotifyMerged = pkgs.writeShellApplication {
         excludeShellChecks = [ "SC2329" ];
         name = "renovate-notify-merged";
         runtimeInputs = [
+          config.systemd.package
           pkgs.curl
           pkgs.jq
         ];
         text = ''
           # shellcheck disable=SC2154 # STATE_DIRECTORY is set by systemd's StateDirectory=
           state_file="$STATE_DIRECTORY/notify-merged-last-sha"
+          codeberg_token="$(systemd-creds cat 'SECRET-RENOVATE_TOKEN')"
+          ntfy_token="$(systemd-creds cat 'SECRET-NTFY_TOKEN')"
 
           ntfy_notify() {
             local title="$1" message="$2" tags="$3" priority="''${4:-default}"
             curl -fsS \
-              --header "Authorization: Bearer $(cat ${lib.escapeShellArg ntfyTokenFile})" \
+              --header "Authorization: Bearer $ntfy_token" \
               --header "Title: $title" \
               --header "Tags: $tags" \
               --header "Priority: $priority" \
@@ -32,7 +34,7 @@
           }
 
           commits=$(curl -fsS \
-            --header "Authorization: token $(cat ${lib.escapeShellArg codebergTokenFile})" \
+            --header "Authorization: token $codeberg_token" \
             "https://codeberg.org/api/v1/repos/Keenan/nix-config/commits?sha=dendritic&limit=50")
 
           current_sha=$(printf '%s' "$commits" | jq -r '.[0].sha')
@@ -126,7 +128,10 @@
         "renovate/nonfree_host_rules" = { };
       };
       systemd.services = {
-        renovate.serviceConfig.ExecStopPost = [ (lib.getExe renovateNotifyMerged) ];
+        renovate.serviceConfig = {
+          ExecStopPost = [ (lib.getExe renovateNotifyMerged) ];
+          LoadCredential = [ "SECRET-NTFY_TOKEN:${ntfyTokenFile}" ];
+        };
         renovate-watch-nixos-unstable = {
           description = "Trigger renovate when nixpkgs nixos-unstable advances";
           after = [ "network-online.target" ];

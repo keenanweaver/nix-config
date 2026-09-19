@@ -165,11 +165,8 @@
                     "applications:org.wezfurlong.wezterm.desktop"
                     "applications:vesktop.desktop"
                     "applications:fluxer-desktop.desktop"
-                    #"applications:org.squidowl.halloy.desktop"
                     "applications:signal.desktop"
                     "applications:info.mumble.Mumble.desktop"
-                    "applications:qbz.desktop"
-                    #"applications:foobar2000.desktop"
                     "applications:org.fooyin.fooyin.desktop"
                     "applications:org.kde.neochat.desktop"
                     "applications:org.kde.tokodon.desktop"
@@ -314,22 +311,6 @@
             match.window-class = {
               type = "regex";
               value = "fooyin";
-            };
-          }
-          {
-            apply = {
-              ignoregeometry.value = true;
-              position.value = "1026,662";
-              screen = {
-                apply = "force";
-                value = 1;
-              };
-              size.value = "1534,741";
-            };
-            description = "qbz";
-            match.window-class = {
-              type = "exact";
-              value = "qbz";
             };
           }
           {
