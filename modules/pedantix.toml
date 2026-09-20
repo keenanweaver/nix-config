@@ -11,6 +11,7 @@ last = ["specialArgs", "<defaulted>", "..."]
 [attrs]
 first = ["imports", "enable", "package", "pname", "version", "src"]
 flatten = true
+merge = true
 blank-lines = 0
 blank-lines-mode = "multiline"
 

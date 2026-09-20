@@ -16,33 +16,35 @@ let
     ;
 in
 {
-  config.flake = {
-    checks = mkMerge (
-      mapAttrsToList (name: nixos: {
-        ${nixos.config.nixpkgs.hostPlatform.system} = {
-          "configurations/nixos/${name}" = nixos.config.system.build.toplevel;
-        };
-      }) config.flake.nixosConfigurations
-    );
-    nixosConfigurations = mapAttrs (
-      _name:
-      { module, system }:
-      nixosSystem {
-        modules = [
-          {
-            nixpkgs.hostPlatform = system;
-            system.configurationRevision = self.rev or self.dirtyRev or null;
-          }
-          module
-        ];
-        specialArgs = {
-          inherit inputs self;
-          inherit (inputs) nixos-raspberrypi;
-        };
-      }
-    ) config.configurations.nixos;
+  config = {
+    flake = {
+      checks = mkMerge (
+        mapAttrsToList (name: nixos: {
+          ${nixos.config.nixpkgs.hostPlatform.system} = {
+            "configurations/nixos/${name}" = nixos.config.system.build.toplevel;
+          };
+        }) config.flake.nixosConfigurations
+      );
+      nixosConfigurations = mapAttrs (
+        _name:
+        { module, system }:
+        nixosSystem {
+          modules = [
+            {
+              nixpkgs.hostPlatform = system;
+              system.configurationRevision = self.rev or self.dirtyRev or null;
+            }
+            module
+          ];
+          specialArgs = {
+            inherit inputs self;
+            inherit (inputs) nixos-raspberrypi;
+          };
+        }
+      ) config.configurations.nixos;
+    };
+    flake-file.inputs.nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
   };
-  config.flake-file.inputs.nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
   options.configurations.nixos = mkOption {
     type = types.lazyAttrsOf (
       types.submodule {

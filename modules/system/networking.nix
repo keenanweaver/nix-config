@@ -48,17 +48,19 @@
       "/etc/wireguard"
       "/var/lib/NetworkManager"
     ];
-    services.avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-      publish = {
+    services = {
+      avahi = {
         enable = true;
-        addresses = true;
-        workstation = true;
+        nssmdns4 = true;
+        openFirewall = true;
+        publish = {
+          enable = true;
+          addresses = true;
+          workstation = true;
+        };
       };
+      resolved.enable = true;
     };
-    services.resolved.enable = true;
     users.users.${config.my.user}.extraGroups = [
       "networkmanager"
     ];

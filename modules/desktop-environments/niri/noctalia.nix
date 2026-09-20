@@ -60,39 +60,41 @@
           };
         };
       };
-    nixos.noctalia =
-      { inputs, ... }:
-      {
-        imports = [
-          inputs.noctalia.nixosModules.default
-        ];
-        nix.settings = {
-          extra-substituters = [ "https://noctalia.cachix.org" ];
-          extra-trusted-public-keys = [
-            "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+    nixos = {
+      noctalia =
+        { inputs, ... }:
+        {
+          imports = [
+            inputs.noctalia.nixosModules.default
           ];
-        };
-        programs.noctalia = {
-          enable = true;
-          recommendedServices.enable = true;
-        };
-      };
-    nixos.noctalia-greeter =
-      { pkgs, ... }:
-      {
-        programs.noctalia-greeter = {
-          enable = true;
-          greeter-args = "";
-          settings = {
-            cursor = {
-              path = "${pkgs.catppuccin-cursors.mochaLavender}/share/icons";
-              size = 24;
-              theme = "catppuccin-mocha-lavender-cursors";
-            };
-            keyboard.layout = "us";
+          nix.settings = {
+            extra-substituters = [ "https://noctalia.cachix.org" ];
+            extra-trusted-public-keys = [
+              "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+            ];
+          };
+          programs.noctalia = {
+            enable = true;
+            recommendedServices.enable = true;
           };
         };
-      };
+      noctalia-greeter =
+        { pkgs, ... }:
+        {
+          programs.noctalia-greeter = {
+            enable = true;
+            greeter-args = "";
+            settings = {
+              cursor = {
+                path = "${pkgs.catppuccin-cursors.mochaLavender}/share/icons";
+                size = 24;
+                theme = "catppuccin-mocha-lavender-cursors";
+              };
+              keyboard.layout = "us";
+            };
+          };
+        };
+    };
   };
   flake-file.inputs.noctalia.url = "github:noctalia-dev/noctalia/cachix";
 }
