@@ -27,13 +27,13 @@
           "remorse"
         ];
         "10.20.20.31" = [
-          "regretpi"
+          "regret"
         ];
         "10.20.20.32" = [
-          "vagabondpi"
+          "vagabond"
         ];
         "10.20.20.33" = [
-          "maniacpi"
+          "maniac"
         ];
         "10.20.20.5" = [
           "nixos-desktop"
@@ -58,18 +58,7 @@
         workstation = true;
       };
     };
-    services.resolved = {
-      enable = true;
-      settings.Resolve = {
-        FallbackDNS = [
-          "9.9.9.9"
-          "149.112.112.112"
-          "2620:fe::fe"
-          "2620:fe::9"
-        ];
-        LLMNR = "false";
-      };
-    };
+    services.resolved.enable = true;
     users.users.${config.my.user}.extraGroups = [
       "networkmanager"
     ];

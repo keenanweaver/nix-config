@@ -1,7 +1,7 @@
 {
   configurations.nixos.nixos-htpc.module =
-    { lib, pkgs, ... }:
+    { pkgs, ... }:
     {
-      boot.kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3;
+      boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3;
     };
 }

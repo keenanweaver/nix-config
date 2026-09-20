@@ -122,7 +122,6 @@
             krita
             lazyjournal
             limo
-            local.lgogdownloader
             local.openxcom-extended
             local.relive
             local.rsdkv3
@@ -134,6 +133,7 @@
             mame.tools
             mangareader
             manix
+            master.lgogdownloader
             mdformat
             mednafen
             mednaffe

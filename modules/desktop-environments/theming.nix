@@ -377,7 +377,7 @@ in
             accent = accent-lower;
             flavor = flavor-lower;
           })
-          #kdePackages.qtstyleplugin-kvantum
+          darkly
           klassy
           plasma-panel-colorizer
           utterly-round-plasma-style

@@ -1,10 +1,10 @@
 {
   flake.modules.homeManager = {
     profile-base =
-      { pkgs, ... }:
+      { lib, pkgs, ... }:
       {
         home.packages = with pkgs; [ distrobox-tui ];
-        programs.distrobox.enable = true;
+        programs.distrobox.enable = lib.mkDefault true;
       };
     profile-desktop =
       { pkgs, ... }:

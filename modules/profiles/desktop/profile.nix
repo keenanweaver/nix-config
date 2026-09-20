@@ -31,6 +31,8 @@
         imports = with self.modules.nixos; [
           inputs.omniflake.flakes.ucodenix.nixosModules.default
 
+          btrfs
+
           catppuccin
           kde
         ];

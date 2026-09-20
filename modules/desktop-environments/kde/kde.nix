@@ -333,7 +333,7 @@
                 description = "Disable VRR for Spectacle";
                 match.window-class = {
                   type = "exact";
-                  value = "org.kde.spectacle";
+                  value = "spectacle org.kde.spectacle";
                 };
               }
               {

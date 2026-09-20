@@ -1,15 +1,15 @@
 {
   flake.modules.nixos.profile-base =
-    { inputs, ... }:
+    { inputs, lib, ... }:
     {
       imports = [ inputs.omniflake.flakes.nix-mineral.nixosModules.nix-mineral ];
       # https://github.com/k4yt3x/sysctl
       boot.kernel.sysctl = {
-        "fs.file-max" = 9223372036854775807;
+        "fs.file-max" = lib.mkDefault 9223372036854775807;
         "fs.inotify.max_user_watches" = 524288;
         "kernel.panic" = 10;
         "kernel.pid_max" = 4194304;
-        "net.core.netdev_max_backlog" = 250000;
+        "net.core.netdev_max_backlog" = lib.mkDefault 250000;
         "net.core.optmem_max" = 40960;
         "net.core.rmem_default" = 8388608;
         "net.core.rmem_max" = 536870912;

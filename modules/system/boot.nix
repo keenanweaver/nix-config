@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.profile-base =
+  flake.modules.nixos.profile-desktop =
     { pkgs, ... }:
     {
       boot = {

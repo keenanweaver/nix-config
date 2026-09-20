@@ -1,18 +1,21 @@
 {
-  flake.modules.homeManager.profile-base = { pkgs, ... }: {
+  flake.modules.homeManager.profile-base = { lib, pkgs, ... }: {
     programs.yazi = {
       enable = true;
       enableBashIntegration = true;
       enableNushellIntegration = true;
       enableZshIntegration = true;
-      extraPackages = with pkgs; [
-        fd
-        ripgrep
-        fzf
-        zoxide
-        imagemagick
-        ffmpegthumbnailer
-      ];
+      extraPackages = lib.mkDefault (
+        with pkgs;
+        [
+          fd
+          ripgrep
+          fzf
+          zoxide
+          imagemagick
+          ffmpegthumbnailer
+        ]
+      );
       settings = {
         log.enabled = false;
         mgr = {

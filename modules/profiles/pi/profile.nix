@@ -2,28 +2,23 @@
 {
   flake.modules = {
     homeManager.profile-pi =
-      { lib, pkgs, ... }:
+      { pkgs, ... }:
       {
         imports = with self.modules.homeManager; [
           profile-server
         ];
-        fonts.fontconfig.enable = lib.mkForce false;
         programs = {
-          devenv.enable = lib.mkForce false;
-          distrobox.enable = lib.mkForce false;
-          helix.enable = lib.mkForce false;
-          lazyvim.enable = lib.mkForce false;
-          nix-search-tv.enable = lib.mkForce false;
-          yazi.extraPackages = lib.mkForce (
-            with pkgs;
-            [
-              fd
-              ripgrep
-              fzf
-              zoxide
-            ]
-          );
-          yt-dlp.enable = lib.mkForce false;
+          devenv.enable = false;
+          distrobox.enable = false;
+          lazyvim.enable = false;
+          nix-search-tv.enable = false;
+          yazi.extraPackages = with pkgs; [
+            fd
+            ripgrep
+            fzf
+            zoxide
+          ];
+          yt-dlp.enable = false;
         };
       };
     nixos.profile-pi =
@@ -41,22 +36,14 @@
           profile-server
         ];
         boot = {
-          consoleLogLevel = lib.mkForce 7;
-          growPartition = lib.mkForce true;
-          initrd.verbose = lib.mkForce true;
-          loader = {
-            efi.canTouchEfiVariables = lib.mkForce false;
-            limine = {
-              enable = lib.mkForce false;
-              additionalFiles = lib.mkForce { };
-              extraEntries = lib.mkForce "";
-            };
-          };
-          supportedFilesystems.zfs = lib.mkForce false;
-          zswap.enable = lib.mkForce false;
+          consoleLogLevel = 7;
+          growPartition = true;
+          initrd.verbose = true;
+          supportedFilesystems.zfs = false;
+          zswap.enable = false;
         };
         fileSystems = {
-          "/".autoResize = lib.mkForce true;
+          "/".autoResize = true;
           "/persist" = {
             device = "/persist";
             fsType = "none";
@@ -64,16 +51,11 @@
             options = [ "bind" ];
           };
         };
-        fonts = {
-          fontDir.enable = lib.mkForce false;
-          fontconfig.enable = lib.mkForce false;
-          packages = lib.mkForce [ ];
-        };
         hardware = {
-          deviceTree.enable = lib.mkForce false;
-          raspberry-pi.config.all.dt-overlays.vc4-kms-v3d.enable = lib.mkForce false;
+          deviceTree.enable = false;
+          raspberry-pi.config.all.dt-overlays.vc4-kms-v3d.enable = false;
         };
-        networking.hostId = lib.mkForce "8425e349";
+        networking.hostId = "8425e349";
         nix.settings = {
           extra-substituters = [
             "https://nixos-raspberrypi.cachix.org"
@@ -82,14 +64,13 @@
             "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
           ];
         };
-        nix-mineral.filesystems.normal."/boot".enable = lib.mkForce false;
+        nix-mineral.filesystems.normal."/boot".enable = false;
         nixpkgs.hostPlatform = lib.mkForce "aarch64-linux";
         sdImage.populateRootCommands = ''
           install -Dm600 ${hostKeyDir}/ssh_host_ed25519_key ./files/persist/etc/ssh/ssh_host_ed25519_key
           install -Dm644 ${hostKeyDir}/ssh_host_ed25519_key.pub ./files/persist/etc/ssh/ssh_host_ed25519_key.pub
         '';
-        services.btrfs.autoScrub.enable = lib.mkForce false;
-        system.boot.loader.kernelFile = lib.mkForce "Image";
+        system.boot.loader.kernelFile = "Image";
         zramSwap.enable = true;
       };
   };

@@ -22,8 +22,7 @@
           sd-image
         ]);
       boot.kernelPackages =
-        lib.mkForce
-          nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi4;
+        nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi4;
       home-manager.users.${config.my.user} =
         { config, ... }:
         {
