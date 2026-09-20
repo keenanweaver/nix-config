@@ -10,6 +10,52 @@
           ...
         }:
         let
+          cacheRefreshRetry = ''
+            if printf '%s\n' "$output" | grep -qE "^Cache (is too old|doesn.t exist|version doesn.t match current version)\."; then
+              echo "game details cache needs a refresh" >&2
+              lgogdownloader ${
+                lib.escapeShellArgs [
+                  "--update-cache"
+                  "--include-hidden-products"
+                  "--no-color"
+                  "--no-unicode"
+                  "--no-window-progress"
+                  "--verbosity=-1"
+                  "--interface=end0"
+                ]
+              }
+              set +o errexit
+              output=$(lgogdownloader "''${mainArgs[@]}" 2>&1 | tee >(cat 1>&2))
+              status=$?
+              set -o errexit
+            fi
+          '';
+          commonDownloadArgs = [
+            "--exclude"
+            "l,p"
+            "--platform=w"
+            "--threads=2"
+            "--info-threads=2"
+            "--limit-rate=15000"
+            "--use-cache"
+            "--cache-valid=1440"
+            "--check-free-space"
+            "--include-hidden-products"
+            "--ignore-dlc-count"
+            "--save-serials"
+            "--save-changelogs"
+            "--save-game-details-json"
+            "--automatic-xml-creation"
+            "--no-color"
+            "--no-unicode"
+            "--no-window-progress"
+            "--verbosity=-1"
+            "--interface=end0"
+            "--blacklist"
+            "${gogBlacklistFile}"
+            "--directory"
+            gogDirectory
+          ];
           gog-download = pkgs.writeShellApplication {
             excludeShellChecks = [
               "SC2054"
@@ -23,53 +69,20 @@
             ];
             text = ''
               ${ntfyHelpers}
-              notify_finish() {
-                local exit_code=$1
-                if [ "$exit_code" -eq 0 ]; then
-                  ntfy_notify "GOG download" "Finished successfully" "white_check_mark"
-                else
-                  ntfy_notify "GOG download" "Failed (exit $exit_code)" "x" "high"
-                fi
-              }
-              trap 'notify_finish $?' EXIT
-              ntfy_notify "GOG download" "Started" "arrow_forward"
-
-              lockfile="''${XDG_RUNTIME_DIR:-/tmp}/gog-lgogdownloader.lock"
-              exec {lock_fd}>"$lockfile"
-              flock --wait 3600 "$lock_fd"
+              ${mkNotifyFinish "GOG download"}
+              ${lockHelper}
 
               mainArgs=(
-                ${lib.escapeShellArgs [
-                  "--download"
-                  "--updated"
-                  "--new"
-                  "--clear-update-flags"
-                  "--exclude"
-                  "l,p"
-                  "--platform=w"
-                  "--threads=2"
-                  "--info-threads=2"
-                  "--limit-rate=15000"
-                  "--size-only"
-                  "--use-cache"
-                  "--cache-valid=1440"
-                  "--check-free-space"
-                  "--include-hidden-products"
-                  "--ignore-dlc-count"
-                  "--save-serials"
-                  "--save-changelogs"
-                  "--save-game-details-json"
-                  "--automatic-xml-creation"
-                  "--no-color"
-                  "--no-unicode"
-                  "--no-window-progress"
-                  "--verbosity=-1"
-                  "--interface=end0"
-                  "--blacklist"
-                  "${gogBlacklistFile}"
-                  "--directory"
-                  gogDirectory
-                ]}
+                ${lib.escapeShellArgs (
+                  [
+                    "--download"
+                    "--updated"
+                    "--new"
+                    "--clear-update-flags"
+                    "--size-only"
+                  ]
+                  ++ commonDownloadArgs
+                )}
               )
 
               set +o errexit
@@ -77,24 +90,7 @@
               status=$?
               set -o errexit
 
-              if printf '%s\n' "$output" | grep -qE "^Cache (is too old|doesn.t exist|version doesn.t match current version)\."; then
-                echo "game details cache needs a refresh" >&2
-                lgogdownloader ${
-                  lib.escapeShellArgs [
-                    "--update-cache"
-                    "--include-hidden-products"
-                    "--no-color"
-                    "--no-unicode"
-                    "--no-window-progress"
-                    "--verbosity=-1"
-                    "--interface=end0"
-                  ]
-                }
-                set +o errexit
-                output=$(lgogdownloader "''${mainArgs[@]}" 2>&1 | tee >(cat 1>&2))
-                status=$?
-                set -o errexit
-              fi
+              ${cacheRefreshRetry}
 
               exit "$status"
             '';
@@ -112,49 +108,11 @@
             ];
             text = ''
               ${ntfyHelpers}
-              notify_finish() {
-                local exit_code=$1
-                if [ "$exit_code" -eq 0 ]; then
-                  ntfy_notify "GOG full download" "Finished successfully" "white_check_mark"
-                else
-                  ntfy_notify "GOG full download" "Failed (exit $exit_code)" "x" "high"
-                fi
-              }
-              trap 'notify_finish $?' EXIT
-              ntfy_notify "GOG full download" "Started" "arrow_forward"
-
-              lockfile="''${XDG_RUNTIME_DIR:-/tmp}/gog-lgogdownloader.lock"
-              exec {lock_fd}>"$lockfile"
-              flock --wait 3600 "$lock_fd"
+              ${mkNotifyFinish "GOG full download"}
+              ${lockHelper}
 
               mainArgs=(
-                ${lib.escapeShellArgs [
-                  "--download"
-                  "--exclude"
-                  "l,p"
-                  "--platform=w"
-                  "--threads=2"
-                  "--info-threads=2"
-                  "--limit-rate=15000"
-                  "--use-cache"
-                  "--cache-valid=1440"
-                  "--check-free-space"
-                  "--include-hidden-products"
-                  "--ignore-dlc-count"
-                  "--save-serials"
-                  "--save-changelogs"
-                  "--save-game-details-json"
-                  "--automatic-xml-creation"
-                  "--no-color"
-                  "--no-unicode"
-                  "--no-window-progress"
-                  "--verbosity=-1"
-                  "--interface=end0"
-                  "--blacklist"
-                  "${gogBlacklistFile}"
-                  "--directory"
-                  gogDirectory
-                ]}
+                ${lib.escapeShellArgs ([ "--download" ] ++ commonDownloadArgs)}
               )
 
               set +o errexit
@@ -162,24 +120,7 @@
               status=$?
               set -o errexit
 
-              if printf '%s\n' "$output" | grep -qE "^Cache (is too old|doesn.t exist|version doesn.t match current version)\."; then
-                echo "game details cache needs a refresh" >&2
-                lgogdownloader ${
-                  lib.escapeShellArgs [
-                    "--update-cache"
-                    "--include-hidden-products"
-                    "--no-color"
-                    "--no-unicode"
-                    "--no-window-progress"
-                    "--verbosity=-1"
-                    "--interface=end0"
-                  ]
-                }
-                set +o errexit
-                output=$(lgogdownloader "''${mainArgs[@]}" 2>&1 | tee >(cat 1>&2))
-                status=$?
-                set -o errexit
-              fi
+              ${cacheRefreshRetry}
 
               exit "$status"
             '';
@@ -199,22 +140,10 @@
             ];
             text = ''
               ${ntfyHelpers}
-              notify_finish() {
-                local exit_code=$1
-                if [ "$exit_code" -eq 0 ]; then
-                  ntfy_notify "GOG orphan cleanup" "Finished successfully" "white_check_mark"
-                else
-                  ntfy_notify "GOG orphan cleanup" "Failed (exit $exit_code)" "x" "high"
-                fi
-              }
-              trap 'notify_finish $?' EXIT
-              ntfy_notify "GOG orphan cleanup" "Started" "arrow_forward"
+              ${mkNotifyFinish "GOG orphan cleanup"}
+              ${lockHelper}
 
-              lockfile="''${XDG_RUNTIME_DIR:-/tmp}/gog-lgogdownloader.lock"
-              exec {lock_fd}>"$lockfile"
-              flock --wait 3600 "$lock_fd"
-
-              orphan_output=$(lgogdownloader ${
+              output=$(lgogdownloader ${
                 lib.escapeShellArgs [
                   "--check-orphans"
                   ".*"
@@ -232,7 +161,7 @@
                 ]
               })
 
-              mapfile -t orphans < <(printf '%s\n' "$orphan_output" | sed '/^$/d')
+              mapfile -t orphans < <(printf '%s\n' "$output" | sed '/^$/d')
               if [ "''${#orphans[@]}" -eq 1 ] && [ "''${orphans[0]}" = "No orphaned files" ]; then
                 orphans=()
               fi
@@ -240,6 +169,7 @@
 
               if [ "$count" -eq 0 ]; then
                 echo "no orphaned files found"
+                success_message="Finished successfully: no orphaned files found"
                 exit 0
               fi
 
@@ -304,11 +234,31 @@
                   gogDirectory
                 ]}
               )
-              lgogdownloader "''${redownloadArgs[@]}"
+              output=$(lgogdownloader "''${redownloadArgs[@]}" 2>&1 | tee >(cat 1>&2))
+              success_message="Finished successfully: removed $count orphaned file(s) across $affected_count game director(y/ies), re-downloaded to self-heal"
             '';
           };
           gogBlacklistFile = ../../../assets/hosts/remorse/gog-blacklist.txt;
           gogDirectory = "/mnt/crusader/Games/Backups/GOG";
+          lockHelper = ''
+            lockfile="''${XDG_RUNTIME_DIR:-/tmp}/gog-lgogdownloader.lock"
+            exec {lock_fd}>"$lockfile"
+            flock --wait 3600 "$lock_fd"
+          '';
+          mkNotifyFinish = jobName: ''
+            success_message="Finished successfully"
+            notify_finish() {
+              local exit_code=$1
+              if [ "$exit_code" -eq 0 ]; then
+                ntfy_notify "${jobName}" "$success_message" "white_check_mark"
+              else
+                ntfy_notify "${jobName}" "Failed (exit $exit_code).''${output:+
+            $(tail -n 15 <<<"$output")}" "x" "high"
+              fi
+            }
+            trap 'notify_finish $?' EXIT
+            ntfy_notify "${jobName}" "Started" "arrow_forward"
+          '';
           ntfyHelpers = ''
             ntfy_notify() {
               local title="$1" message="$2" tags="$3" priority="''${4:-default}"
@@ -317,11 +267,13 @@
                 --header "Title: $title" \
                 --header "Tags: $tags" \
                 --header "Priority: $priority" \
+                --header "Click: ${ntfyTopicUrl}" \
                 --data "$message" \
-                "http://10.20.20.31/gog" >/dev/null || true
+                "${ntfyTopicUrl}" >/dev/null || true
             }
           '';
           ntfyTokenFile = config.sops.secrets."ntfy/ntfybot_token".path;
+          ntfyTopicUrl = "http://10.20.20.31/gog";
           orphanDirectoryFractionThreshold = 75;
         in
         {
@@ -367,7 +319,7 @@
                 Install.WantedBy = [ "timers.target" ];
                 Timer = {
                   OnBootSec = "10m";
-                  OnCalendar = "daily";
+                  OnCalendar = "*-*-* 10:00:00";
                   Persistent = true;
                   RandomizedDelaySec = "30m";
                 };

@@ -13,24 +13,51 @@
           idgames-sync = pkgs.writeShellApplication {
             excludeShellChecks = [ "SC2329" ];
             name = "idgames-sync";
-            runtimeInputs = [
-              pkgs.curl
-              pkgs.wget
+            runtimeInputs = with pkgs; [
+              curl
+              wget
             ];
             text = ''
               ${ntfyHelpers}
+              logfile=$(mktemp)
+              final_status=""
+
               notify_finish() {
                 local exit_code=$1
-                if [ "$exit_code" -eq 0 ]; then
-                  ntfy_notify "idgames sync" "Finished successfully" "white_check_mark"
-                else
-                  ntfy_notify "idgames sync" "Failed (exit $exit_code)" "x" "high"
-                fi
+                local status="''${final_status:-$exit_code}"
+                local summary
+                summary=$(grep -E '^(Downloaded|Total wall clock time):' "$logfile" | tr '\n' ' ')
+                case "$status" in
+                  ok)
+                    ntfy_notify "idgames sync" "Finished successfully. $summary" "white_check_mark"
+                    ;;
+                  partial)
+                    ntfy_notify "idgames sync" "Finished, but some files errored (wget exit 8). $summary
+              $(tail -n 15 "$logfile")" "warning"
+                    ;;
+                  *)
+                    ntfy_notify "idgames sync" "Failed (exit $status).
+              $(tail -n 15 "$logfile")" "x" "high"
+                    ;;
+                esac
+                rm -f "$logfile"
               }
               trap 'notify_finish $?' EXIT
               ntfy_notify "idgames sync" "Started" "arrow_forward"
 
-              wget ${lib.escapeShellArgs wgetArgs}
+              if wget ${lib.escapeShellArgs wgetArgs} 2>&1 | tee "$logfile"; then
+                wget_rc=0
+              else
+                wget_rc=''${PIPESTATUS[0]}
+              fi
+
+              if [ "$wget_rc" -eq 0 ]; then
+                final_status=ok
+              elif [ "$wget_rc" -eq 8 ]; then
+                final_status=partial
+              else
+                exit "$wget_rc"
+              fi
             '';
           };
           ntfyHelpers = ''
@@ -41,11 +68,13 @@
                 --header "Title: $title" \
                 --header "Tags: $tags" \
                 --header "Priority: $priority" \
+                --header "Click: ${ntfyTopicUrl}" \
                 --data "$message" \
-                "http://10.20.20.31/idgames" >/dev/null || true
+                "${ntfyTopicUrl}" >/dev/null || true
             }
           '';
           ntfyTokenFile = config.sops.secrets."ntfy/ntfybot_token".path;
+          ntfyTopicUrl = "http://10.20.20.31/idgames";
           wgetArgs = [
             "--mirror"
             "--no-parent"
@@ -54,14 +83,15 @@
             "--no-verbose"
             "--tries=3"
             "--timeout=30"
-            "--limit-rate=1m"
-            "--wait=2"
+            "--limit-rate=8m"
+            "--wait=1"
             "--random-wait"
-            "--waitretry=10"
             "-e"
             "robots=off"
             "--reject"
             "index.html*"
+            "--reject-regex"
+            "\\?C="
             "-P"
             "/mnt/crusader/Games/Games/Doom/idgames"
             "https://youfailit.net/pub/idgames/"
@@ -83,7 +113,6 @@
             timers.idgames-sync = {
               Install.WantedBy = [ "timers.target" ];
               Timer = {
-                OnBootSec = "5m";
                 OnCalendar = "monthly";
                 Persistent = true;
                 RandomizedDelaySec = "1h";
