@@ -28,7 +28,7 @@
     "bluetooth": [
       {
         "index": 64,
-        "attached_to": 72,
+        "attached_to": 73,
         "class_list": [
           "usb",
           "bluetooth"
@@ -107,7 +107,7 @@
       },
       {
         "index": 69,
-        "attached_to": 72,
+        "attached_to": 73,
         "class_list": [
           "usb",
           "bluetooth"
@@ -1797,7 +1797,6 @@
           "cat_l3",
           "cdp_l3",
           "hw_pstate",
-          "pti",
           "ssbd",
           "mba",
           "ibrs",
@@ -2246,7 +2245,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.6-cachyos-lto xhci-hcd",
+          "name": "Linux 7.2.4-cachyos-lto xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2256,11 +2255,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.01",
+          "name": "7.02",
           "value": 0
         },
         "serial": "0000:0a:00.3",
-        "model": "Linux 7.1.6-cachyos-lto xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.2.4-cachyos-lto xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:0a:00.3/usb3/3-0:1.0",
         "sysfs_bus_id": "3-0:1.0",
         "resources": [
@@ -2308,11 +2307,11 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0002d0701dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0702dc09dsc00dp01ic09isc00ip00in00"
       },
       {
         "index": 70,
-        "attached_to": 72,
+        "attached_to": 73,
         "class_list": [
           "usb",
           "hub"
@@ -2418,7 +2417,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.6-cachyos-lto xhci-hcd",
+          "name": "Linux 7.2.4-cachyos-lto xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2428,11 +2427,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.01",
+          "name": "7.02",
           "value": 0
         },
         "serial": "0000:0a:00.3",
-        "model": "Linux 7.1.6-cachyos-lto xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.2.4-cachyos-lto xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:0a:00.3/usb4/4-0:1.0",
         "sysfs_bus_id": "4-0:1.0",
         "detail": {
@@ -2470,10 +2469,10 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0003d0701dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0702dc09dsc00dp03ic09isc00ip00in00"
       },
       {
-        "index": 72,
+        "index": 73,
         "attached_to": 28,
         "class_list": [
           "usb",
@@ -2495,7 +2494,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.6-cachyos-lto xhci-hcd",
+          "name": "Linux 7.2.4-cachyos-lto xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2505,11 +2504,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.01",
+          "name": "7.02",
           "value": 0
         },
         "serial": "0000:02:00.0",
-        "model": "Linux 7.1.6-cachyos-lto xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.2.4-cachyos-lto xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -2557,10 +2556,10 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0002d0701dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0702dc09dsc00dp01ic09isc00ip00in00"
       },
       {
-        "index": 74,
+        "index": 75,
         "attached_to": 67,
         "class_list": [
           "usb",
@@ -2646,7 +2645,7 @@
         "module_alias": "usb:v174Cp2074d0200dc09dsc00dp02ic09isc00ip02in00"
       },
       {
-        "index": 75,
+        "index": 76,
         "attached_to": 28,
         "class_list": [
           "usb",
@@ -2668,7 +2667,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.6-cachyos-lto xhci-hcd",
+          "name": "Linux 7.2.4-cachyos-lto xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -2678,11 +2677,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.01",
+          "name": "7.02",
           "value": 0
         },
         "serial": "0000:02:00.0",
-        "model": "Linux 7.1.6-cachyos-lto xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.2.4-cachyos-lto xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -2720,7 +2719,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0003d0701dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0702dc09dsc00dp03ic09isc00ip00in00"
       }
     ],
     "memory": [
@@ -2921,8 +2920,8 @@
     ],
     "mouse": [
       {
-        "index": 76,
-        "attached_to": 72,
+        "index": 72,
+        "attached_to": 75,
         "class_list": [
           "mouse",
           "usb"
@@ -2965,8 +2964,8 @@
         "compat_vendor": "Unknown",
         "compat_device": "Generic USB Mouse",
         "model": "Rapoo Gaming Device",
-        "sysfs_id": "/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-5/1-5:1.0",
-        "sysfs_bus_id": "1-5:1.0",
+        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:0a:00.3/usb3/3-2/3-2.4/3-2.4:1.0",
+        "sysfs_bus_id": "3-2.4:1.0",
         "unix_device_names": [
           "/dev/input/mice"
         ],
@@ -3089,7 +3088,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 102
+            "address": 97
           },
           {
             "type": "phwaddr",
@@ -3372,7 +3371,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 102
+            "address": 97
           },
           {
             "type": "phwaddr",
@@ -3943,99 +3942,7 @@
     "usb": [
       {
         "index": 66,
-        "attached_to": 74,
-        "class_list": [
-          "usb",
-          "unknown"
-        ],
-        "bus_type": {
-          "hex": "0086",
-          "name": "USB",
-          "value": 134
-        },
-        "slot": {
-          "bus": 0,
-          "number": 0
-        },
-        "base_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Unclassified device",
-          "value": 0
-        },
-        "vendor": {
-          "hex": "2dc8",
-          "name": "8BitDo",
-          "value": 11720
-        },
-        "device": {
-          "hex": "6013",
-          "name": "Ultimate 2",
-          "value": 24595
-        },
-        "revision": {
-          "hex": "0000",
-          "name": "2.00",
-          "value": 0
-        },
-        "serial": "04FE9EA478",
-        "model": "8BitDo Ultimate 2",
-        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:0a:00.3/usb3/3-2/3-2.2/3-2.2:1.0",
-        "sysfs_bus_id": "3-2.2:1.0",
-        "resources": [
-          {
-            "type": "baud",
-            "speed": 12000000,
-            "bits": 0,
-            "stop_bits": 0,
-            "parity": 0,
-            "handshake": 0
-          }
-        ],
-        "detail": {
-          "device_class": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "device_protocol": 0,
-          "interface_class": {
-            "hex": "0003",
-            "name": "hid",
-            "value": 3
-          },
-          "interface_subclass": {
-            "hex": "0000",
-            "name": "per_interface",
-            "value": 0
-          },
-          "interface_protocol": 0,
-          "interface_number": 0,
-          "interface_alternate_setting": 0
-        },
-        "hotplug": "usb",
-        "driver": "usbhid",
-        "driver_module": "usbhid",
-        "drivers": [
-          "usbhid"
-        ],
-        "driver_modules": [
-          "usbhid"
-        ],
-        "module_alias": "usb:v2DC8p6013d0200dc00dsc00dp00ic03isc00ip00in00"
-      },
-      {
-        "index": 68,
-        "attached_to": 72,
+        "attached_to": 75,
         "class_list": [
           "usb",
           "unknown"
@@ -4076,13 +3983,13 @@
         },
         "serial": "20231211",
         "model": "Rapoo Gaming Device",
-        "sysfs_id": "/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-5/1-5:1.1",
-        "sysfs_bus_id": "1-5:1.1",
+        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:0a:00.3/usb3/3-2/3-2.4/3-2.4:1.1",
+        "sysfs_bus_id": "3-2.4:1.1",
         "unix_device_names": [
-          "/dev/input/by-id/usb-Rapoo_Rapoo_Gaming_Device_20231211-if01-event-kbd",
-          "/dev/input/by-path/pci-0000:02:00.0-usb-0:5:1.1-event-kbd",
-          "/dev/input/by-path/pci-0000:02:00.0-usbv2-0:5:1.1-event-kbd",
-          "/dev/input/event1"
+          "/dev/input/by-id/usb-Rapoo_Rapoo_Gaming_Device_20231211-event-if01",
+          "/dev/input/by-path/pci-0000:0a:00.3-usb-0:2.4:1.1-event",
+          "/dev/input/by-path/pci-0000:0a:00.3-usbv2-0:2.4:1.1-event",
+          "/dev/input/event3"
         ],
         "resources": [
           {
@@ -4132,8 +4039,100 @@
         "module_alias": "usb:v24AEp1211d0100dc00dsc00dp00ic03isc00ip00in01"
       },
       {
-        "index": 73,
-        "attached_to": 72,
+        "index": 68,
+        "attached_to": 75,
+        "class_list": [
+          "usb",
+          "unknown"
+        ],
+        "bus_type": {
+          "hex": "0086",
+          "name": "USB",
+          "value": 134
+        },
+        "slot": {
+          "bus": 0,
+          "number": 0
+        },
+        "base_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Unclassified device",
+          "value": 0
+        },
+        "vendor": {
+          "hex": "2dc8",
+          "name": "8BitDo",
+          "value": 11720
+        },
+        "device": {
+          "hex": "6013",
+          "name": "Ultimate 2",
+          "value": 24595
+        },
+        "revision": {
+          "hex": "0000",
+          "name": "2.00",
+          "value": 0
+        },
+        "serial": "04FE9EA478",
+        "model": "8BitDo Ultimate 2",
+        "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:0a:00.3/usb3/3-2/3-2.3/3-2.3:1.0",
+        "sysfs_bus_id": "3-2.3:1.0",
+        "resources": [
+          {
+            "type": "baud",
+            "speed": 12000000,
+            "bits": 0,
+            "stop_bits": 0,
+            "parity": 0,
+            "handshake": 0
+          }
+        ],
+        "detail": {
+          "device_class": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "device_protocol": 0,
+          "interface_class": {
+            "hex": "0003",
+            "name": "hid",
+            "value": 3
+          },
+          "interface_subclass": {
+            "hex": "0000",
+            "name": "per_interface",
+            "value": 0
+          },
+          "interface_protocol": 0,
+          "interface_number": 0,
+          "interface_alternate_setting": 0
+        },
+        "hotplug": "usb",
+        "driver": "usbhid",
+        "driver_module": "usbhid",
+        "drivers": [
+          "usbhid"
+        ],
+        "driver_modules": [
+          "usbhid"
+        ],
+        "module_alias": "usb:v2DC8p6013d0200dc00dsc00dp00ic03isc00ip00in00"
+      },
+      {
+        "index": 74,
+        "attached_to": 73,
         "class_list": [
           "usb",
           "unknown"
@@ -4172,10 +4171,7 @@
         "sysfs_id": "/devices/pci0000:00/0000:00:01.2/0000:02:00.0/usb1/1-8/1-8:1.0",
         "sysfs_bus_id": "1-8:1.0",
         "unix_device_names": [
-          "/dev/input/by-id/usb-ASRock_LED_Controller_A02019100900-event-if00",
-          "/dev/input/by-path/pci-0000:02:00.0-usb-0:8:1.0-event",
-          "/dev/input/by-path/pci-0000:02:00.0-usbv2-0:8:1.0-event",
-          "/dev/input/event3"
+          "/dev/input/js0"
         ],
         "resources": [
           {
@@ -4366,8 +4362,8 @@
     "bios": {
       "handle": 0,
       "vendor": "American Megatrends International, LLC.",
-      "version": "P3.90",
-      "date": "09/30/2025",
+      "version": "P4.00",
+      "date": "08/19/2026",
       "features": [
         "PCI supported",
         "BIOS flashable",

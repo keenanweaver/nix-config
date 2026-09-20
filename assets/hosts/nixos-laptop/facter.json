@@ -1224,7 +1224,6 @@
           "cat_l3",
           "cdp_l3",
           "hw_pstate",
-          "pti",
           "ssbd",
           "mba",
           "ibrs",
@@ -1523,7 +1522,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.8 xhci-hcd",
+          "name": "Linux 7.2.6 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1533,11 +1532,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.01",
+          "name": "7.02",
           "value": 0
         },
         "serial": "0000:03:00.4",
-        "model": "Linux 7.1.8 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.2.6 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:03:00.4/usb3/3-0:1.0",
         "sysfs_bus_id": "3-0:1.0",
         "resources": [
@@ -1585,7 +1584,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0002d0701dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0702dc09dsc00dp01ic09isc00ip00in00"
       },
       {
         "index": 55,
@@ -1610,7 +1609,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.8 xhci-hcd",
+          "name": "Linux 7.2.6 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1620,11 +1619,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.01",
+          "name": "7.02",
           "value": 0
         },
         "serial": "0000:03:00.4",
-        "model": "Linux 7.1.8 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.2.6 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:03:00.4/usb4/4-0:1.0",
         "sysfs_bus_id": "4-0:1.0",
         "detail": {
@@ -1662,7 +1661,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0003d0701dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0702dc09dsc00dp03ic09isc00ip00in00"
       },
       {
         "index": 57,
@@ -1687,7 +1686,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.8 xhci-hcd",
+          "name": "Linux 7.2.6 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1697,11 +1696,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.01",
+          "name": "7.02",
           "value": 0
         },
         "serial": "0000:03:00.3",
-        "model": "Linux 7.1.8 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.2.6 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:03:00.3/usb1/1-0:1.0",
         "sysfs_bus_id": "1-0:1.0",
         "resources": [
@@ -1749,7 +1748,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0002d0701dc09dsc00dp01ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0002d0702dc09dsc00dp01ic09isc00ip00in00"
       },
       {
         "index": 60,
@@ -1774,7 +1773,7 @@
         },
         "vendor": {
           "hex": "1d6b",
-          "name": "Linux 7.1.8 xhci-hcd",
+          "name": "Linux 7.2.6 xhci-hcd",
           "value": 7531
         },
         "device": {
@@ -1784,11 +1783,11 @@
         },
         "revision": {
           "hex": "0000",
-          "name": "7.01",
+          "name": "7.02",
           "value": 0
         },
         "serial": "0000:03:00.3",
-        "model": "Linux 7.1.8 xhci-hcd xHCI Host Controller",
+        "model": "Linux 7.2.6 xhci-hcd xHCI Host Controller",
         "sysfs_id": "/devices/pci0000:00/0000:00:08.1/0000:03:00.3/usb2/2-0:1.0",
         "sysfs_bus_id": "2-0:1.0",
         "detail": {
@@ -1826,7 +1825,7 @@
         "driver_modules": [
           "usbcore"
         ],
-        "module_alias": "usb:v1D6Bp0003d0701dc09dsc00dp03ic09isc00ip00in00"
+        "module_alias": "usb:v1D6Bp0003d0702dc09dsc00dp03ic09isc00ip00in00"
       }
     ],
     "keyboard": [
@@ -2190,9 +2189,9 @@
           "hex": "3259",
           "value": 12889
         },
-        "sysfs_id": "/devices/platform/AMDI0010:03/i2c-0/i2c-DELL0B6B:00/0018:04F3:3259.0005/input/input24",
+        "sysfs_id": "/devices/platform/AMDI0010:03/i2c-0/i2c-DELL0B6B:00/0018:04F3:3259.0005/input/input23",
         "unix_device_names": [
-          "/dev/input/event9",
+          "/dev/input/event8",
           "/dev/input/ + handler"
         ]
       }

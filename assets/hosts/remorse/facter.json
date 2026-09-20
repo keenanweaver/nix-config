@@ -541,7 +541,7 @@
         "sysfs_id": "/class/block/zram0",
         "unix_device_names": [
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/8ec73bb2-1c86-418f-96b0-bf139c4c2fd9",
+          "/dev/disk/by-uuid/19e55207-51bf-4dee-bf9b-aeae0cdb6858",
           "/dev/zram0"
         ],
         "resources": [
@@ -1059,7 +1059,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 51
+            "address": 102
           },
           {
             "type": "phwaddr",
@@ -1231,7 +1231,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 51
+            "address": 102
           },
           {
             "type": "phwaddr",
@@ -1251,28 +1251,6 @@
       },
       {
         "index": 37,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_names": [
-          "lo"
-        ]
-      },
-      {
-        "index": 38,
         "attached_to": 12,
         "class_list": [
           "network_interface"
@@ -1306,6 +1284,28 @@
         "driver": "bcmgenet",
         "drivers": [
           "bcmgenet"
+        ]
+      },
+      {
+        "index": 38,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_names": [
+          "lo"
         ]
       }
     ],

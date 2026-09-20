@@ -10,7 +10,6 @@
           "vm.watermark_boost_factor" = 0;
           "vm.watermark_scale_factor" = 125;
         };
-        kernelModules = [ "nct6775" ]; # Otherwise CoolerControl warns
         kernelParams = [
           "amdgpu.audio=0"
           #"amd_3d_vcache.x3d_mode=cache" # AMD V-Cache https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer

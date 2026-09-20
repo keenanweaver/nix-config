@@ -10,6 +10,7 @@
     nixos.profile-gaming =
       { pkgs, ... }:
       {
+        boot.kernelModules = [ "nct6775" ]; # Otherwise CoolerControl warns
         environment.systemPackages = with pkgs; [
           liquidctl
           lm_sensors

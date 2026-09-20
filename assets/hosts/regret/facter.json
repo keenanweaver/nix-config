@@ -541,7 +541,7 @@
         "sysfs_id": "/class/block/zram0",
         "unix_device_names": [
           "/dev/disk/by-label/zram0",
-          "/dev/disk/by-uuid/0893fb92-081a-4908-953b-df5c2e8a77e1",
+          "/dev/disk/by-uuid/698874c2-dccf-44c5-9533-a415eba1241a",
           "/dev/zram0"
         ],
         "resources": [
@@ -1059,7 +1059,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 57
+            "address": 54
           },
           {
             "type": "phwaddr",
@@ -1231,7 +1231,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 57
+            "address": 54
           },
           {
             "type": "phwaddr",
@@ -1250,7 +1250,7 @@
         ]
       },
       {
-        "index": 37,
+        "index": 38,
         "attached_to": 12,
         "class_list": [
           "network_interface"
