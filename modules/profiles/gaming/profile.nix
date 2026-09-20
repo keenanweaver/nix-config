@@ -106,17 +106,20 @@
             value = "64556";
           }
         ];
-        services.wayland-pipewire-idle-inhibit = {
-          enable = true;
-          settings = {
-            idle_inhibitor = "d-bus";
-            media_minimum_duration = 5;
-            sink_whitelist = [
-              { name = "Browser"; }
-              { name = "Game"; }
-              { name = "Music"; }
-            ];
-            verbosity = "WARN";
+        services = {
+          irqbalance.enable = true;
+          wayland-pipewire-idle-inhibit = {
+            enable = true;
+            settings = {
+              idle_inhibitor = "d-bus";
+              media_minimum_duration = 5;
+              sink_whitelist = [
+                { name = "Browser"; }
+                { name = "Game"; }
+                { name = "Music"; }
+              ];
+              verbosity = "WARN";
+            };
           };
         };
       };
