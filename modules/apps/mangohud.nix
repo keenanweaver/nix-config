@@ -68,7 +68,6 @@
                       label = "Kernel";
                     }
                   ];
-                hudHeight = 230 + 22 * (lib.length customEntries);
                 mangohud-cpu-governor = pkgs.writeShellApplication {
                   name = "mangohud-cpu-governor";
                   runtimeInputs = with pkgs; [ coreutils ];
@@ -79,12 +78,11 @@
                 mangohud-hdr = pkgs.writeShellApplication {
                   name = "mangohud-hdr";
                   runtimeInputs = with pkgs; [
-                    kdePackages.libkscreen
                     jq
                     ripgrep
                   ];
                   text = ''
-                    if kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .hdr' | rg -q "true"; then
+                    if ${lib.getExe mangohud-kscreen-json} | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .hdr' | rg -q "true"; then
                       echo "Enabled"
                     else
                       echo "Disabled"
@@ -96,6 +94,29 @@
                   runtimeInputs = with pkgs; [ coreutils ];
                   text = ''
                     uname -r
+                  '';
+                };
+                mangohud-kscreen-json = pkgs.writeShellApplication {
+                  name = "mangohud-kscreen-json";
+                  runtimeInputs = with pkgs; [
+                    coreutils
+                    kdePackages.libkscreen
+                  ];
+                  text = ''
+                    cache="''${XDG_RUNTIME_DIR:-/tmp}/mangohud-kscreen.json"
+                    ttl=2
+
+                    now=$(date +%s)
+                    mtime=0
+                    if [ -f "$cache" ]; then
+                      mtime=$(stat -c %Y "$cache" 2>/dev/null || echo 0)
+                    fi
+
+                    if [ $((now - mtime)) -ge "$ttl" ]; then
+                      kscreen-doctor --json > "$cache.tmp" 2>/dev/null && mv "$cache.tmp" "$cache" || true
+                    fi
+
+                    cat "$cache" 2>/dev/null || true
                   '';
                 };
                 mangohud-os = pkgs.writeShellApplication {
@@ -141,12 +162,13 @@
                 };
                 mangohud-scx = pkgs.writeShellApplication {
                   name = "mangohud-scx";
-                  runtimeInputs = with pkgs; [
-                    gawk
-                    scx-loader
-                  ];
+                  runtimeInputs = with pkgs; [ coreutils ];
                   text = ''
-                    scxctl get | awk '{print $2}'
+                    if [ -f /sys/kernel/sched_ext/root/ops ]; then
+                      cut -d_ -f1 < /sys/kernel/sched_ext/root/ops
+                    else
+                      echo "N/A"
+                    fi
                   '';
                 };
                 mangohud-vcache = pkgs.writeShellApplication {
@@ -159,12 +181,11 @@
                 mangohud-vrr = pkgs.writeShellApplication {
                   name = "mangohud-vrr";
                   runtimeInputs = with pkgs; [
-                    kdePackages.libkscreen
                     jq
                     ripgrep
                   ];
                   text = ''
-                    if kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .vrrPolicy != 0' | rg -q "true"; then
+                    if ${lib.getExe mangohud-kscreen-json} | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .vrrPolicy != 0' | rg -q "true"; then
                       echo "Enabled"
                     else
                       echo "Disabled"
@@ -174,12 +195,11 @@
                 mangohud-wcg = pkgs.writeShellApplication {
                   name = "mangohud-wcg";
                   runtimeInputs = with pkgs; [
-                    kdePackages.libkscreen
                     jq
                     ripgrep
                   ];
                   text = ''
-                    if kscreen-doctor --json | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .wcg' | rg -q "true"; then
+                    if ${lib.getExe mangohud-kscreen-json} | jq -r '.outputs[] | select(.name == "${primaryMonitor}") | .wcg' | rg -q "true"; then
                       echo "Enabled"
                     else
                       echo "Disabled"
@@ -191,123 +211,107 @@
                 enable = true;
                 target = "${config.xdg.configHome}/MangoHud/MangoHud.conf";
                 text = ''
-                  ###############
-                  ##  Display  ##
-                  ###############
-                  ${lib.optionalString (fpsLimit != "") "fps_limit=${fpsLimit}"}
-                  vulkan_present_mode=mailbox
-
-                  ###########
-                  ## Binds ##
-                  ###########
-                  toggle_fps_limit=Shift_R+F1
-                  toggle_hud=Shift_L+Shift_R
-                  toggle_hud_position=Shift_R+F11
-                  toggle_preset=Shift_R+F10
-
-                  #########
-                  ## GPU ##
-                  #########
-                  ${lib.optionalString (pciDev != "") "pci_dev=${pciDev}"}
                   fps
-                  fps_color_change
                   fps_metrics=avg,0.01,0.001
-                  fps_value=30,60
-                  engine_version
+                  custom_text=  #space
                   frame_timing
                   gpu_stats
-                  gpu_temp
-                  gpu_core_clock
-                  gpu_mem_clock
-                  gpu_power
-                  gpu_power_limit
-                  gpu_load_change
-                  gpu_load_value=60,90
-                  gpu_fan
-                  gpu_voltage
-                  ${lib.optionalString (gpu != "") "gpu_text=${gpu}"}
-                  throttling_status_graph
 
-                  #########
-                  ## CPU ##
-                  #########
                   cpu_stats
-                  cpu_temp
-                  cpu_power
-                  cpu_mhz
-                  ${lib.optionalString (cpu != "") "cpu_text=${cpu}"}
-                  cpu_load_change
-                  cpu_load_value=50,90
-                  core_load_change
                   core_load
-                  core_bars
-                  core_type
+                  custom_text=  #space
 
-                  #########
-                  ## RAM ##
-                  #########
                   vram
-                  proc_vram
-                  gpu_mem_temp
-                  swap
                   ram
+                  ram_temp
+                  procmem_virt
                   procmem
+                  procmem_shared
 
-                  ##########
-                  ## Info ##
-                  ##########
-                  exec_name
-                  arch
                   vulkan_driver
-                  # dx_api
-                  wine
-                  winesync
+                  engine_version
+                  arch
+                  exec_name
+                  present_mode
+                  show_fps_limit
+                  swap
                   gamemode
                   vkbasalt
                   fsr
                   hdr
                   refresh_rate
-                  show_fps_limit
                   resolution
-                  present_mode
-                  display_server # Doesn't work when legacy_layout=0
+                  display_server
+                  winesync
+                  custom_text=  #space
 
-                  ############
-                  ## Custom ##
-                  ############
                   ${lib.concatStringsSep "\n" (
                     map (entry: "custom_text=${entry.label}\nexec=${lib.getExe entry.command}") customEntries
                   )}
 
-                  ########
-                  ## UI ##
-                  ########
+                  custom_text=  #space
+                  wine
+
+                  toggle_fps_limit=Shift_R+F1
+                  toggle_hud=Shift_L+Shift_R
+                  toggle_hud_position=Shift_R+F11
+                  toggle_preset=Shift_R+F10
+
+                  ${lib.optionalString (cpu != "") "cpu_text=${cpu}"}
+                  ${lib.optionalString (pciDev != "") "pci_dev=${pciDev}"}
+                  ${lib.optionalString (gpu != "") "gpu_text=${gpu}"}
+                  ${lib.optionalString (fpsLimit != "") "fps_limit=${fpsLimit}"}
+
+                  legacy_layout=false
+                  gpu_load_change
+                  gpu_core_clock
+                  gpu_mem_clock
+                  gpu_temp
+                  gpu_mem_temp
+                  gpu_junction_temp
+                  gpu_fan
+                  gpu_power
+                  throttling_status_graph
+                  cpu_load_change
+                  core_bars
+                  cpu_mhz
+                  cpu_temp
+                  cpu_power
+                  cpu_efficiency
+                  fps_color_change
+                  hud_compact
+                  gpu_power_limit
+
+                  round_corners=1
+                  background_alpha=0.5
+                  position=bottom-right
+                  no_display
+                  table_columns=4
                   text_outline
                   text_outline_thickness=2.0
-                  position=bottom-right
-                  background_alpha=0.5
-                  round_corners=10
-                  no_display
-                  legacy_layout=0 # For scripts that rely on the new layout
                   font_file=${pkgs.atkinson-hyperlegible-next}/share/fonts/opentype/AtkinsonHyperlegibleNext-Bold.otf
                   font_size=30
                   font_size_secondary=20
-                  width=570
-                  height=${toString hudHeight}
+                  fps_value=30,60
+                  gpu_load_value=60,90
+                  cpu_load_value=60,90
+                  fps_limit_method=late
+
                   ${lib.optionalString config.catppuccin.enable ''
-                    # Catppuccin theming
-                    background_color=1E1E2E
+                    background_color=1e1e2e
                     battery_color=585b70
-                    cpu_color=89B4FA
-                    cpu_load_color=CDD6F4,FAB387,F38BA8
+                    cpu_color=89b3fa
+                    cpu_load_color=a6e3a1,fab387,f38ba8
                     engine_color=b4befe
-                    fps_color=F38BA8,F9E2AF,A6E3A1
+                    fps_color=f38ba7,f9e2af,a6e3a1
                     frametime_color=a6e3a1
-                    gpu_color=A6E3A1
-                    gpu_load_color=CDD6F4,FAB387,F38BA8
-                    io_color=F9E2AF
-                    media_player_color=CDD6F4
-                    ram_color=F5C2E7
+                    gpu_color=a6e3a1
+                    gpu_load_color=a6e3a1,fab387,f38ba8
+                    horizontal_separator_color=cdd6f4
+                    io_color=f9E2af
+                    media_player_color=cdd6f4
+                    network_color=b4befe
+                    ram_color=f5c2e7
                     text_color=cdd6f4
                     text_outline_color=11111b
                     vram_color=94e2d5
