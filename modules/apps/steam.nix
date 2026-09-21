@@ -33,6 +33,10 @@
           ];
           programs.steam.config = {
             enable = true;
+            apps."993090" = {
+              betaBranch = "lsfg-vk";
+              name = "Lossless Scaling";
+            };
             displayRatesAsBits = false;
             notifications = true;
             onSteamRunning = "close";

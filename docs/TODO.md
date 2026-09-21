@@ -20,6 +20,6 @@ These are hacks/temporary workarounds that should be reverted once upstream/othe
 ## Config
 
 - Add configs for work
-- Flatpak runtimes: update all runtimes to 26.08 when available. gamescope, lsfg-vk, mangohud, obs, vkbasalt, mesa-git
+- Flatpak runtimes: update all runtimes to 26.08 when available. lsfg-vk, obs, vkbasalt, mesa-git
 - MiSTer/`nixos-htpc` save sync in `regret` pi
 - Consider adding custom [coolercontrol](https://github.com/Daaboulex/coolercontrol-nix) module

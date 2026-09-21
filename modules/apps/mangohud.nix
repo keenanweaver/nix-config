@@ -321,7 +321,7 @@
             };
           };
           packages = with pkgs; [
-            goverlay
+            mangojuice
           ];
         };
         programs.mangohud = {

@@ -129,7 +129,7 @@
       };
       systemd.services = {
         renovate.serviceConfig = {
-          ExecStopPost = [ (lib.getExe renovateNotifyMerged) ];
+          ExecStartPost = [ (lib.getExe renovateNotifyMerged) ];
           LoadCredential = [ "SECRET-NTFY_TOKEN:${ntfyTokenFile}" ];
         };
         renovate-watch-nixos-unstable = {

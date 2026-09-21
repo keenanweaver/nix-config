@@ -85,7 +85,6 @@
             glances
             glow
             gnugo
-            goverlay
             gping
             gswatcher
             hacompanion
