@@ -26,6 +26,8 @@
               listen-https = lib.mkForce "";
             };
           };
+          services.podman.containers.ntfy.homepage.settings.href =
+            "https://regret.{{HOMEPAGE_VAR_TAILNET_DNS}}";
           sops.secrets = {
             "ntfy/admin_password_hash" = { };
             "ntfy/ntfybot_password_hash" = { };

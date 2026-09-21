@@ -6,7 +6,7 @@
   </head>
   <body>
     <outline text="Games">
-      <outline text="GOG.com" type="rss" xmlUrl="https://www.gog.com/frontpage/rss" htmlUrl="http://www.gog.com/frontpage/rss" description="The latest news for GOG.com"/>
+      <outline text="GOG.com" type="rss" xmlUrl="https://www.gog.com/frontpage/rss" htmlUrl="https://www.gog.com/frontpage/rss" description="The latest news for GOG.com"/>
       <outline text="The Digital Antiquarian" type="rss" xmlUrl="https://www.filfre.net/feed/" htmlUrl="https://www.filfre.net/" description="A history of computer entertainment and digital culture by Jimmy Maher"/>
       <outline text="Thrilling Tales of Old Video Games" type="rss" xmlUrl="https://www.thrillingtalesofoldvideogames.com/?format=rss" htmlUrl="https://www.thrillingtalesofoldvideogames.com/"/>
     </outline>
@@ -16,7 +16,9 @@
       <outline text="DoomRunner" type="rss" xmlUrl="https://github.com/Youda008/DoomRunner/releases.atom" htmlUrl="https://github.com/Youda008/DoomRunner/releases"/>
       <outline text="game-devices-udev" type="rss" xmlUrl="https://codeberg.org/fabiscafe/game-devices-udev/releases.rss" htmlUrl="https://codeberg.org/fabiscafe/game-devices-udev/release" description="udev rules for game-devices"/>
       <outline text="GeneralUser-GS" type="rss" xmlUrl="https://github.com/mrbumpy409/GeneralUser-GS/commits.atom" htmlUrl="https://github.com/mrbumpy409/GeneralUser-GS/commits/main"/>
+      <outline text="Helion" type="rss" xmlUrl="https://github.com/Helion-Engine/Helion/releases.atom" htmlUrl="https://github.com/Helion-Engine/Helion/releases"/>
       <outline text="HeroicGamesLauncher" type="rss" xmlUrl="https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases.atom" htmlUrl="https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases"/>
+      <outline text="LGOGDownloader" type="rss" xmlUrl="https://github.com/Sude-/lgogdownloader/releases.atom" htmlUrl="https://github.com/Sude-/lgogdownloader/releases"/>
       <outline text="Nero-umu" type="rss" xmlUrl="https://github.com/SeongGino/Nero-umu/releases.atom" htmlUrl="https://github.com/SeongGino/Nero-umu/releases"/>
       <outline text="openomf" type="rss" xmlUrl="https://github.com/omf2097/openomf/releases.atom" htmlUrl="https://github.com/omf2097/openomf/releases"/>
       <outline text="OpenRCT2" type="rss" xmlUrl="https://github.com/OpenRCT2/OpenRCT2/releases.atom" htmlUrl="https://github.com/OpenRCT2/OpenRCT2/releases"/>

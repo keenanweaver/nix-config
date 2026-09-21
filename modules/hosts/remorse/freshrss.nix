@@ -6,8 +6,11 @@
       pkgs,
       ...
     }:
+    let
+      adminUser = config.my.user;
+    in
     {
-      home-manager.users.${config.my.user} = { config, pkgs, ... }: {
+      home-manager.users.${adminUser} = { config, pkgs, ... }: {
         nps.stacks.freshrss = {
           enable = true;
           adminProvisioning = {
@@ -15,10 +18,13 @@
             apiPasswordFile = config.sops.secrets."freshrss/admin_api_password".path;
             email = "keenan@remorse.local";
             passwordFile = config.sops.secrets."freshrss/admin_password".path;
+            username = adminUser;
           };
         };
-        services.podman.containers.freshrss.volumeMap.opml =
-          "${../../../assets/hosts/remorse/freshrss-feeds.opml}:/import/feeds.opml:ro";
+        services.podman.containers.freshrss = {
+          homepage.settings.href = "https://remorse.{{HOMEPAGE_VAR_TAILNET_DNS}}:8443";
+          volumeMap.opml = "${../../../assets/hosts/remorse/freshrss-feeds.opml}:/import/feeds.opml:ro";
+        };
         sops.secrets = {
           "freshrss/admin_api_password" = { };
           "freshrss/admin_password" = { };
@@ -26,7 +32,7 @@
         systemd.user = {
           services.freshrss-import-feeds = {
             Service = {
-              ExecStart = "${lib.getExe pkgs.podman} exec freshrss php cli/import-for-user.php --user=admin --filename=/import/feeds.opml";
+              ExecStart = "${lib.getExe pkgs.podman} exec freshrss php cli/import-for-user.php --user=${adminUser} --filename=/import/feeds.opml";
               Type = "oneshot";
             };
             Unit = {
