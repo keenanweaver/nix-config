@@ -8,14 +8,14 @@
 }:
 let
   hashes = {
-    x86_64 = "sha256-Az7NTOPkq4QctvPEpJbqlZYoUzwtp+/niwptuqMiDF8=";
-    x86_64_v3 = "sha256-H4u/MU6d3s3wG4Ih37txmoJSJ2RC/MZqSLWl4hrJNkw=";
-    x86_64_wow64 = "sha256-KtB1tZLQn8MlNIDx65SW6eoZPCNCdRdklzpYMsJfO4k=";
+    x86_64 = "sha256-ucGHo5USL6+eRPDLe6S0filA4umlLZYuIQJkLB6cxys=";
+    x86_64_v3 = "sha256-COZ0PXB9ijeUx8LhwD477L0DeHSxsyZSefdHYrc8buw=";
+    x86_64_wow64 = "sha256-QFQQmo4OM4jyWLv56O/N7ddaLKEpvcXybWuTCY3dA+s=";
   };
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "proton-wineland";
-  version = "wineland-11.0-20260917";
+  version = "wineland-11.0-20260922";
 
   src = fetchurl {
     url = "https://github.com/nanomatters/proton-cachyos/releases/download/${finalAttrs.version}/proton-${finalAttrs.version}-${variant}.tar.xz";

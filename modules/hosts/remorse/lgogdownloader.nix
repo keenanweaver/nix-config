@@ -65,7 +65,7 @@
             runtimeInputs = with pkgs; [
               curl
               util-linux
-              master.lgogdownloader
+              lgogdownloader
             ];
             text = ''
               ${ntfyHelpers}
@@ -104,7 +104,7 @@
             runtimeInputs = with pkgs; [
               curl
               util-linux
-              master.lgogdownloader
+              lgogdownloader
             ];
             text = ''
               ${ntfyHelpers}
@@ -136,7 +136,7 @@
               curl
               findutils
               util-linux
-              master.lgogdownloader
+              lgogdownloader
             ];
             text = ''
               ${ntfyHelpers}
@@ -281,7 +281,7 @@
             gog-download
             gog-full-download
             gog-remove-orphans
-            pkgs.master.lgogdownloader
+            pkgs.lgogdownloader
           ];
           sops.secrets."ntfy/ntfybot_token" = { };
           systemd.user = {

@@ -131,6 +131,7 @@
         renovate.serviceConfig = {
           ExecStartPost = [ (lib.getExe renovateNotifyMerged) ];
           LoadCredential = [ "SECRET-NTFY_TOKEN:${ntfyTokenFile}" ];
+          TimeoutStartSec = "10m";
         };
         renovate-watch-nixos-unstable = {
           description = "Trigger renovate when nixpkgs nixos-unstable advances";

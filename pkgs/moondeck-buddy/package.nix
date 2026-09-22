@@ -22,13 +22,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "moondeck-buddy";
-  version = "1.10.0";
+  version = "1.11.0";
 
   src = fetchFromGitHub {
     owner = "FrogTheFrog";
     repo = "moondeck-buddy";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-kuU6bE/I3oyLUq2qFvMOzrqu5DceqxDDwP34iTLpIgI=";
+    hash = "sha256-xPWCbDcbge3fdh+OcWBkVp52L8OPHt8eCFwX/AJ6vbQ=";
     fetchSubmodules = true;
   };
 
