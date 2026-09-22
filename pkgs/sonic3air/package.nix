@@ -52,7 +52,6 @@ stdenv.mkDerivation (finalAttrs: {
 
   meta = {
     description = "Fan-made remaster of Sonic 3 & Knuckles built on the Oxygen Engine";
-
     longDescription = ''
       Sonic 3 A.I.R. (Angel Island Revisited) is a non-profit fan game that brings
       Sonic 3 & Knuckles into a modern engine with widescreen support, higher
@@ -63,7 +62,6 @@ stdenv.mkDerivation (finalAttrs: {
 
       Tip: Place `Sonic_Knuckles_wSonic3.bin` at ~/.local/share/Sonic3AIR
     '';
-
     homepage = "https://sonic3air.org/";
     license = lib.licenses.gpl3Only;
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];

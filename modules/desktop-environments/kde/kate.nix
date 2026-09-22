@@ -103,7 +103,7 @@
             };
           };
         };
-        plasma.configFile."katerc" = {
+        plasma.configFile.katerc = {
           ColoredBrackets = {
             color1 = "#f38ba8";
             color2 = "#fab387";

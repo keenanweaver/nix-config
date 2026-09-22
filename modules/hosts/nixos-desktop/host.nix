@@ -72,7 +72,7 @@
       services.hardware.openrgb.motherboard = "amd";
       system.stateVersion = "26.05";
       systemd = {
-        services."network-addresses-wlp11s0".wantedBy = lib.mkForce [ ];
+        services.network-addresses-wlp11s0.wantedBy = lib.mkForce [ ];
         tmpfiles.rules = [
           "d /mnt/Games 0755 ${config.my.user} users - -"
           "d /mnt/Games2 0755 ${config.my.user} users - -"

@@ -28,6 +28,6 @@
           tooltips = true;
         };
       };
-      sops.secrets."libera_pass" = { };
+      sops.secrets.libera_pass = { };
     };
 }

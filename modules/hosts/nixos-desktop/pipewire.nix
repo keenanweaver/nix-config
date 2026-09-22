@@ -19,7 +19,7 @@
       # Create mono-only microphone output
       "10-loopback-mono-mic"."context.modules" = [
         {
-          "args" = {
+          args = {
             "capture.props" = {
               "audio.position" = [ "FL" ];
               "node.name" = "capture.mono-microphone";
@@ -35,7 +35,7 @@
               "node.name" = "mono-microphone";
             };
           };
-          "name" = "libpipewire-module-loopback";
+          name = "libpipewire-module-loopback";
         }
       ];
     };

@@ -120,14 +120,14 @@
           let
             defaultSpace = "5a9a807c-9689-4e11-8cf6-162a22118ab7";
             pins = {
-              "MyNixOS" = {
+              MyNixOS = {
                 folderParentId = pins."NixOS".id;
                 id = "b22bef9f-4359-4025-aa40-77cea0d2f3a8";
                 position = 204;
                 url = "https://mynixos.com/";
                 workspace = pins."NixOS".workspace;
               };
-              "NixOS" = {
+              NixOS = {
                 editedTitle = true;
                 folderIcon = "file://${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
                 id = "d85a9026-1458-4db6-b115-346746bcc692";
@@ -163,13 +163,13 @@
             inherit pins;
             containersForce = true;
             extensionButtons = {
-              "nav-bar" = [
+              nav-bar = [
                 "uBlock0@raymondhill.net"
                 "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" # styl-us
                 "{446900e4-71c2-419f-a6a7-df9c091e268b}" # bitwarden-password-manager
                 "7esoorv3@alefvanoon.anonaddy.me" # libredirect
               ];
-              "unified-extensions-area" = [
+              unified-extensions-area = [
                 "admin@fastaddons.com_AutoHighlight"
                 "sponsorBlocker@ajay.app"
                 "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" # refined-github-
@@ -297,7 +297,7 @@
                     }
                   ];
                 };
-                "amazondotcom-us".metaData.hidden = true;
+                amazondotcom-us.metaData.hidden = true;
                 arch-wiki =
                   let
                     icon = pkgs.fetchurl {
@@ -311,7 +311,7 @@
                     name = "Arch Wiki";
                     urls = [ { template = "https://archwiki.org/wiki/Special:Search?search={searchTerms}&go=1"; } ];
                   };
-                "bing".metaData.hidden = true;
+                bing.metaData.hidden = true;
                 doom-wiki =
                   let
                     icon = pkgs.fetchurl {
@@ -325,7 +325,7 @@
                     name = "DoomWiki";
                     urls = [ { template = "https://doomwiki.org/wiki/Special:Search?search={searchTerms}&go=1"; } ];
                   };
-                "ebay".metaData.hidden = true;
+                ebay.metaData.hidden = true;
                 github = {
                   definedAliases = [ "@gh" ];
                   name = "GitHub";
@@ -344,7 +344,7 @@
                     name = "GOGdb";
                     urls = [ { template = "https://www.gogdb.org/products?search={searchTerms}"; } ];
                   };
-                "google".metaData.hidden = true;
+                google.metaData.hidden = true;
                 kagi =
                   let
                     icon = pkgs.fetchurl {

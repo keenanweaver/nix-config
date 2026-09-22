@@ -14,7 +14,7 @@
           !include ${config.sops.secrets."nonfree_repo_access_token".path}
         '';
         sops.secrets = {
-          "nonfree_repo_access_token".owner = config.my.user;
+          nonfree_repo_access_token.owner = config.my.user;
           "users/${config.my.user}/age-key".owner = config.my.user;
           "users/${config.my.user}/github_access_token".owner = config.my.user;
           "users/${config.my.user}/github_pat" = { };

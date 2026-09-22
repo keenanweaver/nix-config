@@ -13,7 +13,7 @@
             "512-fooyin.png" = ../../assets/stream-controller/512-fooyin.png;
             "mumble.svg" = ../../assets/stream-controller/mumble.svg;
           };
-          defaultPages."A00SA4442PRLWM" = "Default";
+          defaultPages.A00SA4442PRLWM = "Default";
           pages.Default = {
             extraConfig.auto-change = {
               enable = true;

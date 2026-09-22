@@ -79,7 +79,7 @@
               }
               {
                 systemTray.items = {
-                  configs."org.kde.plasma.volume".config.General."showVirtualDevices" = true;
+                  configs."org.kde.plasma.volume".config.General.showVirtualDevices = true;
                   hidden = [
                     "CoolerControl"
                     "KTailctl"

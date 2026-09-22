@@ -32,7 +32,7 @@ in
     nixos.profile-base =
       { config, pkgs, ... }:
       {
-        environment.etc."packages".text = packageListText pkgs config.environment.systemPackages;
+        environment.etc.packages.text = packageListText pkgs config.environment.systemPackages;
       };
   };
 }

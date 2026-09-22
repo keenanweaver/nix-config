@@ -228,7 +228,7 @@ in
             helix = {
               settings.theme = lib.mkForce "catppuccin_transparent";
               themes.catppuccin_transparent = {
-                "inherits" = "catppuccin-${flavor-lower}";
+                inherits = "catppuccin-${flavor-lower}";
                 "ui.background" = "none";
               };
             };
@@ -285,7 +285,7 @@ in
               transparent = true;
             };
             plasma = {
-              configFile."kdeglobals"."KDE"."widgetStyle" = "Breeze";
+              configFile.kdeglobals.KDE.widgetStyle = "Breeze";
               fonts = {
                 fixedWidth = {
                   family = mono-font;

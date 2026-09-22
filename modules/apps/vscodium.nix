@@ -46,7 +46,7 @@
                 "claudeCode.preferredLocation" = "panel";
                 "codeium.enableConfig" = {
                   "*" = true;
-                  "nix" = true;
+                  nix = true;
                 };
                 "diffEditor.ignoreTrimWhitespace" = false;
                 "editor.bracketPairColorization.enabled" = true;
@@ -77,19 +77,18 @@
                 "nix.enableLanguageServer" = true;
                 "nix.formatterPath" = lib.getExe pkgs.nixfmt;
                 "nix.serverPath" = lib.getExe pkgs.nixd;
-                "nix.serverSettings"."nixd" = {
-                  "nixpkgs"."expr" = "import ${flake}.inputs.nixpkgs { }";
+                "nix.serverSettings".nixd = {
+                  nixpkgs.expr = "import ${flake}.inputs.nixpkgs { }";
                 }
                 // lib.optionalAttrs (osConfig != null) {
-                  "options" = {
-                    "home-manager"."expr" =
-                      "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options.home-manager.users.type.getSubOptions []";
-                    "nixos"."expr" = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options";
+                  options = {
+                    home-manager.expr = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options.home-manager.users.type.getSubOptions []";
+                    nixos.expr = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options";
                   };
                 };
                 "powershell.integratedConsole.focusConsoleOnExecute" = false;
                 "powershell.integratedConsole.showOnStartup" = false;
-                "powershell.powerShellAdditionalExePaths"."exePath" = lib.getExe pkgs.powershell;
+                "powershell.powerShellAdditionalExePaths".exePath = lib.getExe pkgs.powershell;
                 "security.workspace.trust.enabled" = false;
                 "telemetry.telemetryLevel" = "off";
                 "terminal.integrated.fontFamily" = "Maple Mono Normal NF";
@@ -101,7 +100,7 @@
                 "window.menuBarVisibility" = "toggle";
                 "window.titleBarStyle" = "custom";
                 "workbench.editor.enablePreview" = false;
-                "workbench.editorAssociations"."git-rebase-todo" = "gitlens.rebase";
+                "workbench.editorAssociations".git-rebase-todo = "gitlens.rebase";
                 "workbench.sideBar.location" = "right";
                 "workbench.startupEditor" = "none";
               };

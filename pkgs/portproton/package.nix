@@ -130,14 +130,12 @@ stdenvNoCC.mkDerivation {
 
   meta = {
     description = "Tool to easily run Windows games and software on Linux via Proton/Wine";
-
     longDescription = ''
       PortProton bundles Valve's Proton and Proton-GE
       with a Steam Runtime container, MangoHud and vkBasalt behind a
       yad-based GUI, plus one-click installers for common Windows game
       launchers.
     '';
-
     homepage = "https://github.com/Castro-Fidel/PortWINE";
     changelog = "https://github.com/Castro-Fidel/PortWINE/blob/master/data_from_portwine/changelog_en";
     license = lib.licenses.mit;

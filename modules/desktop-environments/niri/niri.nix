@@ -34,7 +34,7 @@
         "Mod+Space".action.spawn-sh = "noctalia msg panel-toggle launcher";
         "Mod+Up".action.focus-window-up = { };
         "Mod+V".action.toggle-window-floating = { };
-        "Print".action.spawn-sh = "noctalia msg screenshot-screen";
+        Print.action.spawn-sh = "noctalia msg screenshot-screen";
         XF86AudioLowerVolume.action.spawn-sh = "noctalia msg volume-down";
         XF86AudioMute.action.spawn-sh = "noctalia msg volume-mute";
         XF86AudioRaiseVolume.action.spawn-sh = "noctalia msg volume-up";

@@ -84,12 +84,10 @@ stdenv.mkDerivation {
     description = "Roland SC-55 series emulation (jcmoyer fork with library backend and MIDI renderer)";
     homepage = "https://github.com/jcmoyer/Nuked-SC55";
     license = lib.licenses.unfree;
-
     sourceProvenance = with lib.sourceTypes; [
       fromSource # nuked-sc55
       binaryNativeCode # ROMs
     ];
-
     maintainers = with lib.maintainers; [ keenanweaver ];
     platforms = lib.platforms.linux ++ lib.platforms.darwin;
     mainProgram = "nuked-sc55";

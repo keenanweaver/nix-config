@@ -84,7 +84,7 @@
                   PlacesPanel.IconSize = 32;
                   PreviewSettings.Plugins = "appimagethumbnail,audiothumbnail,blenderthumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,mobithumbnail,opendocumentthumbnail,gsthumbnail,rawthumbnail,RomThumbnailCreator-kf6,svgthumbnail,ffmpegthumbs,ffmpegthumbnailer";
                   Search.Location = "Everywhere";
-                  "Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
+                  "Toolbar mainToolBar".ToolButtonStyle = "IconOnly";
                 };
                 kdeglobals = {
                   KDE = {
@@ -213,13 +213,13 @@
                 };
               };
               hotkeys.commands = {
-                "Spectacle-region-clipboard" = {
+                Spectacle-region-clipboard = {
                   command = "spectacle -bcr";
                   comment = "Region capture to clipboard";
                   key = "Meta+Shift+Print";
                   name = "Launch Spectacle with region capture";
                 };
-                "wezterm" = {
+                wezterm = {
                   command = "wezterm";
                   comment = "Launch wezterm";
                   key = "Meta+F12";
@@ -309,7 +309,7 @@
                   ];
                   "Window No Border" = "Meta+Shift+B";
                 };
-                "services/org.kde.krunner.desktop"."_launch" = [
+                "services/org.kde.krunner.desktop"._launch = [
                   "Meta+Space"
                   "Alt+F2"
                   "Search"

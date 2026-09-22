@@ -60,12 +60,10 @@ stdenv.mkDerivation {
     description = "Re-implementation of Oddworld: Abe's Exoddus and Oddworld: Abe's Oddysee";
     homepage = "https://github.com/AliveTeam/alive_reversing";
     license = lib.licenses.mit;
-
     maintainers = with lib.maintainers; [
       ByteSudoer
       keenanweaver
     ];
-
     mainProgram = "relive";
   };
 }

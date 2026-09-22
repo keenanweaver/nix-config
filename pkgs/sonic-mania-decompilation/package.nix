@@ -62,23 +62,19 @@ stdenv.mkDerivation (finalAttrs: {
 
   meta = {
     description = "Complete decompilation of Sonic Mania (RSDKv5U engine)";
-
     longDescription = ''
       A reimplementation of Sonic Mania built on the decompiled RSDKv5-Ultimate
       Retro Engine, with an added mod loader. This package provides only the
       engine (RSDKv5U) and game-logic library; it cannot run without the
       original game's data files, which you must supply from a copy you own.
     '';
-
     homepage = "https://github.com/RSDKModding/Sonic-Mania-Decompilation";
-
     license = {
       free = false;
       fullName = "Sonic Mania Decompilation Source Code License v1";
       redistributable = true;
       url = "https://github.com/RSDKModding/Sonic-Mania-Decompilation/blob/master/LICENSE.md";
     };
-
     maintainers = with lib.maintainers; [ keenanweaver ];
     platforms = lib.platforms.linux;
     mainProgram = "RSDKv5U";

@@ -21,7 +21,7 @@
             pipewire."11-virtual-devices" =
               let
                 mkLoopbackModule = name: {
-                  "args" = {
+                  args = {
                     "audio.position" = [
                       "FL"
                       "FR"
@@ -37,7 +37,7 @@
                       "target.object" = "@DEFAULT_SINK@";
                     };
                   };
-                  "name" = "libpipewire-module-loopback";
+                  name = "libpipewire-module-loopback";
                 };
                 virtualDevices = [
                   "Browser"

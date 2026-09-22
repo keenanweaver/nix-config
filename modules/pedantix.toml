@@ -1,3 +1,4 @@
+preset = "nixos-module"
 formatter = "nixfmt"
 inherit-placement = "front"
 top-level-blank-lines = 1
@@ -12,6 +13,7 @@ last = ["specialArgs", "<defaulted>", "..."]
 first = ["imports", "enable", "package", "pname", "version", "src"]
 flatten = true
 merge = true
+name-style = "identifier"
 blank-lines = 0
 blank-lines-mode = "multiline"
 
