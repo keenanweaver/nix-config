@@ -8,7 +8,7 @@
     }:
     {
       imports = [
-        inputs.omniflake.flakes.lazyvim-nix.homeManagerModules.default
+        inputs.lazyvim-nix.homeManagerModules.default
       ];
       home.sessionVariables.EDITOR = lib.mkDefault "nvim";
       programs.lazyvim = {
@@ -93,4 +93,11 @@
         ];
       };
     };
+  flake-file.inputs.lazyvim-nix = {
+    inputs = {
+      flake-utils.follows = "flake-utils";
+      nixpkgs.follows = "nixpkgs";
+    };
+    url = "github:pfassina/lazyvim-nix";
+  };
 }

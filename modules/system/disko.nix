@@ -1,7 +1,11 @@
 { inputs, ... }:
 {
-  imports = [ inputs.omniflake.flakes.disko.flakeModules.default ];
+  imports = [ inputs.disko.flakeModules.default ];
   flake.modules.nixos.profile-base.imports = [
-    inputs.omniflake.flakes.disko.nixosModules.disko
+    inputs.disko.nixosModules.disko
   ];
+  flake-file.inputs.disko = {
+    inputs.nixpkgs.follows = "nixpkgs";
+    url = "github:nix-community/disko";
+  };
 }

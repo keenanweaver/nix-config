@@ -10,10 +10,11 @@ let
     );
 in
 {
-  imports = [ inputs.omniflake.flakes.pkgs-by-name-for-flake-parts.flakeModule ];
+  imports = [ inputs.pkgs-by-name-for-flake-parts.flakeModule ];
   flake = {
     modules.nixos.local-packages.nixpkgs.overlays = [ overlay ];
     overlays.local = overlay;
   };
+  flake-file.inputs.pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
   perSystem.pkgsDirectory = ../../pkgs;
 }

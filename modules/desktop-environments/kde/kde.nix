@@ -1,9 +1,7 @@
 { inputs, ... }:
 {
   flake = {
-    lib.plasmaManager = inputs.omniflake.lib.load "plasma-manager" (
-      inputs.omniflake.lib.foundations // { home-manager = inputs.omniflake.flakes.home-manager; }
-    );
+    lib.plasmaManager = inputs.plasma-manager;
     modules = {
       homeManager = {
         kde =
@@ -446,9 +444,12 @@
               with pkgs;
               with pkgs.kdePackages;
               [
-                (inputs.kwin-effects-better-blur-dx.packages.${pkgs.system}.default.overrideAttrs (old: {
-                  buildInputs = old.buildInputs ++ [ kdePackages.kdecoration ];
-                }))
+                (
+                  inputs.kwin-effects-better-blur-dx.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs
+                    (old: {
+                      buildInputs = old.buildInputs ++ [ kdePackages.kdecoration ];
+                    })
+                )
                 (spectacle.override {
                   tesseractLanguages = [ "eng" ];
                 })
@@ -578,6 +579,13 @@
     kwin-effects-kinetic = {
       flake = false;
       url = "github:gurrgur/kwin-effects-kinetic";
+    };
+    plasma-manager = {
+      inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+      url = "github:nix-community/plasma-manager";
     };
   };
 }

@@ -2,7 +2,7 @@
   flake.modules.nixos.profile-base =
     { inputs, lib, ... }:
     {
-      imports = [ inputs.omniflake.flakes.nix-mineral.nixosModules.nix-mineral ];
+      imports = [ inputs.nix-mineral.nixosModules.nix-mineral ];
       # https://github.com/k4yt3x/sysctl
       boot.kernel.sysctl = {
         "fs.file-max" = lib.mkDefault 9223372036854775807;
@@ -81,4 +81,12 @@
       };
       services.fail2ban.enable = true;
     };
+  flake-file.inputs.nix-mineral = {
+    inputs = {
+      flake-compat.follows = "flake-compat";
+      flake-parts.follows = "flake-parts";
+      nixpkgs.follows = "nixpkgs";
+    };
+    url = "github:cynicsketch/nix-mineral";
+  };
 }

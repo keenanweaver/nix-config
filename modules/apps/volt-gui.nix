@@ -1,6 +1,9 @@
 {
-  flake.modules.homeManager.gaming-profile = { inputs, pkgs, ... }: {
-    imports = [ inputs.omniflake.flakes.volt-gui-nix.nixosModules.default ];
-    home.packages = with pkgs; [ inputs.volt-gui.packages.${stdenv.hostPlatform.system}.default ];
+  flake.modules.homeManager.profile-gaming = { inputs, pkgs, ... }: {
+    home.packages = [ inputs.volt-gui-nix.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+  };
+  flake-file.inputs.volt-gui-nix = {
+    inputs.nixpkgs.follows = "nixpkgs";
+    url = "github:keygenesis/volt-gui-nix";
   };
 }

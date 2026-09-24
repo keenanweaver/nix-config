@@ -94,13 +94,17 @@
       { inputs, pkgs, ... }:
       {
         imports = [
-          inputs.omniflake.flakes.niri-flake.nixosModules.niri
+          inputs.niri-flake.nixosModules.niri
         ];
-        nixpkgs.overlays = [ inputs.omniflake.flakes.niri-flake.overlays.niri ];
+        nixpkgs.overlays = [ inputs.niri-flake.overlays.niri ];
         programs.niri = {
           enable = true;
           package = pkgs.niri;
         };
       };
+  };
+  flake-file.inputs.niri-flake = {
+    inputs.nixpkgs.follows = "nixpkgs";
+    url = "github:sodiboo/niri-flake";
   };
 }

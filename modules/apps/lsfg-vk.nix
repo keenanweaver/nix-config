@@ -25,7 +25,14 @@
         environment.systemPackages = with pkgs; [
           lsfg-vk
         ];
-        nixpkgs.overlays = [ inputs.omniflake.flakes.lsfg-vk-nix.overlays.default ];
+        nixpkgs.overlays = [ inputs.lsfg-vk-nix.overlays.default ];
       };
+  };
+  flake-file.inputs.lsfg-vk-nix = {
+    inputs = {
+      flake-parts.follows = "flake-parts";
+      nixpkgs.follows = "nixpkgs";
+    };
+    url = "github:Daaboulex/lsfg-vk-nix";
   };
 }

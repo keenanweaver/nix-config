@@ -34,9 +34,9 @@
       }:
       {
         imports = [
-          inputs.omniflake.flakes.just-one-more-repo.nixosModules.default
+          inputs.just-one-more-repo.nixosModules.default
           inputs.nix-gaming-edge.nixosModules.default
-          inputs.omniflake.flakes.wayland-pipewire-idle-inhibit.nixosModules.default
+          inputs.wayland-pipewire-idle-inhibit.nixosModules.default
         ];
         assertions = self.lib.mkFactAssertions config [
           "cpu"
@@ -125,7 +125,19 @@
       };
   };
   flake-file.inputs = {
+    just-one-more-repo = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:ProverbialPennance/just-one-more-repo";
+    };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
+    wayland-pipewire-idle-inhibit = {
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+      url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
+    };
   };
 }

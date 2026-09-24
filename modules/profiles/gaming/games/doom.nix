@@ -129,8 +129,8 @@
         doomrunner
         doomseeker
         dsda-doom
-        inputs.omniflake.flakes.nur-packages-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.cherry-doom
-        inputs.omniflake.flakes.nur-packages-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.nyan-doom
+        inputs.nur-packages-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.cherry-doom
+        inputs.nur-packages-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.nyan-doom
         nugget-doom
         odamex
         slade

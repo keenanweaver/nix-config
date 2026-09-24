@@ -14,8 +14,21 @@
           winetricks
         ]
         ++ [
-          inputs.omniflake.flakes.nur-packages-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.winegui
-          inputs.omniflake.flakes.rom-properties-nix-flake.packages.${pkgs.stdenv.hostPlatform.system}.rp_kde6
+          inputs.nur-packages-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.winegui
+          inputs.rom-properties-nix-flake.packages.${pkgs.stdenv.hostPlatform.system}.rp_kde6
         ];
     };
+  flake-file.inputs = {
+    nur-packages-bandithedoge = {
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+      url = "github:bandithedoge/nur-packages";
+    };
+    rom-properties-nix-flake = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Whovian9369/rom-properties-nix-flake";
+    };
+  };
 }

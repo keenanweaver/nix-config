@@ -6,7 +6,7 @@
         dataDir = config.programs.streamcontroller.dataPath;
       in
       {
-        imports = [ inputs.omniflake.flakes.streamcontroller-nix.homeModules.default ];
+        imports = [ inputs.streamcontroller-nix.homeModules.default ];
         programs.streamcontroller = {
           enable = true;
           assets = {
@@ -218,12 +218,20 @@
     nixos.stream-controller =
       { inputs, ... }:
       {
-        imports = [ inputs.omniflake.flakes.streamcontroller-nix.nixosModules.default ];
-        nixpkgs.overlays = [ inputs.omniflake.flakes.streamcontroller-nix.overlays.default ];
+        imports = [ inputs.streamcontroller-nix.nixosModules.default ];
+        nixpkgs.overlays = [ inputs.streamcontroller-nix.overlays.default ];
         programs.streamcontroller = {
           enable = true;
           autostart = true;
         };
       };
+  };
+  flake-file.inputs.streamcontroller-nix = {
+    inputs = {
+      flake-parts.follows = "flake-parts";
+      home-manager.follows = "home-manager";
+      nixpkgs.follows = "nixpkgs";
+    };
+    url = "github:Daaboulex/streamcontroller-nix";
   };
 }

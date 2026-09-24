@@ -97,13 +97,9 @@
             igir
             impala
             innoextract
-            inputs.omniflake.flakes.aaru-nix-flake.packages.${system}.default
-            inputs.omniflake.flakes.just-one-more-repo.packages.${system}.r2modman
-            #inputs.omniflake.flakes.nix-game-preservation.packages.${system}.dic-git-full
-            #inputs.omniflake.flakes.nix-game-preservation.packages.${system}.ndecrypt-git
-            #inputs.omniflake.flakes.nix-game-preservation.packages.${system}.sabretools-git
-            #inputs.omniflake.flakes.nix-game-preservation.packages.${system}.unshieldsharp-git
-            inputs.omniflake.flakes.nur-packages-bandithedoge.legacyPackages.${system}.sheepshaver-bin
+            inputs.aaru-nix-flake.packages.${system}.default
+            inputs.just-one-more-repo.packages.${system}.r2modman
+            inputs.nur-packages-bandithedoge.legacyPackages.${system}.sheepshaver-bin
             isd
             isle-portable
             jazz2
@@ -231,4 +227,8 @@
         perfect-dark-git.enable = true;
       };
     };
+  flake-file.inputs.aaru-nix-flake = {
+    inputs.nixpkgs.follows = "nixpkgs";
+    url = "github:Whovian9369/aaru-nix-flake";
+  };
 }

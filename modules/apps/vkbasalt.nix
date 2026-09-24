@@ -11,7 +11,7 @@
         file.vkbasalt-default-config =
           let
             reshade = "${
-              inputs.omniflake.flakes.nix-reshade.packages.${pkgs.stdenv.hostPlatform.system}.reshade-shaders
+              inputs.nix-reshade.packages.${pkgs.stdenv.hostPlatform.system}.reshade-shaders
             }/reshade-shaders";
           in
           {
@@ -59,4 +59,8 @@
         ];
       };
     };
+  flake-file.inputs.nix-reshade = {
+    inputs.nixpkgs.follows = "nixpkgs";
+    url = "github:LovingMelody/nix-reshade";
+  };
 }

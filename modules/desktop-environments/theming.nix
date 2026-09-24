@@ -35,8 +35,8 @@ in
         in
         {
           imports = [
-            inputs.omniflake.flakes.catppuccin.homeModules.catppuccin
-            inputs.omniflake.flakes.nvf.homeManagerModules.default
+            inputs.catppuccin.homeModules.catppuccin
+            inputs.nvf.homeManagerModules.default
             self.lib.plasmaManager.homeModules.plasma-manager
           ];
           catppuccin = catppuccinCommon // {
@@ -365,7 +365,7 @@ in
     nixos.catppuccin =
       { pkgs, ... }:
       {
-        imports = [ inputs.omniflake.flakes.catppuccin.nixosModules.catppuccin ];
+        imports = [ inputs.catppuccin.nixosModules.catppuccin ];
         boot.kernelParams = [ "fbcon=font:TER16x32" ];
         catppuccin = catppuccinCommon;
         environment.systemPackages = with pkgs; [
@@ -394,6 +394,10 @@ in
       };
   };
   flake-file.inputs = {
+    catppuccin = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:catppuccin/nix";
+    };
     catppuccin-heroic = {
       flake = false;
       url = "github:catppuccin/heroic";
@@ -409,6 +413,13 @@ in
     catppuccin-powershell = {
       flake = false;
       url = "github:catppuccin/powershell";
+    };
+    nvf = {
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        nixpkgs.follows = "nixpkgs";
+      };
+      url = "github:NotAShelf/nvf";
     };
   };
 }

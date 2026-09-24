@@ -8,7 +8,7 @@
     }:
     {
       imports = [
-        inputs.omniflake.flakes.preservation.nixosModules.default
+        inputs.preservation.nixosModules.default
       ];
       fileSystems."/persist".neededForBoot = lib.mkIf config.preservation.enable true;
       preservation = {
@@ -64,4 +64,5 @@
         suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
       };
     };
+  flake-file.inputs.preservation.url = "github:nix-community/preservation";
 }

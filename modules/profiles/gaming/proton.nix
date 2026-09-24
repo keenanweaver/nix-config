@@ -85,9 +85,16 @@
       in
       {
         nixpkgs.overlays = lib.mkAfter [
-          inputs.omniflake.flakes.proton-cachyos-nix-daaboulex.overlays.default
+          inputs.proton-cachyos-nix.overlays.default
         ];
         programs.steam.extraCompatPackages = steamCompatTools;
       };
+  };
+  flake-file.inputs.proton-cachyos-nix = {
+    inputs = {
+      flake-parts.follows = "flake-parts";
+      nixpkgs.follows = "nixpkgs";
+    };
+    url = "github:Daaboulex/proton-cachyos-nix";
   };
 }

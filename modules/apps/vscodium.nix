@@ -110,7 +110,11 @@
     nixos.vscodium =
       { inputs, ... }:
       {
-        nixpkgs.overlays = [ inputs.omniflake.flakes.nix-vscode-extensions.overlays.default ];
+        nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
       };
+  };
+  flake-file.inputs.nix-vscode-extensions = {
+    inputs.nixpkgs.follows = "nixpkgs";
+    url = "github:nix-community/nix-vscode-extensions";
   };
 }

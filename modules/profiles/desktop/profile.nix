@@ -29,7 +29,7 @@
       }:
       {
         imports = with self.modules.nixos; [
-          inputs.omniflake.flakes.ucodenix.nixosModules.default
+          inputs.ucodenix.nixosModules.default
 
           btrfs
 
@@ -139,4 +139,5 @@
           };
       };
   };
+  flake-file.inputs.ucodenix.url = "github:e-tho/ucodenix";
 }

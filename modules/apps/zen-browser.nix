@@ -5,14 +5,9 @@
       pkgs,
       ...
     }:
-    let
-      zenBrowser = inputs.omniflake.lib.load "zen-browser-flake" (
-        inputs.omniflake.lib.foundations // { home-manager = inputs.omniflake.flakes.home-manager; }
-      );
-    in
     {
       imports = [
-        zenBrowser.homeModules.beta
+        inputs.zen-browser.homeModules.beta
       ];
       home.sessionVariables.MOZ_ENABLE_WAYLAND = 1;
       programs.zen-browser = {
@@ -443,4 +438,11 @@
         setAsDefaultBrowser = true;
       };
     };
+  flake-file.inputs.zen-browser = {
+    inputs = {
+      home-manager.follows = "home-manager";
+      nixpkgs.follows = "nixpkgs";
+    };
+    url = "github:0xc000022070/zen-browser-flake";
+  };
 }

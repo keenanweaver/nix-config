@@ -16,7 +16,7 @@ in
   config.flake.homeConfigurations = mapAttrs (
     _name:
     { module, system }:
-    inputs.omniflake.flakes.home-manager.lib.homeManagerConfiguration {
+    inputs.home-manager.lib.homeManagerConfiguration {
       extraSpecialArgs = { inherit inputs self; };
       modules = [
         (
@@ -37,7 +37,7 @@ in
       pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [ inputs.omniflake.flakes.nix-vscode-extensions.overlays.default ];
+        overlays = [ inputs.nix-vscode-extensions.overlays.default ];
       };
     }
   ) config.configurations.home-manager;

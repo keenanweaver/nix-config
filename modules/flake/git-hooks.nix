@@ -1,13 +1,33 @@
 { inputs, ... }:
 {
   imports = [
-    inputs.omniflake.flakes.treefmt-nix.flakeModule
-    inputs.omniflake.flakes.git-hooks-nix.flakeModule
-    inputs.omniflake.flakes.pedantix.flakeModules.default
+    inputs.treefmt-nix.flakeModule
+    inputs.git-hooks-nix.flakeModule
+    inputs.pedantix.flakeModules.default
   ];
-  flake-file.inputs.json-sort = {
-    inputs.nixpkgs.follows = "nixpkgs";
-    url = "github:drupol/json-sort";
+  flake-file.inputs = {
+    git-hooks-nix = {
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        nixpkgs.follows = "nixpkgs";
+      };
+      url = "github:cachix/git-hooks.nix";
+    };
+    json-sort = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:drupol/json-sort";
+    };
+    pedantix = {
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+      url = "github:Swarsel/pedantix";
+    };
+    treefmt-nix = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:numtide/treefmt-nix";
+    };
   };
   perSystem = _: {
     pre-commit.settings.hooks = {

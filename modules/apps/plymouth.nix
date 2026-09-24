@@ -23,6 +23,13 @@
         };
       };
       catppuccin.plymouth.enable = false;
-      nixpkgs.overlays = [ inputs.omniflake.flakes.s4rchiso-plymouth-theme.overlays.default ];
+      nixpkgs.overlays = [ inputs.s4rchiso-plymouth-theme.overlays.default ];
     };
+  flake-file.inputs.s4rchiso-plymouth-theme = {
+    inputs = {
+      flake-utils.follows = "flake-utils";
+      nixpkgs.follows = "nixpkgs";
+    };
+    url = "github:SergioRibera/s4rchiso-plymouth-theme";
+  };
 }

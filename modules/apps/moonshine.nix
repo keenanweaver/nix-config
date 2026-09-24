@@ -8,7 +8,7 @@
       ...
     }:
     {
-      imports = [ inputs.omniflake.flakes.moonshine.nixosModules.default ];
+      imports = [ inputs.moonshine.nixosModules.default ];
       chaotic.mesa-git.extraPackages =
         let
           wsiLayer = pkgs.runCommand "moonshine-wsi-layer" { } ''
@@ -156,4 +156,8 @@
       };
       users.users.${config.my.user}.extraGroups = [ "moonshine" ];
     };
+  flake-file.inputs.moonshine = {
+    inputs.nixpkgs.follows = "nixpkgs";
+    url = "github:hgaiser/moonshine";
+  };
 }

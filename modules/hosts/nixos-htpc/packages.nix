@@ -8,13 +8,13 @@
     }:
     {
       imports = [
-        inputs.omniflake.flakes.slippi-nix.nixosModules.default
+        inputs.slippi-nix.nixosModules.default
       ];
       home-manager.users.${config.my.user} =
         { inputs, config, ... }:
         {
           imports = [
-            inputs.omniflake.flakes.slippi-nix.homeManagerModules.default
+            inputs.slippi-nix.homeManagerModules.default
           ];
           home.packages = with pkgs; [
             banjorecomp
@@ -61,4 +61,11 @@
         #starship-sf64.enable = true;
       };
     };
+  flake-file.inputs.slippi-nix = {
+    inputs = {
+      home-manager.follows = "home-manager";
+      nixpkgs.follows = "nixpkgs";
+    };
+    url = "github:lytedev/slippi-nix";
+  };
 }

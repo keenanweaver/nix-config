@@ -3,7 +3,7 @@
     { inputs, ... }:
     {
       imports = [
-        inputs.omniflake.flakes.pedantix.homeModules.default
+        inputs.pedantix.homeModules.default
       ];
       programs.pedantix = {
         enable = true;

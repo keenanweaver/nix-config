@@ -8,7 +8,7 @@
     }:
     {
       imports = [
-        inputs.omniflake.flakes.nix-citizen.nixosModules.default
+        inputs.nix-citizen.nixosModules.default
       ];
       nix.settings = {
         extra-substituters = [ "https://nix-citizen.cachix.org" ];
@@ -24,4 +24,11 @@
         '';
       };
     };
+  flake-file.inputs.nix-citizen = {
+    inputs = {
+      flake-compat.follows = "flake-compat";
+      nixpkgs.follows = "nixpkgs";
+    };
+    url = "github:LovingMelody/nix-citizen";
+  };
 }
