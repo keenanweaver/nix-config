@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  inherit (config.flake.lib.site) nas;
+in
 {
   flake.modules.nixos =
     let
@@ -11,9 +15,9 @@
           fileSystems = builtins.listToAttrs (
             map
               (mount: {
-                name = "/mnt/crusader/${mount}";
+                name = "${nas.mountRoot}/${mount}";
                 value = {
-                  device = "crusader:/mnt/user/${mount}";
+                  device = "${nas.host}:/mnt/user/${mount}";
                   fsType = "nfs";
                   options = [
                     "_netdev"
@@ -41,10 +45,7 @@
           services.rpcbind.enable = true;
           systemd.services.force-umount-nfs = {
             wantedBy = [ "multi-user.target" ];
-            before = [
-              "network.target"
-              "shutdown.target"
-            ];
+            after = [ "network.target" ];
             serviceConfig = {
               ExecStop = "${lib.getExe' pkgs.util-linux "umount"} -f -l -a -t nfs,nfs4";
               RemainAfterExit = true;

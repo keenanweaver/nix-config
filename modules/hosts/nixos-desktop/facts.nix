@@ -4,6 +4,7 @@
     cpuHasVcache = true;
     fpsLimit = "324,0,240,120,60,30";
     gpu = "7900XTX";
+    lanInterface = "enp10s0";
     pciDev = "0000:03:00.0";
     primaryMonitor = "DP-1";
     ztAdapter = "zt6ntckupu";

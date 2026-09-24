@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  inherit (config.flake.lib.site) nas;
+in
 {
   flake.modules.homeManager.profile-base.programs.nh = {
     enable = true;
@@ -5,6 +9,6 @@
       enable = true;
       extraArgs = "--keep-since 14d --keep 3 --optimise";
     };
-    flake = "/mnt/crusader/Projects/Codeberg/nix-config-dendritic";
+    flake = "${nas.mountRoot}/Projects/Codeberg/nix-config-dendritic";
   };
 }

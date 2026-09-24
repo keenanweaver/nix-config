@@ -1,15 +1,11 @@
 {
-  flake.modules.nixos.profile-base =
-    { pkgs, ... }:
-    {
-      programs.nix-ld = {
-        enable = true;
-        libraries =
-          with pkgs;
-          (steam-run.args.multiPkgs pkgs)
-          ++ (heroic.args.multiPkgs pkgs)
-          ++ (lutris.args.multiPkgs pkgs)
-          ++ [
+  flake.modules.nixos = {
+    profile-base =
+      { pkgs, ... }:
+      {
+        programs.nix-ld = {
+          enable = true;
+          libraries = with pkgs; [
             # https://reddit.com/r/NixOS/comments/1r8igex/help_on_a_game/o6812nx/?context=3#o6812nx
             stdenv.cc.cc
             zlib
@@ -19,7 +15,18 @@
             libgcc
             openssl
             curl
-
+          ];
+        };
+      };
+    profile-gaming =
+      { pkgs, ... }:
+      {
+        programs.nix-ld.libraries =
+          with pkgs;
+          (steam-run.args.multiPkgs pkgs)
+          ++ (heroic.args.multiPkgs pkgs)
+          ++ (lutris.args.multiPkgs pkgs)
+          ++ [
             # Graphics / windowing
             libglvnd
             mesa
@@ -59,5 +66,5 @@
             udev
           ];
       };
-    };
+  };
 }

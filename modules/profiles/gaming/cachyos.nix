@@ -11,7 +11,6 @@
       };
       cachyos.settings = {
         enable = true;
-        ntsync.enable = lib.mkForce false;
         zram.enable = lib.mkForce false;
       };
     };

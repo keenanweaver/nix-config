@@ -1,12 +1,8 @@
 {
   flake.modules = {
     homeManager.profile-base =
+      { osConfig, ... }:
       {
-        lib,
-        osConfig ? null,
-        ...
-      }:
-      lib.mkIf (osConfig != null) {
         home.stateVersion = osConfig.system.stateVersion;
       };
     nixos.profile-base =

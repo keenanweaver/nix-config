@@ -5,7 +5,6 @@
       {
         home = {
           file.scb-config = {
-            enable = true;
             target = "${config.xdg.configHome}/scopebuddy/scb.conf";
             text = ''
               SCB_AUTO_RES=1

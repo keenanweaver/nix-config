@@ -15,7 +15,6 @@
             }/reshade-shaders";
           in
           {
-            enable = true;
             target = "${config.xdg.configHome}/vkBasalt/vkBasalt.conf";
             text = ''
               depthCapture = off

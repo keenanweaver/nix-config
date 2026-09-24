@@ -14,7 +14,10 @@
       url = "github:cachix/git-hooks.nix";
     };
     json-sort = {
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
+      };
       url = "github:drupol/json-sort";
     };
     pedantix = {

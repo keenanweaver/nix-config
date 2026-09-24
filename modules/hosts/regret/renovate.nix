@@ -1,6 +1,7 @@
 {
   configurations.nixos.regret.module =
     {
+      self,
       lib,
       config,
       pkgs,
@@ -22,16 +23,10 @@
           codeberg_token="$(systemd-creds cat 'SECRET-RENOVATE_TOKEN')"
           ntfy_token="$(systemd-creds cat 'SECRET-NTFY_TOKEN')"
 
-          ntfy_notify() {
-            local title="$1" message="$2" tags="$3" priority="''${4:-default}"
-            curl -fsS \
-              --header "Authorization: Bearer $ntfy_token" \
-              --header "Title: $title" \
-              --header "Tags: $tags" \
-              --header "Priority: $priority" \
-              --data "$message" \
-              "http://10.20.20.31/renovate" >/dev/null || true
-          }
+          ${self.lib.mkNtfyNotify {
+            token = "$ntfy_token";
+            topicUrl = "http://${self.lib.site.network.hosts.regret}/renovate";
+          }}
 
           commits=$(curl -fsS \
             --header "Authorization: token $codeberg_token" \

@@ -41,7 +41,6 @@ in
       exec = (lib.getExe pkgs.nero-umu) + " --prefix \"GOG Galaxy\" --shortcut \"GOG Galaxy\"";
       icon = "${icon}";
       name = "GOG Galaxy [${osConfig.my.user}]";
-      noDisplay = false;
       settings.StartupWMClass = "GOG Galaxy";
       startupNotify = true;
     };
@@ -56,7 +55,6 @@ in
       "application/x-bat"
     ];
     name = "Nero-UMU [${osConfig.my.user}]";
-    noDisplay = false;
     startupNotify = true;
     terminal = false;
   };

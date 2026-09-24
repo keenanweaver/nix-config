@@ -1,11 +1,6 @@
 {
   configurations.nixos.remorse.module =
-    {
-      lib,
-      config,
-      pkgs,
-      ...
-    }:
+    { lib, config, ... }:
     let
       adminUser = config.my.user;
     in
@@ -50,27 +45,11 @@
           };
         };
       };
-      networking.firewall.interfaces.end0.allowedTCPPorts = [ 80 ];
-      systemd.services.freshrss-tailscale-serve = {
-        wantedBy = [ "multi-user.target" ];
-        after = [
-          "tailscaled.service"
-          "podman-freshrss.service"
-        ];
-        wants = [
-          "tailscaled.service"
-          "podman-freshrss.service"
-        ];
-        serviceConfig = {
-          ExecStart = "${lib.getExe pkgs.tailscale} serve --bg --https=8443 http://127.0.0.1:80";
-          ExecStop = "${lib.getExe pkgs.tailscale} serve --https=8443 off";
-          RemainAfterExit = true;
-          Restart = "on-failure";
-          RestartSec = "2s";
-          Type = "oneshot";
-        };
-        startLimitIntervalSec = 0;
-        unitConfig.Description = "Proxy FreshRSS over Tailscale HTTPS via tailscale serve";
+      my.tailscaleServe.freshrss = {
+        displayName = "FreshRSS";
+        httpsPort = 8443;
+        target = "http://127.0.0.1:80";
       };
+      networking.firewall.interfaces.end0.allowedTCPPorts = [ 80 ];
     };
 }

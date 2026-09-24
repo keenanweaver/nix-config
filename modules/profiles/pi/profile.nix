@@ -2,11 +2,20 @@
 {
   flake.modules = {
     homeManager.profile-pi =
-      { pkgs, ... }:
+      {
+        config,
+        pkgs,
+        osConfig,
+        ...
+      }:
       {
         imports = with self.modules.homeManager; [
           profile-server
         ];
+        nps = {
+          externalStorageBaseDir = "${config.home.homeDirectory}/external";
+          hostIP4Address = self.lib.site.network.hosts.${osConfig.networking.hostName};
+        };
         programs = {
           devenv.enable = false;
           distrobox.enable = false;
@@ -23,22 +32,30 @@
       };
     nixos.profile-pi =
       {
-        self,
         lib,
         config,
+        pkgs,
+        nixos-raspberrypi,
         ...
       }:
       let
-        hostKeyDir = /tmp/extra-files + "/${config.networking.hostName}/persist/etc/ssh";
+        inherit (self.lib.site) network;
       in
       {
-        imports = with self.modules.nixos; [
-          profile-server
-        ];
+        imports = [
+          self.modules.nixos.profile-server
+        ]
+        ++ (with nixos-raspberrypi.nixosModules; [
+          nixos-raspberrypi.lib.inject-overlays
+          trusted-nix-caches
+          raspberry-pi-4.base
+          sd-image
+        ]);
         boot = {
           consoleLogLevel = 7;
           growPartition = true;
           initrd.verbose = true;
+          kernelPackages = nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi4;
           supportedFilesystems.zfs = false;
           zswap.enable = false;
         };
@@ -55,7 +72,20 @@
           deviceTree.enable = false;
           raspberry-pi.config.all.dt-overlays.vc4-kms-v3d.enable = false;
         };
-        networking.hostId = "8425e349";
+        networking = {
+          defaultGateway = {
+            address = network.gateway;
+            interface = "end0";
+          };
+          interfaces.end0.ipv4.addresses = [
+            {
+              address = network.hosts.${config.networking.hostName};
+              prefixLength = 24;
+            }
+          ];
+          nameservers = [ network.gateway ];
+          wireless.enable = lib.mkForce false;
+        };
         nix.settings = {
           extra-substituters = [
             "https://nixos-raspberrypi.cachix.org"
@@ -66,10 +96,6 @@
         };
         nix-mineral.filesystems.normal."/boot".enable = false;
         nixpkgs.hostPlatform = lib.mkForce "aarch64-linux";
-        sdImage.populateRootCommands = ''
-          install -Dm600 ${hostKeyDir}/ssh_host_ed25519_key ./files/persist/etc/ssh/ssh_host_ed25519_key
-          install -Dm644 ${hostKeyDir}/ssh_host_ed25519_key.pub ./files/persist/etc/ssh/ssh_host_ed25519_key.pub
-        '';
         system.boot.loader.kernelFile = "Image";
         zramSwap.enable = true;
       };

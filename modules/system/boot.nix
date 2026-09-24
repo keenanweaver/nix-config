@@ -6,7 +6,6 @@
         kernel.sysctl = {
           "kernel.nmi_watchdog" = 0;
           "kernel.soft_watchdog" = 0;
-          "kernel.sysrq" = 4;
         };
         kernelParams = [
           "nowatchdog"

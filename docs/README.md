@@ -95,23 +95,20 @@ they're provisioned by building a complete, bootable SD card image.
 
 ## 2b. Raspberry Pi -- sdImage
 
+1. Add the host's LAN address to `site.network.hosts` in
+   `modules/flake/site.nix`.
+
 1. Create `modules/hosts/<hostname>/host.nix`, importing `profile-base` and
-   `profile-pi`, plus the board's hardware modules from the
-   [`nixos-raspberrypi`][def4] flake input (`inject-overlays`,
-   `trusted-nix-caches`, `raspberry-pi-4.base`, `sd-image`). Copy
-   `regret`/`remorse` as a template.
+   `profile-pi` (which pulls in the Pi 4 modules from the
+   [`nixos-raspberrypi`][def4] flake input). Copy `regret`/`remorse` as a
+   template.
 
-1. Build the image:
-
-   ```bash
-   just sd-image <hostname>
-   ```
-
-1. Flash it to a microSD card:
+1. Build the image and flash it to a microSD card. The SSH host key from
+   `gen-host-key` is copied onto the card after flashing, so it never enters
+   the Nix store:
 
    ```bash
-   zstd -d --stdout result/sd-image/nixos-image-*.img.zst \
-     | sudo dd of=/dev/sdX bs=4M status=progress conv=fsync
+   just sd-flash <hostname> /dev/sdX
    ```
 
 1. Boot the Pi.

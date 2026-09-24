@@ -4,8 +4,8 @@
 
 Flake-based NixOS configuration for my machines, built on the
 **dendritic pattern** ([flake-parts](https://flake.parts) +
-[import-tree](https://github.com/vic/import-tree) +
-[flake-file](https://github.com/vic/flake-file)).
+[import-tree](https://github.com/denful/import-tree) +
+[flake-file](https://github.com/denful/flake-file)).
 
 > This is my own setup. It's opinionated and tailored to my hardware and preferences.
 > It's meant as a reference; not necessarily something for you to deploy as-is.
@@ -52,16 +52,16 @@ My previous, non-dendritic config is located in the `main` branch of this repo. 
 ├── Justfile                  # workflow + provisioning recipes
 ├── .sops.yaml                # secrets recipients
 ├── modules/                  # import-tree'd
-│   ├── flake/                # flake-parts (import-tree, flake-file,
-│   │                         # git-hooks, formatter, per-system pkgs, host builders)
+│   ├── flake/                # flake-parts (import-tree, flake-file, git-hooks,
+│   │                         # treefmt, per-system pkgs, host builders, site data)
 │   ├── profiles/             # composite aspects (base, desktop, gaming, …)
 │   ├── hosts/                # per-host modules: disko, hardware, facts
 │   ├── apps/                 # per-application aspects
 │   ├── desktop-environments/ # desktop environments
+│   ├── system/               # system-level aspects (boot, networking, secure boot, …)
 │   ├── users/                # user definitions
-│   ├── sops/                 # secrets
-│   └── secure-boot/          # Secure Boot (sbctl) configuration
-├── packages/                 # custom packages (pkgs-by-name-for-flake-parts)
+│   └── sops/                 # secrets
+├── pkgs/                     # custom packages (pkgs-by-name-for-flake-parts)
 ├── assets/                   # non-nix files
 └── docs/                     # notes
 ```

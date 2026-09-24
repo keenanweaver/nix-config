@@ -2,19 +2,11 @@
 {
   flake.modules = {
     homeManager.profile-base =
-      {
-        config,
-        osConfig ? null,
-        ...
-      }:
+      { config, osConfig, ... }:
       {
         imports = [ inputs.sops-nix.homeManagerModules.sops ];
         sops = {
-          age.keyFile =
-            if osConfig != null then
-              osConfig.sops.secrets."users/${config.home.username}/age-key".path
-            else
-              "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+          age.keyFile = osConfig.sops.secrets."users/${config.home.username}/age-key".path;
           defaultSopsFile = ../../assets/secrets + "/${config.home.username}.yaml";
         };
       };

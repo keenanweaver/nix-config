@@ -52,8 +52,8 @@ switch: pre
 
 # ══ 7) update inputs, then boot / switch ════════════════════
 update:
-    nix flake update
     nix run .#write-flake
+    nix flake update
     git add flake.nix flake.lock
     nix flake check --log-format internal-json -v |& nom --json
 
@@ -105,14 +105,15 @@ sops-rekey:
 disk-id target:
     ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no {{ target }} -- ls /dev/disk/by-id/
 
-# Create host directory
+# Create host directories
 init-host host:
-    mkdir -p modules/hosts/{{ host }}
+    mkdir -p modules/hosts/{{ host }} assets/hosts/{{ host }}
 
 # Generate SSH host key for a new host
 gen-host-key host:
     mkdir -p /tmp/extra-files/{{ host }}/persist/etc/ssh
     ssh-keygen -t ed25519 -f /tmp/extra-files/{{ host }}/persist/etc/ssh/ssh_host_ed25519_key -N "" -C "root@{{ host }}"
+    mkdir -p assets/hosts/{{ host }}
     cp /tmp/extra-files/{{ host }}/persist/etc/ssh/ssh_host_ed25519_key.pub assets/hosts/{{ host }}/
 
 # Generate secure boot signing keys
@@ -136,7 +137,24 @@ deploy host target:
     nix run github:nix-community/nixos-anywhere -- "${args[@]}"
 
 sd-image host:
-    nix build .#nixosConfigurations.{{ host }}.config.system.build.sdImage --impure --print-out-paths
+    nix build .#nixosConfigurations.{{ host }}.config.system.build.sdImage --print-out-paths
+
+# Flash a Pi image to `device` and copy the gen-host-key SSH key onto it (keeps the key out of the Nix store)
+[script('bash')]
+sd-flash host device:
+    set -euo pipefail
+    keydir=/tmp/extra-files/{{ host }}/persist/etc/ssh
+    [ -f "$keydir/ssh_host_ed25519_key" ] || { echo "missing $keydir; run: just gen-host-key {{ host }}" >&2; exit 1; }
+    image=$(nix build .#nixosConfigurations.{{ host }}.config.system.build.sdImage --no-link --print-out-paths)
+    zstd -d --stdout "$image"/sd-image/*.img.zst | sudo dd of={{ device }} bs=4M status=progress conv=fsync
+    sudo blockdev --rereadpt {{ device }} && sudo udevadm settle
+    root=$(lsblk -lnpo NAME,LABEL {{ device }} | awk '$2 == "NIXOS_SD" { print $1 }')
+    [ -n "$root" ] || { echo "no NIXOS_SD partition found on {{ device }}" >&2; exit 1; }
+    mnt=$(mktemp -d)
+    sudo mount "$root" "$mnt"
+    trap 'sudo umount "$mnt"; rmdir "$mnt"' EXIT
+    sudo install -Dm600 "$keydir/ssh_host_ed25519_key" "$mnt/persist/etc/ssh/ssh_host_ed25519_key"
+    sudo install -Dm644 "$keydir/ssh_host_ed25519_key.pub" "$mnt/persist/etc/ssh/ssh_host_ed25519_key.pub"
 
 facter host target:
     ssh -t {{ target }} -- sudo nix run github:numtide/nixos-facter -- -o /tmp/facter.json '&&' sudo chmod 644 /tmp/facter.json

@@ -8,6 +8,7 @@
 
         profile-base
         profile-desktop
+        profile-kde
         profile-gaming
 
         amd
@@ -19,6 +20,7 @@
       home-manager.users.${config.my.user}.imports = with self.modules.homeManager; [
         profile-base
         profile-desktop
+        profile-kde
         profile-gaming
 
         amd
@@ -31,7 +33,7 @@
       system.stateVersion = "26.05";
       systemd.tmpfiles.rules = [
         "d /mnt/Games 0755 ${config.my.user} users - -"
-        "L+ /home/${config.my.user}/Games - - - - /mnt/Games"
+        "L+ ${config.users.users.${config.my.user}.home}/Games - - - - /mnt/Games"
       ];
     };
 }

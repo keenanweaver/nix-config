@@ -1,25 +1,27 @@
+{ config, ... }:
+let
+  mono = config.flake.lib.fonts.monospace;
+in
 {
-  flake.modules.homeManager.profile-desktop =
-    { config, ... }:
-    {
-      programs.ghostty = {
-        enable = true;
-        enableBashIntegration = true;
-        enableZshIntegration = true;
-        settings = {
-          background-opacity = 0.7;
-          confirm-close-surface = true;
-          copy-on-select = "clipboard";
-          cursor-style = "block_hollow";
-          cursor-style-blink = false;
-          font-family = config.programs.plasma.fonts.fixedWidth.family;
-          font-size = config.programs.plasma.fonts.fixedWidth.pointSize;
-          maximize = true;
-          mouse-hide-while-typing = true;
-          scrollback-limit = 10000;
-          window-decoration = "server";
-          window-save-state = "always";
-        };
+  flake.modules.homeManager.profile-desktop = _: {
+    programs.ghostty = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      settings = {
+        background-opacity = 0.7;
+        confirm-close-surface = true;
+        copy-on-select = "clipboard";
+        cursor-style = "block_hollow";
+        cursor-style-blink = false;
+        font-family = mono.family;
+        font-size = mono.size;
+        maximize = true;
+        mouse-hide-while-typing = true;
+        scrollback-limit = 10000;
+        window-decoration = "server";
+        window-save-state = "always";
       };
     };
+  };
 }

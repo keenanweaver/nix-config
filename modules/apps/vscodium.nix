@@ -4,7 +4,7 @@
       {
         lib,
         pkgs,
-        osConfig ? null,
+        osConfig,
         ...
       }:
       {
@@ -79,8 +79,6 @@
                 "nix.serverPath" = lib.getExe pkgs.nixd;
                 "nix.serverSettings".nixd = {
                   nixpkgs.expr = "import ${flake}.inputs.nixpkgs { }";
-                }
-                // lib.optionalAttrs (osConfig != null) {
                   options = {
                     home-manager.expr = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options.home-manager.users.type.getSubOptions []";
                     nixos.expr = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options";

@@ -15,6 +15,7 @@
           # https://reddit.com/r/linux_gaming/comments/1mg8vtl/low_latency_gaming_guide/
           SDL_VIDEODRIVER = "wayland,x11"; # SDL2
           SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3
+          WAYLANDDRV_PRIMARY_MONITOR = osConfig.host.primaryMonitor; # https://reddit.com/r/linux_gaming/comments/1louxm2/fix_for_wine_wayland_using_wrong_monitor/
         };
         xdg.desktopEntries = import ./_desktop-entries.nix {
           inherit
@@ -62,16 +63,10 @@
           extra-substituters = [
             "https://bandithedoge.cachix.org"
             "https://just-one-more-cache.cachix.org"
-            "https://nix-cache.tokidoki.dev/tokidoki"
-            "https://nix-gaming.cachix.org"
-            "https://nix-citizen.cachix.org"
           ];
           extra-trusted-public-keys = [
             "bandithedoge.cachix.org-1:ZtcHw1anyEa4t6H8m3o/ctYFrwYFPAwoENSvofamE6g="
             "just-one-more-cache.cachix.org-1:4nShcKEgcUEVlJqKFrgDwoGfqLnw5KPG4UDTV02jnr4="
-            "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="
-            "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-            "tokidoki:MD4VWt3kK8Fmz3jkiGoNRJIW31/QAm7l1Dcgz2Xa4hk="
           ];
         };
         nixpkgs.overlays = [
@@ -103,7 +98,7 @@
             domain = "*";
             item = "nofile";
             type = "soft";
-            value = "64556";
+            value = "65536";
           }
         ];
         services = {
@@ -130,7 +125,10 @@
       url = "github:ProverbialPennance/just-one-more-repo";
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-    umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
+    umu = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
+    };
     wayland-pipewire-idle-inhibit = {
       inputs = {
         flake-parts.follows = "flake-parts";

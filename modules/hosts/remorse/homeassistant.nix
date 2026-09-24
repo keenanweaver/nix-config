@@ -1,11 +1,6 @@
 {
   configurations.nixos.remorse.module =
-    {
-      lib,
-      config,
-      pkgs,
-      ...
-    }:
+    { config, ... }:
     {
       home-manager.users.${config.my.user} =
         { lib, config, ... }:
@@ -32,27 +27,10 @@
             };
           };
         };
-      networking.firewall.interfaces.end0.allowedTCPPorts = [ 8123 ];
-      systemd.services.homeassistant-tailscale-serve = {
-        wantedBy = [ "multi-user.target" ];
-        after = [
-          "tailscaled.service"
-          "podman-homeassistant.service"
-        ];
-        wants = [
-          "tailscaled.service"
-          "podman-homeassistant.service"
-        ];
-        serviceConfig = {
-          ExecStart = "${lib.getExe pkgs.tailscale} serve --bg --https=443 http://127.0.0.1:8123";
-          ExecStop = "${lib.getExe pkgs.tailscale} serve --https=443 off";
-          RemainAfterExit = true;
-          Restart = "on-failure";
-          RestartSec = "2s";
-          Type = "oneshot";
-        };
-        startLimitIntervalSec = 0;
-        unitConfig.Description = "Proxy Home Assistant over Tailscale HTTPS via tailscale serve";
+      my.tailscaleServe.homeassistant = {
+        displayName = "Home Assistant";
+        target = "http://127.0.0.1:8123";
       };
+      networking.firewall.interfaces.end0.allowedTCPPorts = [ 8123 ];
     };
 }

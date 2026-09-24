@@ -33,8 +33,11 @@
                       fi
                     else
                       echo "installing missing runner: ${name} (${slug})"
-                      protonplus install steam-system ${lib.escapeShellArg slug} latest || true
-                      notify-send --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus 'ProtonPlus' 'Installed ${name}'
+                      if protonplus install steam-system ${lib.escapeShellArg slug} latest; then
+                        notify-send --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus 'ProtonPlus' 'Installed ${name}'
+                      else
+                        notify-send --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus --urgency=critical 'ProtonPlus' 'Failed to install ${name}'
+                      fi
                     fi
                   '') runners
                 )}
@@ -55,12 +58,8 @@
                 Type = "oneshot";
               };
               Unit = {
-                After = [
-                  "graphical-session.target"
-                  "network-online.target"
-                ];
+                After = [ "graphical-session.target" ];
                 Description = "Install runners for ProtonPlus";
-                Wants = [ "network-online.target" ];
               };
             };
           };

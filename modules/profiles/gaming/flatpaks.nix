@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  inherit (config.flake.lib.site) nas;
+in
 {
   flake.modules.homeManager.flatpak-games =
     { config, ... }:
@@ -24,35 +28,35 @@
           ];
           "io.github.strikerx3.ymir".Context.filesystems = [
             "!/mnt"
-            "/mnt/crusader/Games/Rom/CHD/Sega Saturn"
-            "/mnt/crusader/Games/Mister/Saturn"
+            "${nas.mountRoot}/Games/Rom/CHD/Sega Saturn"
+            "${nas.mountRoot}/Games/Mister/Saturn"
           ];
           "net.fsuae.FS-UAE".Context.filesystems = [
             "!home"
           ];
           "net.kuribo64.melonDS".Context.filesystems = [
             "!home"
-            "/mnt/crusader/Games/Backups/Myrient/No-Intro"
+            "${nas.mountRoot}/Games/Backups/Myrient/No-Intro"
           ];
           "net.pcsx2.PCSX2".Context.filesystems = [
             "host"
-            "/mnt/crusader/Games/Rom/CHD/Sony Playstation 2"
+            "${nas.mountRoot}/Games/Rom/CHD/Sony Playstation 2"
           ];
           "net.rpcs3.RPCS3".Context.filesystems = [
             "!home"
             "${config.home.homeDirectory}/Games/roms/rpcs3"
           ];
           "org.DolphinEmu.dolphin-emu".Context.filesystems = [
-            "/mnt/crusader/Games/Rom/CHD/Nintendo GameCube"
+            "${nas.mountRoot}/Games/Rom/CHD/Nintendo GameCube"
           ];
           "org.azahar_emu.Azahar".Context.filesystems = [
             "${config.home.homeDirectory}/Games/3ds"
           ];
           "org.flycast.Flycast".Context.filesystems = [
-            "/mnt/crusader/Games/Rom/CHD/Sega Dreamcast"
+            "${nas.mountRoot}/Games/Rom/CHD/Sega Dreamcast"
           ];
           "org.mamedev.MAME".Context.filesystems = [
-            "/mnt/crusader/Games/Rom/Other/MAME"
+            "${nas.mountRoot}/Games/Rom/Other/MAME"
             "!home"
           ];
         };

@@ -1,3 +1,8 @@
+{ config, ... }:
+let
+  inherit (config.flake.lib.site.network) sshPort;
+  nixosHosts = builtins.attrNames config.configurations.nixos;
+in
 {
   flake.modules = {
     homeManager.profile-base =
@@ -30,28 +35,12 @@
             name = "crusader";
             user = "root";
           }
-          {
-            name = "nixos-desktop";
-            port = 6777;
-          }
-          {
-            name = "nixos-htpc";
-            port = 6777;
-          }
-          {
-            name = "nixos-laptop";
-            port = 6777;
-          }
-          {
-            name = "regret";
-            port = 6777;
-          }
-          {
-            name = "remorse";
-            port = 6777;
-          }
           { name = "opnsense"; }
-        ];
+        ]
+        ++ map (name: {
+          inherit name;
+          port = sshPort;
+        }) nixosHosts;
       in
       {
         home.packages = with pkgs; [
@@ -84,27 +73,7 @@
               HostName = "game-central.party";
               Port = 6777;
             };
-            nixos-desktop = {
-              HostName = "nixos-desktop";
-              Port = 6777;
-            };
-            nixos-htpc = {
-              HostName = "nixos-htpc";
-              Port = 6777;
-            };
-            nixos-laptop = {
-              HostName = "nixos-laptop";
-              Port = 6777;
-            };
             opnsense.HostName = "opnsense";
-            regret = {
-              HostName = "regret";
-              Port = 6777;
-            };
-            remorse = {
-              HostName = "remorse";
-              Port = 6777;
-            };
             "tangled.org" = {
               identitiesOnly = true;
               identityFile = "~/.ssh/id_ed25519";
@@ -119,7 +88,11 @@
               Port = 6777;
               User = "root";
             };
-          };
+          }
+          // lib.genAttrs nixosHosts (name: {
+            HostName = name;
+            Port = sshPort;
+          });
         };
         services.ssh-agent.enable = true;
         sops = {
@@ -138,7 +111,7 @@
               type = "ed25519";
             }
           ];
-          ports = [ 6777 ];
+          ports = [ sshPort ];
           settings = {
             AllowUsers = [ config.my.user ];
             KbdInteractiveAuthentication = false;

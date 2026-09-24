@@ -65,7 +65,10 @@
     import-tree.url = "github:denful/import-tree";
     json-sort = {
       url = "github:drupol/json-sort";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
+      };
     };
     just-one-more-repo = {
       url = "github:ProverbialPennance/just-one-more-repo";
@@ -106,7 +109,10 @@
     };
     niri-flake = {
       url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+      };
     };
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
@@ -164,14 +170,10 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    nvf = {
-      url = "github:NotAShelf/nvf";
-      inputs = {
-        flake-compat.follows = "flake-compat";
-        nixpkgs.follows = "nixpkgs";
-      };
+    nyx = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs.home-manager.follows = "home-manager";
     };
-    nyx.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     openmw-nix = {
       url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -247,7 +249,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ucodenix.url = "github:e-tho/ucodenix";
-    umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
+    umu = {
+      url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     volt-gui-nix = {
       url = "github:keygenesis/volt-gui-nix";
       inputs.nixpkgs.follows = "nixpkgs";

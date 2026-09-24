@@ -1,7 +1,7 @@
 {
   flake.modules = {
     homeManager.noctalia =
-      { inputs, ... }:
+      { self, inputs, ... }:
       {
         imports = [
           inputs.noctalia.homeModules.default
@@ -31,10 +31,8 @@
             calendar.enabled = true;
             control_center.calendar.show_week_numbers = true;
             dock.enabled = false;
-            location = {
+            location = self.lib.site.location // {
               auto_locate = false;
-              latitude = 41.117901;
-              longitude = -95.910009;
             };
             nightlight = {
               enabled = true;
@@ -60,41 +58,23 @@
           };
         };
       };
-    nixos = {
-      noctalia =
-        { inputs, ... }:
-        {
-          imports = [
-            inputs.noctalia.nixosModules.default
+    nixos.noctalia =
+      { inputs, ... }:
+      {
+        imports = [
+          inputs.noctalia.nixosModules.default
+        ];
+        nix.settings = {
+          extra-substituters = [ "https://noctalia.cachix.org" ];
+          extra-trusted-public-keys = [
+            "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
           ];
-          nix.settings = {
-            extra-substituters = [ "https://noctalia.cachix.org" ];
-            extra-trusted-public-keys = [
-              "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-            ];
-          };
-          programs.noctalia = {
-            enable = true;
-            recommendedServices.enable = true;
-          };
         };
-      noctalia-greeter =
-        { pkgs, ... }:
-        {
-          programs.noctalia-greeter = {
-            enable = true;
-            greeter-args = "";
-            settings = {
-              cursor = {
-                path = "${pkgs.catppuccin-cursors.mochaLavender}/share/icons";
-                size = 24;
-                theme = "catppuccin-mocha-lavender-cursors";
-              };
-              keyboard.layout = "us";
-            };
-          };
+        programs.noctalia = {
+          enable = true;
+          recommendedServices.enable = true;
         };
-    };
+      };
   };
   flake-file.inputs.noctalia.url = "github:noctalia-dev/noctalia/cachix";
 }

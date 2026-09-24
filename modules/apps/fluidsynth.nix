@@ -7,7 +7,6 @@
     {
       home = {
         file.midi-soundfonts-default = {
-          enable = true;
           source = soundFont;
           target = "${config.home.homeDirectory}/Music/soundfonts/default.sf2";
         };

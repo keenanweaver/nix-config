@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  inherit (config.flake.lib.site) nas;
+in
 {
   configurations.nixos.nixos-desktop.module =
     { config, ... }:
@@ -33,7 +37,7 @@
             })
             (writeShellApplication {
               name = "script-exodos-nuked";
-              runtimeEnv.EXODOS = "/mnt/crusader/Games/eXo/eXoDOS/eXo/eXoDOS";
+              runtimeEnv.EXODOS = "${nas.mountRoot}/Games/eXo/eXoDOS/eXo/eXoDOS";
               runtimeInputs = [
                 fd
                 sd

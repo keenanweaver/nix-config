@@ -104,7 +104,10 @@
       };
   };
   flake-file.inputs.niri-flake = {
-    inputs.nixpkgs.follows = "nixpkgs";
+    inputs = {
+      nixpkgs.follows = "nixpkgs";
+      nixpkgs-stable.follows = "nixpkgs";
+    };
     url = "github:sodiboo/niri-flake";
   };
 }

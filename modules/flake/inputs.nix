@@ -26,6 +26,9 @@
       };
       url = "github:nix-community/NUR";
     };
-    nyx.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    nyx = {
+      inputs.home-manager.follows = "home-manager";
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    };
   };
 }

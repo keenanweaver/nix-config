@@ -1,55 +1,17 @@
 { self, ... }:
 {
   configurations.nixos.regret.module =
+    { config, ... }:
     {
-      lib,
-      config,
-      pkgs,
-      nixos-raspberrypi,
-      ...
-    }:
-    {
-      imports =
-        with self.modules.nixos;
-        [
-          profile-base
-          profile-pi
-        ]
-        ++ (with nixos-raspberrypi.nixosModules; [
-          nixos-raspberrypi.lib.inject-overlays
-          trusted-nix-caches
-          raspberry-pi-4.base
-          sd-image
-        ]);
-      boot.kernelPackages =
-        nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi4;
-      home-manager.users.${config.my.user} =
-        { config, ... }:
-        {
-          imports = with self.modules.homeManager; [
-            profile-base
-            profile-pi
-          ];
-          nps = {
-            externalStorageBaseDir = "${config.home.homeDirectory}/external";
-            hostIP4Address = "10.20.20.31";
-          };
-        };
-      networking = {
-        defaultGateway = {
-          address = "10.20.20.1";
-          interface = "end0";
-        };
-        hostName = "regret";
-        interfaces.end0.ipv4.addresses = [
-          {
-            address = "10.20.20.31";
-            prefixLength = 24;
-          }
-        ];
-        nameservers = [ "10.20.20.1" ];
-        wireless.enable = lib.mkForce false;
-      };
+      imports = with self.modules.nixos; [
+        profile-base
+        profile-pi
+      ];
+      home-manager.users.${config.my.user}.imports = with self.modules.homeManager; [
+        profile-base
+        profile-pi
+      ];
+      networking.hostName = "regret";
       system.stateVersion = "26.05";
       /*
         virtualisation.quadlet.containers.mister-retroarch-save-sync = {

@@ -4,41 +4,24 @@
     {
       home-manager.users.${config.my.user} =
         {
+          self,
           lib,
           config,
           pkgs,
           ...
         }:
         let
-          cacheRefreshRetry = ''
-            if printf '%s\n' "$output" | grep -qE "^Cache (is too old|doesn.t exist|version doesn.t match current version)\."; then
-              echo "game details cache needs a refresh" >&2
-              lgogdownloader ${
-                lib.escapeShellArgs [
-                  "--update-cache"
-                  "--include-hidden-products"
-                  "--no-color"
-                  "--no-unicode"
-                  "--no-window-progress"
-                  "--verbosity=-1"
-                  "--interface=end0"
-                ]
-              }
-              set +o errexit
-              output=$(lgogdownloader "''${mainArgs[@]}" 2>&1 | tee >(cat 1>&2))
-              status=$?
-              set -o errexit
-            fi
-          '';
-          commonDownloadArgs = [
+          cachedFetchArgs = fetchArgs ++ [
+            "--use-cache"
+            "--cache-valid=1440"
+          ];
+          fetchArgs = [
             "--exclude"
             "l,p"
             "--platform=w"
             "--threads=2"
             "--info-threads=2"
             "--limit-rate=15000"
-            "--use-cache"
-            "--cache-valid=1440"
             "--check-free-space"
             "--include-hidden-products"
             "--ignore-dlc-count"
@@ -46,60 +29,11 @@
             "--save-changelogs"
             "--save-game-details-json"
             "--automatic-xml-creation"
-            "--no-color"
-            "--no-unicode"
-            "--no-window-progress"
-            "--verbosity=-1"
-            "--interface=end0"
-            "--blacklist"
-            "${gogBlacklistFile}"
-            "--directory"
-            gogDirectory
-          ];
-          gog-download = pkgs.writeShellApplication {
-            excludeShellChecks = [
-              "SC2054"
-              "SC2329"
-            ];
-            name = "gog-download";
-            runtimeInputs = with pkgs; [
-              curl
-              util-linux
-              lgogdownloader
-            ];
-            text = ''
-              ${ntfyHelpers}
-              ${mkNotifyFinish "GOG download"}
-              ${lockHelper}
-
-              mainArgs=(
-                ${lib.escapeShellArgs (
-                  [
-                    "--download"
-                    "--updated"
-                    "--new"
-                    "--clear-update-flags"
-                    "--size-only"
-                  ]
-                  ++ commonDownloadArgs
-                )}
-              )
-
-              set +o errexit
-              output=$(lgogdownloader "''${mainArgs[@]}" 2>&1 | tee >(cat 1>&2))
-              status=$?
-              set -o errexit
-
-              ${cacheRefreshRetry}
-
-              exit "$status"
-            '';
-          };
+          ]
+          ++ outputArgs
+          ++ targetArgs;
           gog-full-download = pkgs.writeShellApplication {
-            excludeShellChecks = [
-              "SC2054"
-              "SC2329"
-            ];
+            excludeShellChecks = [ "SC2329" ];
             name = "gog-full-download";
             runtimeInputs = with pkgs; [
               curl
@@ -111,18 +45,50 @@
               ${mkNotifyFinish "GOG full download"}
               ${lockHelper}
 
-              mainArgs=(
-                ${lib.escapeShellArgs ([ "--download" ] ++ commonDownloadArgs)}
-              )
+              echo "refreshing game details cache"
+              output=$(lgogdownloader ${
+                lib.escapeShellArgs (
+                  [
+                    "--update-cache"
+                    "--include-hidden-products"
+                  ]
+                  ++ outputArgs
+                )
+              } </dev/null 2>&1 | tee >(cat 1>&2))
 
-              set +o errexit
-              output=$(lgogdownloader "''${mainArgs[@]}" 2>&1 | tee >(cat 1>&2))
-              status=$?
-              set -o errexit
+              output=$(lgogdownloader ${
+                lib.escapeShellArgs (
+                  [
+                    "--download"
+                    "--clear-update-flags"
+                  ]
+                  ++ cachedFetchArgs
+                )
+              } </dev/null 2>&1 | tee >(cat 1>&2))
+            '';
+          };
+          gog-new-games = pkgs.writeShellApplication {
+            excludeShellChecks = [ "SC2329" ];
+            name = "gog-new-games";
+            runtimeInputs = with pkgs; [
+              curl
+              util-linux
+              lgogdownloader
+            ];
+            text = ''
+              ${ntfyHelpers}
+              ${mkNotifyFinish "GOG new games"}
+              ${lockHelper}
 
-              ${cacheRefreshRetry}
-
-              exit "$status"
+              output=$(lgogdownloader ${
+                lib.escapeShellArgs (
+                  [
+                    "--download"
+                    "--new"
+                  ]
+                  ++ fetchArgs
+                )
+              } </dev/null 2>&1 | tee >(cat 1>&2))
             '';
           };
           gog-remove-orphans = pkgs.writeShellApplication {
@@ -144,21 +110,16 @@
               ${lockHelper}
 
               output=$(lgogdownloader ${
-                lib.escapeShellArgs [
-                  "--check-orphans"
-                  ".*"
-                  "--include-hidden-products"
-                  "--ignore-dlc-count"
-                  "--no-color"
-                  "--no-unicode"
-                  "--no-window-progress"
-                  "--verbosity=-1"
-                  "--interface=end0"
-                  "--blacklist"
-                  "${gogBlacklistFile}"
-                  "--directory"
-                  gogDirectory
-                ]
+                lib.escapeShellArgs (
+                  [
+                    "--check-orphans"
+                    ".*"
+                    "--include-hidden-products"
+                    "--ignore-dlc-count"
+                  ]
+                  ++ outputArgs
+                  ++ targetArgs
+                )
               })
 
               mapfile -t orphans < <(printf '%s\n' "$output" | sed '/^$/d')
@@ -209,37 +170,14 @@
 
               redownloadArgs=(
                 --download --game "^($gameFilter)\$"
-                ${lib.escapeShellArgs [
-                  "--exclude"
-                  "l,p"
-                  "--platform=w"
-                  "--threads=2"
-                  "--info-threads=2"
-                  "--limit-rate=15000"
-                  "--check-free-space"
-                  "--include-hidden-products"
-                  "--ignore-dlc-count"
-                  "--save-serials"
-                  "--save-changelogs"
-                  "--save-game-details-json"
-                  "--automatic-xml-creation"
-                  "--no-color"
-                  "--no-unicode"
-                  "--no-window-progress"
-                  "--verbosity=-1"
-                  "--interface=end0"
-                  "--blacklist"
-                  "${gogBlacklistFile}"
-                  "--directory"
-                  gogDirectory
-                ]}
+                ${lib.escapeShellArgs fetchArgs}
               )
               output=$(lgogdownloader "''${redownloadArgs[@]}" 2>&1 | tee >(cat 1>&2))
               success_message="Finished successfully: removed $count orphaned file(s) across $affected_count game director(y/ies), re-downloaded to self-heal"
             '';
           };
           gogBlacklistFile = ../../../assets/hosts/remorse/gog-blacklist.txt;
-          gogDirectory = "/mnt/crusader/Games/Backups/GOG";
+          gogDirectory = self.lib.site.nas.paths.gogBackups;
           lockHelper = ''
             lockfile="''${XDG_RUNTIME_DIR:-/tmp}/gog-lgogdownloader.lock"
             exec {lock_fd}>"$lockfile"
@@ -259,72 +197,50 @@
             trap 'notify_finish $?' EXIT
             ntfy_notify "${jobName}" "Started" "arrow_forward"
           '';
-          ntfyHelpers = ''
-            ntfy_notify() {
-              local title="$1" message="$2" tags="$3" priority="''${4:-default}"
-              curl -fsS \
-                --header "Authorization: Bearer $(cat ${lib.escapeShellArg ntfyTokenFile})" \
-                --header "Title: $title" \
-                --header "Tags: $tags" \
-                --header "Priority: $priority" \
-                --header "Click: ${ntfyTopicUrl}" \
-                --data "$message" \
-                "${ntfyTopicUrl}" >/dev/null || true
-            }
-          '';
-          ntfyTokenFile = config.sops.secrets."ntfy/ntfybot_token".path;
-          ntfyTopicUrl = "http://10.20.20.31/gog";
+          mkService = script: description: {
+            Service = {
+              ExecStart = lib.getExe script;
+              IOSchedulingClass = "idle";
+              Nice = 19;
+              Type = "oneshot";
+            };
+            Unit.Description = description;
+          };
+          ntfyHelpers = self.lib.mkNtfyNotify {
+            click = true;
+            token = "$(cat ${lib.escapeShellArg config.sops.secrets."ntfy/ntfybot_token".path})";
+            topicUrl = "http://${self.lib.site.network.hosts.regret}/gog";
+          };
           orphanDirectoryFractionThreshold = 75;
+          outputArgs = [
+            "--no-color"
+            "--no-unicode"
+            "--no-window-progress"
+            "--verbosity=-1"
+            "--interface=end0"
+          ];
+          targetArgs = [
+            "--blacklist"
+            "${gogBlacklistFile}"
+            "--directory"
+            gogDirectory
+          ];
         in
         {
           home.packages = [
-            gog-download
             gog-full-download
+            gog-new-games
             gog-remove-orphans
             pkgs.lgogdownloader
           ];
           sops.secrets."ntfy/ntfybot_token" = { };
           systemd.user = {
             services = {
-              gog-download = {
-                Service = {
-                  ExecStart = lib.getExe gog-download;
-                  IOSchedulingClass = "idle";
-                  Nice = 19;
-                  Type = "oneshot";
-                };
-                Unit.Description = "Scan and download new/updated GOG library files";
-              };
-              gog-full-download = {
-                Service = {
-                  ExecStart = lib.getExe gog-full-download;
-                  IOSchedulingClass = "idle";
-                  Nice = 19;
-                  Type = "oneshot";
-                };
-                Unit.Description = "Full GOG library download, ignoring the updated/new flags";
-              };
-              gog-remove-orphans = {
-                Service = {
-                  ExecStart = lib.getExe gog-remove-orphans;
-                  IOSchedulingClass = "idle";
-                  Nice = 19;
-                  Type = "oneshot";
-                };
-                Unit.Description = "Delete local GOG files no longer present on GOG servers";
-              };
+              gog-full-download = mkService gog-full-download "Refresh GOG library details and download new or updated files";
+              gog-new-games = mkService gog-new-games "Download newly owned GOG games";
+              gog-remove-orphans = mkService gog-remove-orphans "Delete local GOG files no longer present on GOG servers";
             };
             timers = {
-              gog-download = {
-                Install.WantedBy = [ "timers.target" ];
-                Timer = {
-                  OnBootSec = "10m";
-                  OnCalendar = "*-*-* 10:00:00";
-                  Persistent = true;
-                  RandomizedDelaySec = "30m";
-                };
-                Unit.Description = "Daily GOG library scan/download";
-              };
               gog-full-download = {
                 Install.WantedBy = [ "timers.target" ];
                 Timer = {
@@ -332,7 +248,16 @@
                   Persistent = true;
                   RandomizedDelaySec = "1h";
                 };
-                Unit.Description = "Monthly full GOG library download";
+                Unit.Description = "Monthly GOG library update download";
+              };
+              gog-new-games = {
+                Install.WantedBy = [ "timers.target" ];
+                Timer = {
+                  OnBootSec = "5m";
+                  OnCalendar = "daily";
+                  RandomizedDelaySec = "5m";
+                };
+                Unit.Description = "Daily download of new GOG games";
               };
               gog-remove-orphans = {
                 Install.WantedBy = [ "timers.target" ];

@@ -3,9 +3,6 @@
   flake.modules = {
     homeManager.profile-desktop = {
       imports = with self.modules.homeManager; [
-        catppuccin
-        kde
-        plasma-manager
         zen-browser
       ];
       xdg = {
@@ -32,9 +29,6 @@
           inputs.ucodenix.nixosModules.default
 
           btrfs
-
-          catppuccin
-          kde
         ];
         boot.kernelParams = lib.mkIf config.services.ucodenix.enable [ "microcode.amd_sha_check=off" ];
         console = {
@@ -75,12 +69,7 @@
           };
           ydotool.enable = true;
         };
-        security.pam.services.login.enableKwallet = true;
         services = {
-          btrfs.autoScrub = {
-            enable = true;
-            interval = "weekly";
-          };
           fstrim.enable = true;
           fwupd.enable = true;
           tuned = {

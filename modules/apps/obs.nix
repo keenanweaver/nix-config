@@ -27,7 +27,7 @@
                 "Recorder"
               ];
               comment = "Free and Open Source Streaming/Recording Software";
-              exec = "GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb obs --disable-shutdown-check";
+              exec = "env GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb obs --disable-shutdown-check";
               icon = "com.obsproject.Studio";
               name = "OBS Studio [${osConfig.my.user}]";
               startupNotify = true;

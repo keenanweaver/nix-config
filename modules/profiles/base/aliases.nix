@@ -1,6 +1,11 @@
 {
   flake.modules.homeManager.profile-base =
-    { config, ... }:
+    {
+      lib,
+      config,
+      osConfig,
+      ...
+    }:
     {
       home.shellAliases = {
         b = "bat --color=always -pp";
@@ -10,9 +15,11 @@
         l = "lsd -la --group-dirs=first";
         ngc = "nh clean all";
         nor = "nh os boot";
-        rbn = "podman stop -a && systemctl reboot";
         upd = "topgrade";
         wget = "wget --hsts-file=${config.xdg.dataHome}/wget-hsts";
+      }
+      // lib.optionalAttrs osConfig.virtualisation.podman.enable {
+        rbn = "podman stop -a && systemctl reboot";
       };
     };
 }

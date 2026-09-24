@@ -19,10 +19,6 @@
           "/var/lib/libvirt"
           "/var/lib/qemu"
         ];
-        services = {
-          qemuGuest.enable = true;
-          spice-vdagentd.enable = true;
-        };
         systemd.tmpfiles.rules = [ "L+ /var/lib/qemu/firmware - - - - ${pkgs.qemu}/share/qemu/firmware" ];
         users.users = {
           ${config.my.user}.extraGroups = [
@@ -48,9 +44,15 @@
             dockerSocket.enable = true;
           };
           spiceUSBRedirection.enable = true;
-          vmVariant.virtualisation = {
-            cores = 3;
-            memorySize = 4096;
+          vmVariant = {
+            services = {
+              qemuGuest.enable = true;
+              spice-vdagentd.enable = true;
+            };
+            virtualisation = {
+              cores = 3;
+              memorySize = 4096;
+            };
           };
         };
       };

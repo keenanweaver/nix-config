@@ -22,7 +22,6 @@
           themePackages = [ pkgs.mac-style-plymouth ];
         };
       };
-      catppuccin.plymouth.enable = false;
       nixpkgs.overlays = [ inputs.s4rchiso-plymouth-theme.overlays.default ];
     };
   flake-file.inputs.s4rchiso-plymouth-theme = {

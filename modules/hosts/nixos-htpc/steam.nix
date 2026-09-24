@@ -8,12 +8,17 @@
     }:
     {
       home-manager.users.${config.my.user} =
-        { inputs, ... }:
         {
+          inputs,
+          config,
+          osConfig,
+          ...
+        }:
+        {
+          my.steam.publicBeta = false;
           programs.steam.config =
             let
               bare = pkg: { target = userBin pkg; };
-              defaultProton = "Proton-CachyOS Latest";
               flatpak = id: {
                 args = [
                   "run"
@@ -27,12 +32,12 @@
                 target = sysBin pkg;
                 wrappers = [ wrapper ];
               };
-              userBin = pkg: "/etc/profiles/per-user/${config.my.user}/bin/${baseNameOf (lib.getExe pkg)}";
+              userBin = pkg: "/etc/profiles/per-user/${osConfig.my.user}/bin/${baseNameOf (lib.getExe pkg)}";
               wrapped = pkg: {
                 target = userBin pkg;
                 wrappers = [ wrapper ];
               };
-              wrapper = "/etc/profiles/per-user/${config.my.user}/bin/${baseNameOf (lib.getExe pkgs.local.game-wrapper)}";
+              wrapper = "/etc/profiles/per-user/${osConfig.my.user}/bin/${baseNameOf (lib.getExe pkgs.local.game-wrapper)}";
             in
             {
               apps =
@@ -46,11 +51,10 @@
                   )
                   {
                     "1364780" = {
-                      compatTool = defaultProton;
+                      compatTool = config.programs.steam.config.defaultCompatTool;
                       name = "Street Fighter 6";
                     };
                   };
-              defaultCompatTool = lib.mkForce defaultProton;
               nonSteamApps = lib.mapAttrs (_: opts: { startIn = null; } // opts) {
                 BanjoRecomp = wrapped pkgs.banjorecomp;
                 Bottles = bare pkgs.bottles;

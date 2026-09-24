@@ -7,16 +7,14 @@
           lib,
           config,
           pkgs,
-          osConfig,
           ...
         }:
         {
           imports = with self.modules.homeManager; [
             steam-config
           ];
-          home = {
-            file.steam-beta = lib.mkIf (osConfig.networking.hostName != "nixos-htpc") {
-              enable = true;
+          config.home = {
+            file.steam-beta = lib.mkIf config.my.steam.publicBeta {
               target = "${config.xdg.dataHome}/Steam/package/beta";
               text = "publicbeta";
             };
@@ -24,9 +22,14 @@
               steamcmd
             ];
           };
+          options.my.steam.publicBeta = lib.mkOption {
+            default = true;
+            description = "Opt the Steam client into the public beta branch.";
+            type = lib.types.bool;
+          };
         };
       steam-config =
-        { inputs, ... }:
+        { inputs, lib, ... }:
         {
           imports = [
             inputs.steam-config-nix.homeModules.default
@@ -37,6 +40,7 @@
               betaBranch = "lsfg-vk";
               name = "Lossless Scaling";
             };
+            defaultCompatTool = lib.mkForce "Proton-CachyOS Latest";
             displayRatesAsBits = false;
             notifications = true;
             onSteamRunning = "close";

@@ -1,28 +1,30 @@
 { inputs, ... }:
+let
+  channelsOverlay =
+    final: _prev:
+    let
+      importChannel =
+        nixpkgs:
+        import nixpkgs {
+          inherit (final) config;
+          inherit (final.stdenv.hostPlatform) system;
+        };
+    in
+    {
+      master = importChannel inputs.nixpkgs-master;
+      unstable = importChannel inputs.nixpkgs-unstable;
+    };
+in
 {
   flake.modules.nixos.profile-base =
     { lib, config, ... }:
     {
       config.nixpkgs = {
         config = {
-          allowBroken = false;
           allowUnfree = true;
           permittedInsecurePackages = config.my.permittedInsecurePackages;
         };
-        overlays = [
-          (final: _prev: {
-            nixpkgs-unstable = import inputs.nixpkgs-unstable {
-              inherit (final) config;
-              inherit (final.stdenv.hostPlatform) system;
-            };
-          })
-          (final: _prev: {
-            master = import inputs.nixpkgs-master {
-              inherit (final) config;
-              inherit (final.stdenv.hostPlatform) system;
-            };
-          })
-        ];
+        overlays = [ channelsOverlay ];
       };
       options.my.permittedInsecurePackages = lib.mkOption {
         default = [ ];
@@ -42,18 +44,7 @@
         config.allowUnfree = true;
         overlays = [
           inputs.nyx.overlays.default
-          (final: _prev: {
-            master = import inputs.nixpkgs-master {
-              inherit (final) config;
-              inherit system;
-            };
-          })
-          (final: _prev: {
-            unstable = import inputs.nixpkgs-unstable {
-              inherit (final) config;
-              inherit system;
-            };
-          })
+          channelsOverlay
         ];
       };
     };

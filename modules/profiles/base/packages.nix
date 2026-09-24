@@ -9,7 +9,6 @@ in
       {
         home = {
           file.current-packages = {
-            enable = true;
             target = "${config.xdg.configHome}/packages-hm";
             text = packageListText pkgs config.home.packages;
           };

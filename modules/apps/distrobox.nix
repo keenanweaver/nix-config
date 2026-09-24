@@ -1,15 +1,32 @@
 {
   flake.modules.homeManager = {
     profile-base =
-      { lib, pkgs, ... }:
       {
-        home.packages = with pkgs; [ distrobox-tui ];
-        programs.distrobox.enable = lib.mkDefault true;
+        lib,
+        config,
+        pkgs,
+        osConfig,
+        ...
+      }:
+      {
+        home.packages = lib.optionals config.programs.distrobox.enable [ pkgs.distrobox-tui ];
+        programs.distrobox.enable = lib.mkDefault osConfig.virtualisation.podman.enable;
       };
     profile-desktop =
-      { pkgs, ... }:
       {
-        home.packages = with pkgs; [ kontainer ];
+        lib,
+        config,
+        pkgs,
+        ...
+      }:
+      {
+        home = lib.mkIf config.programs.distrobox.enable {
+          packages = [ pkgs.kontainer ];
+          shellAliases = {
+            db = "distrobox";
+            dbe = "db enter";
+          };
+        };
       };
   };
 }

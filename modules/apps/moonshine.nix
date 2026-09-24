@@ -1,6 +1,7 @@
 {
   flake.modules.nixos.moonshine =
     {
+      self,
       inputs,
       lib,
       config,
@@ -9,6 +10,10 @@
     }:
     {
       imports = [ inputs.moonshine.nixosModules.default ];
+      assertions = self.lib.mkFactAssertions config [
+        "lanInterface"
+        "pciDev"
+      ];
       chaotic.mesa-git.extraPackages =
         let
           wsiLayer = pkgs.runCommand "moonshine-wsi-layer" { } ''
@@ -20,7 +25,7 @@
         [
           wsiLayer
         ];
-      networking.firewall.interfaces = lib.genAttrs [ "enp10s0" "tailscale0" ] (_: {
+      networking.firewall.interfaces = lib.genAttrs [ config.host.lanInterface "tailscale0" ] (_: {
         allowedTCPPorts = [
           # Moonlight
           47984
@@ -40,6 +45,7 @@
         ];
       });
       services.moonshine = {
+        inherit (config.users.users.${config.my.user}) uid;
         enable = true;
         logFilter = "moonshine=info,moonshine_core::tls=error";
         settings =
@@ -151,7 +157,6 @@
             ];
             compositor.gpu = config.host.pciDev;
           };
-        uid = 1000;
         user = config.my.user;
       };
       users.users.${config.my.user}.extraGroups = [ "moonshine" ];

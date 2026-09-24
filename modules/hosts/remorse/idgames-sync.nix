@@ -4,6 +4,7 @@
     {
       home-manager.users.${config.my.user} =
         {
+          self,
           lib,
           config,
           pkgs,
@@ -60,21 +61,11 @@
               fi
             '';
           };
-          ntfyHelpers = ''
-            ntfy_notify() {
-              local title="$1" message="$2" tags="$3" priority="''${4:-default}"
-              curl -fsS \
-                --header "Authorization: Bearer $(cat ${lib.escapeShellArg ntfyTokenFile})" \
-                --header "Title: $title" \
-                --header "Tags: $tags" \
-                --header "Priority: $priority" \
-                --header "Click: ${ntfyTopicUrl}" \
-                --data "$message" \
-                "${ntfyTopicUrl}" >/dev/null || true
-            }
-          '';
-          ntfyTokenFile = config.sops.secrets."ntfy/ntfybot_token".path;
-          ntfyTopicUrl = "http://10.20.20.31/idgames";
+          ntfyHelpers = self.lib.mkNtfyNotify {
+            click = true;
+            token = "$(cat ${lib.escapeShellArg config.sops.secrets."ntfy/ntfybot_token".path})";
+            topicUrl = "http://${self.lib.site.network.hosts.regret}/idgames";
+          };
           wgetArgs = [
             "--mirror"
             "--no-parent"
@@ -93,7 +84,7 @@
             "--reject-regex"
             "\\?C="
             "-P"
-            "/mnt/crusader/Games/Games/Doom/idgames"
+            self.lib.site.nas.paths.idgames
             "https://youfailit.net/pub/idgames/"
           ];
         in

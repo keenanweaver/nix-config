@@ -64,7 +64,7 @@
       };
       # Create Steam CEF debugging file if it doesn't exist for Decky Loader.
       # https://github.com/Jovian-Experiments/Jovian-NixOS/issues/460#issuecomment-3439375088
-      systemd.services.steam-cef-debug = lib.mkIf config.jovian.decky-loader.enable {
+      systemd.services.steam-cef-debug = {
         description = "Create Steam CEF debugging file";
         wantedBy = [ "multi-user.target" ];
         serviceConfig = {

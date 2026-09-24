@@ -8,6 +8,7 @@
 
         profile-base
         profile-desktop
+        profile-kde
         profile-gaming
         profile-office
 
@@ -36,6 +37,7 @@
           imports = with self.modules.homeManager; [
             profile-base
             profile-desktop
+            profile-kde
             profile-gaming
 
             amd
@@ -55,10 +57,7 @@
 
             doom
           ];
-          home.sessionVariables = {
-            WAYLANDDRV_PRIMARY_MONITOR = "DP-1"; # https://reddit.com/r/linux_gaming/comments/1louxm2/fix_for_wine_wayland_using_wrong_monitor/
-            WINE_CPU_TOPOLOGY = "15:1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"; # 7950X3D
-          };
+          home.sessionVariables.WINE_CPU_TOPOLOGY = "15:1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"; # 7950X3D
           xdg.desktopEntries = import ./_desktop-entries.nix {
             inherit
               config
@@ -76,7 +75,7 @@
         tmpfiles.rules = [
           "d /mnt/Games 0755 ${config.my.user} users - -"
           "d /mnt/Games2 0755 ${config.my.user} users - -"
-          "L+ /home/${config.my.user}/Games - - - - /mnt/Games"
+          "L+ ${config.users.users.${config.my.user}.home}/Games - - - - /mnt/Games"
         ];
       };
     };

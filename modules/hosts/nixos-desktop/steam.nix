@@ -13,7 +13,6 @@
           programs.steam.config =
             let
               defaultOptions = {
-                env = { };
                 preHook = ''
                   ${lib.getExe lowlatency}
                 '';
@@ -21,7 +20,6 @@
                   (lib.getExe pkgs.local.game-wrapper)
                 ];
               };
-              defaultProton = "Proton-CachyOS Latest";
               lowlatency = pkgs.writeShellApplication {
                 name = "lowlatency";
                 runtimeInputs = with pkgs; [
@@ -89,7 +87,6 @@
                     "50".name = "Half-Life: Opposing Force";
                     "70".name = "Half-Life";
                   };
-              defaultCompatTool = lib.mkForce defaultProton;
             };
         };
     };

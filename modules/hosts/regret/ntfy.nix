@@ -1,11 +1,6 @@
 {
   configurations.nixos.regret.module =
-    {
-      lib,
-      config,
-      pkgs,
-      ...
-    }:
+    { config, ... }:
     {
       home-manager.users.${config.my.user} =
         { lib, config, ... }:
@@ -33,27 +28,7 @@
             "ntfy/ntfybot_password_hash" = { };
           };
         };
+      my.tailscaleServe.ntfy.target = "http://127.0.0.1:80";
       networking.firewall.interfaces.end0.allowedTCPPorts = [ 80 ];
-      systemd.services.ntfy-tailscale-serve = {
-        wantedBy = [ "multi-user.target" ];
-        after = [
-          "tailscaled.service"
-          "podman-ntfy.service"
-        ];
-        wants = [
-          "tailscaled.service"
-          "podman-ntfy.service"
-        ];
-        serviceConfig = {
-          ExecStart = "${lib.getExe pkgs.tailscale} serve --bg --https=443 http://127.0.0.1:80";
-          ExecStop = "${lib.getExe pkgs.tailscale} serve --https=443 off";
-          RemainAfterExit = true;
-          Restart = "on-failure";
-          RestartSec = "2s";
-          Type = "oneshot";
-        };
-        startLimitIntervalSec = 0;
-        unitConfig.Description = "Proxy ntfy over Tailscale HTTPS via tailscale serve";
-      };
     };
 }

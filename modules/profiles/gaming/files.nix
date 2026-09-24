@@ -16,22 +16,18 @@
         in
         {
           dosbox-roms-mt32 = {
-            enable = true;
             source = "${inputs.nonfree}/Music/roland/mt32";
             target = "${config.xdg.configHome}/dosbox/mt32-roms";
           };
           dosbox-roms-sc55 = {
-            enable = true;
             source = "${inputs.nonfree}/Music/roland/sc55";
             target = "${config.xdg.configHome}/dosbox/soundcanvas-roms";
           };
           dosbox-soundfont = {
-            enable = true;
             source = config.services.fluidsynth.soundFont;
             target = "${config.xdg.configHome}/dosbox/soundfonts/default.sf2";
           };
           toggle-hdr = {
-            enable = true;
             source =
               with pkgs;
               lib.getExe (writeShellApplication {
@@ -55,7 +51,6 @@
             target = "${config.home.homeDirectory}/Games/toggle-hdr.sh";
           };
           toggle-vrr = {
-            enable = true;
             source =
               with pkgs;
               lib.getExe (writeShellApplication {

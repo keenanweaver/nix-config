@@ -8,6 +8,7 @@
 
         profile-base
         profile-desktop
+        profile-kde
         profile-niri
         profile-office
 
@@ -21,6 +22,7 @@
       home-manager.users.${config.my.user}.imports = with self.modules.homeManager; [
         profile-base
         profile-desktop
+        profile-kde
         profile-niri
 
         llm

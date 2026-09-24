@@ -21,7 +21,6 @@ in
       exec = wrap + execBin;
       icon = "${config.home.homeDirectory}/Games/Games2/dreamm/dreamm.png";
       name = "DREAMM [${osConfig.my.user}]";
-      noDisplay = false;
       startupNotify = true;
       terminal = false;
     };
@@ -35,7 +34,6 @@ in
     exec = wrap + (lib.getExe pkgs.scummvm);
     icon = "org.scummvm.scummvm";
     name = "ScummVM [${osConfig.my.user}]";
-    noDisplay = false;
     settings.StartupWMClass = "scummvm";
     startupNotify = false;
     terminal = false;
@@ -54,7 +52,6 @@ in
       ];
       exec = wrap + (lib.getExe pkgs.local.rsdkv3);
       name = "Sonic CD [${osConfig.my.user}]";
-      noDisplay = false;
       settings.Path = "${config.home.homeDirectory}/Games/sonic/sonic-cd";
       startupNotify = false;
       terminal = false;

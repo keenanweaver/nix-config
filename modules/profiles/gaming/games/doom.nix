@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  inherit (config.flake.lib.site) nas;
+in
 {
   flake.modules.homeManager.doom =
     {
@@ -11,7 +15,7 @@
         (writeShellApplication {
           name = "doom-wad-extractor";
           runtimeEnv = {
-            IDGAMESARCHIVE_PATH = "/mnt/crusader/Games/Games/Doom/idgames";
+            IDGAMESARCHIVE_PATH = nas.paths.idgames;
             OUTPUT_PATH = "${config.home.homeDirectory}/Games/doom/doom/pwads";
           };
           runtimeInputs = [

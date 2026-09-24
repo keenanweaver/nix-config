@@ -113,6 +113,17 @@
    </metadata>
   </info>
  </bookmark>
+ <bookmark href="file:///mnt/Games2">
+  <title>Games2</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-games"/>
+   </metadata>
+   <metadata owner="http://www.kde.org">
+    <ID>1741383141/2</ID>
+   </metadata>
+  </info>
+ </bookmark>
  <bookmark href="file:///mnt/crusader">
   <title>Crusader</title>
   <info>

@@ -34,6 +34,9 @@
           gpu = mkStrFact ''
             Marketing name of the GPU, e.g. "7900XTX". Displayed by MangoHud.
           '';
+          lanInterface = mkStrFact ''
+            Wired LAN interface name, e.g. "enp10s0".
+          '';
           pciDev = mkStrFact ''
             PCI address of the GPU MangoHud should report on, e.g. "0000:03:00.0".
           '';

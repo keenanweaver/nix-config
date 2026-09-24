@@ -1,12 +1,7 @@
 {
   flake.modules = {
     homeManager.profile-base =
-      {
-        lib,
-        config,
-        pkgs,
-        ...
-      }:
+      { config, ... }:
       {
         programs.zsh = {
           enable = true;
@@ -21,14 +16,11 @@
             chpwd() {
               lsd -la
             }
-            ${lib.getExe pkgs.any-nix-shell} zsh --info-right | source /dev/stdin
           '';
           oh-my-zsh = {
             enable = true;
             custom = "${config.xdg.configHome}/zsh/.zsh_custom";
             plugins = [
-              "command-not-found"
-              "direnv"
               "git"
               "sudo"
               "zsh-interactive-cd"

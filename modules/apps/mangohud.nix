@@ -208,7 +208,6 @@
                 };
               in
               {
-                enable = true;
                 target = "${config.xdg.configHome}/MangoHud/MangoHud.conf";
                 text = ''
                   fps
@@ -297,7 +296,7 @@
                   cpu_load_value=60,90
                   fps_limit_method=late
 
-                  ${lib.optionalString config.catppuccin.enable ''
+                  ${lib.optionalString (config.catppuccin.enable or false) ''
                     background_color=1e1e2e
                     battery_color=585b70
                     cpu_color=89b3fa
@@ -319,7 +318,6 @@
                   ''}'';
               };
             mangohud-presets = {
-              enable = true;
               target = "${config.xdg.configHome}/MangoHud/presets.conf";
               text = "";
             };

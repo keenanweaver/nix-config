@@ -8,7 +8,6 @@
         enable = true;
         binfmt.enable = false;
         fontAliases.enable = true;
-        ntsync.enable = true;
       };
     };
   flake-file.inputs.wine-cachyos-nix = {
