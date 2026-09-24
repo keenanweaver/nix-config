@@ -43,9 +43,8 @@
             runners = {
               "Luxtorpeda Latest" = "luxtorpeda";
               "Proton-CachyOS Latest" = "proton-cachyos";
-              "Proton-CachyOS Wineland Latest" = "proton-cachyos-wineland";
               "Proton-GE Latest" = "proton-ge";
-              "Proton-Tkg Latest" = "proton-tkg";
+              "Proton-Wineland Latest" = "proton-wineland";
             };
           in
           {
