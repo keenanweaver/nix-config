@@ -48,7 +48,12 @@
             };
           };
         plasma-manager =
-          { self, osConfig, ... }:
+          {
+            self,
+            lib,
+            osConfig,
+            ...
+          }:
           {
             imports = [
               self.lib.plasmaManager.homeModules.plasma-manager
@@ -57,6 +62,7 @@
               enable = true;
               configFile = {
                 baloofilerc."Basic Settings".Indexing-Enabled = false;
+                breezerc.Style.MenuOpacity = 75;
                 dolphinrc = {
                   ContentDisplay.UsePermissionsFormat = "CombinedFormat";
                   "Desktop Entry".DefaultProfile = "${osConfig.my.user}.profile";
@@ -140,10 +146,32 @@
                 };
                 kwalletrc.Wallet."First Use" = false;
                 kwinrc = {
+                  # https://github.com/xarblu/kwin-effects-better-blur-dx
+                  Effect-better-blur-dx = {
+                    BlurDecorations = true;
+                    BlurDocks = false;
+                    BlurMatching = true;
+                    BlurMenus = true;
+                    BlurNonMatching = false;
+                    BlurStrength = 2;
+                    Brightness = 100;
+                    Contrast = 100;
+                    CornerRadius = 0.0;
+                    ForceContrastParams = false;
+                    NoiseStrength = 5;
+                    Saturation = 100;
+                    WindowClasses = lib.concatStringsSep "\n" [
+                      "dolphin org.kde.dolphin"
+                      "kate"
+                      "systemsettings org.kde.systemsettings"
+                    ];
+                  };
                   Effect-windowview.BorderActivateAll = 9;
                   MouseBindings.CommandTitlebarWheel = "Change Opacity";
                   Plugins = {
                     MoveWindowToCenterEnabled = true;
+                    better_blur_dxEnabled = true;
+                    blurEnabled = false;
                     contrastEnabled = true;
                     kinetic_fadingpopupsEnabled = true;
                     kinetic_scaleEnabled = true;
@@ -418,6 +446,9 @@
               with pkgs;
               with pkgs.kdePackages;
               [
+                (inputs.kwin-effects-better-blur-dx.packages.${pkgs.system}.default.overrideAttrs (old: {
+                  buildInputs = old.buildInputs ++ [ kdePackages.kdecoration ];
+                }))
                 (spectacle.override {
                   tesseractLanguages = [ "eng" ];
                 })
@@ -539,8 +570,14 @@
         };
     };
   };
-  flake-file.inputs.kwin-effects-kinetic = {
-    flake = false;
-    url = "github:gurrgur/kwin-effects-kinetic";
+  flake-file.inputs = {
+    kwin-effects-better-blur-dx = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:xarblu/kwin-effects-better-blur-dx";
+    };
+    kwin-effects-kinetic = {
+      flake = false;
+      url = "github:gurrgur/kwin-effects-kinetic";
+    };
   };
 }

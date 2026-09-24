@@ -32,6 +32,10 @@
       url = "github:drupol/json-sort";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    kwin-effects-better-blur-dx = {
+      url = "github:xarblu/kwin-effects-better-blur-dx";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     kwin-effects-kinetic = {
       url = "github:gurrgur/kwin-effects-kinetic";
       flake = false;

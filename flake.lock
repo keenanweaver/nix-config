@@ -320,7 +320,7 @@
     },
     "flake-utils": {
       "inputs": {
-        "systems": "systems"
+        "systems": "systems_2"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -357,7 +357,7 @@
     },
     "flake-utils_2": {
       "inputs": {
-        "systems": "systems_3"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1694529238,
@@ -470,6 +470,27 @@
       "original": {
         "owner": "drupol",
         "repo": "json-sort",
+        "type": "github"
+      }
+    },
+    "kwin-effects-better-blur-dx": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1789073086,
+        "narHash": "sha256-8/Y21fJFUDAM5GiahOBHxFXVOqhHEzhFmO5WC+Loi6Q=",
+        "owner": "xarblu",
+        "repo": "kwin-effects-better-blur-dx",
+        "rev": "3d8c1a8fb05393f944751665775676955d040b89",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xarblu",
+        "repo": "kwin-effects-better-blur-dx",
         "type": "github"
       }
     },
@@ -844,7 +865,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "systems": "systems_2"
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1790080550,
@@ -908,6 +929,7 @@
         "flake-parts": "flake-parts",
         "import-tree": "import-tree",
         "json-sort": "json-sort",
+        "kwin-effects-better-blur-dx": "kwin-effects-better-blur-dx",
         "kwin-effects-kinetic": "kwin-effects-kinetic",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nix-gaming-edge": "nix-gaming-edge",
@@ -921,7 +943,7 @@
         "omniflake": "omniflake",
         "openmw-nix": "openmw-nix",
         "simracing-hwdb": "simracing-hwdb",
-        "systems": "systems_4",
+        "systems": "systems_5",
         "umu": "umu"
       }
     },
@@ -1028,6 +1050,21 @@
     },
     "systems_4": {
       "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_5": {
+      "locked": {
         "lastModified": 1689347949,
         "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
         "owner": "nix-systems",
@@ -1076,6 +1113,24 @@
         "dir": "packaging/nix",
         "owner": "Open-Wine-Components",
         "repo": "umu-launcher",
+        "type": "github"
+      }
+    },
+    "utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1726560853,
+        "narHash": "sha256-X6rJYSESBVr3hBoH0WbKE5KvhPU5bloyZ2L4K60/fPQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c1dfcf08411b08f6b8615f7d8971a2bfa81d5e8a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
       }
     }
