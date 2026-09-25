@@ -84,18 +84,22 @@ in
                 gtk-xft-hintstyle = "hintslight";
                 gtk-xft-rgba = "rgb";
               };
-              gtk4.extraConfig = {
-                gtk-decoration-layout = "icon:minimize,maximize,close";
-                gtk-enable-animations = true;
-                gtk-font-rendering = "manual";
-                gtk-hint-font-metrics = true;
-                gtk-primary-button-warps-slider = true;
-                gtk-sound-theme-name = "ocean";
-                gtk-xft-antialias = 1;
-                gtk-xft-hinting = 1;
-                gtk-xft-hintstyle = "hintslight";
-                gtk-xft-rgba = "rgb";
+              gtk4 = {
+                extraConfig = {
+                  gtk-decoration-layout = "icon:minimize,maximize,close";
+                  gtk-enable-animations = true;
+                  gtk-font-rendering = "manual";
+                  gtk-hint-font-metrics = true;
+                  gtk-primary-button-warps-slider = true;
+                  gtk-sound-theme-name = "ocean";
+                  gtk-xft-antialias = 1;
+                  gtk-xft-hinting = 1;
+                  gtk-xft-hintstyle = "hintslight";
+                  gtk-xft-rgba = "rgb";
+                };
+                theme = null;
               };
+              theme.name = "Adwaita";
             };
             home = {
               file = {
@@ -321,16 +325,7 @@ in
                 };
               };
             };
-            services = {
-              flatpak.overrides."com.fightcade.Fightcade".Environment.GTK_THEME = GTK-THEME;
-              xsettingsd.settings = {
-                "Gtk/CursorThemeName" = cursor-theme;
-                "Gtk/CursorThemeSize" = 24;
-                "Gtk/FontName" = "${sans-font},  12";
-                "Net/IconThemeName" = icon-theme;
-                "Net/ThemeName" = GTK-THEME;
-              };
-            };
+            services.flatpak.overrides."com.fightcade.Fightcade".Environment.GTK_THEME = GTK-THEME;
           };
         profile-gaming.home.file.catppuccin-heroic = {
           source = "${inputs.catppuccin-heroic}/themes/catppuccin-${flavor-accent}.css";

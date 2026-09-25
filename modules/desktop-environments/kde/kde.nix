@@ -85,6 +85,7 @@
                 Search.Location = "Everywhere";
                 "Toolbar mainToolBar".ToolButtonStyle = "IconOnly";
               };
+              kded5rc.Module-gtkconfig.autoload = false;
               kdeglobals = {
                 KDE = {
                   AnimationDurationFactor = 0.25;
