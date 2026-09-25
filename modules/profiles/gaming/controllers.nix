@@ -19,23 +19,7 @@
             with builtins;
             concatStringsSep "\n" (
               map readFile [
-                "${inputs.simracing-hwdb}/90-cammus.hwdb"
-                "${inputs.simracing-hwdb}/90-fanatec.hwdb"
-                "${inputs.simracing-hwdb}/90-heusinkveld.hwdb"
-                "${inputs.simracing-hwdb}/90-leo-bodnar.hwdb"
                 "${inputs.simracing-hwdb}/090-logitech.hwdb"
-                "${inputs.simracing-hwdb}/90-mmos.hwdb"
-                "${inputs.simracing-hwdb}/90-oddor.hwdb"
-                "${inputs.simracing-hwdb}/90-shh.hwdb"
-                "${inputs.simracing-hwdb}/90-simagic.hwdb"
-                "${inputs.simracing-hwdb}/90-simgrade.hwdb"
-                "${inputs.simracing-hwdb}/90-simjack.hwdb"
-                "${inputs.simracing-hwdb}/90-simlab.hwdb"
-                "${inputs.simracing-hwdb}/90-simruito.hwdb"
-                "${inputs.simracing-hwdb}/90-simsonn.hwdb"
-                "${inputs.simracing-hwdb}/90-simtrecs.hwdb"
-                "${inputs.simracing-hwdb}/90-thrustmaster.hwdb"
-                "${inputs.simracing-hwdb}/90-vrs.hwdb"
               ]
             );
           packages = with pkgs; [
