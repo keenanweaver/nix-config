@@ -114,48 +114,9 @@
         profiles.default =
           let
             defaultSpace = "5a9a807c-9689-4e11-8cf6-162a22118ab7";
-            pins = {
-              MyNixOS = {
-                folderParentId = pins."NixOS".id;
-                id = "b22bef9f-4359-4025-aa40-77cea0d2f3a8";
-                position = 204;
-                url = "https://mynixos.com/";
-                workspace = pins."NixOS".workspace;
-              };
-              NixOS = {
-                editedTitle = true;
-                folderIcon = "file://${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                id = "d85a9026-1458-4db6-b115-346746bcc692";
-                isFolderCollapsed = false;
-                isGroup = true;
-                position = 200;
-                workspace = defaultSpace;
-              };
-              "NixOS Manual" = {
-                folderParentId = pins."NixOS".id;
-                id = "c4804f6b-4523-4a33-99e4-c1f545390ad8";
-                position = 202;
-                url = "https://nixos.org/manual/nixos/unstable/";
-                workspace = pins."NixOS".workspace;
-              };
-              "NixOS Status" = {
-                folderParentId = pins."NixOS".id;
-                id = "a018d0d9-4186-43bd-800e-821304da849e";
-                position = 201;
-                url = "https://status.nixos.org/";
-                workspace = pins."NixOS".workspace;
-              };
-              "Nixpkgs Reference Manual" = {
-                folderParentId = pins."NixOS".id;
-                id = "8db8f1ff-f387-4eba-ab6b-2f03b1fe2291";
-                position = 203;
-                url = "https://nixos.org/manual/nixpkgs/unstable/";
-                workspace = pins."NixOS".workspace;
-              };
-            };
+            nixSnowflake = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           in
           {
-            inherit pins;
             containersForce = true;
             extensionButtons = {
               nav-bar = [
@@ -176,26 +137,6 @@
                 "addon@darkreader.org"
               ];
             };
-            liveFolders = {
-              "My issues" = {
-                github.authorMe = true;
-                id = "069ddf06-972e-43b2-8683-1ee2505b07a3";
-                kind = "github:issues";
-                position = 301;
-                workspace = defaultSpace;
-              };
-              "Pull requests" = {
-                github = {
-                  assignedMe = true;
-                  authorMe = true;
-                  reviewRequested = true;
-                };
-                id = "c66b4bfa-5f69-49e6-857e-b76ac5eb179b";
-                kind = "github:pull-requests";
-                position = 300;
-                workspace = defaultSpace;
-              };
-            };
             mods = [
               "e122b5d9-d385-4bf8-9971-e137809097d0" # No Top Sites
               "253a3a74-0cc4-47b7-8b82-996a64f030d5" # Floating History
@@ -203,6 +144,9 @@
               "7190e4e9-bead-4b40-8f57-95d852ddc941" # Tab title fixes
               "803c7895-b39b-458e-84f8-a521f4d7a064" # Hide Inactive Workspaces
               "906c6915-5677-48ff-9bfc-096a02a72379" # Floating Status Bar
+              "a6335949-4465-4b71-926c-4a52d34bc9c0" # Better Find Bar
+              "5c4d7772-d963-4672-ab03-e9d541438881" # Bigger Mute Button
+              "bc25808c-a012-4c0d-ad9a-aa86be616019" # sleek border
             ];
             pinsForce = true;
             pinsForceAction = "demote";
@@ -237,7 +181,7 @@
                 };
                 "Nix Options" = {
                   definedAliases = [ "@nixo" ];
-                  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                  icon = nixSnowflake;
                   urls = [
                     {
                       params = [
@@ -256,7 +200,7 @@
                 };
                 "Nix Packages" = {
                   definedAliases = [ "@nixp" ];
-                  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                  icon = nixSnowflake;
                   urls = [
                     {
                       params = [
@@ -279,7 +223,7 @@
                 };
                 "NixOS Wiki" = {
                   definedAliases = [ "@nixw" ];
-                  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                  icon = nixSnowflake;
                   urls = [
                     {
                       params = [
@@ -355,7 +299,7 @@
                   };
                 mynixos = {
                   definedAliases = [ "@mn" ];
-                  icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                  icon = nixSnowflake;
                   name = "MyNixOS";
                   urls = [ { template = "https://mynixos.com/search?q={searchTerms}"; } ];
                 };
@@ -408,9 +352,26 @@
               "media.eme.enabled" = true;
               "media.ffmpeg.vaapi.enable" = true;
               "middlemouse.paste" = false;
+              "mod.ivaon.urlbar.hide_results" = 0; # No Top Sites
               "mousewheel.min_line_scroll_amount" = 10;
+              "psu.tab_title_fixes.font_size" = "13px"; # Tab title fixes
+              "psu.tab_title_fixes.pending_opacity" = "0.55";
               "services.sync.engine.workspaces" = true;
               "signon.rememberSignons" = false;
+              theme-better_find_bar-enable_custom_background = false; # Better Find Bar
+              "theme.better_find_bar.hide_find_status" = false;
+              "theme.better_find_bar.hide_found_matches" = false;
+              "theme.better_find_bar.hide_highlight" = "not_hide";
+              "theme.better_find_bar.hide_match_case" = "not_hide";
+              "theme.better_find_bar.hide_match_diacritics" = "hide_immediately";
+              "theme.better_find_bar.hide_whole_words" = "not_hide";
+              "theme.better_find_bar.horizontal_position" = "default";
+              "theme.better_find_bar.instant_animations" = true;
+              "theme.better_find_bar.textbox_width" = "800";
+              "theme.better_find_bar.transparent_background" = true;
+              "theme.better_find_bar.vertical_position" = "default";
+              "theme.floating_history.position" = "right"; # Floating History
+              "theme.nosidebarscrollbar.before125b" = false; # No Sidebar Scrollbar
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
               "widget.use-xdg-desktop-portal.file-picker" = true;
               "widget.use-xdg-desktop-portal.mime-handler" = true;
@@ -434,6 +395,62 @@
               "zen.workspaces.natural-scroll" = true;
               "zen.workspaces.show-workspace-indicator" = true;
             };
+            spaceRouting = {
+              defaultExternalRoute = defaultSpace;
+              force = true;
+            };
+            spaces.Space = {
+              id = defaultSpace;
+              liveFolders = {
+                "My issues" = {
+                  github.authorMe = true;
+                  id = "069ddf06-972e-43b2-8683-1ee2505b07a3";
+                  kind = "github:issues";
+                  position = 301;
+                };
+                "Pull requests" = {
+                  github = {
+                    assignedMe = true;
+                    authorMe = true;
+                    reviewRequested = true;
+                  };
+                  id = "c66b4bfa-5f69-49e6-857e-b76ac5eb179b";
+                  kind = "github:pull-requests";
+                  position = 300;
+                };
+              };
+              pins.NixOS = {
+                editedTitle = true;
+                folderIcon = "file://${nixSnowflake}";
+                id = "d85a9026-1458-4db6-b115-346746bcc692";
+                isFolderCollapsed = false;
+                pins = {
+                  MyNixOS = {
+                    id = "b22bef9f-4359-4025-aa40-77cea0d2f3a8";
+                    position = 204;
+                    url = "https://mynixos.com/";
+                  };
+                  "NixOS Manual" = {
+                    id = "c4804f6b-4523-4a33-99e4-c1f545390ad8";
+                    position = 202;
+                    url = "https://nixos.org/manual/nixos/unstable/";
+                  };
+                  "NixOS Status" = {
+                    id = "a018d0d9-4186-43bd-800e-821304da849e";
+                    position = 201;
+                    url = "https://status.nixos.org/";
+                  };
+                  "Nixpkgs Reference Manual" = {
+                    id = "8db8f1ff-f387-4eba-ab6b-2f03b1fe2291";
+                    position = 203;
+                    url = "https://nixos.org/manual/nixpkgs/unstable/";
+                  };
+                };
+                position = 200;
+              };
+              position = 1000;
+            };
+            spacesForce = true;
             userChrome = ''
               @import "catppuccin/userChrome.css";
 
