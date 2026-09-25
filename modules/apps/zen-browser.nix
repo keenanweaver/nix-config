@@ -434,6 +434,17 @@
               "zen.workspaces.natural-scroll" = true;
               "zen.workspaces.show-workspace-indicator" = true;
             };
+            userChrome = ''
+              @import "catppuccin/userChrome.css";
+
+              :root {
+                --panel-background-color: #1e1e2e !important;
+              }
+
+              #zen-browser-background {
+                --zen-main-browser-background: #181825 !important;
+              }
+            '';
           };
         setAsDefaultBrowser = true;
       };
