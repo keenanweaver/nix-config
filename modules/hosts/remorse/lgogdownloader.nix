@@ -110,6 +110,17 @@
               ${mkNotifyFinish "GOG orphan cleanup"}
               ${lockHelper}
 
+              echo "refreshing game details cache"
+              output=$(lgogdownloader ${
+                lib.escapeShellArgs (
+                  [
+                    "--update-cache"
+                    "--include-hidden-products"
+                  ]
+                  ++ outputArgs
+                )
+              } </dev/null 2>&1 | tee >(cat 1>&2))
+
               output=$(lgogdownloader ${
                 lib.escapeShellArgs (
                   [
