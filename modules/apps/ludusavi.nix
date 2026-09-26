@@ -1,10 +1,19 @@
+{ self, ... }:
 {
   flake.modules.homeManager.profile-gaming =
-    { config, ... }:
+    {
+      lib,
+      config,
+      pkgs,
+      osConfig,
+      ...
+    }:
+    let
+      cfg = config.services.ludusavi;
+    in
     {
       services.ludusavi = {
         enable = true;
-        backupNotification = true;
         settings = {
           backup.format = {
             chosen = "zip";
@@ -63,11 +72,22 @@
           theme = "dark";
         };
       };
-      systemd.user.timers.ludusavi = {
-        Install.WantedBy = [ "timers.target" ];
-        Timer = {
-          OnBootSec = "2min";
-          OnUnitActiveSec = "24h";
+      systemd.user = {
+        services.ludusavi.Service.ExecStartPost = [
+          (lib.escapeShellArgs [
+            (lib.getExe config.programs.rclone.package)
+            "copy"
+            cfg.settings.backup.path
+            "${self.lib.site.nas.mountRoot}/Games/Saves/ludusavi/${osConfig.networking.hostName}"
+          ])
+          "${lib.getExe pkgs.libnotify} 'Ludusavi' 'Backup completed' -i com.mtkennerly.ludusavi -a 'Ludusavi'"
+        ];
+        timers.ludusavi = {
+          Install.WantedBy = [ "timers.target" ];
+          Timer = {
+            OnBootSec = "2min";
+            OnUnitActiveSec = "24h";
+          };
         };
       };
     };
