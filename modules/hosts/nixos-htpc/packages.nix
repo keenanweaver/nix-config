@@ -49,17 +49,6 @@
           "slippi-nix.cachix.org-1:2qnPHiOxTRpzgLEtx6K4kXq/ySDg7zHEJ58J6xNDvBo="
         ];
       };
-      programs = {
-        #ghostship.enable = true;
-        shipwright-git.enable = true;
-        sm64coopdx = {
-          enable = true;
-          coopNet.openFirewall = true;
-        };
-
-        #spaghetti-kart-git.enable = true;
-        #starship-sf64.enable = true;
-      };
       system.extraDependencies =
         with self.lib.roms;
         self.lib.pinRoms pkgs [

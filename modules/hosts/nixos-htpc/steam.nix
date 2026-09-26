@@ -62,8 +62,6 @@
                 Dusklight = wrapped pkgs.dusklight;
                 Eden = flatpak "dev.eden_emu.eden";
                 Fightcade = flatpak "com.fightcade.Fightcade";
-                #"Ghostship" = sysWrapped pkgs.ghostship;
-
                 # https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/issues/4721#issuecomment-5296588981
                 "Heroic Games Launcher" = (bare pkgs.heroic) // {
                   args = [
@@ -79,12 +77,10 @@
                 "Ring Racers" = wrapped pkgs.ringracers;
                 SM64CoopDX = sysWrapped pkgs.sm64coopdx;
                 SM64Ex = wrapped pkgs.sm64ex;
-                "Ship of Harkinian" = sysWrapped pkgs.shipwright-git;
+                "Ship of Harkinian" = sysWrapped pkgs.shipwright;
                 Slippi = wrapped inputs.slippi-nix.packages.${pkgs.stdenv.hostPlatform.system}.default;
                 "Sonic 3: Angel Island Revisited" = wrapped pkgs.local.sonic3air;
                 "Sonic Robo Blast 2" = wrapped pkgs.srb2;
-                #"Spaghetti Kart" = sysWrapped pkgs.spaghetti-kart-git;
-                #"Starship SF64" = sysWrapped pkgs.starship-sf64;
                 VVVVVV = wrapped pkgs.vvvvvv;
                 "Wipeout Rewrite" = wrapped pkgs.wipeout-rewrite;
                 YARG = wrapped pkgs.yarg;
