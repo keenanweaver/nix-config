@@ -31,11 +31,6 @@ in
         type = lib.types.listOf lib.types.str;
       };
     };
-  flake-file.inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-  };
   perSystem =
     { system, ... }:
     {
@@ -48,4 +43,9 @@ in
         ];
       };
     };
+  flake-file.inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+  };
 }

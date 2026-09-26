@@ -11,6 +11,7 @@ last = ["specialArgs", "<defaulted>", "..."]
 
 [attrs]
 first = ["imports", "enable", "package", "pname", "version", "src"]
+last = ["meta", "flake-file"]
 flatten = true
 merge = true
 name-style = "identifier"
@@ -46,3 +47,11 @@ lists.sort = true
 [[overrides]]
 path = "**.environment.systemPackages"
 lists.sort = true
+
+[[overrides]]
+path = "**.pre-commit.settings.hooks"
+attrs.last = []
+
+[[overrides]]
+path = "**.flake-file.inputs"
+attrs.last = []
