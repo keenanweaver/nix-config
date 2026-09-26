@@ -1,6 +1,6 @@
-{ config, ... }:
+{ self, ... }:
 let
-  inherit (config.flake.lib.site) nas;
+  inherit (self.lib.site) nas;
 in
 {
   flake.modules.homeManager.profile-desktop.home.shellAliases = {

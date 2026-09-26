@@ -1,41 +1,17 @@
 { self, ... }:
 {
-  configurations.nixos.nixos-laptop.module =
-    { config, ... }:
-    {
-      imports = with self.modules.nixos; [
-        self.diskoConfigurations.nixos-laptop
+  configurations.nixos.nixos-laptop.module = {
+    imports = with self.modules.nixos; [
+      self.diskoConfigurations.nixos-laptop
 
-        profile-base
-        profile-desktop
-        profile-kde
-        profile-niri
-        profile-office
+      profile-workstation
+      profile-kde
+      profile-niri
 
-        secure-boot
-        virtualization
-
-        solaar
-        vscodium
-      ];
-      boot.loader.limine.style.interface.resolution = "1920x1080";
-      home-manager.users.${config.my.user}.imports = with self.modules.homeManager; [
-        profile-base
-        profile-desktop
-        profile-kde
-        profile-niri
-
-        llm
-
-        fluxer
-        freetube
-        halloy
-        mumble
-        vesktop
-        vscodium
-      ];
-      networking.hostName = "nixos-laptop";
-      nix.settings.build-dir = "/nix/build";
-      system.stateVersion = "26.05";
-    };
+      secure-boot
+    ];
+    boot.loader.limine.style.interface.resolution = "1920x1080";
+    networking.hostName = "nixos-laptop";
+    system.stateVersion = "26.05";
+  };
 }

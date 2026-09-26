@@ -1,6 +1,6 @@
-{ config, ... }:
+{ self, ... }:
 let
-  mono = config.flake.lib.fonts.monospace;
+  mono = self.lib.fonts.monospace;
 in
 {
   flake.modules.homeManager.profile-desktop = _: {

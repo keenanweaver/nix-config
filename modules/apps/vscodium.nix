@@ -1,6 +1,7 @@
+{ inputs, ... }:
 {
   flake.modules = {
-    homeManager.vscodium =
+    homeManager.profile-workstation =
       {
         lib,
         pkgs,
@@ -105,11 +106,9 @@
           };
         };
       };
-    nixos.vscodium =
-      { inputs, ... }:
-      {
-        nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
-      };
+    nixos.profile-workstation = _: {
+      nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
+    };
   };
   flake-file.inputs.nix-vscode-extensions = {
     inputs.nixpkgs.follows = "nixpkgs";

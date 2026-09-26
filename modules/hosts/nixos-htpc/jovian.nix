@@ -1,7 +1,7 @@
+{ inputs, ... }:
 {
   configurations.nixos.nixos-htpc.module =
     {
-      inputs,
       lib,
       config,
       pkgs,

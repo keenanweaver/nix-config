@@ -1,6 +1,7 @@
+{ inputs, ... }:
 {
   flake.modules.nixos.profile-desktop =
-    { inputs, pkgs, ... }:
+    { pkgs, ... }:
     {
       boot = {
         consoleLogLevel = 0;

@@ -1,4 +1,3 @@
-{ lib, ... }:
 {
-  flake.modules.homeManager.profile-base.programs.yt-dlp.enable = lib.mkDefault true;
+  flake.modules.homeManager.profile-desktop.programs.yt-dlp.enable = true;
 }

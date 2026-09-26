@@ -1,7 +1,7 @@
+{ inputs, ... }:
 {
-  flake.modules.homeManager.profile-base =
+  flake.modules.homeManager.profile-desktop =
     {
-      inputs,
       lib,
       pkgs,
       ...
@@ -12,7 +12,7 @@
       ];
       home.sessionVariables.EDITOR = lib.mkDefault "nvim";
       programs.lazyvim = {
-        enable = lib.mkDefault true;
+        enable = true;
         extraPackages = with pkgs; [
           bash-language-server
           clang

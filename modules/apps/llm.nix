@@ -1,7 +1,7 @@
+{ inputs, ... }:
 {
-  flake.modules.homeManager.llm =
+  flake.modules.homeManager.profile-workstation =
     {
-      inputs,
       lib,
       pkgs,
       ...

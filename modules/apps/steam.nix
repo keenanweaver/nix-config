@@ -1,9 +1,9 @@
+{ self, inputs, ... }:
 {
   flake.modules = {
     homeManager = {
       profile-gaming =
         {
-          self,
           lib,
           config,
           pkgs,
@@ -29,7 +29,7 @@
           };
         };
       steam-config =
-        { inputs, lib, ... }:
+        { lib, ... }:
         {
           imports = [
             inputs.steam-config-nix.homeModules.default

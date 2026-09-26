@@ -1,6 +1,7 @@
+{ inputs, ... }:
 {
   flake.modules.nixos.profile-gaming =
-    { inputs, ... }:
+    { ... }:
     {
       imports = [ inputs.wine-cachyos-nix.nixosModules.default ];
       nixpkgs.overlays = [ inputs.wine-cachyos-nix.overlays.default ];

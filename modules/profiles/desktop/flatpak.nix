@@ -1,8 +1,8 @@
+{ inputs, ... }:
 {
   flake.modules = {
     homeManager.profile-desktop =
       {
-        inputs,
         config,
         osConfig,
         ...
@@ -52,7 +52,6 @@
       };
     nixos.profile-desktop =
       {
-        inputs,
         config,
         pkgs,
         ...

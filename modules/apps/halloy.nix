@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.halloy =
+  flake.modules.homeManager.profile-workstation =
     { config, ... }:
     {
       programs.halloy = {

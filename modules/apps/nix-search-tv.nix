@@ -1,6 +1,6 @@
 {
-  flake.modules.homeManager.profile-base =
-    { lib, pkgs, ... }:
+  flake.modules.homeManager.profile-desktop =
+    { pkgs, ... }:
     {
       home.packages = [
         (pkgs.writeShellApplication {
@@ -12,6 +12,6 @@
           text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
         })
       ];
-      programs.nix-search-tv.enable = lib.mkDefault true;
+      programs.nix-search-tv.enable = true;
     };
 }

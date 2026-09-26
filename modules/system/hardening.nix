@@ -1,6 +1,7 @@
+{ inputs, ... }:
 {
   flake.modules.nixos.profile-base =
-    { inputs, lib, ... }:
+    { lib, ... }:
     {
       imports = [ inputs.nix-mineral.nixosModules.nix-mineral ];
       # https://github.com/k4yt3x/sysctl

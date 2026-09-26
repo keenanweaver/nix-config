@@ -1,13 +1,14 @@
+{ self, ... }:
 {
   flake.modules = {
-    homeManager.profile-gaming =
+    homeManager.coolercontrol =
       { pkgs, ... }:
       {
         xdg.autostart.entries = [
           "${pkgs.coolercontrol.coolercontrol-gui}/share/applications/org.coolercontrol.CoolerControl.desktop"
         ];
       };
-    nixos.profile-gaming =
+    nixos.coolercontrol =
       { pkgs, ... }:
       {
         boot.kernelModules = [ "nct6775" ]; # Otherwise CoolerControl warns
@@ -15,6 +16,7 @@
           liquidctl
           lm_sensors
         ];
+        home-manager.sharedModules = [ self.modules.homeManager.coolercontrol ];
         preservation.preserveAt."/persist".directories = [
           "/etc/coolercontrol"
           "/var/lib/coolercontrol"

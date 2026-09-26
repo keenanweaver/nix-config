@@ -1,13 +1,14 @@
+{ inputs, ... }:
 {
   flake.modules = {
     homeManager.profile-gaming =
-      { inputs, ... }:
+      { ... }:
       {
         imports = [ inputs.yeetmouse-nix.homeModules.default ];
         programs.yeetmouse.enable = true;
       };
     nixos.profile-gaming =
-      { inputs, ... }:
+      { ... }:
       {
         imports = [ inputs.yeetmouse-nix.nixosModules.default ];
         hardware.yeetmouse = {

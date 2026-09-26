@@ -1,7 +1,7 @@
+{ self, ... }:
 {
   configurations.nixos.regret.module =
     {
-      self,
       lib,
       config,
       pkgs,

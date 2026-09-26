@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   configurations.nixos.nixos-htpc.module =
     {
@@ -9,7 +10,6 @@
     {
       home-manager.users.${config.my.user} =
         {
-          inputs,
           config,
           osConfig,
           ...

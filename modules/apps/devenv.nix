@@ -1,7 +1,6 @@
-{ lib, ... }:
 {
-  flake.modules.homeManager.profile-base.programs.devenv = {
-    enable = lib.mkDefault true;
+  flake.modules.homeManager.profile-desktop.programs.devenv = {
+    enable = true;
     enableBashIntegration = true;
     enableNushellIntegration = true;
     enableZshIntegration = true;

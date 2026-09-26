@@ -31,6 +31,6 @@
         displayName = "Home Assistant";
         target = "http://127.0.0.1:8123";
       };
-      networking.firewall.interfaces.end0.allowedTCPPorts = [ 8123 ];
+      networking.firewall.interfaces.${config.host.lanInterface}.allowedTCPPorts = [ 8123 ];
     };
 }

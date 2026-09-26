@@ -12,7 +12,6 @@
         kernelParams = [
           "amdgpu.audio=0"
           #"amd_3d_vcache.x3d_mode=cache" # AMD V-Cache https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
-          "amd_pstate=active" # https://wiki.archlinux.org/title/CPU_frequency_scaling#Autonomous_frequency_scaling
         ];
         loader.limine = {
           extraEntries =

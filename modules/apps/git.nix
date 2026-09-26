@@ -1,7 +1,7 @@
+{ self, ... }:
 {
   flake.modules.homeManager.profile-base =
     {
-      self,
       config,
       osConfig,
       ...

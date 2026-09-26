@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 let
   GTK-THEME = "Breeze-Dark";
   accent-lower = "lavender";
@@ -33,7 +33,6 @@ in
             lib,
             config,
             pkgs,
-            osConfig,
             ...
           }:
           let
@@ -107,14 +106,6 @@ in
                   source = "${pkgs.kdePackages.breeze-gtk}/share/themes/${GTK-THEME}";
                   target = "${config.xdg.dataHome}/themes/${GTK-THEME}";
                 };
-                catppuccin-konsole = {
-                  source = "${inputs.catppuccin-konsole}/themes/catppuccin-${flavor-lower}.colorscheme";
-                  target = "${config.xdg.dataHome}/konsole/catppuccin-${flavor-lower}.colorscheme";
-                };
-                catppuccin-konsole-transparent = {
-                  target = "${config.xdg.dataHome}/konsole/catppuccin-${flavor-lower}-transparent.colorscheme";
-                  text = builtins.readFile ../../assets/theming/catppuccin-${flavor-lower}-transparent.colorscheme;
-                };
                 catppuccin-krita = {
                   source = "${
                     pkgs.catppuccin-kde.override {
@@ -152,23 +143,6 @@ in
                 gtk4-config-gtk = {
                   target = "${config.xdg.configHome}/gtk-4.0/gtk.css";
                   text = builtins.readFile ../../assets/theming/gtk-4.0/gtk.css;
-                };
-                klassy-config = {
-                  target = "${config.xdg.configHome}/klassy/klassyrc";
-                  text = ''
-                    [Global]
-                    LookAndFeelSet=Catppuccin-${flavor-upper}-${accent-upper}
-
-                    [Style]
-                    MenuOpacity=70
-
-                    [Windeco]
-                    AnimationsSpeedRelativeSystem=8
-
-                    [SystemIconGeneration]
-                    KlassyDarkIconThemeInherits=Papirus-Dark
-                    KlassyIconThemeInherits=Papirus
-                  '';
                 };
                 kvantum-config = {
                   recursive = true;
@@ -218,6 +192,48 @@ in
                   "ui.background" = "none";
                 };
               };
+              lazygit.settings.gui = {
+                border = "single";
+                mainPanelSplitMode = "vertical";
+                nerdFontsVersion = "3";
+                scrollHeight = 10;
+                scrollOffMargin = 4;
+                showFileTree = false;
+                sidePanelWidth = 0.3333;
+              };
+            };
+          };
+        plasma-manager =
+          { config, osConfig, ... }:
+          {
+            home.file = {
+              catppuccin-konsole = {
+                source = "${inputs.catppuccin-konsole}/themes/catppuccin-${flavor-lower}.colorscheme";
+                target = "${config.xdg.dataHome}/konsole/catppuccin-${flavor-lower}.colorscheme";
+              };
+              catppuccin-konsole-transparent = {
+                target = "${config.xdg.dataHome}/konsole/catppuccin-${flavor-lower}-transparent.colorscheme";
+                text = builtins.readFile ../../assets/theming/catppuccin-${flavor-lower}-transparent.colorscheme;
+              };
+              klassy-config = {
+                target = "${config.xdg.configHome}/klassy/klassyrc";
+                text = ''
+                  [Global]
+                  LookAndFeelSet=Catppuccin-${flavor-upper}-${accent-upper}
+
+                  [Style]
+                  MenuOpacity=70
+
+                  [Windeco]
+                  AnimationsSpeedRelativeSystem=8
+
+                  [SystemIconGeneration]
+                  KlassyDarkIconThemeInherits=Papirus-Dark
+                  KlassyIconThemeInherits=Papirus
+                '';
+              };
+            };
+            programs = {
               kate.editor.font = {
                 family = mono-font;
                 pointSize = mono-size;
@@ -231,39 +247,6 @@ in
                   };
                 };
               };
-              lazygit.settings.gui = {
-                border = "single";
-                mainPanelSplitMode = "vertical";
-                nerdFontsVersion = "3";
-                scrollHeight = 10;
-                scrollOffMargin = 4;
-                showFileTree = false;
-                sidePanelWidth = 0.3333;
-              };
-              lazyvim.plugins.colorscheme = ''
-                return {
-                  {
-                    "catppuccin/nvim",
-                    name = "catppuccin",
-                    lazy = true,
-                  },
-                  {
-                    "LazyVim/LazyVim",
-                    opts = {
-                      colorscheme = function()
-                        require("catppuccin").setup({
-                          flavour = "${flavor-lower}",
-                          transparent_background = true,
-                          float = {
-                            transparent = true,
-                          },
-                        })
-                        vim.cmd.colorscheme("catppuccin")
-                      end,
-                    },
-                  },
-                }
-              '';
               plasma = {
                 configFile.kdeglobals.KDE.widgetStyle = "Breeze";
                 fonts = {
@@ -325,45 +308,78 @@ in
                 };
               };
             };
-            services.flatpak.overrides."com.fightcade.Fightcade".Environment.GTK_THEME = GTK-THEME;
           };
-        profile-gaming.home.file.catppuccin-heroic = {
-          source = "${inputs.catppuccin-heroic}/themes/catppuccin-${flavor-accent}.css";
-          target = "Games/Heroic/catppuccin-${flavor-accent}.css";
+        profile-desktop.programs.lazyvim.plugins.colorscheme = ''
+          return {
+            {
+              "catppuccin/nvim",
+              name = "catppuccin",
+              lazy = true,
+            },
+            {
+              "LazyVim/LazyVim",
+              opts = {
+                colorscheme = function()
+                  require("catppuccin").setup({
+                    flavour = "${flavor-lower}",
+                    transparent_background = true,
+                    float = {
+                      transparent = true,
+                    },
+                  })
+                  vim.cmd.colorscheme("catppuccin")
+                end,
+              },
+            },
+          }
+        '';
+        profile-gaming = {
+          home.file.catppuccin-heroic = {
+            source = "${inputs.catppuccin-heroic}/themes/catppuccin-${flavor-accent}.css";
+            target = "Games/Heroic/catppuccin-${flavor-accent}.css";
+          };
+          services.flatpak.overrides."com.fightcade.Fightcade".Environment.GTK_THEME = GTK-THEME;
         };
       };
-      nixos.catppuccin =
-        { pkgs, ... }:
-        {
-          imports = [ inputs.catppuccin.nixosModules.catppuccin ];
-          boot.kernelParams = [ "fbcon=font:TER16x32" ];
-          catppuccin = catppuccinCommon // {
-            plymouth.enable = false;
+      nixos = {
+        catppuccin =
+          { ... }:
+          {
+            imports = [ inputs.catppuccin.nixosModules.catppuccin ];
+            boot.kernelParams = [ "fbcon=font:TER16x32" ];
+            catppuccin = catppuccinCommon // {
+              plymouth.enable = false;
+            };
+            home-manager.sharedModules = [ self.modules.homeManager.catppuccin ];
+            nix.settings = {
+              extra-substituters = [
+                "https://catppuccin.cachix.org"
+              ];
+              extra-trusted-public-keys = [
+                "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
+              ];
+            };
+            programs.dconf.enable = true;
           };
-          environment.systemPackages = with pkgs; [
-            (catppuccin-kde.override {
-              accents = [ accent-lower ];
-              flavour = [ flavor-lower ];
-            })
-            (catppuccin-papirus-folders.override {
-              accent = accent-lower;
-              flavor = flavor-lower;
-            })
-            darkly
-            klassy
-            plasma-panel-colorizer
-            utterly-round-plasma-style
-          ];
-          nix.settings = {
-            extra-substituters = [
-              "https://catppuccin.cachix.org"
-            ];
-            extra-trusted-public-keys = [
-              "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
+        kde =
+          { pkgs, ... }:
+          {
+            environment.systemPackages = with pkgs; [
+              (catppuccin-kde.override {
+                accents = [ accent-lower ];
+                flavour = [ flavor-lower ];
+              })
+              (catppuccin-papirus-folders.override {
+                accent = accent-lower;
+                flavor = flavor-lower;
+              })
+              darkly
+              klassy
+              plasma-panel-colorizer
+              utterly-round-plasma-style
             ];
           };
-          programs.dconf.enable = true;
-        };
+      };
     };
   };
   flake-file.inputs = {

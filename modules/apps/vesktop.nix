@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.vesktop =
+  flake.modules.homeManager.profile-workstation =
     { pkgs, ... }:
     {
       programs.vesktop = {

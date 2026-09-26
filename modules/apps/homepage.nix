@@ -18,9 +18,13 @@
           HOMEPAGE_VAR_TAILNET_DNS.fromFile = config.sops.secrets."tailscale/tailnet_dns".path;
         };
       };
-    nixos.profile-server.networking.firewall.interfaces = {
-      end0.allowedTCPPorts = [ 3000 ];
-      tailscale0.allowedTCPPorts = [ 3000 ];
-    };
+    nixos.profile-server =
+      { config, ... }:
+      {
+        networking.firewall.interfaces = {
+          ${config.host.lanInterface}.allowedTCPPorts = [ 3000 ];
+          tailscale0.allowedTCPPorts = [ 3000 ];
+        };
+      };
   };
 }

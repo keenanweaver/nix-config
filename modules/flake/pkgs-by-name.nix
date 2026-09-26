@@ -1,13 +1,11 @@
-{ inputs, withSystem, ... }:
+{ inputs, ... }:
 let
-  overlay =
-    _final: prev:
-    withSystem prev.stdenv.hostPlatform.system (
-      { config, ... }:
-      {
-        local = config.packages;
-      }
-    );
+  overlay = final: _prev: {
+    local = final.lib.packagesFromDirectoryRecursive {
+      inherit (final) callPackage;
+      directory = ../../pkgs;
+    };
+  };
 in
 {
   imports = [ inputs.pkgs-by-name-for-flake-parts.flakeModule ];

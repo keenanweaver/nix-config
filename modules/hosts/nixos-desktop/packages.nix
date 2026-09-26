@@ -1,14 +1,13 @@
-{ config, ... }:
+{ self, inputs, ... }:
 let
-  inherit (config.flake.lib.site) nas;
+  inherit (self.lib.site) nas;
 in
 {
   configurations.nixos.nixos-desktop.module =
-    { config, ... }:
+    { config, pkgs, ... }:
     {
       home-manager.users.${config.my.user} =
         {
-          inputs,
           lib,
           pkgs,
           ...
@@ -58,19 +57,15 @@ in
             audacious-plugins
             augustus
             bandwhich
-            bash-language-server
             binsider
             bolt-launcher
             bstone
             caligula
             chiaki-ng
             choose # cut
-            codeium
-            comma
             corsix-th
             csvlens
             cyanrip
-            deadnix
             descent3
             doggo # dig
             dosbox-staging
@@ -93,7 +88,6 @@ in
             gswatcher
             hacompanion
             handbrake
-            haruna
             hedgemodmanager
             hexyl
             hyperfine
@@ -110,7 +104,6 @@ in
             jellyfin-tui
             jiq
             jpsxdec
-            just
             katawa-shoujo-re-engineered
             kdePackages.isoimagewriter
             kdePackages.kdenlive
@@ -132,8 +125,6 @@ in
             magic-wormhole-rs
             mame.tools
             mangareader
-            manix
-            mdformat
             mednafen
             mednaffe
             mesen
@@ -142,14 +133,7 @@ in
             mousai
             neo
             nicotine-plus
-            nix-inspect
-            nix-update
-            nixd
-            nixfmt
-            nixos-shell
-            nixpkgs-review
             nsz
-            nvd
             okteta
             opengoal-launcher
             openjk
@@ -159,7 +143,6 @@ in
             openttd
             opentyrian
             openxray
-            optnix
             oversteer
             parsec-bin
             patool
@@ -167,7 +150,6 @@ in
             pigz # gz
             play
             podman-tui
-            powershell
             procs # ps
             ps3-disc-dumper
             puddletag
@@ -181,15 +163,9 @@ in
             scummvm
             sd # sed
             sdlpop
-            seer
             shadps4-qtlauncher
-            shellcheck
-            shellharden
-            shfmt
-            signal-desktop
             sm64ex
             srb2
-            statix
             streamrip
             systemctl-tui
             termscp
@@ -229,6 +205,11 @@ in
       programs = {
         k3b.enable = true;
         perfect-dark-git.enable = true;
+      };
+      system.extraDependencies = self.lib.pinRoms pkgs [ self.lib.roms.sm64 ];
+      xdg.mime.defaultApplications = {
+        "audio/*" = "org.fooyin.fooyin.desktop";
+        "x-scheme-handler/ror2mm" = "r2modman.desktop";
       };
     };
   flake-file.inputs.aaru-nix-flake = {

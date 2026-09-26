@@ -1,6 +1,7 @@
+{ inputs, ... }:
 {
   flake.modules.nixos.profile-gaming =
-    { inputs, lib, ... }:
+    { lib, ... }:
     {
       imports = [ inputs.cachyos-settings-nix.nixosModules.default ];
       boot.kernel.sysctl = {

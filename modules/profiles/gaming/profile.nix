@@ -1,3 +1,4 @@
+{ self, inputs, ... }:
 {
   flake.modules = {
     homeManager.profile-gaming =
@@ -28,8 +29,6 @@
       };
     nixos.profile-gaming =
       {
-        self,
-        inputs,
         config,
         ...
       }:
@@ -59,6 +58,7 @@
             "preempt=full" # https://reddit.com/r/linux_gaming/comments/1g0g7i0/god_of_war_ragnarok_crackling_audio/lr8j475/?context=3#lr8j475
           ];
         };
+        home-manager.sharedModules = [ self.modules.homeManager.profile-gaming ];
         nix.settings = {
           extra-substituters = [
             "https://bandithedoge.cachix.org"
@@ -71,7 +71,6 @@
         };
         nixpkgs.overlays = [
           inputs.umu.overlays.default
-          inputs.nix-cachyos-kernel.overlays.pinned
         ];
         security.pam.loginLimits = [
           # RPCS3
@@ -124,7 +123,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:ProverbialPennance/just-one-more-repo";
     };
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     umu = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";

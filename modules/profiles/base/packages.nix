@@ -1,6 +1,6 @@
-{ config, ... }:
+{ self, ... }:
 let
-  inherit (config.flake.lib) packageListText;
+  inherit (self.lib) packageListText;
 in
 {
   flake.modules = {

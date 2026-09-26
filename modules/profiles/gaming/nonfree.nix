@@ -1,6 +1,7 @@
+{ inputs, ... }:
 {
   flake.modules.homeManager.profile-gaming =
-    { inputs, lib, ... }:
+    { lib, ... }:
     {
       # https://github.com/nix-community/home-manager/issues/3849#issuecomment-2115899992
       # Copy dotfiles recursively in home

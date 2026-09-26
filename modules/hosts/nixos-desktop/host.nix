@@ -6,21 +6,22 @@
       imports = with self.modules.nixos; [
         self.diskoConfigurations.nixos-desktop
 
-        profile-base
-        profile-desktop
+        profile-workstation
         profile-kde
         profile-gaming
-        profile-office
 
         amd
+        coolercontrol
         secure-boot
-        virtualization
 
+        flatpak-games
         moonshine
         obs
-        solaar
+        obs-flatpak
+        retroarch
         stream-controller
-        vscodium
+
+        doom
       ];
       boot.binfmt.emulatedSystems = [
         "aarch64-linux"
@@ -34,29 +35,6 @@
           ...
         }:
         {
-          imports = with self.modules.homeManager; [
-            profile-base
-            profile-desktop
-            profile-kde
-            profile-gaming
-
-            amd
-            flatpak-games
-            llm
-
-            fluxer
-            freetube
-            halloy
-            mumble
-            obs
-            obs-flatpak
-            retroarch
-            stream-controller
-            vesktop
-            vscodium
-
-            doom
-          ];
           home.sessionVariables.WINE_CPU_TOPOLOGY = "15:1,2,3,4,5,6,7,16,17,18,19,20,21,22,23"; # 7950X3D
           xdg.desktopEntries = import ./_desktop-entries.nix {
             inherit
@@ -68,7 +46,6 @@
           };
         };
       networking.hostName = "nixos-desktop";
-      services.hardware.openrgb.motherboard = "amd";
       system.stateVersion = "26.05";
       systemd = {
         services.network-addresses-wlp11s0.wantedBy = lib.mkForce [ ];

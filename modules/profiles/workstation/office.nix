@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.profile-office =
+  flake.modules.nixos.profile-workstation =
     { config, pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [ libreoffice-qt ];

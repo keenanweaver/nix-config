@@ -1,7 +1,7 @@
+{ inputs, ... }:
 {
   flake.modules.nixos.star-citizen =
     {
-      inputs,
       lib,
       pkgs,
       ...

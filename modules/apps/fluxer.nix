@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.fluxer =
+  flake.modules.homeManager.profile-workstation =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [

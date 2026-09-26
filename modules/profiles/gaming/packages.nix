@@ -1,6 +1,7 @@
+{ inputs, ... }:
 {
   flake.modules.homeManager.profile-gaming =
-    { inputs, pkgs, ... }:
+    { pkgs, ... }:
     {
       home.packages =
         with pkgs;

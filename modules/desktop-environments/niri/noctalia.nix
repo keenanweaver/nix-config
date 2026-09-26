@@ -1,7 +1,17 @@
 {
+  self,
+  inputs,
+  config,
+  ...
+}:
+{
+  caches.noctalia = {
+    key = "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=";
+    url = "https://noctalia.cachix.org";
+  };
   flake.modules = {
     homeManager.noctalia =
-      { self, inputs, ... }:
+      { ... }:
       {
         imports = [
           inputs.noctalia.homeModules.default
@@ -59,17 +69,13 @@
         };
       };
     nixos.noctalia =
-      { inputs, ... }:
+      { ... }:
       {
         imports = [
           inputs.noctalia.nixosModules.default
         ];
-        nix.settings = {
-          extra-substituters = [ "https://noctalia.cachix.org" ];
-          extra-trusted-public-keys = [
-            "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-          ];
-        };
+        home-manager.sharedModules = [ self.modules.homeManager.noctalia ];
+        nix.settings = self.lib.mkCacheSettings [ config.caches.noctalia ];
         programs.noctalia = {
           enable = true;
           recommendedServices.enable = true;

@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake.modules = {
     homeManager.profile-gaming =
@@ -17,7 +18,7 @@
         };
       };
     nixos.profile-gaming =
-      { inputs, pkgs, ... }:
+      { pkgs, ... }:
       {
         chaotic.mesa-git.extraPackages = with pkgs; [
           lsfg-vk

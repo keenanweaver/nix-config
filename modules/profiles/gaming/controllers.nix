@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake.modules = {
     homeManager.profile-gaming = { pkgs, ... }: {
@@ -7,7 +8,7 @@
       ];
     };
     nixos.profile-gaming =
-      { inputs, pkgs, ... }:
+      { lib, pkgs, ... }:
       {
         hardware = {
           uinput.enable = true;

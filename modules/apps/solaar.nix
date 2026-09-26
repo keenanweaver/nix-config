@@ -1,3 +1,3 @@
 {
-  flake.modules.nixos.solaar.programs.solaar.enable = true;
+  flake.modules.nixos.profile-workstation.programs.solaar.enable = true;
 }

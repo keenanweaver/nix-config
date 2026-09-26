@@ -1,6 +1,7 @@
+{ inputs, ... }:
 {
   flake.modules.homeManager.profile-desktop =
-    { inputs, ... }:
+    { ... }:
     {
       imports = [
         inputs.pedantix.homeModules.default

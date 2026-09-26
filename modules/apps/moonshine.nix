@@ -1,30 +1,27 @@
+{ self, inputs, ... }:
 {
   flake.modules.nixos.moonshine =
     {
-      self,
-      inputs,
       lib,
       config,
       pkgs,
       ...
     }:
+    let
+      wsiLayer = pkgs.runCommand "moonshine-wsi-layer" { } ''
+        install -Dm644 \
+          ${config.services.moonshine.package}/share/vulkan/implicit_layer.d/VkLayer_moonshine_wsi.json \
+          $out/share/vulkan/implicit_layer.d/VkLayer_moonshine_wsi.json
+      '';
+    in
     {
       imports = [ inputs.moonshine.nixosModules.default ];
       assertions = self.lib.mkFactAssertions config [
         "lanInterface"
         "pciDev"
       ];
-      chaotic.mesa-git.extraPackages =
-        let
-          wsiLayer = pkgs.runCommand "moonshine-wsi-layer" { } ''
-            install -Dm644 \
-              ${config.services.moonshine.package}/share/vulkan/implicit_layer.d/VkLayer_moonshine_wsi.json \
-              $out/share/vulkan/implicit_layer.d/VkLayer_moonshine_wsi.json
-          '';
-        in
-        [
-          wsiLayer
-        ];
+      chaotic.mesa-git.extraPackages = lib.mkIf config.chaotic.mesa-git.enable [ wsiLayer ];
+      hardware.graphics.extraPackages = lib.mkIf (!config.chaotic.mesa-git.enable) [ wsiLayer ];
       networking.firewall.interfaces = lib.genAttrs [ config.host.lanInterface "tailscale0" ] (_: {
         allowedTCPPorts = [
           # Moonlight
@@ -47,7 +44,6 @@
       services.moonshine = {
         inherit (config.users.users.${config.my.user}) uid;
         enable = true;
-        logFilter = "moonshine=info,moonshine_core::tls=error";
         settings =
           let
             heroicExe = lib.getExe pkgs.heroic;

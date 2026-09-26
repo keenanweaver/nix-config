@@ -1,7 +1,7 @@
+{ self, ... }:
 {
   flake.modules.nixos.profile-base =
     {
-      self,
       lib,
       config,
       ...

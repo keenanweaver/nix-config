@@ -1,10 +1,10 @@
+{ self, ... }:
 {
   configurations.nixos.remorse.module =
     { config, ... }:
     {
       home-manager.users.${config.my.user} =
         {
-          self,
           lib,
           config,
           pkgs,

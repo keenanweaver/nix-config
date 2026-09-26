@@ -1,5 +1,6 @@
+{ inputs, ... }:
 {
-  flake.modules.nixos.kineticwe = { inputs, ... }: {
+  flake.modules.nixos.kineticwe = { ... }: {
     imports = [ inputs.kineticwe.nixosModules.default ];
     programs.kineticwe.enable = true;
   };

@@ -1,11 +1,13 @@
+{ inputs, ... }:
 {
   flake.modules.nixos.profile-base =
-    { inputs, ... }:
+    { ... }:
     {
       imports = [
         inputs.preservation.nixosModules.default
       ];
       fileSystems."/persist".neededForBoot = true;
+      nix.settings.build-dir = "/nix/build";
       preservation = {
         enable = true;
         preserveAt."/persist" = {
@@ -55,6 +57,7 @@
           ];
         };
         suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
+        tmpfiles.rules = [ "d /nix/build 0755 root root -" ];
       };
     };
   flake-file.inputs.preservation.url = "github:nix-community/preservation";

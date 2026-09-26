@@ -1,7 +1,7 @@
+{ self, inputs, ... }:
 {
   configurations.nixos.nixos-htpc.module =
     {
-      inputs,
       config,
       pkgs,
       ...
@@ -11,7 +11,7 @@
         inputs.slippi-nix.nixosModules.default
       ];
       home-manager.users.${config.my.user} =
-        { inputs, config, ... }:
+        { config, ... }:
         {
           imports = [
             inputs.slippi-nix.homeManagerModules.default
@@ -60,6 +60,13 @@
         #spaghetti-kart-git.enable = true;
         #starship-sf64.enable = true;
       };
+      system.extraDependencies =
+        with self.lib.roms;
+        self.lib.pinRoms pkgs [
+          banjo
+          mm
+          sm64
+        ];
     };
   flake-file.inputs.slippi-nix = {
     inputs = {

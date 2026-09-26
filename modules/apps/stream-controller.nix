@@ -1,12 +1,19 @@
+{ self, inputs, ... }:
 {
   flake.modules = {
     homeManager.stream-controller =
-      { inputs, config, ... }:
+      { config, ... }:
       let
         dataDir = config.programs.streamcontroller.dataPath;
       in
       {
         imports = [ inputs.streamcontroller-nix.homeModules.default ];
+        assertions = [
+          {
+            assertion = config.home.file ? toggle-hdr && config.home.file ? toggle-vrr;
+            message = "stream-controller binds ~/Games/toggle-{hdr,vrr}.sh, which profile-gaming provides on KDE hosts.";
+          }
+        ];
         programs.streamcontroller = {
           enable = true;
           assets = {
@@ -216,9 +223,10 @@
         };
       };
     nixos.stream-controller =
-      { inputs, ... }:
+      { ... }:
       {
         imports = [ inputs.streamcontroller-nix.nixosModules.default ];
+        home-manager.sharedModules = [ self.modules.homeManager.stream-controller ];
         nixpkgs.overlays = [ inputs.streamcontroller-nix.overlays.default ];
         programs.streamcontroller = {
           enable = true;

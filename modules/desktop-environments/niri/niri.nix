@@ -1,3 +1,4 @@
+{ self, inputs, ... }:
 {
   flake.modules = {
     homeManager.niri.programs.niri.settings = {
@@ -91,11 +92,12 @@
       ];
     };
     nixos.niri =
-      { inputs, pkgs, ... }:
+      { pkgs, ... }:
       {
         imports = [
           inputs.niri-flake.nixosModules.niri
         ];
+        home-manager.sharedModules = [ self.modules.homeManager.niri ];
         nixpkgs.overlays = [ inputs.niri-flake.overlays.niri ];
         programs.niri = {
           enable = true;

@@ -29,6 +29,6 @@
           };
         };
       my.tailscaleServe.ntfy.target = "http://127.0.0.1:80";
-      networking.firewall.interfaces.end0.allowedTCPPorts = [ 80 ];
+      networking.firewall.interfaces.${config.host.lanInterface}.allowedTCPPorts = [ 80 ];
     };
 }

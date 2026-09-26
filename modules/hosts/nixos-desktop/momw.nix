@@ -1,10 +1,10 @@
+{ inputs, ... }:
 {
   configurations.nixos.nixos-desktop.module =
     { config, ... }:
     {
       home-manager.users.${config.my.user} =
         {
-          inputs,
           lib,
           config,
           pkgs,

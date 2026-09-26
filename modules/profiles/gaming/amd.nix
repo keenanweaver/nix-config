@@ -1,3 +1,4 @@
+{ self, ... }:
 {
   flake.modules = {
     homeManager.amd =
@@ -16,15 +17,28 @@
           };
         };
       };
-    nixos.amd.hardware = {
-      amdgpu = {
-        initrd.enable = true;
-        overdrive = {
-          enable = true;
-          ppfeaturemask = "0xffffffff";
+    nixos.amd =
+      { config, ... }:
+      {
+        boot = {
+          extraModulePackages = with config.boot.kernelPackages; [ zenergy ];
+          kernelModules = [ "zenergy" ];
+          kernelParams = [
+            "amd_pstate=active" # https://wiki.archlinux.org/title/CPU_frequency_scaling#Autonomous_frequency_scaling
+          ];
         };
+        hardware = {
+          amdgpu = {
+            initrd.enable = true;
+            overdrive = {
+              enable = true;
+              ppfeaturemask = "0xffffffff";
+            };
+          };
+          cpu.amd.updateMicrocode = true;
+        };
+        home-manager.sharedModules = [ self.modules.homeManager.amd ];
+        services.hardware.openrgb.motherboard = "amd";
       };
-      cpu.amd.updateMicrocode = true;
-    };
   };
 }

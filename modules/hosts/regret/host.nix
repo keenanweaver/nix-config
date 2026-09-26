@@ -1,15 +1,11 @@
 { self, ... }:
 {
-  configurations.nixos.regret.module =
-    { config, ... }:
-    {
+  configurations.nixos.regret = {
+    module = {
       imports = with self.modules.nixos; [
-        profile-base
-        profile-pi
-      ];
-      home-manager.users.${config.my.user}.imports = with self.modules.homeManager; [
-        profile-base
-        profile-pi
+        profile-server
+
+        pi4
       ];
       networking.hostName = "regret";
       system.stateVersion = "26.05";
@@ -32,4 +28,6 @@
            };
       */
     };
+    system = "aarch64-linux";
+  };
 }

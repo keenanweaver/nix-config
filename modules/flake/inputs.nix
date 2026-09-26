@@ -1,11 +1,11 @@
+{ inputs, ... }:
 {
-  flake.modules.nixos.profile-base = { inputs, ... }: {
+  flake.modules.nixos.profile-base = { ... }: {
     imports = [
       inputs.nur.modules.nixos.default
       inputs.nyx.nixosModules.default
     ];
     nixpkgs.overlays = [
-      inputs.nix-gaming-edge.overlays.default
       inputs.nur.overlays.default
     ];
   };
@@ -15,10 +15,6 @@
       url = "github:edolstra/flake-compat";
     };
     flake-utils.url = "github:numtide/flake-utils";
-    nix-gaming-edge = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:powerofthe69/nix-gaming-edge";
-    };
     nur = {
       inputs = {
         flake-parts.follows = "flake-parts";

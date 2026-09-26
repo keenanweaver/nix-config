@@ -1,7 +1,7 @@
+{ inputs, ... }:
 {
   flake.modules.homeManager.profile-gaming =
     {
-      inputs,
       config,
       pkgs,
       ...

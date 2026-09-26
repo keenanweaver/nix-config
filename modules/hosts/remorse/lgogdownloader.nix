@@ -1,13 +1,14 @@
+{ self, ... }:
 {
   configurations.nixos.remorse.module =
     { config, ... }:
     {
       home-manager.users.${config.my.user} =
         {
-          self,
           lib,
           config,
           pkgs,
+          osConfig,
           ...
         }:
         let
@@ -217,7 +218,7 @@
             "--no-unicode"
             "--no-window-progress"
             "--verbosity=-1"
-            "--interface=end0"
+            "--interface=${osConfig.host.lanInterface}"
           ];
           targetArgs = [
             "--blacklist"

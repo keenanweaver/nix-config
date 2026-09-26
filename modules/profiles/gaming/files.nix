@@ -1,7 +1,8 @@
+{ inputs, ... }:
 {
   flake.modules.homeManager.profile-gaming =
     {
-      inputs,
+      lib,
       config,
       pkgs,
       osConfig,
@@ -13,6 +14,7 @@
           inherit (osConfig.host)
             primaryMonitor
             ;
+          plasma = osConfig.services.desktopManager.plasma6.enable;
         in
         {
           dosbox-roms-mt32 = {
@@ -27,6 +29,8 @@
             source = config.services.fluidsynth.soundFont;
             target = "${config.xdg.configHome}/dosbox/soundfonts/default.sf2";
           };
+        }
+        // lib.optionalAttrs plasma {
           toggle-hdr = {
             source =
               with pkgs;

@@ -1,6 +1,6 @@
-{ config, ... }:
+{ self, ... }:
 let
-  inherit (config.flake.lib.site) nas;
+  inherit (self.lib.site) nas;
 in
 {
   flake.modules.nixos =
@@ -56,6 +56,6 @@ in
     in
     {
       profile-desktop = nfsMounts;
-      profile-pi = nfsMounts;
+      profile-server = nfsMounts;
     };
 }

@@ -66,7 +66,7 @@
         enable = true;
         excludes = [
           "\\.pub$"
-          "modules/sops/.*"
+          "assets/secrets/.*"
         ];
       };
       treefmt.enable = true;

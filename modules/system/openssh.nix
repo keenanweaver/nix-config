@@ -1,6 +1,6 @@
-{ config, ... }:
+{ self, config, ... }:
 let
-  inherit (config.flake.lib.site.network) sshPort;
+  inherit (self.lib.site.network) sshPort;
   nixosHosts = builtins.attrNames config.configurations.nixos;
 in
 {

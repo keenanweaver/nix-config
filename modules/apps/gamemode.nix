@@ -23,33 +23,37 @@
       programs.gamemode = {
         enable = true;
         settings = {
-          cpu = {
-            # https://github.com/aamaanaa/X3D-Cache-Core-Parking-on-Fedora
-            park_cores = "no";
-          };
+          cpu.park_cores = "no";
           custom =
             let
               icon = pkgs.fetchurl {
                 hash = "sha256-P6Q/d+VGiMfkAKIygIDCr4Idb6dCxeW+fBQK35ZELPU=";
                 url = "https://avatars.githubusercontent.com/u/9704713?s=200&v=4";
               };
+              plasma = config.services.desktopManager.plasma6.enable;
             in
             {
               end = lib.getExe (
                 pkgs.writeShellApplication {
                   name = "gamemode-end";
-                  runtimeInputs = with pkgs; [
-                    kdePackages.libkscreen
-                    kdePackages.qttools
-                    libnotify
-                    scx-loader
-                  ];
+                  runtimeInputs =
+                    with pkgs;
+                    [
+                      libnotify
+                      scx-loader
+                    ]
+                    ++ lib.optionals plasma [
+                      kdePackages.libkscreen
+                      kdePackages.qttools
+                    ];
                   text = ''
                     scxctl stop
 
                     notify-send -t 3000 -u low "GameMode" \
-                      "GameMode stopped<br>Enabling Night Light" \
+                      "GameMode stopped${lib.optionalString plasma "<br>Enabling Night Light"}" \
                       -i ${icon} -a "GameMode"
+                  ''
+                  + lib.optionalString plasma ''
 
                     if [ "$(qdbus org.kde.KWin /org/kde/KWin/NightLight org.kde.KWin.NightLight.running)" = "false" ]; then
                       qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Toggle Night Color"
@@ -60,20 +64,26 @@
               start = lib.getExe (
                 pkgs.writeShellApplication {
                   name = "gamemode-start";
-                  runtimeInputs = with pkgs; [
-                    kdePackages.libkscreen
-                    kdePackages.qttools
-                    libnotify
-                    scx-loader
-                  ];
+                  runtimeInputs =
+                    with pkgs;
+                    [
+                      libnotify
+                      scx-loader
+                    ]
+                    ++ lib.optionals plasma [
+                      kdePackages.libkscreen
+                      kdePackages.qttools
+                    ];
                   text = ''
                     if [[ "$(scxctl get 2>/dev/null)" != *"Cake in LowLatency"* ]]; then
                       scxctl start --sched scx_cake --mode gaming
                     fi
 
                     notify-send -t 3000 -u low "GameMode" \
-                      "GameMode started<br>Disabling Night Light<br>Enabling scx_cake" \
+                      "GameMode started${lib.optionalString plasma "<br>Disabling Night Light"}<br>Enabling scx_cake" \
                       -i ${icon} -a "GameMode"
+                  ''
+                  + lib.optionalString plasma ''
 
                     if [ "$(qdbus org.kde.KWin /org/kde/KWin/NightLight org.kde.KWin.NightLight.running)" = "true" ]; then
                       qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Toggle Night Color"
