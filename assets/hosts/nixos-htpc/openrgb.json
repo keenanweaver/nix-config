@@ -1,0 +1,1731 @@
+{
+  "controllers": [
+    {
+      "active_mode": 1,
+      "colors": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "description": "ENE SMBus Device",
+      "display_name": "",
+      "flags": 2,
+      "leds": [
+        {
+          "name": "DRAM LED 1"
+        },
+        {
+          "name": "DRAM LED 2"
+        },
+        {
+          "name": "DRAM LED 3"
+        },
+        {
+          "name": "DRAM LED 4"
+        },
+        {
+          "name": "DRAM LED 5"
+        }
+      ],
+      "location": "I2C: SMBus PIIX4 adapter port 0 at 0b00 (/dev/i2c-9), address 0x70",
+      "modes": [
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 32,
+          "name": "Direct",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 0,
+          "name": "Off",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 32,
+          "name": "Static",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 161,
+          "name": "Breathing",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 33,
+          "name": "Flashing",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Spectrum Cycle",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 3,
+          "name": "Rainbow",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 163,
+          "name": "Chase Fade",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 163,
+          "name": "Chase",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Random Flicker",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        }
+      ],
+      "name": "ENE DRAM",
+      "serial": "",
+      "type": 1,
+      "vendor": "ENE",
+      "version": "DIMM_LED-0103",
+      "zones": [
+        {
+          "display_name": "",
+          "flags": 0,
+          "leds_count": 5,
+          "leds_max": 5,
+          "leds_min": 5,
+          "matrix_map": {
+            "height": 0,
+            "width": 0
+          },
+          "name": "DRAM",
+          "type": 1
+        }
+      ]
+    },
+    {
+      "active_mode": 1,
+      "colors": [
+        16777215,
+        16777215,
+        16777215,
+        16777215,
+        16777215
+      ],
+      "description": "ENE SMBus Device",
+      "display_name": "",
+      "flags": 2,
+      "leds": [
+        {
+          "name": "Unknown LED 1"
+        },
+        {
+          "name": "Unknown LED 2"
+        },
+        {
+          "name": "Unknown LED 3"
+        },
+        {
+          "name": "Unknown LED 4"
+        },
+        {
+          "name": "Unknown LED 5"
+        }
+      ],
+      "location": "I2C: SMBus PIIX4 adapter port 0 at 0b00 (/dev/i2c-9), address 0x71",
+      "modes": [
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 32,
+          "name": "Direct",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 0,
+          "name": "Off",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 32,
+          "name": "Static",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 161,
+          "name": "Breathing",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 33,
+          "name": "Flashing",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Spectrum Cycle",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 3,
+          "name": "Rainbow",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 163,
+          "name": "Chase Fade",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 163,
+          "name": "Chase",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Random Flicker",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        }
+      ],
+      "name": "ENE DRAM",
+      "serial": "",
+      "type": 1,
+      "vendor": "ENE",
+      "version": "DIMM_LED-0103",
+      "zones": [
+        {
+          "display_name": "",
+          "flags": 0,
+          "leds_count": 5,
+          "leds_max": 5,
+          "leds_min": 5,
+          "matrix_map": {
+            "height": 0,
+            "width": 0
+          },
+          "name": "Unknown",
+          "type": 1
+        }
+      ]
+    },
+    {
+      "active_mode": 1,
+      "colors": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "description": "ENE SMBus Device",
+      "display_name": "",
+      "flags": 2,
+      "leds": [
+        {
+          "name": "DRAM LED 1"
+        },
+        {
+          "name": "DRAM LED 2"
+        },
+        {
+          "name": "DRAM LED 3"
+        },
+        {
+          "name": "DRAM LED 4"
+        },
+        {
+          "name": "DRAM LED 5"
+        }
+      ],
+      "location": "I2C: SMBus PIIX4 adapter port 0 at 0b00 (/dev/i2c-9), address 0x72",
+      "modes": [
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 32,
+          "name": "Direct",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 0,
+          "name": "Off",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 32,
+          "name": "Static",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 161,
+          "name": "Breathing",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 33,
+          "name": "Flashing",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Spectrum Cycle",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 3,
+          "name": "Rainbow",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 163,
+          "name": "Chase Fade",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 163,
+          "name": "Chase",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Random Flicker",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        }
+      ],
+      "name": "ENE DRAM",
+      "serial": "",
+      "type": 1,
+      "vendor": "ENE",
+      "version": "DIMM_LED-0103",
+      "zones": [
+        {
+          "display_name": "",
+          "flags": 0,
+          "leds_count": 5,
+          "leds_max": 5,
+          "leds_min": 5,
+          "matrix_map": {
+            "height": 0,
+            "width": 0
+          },
+          "name": "DRAM",
+          "type": 1
+        }
+      ]
+    },
+    {
+      "active_mode": 1,
+      "colors": [
+        16777215,
+        16777215,
+        16777215,
+        16777215,
+        16777215
+      ],
+      "description": "ENE SMBus Device",
+      "display_name": "",
+      "flags": 2,
+      "leds": [
+        {
+          "name": "Unknown LED 1"
+        },
+        {
+          "name": "Unknown LED 2"
+        },
+        {
+          "name": "Unknown LED 3"
+        },
+        {
+          "name": "Unknown LED 4"
+        },
+        {
+          "name": "Unknown LED 5"
+        }
+      ],
+      "location": "I2C: SMBus PIIX4 adapter port 0 at 0b00 (/dev/i2c-9), address 0x73",
+      "modes": [
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 32,
+          "name": "Direct",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 0,
+          "name": "Off",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 32,
+          "name": "Static",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 161,
+          "name": "Breathing",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 33,
+          "name": "Flashing",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Spectrum Cycle",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 3,
+          "name": "Rainbow",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 163,
+          "name": "Chase Fade",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 163,
+          "name": "Chase",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Random Flicker",
+          "speed": 2,
+          "speed_max": 0,
+          "speed_min": 4
+        }
+      ],
+      "name": "ENE DRAM",
+      "serial": "",
+      "type": 1,
+      "vendor": "ENE",
+      "version": "DIMM_LED-0103",
+      "zones": [
+        {
+          "display_name": "",
+          "flags": 0,
+          "leds_count": 5,
+          "leds_max": 5,
+          "leds_min": 5,
+          "matrix_map": {
+            "height": 0,
+            "width": 0
+          },
+          "name": "Unknown",
+          "type": 1
+        }
+      ]
+    },
+    {
+      "active_mode": 0,
+      "colors": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "description": "ASRock Polychrome USB Device",
+      "display_name": "",
+      "flags": 2,
+      "leds": [
+        {
+          "name": "RGB LED 1 Header, LED 1"
+        },
+        {
+          "name": "RGB LED 2 Header, LED 1"
+        },
+        {
+          "name": "Addressable Header 1, LED 1"
+        },
+        {
+          "name": "Addressable Header 1, LED 2"
+        },
+        {
+          "name": "Addressable Header 1, LED 3"
+        },
+        {
+          "name": "Addressable Header 1, LED 4"
+        },
+        {
+          "name": "Addressable Header 1, LED 5"
+        },
+        {
+          "name": "Addressable Header 1, LED 6"
+        },
+        {
+          "name": "Addressable Header 1, LED 7"
+        },
+        {
+          "name": "Addressable Header 1, LED 8"
+        },
+        {
+          "name": "Addressable Header 1, LED 9"
+        },
+        {
+          "name": "Addressable Header 1, LED 10"
+        },
+        {
+          "name": "Addressable Header 1, LED 11"
+        },
+        {
+          "name": "Addressable Header 1, LED 12"
+        },
+        {
+          "name": "Addressable Header 1, LED 13"
+        },
+        {
+          "name": "Addressable Header 1, LED 14"
+        },
+        {
+          "name": "Addressable Header 1, LED 15"
+        },
+        {
+          "name": "Addressable Header 1, LED 16"
+        },
+        {
+          "name": "Addressable Header 1, LED 17"
+        },
+        {
+          "name": "Addressable Header 1, LED 18"
+        },
+        {
+          "name": "Addressable Header 1, LED 19"
+        },
+        {
+          "name": "Addressable Header 1, LED 20"
+        },
+        {
+          "name": "Addressable Header 1, LED 21"
+        },
+        {
+          "name": "Addressable Header 1, LED 22"
+        },
+        {
+          "name": "Addressable Header 1, LED 23"
+        },
+        {
+          "name": "Addressable Header 1, LED 24"
+        },
+        {
+          "name": "Addressable Header 1, LED 25"
+        },
+        {
+          "name": "Addressable Header 1, LED 26"
+        },
+        {
+          "name": "Addressable Header 1, LED 27"
+        },
+        {
+          "name": "Addressable Header 1, LED 28"
+        },
+        {
+          "name": "Addressable Header 1, LED 29"
+        },
+        {
+          "name": "Addressable Header 1, LED 30"
+        },
+        {
+          "name": "Addressable Header 1, LED 31"
+        },
+        {
+          "name": "Addressable Header 1, LED 32"
+        },
+        {
+          "name": "Addressable Header 1, LED 33"
+        },
+        {
+          "name": "Addressable Header 1, LED 34"
+        },
+        {
+          "name": "Addressable Header 1, LED 35"
+        },
+        {
+          "name": "Addressable Header 1, LED 36"
+        },
+        {
+          "name": "Addressable Header 1, LED 37"
+        },
+        {
+          "name": "Addressable Header 1, LED 38"
+        },
+        {
+          "name": "Addressable Header 1, LED 39"
+        },
+        {
+          "name": "Addressable Header 1, LED 40"
+        },
+        {
+          "name": "Addressable Header 1, LED 41"
+        },
+        {
+          "name": "Addressable Header 1, LED 42"
+        },
+        {
+          "name": "Addressable Header 1, LED 43"
+        },
+        {
+          "name": "Addressable Header 1, LED 44"
+        },
+        {
+          "name": "Addressable Header 1, LED 45"
+        },
+        {
+          "name": "Addressable Header 1, LED 46"
+        },
+        {
+          "name": "Addressable Header 1, LED 47"
+        },
+        {
+          "name": "Addressable Header 1, LED 48"
+        },
+        {
+          "name": "Addressable Header 1, LED 49"
+        },
+        {
+          "name": "Addressable Header 1, LED 50"
+        },
+        {
+          "name": "Addressable Header 1, LED 51"
+        },
+        {
+          "name": "Addressable Header 1, LED 52"
+        },
+        {
+          "name": "Addressable Header 1, LED 53"
+        },
+        {
+          "name": "Addressable Header 1, LED 54"
+        },
+        {
+          "name": "Addressable Header 1, LED 55"
+        },
+        {
+          "name": "Addressable Header 1, LED 56"
+        },
+        {
+          "name": "Addressable Header 1, LED 57"
+        },
+        {
+          "name": "Addressable Header 1, LED 58"
+        },
+        {
+          "name": "Addressable Header 1, LED 59"
+        },
+        {
+          "name": "Addressable Header 1, LED 60"
+        },
+        {
+          "name": "Addressable Header 1, LED 61"
+        },
+        {
+          "name": "Addressable Header 1, LED 62"
+        },
+        {
+          "name": "Addressable Header 1, LED 63"
+        },
+        {
+          "name": "Addressable Header 1, LED 64"
+        },
+        {
+          "name": "Addressable Header 1, LED 65"
+        },
+        {
+          "name": "Addressable Header 1, LED 66"
+        },
+        {
+          "name": "Addressable Header 1, LED 67"
+        },
+        {
+          "name": "Addressable Header 1, LED 68"
+        },
+        {
+          "name": "Addressable Header 1, LED 69"
+        },
+        {
+          "name": "Addressable Header 1, LED 70"
+        },
+        {
+          "name": "Addressable Header 1, LED 71"
+        },
+        {
+          "name": "Addressable Header 1, LED 72"
+        },
+        {
+          "name": "Addressable Header 1, LED 73"
+        },
+        {
+          "name": "Addressable Header 1, LED 74"
+        },
+        {
+          "name": "Addressable Header 1, LED 75"
+        },
+        {
+          "name": "Addressable Header 1, LED 76"
+        },
+        {
+          "name": "Addressable Header 1, LED 77"
+        },
+        {
+          "name": "Addressable Header 1, LED 78"
+        },
+        {
+          "name": "Addressable Header 1, LED 79"
+        },
+        {
+          "name": "Addressable Header 1, LED 80"
+        },
+        {
+          "name": "Addressable Header 2, LED 1"
+        },
+        {
+          "name": "Addressable Header 2, LED 2"
+        },
+        {
+          "name": "Addressable Header 2, LED 3"
+        },
+        {
+          "name": "Addressable Header 2, LED 4"
+        },
+        {
+          "name": "Addressable Header 2, LED 5"
+        },
+        {
+          "name": "Addressable Header 2, LED 6"
+        },
+        {
+          "name": "Addressable Header 2, LED 7"
+        },
+        {
+          "name": "Addressable Header 2, LED 8"
+        },
+        {
+          "name": "Addressable Header 2, LED 9"
+        },
+        {
+          "name": "Addressable Header 2, LED 10"
+        },
+        {
+          "name": "Addressable Header 2, LED 11"
+        },
+        {
+          "name": "Addressable Header 2, LED 12"
+        },
+        {
+          "name": "Addressable Header 2, LED 13"
+        },
+        {
+          "name": "Addressable Header 2, LED 14"
+        },
+        {
+          "name": "Addressable Header 2, LED 15"
+        },
+        {
+          "name": "Addressable Header 2, LED 16"
+        },
+        {
+          "name": "Addressable Header 2, LED 17"
+        },
+        {
+          "name": "Addressable Header 2, LED 18"
+        },
+        {
+          "name": "Addressable Header 2, LED 19"
+        },
+        {
+          "name": "Addressable Header 2, LED 20"
+        },
+        {
+          "name": "Addressable Header 2, LED 21"
+        },
+        {
+          "name": "Addressable Header 2, LED 22"
+        },
+        {
+          "name": "Addressable Header 2, LED 23"
+        },
+        {
+          "name": "Addressable Header 2, LED 24"
+        },
+        {
+          "name": "Addressable Header 2, LED 25"
+        },
+        {
+          "name": "Addressable Header 2, LED 26"
+        },
+        {
+          "name": "Addressable Header 2, LED 27"
+        },
+        {
+          "name": "Addressable Header 2, LED 28"
+        },
+        {
+          "name": "Addressable Header 2, LED 29"
+        },
+        {
+          "name": "Addressable Header 2, LED 30"
+        },
+        {
+          "name": "Addressable Header 2, LED 31"
+        },
+        {
+          "name": "Addressable Header 2, LED 32"
+        },
+        {
+          "name": "Addressable Header 2, LED 33"
+        },
+        {
+          "name": "Addressable Header 2, LED 34"
+        },
+        {
+          "name": "Addressable Header 2, LED 35"
+        },
+        {
+          "name": "Addressable Header 2, LED 36"
+        },
+        {
+          "name": "Addressable Header 2, LED 37"
+        },
+        {
+          "name": "Addressable Header 2, LED 38"
+        },
+        {
+          "name": "Addressable Header 2, LED 39"
+        },
+        {
+          "name": "Addressable Header 2, LED 40"
+        },
+        {
+          "name": "Addressable Header 2, LED 41"
+        },
+        {
+          "name": "Addressable Header 2, LED 42"
+        },
+        {
+          "name": "Addressable Header 2, LED 43"
+        },
+        {
+          "name": "Addressable Header 2, LED 44"
+        },
+        {
+          "name": "Addressable Header 2, LED 45"
+        },
+        {
+          "name": "Addressable Header 2, LED 46"
+        },
+        {
+          "name": "Addressable Header 2, LED 47"
+        },
+        {
+          "name": "Addressable Header 2, LED 48"
+        },
+        {
+          "name": "Addressable Header 2, LED 49"
+        },
+        {
+          "name": "Addressable Header 2, LED 50"
+        },
+        {
+          "name": "Addressable Header 2, LED 51"
+        },
+        {
+          "name": "Addressable Header 2, LED 52"
+        },
+        {
+          "name": "Addressable Header 2, LED 53"
+        },
+        {
+          "name": "Addressable Header 2, LED 54"
+        },
+        {
+          "name": "Addressable Header 2, LED 55"
+        },
+        {
+          "name": "Addressable Header 2, LED 56"
+        },
+        {
+          "name": "Addressable Header 2, LED 57"
+        },
+        {
+          "name": "Addressable Header 2, LED 58"
+        },
+        {
+          "name": "Addressable Header 2, LED 59"
+        },
+        {
+          "name": "Addressable Header 2, LED 60"
+        },
+        {
+          "name": "Addressable Header 2, LED 61"
+        },
+        {
+          "name": "Addressable Header 2, LED 62"
+        },
+        {
+          "name": "Addressable Header 2, LED 63"
+        },
+        {
+          "name": "Addressable Header 2, LED 64"
+        },
+        {
+          "name": "Addressable Header 2, LED 65"
+        },
+        {
+          "name": "Addressable Header 2, LED 66"
+        },
+        {
+          "name": "Addressable Header 2, LED 67"
+        },
+        {
+          "name": "Addressable Header 2, LED 68"
+        },
+        {
+          "name": "Addressable Header 2, LED 69"
+        },
+        {
+          "name": "Addressable Header 2, LED 70"
+        },
+        {
+          "name": "Addressable Header 2, LED 71"
+        },
+        {
+          "name": "Addressable Header 2, LED 72"
+        },
+        {
+          "name": "Addressable Header 2, LED 73"
+        },
+        {
+          "name": "Addressable Header 2, LED 74"
+        },
+        {
+          "name": "Addressable Header 2, LED 75"
+        },
+        {
+          "name": "Addressable Header 2, LED 76"
+        },
+        {
+          "name": "Addressable Header 2, LED 77"
+        },
+        {
+          "name": "Addressable Header 2, LED 78"
+        },
+        {
+          "name": "Addressable Header 2, LED 79"
+        },
+        {
+          "name": "Addressable Header 2, LED 80"
+        }
+      ],
+      "location": "HID: /dev/hidraw0",
+      "modes": [
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 0,
+          "name": "Off",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 32,
+          "name": "Static",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 33,
+          "name": "Breathing",
+          "speed": 224,
+          "speed_max": 0,
+          "speed_min": 255
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 33,
+          "name": "Strobe",
+          "speed": 224,
+          "speed_max": 0,
+          "speed_min": 255
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Spectrum Cycle",
+          "speed": 224,
+          "speed_max": 0,
+          "speed_min": 255
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Random",
+          "speed": 224,
+          "speed_max": 0,
+          "speed_min": 255
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 16,
+          "name": "Music",
+          "speed": 224,
+          "speed_max": 0,
+          "speed_min": 255
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Wave",
+          "speed": 224,
+          "speed_max": 0,
+          "speed_min": 255
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Spring",
+          "speed": 224,
+          "speed_max": 0,
+          "speed_min": 255
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Stack",
+          "speed": 224,
+          "speed_max": 0,
+          "speed_min": 255
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Cram",
+          "speed": 224,
+          "speed_max": 0,
+          "speed_min": 255
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Scan",
+          "speed": 224,
+          "speed_max": 0,
+          "speed_min": 255
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 0,
+          "name": "Neon",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Water",
+          "speed": 224,
+          "speed_max": 0,
+          "speed_min": 255
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 0,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 1,
+          "name": "Rainbow",
+          "speed": 224,
+          "speed_max": 0,
+          "speed_min": 255
+        },
+        {
+          "brightness": 0,
+          "brightness_max": 0,
+          "brightness_min": 0,
+          "color_mode": 1,
+          "colors_max": 0,
+          "colors_min": 0,
+          "direction": 0,
+          "flags": 32,
+          "name": "Direct",
+          "speed": 0,
+          "speed_max": 0,
+          "speed_min": 0
+        }
+      ],
+      "name": "ASRock B550M Pro4",
+      "serial": "",
+      "type": 0,
+      "vendor": "ASRock",
+      "version": "",
+      "zones": [
+        {
+          "display_name": "",
+          "flags": 0,
+          "leds_count": 1,
+          "leds_max": 1,
+          "leds_min": 1,
+          "matrix_map": {
+            "height": 0,
+            "width": 0
+          },
+          "name": "RGB LED 1 Header",
+          "type": 1
+        },
+        {
+          "display_name": "",
+          "flags": 0,
+          "leds_count": 1,
+          "leds_max": 1,
+          "leds_min": 1,
+          "matrix_map": {
+            "height": 0,
+            "width": 0
+          },
+          "name": "RGB LED 2 Header",
+          "type": 1
+        },
+        {
+          "display_name": "",
+          "flags": 62,
+          "leds_count": 80,
+          "leds_max": 100,
+          "leds_min": 0,
+          "matrix_map": {
+            "height": 0,
+            "width": 0
+          },
+          "name": "Addressable Header 1",
+          "type": 1
+        },
+        {
+          "display_name": "",
+          "flags": 62,
+          "leds_count": 80,
+          "leds_max": 100,
+          "leds_min": 0,
+          "matrix_map": {
+            "height": 0,
+            "width": 0
+          },
+          "name": "Addressable Header 2",
+          "type": 1
+        }
+      ]
+    }
+  ],
+  "plugins": {
+    "OpenRGB Effects Plugin": {
+      "Effects": [],
+      "version": 2
+    },
+    "OpenRGB Hardware Sync Plugin": {
+      "measures": []
+    }
+  },
+  "profile_name": "htpc",
+  "profile_version": 6
+}
