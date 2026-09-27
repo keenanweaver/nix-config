@@ -2,7 +2,6 @@
   flake.modules.nixos.profile-workstation =
     { config, pkgs, ... }:
     {
-      boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
       environment.systemPackages = with pkgs; [
         podlet
         quickemu
@@ -12,6 +11,7 @@
         win-spice
       ];
       networking.firewall.trustedInterfaces = [ "virbr0" ];
+      nix-mineral.settings.network.ip-forwarding = true;
       preservation.preserveAt."/persist".directories = [
         "/var/lib/containers"
         "/var/lib/libvirt"
