@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.modules.nixos.profile-desktop =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       boot = {
         consoleLogLevel = 0;
@@ -19,7 +19,7 @@
         ];
         plymouth = {
           enable = true;
-          theme = "mac-style";
+          theme = lib.mkDefault "mac-style";
           themePackages = [ pkgs.mac-style-plymouth ];
         };
       };

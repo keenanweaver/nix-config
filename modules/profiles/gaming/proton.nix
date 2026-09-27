@@ -6,12 +6,13 @@
       let
         steamCompatTools = with pkgs; [
           proton-cachyos
+          proton-ge
           local.proton-wineland
         ];
       in
       {
         home.packages = with pkgs; [ protonplus ];
-        programs.lutris.protonPackages = steamCompatTools;
+        programs.lutris.protonPackages = with pkgs; [ local.proton-wineland ];
         systemd.user =
           let
             install-runners = pkgs.writeShellApplication {
@@ -72,28 +73,28 @@
         );
       };
     nixos.profile-gaming =
-      {
-        lib,
-        pkgs,
-        ...
-      }:
-      let
-        steamCompatTools = with pkgs; [
-          proton-cachyos
-        ];
-      in
+      { lib, ... }:
       {
         nixpkgs.overlays = lib.mkAfter [
           inputs.proton-cachyos-nix.overlays.default
+          inputs.proton-ge-nix.overlays.default
         ];
-        programs.steam.extraCompatPackages = steamCompatTools;
       };
   };
-  flake-file.inputs.proton-cachyos-nix = {
-    inputs = {
-      flake-parts.follows = "flake-parts";
-      nixpkgs.follows = "nixpkgs";
+  flake-file.inputs = {
+    proton-cachyos-nix = {
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+      url = "github:Daaboulex/proton-cachyos-nix";
     };
-    url = "github:Daaboulex/proton-cachyos-nix";
+    proton-ge-nix = {
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+      url = "github:Daaboulex/proton-ge-nix";
+    };
   };
 }

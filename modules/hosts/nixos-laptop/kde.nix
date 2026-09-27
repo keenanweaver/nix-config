@@ -1,6 +1,6 @@
 {
   configurations.nixos.nixos-laptop.module =
-    { lib, config, ... }:
+    { config, ... }:
     {
       home-manager.users.${config.my.user}.programs.plasma = {
         input = {
@@ -33,8 +33,8 @@
           ];
         };
         kscreenlocker = {
-          autoLock = lib.mkForce true;
-          lockOnResume = lib.mkForce true;
+          autoLock = true;
+          lockOnResume = true;
         };
         panels = [
           {

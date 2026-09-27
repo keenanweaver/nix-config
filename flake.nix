@@ -118,7 +118,10 @@
         nixpkgs-stable.follows = "nixpkgs";
       };
     };
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    nix-cachyos-kernel = {
+      url = "github:xddxdd/nix-cachyos-kernel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nix-gaming-edge = {
       url = "github:powerofthe69/nix-gaming-edge";
@@ -205,6 +208,13 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    proton-ge-nix = {
+      url = "github:Daaboulex/proton-ge-nix";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
     rom-properties-nix-flake = {
       url = "github:Whovian9369/rom-properties-nix-flake";
@@ -271,6 +281,13 @@
     };
     wine-cachyos-nix = {
       url = "github:Daaboulex/wine-cachyos-nix";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+    yeetmouse-nix = {
+      url = "github:Daaboulex/yeetmouse-nix";
       inputs = {
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";

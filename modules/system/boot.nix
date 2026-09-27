@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.profile-desktop =
-    { pkgs, ... }:
+    { lib, pkgs, ... }:
     {
       boot = {
         kernel.sysctl = {
@@ -30,7 +30,7 @@
                 path: boot():/limine/efi/netbootxyz/netboot.xyz.efi
             '';
           };
-          timeout = 1;
+          timeout = lib.mkDefault 1;
         };
       };
     };

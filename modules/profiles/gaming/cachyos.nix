@@ -3,7 +3,10 @@
   flake.modules.nixos.profile-gaming =
     { lib, ... }:
     {
-      imports = [ inputs.cachyos-settings-nix.nixosModules.default ];
+      imports = [
+        inputs.cachyos-settings-nix.nixosModules.default
+        inputs.wine-cachyos-nix.nixosModules.default
+      ];
       boot.kernel.sysctl = {
         "kernel.nmi_watchdog" = lib.mkForce 0;
         "kernel.split_lock_mitigate" = 0;
@@ -14,12 +17,27 @@
         enable = true;
         zram.enable = lib.mkForce false;
       };
+      nixpkgs.overlays = [ inputs.wine-cachyos-nix.overlays.default ];
+      programs.wine-cachyos = {
+        enable = true;
+        binfmt.enable = false;
+        fontAliases.enable = true;
+      };
     };
-  flake-file.inputs.cachyos-settings-nix = {
-    inputs = {
-      flake-parts.follows = "flake-parts";
-      nixpkgs.follows = "nixpkgs";
+  flake-file.inputs = {
+    cachyos-settings-nix = {
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+      url = "github:Daaboulex/cachyos-settings-nix";
     };
-    url = "github:Daaboulex/cachyos-settings-nix";
+    wine-cachyos-nix = {
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+      url = "github:Daaboulex/wine-cachyos-nix";
+    };
   };
 }

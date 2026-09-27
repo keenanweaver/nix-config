@@ -1,7 +1,7 @@
 { self, ... }:
 {
   configurations.nixos.nixos-htpc.module =
-    { lib, config, ... }:
+    { config, ... }:
     {
       imports = with self.modules.nixos; [
         self.diskoConfigurations.nixos-htpc
@@ -16,7 +16,7 @@
 
         obs
       ];
-      boot.loader.timeout = lib.mkForce 0;
+      boot.loader.timeout = 0;
       networking.hostName = "nixos-htpc";
       system.stateVersion = "26.05";
       systemd.tmpfiles.rules = [

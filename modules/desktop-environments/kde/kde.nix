@@ -258,8 +258,8 @@
                 position = "center";
               };
               kscreenlocker = {
-                autoLock = false;
-                lockOnResume = false;
+                autoLock = lib.mkDefault false;
+                lockOnResume = lib.mkDefault false;
               };
               kwin = {
                 cornerBarrier = false;
@@ -426,7 +426,12 @@
           };
       };
       nixos.kde =
-        { config, pkgs, ... }:
+        {
+          lib,
+          config,
+          pkgs,
+          ...
+        }:
         {
           environment = {
             plasma6.excludePackages = with pkgs.kdePackages; [ elisa ];
@@ -542,7 +547,7 @@
             desktopManager.plasma6.enable = true;
             displayManager = {
               autoLogin.user = config.my.user;
-              plasma-login-manager.enable = true;
+              plasma-login-manager.enable = lib.mkDefault true;
             };
             libinput = {
               mouse.accelProfile = "flat";

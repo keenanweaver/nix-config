@@ -1,9 +1,9 @@
 {
   configurations.nixos.nixos-htpc.module =
-    { lib, pkgs, ... }:
+    { pkgs, ... }:
     {
       boot.plymouth = {
-        theme = lib.mkForce "steamos";
+        theme = "steamos";
         themePackages = [ pkgs.local.plymouth-theme-steamos ];
       };
     };
