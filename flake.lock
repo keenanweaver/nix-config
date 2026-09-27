@@ -769,6 +769,27 @@
         "type": "github"
       }
     },
+    "gamesir": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "upstream-src": "upstream-src"
+      },
+      "locked": {
+        "lastModified": 1788391522,
+        "narHash": "sha256-gwCv/WyX9/aqS96dl4FrHWHhJNeOhEYlSjsja3APi10=",
+        "ref": "refs/heads/master",
+        "rev": "69801573f26436ecd1e24b077489142c217c761b",
+        "revCount": 7,
+        "type": "git",
+        "url": "https://codeberg.org/Epaphroditus/gamesir-linux-tools-nix.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://codeberg.org/Epaphroditus/gamesir-linux-tools-nix.git"
+      }
+    },
     "git-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -2049,6 +2070,7 @@
         "flake-file": "flake-file",
         "flake-parts": "flake-parts_2",
         "flake-utils": "flake-utils",
+        "gamesir": "gamesir",
         "git-hooks-nix": "git-hooks-nix",
         "home-manager": "home-manager",
         "import-tree": "import-tree",
@@ -2672,6 +2694,22 @@
         "dir": "packaging/nix",
         "owner": "Open-Wine-Components",
         "repo": "umu-launcher",
+        "type": "github"
+      }
+    },
+    "upstream-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788371882,
+        "narHash": "sha256-LZBb6FAIkUFSGrFfxznj9A/HcTa+r6lQTBbGmBB7qjE=",
+        "owner": "broroeror",
+        "repo": "gamesir-linux-tools",
+        "rev": "095c46d6c400971d52275dfed10d6b7fc1fcd1d7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "broroeror",
+        "repo": "gamesir-linux-tools",
         "type": "github"
       }
     },

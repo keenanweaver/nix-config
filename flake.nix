@@ -51,6 +51,10 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
+    gamesir = {
+      url = "git+https://codeberg.org/Epaphroditus/gamesir-linux-tools-nix.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     git-hooks-nix = {
       url = "github:cachix/git-hooks.nix";
       inputs = {
