@@ -89,9 +89,13 @@ update-pkg name version="stable":
     git add pkgs/{{ name }}
 
 # ══ Git ══════════════════════════════════════════════════════
-# Push the current branch to both Codeberg and Tangled
-push:
-    git pushall
+[positional-arguments]
+[script('bash')]
+push *args:
+    set -euo pipefail
+    b=$(git symbolic-ref --short HEAD)
+    git push origin "$b:$b" --force-with-lease --force-if-includes "$@"
+    git push tangled "$b:$b" --force-with-lease --force-if-includes --no-verify "$@"
 
 # ══ Secrets ═════════════════════════════════════════════════
 sops-edit file:
