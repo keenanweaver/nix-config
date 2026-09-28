@@ -23,13 +23,13 @@ in
 
 stdenv.mkDerivation {
   pname = "nuked-sc55";
-  version = "0.6.1-unstable-2026-09-26";
+  version = "0.6.1-unstable-2026-09-27";
 
   src = fetchFromGitHub {
     owner = "jcmoyer";
     repo = "Nuked-SC55";
-    rev = "8679cb93b0574db1097da88e522a991e5820fcfd";
-    hash = "sha256-AINkIlgBgesIK+phfq4pqHpvuxtoOlRXLklheboBM90=";
+    rev = "7a9706fe25bdd8df23c6472d00038b58a1714029";
+    hash = "sha256-tVYbssXtyaPxtC5JeJ3M+vMpJZ41eyGp6eV9KBB++bM=";
     fetchSubmodules = true;
   };
 

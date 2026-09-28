@@ -70,8 +70,7 @@
           config = {
             home.sessionVariables.OBS_VKCAPTURE_QUIET = "1";
             services.flatpak.packages = [
-              "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/23.08"
-              "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/24.08"
+              "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/26.08"
               "org.freedesktop.Platform.VulkanLayer.OBSVkCapture/x86_64/25.08"
             ];
           };
