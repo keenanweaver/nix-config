@@ -2,14 +2,17 @@
   flake.modules.nixos.profile-workstation =
     { config, pkgs, ... }:
     {
-      environment.systemPackages = with pkgs; [
-        podlet
-        quickemu
-        spice
-        virtio-win
-        virtiofsd
-        win-spice
-      ];
+      environment = {
+        sessionVariables.DOCKER_HOST = "unix://\${XDG_RUNTIME_DIR}/podman/podman.sock";
+        systemPackages = with pkgs; [
+          podlet
+          quickemu
+          spice
+          virtio-win
+          virtiofsd
+          win-spice
+        ];
+      };
       networking.firewall.trustedInterfaces = [ "virbr0" ];
       nix-mineral.settings.network.ip-forwarding = true;
       preservation.preserveAt."/persist".directories = [
@@ -23,7 +26,6 @@
         ${config.my.user}.extraGroups = [
           "kvm"
           "libvirtd"
-          "podman"
         ];
       };
       virtualisation = {
@@ -40,7 +42,6 @@
           enable = true;
           defaultNetwork.settings.dns_enabled = true;
           dockerCompat = true;
-          dockerSocket.enable = true;
         };
         spiceUSBRedirection.enable = true;
         vmVariant = {

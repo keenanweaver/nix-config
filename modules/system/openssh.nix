@@ -103,6 +103,10 @@ in
     nixos.profile-base =
       { config, ... }:
       {
+        networking.firewall = {
+          extraInputRules = "ip saddr ${self.lib.site.network.lanSubnet} tcp dport ${toString sshPort} accept";
+          interfaces.tailscale0.allowedTCPPorts = [ sshPort ];
+        };
         services.openssh = {
           enable = true;
           hostKeys = [
@@ -111,6 +115,7 @@ in
               type = "ed25519";
             }
           ];
+          openFirewall = false;
           ports = [ sshPort ];
           settings = {
             AllowUsers = [ config.my.user ];

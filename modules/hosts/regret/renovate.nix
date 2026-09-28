@@ -132,7 +132,7 @@
           description = "Trigger renovate when nixpkgs nixos-unstable advances";
           after = [ "network-online.target" ];
           wants = [ "network-online.target" ];
-          serviceConfig = {
+          serviceConfig = self.lib.systemdSandbox // {
             ExecStart = lib.getExe (
               pkgs.writeShellApplication {
                 name = "renovate-watch-nixos-unstable";

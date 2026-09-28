@@ -57,6 +57,7 @@ in
           remorse = "10.20.20.30";
           vagabond = "10.20.20.32";
         };
+        lanSubnet = "10.20.20.0/24";
         sshPort = 6777;
       };
     };

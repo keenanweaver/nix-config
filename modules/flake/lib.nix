@@ -10,6 +10,40 @@
       builtins.concatStringsSep "\n" (
         builtins.sort builtins.lessThan (pkgs.lib.lists.unique (map (p: p.name) packages))
       );
+    systemdSandbox = {
+      CapabilityBoundingSet = "";
+      LockPersonality = true;
+      MemoryDenyWriteExecute = true;
+      NoNewPrivileges = true;
+      PrivateDevices = true;
+      PrivateTmp = true;
+      ProcSubset = "pid";
+      ProtectClock = true;
+      ProtectControlGroups = true;
+      ProtectHome = "tmpfs";
+      ProtectHostname = true;
+      ProtectKernelLogs = true;
+      ProtectKernelModules = true;
+      ProtectKernelTunables = true;
+      ProtectProc = "invisible";
+      ProtectSystem = "strict";
+      RestrictAddressFamilies = [
+        "AF_UNIX"
+        "AF_INET"
+        "AF_INET6"
+        "AF_NETLINK"
+      ];
+      RestrictNamespaces = true;
+      RestrictRealtime = true;
+      RestrictSUIDSGID = true;
+      SystemCallArchitectures = "native";
+      SystemCallErrorNumber = "EPERM";
+      SystemCallFilter = [
+        "@system-service"
+        "~@privileged"
+      ];
+      UMask = "0077";
+    };
   };
   options = {
     caches = lib.mkOption {

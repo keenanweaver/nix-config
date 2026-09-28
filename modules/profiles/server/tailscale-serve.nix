@@ -1,3 +1,4 @@
+{ self, ... }:
 {
   flake.modules.nixos.profile-server =
     {
@@ -15,7 +16,7 @@
         lib.nameValuePair "${name}-tailscale-serve" {
           after = [ "tailscaled.service" ];
           description = "Proxy ${cfg.displayName} over Tailscale HTTPS via tailscale serve";
-          serviceConfig = {
+          serviceConfig = self.lib.systemdSandbox // {
             ExecStart = "${tailscale} serve --bg --https=${toString cfg.httpsPort} ${cfg.target}";
             ExecStop = "${tailscale} serve --https=${toString cfg.httpsPort} off";
             RemainAfterExit = true;

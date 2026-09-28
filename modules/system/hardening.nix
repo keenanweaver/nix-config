@@ -65,7 +65,6 @@
         };
       };
       security = {
-        pam.sshAgentAuth.enable = true;
         polkit.extraConfig = ''
           polkit.addRule(function(action, subject) {
               if (subject.isInGroup("wheel")) {
