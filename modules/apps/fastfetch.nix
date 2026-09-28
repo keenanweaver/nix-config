@@ -2,12 +2,12 @@
   flake.modules.homeManager.profile-base.programs.fastfetch = {
     enable = true;
     settings = {
-      display.separator = " ";
+      display = {
+        key.width = 20;
+        separator = " ";
+      };
       modules = [
-        {
-          keyWidth = 10;
-          type = "title";
-        }
+        "title"
         {
           format = "{pretty-name}";
           key = " OS";
@@ -33,6 +33,11 @@
           key = "├ Boot Manager";
           keyColor = "yellow";
           type = "bootmgr";
+        }
+        {
+          key = "└󰅐 Uptime";
+          keyColor = "yellow";
+          type = "uptime";
         }
         "break"
         {
@@ -108,6 +113,14 @@
           type = "cpu";
         }
         {
+          compact = true;
+          key = "├󰻠 CPU Cache";
+          keyColor = "green";
+          type = "cpucache";
+        }
+        {
+          driverSpecific = true;
+          format = "{name} [{type}] {dedicated-total} ({driver})";
           key = "├󰍛 GPU";
           keyColor = "green";
           type = "gpu";
@@ -123,6 +136,11 @@
           type = "swap";
         }
         {
+          key = "├󰁹 Battery";
+          keyColor = "green";
+          type = "battery";
+        }
+        {
           format = "{mountpoint} [{size-free} / {size-total}] ({filesystem})";
           key = "├ Disk";
           keyColor = "green";
@@ -135,6 +153,11 @@
           type = "display";
         }
         {
+          key = "├󰓃 Sound";
+          keyColor = "green";
+          type = "sound";
+        }
+        {
           key = "├󰍛 Vulkan";
           keyColor = "green";
           type = "vulkan";
@@ -144,6 +167,8 @@
           keyColor = "green";
           type = "opengl";
         }
+        "break"
+        "colors"
       ];
     };
   };
