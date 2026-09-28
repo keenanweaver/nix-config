@@ -1672,6 +1672,26 @@
         "type": "github"
       }
     },
+    "nixos-mocha-kde-splash": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789367365,
+        "narHash": "sha256-rXHiV4f1LOvUr+eLtw0yYFGMktPrpn3tDACDe1wPWIg=",
+        "owner": "michaelwheatland",
+        "repo": "nixos-mocha-kde-splash",
+        "rev": "3db62fbce0094b629ba77ede36b04e2b91268903",
+        "type": "github"
+      },
+      "original": {
+        "owner": "michaelwheatland",
+        "repo": "nixos-mocha-kde-splash",
+        "type": "github"
+      }
+    },
     "nixos-raspberrypi": {
       "inputs": {
         "argononed": "argononed",
@@ -2244,6 +2264,7 @@
         "nix-podman-stacks": "nix-podman-stacks",
         "nix-reshade": "nix-reshade",
         "nix-vscode-extensions": "nix-vscode-extensions",
+        "nixos-mocha-kde-splash": "nixos-mocha-kde-splash",
         "nixos-raspberrypi": "nixos-raspberrypi",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-master": "nixpkgs-master",

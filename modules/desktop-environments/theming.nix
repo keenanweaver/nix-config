@@ -204,7 +204,12 @@ in
             };
           };
         plasma-manager =
-          { config, osConfig, ... }:
+          {
+            lib,
+            config,
+            osConfig,
+            ...
+          }:
           {
             home.file = {
               catppuccin-konsole = {
@@ -294,7 +299,7 @@ in
                   # System sounds
                   soundTheme = "ocean";
                   # Splash Screen
-                  splashScreen.theme = "Catppuccin-${flavor-upper}-${accent-upper}";
+                  splashScreen.theme = lib.mkDefault "Catppuccin-${flavor-upper}-${accent-upper}";
                   # Plasma Style
                   # plasma-apply-desktoptheme --list-themes
                   theme = "Utterly-Round";
