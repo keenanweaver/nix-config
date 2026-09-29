@@ -53,10 +53,7 @@ My previous, non-dendritic config is located in the `main` branch of this repo.
 │   ├── users/
 ├── pkgs/                     # custom packages
 ├── assets/                   # non-Nix files
-│   ├── hosts/<host>/
-│   ├── secrets/
-│   ├── theming/
-└── docs/
+└── doc/
 ```
 
 ## Acknowledgements
@@ -86,6 +83,13 @@ Among many others. Thank you for your work!
 - [mightyiam](https://github.com/mightyiam/dendritic) - Dendritic pattern
 
 If you are not already, please consider contributing to the Nix ecosystem in any way you can!
+
+## Disclaimer
+
+Claude LLM was used for creating the following. Everything else is made by me. However, I also use it for rubberducking.
+
+- [`doom-wad-extractor` script](modules/profiles/gaming/games/doom.nix)
+- [`lgogdownloader` module](modules/hosts/remorse/lgogdownloader.nix)
 
 ## License
 
