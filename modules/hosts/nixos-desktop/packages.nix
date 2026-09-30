@@ -114,7 +114,7 @@ in
             krita
             lazyjournal
             lgogdownloader
-            limo
+            #limo
             local.openxcom-extended
             local.relive
             local.rsdkv3
@@ -146,6 +146,7 @@ in
             oversteer
             parsec-bin
             patool
+            perfect_dark
             picard
             pigz # gz
             play
@@ -163,7 +164,7 @@ in
             scummvm
             sd # sed
             sdlpop
-            shadps4-qtlauncher
+            #shadps4-qtlauncher
             sm64ex
             srb2
             streamrip
@@ -202,11 +203,14 @@ in
             prismlauncher.enable = true;
           };
         };
-      programs = {
-        k3b.enable = true;
-        perfect-dark-git.enable = true;
-      };
-      system.extraDependencies = self.lib.pinRoms pkgs [ self.lib.roms.sm64 ];
+      programs.k3b.enable = true;
+      system.extraDependencies =
+        with self.lib.roms;
+        self.lib.pinRoms pkgs [
+          lego-island
+          oot
+          sm64
+        ];
       xdg.mime.defaultApplications = {
         "audio/*" = "org.fooyin.fooyin.desktop";
         "x-scheme-handler/ror2mm" = "r2modman.desktop";

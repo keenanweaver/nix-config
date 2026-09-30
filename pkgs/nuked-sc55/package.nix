@@ -21,15 +21,15 @@ let
   };
 in
 
-stdenv.mkDerivation {
+stdenv.mkDerivation (finalAttrs: {
   pname = "nuked-sc55";
-  version = "0.6.1-unstable-2026-09-27";
+  version = "0.7.0";
 
   src = fetchFromGitHub {
     owner = "jcmoyer";
     repo = "Nuked-SC55";
-    rev = "7a9706fe25bdd8df23c6472d00038b58a1714029";
-    hash = "sha256-tVYbssXtyaPxtC5JeJ3M+vMpJZ41eyGp6eV9KBB++bM=";
+    tag = finalAttrs.version;
+    hash = "sha256-WweqoFGxeEotxpKzzdb33UqpAVhwKskpBrKWc6oU8/U=";
     fetchSubmodules = true;
   };
 
@@ -73,10 +73,12 @@ stdenv.mkDerivation {
     done
   '';
 
+  doInstallCheck = true;
+  nativeInstallCheckInputs = [ versionCheckHook ];
+
   passthru.updateScript = nix-update-script {
     extraArgs = [
       "--flake"
-      "--version=branch"
     ];
   };
 
@@ -92,4 +94,4 @@ stdenv.mkDerivation {
     platforms = lib.platforms.linux ++ lib.platforms.darwin;
     mainProgram = "nuked-sc55";
   };
-}
+})

@@ -119,10 +119,7 @@
       };
   };
   flake-file.inputs = {
-    just-one-more-repo = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:ProverbialPennance/just-one-more-repo";
-    };
+    just-one-more-repo.url = "github:ProverbialPennance/just-one-more-repo";
     umu = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";

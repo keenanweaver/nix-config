@@ -101,10 +101,7 @@
       };
   };
   flake-file.inputs = {
-    nix-gaming-edge = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:powerofthe69/nix-gaming-edge";
-    };
+    nix-gaming-edge.url = "github:powerofthe69/nix-gaming-edge";
     ucodenix.url = "github:e-tho/ucodenix";
   };
 }

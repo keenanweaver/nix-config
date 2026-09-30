@@ -17,21 +17,21 @@
             inputs.slippi-nix.homeManagerModules.default
           ];
           home.packages = with pkgs; [
-            banjorecomp
+            #banjorecomp
             clonehero
-            dusklight
+            #dusklight
             jazz2
             local.sonic3air
             moon-child-fe
             openomf
-            pegasus-frontend
+            #pegasus-frontend
             sdlpop
-            shadps4-qtlauncher
+            #shadps4-qtlauncher
             sm64ex
             vvvvvv
             wipeout-rewrite
             yarg
-            zelda64recomp
+            #zelda64recomp
           ];
           services.flatpak.packages = [
             "dev.eden_emu.eden"
@@ -54,6 +54,7 @@
         self.lib.pinRoms pkgs [
           banjo
           mm
+          oot
           sm64
         ];
     };

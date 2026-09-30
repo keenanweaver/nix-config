@@ -21,10 +21,7 @@
     };
   flake-file.inputs = {
     nur-packages-bandithedoge = {
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs.flake-parts.follows = "flake-parts";
       url = "github:bandithedoge/nur-packages";
     };
     rom-properties-nix-flake = {

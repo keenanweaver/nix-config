@@ -74,10 +74,7 @@
         treefmt-nix.follows = "treefmt-nix";
       };
     };
-    just-one-more-repo = {
-      url = "github:ProverbialPennance/just-one-more-repo";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    just-one-more-repo.url = "github:ProverbialPennance/just-one-more-repo";
     kwin-effects-better-blur-dx = {
       url = "github:xarblu/kwin-effects-better-blur-dx";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -95,10 +92,7 @@
     };
     llm-agents-nix = {
       url = "github:numtide/llm-agents.nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
+      inputs.systems.follows = "systems";
     };
     lsfg-vk-nix = {
       url = "github:Daaboulex/lsfg-vk-nix";
@@ -118,15 +112,9 @@
         nixpkgs-stable.follows = "nixpkgs";
       };
     };
-    nix-cachyos-kernel = {
-      url = "github:xddxdd/nix-cachyos-kernel/release";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
-    nix-gaming-edge = {
-      url = "github:powerofthe69/nix-gaming-edge";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-gaming-edge.url = "github:powerofthe69/nix-gaming-edge";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -176,10 +164,7 @@
     };
     nur-packages-bandithedoge = {
       url = "github:bandithedoge/nur-packages";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs.flake-parts.follows = "flake-parts";
     };
     nyx = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";

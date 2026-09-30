@@ -94,7 +94,6 @@ in
             "org.mamedev.MAME"
             "org.openfodder.OpenFodder"
             "org.openjkdf2.OpenJKDF2"
-            "org.pegasus_frontend.Pegasus"
             "org.ppsspp.PPSSPP"
             "vet.rsc.OpenRSC.Launcher"
           ];

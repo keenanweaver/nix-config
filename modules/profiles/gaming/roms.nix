@@ -20,10 +20,20 @@
         hash = "sha256-WYdYNbmlEouwBUMVp/kp4gccIAHlKNcL9UPh1mgObv8=";
         name = "baserom.us.v10.z64";
       };
+      lego-island = {
+        game = "LEGO Island, for isle";
+        hash = "sha256-pefu/XcvGKcWYzaFldWeFEYdc7OUBgbmlgWyH2CnZec=";
+        name = "LEGO_ISLANDI.ISO";
+      };
       mm = {
         game = "Majora's Mask (US rev1), for zelda64recomp";
         hash = "sha256-77E2WzrjYmBFFMD5oaLRH13IaIulvmYKN96/XjvkPys=";
         name = "mm.us.rev1.rom.z64";
+      };
+      oot = {
+        game = "Ocarina of Time (US rev2), for shipwright";
+        hash = "sha256-SazTiF8TsHMBGbePuXCRHMirphT+ODNoAVwhVlmDNo0=";
+        name = "oot.us.rev2.z64";
       };
       sm64 = {
         game = "Super Mario 64 (US), for sm64ex";
