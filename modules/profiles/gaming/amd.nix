@@ -28,13 +28,7 @@
           ];
         };
         hardware = {
-          amdgpu = {
-            initrd.enable = true;
-            overdrive = {
-              enable = true;
-              ppfeaturemask = "0xffffffff";
-            };
-          };
+          amdgpu.initrd.enable = true;
           cpu.amd.updateMicrocode = true;
         };
         home-manager.sharedModules = [ self.modules.homeManager.amd ];
