@@ -46,8 +46,6 @@
               ];
             }
           );
-          # 'true' breaks gamescope for Steam: https://github.com/NixOS/nixpkgs/issues/292620#issuecomment-2143529075
-          capSysNice = false;
         };
       };
   };

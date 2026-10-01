@@ -1,12 +1,7 @@
 { inputs, ... }:
 {
   flake.modules = {
-    homeManager.profile-base.programs.nix-index = {
-      enable = true;
-      enableBashIntegration = true;
-      enableNushellIntegration = true;
-      enableZshIntegration = true;
-    };
+    homeManager.profile-base.programs.nix-index.enable = true;
     nixos.profile-base = { ... }: {
       imports = [
         inputs.nix-index-database.nixosModules.default

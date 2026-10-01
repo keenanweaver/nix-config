@@ -23,9 +23,8 @@
         };
       };
     };
-  # Own nixpkgs so packages match cache.numtide.com.
   flake-file.inputs.llm-agents-nix = {
-    inputs.systems.follows = "systems";
+    inputs.systems.follows = "flake-utils/systems";
     url = "github:numtide/llm-agents.nix";
   };
 }

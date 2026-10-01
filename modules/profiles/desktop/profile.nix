@@ -38,12 +38,9 @@
             terminus_font
           ];
         };
-        environment = {
-          sessionVariables = {
-            ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-            NIXOS_OZONE_WL = "1";
-          };
-          stub-ld.enable = true;
+        environment.sessionVariables = {
+          ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+          NIXOS_OZONE_WL = "1";
         };
         hardware.graphics = {
           enable = true;
@@ -71,7 +68,6 @@
           ydotool.enable = true;
         };
         services = {
-          fstrim.enable = true;
           fwupd.enable = true;
           tuned = {
             enable = true;

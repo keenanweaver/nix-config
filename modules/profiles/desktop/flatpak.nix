@@ -47,7 +47,6 @@
               name = "flathub-beta";
             }
           ];
-          uninstallUnmanaged = false;
         };
       };
     nixos.profile-desktop =

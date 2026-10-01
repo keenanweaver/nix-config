@@ -293,14 +293,11 @@
                   };
                   transitionTime = 30;
                 };
-                titlebarButtons = {
-                  left = null;
-                  right = [
-                    "minimize"
-                    "maximize"
-                    "close"
-                  ];
-                };
+                titlebarButtons.right = [
+                  "minimize"
+                  "maximize"
+                  "close"
+                ];
                 virtualDesktops = {
                   names = [
                     "Main"

@@ -128,7 +128,7 @@
       inputs = {
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
+        systems.follows = "flake-utils/systems";
       };
       url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
     };

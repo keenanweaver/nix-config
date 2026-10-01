@@ -6,7 +6,6 @@
         programs.zsh = {
           enable = true;
           autosuggestion.enable = true;
-          dotDir = "${config.xdg.configHome}/zsh";
           history = {
             extended = true;
             ignoreSpace = true;

@@ -10,19 +10,10 @@
           defaultSopsFile = ../../assets/secrets + "/${config.home.username}.yaml";
         };
       };
-    nixos.profile-base =
-      { config, ... }:
-      let
-        isEd25519 = key: key.type == "ed25519";
-        keys = builtins.filter isEd25519 config.services.openssh.hostKeys;
-      in
-      {
-        imports = [ inputs.sops-nix.nixosModules.sops ];
-        sops = {
-          age.sshKeyPaths = map (key: key.path) keys;
-          defaultSopsFile = ../../assets/secrets/nixos.yaml;
-        };
-      };
+    nixos.profile-base = {
+      imports = [ inputs.sops-nix.nixosModules.sops ];
+      sops.defaultSopsFile = ../../assets/secrets/nixos.yaml;
+    };
   };
   flake-file.inputs.sops-nix = {
     inputs.nixpkgs.follows = "nixpkgs";

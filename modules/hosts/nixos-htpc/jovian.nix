@@ -50,7 +50,7 @@
           user = config.my.user;
         };
         steamos = {
-          enableZram = lib.mkForce false; # Conflicts with zswap
+          enableZram = false; # Conflicts with zswap
         };
       };
       my.permittedInsecurePackages = [

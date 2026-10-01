@@ -67,7 +67,6 @@
                   image = "docker.io/library/ubuntu:24.04";
                   init = true;
                 };
-                enableSystemdUnit = true;
                 settings.container_additional_volumes = "/nix/store:/nix/store:ro /etc/profiles/per-user:/etc/profiles/per-user:ro /etc/static/profiles/per-user:/etc/static/profiles/per-user:ro";
               };
               zsh.initContent = lib.mkAfter ''

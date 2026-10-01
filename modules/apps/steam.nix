@@ -71,7 +71,7 @@
   flake-file.inputs.steam-config-nix = {
     inputs = {
       nixpkgs.follows = "nixpkgs";
-      systems.follows = "systems";
+      systems.follows = "flake-utils/systems";
     };
     url = "github:different-name/steam-config-nix";
   };

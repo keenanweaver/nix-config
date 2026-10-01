@@ -3,9 +3,6 @@
     profile-base = { pkgs, ... }: {
       programs.yazi = {
         enable = true;
-        enableBashIntegration = true;
-        enableNushellIntegration = true;
-        enableZshIntegration = true;
         extraPackages = with pkgs; [
           fd
           ripgrep
@@ -24,7 +21,6 @@
             sort_sensitive = false;
           };
         };
-        shellWrapperName = "y";
       };
     };
     profile-desktop =

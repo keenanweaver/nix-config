@@ -92,7 +92,7 @@
     };
     llm-agents-nix = {
       url = "github:numtide/llm-agents.nix";
-      inputs.systems.follows = "systems";
+      inputs.systems.follows = "flake-utils/systems";
     };
     lsfg-vk-nix = {
       url = "github:Daaboulex/lsfg-vk-nix";
@@ -235,7 +235,7 @@
       url = "github:different-name/steam-config-nix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
+        systems.follows = "flake-utils/systems";
       };
     };
     streamcontroller-nix = {
@@ -246,7 +246,6 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    systems.url = "github:nix-systems/default-linux";
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -265,7 +264,7 @@
       inputs = {
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
+        systems.follows = "flake-utils/systems";
       };
     };
     wine-cachyos-nix = {

@@ -7,8 +7,6 @@ let
     enable = true;
     accent = accent-lower;
     autoEnable = true;
-    cache.enable = false;
-    flavor = flavor-lower;
   };
   cursor-theme = "catppuccin-${flavor-accent}-cursors";
   flavor-accent = "${flavor-lower}-${accent-lower}";
@@ -45,7 +43,6 @@ in
                 enable = true;
                 accent = accent-lower;
               };
-              lazygit.accent = accent-lower;
               mangohud.enable = false;
               micro.transparent = true;
               nvim.enable = false;
@@ -83,20 +80,17 @@ in
                 gtk-xft-hintstyle = "hintslight";
                 gtk-xft-rgba = "rgb";
               };
-              gtk4 = {
-                extraConfig = {
-                  gtk-decoration-layout = "icon:minimize,maximize,close";
-                  gtk-enable-animations = true;
-                  gtk-font-rendering = "manual";
-                  gtk-hint-font-metrics = true;
-                  gtk-primary-button-warps-slider = true;
-                  gtk-sound-theme-name = "ocean";
-                  gtk-xft-antialias = 1;
-                  gtk-xft-hinting = 1;
-                  gtk-xft-hintstyle = "hintslight";
-                  gtk-xft-rgba = "rgb";
-                };
-                theme = null;
+              gtk4.extraConfig = {
+                gtk-decoration-layout = "icon:minimize,maximize,close";
+                gtk-enable-animations = true;
+                gtk-font-rendering = "manual";
+                gtk-hint-font-metrics = true;
+                gtk-primary-button-warps-slider = true;
+                gtk-sound-theme-name = "ocean";
+                gtk-xft-antialias = 1;
+                gtk-xft-hinting = 1;
+                gtk-xft-hintstyle = "hintslight";
+                gtk-xft-rgba = "rgb";
               };
               theme.name = "Adwaita";
             };

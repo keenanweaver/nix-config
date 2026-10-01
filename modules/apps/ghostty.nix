@@ -6,8 +6,6 @@ in
   flake.modules.homeManager.profile-desktop = _: {
     programs.ghostty = {
       enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
       settings = {
         background-opacity = 0.7;
         confirm-close-surface = true;

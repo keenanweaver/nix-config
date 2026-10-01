@@ -39,7 +39,6 @@
             "net.retrodeck.retrodeck"
           ];
           slippi-launcher = {
-            enable = true;
             isoPath = "${config.home.homeDirectory}/Games/retrodeck/roms/gc/Super Smash Bros. Melee (USA) (En,Ja) (Rev 2).rvz";
             rootSlpPath = "${config.home.homeDirectory}/Games/slippi";
           };

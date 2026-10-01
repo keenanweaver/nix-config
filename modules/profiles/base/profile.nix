@@ -43,7 +43,6 @@
           ];
         };
         home-manager.sharedModules = [ self.modules.homeManager.profile-base ];
-        i18n.defaultLocale = "en_US.UTF-8";
         programs.iotop.enable = true;
         services = {
           earlyoom = {
@@ -51,7 +50,6 @@
             freeMemThreshold = 5;
           };
           journald.settings.Journal.SystemMaxUse = "50M";
-          logrotate.enable = true;
         };
         systemd.settings.Manager = {
           DefaultTimeoutStartSec = "15s";

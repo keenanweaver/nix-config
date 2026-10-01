@@ -5,10 +5,7 @@
     {
       boot = {
         consoleLogLevel = 0;
-        initrd = {
-          systemd.enable = true;
-          verbose = false;
-        };
+        initrd.verbose = false;
         kernelParams = [
           "loglevel=0"
           "quiet"

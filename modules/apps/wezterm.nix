@@ -6,8 +6,6 @@ in
   flake.modules.homeManager.profile-desktop = _: {
     programs.wezterm = {
       enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
       extraConfig = ''
         local wezterm = require 'wezterm'
         local config = wezterm.config_builder()

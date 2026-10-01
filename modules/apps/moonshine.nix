@@ -42,7 +42,6 @@
         ];
       });
       services.moonshine = {
-        inherit (config.users.users.${config.my.user}) uid;
         enable = true;
         settings =
           let

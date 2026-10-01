@@ -207,8 +207,11 @@ in
       system.extraDependencies =
         with self.lib.roms;
         self.lib.pinRoms pkgs [
+          banjo
           lego-island
+          mm
           oot
+          sf64
           sm64
         ];
       xdg.mime.defaultApplications = {

@@ -1315,6 +1315,7 @@
         "flake-parts": "flake-parts_4",
         "nixpkgs": "nixpkgs_2",
         "systems": [
+          "flake-utils",
           "systems"
         ],
         "treefmt-nix": "treefmt-nix"
@@ -2359,7 +2360,6 @@
         "sops-nix": "sops-nix_2",
         "steam-config-nix": "steam-config-nix",
         "streamcontroller-nix": "streamcontroller-nix",
-        "systems": "systems_5",
         "treefmt-nix": "treefmt-nix_4",
         "ucodenix": "ucodenix",
         "umu": "umu",
@@ -2733,6 +2733,7 @@
           "nixpkgs"
         ],
         "systems": [
+          "flake-utils",
           "systems"
         ]
       },
@@ -2835,21 +2836,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_5": {
-      "locked": {
-        "lastModified": 1689347949,
-        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
-        "owner": "nix-systems",
-        "repo": "default-linux",
-        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default-linux",
         "type": "github"
       }
     },
@@ -3077,6 +3063,7 @@
           "nixpkgs"
         ],
         "systems": [
+          "flake-utils",
           "systems"
         ],
         "treefmt-nix": "treefmt-nix_5"

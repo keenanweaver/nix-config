@@ -15,14 +15,10 @@
       };
       cachyos.settings = {
         enable = true;
-        zram.enable = lib.mkForce false;
+        zram.enable = false;
       };
       nixpkgs.overlays = [ inputs.wine-cachyos-nix.overlays.default ];
-      programs.wine-cachyos = {
-        enable = true;
-        binfmt.enable = false;
-        fontAliases.enable = true;
-      };
+      programs.wine-cachyos.enable = true;
     };
   flake-file.inputs = {
     cachyos-settings-nix = {

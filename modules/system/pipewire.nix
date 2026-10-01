@@ -46,29 +46,26 @@
         };
         jack.enable = true;
         pulse.enable = true;
-        wireplumber = {
-          enable = true;
-          extraConfig = {
-            # Static/crackling fix https://wiki.archlinux.org/title/PipeWire#Noticeable_audio_delay_or_audible_pop/crack_when_starting_playback
-            "51-disable-suspension" = {
-              "monitor.alsa.rules" = [
-                {
-                  actions.update-props."session.suspend-timeout-seconds" = 0;
-                  matches = [
-                    { "node.name" = "~alsa_output.*"; }
-                  ];
-                }
-              ];
-              "monitor.bluez.rules" = [
-                {
-                  actions.update-props."session.suspend-timeout-seconds" = 0;
-                  matches = [
-                    { "node.name" = "~bluez_input.*"; }
-                    { "node.name" = "~bluez_output.*"; }
-                  ];
-                }
-              ];
-            };
+        wireplumber.extraConfig = {
+          # Static/crackling fix https://wiki.archlinux.org/title/PipeWire#Noticeable_audio_delay_or_audible_pop/crack_when_starting_playback
+          "51-disable-suspension" = {
+            "monitor.alsa.rules" = [
+              {
+                actions.update-props."session.suspend-timeout-seconds" = 0;
+                matches = [
+                  { "node.name" = "~alsa_output.*"; }
+                ];
+              }
+            ];
+            "monitor.bluez.rules" = [
+              {
+                actions.update-props."session.suspend-timeout-seconds" = 0;
+                matches = [
+                  { "node.name" = "~bluez_input.*"; }
+                  { "node.name" = "~bluez_output.*"; }
+                ];
+              }
+            ];
           };
         };
       };

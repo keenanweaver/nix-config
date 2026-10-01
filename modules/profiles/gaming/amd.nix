@@ -32,7 +32,6 @@
           cpu.amd.updateMicrocode = true;
         };
         home-manager.sharedModules = [ self.modules.homeManager.amd ];
-        services.hardware.openrgb.motherboard = "amd";
       };
   };
 }
