@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.profile-workstation =
+  flake.modules.nixos.profile-desktop =
     {
       lib,
       config,

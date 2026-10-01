@@ -12,47 +12,32 @@
         {
           programs.steam.config =
             let
-              defaultOptions = {
-                preHook = ''
-                  ${lib.getExe lowlatency}
-                '';
-                wrappers = [
-                  (lib.getExe pkgs.local.game-wrapper)
-                ];
-              };
-              lowlatency = pkgs.writeShellApplication {
-                name = "lowlatency";
-                runtimeInputs = with pkgs; [
-                  scx-loader
-                ];
-                text = ''
-                  scxctl start --sched scx_cake --mode lowlatency
-                '';
-              };
+              compatTool = config.programs.steam.config.defaultCompatTool;
+              defaultOptions.wrappers = [ pkgs.local.game-wrapper ];
             in
             {
               apps =
                 lib.mapAttrs
                   (
-                    _: options:
+                    _: app:
                     lib.mkMerge [
-                      options
+                      app
                       defaultOptions
                     ]
                   )
                   {
                     "1144200" = {
-                      compatTool = config.programs.steam.config.defaultCompatTool;
+                      inherit compatTool;
                       env.PROTON_USE_OPTISCALER = true;
                       name = "Ready Or Not";
                     };
                     "1167630" = {
-                      compatTool = config.programs.steam.config.defaultCompatTool;
+                      inherit compatTool;
                       name = "Teardown";
                     };
                     "130".name = "Half-Life: Blue Shift";
                     "1364780" = {
-                      compatTool = config.programs.steam.config.defaultCompatTool;
+                      inherit compatTool;
                       name = "Street Fighter 6";
                     };
                     "1659040" = {
@@ -63,13 +48,11 @@
                       name = "Hitman: World of Assassination";
                     };
                     "225840" = {
-                      env = {
-                        PROTON_ENABLE_WAYLAND = lib.mkForce false; # Allows mouse to be OBS captured
-                      };
+                      env.PROTON_ENABLE_WAYLAND = false; # Allows mouse to be OBS captured
                       name = "Sven Co-op";
                     };
                     "2386720" = {
-                      compatTool = config.programs.steam.config.defaultCompatTool;
+                      inherit compatTool;
                       env = {
                         MANGOHUD_CONFIG = "read_cfg,fps_limit=0";
                         PROTON_DXVK_LOWLATENCY = true;
@@ -80,7 +63,7 @@
                       env = {
                         MANGOHUD_CONFIG = "read_cfg,fps_limit=0";
                         PROTON_DXVK_LOWLATENCY = true;
-                        #PROTON_ENABLE_WAYLAND = lib.mkForce false; # Workshop
+                        #PROTON_ENABLE_WAYLAND = false; # Workshop
                       };
                       name = "Reflex Arena";
                     };

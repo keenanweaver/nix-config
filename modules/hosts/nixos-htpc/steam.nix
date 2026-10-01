@@ -19,6 +19,8 @@
           programs.steam.config =
             let
               bare = pkg: { target = userBin pkg; };
+              compatTool = config.programs.steam.config.defaultCompatTool;
+              defaultOptions.wrappers = [ wrapper ];
               flatpak = id: {
                 args = [
                   "run"
@@ -43,15 +45,15 @@
               apps =
                 lib.mapAttrs
                   (
-                    _: opts:
+                    _: app:
                     lib.mkMerge [
-                      opts
-                      { wrappers = [ wrapper ]; }
+                      app
+                      defaultOptions
                     ]
                   )
                   {
                     "1364780" = {
-                      compatTool = config.programs.steam.config.defaultCompatTool;
+                      inherit compatTool;
                       name = "Street Fighter 6";
                     };
                   };
@@ -81,6 +83,7 @@
                 Slippi = wrapped inputs.slippi-nix.packages.${pkgs.stdenv.hostPlatform.system}.default;
                 "Sonic 3: Angel Island Revisited" = wrapped pkgs.local.sonic3air;
                 "Sonic Robo Blast 2" = wrapped pkgs.srb2;
+                Starship = wrapped pkgs.starship-sf64;
                 VVVVVV = wrapped pkgs.vvvvvv;
                 "Wipeout Rewrite" = wrapped pkgs.wipeout-rewrite;
                 YARG = wrapped pkgs.yarg;

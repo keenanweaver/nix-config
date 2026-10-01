@@ -28,6 +28,7 @@
             sdlpop
             #shadps4-qtlauncher
             sm64ex
+            starship-sf64
             vvvvvv
             wipeout-rewrite
             yarg
@@ -55,6 +56,7 @@
           banjo
           mm
           oot
+          sf64
           sm64
         ];
     };

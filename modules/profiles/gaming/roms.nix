@@ -35,6 +35,11 @@
         hash = "sha256-SazTiF8TsHMBGbePuXCRHMirphT+ODNoAVwhVlmDNo0=";
         name = "oot.us.rev2.z64";
       };
+      sf64 = {
+        game = "Starfox 64 (US rev1), for starship-sf64";
+        hash = "sha256-OFvPGQHtEvsRUvPCJ9GWjMVK5B6FZtpmaV33GvQKVz8=";
+        name = "starfox64.us.rev1.z64";
+      };
       sm64 = {
         game = "Super Mario 64 (US), for sm64ex";
         hash = "sha256-F84Hc0PGEz+Mny1tbZpKtiyM0qpXxArqH0kLTIuyHZE=";

@@ -28,24 +28,21 @@
             type = lib.types.bool;
           };
         };
-      steam-config =
-        { lib, ... }:
-        {
-          imports = [
-            inputs.steam-config-nix.homeModules.default
-          ];
-          programs.steam.config = {
-            enable = true;
-            apps."993090" = {
-              betaBranch = "lsfg-vk";
-              name = "Lossless Scaling";
-            };
-            defaultCompatTool = lib.mkForce "Proton-CachyOS Latest";
-            displayRatesAsBits = false;
-            notifications = true;
-            onSteamRunning = "close";
+      steam-config = {
+        imports = [
+          inputs.steam-config-nix.homeModules.default
+        ];
+        programs.steam.config = {
+          enable = true;
+          apps."993090" = {
+            betaBranch = "lsfg-vk";
+            name = "Lossless Scaling";
           };
+          defaultCompatTool = "Proton-CachyOS Latest";
+          displayRatesAsBits = false;
+          onSteamRunning = "close";
         };
+      };
     };
     nixos.profile-gaming =
       { pkgs, ... }:

@@ -459,7 +459,7 @@
               }
 
               #zen-browser-background {
-                --zen-main-browser-background: #181825 !important;
+                --zen-main-browser-background: #1e1e2e !important;
               }
             '';
           };
