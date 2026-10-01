@@ -36,24 +36,29 @@
           "/var/lib".enable = false;
           "/var/log".enable = false;
         };
-        kernel-modules.disable = {
-          auth_rpcgss = false;
-          cdrom-related = false;
-          grace = false;
-          intelme-related = true;
-          joystick-drivers = false;
-          lockd = false;
-          nfs = false;
-          nfs_acl = false;
-          nfs_layout_flexfiles = false;
-          nfs_layout_nfsv41_files = false;
-          nfs_localio = false;
-          nfsd = false;
-          nfsv3 = false;
-          nfsv4 = false;
-          rpcsec_gss_krb5 = false;
-          sunrpc = false;
-          udf = false; # PS3 games
+        kernel-modules = {
+          enable = true;
+          disable = {
+            algif-related = false;
+            auth_rpcgss = false;
+            cdrom-related = false;
+            grace = false;
+            intelme-related = true;
+            joystick-drivers = false;
+            lockd = false;
+            nfs = false;
+            nfs_acl = false;
+            nfs_layout_flexfiles = false;
+            nfs_layout_nfsv41_files = false;
+            nfs_localio = false;
+            nfsd = false;
+            nfsv3 = false;
+            nfsv4 = false;
+            rpcsec_gss_krb5 = false;
+            sunrpc = false;
+            thunderbolt = false;
+            udf = false; # PS3 games
+          };
         };
         preset = [
           "compatibility"
