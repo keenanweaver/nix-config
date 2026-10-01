@@ -19,14 +19,14 @@
           home.packages = with pkgs; [
             #banjorecomp
             clonehero
-            #dusklight
+            dusklight
             jazz2
             local.sonic3air
             moon-child-fe
             openomf
             #pegasus-frontend
             sdlpop
-            #shadps4-qtlauncher
+            shadps4-qtlauncher
             sm64ex
             starship-sf64
             vvvvvv

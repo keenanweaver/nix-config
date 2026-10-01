@@ -1,3 +1,4 @@
+{ self, ... }:
 {
   flake.modules.nixos.profile-desktop =
     { pkgs, ... }:
@@ -14,7 +15,7 @@
           allowBitmaps = false;
           defaultFonts = {
             monospace = [
-              "Maple Mono Normal NF"
+              self.lib.fonts.monospace.family
               "Liberation Mono"
             ];
             sansSerif = [

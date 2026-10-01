@@ -6,7 +6,7 @@
 
       profile-workstation
       profile-kde
-      profile-niri
+      #profile-niri
 
       secure-boot
     ];

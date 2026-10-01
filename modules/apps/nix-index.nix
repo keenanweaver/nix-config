@@ -2,11 +2,9 @@
 {
   flake.modules = {
     homeManager.profile-base.programs.nix-index.enable = true;
-    nixos.profile-base = { ... }: {
-      imports = [
-        inputs.nix-index-database.nixosModules.default
-      ];
-    };
+    nixos.profile-base.imports = [
+      inputs.nix-index-database.nixosModules.default
+    ];
   };
   flake-file.inputs.nix-index-database = {
     inputs.nixpkgs.follows = "nixpkgs";

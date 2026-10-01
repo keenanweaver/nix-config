@@ -71,7 +71,7 @@ in
             };
             mumble = {
               HostName = "game-central.party";
-              Port = 6777;
+              Port = sshPort;
             };
             opnsense.HostName = "opnsense";
             "tangled.org" = {
@@ -80,12 +80,12 @@ in
             };
             unifi-CKG2 = {
               HostName = "unifi";
-              Port = 6777;
+              Port = sshPort;
               User = "keenanweaver";
             };
             unraid = {
               HostName = "crusader";
-              Port = 6777;
+              Port = sshPort;
               User = "root";
             };
           }

@@ -1,4 +1,7 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
+let
+  mono = self.lib.fonts.monospace;
+in
 {
   flake.modules = {
     homeManager.profile-workstation =
@@ -52,7 +55,7 @@
                 "diffEditor.ignoreTrimWhitespace" = false;
                 "editor.bracketPairColorization.enabled" = true;
                 "editor.cursorBlinking" = "smooth";
-                "editor.fontFamily" = "'Maple Mono Normal NF', 'monospace', monospace";
+                "editor.fontFamily" = "'${mono.family}', 'monospace', monospace";
                 "editor.fontLigatures" = true;
                 "editor.fontSize" = 18;
                 "editor.formatOnSave" = false;
@@ -90,8 +93,8 @@
                 "powershell.powerShellAdditionalExePaths".exePath = lib.getExe pkgs.powershell;
                 "security.workspace.trust.enabled" = false;
                 "telemetry.telemetryLevel" = "off";
-                "terminal.integrated.fontFamily" = "Maple Mono Normal NF";
-                "terminal.integrated.fontSize" = 14;
+                "terminal.integrated.fontFamily" = mono.family;
+                "terminal.integrated.fontSize" = mono.size;
                 "terminal.integrated.fontWeight" = "normal";
                 "terminal.integrated.minimumContrastRatio" = 1;
                 "terminal.integrated.scrollback" = 10000;
@@ -106,9 +109,7 @@
           };
         };
       };
-    nixos.profile-workstation = _: {
-      nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
-    };
+    nixos.profile-workstation.nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
   };
   flake-file.inputs.nix-vscode-extensions = {
     inputs.nixpkgs.follows = "nixpkgs";

@@ -47,10 +47,7 @@
           enable32Bit = true;
         };
         home-manager.sharedModules = [ self.modules.homeManager.profile-desktop ];
-        my.permittedInsecurePackages = [
-          "electron-40.10.5" # ?
-          "olm-3.2.16" # Neochat
-        ];
+        my.permittedInsecurePackages = [ "olm-3.2.16" ]; # Neochat
         nix.settings = {
           extra-substituters = [
             "https://nix-cache.tokidoki.dev/tokidoki"
