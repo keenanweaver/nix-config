@@ -89,6 +89,7 @@ If you are not already, please consider contributing to the Nix ecosystem in any
 Claude LLM was used for creating the following. Everything else is made by me. However, I also use it for rubberducking.
 
 - [`doom-wad-extractor` script](modules/profiles/gaming/games/doom.nix)
+- [fastfetch module](modules/apps/fastfetch.nix)
 - [`lgogdownloader` module](modules/hosts/remorse/lgogdownloader.nix)
 
 ## License
