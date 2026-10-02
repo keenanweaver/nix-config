@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  osConfig,
   ...
 }:
 let
@@ -20,7 +19,7 @@ in
       comment = "Specialized emulator for playing many of your original DOS, Windows, and FM-Towns LucasArts (and LucasArts-adjacent) games";
       exec = wrap + execBin;
       icon = "${config.home.homeDirectory}/Games/Games2/dreamm/dreamm.png";
-      name = "DREAMM [${osConfig.my.user}]";
+      name = "DREAMM [${config.home.username}]";
       startupNotify = true;
       terminal = false;
     };
@@ -33,7 +32,7 @@ in
     comment = "Interpreter for numerous adventure games and RPGs";
     exec = wrap + (lib.getExe pkgs.scummvm);
     icon = "org.scummvm.scummvm";
-    name = "ScummVM [${osConfig.my.user}]";
+    name = "ScummVM [${config.home.username}]";
     settings.StartupWMClass = "scummvm";
     startupNotify = false;
     terminal = false;
@@ -51,7 +50,7 @@ in
         "Game"
       ];
       exec = wrap + (lib.getExe pkgs.local.rsdkv3);
-      name = "Sonic CD [${osConfig.my.user}]";
+      name = "Sonic CD [${config.home.username}]";
       settings.Path = "${config.home.homeDirectory}/Games/sonic/sonic-cd";
       startupNotify = false;
       terminal = false;

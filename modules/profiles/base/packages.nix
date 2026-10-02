@@ -7,26 +7,21 @@ in
     homeManager.profile-base =
       { config, pkgs, ... }:
       {
-        home = {
-          file.current-packages = {
-            target = "${config.xdg.configHome}/packages-hm";
-            text = packageListText pkgs config.home.packages;
-          };
-          packages = with pkgs; [
-            (_7zz.override { enableUnfree = true; })
-            aspell
-            aspellDicts.en
-            killall
-            kmon
-            repgrep
-            unrar
-            unzip
-            usbutils
-            viu
-            wget
-            zip
-          ];
-        };
+        home.packages = with pkgs; [
+          (_7zz.override { enableUnfree = true; })
+          aspell
+          aspellDicts.en
+          killall
+          kmon
+          repgrep
+          unrar
+          unzip
+          usbutils
+          viu
+          wget
+          zip
+        ];
+        xdg.configFile.packages-hm.text = packageListText pkgs config.home.packages;
       };
     nixos.profile-base =
       { config, pkgs, ... }:

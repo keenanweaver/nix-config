@@ -1,26 +1,21 @@
 {
   flake.modules = {
     homeManager.profile-gaming =
-      { config, pkgs, ... }:
+      { pkgs, ... }:
       {
-        home = {
-          file.scb-config = {
-            target = "${config.xdg.configHome}/scopebuddy/scb.conf";
-            text = ''
-              SCB_AUTO_RES=1
-              SCB_AUTO_HDR=1
-              SCB_AUTO_VRR=1
-              SCB_GAMESCOPE_ARGS="--mangoapp -f --force-grab-cursor --hdr-enabled"
-            '';
-          };
-          packages = with pkgs; [
-            scopebuddy
-          ];
-        };
+        home.packages = with pkgs; [
+          scopebuddy
+        ];
         services.flatpak.packages = [
           "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/26.08"
           "org.freedesktop.Platform.VulkanLayer.gamescope/x86_64/25.08"
         ];
+        xdg.configFile."scopebuddy/scb.conf".text = ''
+          SCB_AUTO_RES=1
+          SCB_AUTO_HDR=1
+          SCB_AUTO_VRR=1
+          SCB_GAMESCOPE_ARGS="--mangoapp -f --force-grab-cursor --hdr-enabled"
+        '';
       };
     nixos.profile-gaming =
       { pkgs, ... }:

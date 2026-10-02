@@ -7,31 +7,22 @@
       ...
     }:
     let
-      soundFont = "${pkgs.soundfont-generaluser-gs}/share/soundfonts/GeneralUser-GS.sf2";
+      inherit (config.services.fluidsynth) soundFont;
     in
     {
       home = {
-        file.midi-soundfonts-default = {
-          source = soundFont;
-          target = "${config.home.homeDirectory}/Music/soundfonts/default.sf2";
-        };
+        file."Music/soundfonts/default.sf2".source = soundFont;
         sessionVariables.SDL_SOUNDFONTS = soundFont;
       };
       services.fluidsynth = {
-        inherit soundFont;
         enable = true;
+        soundFont = "${pkgs.soundfont-generaluser-gs}/share/soundfonts/GeneralUser-GS.sf2";
         soundService = "pipewire-pulse";
       };
-      systemd.user.services.fluidsynth.Service = {
-        Environment = [
-          "PIPEWIRE_NODE=MIDI"
-          "PULSE_SINK=MIDI"
-        ];
-        ExecStart =
-          let
-            cfg = config.services.fluidsynth;
-          in
-          lib.mkForce "${lib.getExe cfg.package} -a pulseaudio -i ${lib.concatStringsSep " " cfg.extraOptions} ${cfg.soundFont}";
+      systemd.user.services.fluidsynth = {
+        Install.WantedBy = lib.mkForce [ "graphical-session.target" ];
+        Service.Environment = [ "PULSE_SINK=MIDI" ];
+        Unit.After = [ "graphical-session.target" ];
       };
     };
 }

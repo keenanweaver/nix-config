@@ -13,14 +13,13 @@
           imports = with self.modules.homeManager; [
             steam-config
           ];
-          config.home = {
-            file.steam-beta = lib.mkIf config.my.steam.publicBeta {
-              target = "${config.xdg.dataHome}/Steam/package/beta";
-              text = "publicbeta";
-            };
-            packages = with pkgs; [
+          config = {
+            home.packages = with pkgs; [
               steamcmd
             ];
+            xdg.dataFile."Steam/package/beta" = lib.mkIf config.my.steam.publicBeta {
+              text = "publicbeta";
+            };
           };
           options.my.steam.publicBeta = lib.mkOption {
             default = true;

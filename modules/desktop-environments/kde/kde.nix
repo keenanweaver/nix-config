@@ -4,38 +4,25 @@
     modules = {
       homeManager = {
         kde =
+          { osConfig, ... }:
           {
-            config,
-            osConfig,
-            ...
-          }:
-          {
-            home = {
-              file = {
-                dolphinui = {
-                  target = "${config.xdg.dataHome}/kxmlgui5/dolphin/dolphinui.rc";
-                  text = builtins.readFile ../../../assets/dolphinui.rc;
-                };
-                kinetic-effects = {
+            home.sessionVariables = {
+              GDK_BACKEND = "wayland,x11";
+              QT_QPA_PLATFORM = "wayland;xcb";
+            };
+            xdg = {
+              configFile.purposerc.text = ''
+                [plugins]
+                disabled=emailplugin,imgurplugin,nextcloudplugin,pastebinplugin,purpose_gdrive,telegramplugin,youtubeplugin
+              '';
+              dataFile = {
+                "kwin/effects" = {
                   recursive = true;
                   source = "${inputs.kwin-effects-kinetic}";
-                  target = "${config.xdg.dataHome}/kwin/effects";
                 };
-                purposerc = {
-                  target = "${config.xdg.configHome}/purposerc";
-                  text = ''
-                    [plugins]
-                    disabled=emailplugin,imgurplugin,nextcloudplugin,pastebinplugin,purpose_gdrive,telegramplugin,youtubeplugin
-                  '';
-                };
-                user-places = {
-                  target = "${config.xdg.dataHome}/user-places.xbel";
-                  text = builtins.readFile ../../../assets/hosts/${osConfig.networking.hostName}/user-places.xbel;
-                };
-              };
-              sessionVariables = {
-                GDK_BACKEND = "wayland,x11";
-                QT_QPA_PLATFORM = "wayland;xcb";
+                "kxmlgui5/dolphin/dolphinui.rc".text = builtins.readFile ../../../assets/dolphinui.rc;
+                "user-places.xbel".text =
+                  builtins.readFile ../../../assets/hosts/${osConfig.networking.hostName}/user-places.xbel;
               };
             };
           };

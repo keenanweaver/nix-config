@@ -56,7 +56,7 @@
       my.permittedInsecurePackages = [
         "pnpm-9.15.9" # Decky Loader
       ];
-      preservation.preserveAt."/persist".directories = [ "/home/decky-loader" ];
+      preservation.preserveAt."/persist".directories = [ config.jovian.decky-loader.stateDir ];
       services = {
         displayManager.plasma-login-manager.enable = false; # Conflicts with Jovian
         pulseaudio.enable = lib.mkForce false;

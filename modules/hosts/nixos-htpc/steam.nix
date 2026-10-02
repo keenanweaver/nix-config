@@ -11,7 +11,6 @@
       home-manager.users.${config.my.user} =
         {
           config,
-          osConfig,
           ...
         }:
         {
@@ -34,12 +33,12 @@
                 target = sysBin pkg;
                 wrappers = [ wrapper ];
               };
-              userBin = pkg: "/etc/profiles/per-user/${osConfig.my.user}/bin/${baseNameOf (lib.getExe pkg)}";
+              userBin = pkg: "/etc/profiles/per-user/${config.home.username}/bin/${baseNameOf (lib.getExe pkg)}";
               wrapped = pkg: {
                 target = userBin pkg;
                 wrappers = [ wrapper ];
               };
-              wrapper = "/etc/profiles/per-user/${osConfig.my.user}/bin/${baseNameOf (lib.getExe pkgs.local.game-wrapper)}";
+              wrapper = "/etc/profiles/per-user/${config.home.username}/bin/${baseNameOf (lib.getExe pkgs.local.game-wrapper)}";
             in
             {
               apps =

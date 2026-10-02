@@ -33,7 +33,6 @@
           lib,
           config,
           pkgs,
-          osConfig,
           ...
         }:
         {
@@ -42,7 +41,6 @@
             inherit
               config
               lib
-              osConfig
               pkgs
               ;
           };

@@ -95,65 +95,9 @@ in
               theme.name = "Adwaita";
             };
             home = {
-              file = {
-                catppuccin-gtk = {
-                  source = "${pkgs.kdePackages.breeze-gtk}/share/themes/${GTK-THEME}";
-                  target = "${config.xdg.dataHome}/themes/${GTK-THEME}";
-                };
-                catppuccin-krita = {
-                  source = "${
-                    pkgs.catppuccin-kde.override {
-                      accents = [ accent-lower ];
-                      flavour = [ flavor-lower ];
-                    }
-                  }/share/color-schemes/Catppuccin${flavor-upper}${accent-upper}.colors";
-                  target = "${config.xdg.dataHome}/krita/color-schemes/Catppuccin${flavor-upper}${accent-upper}.colors";
-                };
-                catppuccin-obs-flatpak = {
-                  recursive = true;
-                  source = "${inputs.catppuccin-obs}/themes";
-                  target = ".var/app/com.obsproject.Studio/config/obs-studio/themes";
-                };
-                catppuccin-yazi = {
-                  target = "${config.xdg.configHome}/yazi/theme.toml";
-                  text = lib.replaceStrings [ ''overall = { bg = "#1e1e2e" }'' ] [ ''overall = { bg = "reset" }'' ] (
-                    builtins.readFile "${sources.yazi}/${flavor-lower}/catppuccin-${flavor-accent}.toml"
-                  );
-                };
-                catppuccin-yazi-tmtheme = {
-                  source = "${sources.bat}/Catppuccin ${flavor-upper}.tmTheme";
-                  target = "${config.xdg.configHome}/yazi/Catppuccin-${flavor-lower}.tmTheme";
-                };
-                # Flatpak theming issue workarounds
-                flatpak-font = {
-                  source = "${pkgs.inter}/share/fonts/opentype";
-                  target = "${config.xdg.dataHome}/fonts/inter";
-                };
-                gtk3-config = {
-                  recursive = true;
-                  source = ../../assets/theming/gtk-3.0;
-                  target = "${config.xdg.configHome}/gtk-3.0";
-                };
-                gtk4-config-gtk = {
-                  target = "${config.xdg.configHome}/gtk-4.0/gtk.css";
-                  text = builtins.readFile ../../assets/theming/gtk-4.0/gtk.css;
-                };
-                kvantum-config = {
-                  recursive = true;
-                  source = ../../assets/theming/Kvantum;
-                  target = "${config.xdg.configHome}/Kvantum";
-                };
-                powershell-catppuccin-module = {
-                  source = inputs.catppuccin-powershell;
-                  target = "${config.xdg.dataHome}/powershell/Modules/Catppuccin";
-                };
-                powershell-profile = {
-                  target = "${config.xdg.configHome}/powershell/Microsoft.PowerShell_profile.ps1";
-                  text = ''
-                    Import-Module Catppuccin
-                    $Flavor = $Catppuccin['${flavor-upper}']
-                  '';
-                };
+              file.".var/app/com.obsproject.Studio/config/obs-studio/themes" = {
+                recursive = true;
+                source = "${inputs.catppuccin-obs}/themes";
               };
               packages = with pkgs; [
                 ## GNOME
@@ -196,42 +140,48 @@ in
                 sidePanelWidth = 0.3333;
               };
             };
+            xdg = {
+              configFile = {
+                Kvantum = {
+                  recursive = true;
+                  source = ../../assets/theming/Kvantum;
+                };
+                "gtk-3.0" = {
+                  recursive = true;
+                  source = ../../assets/theming/gtk-3.0;
+                };
+                "gtk-4.0/gtk.css".text = builtins.readFile ../../assets/theming/gtk-4.0/gtk.css;
+                "powershell/Microsoft.PowerShell_profile.ps1".text = ''
+                  Import-Module Catppuccin
+                  $Flavor = $Catppuccin['${flavor-upper}']
+                '';
+                "yazi/Catppuccin-${flavor-lower}.tmTheme".source =
+                  "${sources.bat}/Catppuccin ${flavor-upper}.tmTheme";
+                "yazi/theme.toml".text =
+                  lib.replaceStrings [ ''overall = { bg = "#1e1e2e" }'' ] [ ''overall = { bg = "reset" }'' ]
+                    (builtins.readFile "${sources.yazi}/${flavor-lower}/catppuccin-${flavor-accent}.toml");
+              };
+              dataFile = {
+                # Flatpak theming issue workarounds
+                "fonts/inter".source = "${pkgs.inter}/share/fonts/opentype";
+                "krita/color-schemes/Catppuccin${flavor-upper}${accent-upper}.colors".source = "${
+                  pkgs.catppuccin-kde.override {
+                    accents = [ accent-lower ];
+                    flavour = [ flavor-lower ];
+                  }
+                }/share/color-schemes/Catppuccin${flavor-upper}${accent-upper}.colors";
+                "powershell/Modules/Catppuccin".source = inputs.catppuccin-powershell;
+                "themes/${GTK-THEME}".source = "${pkgs.kdePackages.breeze-gtk}/share/themes/${GTK-THEME}";
+              };
+            };
           };
         plasma-manager =
           {
             lib,
-            config,
             osConfig,
             ...
           }:
           {
-            home.file = {
-              catppuccin-konsole = {
-                source = "${inputs.catppuccin-konsole}/themes/catppuccin-${flavor-lower}.colorscheme";
-                target = "${config.xdg.dataHome}/konsole/catppuccin-${flavor-lower}.colorscheme";
-              };
-              catppuccin-konsole-transparent = {
-                target = "${config.xdg.dataHome}/konsole/catppuccin-${flavor-lower}-transparent.colorscheme";
-                text = builtins.readFile ../../assets/theming/catppuccin-${flavor-lower}-transparent.colorscheme;
-              };
-              klassy-config = {
-                target = "${config.xdg.configHome}/klassy/klassyrc";
-                text = ''
-                  [Global]
-                  LookAndFeelSet=Catppuccin-${flavor-upper}-${accent-upper}
-
-                  [Style]
-                  MenuOpacity=70
-
-                  [Windeco]
-                  AnimationsSpeedRelativeSystem=8
-
-                  [SystemIconGeneration]
-                  KlassyDarkIconThemeInherits=Papirus-Dark
-                  KlassyIconThemeInherits=Papirus
-                '';
-              };
-            };
             programs = {
               kate.editor.font = {
                 family = mono-font;
@@ -307,6 +257,28 @@ in
                 };
               };
             };
+            xdg = {
+              configFile."klassy/klassyrc".text = ''
+                [Global]
+                LookAndFeelSet=Catppuccin-${flavor-upper}-${accent-upper}
+
+                [Style]
+                MenuOpacity=70
+
+                [Windeco]
+                AnimationsSpeedRelativeSystem=8
+
+                [SystemIconGeneration]
+                KlassyDarkIconThemeInherits=Papirus-Dark
+                KlassyIconThemeInherits=Papirus
+              '';
+              dataFile = {
+                "konsole/catppuccin-${flavor-lower}-transparent.colorscheme".text =
+                  builtins.readFile ../../assets/theming/catppuccin-${flavor-lower}-transparent.colorscheme;
+                "konsole/catppuccin-${flavor-lower}.colorscheme".source =
+                  "${inputs.catppuccin-konsole}/themes/catppuccin-${flavor-lower}.colorscheme";
+              };
+            };
           };
         profile-desktop.programs.lazyvim.plugins.colorscheme = ''
           return {
@@ -333,10 +305,8 @@ in
           }
         '';
         profile-gaming = {
-          home.file.catppuccin-heroic = {
-            source = "${inputs.catppuccin-heroic}/themes/catppuccin-${flavor-accent}.css";
-            target = "Games/Heroic/catppuccin-${flavor-accent}.css";
-          };
+          home.file."Games/Heroic/catppuccin-${flavor-accent}.css".source =
+            "${inputs.catppuccin-heroic}/themes/catppuccin-${flavor-accent}.css";
           services.flatpak.overrides."com.fightcade.Fightcade".Environment.GTK_THEME = GTK-THEME;
         };
       };

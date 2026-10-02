@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  osConfig,
   ...
 }:
 let
@@ -23,7 +22,7 @@ in
       comment = "Play RPG Maker games";
       exec = wrap + execBin + execArgs;
       icon = "easyrpg-player";
-      name = "EasyRPG Player [${osConfig.my.user}]";
+      name = "EasyRPG Player [${config.home.username}]";
       settings.StartupWMClass = "EasyRPG Player";
       startupNotify = true;
       terminal = false;
@@ -40,7 +39,7 @@ in
       comment = "Launch GOG Galaxy using nero-umu";
       exec = (lib.getExe pkgs.nero-umu) + " --prefix \"GOG Galaxy\" --shortcut \"GOG Galaxy\"";
       icon = "${icon}";
-      name = "GOG Galaxy [${osConfig.my.user}]";
+      name = "GOG Galaxy [${config.home.username}]";
       settings.StartupWMClass = "GOG Galaxy";
       startupNotify = true;
     };
@@ -54,7 +53,7 @@ in
       "application/x-msi"
       "application/x-bat"
     ];
-    name = "Nero-UMU [${osConfig.my.user}]";
+    name = "Nero-UMU [${config.home.username}]";
     startupNotify = true;
     terminal = false;
   };

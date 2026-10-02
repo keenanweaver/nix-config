@@ -10,6 +10,7 @@
             Vagabond_USER = {
               connection = {
                 autoconnect = true;
+                autoconnect-priority = 10;
                 id = "Vagabond_USER";
                 type = "wifi";
               };
@@ -29,6 +30,7 @@
             Weaver = {
               connection = {
                 autoconnect = true;
+                autoconnect-priority = 10;
                 id = "Weaver";
                 type = "wifi";
               };

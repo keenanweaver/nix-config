@@ -22,7 +22,6 @@
           inherit
             config
             lib
-            osConfig
             pkgs
             ;
         };

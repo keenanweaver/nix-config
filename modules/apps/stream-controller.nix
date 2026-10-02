@@ -10,7 +10,7 @@
         imports = [ inputs.streamcontroller-nix.homeModules.default ];
         assertions = [
           {
-            assertion = config.home.file ? toggle-hdr && config.home.file ? toggle-vrr;
+            assertion = config.home.file ? "Games/toggle-hdr.sh" && config.home.file ? "Games/toggle-vrr.sh";
             message = "stream-controller binds ~/Games/toggle-{hdr,vrr}.sh, which profile-gaming provides on KDE hosts.";
           }
         ];

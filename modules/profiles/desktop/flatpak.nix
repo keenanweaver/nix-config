@@ -4,7 +4,6 @@
     homeManager.profile-desktop =
       {
         config,
-        osConfig,
         ...
       }:
       {
@@ -18,7 +17,7 @@
             Context.filesystems = [
               "/nix/store:ro"
               "/run/current-system/sw/bin:ro"
-              "/run/media/${osConfig.my.user}:ro"
+              "/run/media/${config.home.username}:ro"
               # Theming
               "${config.home.homeDirectory}/.icons:ro"
               "${config.home.homeDirectory}/.themes:ro"
