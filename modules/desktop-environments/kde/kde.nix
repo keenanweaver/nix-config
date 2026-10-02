@@ -536,7 +536,6 @@
           programs = {
             fuse.userAllowOther = true;
             kde-pim.enable = true;
-            kdeconnect.enable = true;
             partition-manager.enable = true;
           };
           services = {

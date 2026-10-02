@@ -44,7 +44,6 @@
           "gpu"
           "pciDev"
           "primaryMonitor"
-          "ztAdapter"
         ];
         boot = {
           kernel.sysctl = {

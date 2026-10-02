@@ -13,6 +13,7 @@
         amd
         coolercontrol
         secure-boot
+        zerotier
 
         flatpak-games
         moonshine

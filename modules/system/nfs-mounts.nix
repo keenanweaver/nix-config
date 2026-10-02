@@ -25,6 +25,7 @@ in
                     "noauto"
                     "noatime"
                     "nofail"
+                    "nfsvers=4.2"
                     "x-systemd.automount"
                     "x-systemd.idle-timeout=60"
                     "x-systemd.mount-timeout=10s"
@@ -42,7 +43,7 @@ in
                 "Projects"
               ]
           );
-          services.rpcbind.enable = true;
+          services.rpcbind.enable = lib.mkForce false;
           systemd.services.force-umount-nfs = {
             wantedBy = [ "multi-user.target" ];
             after = [ "network.target" ];

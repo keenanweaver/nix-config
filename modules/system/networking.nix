@@ -23,12 +23,15 @@
           enable = true;
           nssmdns4 = true;
           publish = {
-            enable = true;
+            enable = lib.mkDefault true;
             addresses = true;
             workstation = true;
           };
         };
-        resolved.enable = true;
+        resolved = {
+          enable = true;
+          settings.Resolve.LLMNR = "false";
+        };
       };
       users.users.${config.my.user}.extraGroups = [
         "networkmanager"

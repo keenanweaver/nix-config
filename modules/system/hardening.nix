@@ -65,6 +65,7 @@
           "performance"
         ];
         settings = {
+          kernel.iommu-passthrough = false;
           misc.nix-wheel = true;
           network.random-mac = false;
         };

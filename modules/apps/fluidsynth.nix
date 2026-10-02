@@ -1,6 +1,11 @@
 {
   flake.modules.homeManager.profile-gaming =
-    { config, pkgs, ... }:
+    {
+      lib,
+      config,
+      pkgs,
+      ...
+    }:
     let
       soundFont = "${pkgs.soundfont-generaluser-gs}/share/soundfonts/GeneralUser-GS.sf2";
     in
@@ -17,9 +22,16 @@
         enable = true;
         soundService = "pipewire-pulse";
       };
-      systemd.user.services.fluidsynth.Service.Environment = [
-        "PIPEWIRE_NODE=MIDI"
-        "PULSE_SINK=MIDI"
-      ];
+      systemd.user.services.fluidsynth.Service = {
+        Environment = [
+          "PIPEWIRE_NODE=MIDI"
+          "PULSE_SINK=MIDI"
+        ];
+        ExecStart =
+          let
+            cfg = config.services.fluidsynth;
+          in
+          lib.mkForce "${lib.getExe cfg.package} -a pulseaudio -i ${lib.concatStringsSep " " cfg.extraOptions} ${cfg.soundFont}";
+      };
     };
 }

@@ -1,6 +1,7 @@
+{ self, ... }:
 {
   # https://github.com/gomaaz/Zerotier_Gaming_Fix
-  flake.modules.nixos.profile-gaming =
+  flake.modules.nixos.zerotier =
     { lib, config, ... }:
     let
       inherit (config.host) ztAdapter ztConcurrency;
@@ -9,8 +10,14 @@
       ];
     in
     {
+      assertions = self.lib.mkFactAssertions config [ "ztAdapter" ];
       networking = {
-        firewall.trustedInterfaces = [ ztAdapter ];
+        firewall.interfaces.${ztAdapter}.allowedUDPPortRanges = [
+          {
+            from = 1;
+            to = 65535;
+          }
+        ];
         interfaces.${ztAdapter}.ipv4.routes = [
           {
             address = "255.255.255.255";

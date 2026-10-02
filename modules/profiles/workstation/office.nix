@@ -31,7 +31,6 @@
       services.printing = {
         enable = true;
         drivers = with pkgs; [ brlaser ];
-        openFirewall = true;
       };
       users.users.${config.my.user}.extraGroups = [
         "lp"

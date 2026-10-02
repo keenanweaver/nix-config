@@ -5,7 +5,5 @@
     gpu = "9070XT";
     pciDev = "0000:08:00.0";
     primaryMonitor = "HDMI-1";
-    ztAdapter = "zt6ntckupu";
-    ztConcurrency = 4;
   };
 }

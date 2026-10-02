@@ -16,6 +16,7 @@
               ipv4.method = "auto";
               ipv6.method = "auto";
               wifi = {
+                cloned-mac-address = "permanent";
                 mode = "infrastructure";
                 ssid = "Vagabond_USER";
               };
@@ -34,6 +35,7 @@
               ipv4.method = "auto";
               ipv6.method = "auto";
               wifi = {
+                cloned-mac-address = "permanent";
                 mode = "infrastructure";
                 ssid = "Weaver";
               };
@@ -45,7 +47,9 @@
             };
           };
         };
+        wifi.macAddress = "stable";
       };
+      services.avahi.publish.enable = false;
       sops = {
         secrets = {
           "wireless/Vagabond_USER" = { };

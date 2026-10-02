@@ -19,7 +19,7 @@
           extraUpFlags = [ "--accept-routes=false" ];
           openFirewall = true;
           permitCertUid = config.my.user;
-          useRoutingFeatures = "both";
+          useRoutingFeatures = "client";
         };
       };
   };
