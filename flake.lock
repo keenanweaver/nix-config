@@ -1236,11 +1236,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1791068474,
-        "narHash": "sha256-vlRpY774nUut448pG5PEfbaXeqXcut9hkLqRRDLptYg=",
+        "lastModified": 1791122709,
+        "narHash": "sha256-/fhwYVtVwVraGdTzmvUUmbmO/PeS6zyrOAGVe/XaKt8=",
         "owner": "ProverbialPennance",
         "repo": "just-one-more-repo",
-        "rev": "d4019c72fb65fc8249576057b78b02cea0d0a7f5",
+        "rev": "ca898e8f50edb66f8bed1a474c406d2a038aa6e4",
         "type": "github"
       },
       "original": {
