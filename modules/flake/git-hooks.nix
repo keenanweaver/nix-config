@@ -106,9 +106,6 @@
         };
       };
       treefmt = {
-        imports = [
-          inputs.json-sort.treefmtModules.default
-        ];
         programs = {
           deadnix.enable = true;
           dos2unix.enable = true;
@@ -166,13 +163,6 @@
         nixpkgs.follows = "nixpkgs";
       };
       url = "github:cachix/git-hooks.nix";
-    };
-    json-sort = {
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        treefmt-nix.follows = "treefmt-nix";
-      };
-      url = "github:drupol/json-sort";
     };
     pedantix = {
       inputs = {

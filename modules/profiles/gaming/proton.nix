@@ -32,6 +32,8 @@
                       echo "$update_output"
                       if grep -qF "Successfully updated" <<< "$update_output"; then
                         notify-send --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus 'ProtonPlus' 'Updated ${name}'
+                      elif grep -qF "Failed to update" <<< "$update_output"; then
+                        notify-send --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus --urgency=critical 'ProtonPlus' 'Failed to update ${name}'
                       fi
                     else
                       echo "installing missing runner: ${name} (${slug})"
@@ -62,6 +64,14 @@
               Unit = {
                 After = [ "graphical-session.target" ];
                 Description = "Install runners for ProtonPlus";
+              };
+            };
+            timers.protonplus-update = {
+              Install.WantedBy = [ "graphical-session.target" ];
+              Timer.OnCalendar = "hourly";
+              Unit = {
+                Description = "Check for Proton runner updates hourly";
+                PartOf = [ "graphical-session.target" ];
               };
             };
           };

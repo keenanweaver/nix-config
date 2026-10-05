@@ -114,5 +114,11 @@
           "Kate Plugins".rainbowparens = true;
         };
       };
+      xdg.configFile."kate/formatting/settings.json".text = builtins.toJSON {
+        nixfmt.command = [
+          (lib.getExe pkgs.nixfmt)
+          "-"
+        ];
+      };
     };
 }

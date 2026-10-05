@@ -14,6 +14,7 @@
       <outline text="bstone" type="rss" xmlUrl="https://github.com/bibendovsky/bstone/releases.atom" htmlUrl="https://github.com/bibendovsky/bstone/releases"/>
       <outline text="crispy-doom" type="rss" xmlUrl="https://github.com/fabiangreffrath/crispy-doom/releases.atom" htmlUrl="https://github.com/fabiangreffrath/crispy-doom/releases"/>
       <outline text="DoomRunner" type="rss" xmlUrl="https://github.com/Youda008/DoomRunner/releases.atom" htmlUrl="https://github.com/Youda008/DoomRunner/releases"/>
+      <outline text="Doomseeker" type="rss" xmlUrl="https://github.com/DoomseekerTeam/Doomseeker/releases.atom" htmlUrl="https://github.com/DoomseekerTeam/Doomseeker/releases"/>
       <outline text="game-devices-udev" type="rss" xmlUrl="https://codeberg.org/fabiscafe/game-devices-udev/releases.rss" htmlUrl="https://codeberg.org/fabiscafe/game-devices-udev/release" description="udev rules for game-devices"/>
       <outline text="GeneralUser-GS" type="rss" xmlUrl="https://github.com/mrbumpy409/GeneralUser-GS/commits.atom" htmlUrl="https://github.com/mrbumpy409/GeneralUser-GS/commits/main"/>
       <outline text="Helion" type="rss" xmlUrl="https://github.com/Helion-Engine/Helion/releases.atom" htmlUrl="https://github.com/Helion-Engine/Helion/releases"/>

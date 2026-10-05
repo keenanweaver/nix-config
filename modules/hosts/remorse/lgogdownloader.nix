@@ -282,7 +282,7 @@
             topicUrl = "http://${self.lib.site.network.hosts.regret}/gog";
           };
           orphanDirectoryFractionThreshold = 75;
-          orphanMaxFiles = 100;
+          orphanMaxFiles = 300;
           outputArgs = [
             "--no-color"
             "--no-unicode"

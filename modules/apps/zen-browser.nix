@@ -430,6 +430,11 @@
                     position = 204;
                     url = "https://mynixos.com/";
                   };
+                  NixKeeper = {
+                    id = "ee98ccf4-80c8-4994-ba8a-d08fbbe59257";
+                    position = 205;
+                    url = "https://iedame.github.io/nixkeeper/";
+                  };
                   "NixOS Manual" = {
                     id = "c4804f6b-4523-4a33-99e4-c1f545390ad8";
                     position = 202;

@@ -32,7 +32,7 @@ in
                 redhat.vscode-xml
                 redhat.vscode-yaml
                 tamasfe.even-better-toml
-                timonwong.shellcheck
+                #timonwong.shellcheck
                 usernamehw.errorlens
                 yzhang.markdown-all-in-one
               ])
