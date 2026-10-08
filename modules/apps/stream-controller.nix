@@ -2,9 +2,32 @@
 {
   flake.modules = {
     homeManager.stream-controller =
-      { config, ... }:
+      {
+        lib,
+        config,
+        pkgs,
+        ...
+      }:
       let
         dataDir = config.programs.streamcontroller.dataPath;
+        nukedKey = media: {
+          actions = [
+            {
+              comment = "Toggle Nuked SC-55";
+              id = "com_core447_OSPlugin::RunCommand";
+              settings = {
+                command = "${config.home.profileDirectory}/bin/nuked-sc55-toggle";
+                detached = true;
+              };
+            }
+          ];
+          label.bottom.text = "NUKED";
+          media.path = "${dataDir}/assets/${media}";
+        };
+        papirus = "${
+          pkgs.catppuccin-papirus-folders.override { inherit (config.catppuccin) accent flavor; }
+        }/share/icons/Papirus-Dark/64x64/apps";
+        serial = "A00SA4442PRLWM";
       in
       {
         imports = [ inputs.streamcontroller-nix.homeModules.default ];
@@ -13,14 +36,23 @@
             assertion = config.home.file ? "Games/toggle-hdr.sh" && config.home.file ? "Games/toggle-vrr.sh";
             message = "stream-controller binds ~/Games/toggle-{hdr,vrr}.sh, which profile-gaming provides on KDE hosts.";
           }
+          {
+            assertion = lib.any (pkg: lib.getName pkg == "nuked-sc55-toggle") config.home.packages;
+            message = "stream-controller binds nuked-sc55-toggle, which profile-gaming provides.";
+          }
         ];
         programs.streamcontroller = {
           enable = true;
           assets = {
-            "512-fooyin.png" = ../../assets/stream-controller/512-fooyin.png;
-            "mumble.svg" = ../../assets/stream-controller/mumble.svg;
+            "fooyin.svg" = "${papirus}/org.fooyin.fooyin.svg";
+            "mumble.svg" = "${papirus}/mumble.svg";
+            "piano-off.png" = pkgs.runCommand "piano-off.png" { nativeBuildInputs = [ pkgs.imagemagick ]; } ''
+              magick -background none -density 384 ${papirus}/vmpk.svg -resize 256x256 \
+                -colorspace Gray -channel A -evaluate multiply 0.4 +channel $out
+            '';
+            "piano.svg" = "${papirus}/vmpk.svg";
           };
-          defaultPages.A00SA4442PRLWM = "Default";
+          defaultPages.${serial} = "Default";
           pages.Default = {
             extraConfig.auto-change = {
               enable = true;
@@ -174,7 +206,11 @@
                   }
                 ];
                 label.top.text = "Play/Stop";
-                media.path = "${dataDir}/assets/512-fooyin.png";
+                media.path = "${dataDir}/assets/fooyin.svg";
+              };
+              "3x0".states = {
+                "0" = nukedKey "piano-off.png";
+                "1" = nukedKey "piano.svg";
               };
               "3x1".states."0" = {
                 actions = [
@@ -219,6 +255,38 @@
                 }
               ];
             };
+          };
+        };
+        systemd.user.services.streamcontroller-nuked-sc55-state = {
+          Install.WantedBy = [ "graphical-session.target" ];
+          Service.ExecStart = lib.getExe (
+            pkgs.writeShellApplication {
+              name = "streamcontroller-nuked-sc55-state";
+              runtimeInputs = with pkgs; [
+                glib
+                procps
+              ];
+              text = ''
+                last=""
+                while true; do
+                  if pgrep -x nuked-sc55 >/dev/null; then state=1; else state=0; fi
+                  owner="$(gdbus call --session --dest org.freedesktop.DBus --object-path /org/freedesktop/DBus \
+                    --method org.freedesktop.DBus.GetNameOwner com.core447.StreamController 2>/dev/null || true)"
+                  if [ -n "$owner" ] && [ "$state$owner" != "$last" ]; then
+                    [ "$owner" = "''${last#?}" ] || sleep 5
+                    gdbus call --session --dest com.core447.StreamController --object-path /com/core447/StreamController \
+                      --method org.gtk.Actions.Activate change_state "[<['${serial}', 'Default', '3,0', '$state']>]" "{}" >/dev/null \
+                      && last="$state$owner"
+                  fi
+                  sleep 1
+                done
+              '';
+            }
+          );
+          Unit = {
+            After = [ "graphical-session.target" ];
+            Description = "Show whether Nuked SC-55 is running on its Stream Deck key";
+            PartOf = [ "graphical-session.target" ];
           };
         };
       };

@@ -21,7 +21,7 @@
         obs-flatpak
         retroarch
         stream-controller
-        yeetmouse
+        #yeetmouse
 
         doom
       ];

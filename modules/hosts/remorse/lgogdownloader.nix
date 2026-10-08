@@ -18,31 +18,12 @@
           ];
           cacheFile = "${config.xdg.cacheHome}/lgogdownloader/gamedetails.json";
           cacheMaxAgeMinutes = 10080;
-          fetchArgs = [
-            "--exclude"
-            "l,p"
-            "--platform=w"
-            "--threads=4"
-            "--info-threads=2"
-            "--limit-rate=25000"
-            "--check-free-space"
-            "--include-hidden-products"
-            "--ignore-dlc-count"
-            "--save-serials"
-            "--save-changelogs"
-            "--save-game-details-json"
-            "--automatic-xml-creation"
-          ]
-          ++ outputArgs
-          ++ targetArgs;
           gog-full-download = mkScript "gog-full-download" ''
             echo "refreshing game details cache"
-            lgogdownloader ${
-              lib.escapeShellArgs ([ "--update-cache" ] ++ refreshArgs)
-            } </dev/null 2>&1 | tee "$workdir/cache.log"
+            lgogdownloader --update-cache </dev/null 2>&1 | tee "$workdir/cache.log"
             fail_on_cache_error <"$workdir/cache.log"
 
-            run_download --download ${lib.escapeShellArgs (cacheArgs ++ fetchArgs)}
+            run_download --download ${lib.escapeShellArgs cacheArgs}
 
             rm -f -- ${lib.escapeShellArg newGamesSkipFile}
           '';
@@ -51,16 +32,7 @@
             mkdir -p "$(dirname "$skip_file")"
             touch "$skip_file"
 
-            owned=$(lgogdownloader ${
-              lib.escapeShellArgs (
-                [
-                  "--list=games"
-                  "--platform=w"
-                  "--include-hidden-products"
-                ]
-                ++ outputArgs
-              )
-            } </dev/null | sed -E '/^\+> /d; s/ \[[0-9]+\]$//; /^$/d' | sort -u)
+            owned=$(lgogdownloader --list=games --include=bi </dev/null | sed -E '/^\+> /d; s/ \[[0-9]+\]$//; /^$/d' | sort -u)
             if [ -z "$owned" ]; then
               echo "GOG returned an empty game list" >&2
               exit 1
@@ -89,7 +61,7 @@
             fi
             echo "downloading ''${#missing[@]} new game(s): ''${missing[*]}"
 
-            run_download --download --game "$(game_filter "''${missing[@]}")" ${lib.escapeShellArgs fetchArgs}
+            run_download --download --game "$(game_filter "''${missing[@]}")"
 
             for game in "''${missing[@]}"; do
               if [ ! -d ${lib.escapeShellArg gogDirectory}/"$game" ]; then
@@ -101,26 +73,12 @@
           gog-remove-orphans = mkScript "gog-remove-orphans" ''
             if [ -z "$(find ${lib.escapeShellArg cacheFile} -mmin -${toString cacheMaxAgeMinutes} 2>/dev/null)" ]; then
               echo "refreshing game details cache"
-              lgogdownloader ${
-                lib.escapeShellArgs ([ "--update-cache" ] ++ refreshArgs)
-              } </dev/null 2>&1 | tee "$workdir/cache.log"
+              lgogdownloader --update-cache </dev/null 2>&1 | tee "$workdir/cache.log"
               fail_on_cache_error <"$workdir/cache.log"
             fi
 
             scan_errors="$workdir/scan-errors"
-            output=$(lgogdownloader ${
-              lib.escapeShellArgs (
-                [
-                  "--check-orphans"
-                  ".*"
-                  "--include-hidden-products"
-                  "--ignore-dlc-count"
-                ]
-                ++ cacheArgs
-                ++ outputArgs
-                ++ targetArgs
-              )
-            } </dev/null 2>"$scan_errors")
+            output=$(lgogdownloader --check-orphans '.*' ${lib.escapeShellArgs cacheArgs} </dev/null 2>"$scan_errors")
             cat "$scan_errors" >&2
             fail_on_cache_error <"$scan_errors"
 
@@ -173,9 +131,7 @@
             rm -f -- "''${orphans[@]}"
 
             echo "re-downloading affected games to self-heal any false-positive deletions: ''${!affected_dirs[*]}"
-            run_download --download --game "$(game_filter "''${!affected_dirs[@]}")" ${
-              lib.escapeShellArgs (cacheArgs ++ fetchArgs)
-            }
+            run_download --download --game "$(game_filter "''${!affected_dirs[@]}")" ${lib.escapeShellArgs cacheArgs}
             echo "removed $count orphaned file(s) across $affected_count game director(y/ies)"
           '';
           gogBlacklistFile = ../../../assets/hosts/remorse/gog-blacklist.txt;
@@ -283,22 +239,6 @@
           };
           orphanDirectoryFractionThreshold = 75;
           orphanMaxFiles = 300;
-          outputArgs = [
-            "--no-color"
-            "--no-unicode"
-            "--no-window-progress"
-            "--verbosity=-1"
-            "--interface=${osConfig.host.lanInterface}"
-          ];
-          refreshArgs = [ "--include-hidden-products" ] ++ outputArgs;
-          targetArgs = [
-            "--blacklist"
-            "${gogBlacklistFile}"
-            "--ignorelist"
-            "${gogIgnorelistFile}"
-            "--directory"
-            gogDirectory
-          ];
         in
         {
           home.packages = [
@@ -338,6 +278,49 @@
                 Unit.Description = "Daily download of newly owned GOG games";
               };
             };
+          };
+          xdg.configFile = {
+            "lgogdownloader/blacklist.txt".source = gogBlacklistFile;
+            "lgogdownloader/config.cfg" = {
+              force = true;
+              text = lib.concatStrings (
+                lib.mapAttrsToList (name: value: "${name} = ${toString value}\n") {
+                  automatic-xml-creation = "true";
+                  check-free-space = "true";
+                  chunk-size = 10;
+                  directory = gogDirectory;
+                  exclude = "l,p";
+                  ignore-dlc-count = ".*";
+                  include = "all";
+                  include-hidden-products = "true";
+                  info-threads = 4;
+                  interface = osConfig.host.lanInterface;
+                  language = "en";
+                  lowspeed-rate = 200;
+                  lowspeed-timeout = 30;
+                  no-color = "true";
+                  no-unicode = "true";
+                  no-window-progress = "true";
+                  platform = "w";
+                  retries = 3;
+                  save-changelogs = "true";
+                  save-game-details-json = "true";
+                  save-serials = "true";
+                  subdir-dlc = "dlc/%dlcname%";
+                  subdir-extras = "extras";
+                  subdir-game = "%gamename%";
+                  subdir-installers = "";
+                  subdir-language-packs = "languagepacks";
+                  subdir-patches = "patches";
+                  threads = 4;
+                  timeout = 10;
+                  unit-format = "IEC";
+                  verbosity = -1;
+                  xml-directory = "${config.xdg.stateHome}/lgogdownloader/xml";
+                }
+              );
+            };
+            "lgogdownloader/ignorelist.txt".source = gogIgnorelistFile;
           };
         };
     };

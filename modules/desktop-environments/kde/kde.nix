@@ -522,7 +522,7 @@
           ];
           programs = {
             fuse.userAllowOther = true;
-            kde-pim.enable = true;
+            kde-pim.enable = false;
             partition-manager.enable = true;
           };
           services = {

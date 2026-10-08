@@ -52,7 +52,20 @@
                 path = "${config.xdg.configHome}/umomwd/config.json";
               };
           };
+          xdg.desktopEntries.umo = {
+            exec = "${lib.getExe' inputs.openmw-nix.packages.${pkgs.stdenv.hostPlatform.system}.umo "umo"} %u";
+            icon = "umo";
+            mimeType = [
+              "x-scheme-handler/momw"
+              "x-scheme-handler/nxm"
+            ];
+            name = "umo NXM/MOMW Scheme Handler";
+            noDisplay = true;
+            startupNotify = false;
+            terminal = false;
+          };
         };
+      xdg.mime.defaultApplications."x-scheme-handler/momw" = "umo.desktop";
     };
   flake-file.inputs.openmw-nix = {
     inputs.nixpkgs.follows = "nixpkgs";

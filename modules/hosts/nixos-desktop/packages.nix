@@ -155,6 +155,7 @@ in
             ps3-disc-dumper
             puddletag
             python314Packages.lnkparse3
+            q2repro
             qtscrcpy
             #redumper
             rigel-engine
@@ -164,7 +165,7 @@ in
             scummvm
             sd # sed
             sdlpop
-            #shadps4-qtlauncher
+            shadps4-qtlauncher
             sm64ex
             srb2
             streamrip
