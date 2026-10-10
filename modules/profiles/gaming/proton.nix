@@ -59,6 +59,7 @@
               Install.WantedBy = [ "graphical-session.target" ];
               Service = {
                 ExecStart = lib.getExe install-runners;
+                ExecStartPre = "${lib.getExe' pkgs.networkmanager "nm-online"} -q -t 60";
                 Type = "oneshot";
               };
               Unit = {

@@ -13,6 +13,7 @@
           bgColor = "#f5${lib.removePrefix "#" palette.base.hex}";
           customTextColor = palette.text.hex;
           flakePath = hmConfig.programs.nh.flake;
+          iconStyle = "accent";
           timelineColor = palette.overlay1.hex;
           useSystemTextColor = false;
         };

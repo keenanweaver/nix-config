@@ -42,9 +42,12 @@
           ELECTRON_OZONE_PLATFORM_HINT = "wayland";
           NIXOS_OZONE_WL = "1";
         };
-        hardware.graphics = {
-          enable = true;
-          enable32Bit = true;
+        hardware = {
+          facter.detected.dhcp.enable = false;
+          graphics = {
+            enable = true;
+            enable32Bit = true;
+          };
         };
         home-manager.sharedModules = [ self.modules.homeManager.profile-desktop ];
         my.permittedInsecurePackages = [ "olm-3.2.16" ]; # Neochat

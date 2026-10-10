@@ -1,7 +1,7 @@
 { self, ... }:
 {
   configurations.nixos.nixos-desktop.module =
-    { lib, config, ... }:
+    { config, ... }:
     {
       imports = with self.modules.nixos; [
         self.diskoConfigurations.nixos-desktop
@@ -47,13 +47,10 @@
         };
       networking.hostName = "nixos-desktop";
       system.stateVersion = "26.05";
-      systemd = {
-        services.network-addresses-wlp11s0.wantedBy = lib.mkForce [ ];
-        tmpfiles.rules = [
-          "d /mnt/Games 0755 ${config.my.user} users - -"
-          "d /mnt/Games2 0755 ${config.my.user} users - -"
-          "L+ ${config.users.users.${config.my.user}.home}/Games - - - - /mnt/Games"
-        ];
-      };
+      systemd.tmpfiles.rules = [
+        "d /mnt/Games 0755 ${config.my.user} users - -"
+        "d /mnt/Games2 0755 ${config.my.user} users - -"
+        "L+ ${config.users.users.${config.my.user}.home}/Games - - - - /mnt/Games"
+      ];
     };
 }
