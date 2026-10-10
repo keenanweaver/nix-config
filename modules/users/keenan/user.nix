@@ -31,6 +31,7 @@
           "d ${home}/.ssh 0700 ${config.my.user} users - -"
         ];
         users.users.${config.my.user} = {
+          description = "Keenan Weaver";
           extraGroups = [
             "input"
             "uinput"
