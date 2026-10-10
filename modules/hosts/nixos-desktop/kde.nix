@@ -37,7 +37,7 @@
                 kickoff =
                   let
                     start-icon = builtins.path {
-                      path = ../../../assets/theming/nix-catppuccin-logo.png;
+                      path = ../../../assets/theming/nix-webring-catppuccin.svg;
                     };
                   in
                   {
