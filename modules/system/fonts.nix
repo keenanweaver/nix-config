@@ -19,7 +19,7 @@
               "Liberation Mono"
             ];
             sansSerif = [
-              "Inter"
+              self.lib.theme.sans-font
               "Liberation Sans"
             ];
             serif = [

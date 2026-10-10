@@ -57,7 +57,7 @@
               source = "builtin";
             };
             wallpaper = {
-              default.path = ../../../assets/theming/wallpapers/wallhaven-2kpexy.jpg;
+              default.path = self.lib.theme.wallpaper;
               enabled = true;
               fill_mode = "crop";
             };

@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 {
   flake.modules.homeManager.zen-browser =
     {
@@ -155,8 +155,8 @@
               betterfox.enable = true;
               catppuccin = {
                 enable = true;
-                accent = "Lavender";
-                flavor = "Mocha";
+                accent = self.lib.theme.accent-upper;
+                flavor = self.lib.theme.flavor-upper;
               };
             };
             search = {
