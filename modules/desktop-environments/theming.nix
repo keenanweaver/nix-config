@@ -87,6 +87,7 @@ in
                 gtk-hint-font-metrics = true;
                 gtk-primary-button-warps-slider = true;
                 gtk-sound-theme-name = "ocean";
+                gtk-theme-name = "Catppuccin-GTK-${accent-upper}-Dark";
                 gtk-xft-antialias = 1;
                 gtk-xft-hinting = 1;
                 gtk-xft-hintstyle = "hintslight";
@@ -100,6 +101,10 @@ in
                 source = "${inputs.catppuccin-obs}/themes";
               };
               packages = with pkgs; [
+                (magnetic-catppuccin-gtk.override {
+                  accent = [ accent-lower ];
+                  shade = "dark";
+                })
                 ## GNOME
                 adwaita-icon-theme
                 gnome-settings-daemon

@@ -90,7 +90,7 @@ Claude LLM was used for creating the following. Everything else is made by me. H
 
 - [`doom-wad-extractor` script](modules/profiles/gaming/games/doom.nix)
 - [fastfetch module](modules/apps/fastfetch.nix)
-- [`lgogdownloader` module](modules/hosts/remorse/lgogdownloader.nix)
+- `Remorse` downloader modules: [idgames sync](modules/hosts/remorse/idgames-sync.nix), [`lgogdownloader` module](modules/hosts/remorse/lgogdownloader.nix), [RTSL sync](modules/hosts/remorse/rtsl-sync.nix), [Mullvad tunnel](modules/system/mullvad-tunnel.nix)
 
 ## License
 

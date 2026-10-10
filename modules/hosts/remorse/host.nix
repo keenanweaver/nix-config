@@ -3,6 +3,7 @@
   configurations.nixos.remorse = {
     module = {
       imports = with self.modules.nixos; [
+        mullvad-tunnel
         profile-server
 
         pi4

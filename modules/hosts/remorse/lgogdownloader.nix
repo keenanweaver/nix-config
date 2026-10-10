@@ -235,7 +235,7 @@
           ntfyHelpers = self.lib.mkNtfyNotify {
             click = true;
             token = "$(cat ${lib.escapeShellArg config.sops.secrets."ntfy/ntfybot_token".path})";
-            topicUrl = "http://${self.lib.site.network.hosts.regret}/gog";
+            topicUrl = "http://${self.lib.site.network.hosts.regret}/downloaders";
           };
           orphanDirectoryFractionThreshold = 75;
           orphanMaxFiles = 300;

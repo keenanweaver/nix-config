@@ -45,8 +45,9 @@
               }
               trap 'notify_finish $?' EXIT
               ntfy_notify "idgames sync" "Started" "arrow_forward"
+              ${self.lib.mullvadTunnel.requireAddress}
 
-              if wget ${lib.escapeShellArgs wgetArgs} 2>&1 | tee "$logfile"; then
+              if wget ${lib.escapeShellArgs wgetArgs} --bind-address="$vpn_address" 2>&1 | tee "$logfile"; then
                 wget_rc=0
               else
                 wget_rc=''${PIPESTATUS[0]}
@@ -64,7 +65,7 @@
           ntfyHelpers = self.lib.mkNtfyNotify {
             click = true;
             token = "$(cat ${lib.escapeShellArg config.sops.secrets."ntfy/ntfybot_token".path})";
-            topicUrl = "http://${self.lib.site.network.hosts.regret}/idgames";
+            topicUrl = "http://${self.lib.site.network.hosts.regret}/downloaders";
           };
           wgetArgs = [
             "--mirror"

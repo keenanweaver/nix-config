@@ -38,7 +38,9 @@ in
         mountRoot = nasMountRoot;
         paths = {
           gogBackups = "${nasMountRoot}/Games/Backups/GOG";
+          halfLife = "${nasMountRoot}/Games/Games/Half-Life";
           idgames = "${nasMountRoot}/Games/Games/Doom/idgames";
+          thiefFanMissions = "${nasMountRoot}/Games/Games/Thief/Fan Missions";
         };
       };
       network = {
