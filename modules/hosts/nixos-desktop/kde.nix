@@ -47,6 +47,8 @@
                     favoritesDisplayMode = "grid";
                     icon = start-icon;
                     # pin = true;
+                    popupHeight = 755;
+                    popupWidth = 857;
                     showActionButtonCaptions = true;
                     showButtonsFor = "power";
                     sortAlphabetically = true;
@@ -98,23 +100,29 @@
                 name = "com.github.tilorenz.compact_pager";
               }
               {
-                systemTray.items = {
-                  configs."org.kde.plasma.volume".config.General.showVirtualDevices = true;
-                  hidden = [
-                    "CoolerControl"
-                    "KTailctl"
-                    "MoonDeckBuddy"
-                    "com.core447.StreamController.TrayIcon"
-                    "org.kde.plasma.addons.katesessions"
-                    "org.kde.plasma.brightness" # Night Light
-                    "org.kde.plasma.networkmanagement"
-                    "org.kde.plasma.clipboard"
-                    "org.kde.kdeconnect"
-                    "indicator-solaar"
-                    "tray-id" # Sunshine
-                    "xdg-desktop-portal-kde" # Portal
-                    "chrome_status_icon_1" # Vesktop
-                  ];
+                systemTray = {
+                  items = {
+                    configs."org.kde.plasma.volume".config.General.showVirtualDevices = true;
+                    hidden = [
+                      "CoolerControl"
+                      "KTailctl"
+                      "MoonDeckBuddy"
+                      "com.core447.StreamController.TrayIcon"
+                      "org.kde.plasma.addons.katesessions"
+                      "org.kde.plasma.brightness" # Night Light
+                      "org.kde.plasma.networkmanagement"
+                      "org.kde.plasma.clipboard"
+                      "org.kde.kdeconnect"
+                      "indicator-solaar"
+                      "tray-id" # Sunshine
+                      "xdg-desktop-portal-kde" # Portal
+                      "chrome_status_icon_1" # Vesktop
+                    ];
+                  };
+                  settings.config = {
+                    popupHeight = 760;
+                    popupWidth = 432;
+                  };
                 };
               }
               {

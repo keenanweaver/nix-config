@@ -57,6 +57,8 @@
                     favoritesDisplayMode = "grid";
                     icon = start-icon;
                     # pin = true;
+                    popupHeight = 608;
+                    popupWidth = 858;
                     showActionButtonCaptions = true;
                     showButtonsFor = "power";
                     sortAlphabetically = true;
@@ -133,9 +135,15 @@
                 ];
               }
               {
-                digitalClock.calendar = {
-                  plugins = [ "holidaysevents" ];
-                  showWeekNumbers = true;
+                digitalClock = {
+                  calendar = {
+                    plugins = [ "holidaysevents" ];
+                    showWeekNumbers = true;
+                  };
+                  settings = {
+                    popupHeight = 451;
+                    popupWidth = 810;
+                  };
                 };
               }
               "org.kde.plasma.showdesktop"
