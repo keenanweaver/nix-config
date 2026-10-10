@@ -2,7 +2,13 @@
 {
   flake.modules = {
     homeManager.profile-gaming =
-      { lib, pkgs, ... }:
+      {
+        lib,
+        config,
+        pkgs,
+        osConfig,
+        ...
+      }:
       let
         steamCompatTools = with pkgs; [
           proton-cachyos
@@ -18,11 +24,19 @@
             install-runners = pkgs.writeShellApplication {
               name = "protonplus-install-runners";
               runtimeInputs = with pkgs; [
+                coreutils
+                dconf
                 gnugrep
                 libnotify
                 protonplus
               ];
               text = ''
+                token_file=${
+                  lib.escapeShellArg osConfig.sops.secrets."users/${config.home.username}/github_pat".path
+                }
+                if [ -r "$token_file" ]; then
+                  dconf write /com/vysp3r/ProtonPlus/State/github-api-key "'$(tr -d '[:space:]' <"$token_file")'"
+                fi
                 installed="$(protonplus list steam-system 2>/dev/null || true)"
                 ${lib.concatStringsSep "\n" (
                   lib.mapAttrsToList (name: slug: ''

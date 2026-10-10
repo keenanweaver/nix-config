@@ -1,7 +1,7 @@
 { self, ... }:
 {
   configurations.nixos.nixos-desktop.module =
-    { config, ... }:
+    { lib, config, ... }:
     {
       imports = with self.modules.nixos; [
         self.diskoConfigurations.nixos-desktop
@@ -28,6 +28,7 @@
       boot.binfmt.emulatedSystems = [
         "aarch64-linux"
       ];
+      chaotic.mesa-git.enable = lib.mkForce false;
       home-manager.users.${config.my.user} =
         {
           lib,
