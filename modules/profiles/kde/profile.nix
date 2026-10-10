@@ -19,6 +19,7 @@
         kde
         plasma-manager
       ];
+      home-manager.sharedModules = [ self.modules.homeManager.nixdatifier ];
       security.pam.services.login.enableKwallet = true;
       systemd = {
         services.accounts-daemon.preStart = ''

@@ -135,6 +135,10 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixdatifier = {
+      url = "github:Muddyblack/nixdatifier";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-mocha-kde-splash = {
       url = "github:michaelwheatland/nixos-mocha-kde-splash";
       inputs.nixpkgs.follows = "nixpkgs";

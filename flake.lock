@@ -1430,6 +1430,26 @@
         "type": "github"
       }
     },
+    "nixdatifier": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791579984,
+        "narHash": "sha256-ccncVy61eTejvaobqTTgcy+WQWY1xVaS71J65Cxy9pw=",
+        "owner": "Muddyblack",
+        "repo": "nixdatifier",
+        "rev": "74e03046c05acab8eaee75cd0683f4f6a3440f98",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Muddyblack",
+        "repo": "nixdatifier",
+        "type": "github"
+      }
+    },
     "nixos-images": {
       "inputs": {
         "nixos-stable": [
@@ -2095,6 +2115,7 @@
         "nix-podman-stacks": "nix-podman-stacks",
         "nix-reshade": "nix-reshade",
         "nix-vscode-extensions": "nix-vscode-extensions",
+        "nixdatifier": "nixdatifier",
         "nixos-mocha-kde-splash": "nixos-mocha-kde-splash",
         "nixos-raspberrypi": "nixos-raspberrypi",
         "nixpkgs": "nixpkgs_6",

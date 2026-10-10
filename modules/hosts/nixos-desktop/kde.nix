@@ -1,3 +1,4 @@
+{ self, ... }:
 {
   configurations.nixos.nixos-desktop.module =
     { config, ... }:
@@ -191,6 +192,7 @@
                 };
                 name = "com.github.k-donn.plasmoid-wunderground";
               }
+              (self.lib.plasmaWidgets.nixdatifier config.home-manager.users.${config.my.user})
               "org.kde.plasma.marginsseparator"
               "org.kde.plasma.marginsseparator"
               "org.kde.plasma.marginsseparator"

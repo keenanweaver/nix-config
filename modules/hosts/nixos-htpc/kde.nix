@@ -1,3 +1,4 @@
+{ self, ... }:
 {
   configurations.nixos.nixos-htpc.module =
     { config, ... }:
@@ -77,6 +78,7 @@
                 };
                 name = "com.github.k-donn.plasmoid-wunderground";
               }
+              (self.lib.plasmaWidgets.nixdatifier config.home-manager.users.${config.my.user})
               {
                 systemTray.items = {
                   configs."org.kde.plasma.volume".config.General.showVirtualDevices = true;
