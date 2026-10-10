@@ -26,6 +26,9 @@
         environment.systemPackages = with pkgs; [
           lsfg-vk
         ];
+        hardware.graphics.extraPackages = with pkgs; [
+          lsfg-vk
+        ];
         nixpkgs.overlays = [ inputs.lsfg-vk-nix.overlays.default ];
       };
   };
