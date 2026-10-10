@@ -20,10 +20,14 @@
         plasma-manager
       ];
       security.pam.services.login.enableKwallet = true;
-      systemd.tmpfiles.rules = [
-        "L+ /var/lib/AccountsService/icons/${user} - - - - ${avatar}"
-        "L+ /var/lib/AccountsService/users/${user} - - - - ${accountsServiceUser}"
-        "L+ ${home}/.face.icon - - - - ${avatar}"
-      ];
+      systemd = {
+        services.accounts-daemon.preStart = ''
+          install -Dm600 -o root -g root ${accountsServiceUser} /var/lib/AccountsService/users/${user}
+        '';
+        tmpfiles.rules = [
+          "L+ /var/lib/AccountsService/icons/${user} - - - - ${avatar}"
+          "L+ ${home}/.face.icon - - - - ${avatar}"
+        ];
+      };
     };
 }
