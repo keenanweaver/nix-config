@@ -27,8 +27,8 @@ in
       cursor-theme = "catppuccin-${flavor-accent}-cursors";
       icon-theme = "Papirus-Dark";
       sans-font = "Inter";
-      wallpaper = ../../assets/theming/wallpapers/puffy-stars.jpg;
-      wallpaper-secondary = ../../assets/theming/wallpapers/dark-waves.jpg;
+      wallpaper = "${../../assets/theming/wallpapers/puffy-stars.jpg}";
+      wallpaper-secondary = "${../../assets/theming/wallpapers/dark-waves.jpg}";
     };
   };
 }
