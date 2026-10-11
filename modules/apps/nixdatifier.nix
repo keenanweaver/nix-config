@@ -14,6 +14,7 @@
           customTextColor = palette.text.hex;
           flakePath = hmConfig.programs.nh.flake;
           iconStyle = "accent";
+          showNotifications = false;
           timelineColor = palette.overlay1.hex;
           useSystemTextColor = false;
         };

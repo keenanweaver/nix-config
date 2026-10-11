@@ -4,6 +4,7 @@
     {
       lib,
       config,
+      pkgs,
       ...
     }:
     let
@@ -12,9 +13,8 @@
     {
       imports = [ self.modules.nixos.ssh-keys ];
       config = {
-        home-manager.users.${config.my.user}.home.sessionVariables.GITHUB_TOKEN = "$(cat ${
-          config.sops.secrets."users/${config.my.user}/github_pat".path
-        } 2>/dev/null)";
+        home-manager.users.${config.my.user}.home.sessionVariables.GITHUB_TOKEN =
+          "$(${lib.getExe pkgs.gh} auth token 2>/dev/null)";
         nix.extraOptions = ''
           !include ${config.sops.secrets."users/${config.my.user}/github_access_token".path}
           !include ${config.sops.secrets."nonfree_repo_access_token".path}
