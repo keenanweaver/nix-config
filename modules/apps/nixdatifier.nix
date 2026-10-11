@@ -21,9 +21,23 @@
         name = "org.muddyblack.nixosGenerationExplorer";
       };
     modules.homeManager.nixdatifier =
-      { pkgs, ... }:
       {
-        home.packages = [ inputs.nixdatifier.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+        config,
+        pkgs,
+        osConfig,
+        ...
+      }:
+      {
+        home.packages = [
+          (inputs.nixdatifier.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
+            postInstall = (old.postInstall or "") + ''
+              wrapProgram "$plasmoid/contents/tools/sh/release-notes" \
+                --run 'export GITHUB_TOKEN="$(cat ${
+                  osConfig.sops.secrets."users/${config.home.username}/github_pat".path
+                } 2>/dev/null)"'
+            '';
+          }))
+        ];
       };
   };
   flake-file.inputs.nixdatifier = {

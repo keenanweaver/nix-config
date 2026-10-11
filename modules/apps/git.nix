@@ -3,11 +3,13 @@
   flake.modules.homeManager.profile-base =
     {
       config,
+      pkgs,
       osConfig,
       ...
     }:
     let
       inherit (self.lib.site.nas) mountRoot;
+      email = "keenanweaver@protonmail.com";
     in
     {
       programs = {
@@ -26,6 +28,9 @@
           enable = true;
           settings = {
             diff.colorMoved = "default";
+            gpg.ssh.allowedSignersFile = "${pkgs.runCommand "git-allowed-signers" { } ''
+              awk 'NF { print "${email}", $0 }' ${osConfig.my.sshKeys} > $out
+            ''}";
             merge.conflictstyle = "diff3";
             safe.directory = [
               "${mountRoot}/Projects/Codeberg/nix-config-dendritic"
@@ -33,7 +38,7 @@
               "${mountRoot}/Projects/Gitlab/moka-pics"
             ];
             user = {
-              email = "keenanweaver@protonmail.com";
+              inherit email;
               name = "Keenan Weaver";
             };
           };

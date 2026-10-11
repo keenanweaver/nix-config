@@ -13,8 +13,20 @@
     {
       imports = [ self.modules.nixos.ssh-keys ];
       config = {
-        home-manager.users.${config.my.user}.home.sessionVariables.GITHUB_TOKEN =
-          "$(${lib.getExe pkgs.gh} auth token 2>/dev/null)";
+        home-manager.users.${config.my.user}.programs =
+          let
+            githubToken = ''
+              if GITHUB_TOKEN="$(env -u GITHUB_TOKEN ${lib.getExe pkgs.gh} auth token 2>/dev/null)"; then
+                export GITHUB_TOKEN
+              else
+                unset GITHUB_TOKEN
+              fi
+            '';
+          in
+          {
+            bash.initExtra = githubToken;
+            zsh.initContent = githubToken;
+          };
         nix.extraOptions = ''
           !include ${config.sops.secrets."users/${config.my.user}/github_access_token".path}
           !include ${config.sops.secrets."nonfree_repo_access_token".path}
