@@ -37,7 +37,7 @@
             betaBranch = "lsfg-vk";
             name = "Lossless Scaling";
           };
-          defaultCompatTool = "Proton-CachyOS Latest";
+          defaultCompatTool = "Proton-Wineland Latest";
           displayRatesAsBits = false;
           onSteamRunning = "close";
         };

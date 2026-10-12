@@ -7,146 +7,138 @@
       pkgs,
       ...
     }:
-    let
-      wsiLayer = pkgs.runCommand "moonshine-wsi-layer" { } ''
-        install -Dm644 \
-          ${config.services.moonshine.package}/share/vulkan/implicit_layer.d/VkLayer_moonshine_wsi.json \
-          $out/share/vulkan/implicit_layer.d/VkLayer_moonshine_wsi.json
-      '';
-    in
     {
       imports = [ inputs.moonshine.nixosModules.default ];
       assertions = self.lib.mkFactAssertions config [
         "lanInterface"
         "pciDev"
       ];
-      chaotic.mesa-git.extraPackages = lib.mkIf config.chaotic.mesa-git.enable [ wsiLayer ];
-      hardware.graphics.extraPackages = lib.mkIf (!config.chaotic.mesa-git.enable) [ wsiLayer ];
-      networking.firewall.interfaces = lib.genAttrs [ config.host.lanInterface "tailscale0" ] (_: {
-        allowedTCPPorts = [
-          # Moonlight
-          47984
-          47989
-          48010
-          # MoonDeck Buddy
-          59999
-        ];
-        allowedUDPPorts = [
-          47998
-          47999
-          48000
-          48002
-          48010
-          # Moonlight
-          5353
-        ];
-      });
+      chaotic.mesa-git.extraPackages = lib.mkIf config.chaotic.mesa-git.enable [
+        (pkgs.runCommand "moonshine-wsi-layer" { } ''
+          install -Dm644 \
+            ${config.services.moonshine.package}/share/vulkan/implicit_layer.d/VkLayer_moonshine_wsi.json \
+            $out/share/vulkan/implicit_layer.d/VkLayer_moonshine_wsi.json
+        '')
+      ];
+      networking.firewall.interfaces =
+        let
+          inherit (config.services.moonshine) settings;
+        in
+        lib.genAttrs [ config.host.lanInterface "tailscale0" ] (_: {
+          allowedTCPPorts = [
+            (settings.webserver.port_https or 47984)
+            (settings.webserver.port or 47989)
+            (settings.stream.port or 48010)
+          ];
+          allowedUDPPorts = [
+            (settings.stream.video.port or 47998)
+            (settings.stream.control.port or 47999)
+            (settings.stream.audio.port or 48000)
+          ];
+        });
       services.moonshine = {
         enable = true;
         settings =
           let
             heroicExe = lib.getExe pkgs.heroic;
-            heroicLaunch = pkgs.writeShellApplication {
-              name = "moonshine-heroic-launch";
-              text = ''
-                ${heroicShutdownExe}
-                exec ${heroicExe} "$@"
-              '';
-            };
-            heroicLaunchExe = lib.getExe' heroicLaunch "moonshine-heroic-launch";
-            heroicShutdown = pkgs.writeShellApplication {
-              name = "moonshine-heroic-shutdown";
-              runtimeInputs = with pkgs; [
-                procps
-                coreutils
+            heroicShutdown = mkShutdown rec {
+              match = [
+                "-f"
+                "/heroic/resources/app\\.asar( |$)"
               ];
-              text = ''
-                pat='^/nix/store/[^ ]*electron .*/opt/heroic/resources/app.asar'
-
-                pgrep -f "$pat" >/dev/null || exit 0
-
-                pkill -f "$pat" || true
-
-                for _ in {1..30}; do
-                  pgrep -f "$pat" >/dev/null || exit 0
-                  sleep 1
-                done
-
-                echo "heroic still up after 30s, sending SIGKILL" >&2
-                pkill -9 -f "$pat" || true
-              '';
+              name = "heroic";
+              stop = ''pkill -u "$uid" ${lib.escapeShellArgs match} || true'';
             };
-            heroicShutdownExe = lib.getExe' heroicShutdown "moonshine-heroic-shutdown";
-            steamExe = lib.getExe pkgs.steam;
-            steamLaunch = pkgs.writeShellApplication {
-              name = "moonshine-steam-launch";
-              text = ''
-                ${steamShutdownExe}
-                exec ${steamExe} "$@"
-              '';
-            };
-            steamLaunchExe = lib.getExe' steamLaunch "moonshine-steam-launch";
-            steamShutdown = pkgs.writeShellApplication {
-              name = "moonshine-steam-shutdown";
-              runtimeInputs = with pkgs; [
-                procps
-                coreutils
+            mkShutdown =
+              {
+                match,
+                name,
+                stop,
+              }:
+              [
+                (lib.getExe (
+                  pkgs.writeShellApplication {
+                    name = "moonshine-${name}-shutdown";
+                    runtimeInputs = with pkgs; [
+                      coreutils
+                      procps
+                    ];
+                    text = ''
+                      uid=$(id -u)
+                      running() {
+                        pgrep -u "$uid" ${lib.escapeShellArgs match} >/dev/null
+                      }
+
+                      running || exit 0
+
+                      ${stop}
+
+                      for _ in {1..30}; do
+                        running || exit 0
+                        sleep 1
+                      done
+
+                      echo "${name} still up after 30s, sending SIGKILL" >&2
+                      pkill -KILL -u "$uid" ${lib.escapeShellArgs match} || true
+
+                      for _ in {1..5}; do
+                        running || exit 0
+                        sleep 1
+                      done
+
+                      echo "${name} did not exit" >&2
+                      exit 1
+                    '';
+                  }
+                ))
               ];
-              text = ''
-                pgrep -x steam >/dev/null || exit 0
-
-                ${steamExe} -shutdown >/dev/null 2>&1 || true
-
-                for _ in {1..30}; do
-                  pgrep -x steam >/dev/null || exit 0
-                  sleep 1
-                done
-
-                echo "steam still up after 30s, sending SIGTERM" >&2
-                pkill -x steam || true
-              '';
+            steamExe = lib.getExe config.programs.steam.package;
+            steamShutdown = mkShutdown {
+              match = [
+                "-x"
+                "steam"
+              ];
+              name = "steam";
+              stop = "${steamExe} -shutdown >/dev/null 2>&1 || true";
             };
-            steamShutdownExe = lib.getExe' steamShutdown "moonshine-steam-shutdown";
           in
           {
             application = [
               {
-                boxart =
-                  let
-                    icon = pkgs.fetchurl {
-                      hash = "sha256-DRHwibH9TqqqSl/LZd19zfWE0qe1RTjb8uSbPMtAbTQ=";
-                      url = "https://cdn2.steamgriddb.com/grid/2b1c6cedeaf9571589e3dc9d51ba20e5.png";
-                    };
-                  in
-                  icon;
-                command = [
-                  heroicLaunchExe
-                ];
+                boxart = pkgs.fetchurl {
+                  hash = "sha256-DRHwibH9TqqqSl/LZd19zfWE0qe1RTjb8uSbPMtAbTQ=";
+                  url = "https://cdn2.steamgriddb.com/grid/2b1c6cedeaf9571589e3dc9d51ba20e5.png";
+                };
+                command = [ heroicExe ];
+                pre_command = [ heroicShutdown ];
                 title = "Heroic";
               }
               {
                 command = [
-                  steamLaunchExe
+                  steamExe
                   "steam://open/bigpicture"
                 ];
+                pre_command = [ steamShutdown ];
                 title = "Steam";
               }
             ];
             application_scanner = [
               {
                 command = [
-                  steamLaunchExe
+                  steamExe
                   "steam://rungameid/{game_id}"
                 ];
                 library = "$HOME/.local/share/Steam";
+                pre_command = [ steamShutdown ];
                 type = "steam";
               }
               {
                 command = [
-                  heroicLaunchExe
+                  heroicExe
                   "--no-gui"
                   "heroic://launch?appName={app_name}&runner={runner}"
                 ];
+                pre_command = [ heroicShutdown ];
                 type = "heroic";
               }
             ];

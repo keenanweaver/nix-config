@@ -18,10 +18,8 @@
       };
       programs.rsi-launcher = {
         enable = true;
+        launchCommand = "${lib.getExe pkgs.local.game-wrapper} %command%";
         location = "/mnt/Games2/star-citizen";
-        preCommands = ''
-          ${lib.getExe pkgs.local.game-wrapper}
-        '';
       };
     };
   flake-file.inputs.nix-citizen = {

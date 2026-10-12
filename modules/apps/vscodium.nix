@@ -7,6 +7,7 @@ in
     homeManager.profile-workstation =
       {
         lib,
+        config,
         pkgs,
         osConfig,
         ...
@@ -26,13 +27,17 @@ in
                 eamodio.gitlens
                 formulahendry.code-runner
                 foxundermoon.shell-format
+                ibecker.treefmt-vscode
+                idleberg.nsis
                 jnoortheen.nix-ide
+                mads-hartmann.bash-ide-vscode
                 mkhl.direnv
                 ms-vscode.powershell
                 redhat.vscode-xml
                 redhat.vscode-yaml
                 tamasfe.even-better-toml
-                #timonwong.shellcheck
+                tekumara.typos-vscode
+                timonwong.shellcheck
                 usernamehw.errorlens
                 yzhang.markdown-all-in-one
               ])
@@ -42,17 +47,20 @@ in
               ]);
             userSettings =
               let
-                flake = "(builtins.getFlake (builtins.toString ./. ))";
+                flake = ''(builtins.getFlake "${config.programs.nh.flake}")'';
+                nixExcludes = lib.genAttrs [
+                  "**/.direnv/**"
+                  "**/result-*/**"
+                  "**/result/**"
+                ] (_: true);
               in
               {
                 "[nix]"."editor.defaultFormatter" = "jnoortheen.nix-ide";
+                "bashIde.shellcheckPath" = "";
                 "chat.disableAIFeatures" = true;
                 "claudeCode.preferredLocation" = "panel";
-                "codeium.enableConfig" = {
-                  "*" = true;
-                  nix = true;
-                };
                 "diffEditor.ignoreTrimWhitespace" = false;
+                "direnv.restart.automatic" = true;
                 "editor.bracketPairColorization.enabled" = true;
                 "editor.cursorBlinking" = "smooth";
                 "editor.fontFamily" = "'${mono.family}', 'monospace', monospace";
@@ -73,15 +81,18 @@ in
                 "files.autoSave" = "onFocusChange";
                 "files.insertFinalNewline" = true;
                 "files.trimFinalNewlines" = true;
+                "files.trimTrailingWhitespace" = true;
+                "files.watcherExclude" = nixExcludes;
                 "git.allowForcePush" = true;
                 "git.autofetch" = true;
                 "git.closeDiffOnOperation" = true;
                 "git.confirmSync" = false;
                 "git.enableCommitSigning" = true;
+                "gitlens.telemetry.enabled" = false;
                 "nix.enableLanguageServer" = true;
-                "nix.formatterPath" = lib.getExe pkgs.nixfmt;
                 "nix.serverPath" = lib.getExe pkgs.nixd;
                 "nix.serverSettings".nixd = {
+                  formatting.command = [ (lib.getExe pkgs.nixfmt) ];
                   nixpkgs.expr = "import ${flake}.inputs.nixpkgs { }";
                   options = {
                     home-manager.expr = "${flake}.nixosConfigurations.${osConfig.networking.hostName}.options.home-manager.users.type.getSubOptions []";
@@ -91,6 +102,8 @@ in
                 "powershell.integratedConsole.focusConsoleOnExecute" = false;
                 "powershell.integratedConsole.showOnStartup" = false;
                 "powershell.powerShellAdditionalExePaths".exePath = lib.getExe pkgs.powershell;
+                "redhat.telemetry.enabled" = false;
+                "search.exclude" = nixExcludes;
                 "security.workspace.trust.enabled" = false;
                 "telemetry.telemetryLevel" = "off";
                 "terminal.integrated.fontFamily" = mono.family;
@@ -98,6 +111,7 @@ in
                 "terminal.integrated.fontWeight" = "normal";
                 "terminal.integrated.minimumContrastRatio" = 1;
                 "terminal.integrated.scrollback" = 10000;
+                "typos.config" = "${../../assets/typos.toml}";
                 "update.mode" = "none";
                 "window.menuBarVisibility" = "toggle";
                 "window.titleBarStyle" = "custom";

@@ -2,53 +2,85 @@
 pkgs.writeShellApplication {
   name = "game-wrapper";
 
-  runtimeEnv = {
-    DEFAULT_EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa_git}/share/glvnd/egl_vendor.d/50_mesa.json";
-    DEFAULT_GALLIUM_DRIVER = "zink";
-    DEFAULT_GLX_VENDOR_LIBRARY_NAME = "mesa";
-    DEFAULT_MESA_LOADER = "zink";
-    OBS_VKCAPTURE = "1";
-    PIPEWIRE_NODE = "Game";
-    PULSE_SINK = "Game";
-  };
-
   runtimeInputs = with pkgs; [
     gamemode
     mangohud
     obs-studio-plugins.obs-vkcapture
   ];
 
+  # On by default. GAME_WRAPPER optionally holds a comma-separated list of
+  # options applied on top of the auto defaults.
+  #
+  #   GAME_WRAPPER unset / 1            auto (see below)
+  #   GAME_WRAPPER=-mangohud,gl=zink    auto, minus mangohud, force zink
+  #   GAME_WRAPPER=0 / passthrough      run the command untouched
+  #
+  # Options:
+  #   gl=auto|zink|native    auto: zink for Windows games (their OpenGL goes
+  #                          to Vulkan; DXVK/VKD3D are unaffected), native
+  #                          for Linux games
+  #   mangohud / -mangohud   auto: on, off inside gamescope
+  #   obs / -obs             auto: on, off inside gamescope
+  #   gamemode / -gamemode   default on
+  #   quiet                  don't print the summary line
+  #   debug                  set -x
+  #
   # zink-run https://wiki.cachyos.org/features/cachyos_settings/#zink-run
   text = ''
-    #   zink        - force the zink GL stack + gamemode + mangohud  (default)
-    #   obs         - native GL + gamemode + obs-gamecapture + mangohud
-    #   native      - no driver forcing + gamemode, no mangohud
-    #   passthrough - run the command untouched (mod loaders, injectors)
-    mode="''${WRAPPER_MODE:-}"
-    if [[ -z "$mode" ]]; then
-      current_compat_tool="''${STEAM_COMPAT_TOOL_PATHS-}"
-      current_compat_tool="''${current_compat_tool%%:*}"
-      current_compat_tool_name="$(basename -- "$current_compat_tool")"
-      if [[ "''${current_compat_tool_name,,}" == *wineland* ]]; then
-        mode=native
-      else
-        mode=zink
-      fi
-    fi
-
     if [[ "$#" -eq 0 ]]; then
       echo "game-wrapper: no command given" >&2
       echo "usage: game-wrapper <command> [args...]" >&2
       exit 64  # EX_USAGE
     fi
 
-    if [[ -n "''${WRAPPER_DEBUG:-}" ]]; then
-      set -x
+    spec="''${GAME_WRAPPER:-1}"
+    if [[ "$spec" == 0 || "$spec" == passthrough ]]; then
+      exec "$@"
     fi
 
-    if [[ "$mode" == "passthrough" ]]; then
-      unset OBS_VKCAPTURE
-      exec "$@"
+    gl=auto
+    mangohud=auto
+    obs=auto
+    gamemode=1
+    quiet=0
+
+    IFS=, read -ra opts <<< "$spec"
+    for o in "''${opts[@]}"; do
+      case "$o" in
+        1 | auto) ;;
+        passthrough) exec "$@" ;;
+        mangohud | obs | gamemode) printf -v "$o" 1 ;;
+        -mangohud | -obs | -gamemode) printf -v "''${o#-}" 0 ;;
+        gl=auto | gl=zink | gl=native) gl="''${o#gl=}" ;;
+        quiet) quiet=1 ;;
+        debug) set -x ;;
+        *)
+          echo "game-wrapper: unknown GAME_WRAPPER option '$o'" >&2
+          echo "expected: 1, passthrough, gl=auto|zink|native, [-]mangohud, [-]obs, [-]gamemode, quiet, debug" >&2
+          exit 64
+          ;;
+      esac
+    done
+
+    # Defaults that a game can still override.
+    export PIPEWIRE_NODE="''${PIPEWIRE_NODE:-Game}"
+    export PULSE_SINK="''${PULSE_SINK:-Game}"
+
+    # --- context --------------------------------------------------------
+    # Windows game: Steam's %command% contains the proton script; umu,
+    # Lutris, Faugus and plain wine are caught by the launcher name or a
+    # .exe argument.
+    windows=false
+    for arg in "$@"; do
+      case "''${arg##*/}" in
+        proton | wine | wine64 | umu-run | *.exe | *.EXE)
+          windows=true
+          break
+          ;;
+      esac
+    done
+    if [[ -n "''${PROTONPATH:-}" ]]; then
+      windows=true
     fi
 
     in_gamescope=false
@@ -56,40 +88,55 @@ pkgs.writeShellApplication {
       in_gamescope=true
     fi
 
-    cmd=(gamemoderun)
-    want_mangohud=true
-    want_obscapture=false
+    compat_tool="''${STEAM_COMPAT_TOOL_PATHS:-}"
+    compat_tool="''${compat_tool%%:*}"
+    compat_tool="''${compat_tool##*/}"
 
-    case "$mode" in
-      zink)
-        export MESA_LOADER_DRIVER_OVERRIDE="$DEFAULT_MESA_LOADER"
-        export GALLIUM_DRIVER="$DEFAULT_GALLIUM_DRIVER"
-        export __GLX_VENDOR_LIBRARY_NAME="$DEFAULT_GLX_VENDOR_LIBRARY_NAME"
-        export __EGL_VENDOR_LIBRARY_FILENAMES="$DEFAULT_EGL_VENDOR_LIBRARY_FILENAMES"
-        ;;
-      obs)
-        unset OBS_VKCAPTURE
-        want_obscapture=true
-        ;;
-      native)
-        want_mangohud=false
-        unset OBS_VKCAPTURE
-        ;;
-      *)
-        echo "game-wrapper: unknown WRAPPER_MODE '$mode'" >&2
-        echo "expected one of: zink, obs, native, passthrough" >&2
-        exit 64
-        ;;
-    esac
+    # --- resolve auto ---------------------------------------------------
+    if [[ "$gl" == auto ]]; then
+      if [[ "$windows" == true ]]; then gl=zink; else gl=native; fi
+    fi
+    if [[ "$mangohud" == auto ]]; then
+      if [[ "$in_gamescope" == true ]]; then mangohud=0; else mangohud=1; fi
+    fi
+    if [[ "$obs" == auto ]]; then
+      if [[ "$in_gamescope" == true ]]; then obs=0; else obs=1; fi
+    fi
 
-    if [[ "$in_gamescope" == true ]]; then
-      want_mangohud=false
-      want_obscapture=false
+    # --- apply ----------------------------------------------------------
+    cmd=()
+
+    if [[ "$gl" == zink ]]; then
+      export MESA_LOADER_DRIVER_OVERRIDE=zink
+      export GALLIUM_DRIVER=zink
+    fi
+
+    if [[ "$gamemode" == 1 ]]; then
+      cmd+=(gamemoderun)
+    fi
+
+    if [[ "$obs" == 1 ]]; then
+      if [[ "$gl" == zink ]]; then
+        # GL goes through Vulkan under zink, so the Vulkan layer sees everything.
+        export OBS_VKCAPTURE=1
+      else
+        # Vulkan layer + GL preload, 64- and 32-bit. The game may be started
+        # by a 64-bit launcher, so preload both; ld.so skips the one whose
+        # ELF class doesn't match.
+        cmd+=(obs-gamecapture obs-gamecapture32)
+      fi
+    else
       unset OBS_VKCAPTURE
     fi
 
-    if [[ "$want_obscapture" == true ]]; then cmd+=(obs-gamecapture); fi
-    if [[ "$want_mangohud"  == true ]]; then cmd+=(mangohud); fi
+    if [[ "$mangohud" == 1 ]]; then
+      cmd+=(mangohud)
+    fi
+
+    if [[ "$quiet" == 0 ]]; then
+      echo "game-wrapper: gl=$gl mangohud=$mangohud obs=$obs gamemode=$gamemode" \
+        "windows=$windows gamescope=$in_gamescope compat=''${compat_tool:-none}" >&2
+    fi
 
     exec "''${cmd[@]}" "$@"
   '';

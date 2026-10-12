@@ -154,6 +154,7 @@ in
             procs # ps
             ps3-disc-dumper
             puddletag
+            pvz-portable
             python314Packages.lnkparse3
             q2repro
             qtscrcpy

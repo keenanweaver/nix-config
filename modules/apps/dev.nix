@@ -16,6 +16,7 @@
         nixfmt
         nixos-shell
         nixpkgs-review
+        nsis
         nvd
         optnix
         powershell
