@@ -3,7 +3,6 @@
 ## Fixes
 
 - [EasyEffects](../modules/apps/_easyeffects.nix). Hangs Pipewire on login.
-- [Yeetmouse](../modules/profiles/gaming/_yeetmouse.nix) config does not save appropriately. May be an upstream issue.
 - Klassy application style makes Dolphin selection text unreadable with Catppuccin theme, use Breeze for now.
 - Tailscale while connected to exit node opnsense breaks P2P games like Street Fighter 6 private lobbies.
 

@@ -37,6 +37,15 @@
       url = "github:catppuccin/powershell";
       flake = false;
     };
+    coolercontrol-nix = {
+      url = "github:Daaboulex/coolercontrol-nix";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks-nix";
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -268,6 +277,14 @@
       url = "github:Daaboulex/wine-cachyos-nix";
       inputs = {
         flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+    yeetmouse-nix = {
+      url = "github:Daaboulex/yeetmouse-nix";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks-nix";
         nixpkgs.follows = "nixpkgs";
       };
     };

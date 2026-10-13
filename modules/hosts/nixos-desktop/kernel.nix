@@ -1,9 +1,13 @@
 { self, ... }:
 {
   configurations.nixos.nixos-desktop.module =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       imports = [ self.modules.nixos.cachyos-kernel ];
-      boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-zen4;
+      boot = {
+        extraModulePackages = [ config.boot.kernelPackages.nct6687d ];
+        kernelModules = [ "nct6687" ];
+        kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-zen4;
+      };
     };
 }

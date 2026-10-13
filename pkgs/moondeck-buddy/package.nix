@@ -28,7 +28,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "FrogTheFrog";
     repo = "moondeck-buddy";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-xPWCbDcbge3fdh+OcWBkVp52L8OPHt8eCFwX/AJ6vbQ=";
+    hash = "sha256-Rl6txR7cWZquqJjiAA2J61S3Ww72rugJUgm07eIQfO8=";
     fetchSubmodules = true;
   };
 

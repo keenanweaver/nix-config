@@ -7,10 +7,16 @@
       hardware.yeetmouse = {
         enable = lib.mkDefault true;
         mode = lib.mkDefault {
-          natural = {
-            limit = 1.0;
-            midpoint = 0.0;
-          };
+          lut.data = [
+            [
+              0.0
+              1.0
+            ]
+            [
+              100.0
+              1.0
+            ]
+          ];
         };
         sensitivity = lib.mkDefault 1.0;
       };
