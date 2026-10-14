@@ -72,23 +72,14 @@
           theme = "dark";
         };
       };
-      systemd.user = {
-        services.ludusavi.Service.ExecStartPost = [
-          (lib.escapeShellArgs [
-            (lib.getExe config.programs.rclone.package)
-            "copy"
-            cfg.settings.backup.path
-            "${self.lib.site.nas.mountRoot}/Games/Saves/ludusavi/${osConfig.networking.hostName}"
-          ])
-          "${lib.getExe pkgs.libnotify} 'Ludusavi' 'Backup completed' -i com.mtkennerly.ludusavi -a 'Ludusavi'"
-        ];
-        timers.ludusavi = {
-          Install.WantedBy = [ "timers.target" ];
-          Timer = {
-            OnBootSec = "2min";
-            OnUnitActiveSec = "24h";
-          };
-        };
-      };
+      systemd.user.services.ludusavi.Service.ExecStartPost = [
+        (lib.escapeShellArgs [
+          (lib.getExe config.programs.rclone.package)
+          "copy"
+          cfg.settings.backup.path
+          "${self.lib.site.nas.mountRoot}/Games/Saves/ludusavi/${osConfig.networking.hostName}"
+        ])
+        "${lib.getExe pkgs.libnotify} 'Ludusavi' 'Backup completed' -i com.mtkennerly.ludusavi -a 'Ludusavi'"
+      ];
     };
 }
