@@ -1,7 +1,7 @@
 { self, ... }:
 {
   configurations.nixos.nixos-htpc.module =
-    { lib, config, ... }:
+    { config, ... }:
     {
       imports = with self.modules.nixos; [
         self.diskoConfigurations.nixos-htpc
@@ -17,7 +17,6 @@
         obs
       ];
       boot.loader.timeout = 0;
-      chaotic.mesa-git.enable = lib.mkForce false;
       networking.hostName = "nixos-htpc";
       system.stateVersion = "26.05";
       systemd.tmpfiles.rules = [

@@ -80,7 +80,7 @@ in
             flips
             fooyin
             fuc # cp / rm
-            #gamma-launcher
+            gamma-launcher
             glances
             glow
             gnugo
@@ -158,7 +158,7 @@ in
             python314Packages.lnkparse3
             q2repro
             qtscrcpy
-            #redumper
+            redumper
             rigel-engine
             ringracers
             rssguard
