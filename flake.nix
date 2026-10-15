@@ -85,6 +85,10 @@
       url = "github:gurrgur/kwin-effects-kinetic";
       flake = false;
     };
+    laminix = {
+      url = "github:jackboykin/laminix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     lazyvim-nix = {
       url = "github:pfassina/lazyvim-nix";
       inputs = {

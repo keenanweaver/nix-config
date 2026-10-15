@@ -57,7 +57,7 @@
                     };
                   };
               nonSteamApps = lib.mapAttrs (_: opts: { startIn = null; } // opts) {
-                #BanjoRecomp = wrapped pkgs.banjorecomp;
+                BanjoRecomp = wrapped pkgs.banjorecomp;
                 Bottles = bare pkgs.bottles;
                 "Clone Hero" = wrapped pkgs.clonehero;
                 Dusklight = wrapped pkgs.dusklight;
@@ -73,7 +73,7 @@
                 "Moon Child FE" = wrapped pkgs.moon-child-fe;
                 Moonlight = sysBare pkgs.moonlight-qt;
                 "One Must Fall 2097" = wrapped pkgs.openomf;
-                #"Pegasus Frontend" = bare pkgs.pegasus-frontend;
+                "Pegasus Frontend" = bare pkgs.pegasus-frontend;
                 "Prince of Persia" = wrapped pkgs.sdlpop;
                 "Ring Racers" = wrapped pkgs.ringracers;
                 SM64CoopDX = sysWrapped pkgs.sm64coopdx;
@@ -86,7 +86,7 @@
                 VVVVVV = wrapped pkgs.vvvvvv;
                 "Wipeout Rewrite" = wrapped pkgs.wipeout-rewrite;
                 YARG = wrapped pkgs.yarg;
-                #Zelda64Recomp = wrapped pkgs.zelda64recomp;
+                Zelda64Recomp = wrapped pkgs.zelda64recomp;
                 shadPS4 = bare pkgs.shadps4-qtlauncher;
               };
             };

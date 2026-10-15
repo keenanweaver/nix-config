@@ -1161,6 +1161,26 @@
         "type": "github"
       }
     },
+    "laminix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791844554,
+        "narHash": "sha256-PdbRmlu4xiCHc+QFvMpxBz7RQAwq9AAYLcrsrWBED0E=",
+        "owner": "jackboykin",
+        "repo": "laminix",
+        "rev": "af2778c6e186e52d9974fb714bb386b03713255e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jackboykin",
+        "repo": "laminix",
+        "type": "github"
+      }
+    },
     "lazyvim-nix": {
       "inputs": {
         "flake-utils": [
@@ -2199,6 +2219,7 @@
         "just-one-more-repo": "just-one-more-repo",
         "kwin-effects-better-blur-dx": "kwin-effects-better-blur-dx",
         "kwin-effects-kinetic": "kwin-effects-kinetic",
+        "laminix": "laminix",
         "lazyvim-nix": "lazyvim-nix",
         "llm-agents-nix": "llm-agents-nix",
         "lsfg-vk-nix": "lsfg-vk-nix",
