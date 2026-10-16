@@ -61,6 +61,7 @@
     };
   flake-file.inputs.slippi-nix = {
     inputs = {
+      git-hooks.follows = "git-hooks-nix";
       home-manager.follows = "home-manager";
       nixpkgs.follows = "nixpkgs";
     };

@@ -69,6 +69,7 @@
   };
   flake-file.inputs.steam-config-nix = {
     inputs = {
+      flake-parts.follows = "flake-parts";
       nixpkgs.follows = "nixpkgs";
       systems.follows = "flake-utils/systems";
     };

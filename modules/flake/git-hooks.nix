@@ -167,7 +167,9 @@
     pedantix = {
       inputs = {
         flake-parts.follows = "flake-parts";
+        git-hooks-nix.follows = "git-hooks-nix";
         nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
       };
       url = "github:Swarsel/pedantix";
     };

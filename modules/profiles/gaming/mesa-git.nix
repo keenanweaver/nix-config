@@ -21,6 +21,9 @@
         }
       ];
     };
-    nixos.profile-gaming.chaotic.mesa-git.enable = true;
+    nixos.profile-gaming = {
+      chaotic.mesa-git.enable = true;
+      services.mesa-cache-cleanup.enable = true;
+    };
   };
 }

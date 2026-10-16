@@ -35,6 +35,7 @@
   flake-file.inputs.lsfg-vk-nix = {
     inputs = {
       flake-parts.follows = "flake-parts";
+      git-hooks.follows = "git-hooks-nix";
       nixpkgs.follows = "nixpkgs";
     };
     url = "github:Daaboulex/lsfg-vk-nix";

@@ -31,6 +31,7 @@
     wine-cachyos-nix = {
       inputs = {
         flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks-nix";
         nixpkgs.follows = "nixpkgs";
       };
       url = "github:Daaboulex/wine-cachyos-nix";

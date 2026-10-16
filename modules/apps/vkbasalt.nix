@@ -52,7 +52,10 @@
         };
     };
   flake-file.inputs.nix-reshade = {
-    inputs.nixpkgs.follows = "nixpkgs";
+    inputs = {
+      nixpkgs.follows = "nixpkgs";
+      treefmt-nix.follows = "treefmt-nix";
+    };
     url = "github:LovingMelody/nix-reshade";
   };
 }

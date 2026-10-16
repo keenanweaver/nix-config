@@ -98,12 +98,17 @@
     };
     llm-agents-nix = {
       url = "github:numtide/llm-agents.nix";
-      inputs.systems.follows = "flake-utils/systems";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        systems.follows = "flake-utils/systems";
+        treefmt-nix.follows = "treefmt-nix";
+      };
     };
     lsfg-vk-nix = {
       url = "github:Daaboulex/lsfg-vk-nix";
       inputs = {
         flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks-nix";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -118,7 +123,7 @@
         nixpkgs-stable.follows = "nixpkgs";
       };
     };
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nix-gaming-edge.url = "github:powerofthe69/nix-gaming-edge";
     nix-index-database = {
@@ -142,7 +147,10 @@
     };
     nix-reshade = {
       url = "github:LovingMelody/nix-reshade";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
+      };
     };
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
@@ -188,7 +196,9 @@
       url = "github:Swarsel/pedantix";
       inputs = {
         flake-parts.follows = "flake-parts";
+        git-hooks-nix.follows = "git-hooks-nix";
         nixpkgs.follows = "nixpkgs";
+        treefmt-nix.follows = "treefmt-nix";
       };
     };
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
@@ -204,6 +214,7 @@
       url = "github:Daaboulex/proton-cachyos-nix";
       inputs = {
         flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks-nix";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -211,6 +222,7 @@
       url = "github:Daaboulex/proton-ge-nix";
       inputs = {
         flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks-nix";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -233,6 +245,7 @@
     slippi-nix = {
       url = "github:lytedev/slippi-nix";
       inputs = {
+        git-hooks.follows = "git-hooks-nix";
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
       };
@@ -244,6 +257,7 @@
     steam-config-nix = {
       url = "github:different-name/steam-config-nix";
       inputs = {
+        flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "flake-utils/systems";
       };
@@ -252,6 +266,7 @@
       url = "github:Daaboulex/streamcontroller-nix";
       inputs = {
         flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks-nix";
         home-manager.follows = "home-manager";
         nixpkgs.follows = "nixpkgs";
       };
@@ -275,12 +290,14 @@
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "flake-utils/systems";
+        treefmt-nix.follows = "treefmt-nix";
       };
     };
     wine-cachyos-nix = {
       url = "github:Daaboulex/wine-cachyos-nix";
       inputs = {
         flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks-nix";
         nixpkgs.follows = "nixpkgs";
       };
     };

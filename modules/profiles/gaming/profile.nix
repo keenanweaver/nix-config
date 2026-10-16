@@ -127,6 +127,7 @@
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
         systems.follows = "flake-utils/systems";
+        treefmt-nix.follows = "treefmt-nix";
       };
       url = "github:rafaelrc7/wayland-pipewire-idle-inhibit";
     };

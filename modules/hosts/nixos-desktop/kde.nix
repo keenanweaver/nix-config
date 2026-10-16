@@ -173,7 +173,7 @@
                   launchers = [
                     "applications:org.wezfurlong.wezterm.desktop"
                     "applications:vesktop.desktop"
-                    "applications:fluxer-desktop.desktop"
+                    "applications:app.fluxer.FluxerDesktopCanary.desktop"
                     "applications:signal.desktop"
                     "applications:info.mumble.Mumble.desktop"
                     "applications:org.fooyin.fooyin.desktop"
@@ -249,7 +249,7 @@
           }
           {
             apply = {
-              desktopfile = "fluxer-desktop";
+              desktopfile = "app.fluxer.FluxerDesktopCanary";
               ignoregeometry.value = true;
               position.value = "0,0";
               screen = {

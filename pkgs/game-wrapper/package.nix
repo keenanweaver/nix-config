@@ -12,13 +12,12 @@ pkgs.writeShellApplication {
   # options applied on top of the auto defaults.
   #
   #   GAME_WRAPPER unset / 1            auto (see below)
-  #   GAME_WRAPPER=-mangohud,gl=zink    auto, minus mangohud, force zink
+  #   GAME_WRAPPER=-mangohud,gl=native  auto, minus mangohud, no zink
   #   GAME_WRAPPER=0 / passthrough      run the command untouched
   #
   # Options:
-  #   gl=auto|zink|native    auto: zink for Windows games (their OpenGL goes
-  #                          to Vulkan; DXVK/VKD3D are unaffected), native
-  #                          for Linux games
+  #   gl=zink|native         default zink: OpenGL goes to Vulkan, for Linux
+  #                          and Windows games (DXVK/VKD3D are unaffected)
   #   mangohud / -mangohud   auto: on, off inside gamescope
   #   obs / -obs             auto: on, off inside gamescope
   #   gamemode / -gamemode   default on
@@ -38,7 +37,7 @@ pkgs.writeShellApplication {
       exec "$@"
     fi
 
-    gl=auto
+    gl=zink
     mangohud=auto
     obs=auto
     gamemode=1
@@ -51,12 +50,12 @@ pkgs.writeShellApplication {
         passthrough) exec "$@" ;;
         mangohud | obs | gamemode) printf -v "$o" 1 ;;
         -mangohud | -obs | -gamemode) printf -v "''${o#-}" 0 ;;
-        gl=auto | gl=zink | gl=native) gl="''${o#gl=}" ;;
+        gl=zink | gl=native) gl="''${o#gl=}" ;;
         quiet) quiet=1 ;;
         debug) set -x ;;
         *)
           echo "game-wrapper: unknown GAME_WRAPPER option '$o'" >&2
-          echo "expected: 1, passthrough, gl=auto|zink|native, [-]mangohud, [-]obs, [-]gamemode, quiet, debug" >&2
+          echo "expected: 1, passthrough, gl=zink|native, [-]mangohud, [-]obs, [-]gamemode, quiet, debug" >&2
           exit 64
           ;;
       esac
@@ -67,22 +66,6 @@ pkgs.writeShellApplication {
     export PULSE_SINK="''${PULSE_SINK:-Game}"
 
     # --- context --------------------------------------------------------
-    # Windows game: Steam's %command% contains the proton script; umu,
-    # Lutris, Faugus and plain wine are caught by the launcher name or a
-    # .exe argument.
-    windows=false
-    for arg in "$@"; do
-      case "''${arg##*/}" in
-        proton | wine | wine64 | umu-run | *.exe | *.EXE)
-          windows=true
-          break
-          ;;
-      esac
-    done
-    if [[ -n "''${PROTONPATH:-}" ]]; then
-      windows=true
-    fi
-
     in_gamescope=false
     if [[ -n "''${GAMESCOPE_WAYLAND_DISPLAY:-}" || "''${XDG_CURRENT_DESKTOP:-}" == *gamescope* ]]; then
       in_gamescope=true
@@ -93,9 +76,6 @@ pkgs.writeShellApplication {
     compat_tool="''${compat_tool##*/}"
 
     # --- resolve auto ---------------------------------------------------
-    if [[ "$gl" == auto ]]; then
-      if [[ "$windows" == true ]]; then gl=zink; else gl=native; fi
-    fi
     if [[ "$mangohud" == auto ]]; then
       if [[ "$in_gamescope" == true ]]; then mangohud=0; else mangohud=1; fi
     fi
@@ -135,7 +115,7 @@ pkgs.writeShellApplication {
 
     if [[ "$quiet" == 0 ]]; then
       echo "game-wrapper: gl=$gl mangohud=$mangohud obs=$obs gamemode=$gamemode" \
-        "windows=$windows gamescope=$in_gamescope compat=''${compat_tool:-none}" >&2
+        "gamescope=$in_gamescope compat=''${compat_tool:-none}" >&2
     fi
 
     exec "''${cmd[@]}" "$@"

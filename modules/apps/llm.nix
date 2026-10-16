@@ -24,7 +24,11 @@
       };
     };
   flake-file.inputs.llm-agents-nix = {
-    inputs.systems.follows = "flake-utils/systems";
+    inputs = {
+      flake-parts.follows = "flake-parts";
+      systems.follows = "flake-utils/systems";
+      treefmt-nix.follows = "treefmt-nix";
+    };
     url = "github:numtide/llm-agents.nix";
   };
 }

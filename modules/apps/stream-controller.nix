@@ -295,7 +295,18 @@
       {
         imports = [ inputs.streamcontroller-nix.nixosModules.default ];
         home-manager.sharedModules = [ self.modules.homeManager.stream-controller ];
-        nixpkgs.overlays = [ inputs.streamcontroller-nix.overlays.default ];
+        nixpkgs.overlays = [
+          inputs.streamcontroller-nix.overlays.default
+          # Upstream opens Assets/images/*.png relative to the working directory
+          (_: prev: {
+            streamcontroller = prev.streamcontroller.overrideAttrs (old: {
+              postInstall = (old.postInstall or "") + ''
+                substituteInPlace $out/bin/streamcontroller \
+                  --replace-fail "exec " "cd $out/share/streamcontroller && exec "
+              '';
+            });
+          })
+        ];
         programs.streamcontroller = {
           enable = true;
           autostart = true;
@@ -305,6 +316,7 @@
   flake-file.inputs.streamcontroller-nix = {
     inputs = {
       flake-parts.follows = "flake-parts";
+      git-hooks.follows = "git-hooks-nix";
       home-manager.follows = "home-manager";
       nixpkgs.follows = "nixpkgs";
     };

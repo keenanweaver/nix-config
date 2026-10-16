@@ -8,17 +8,17 @@
 }:
 let
   hashes = {
-    x86_64 = "sha256-PBvOQ47CYtvEJ6FyU7JWyiL2yKyS6fvSRMYAS4zr0JE=";
-    x86_64_v3 = "sha256-Mvpq6LwNj7m/uHgslIcUjUjgzytYec5Gt1OyugUp0Oc=";
-    x86_64_wow64 = "sha256-BW3WH14HYYlEt1LopaAZ0W8ORLqWfAwXrJXeEKjCHuk=";
+    x86_64 = "sha256-6rjeus3kJh09YAclQWi/qW9AnBrtNbMjG1buVLK7aFw=";
+    x86_64_v3 = "sha256-Pr+EJYsY0G0n0VJ/ISR0Vad5ar/NRqy6D4yLcmhIgx0=";
+    x86_64_wow64 = "sha256-wi7LWQ7kMNTEfj0KP4RLOiHa1y5pf9Fv8AcL3w5DHVI=";
   };
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "proton-wineland";
-  version = "wineland-11.0-20261011";
+  version = "wineland-11.0-20261015";
 
   src = fetchurl {
-    url = "https://github.com/nanomatters/proton-cachyos/releases/download/${finalAttrs.version}/proton-${finalAttrs.version}-${variant}.tar.xz";
+    url = "https://github.com/nanomatters/proton-salkim/releases/download/${finalAttrs.version}/proton-${finalAttrs.version}-${variant}.tar.xz";
     hash = hashes.${variant};
   };
 
@@ -54,7 +54,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     #!nix-shell -i bash -p curl jq gnused nix
     set -euo pipefail
 
-    repo="https://api.github.com/repos/nanomatters/proton-cachyos/releases"
+    repo="https://api.github.com/repos/nanomatters/proton-salkim/releases"
     tag="$(curl -sL "$repo" | jq -r 'map(select(.tag_name | test("^(cachyos-)?wineland-"))) | .[0].tag_name')"
     if [ -z "$tag" ] || [ "$tag" = "null" ]; then
       echo "failed to resolve latest (cachyos-)wineland-* release tag" >&2
@@ -66,7 +66,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     sed -i "s/version = \".*\";/version = \"$tag\";/" "$file"
 
     for variant in x86_64 x86_64_wow64 x86_64_v3; do
-      url="https://github.com/nanomatters/proton-cachyos/releases/download/$tag/proton-$tag-$variant.tar.xz"
+      url="https://github.com/nanomatters/proton-salkim/releases/download/$tag/proton-$tag-$variant.tar.xz"
       echo "prefetching $variant: $url" >&2
       hash="$(nix store prefetch-file --json "$url" | jq -r .hash)"
       sed -i "s|^\(\s*$variant = \)\".*\";|\1\"$hash\";|" "$file"
@@ -75,7 +75,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   meta = {
     description = "Native Wayland Steam overlay and Steam Input support";
-    homepage = "https://github.com/nanomatters/proton-cachyos";
+    homepage = "https://github.com/nanomatters/proton-salkim";
     license = lib.licenses.bsd3;
     sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
     maintainers = with lib.maintainers; [ keenanweaver ];

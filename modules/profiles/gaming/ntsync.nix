@@ -2,9 +2,6 @@
   flake.modules.nixos.profile-gaming =
     { pkgs, ... }:
     {
-      boot.kernelModules = [
-        "ntsync"
-      ];
       services.udev.packages = [
         (pkgs.writeTextFile {
           destination = "/etc/udev/rules.d/70-ntsync.rules";

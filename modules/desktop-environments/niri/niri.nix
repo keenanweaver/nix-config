@@ -92,7 +92,12 @@
       ];
     };
     nixos.niri =
-      { pkgs, ... }:
+      {
+        lib,
+        config,
+        pkgs,
+        ...
+      }:
       {
         imports = [
           inputs.niri-flake.nixosModules.niri
@@ -103,6 +108,9 @@
           enable = true;
           package = pkgs.niri;
         };
+        services.gnome.gnome-keyring.enable = lib.mkIf config.services.desktopManager.plasma6.enable (
+          lib.mkForce false
+        );
       };
   };
   flake-file.inputs.niri-flake = {

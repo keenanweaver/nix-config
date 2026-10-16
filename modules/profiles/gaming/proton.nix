@@ -110,6 +110,7 @@
     proton-cachyos-nix = {
       inputs = {
         flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks-nix";
         nixpkgs.follows = "nixpkgs";
       };
       url = "github:Daaboulex/proton-cachyos-nix";
@@ -117,6 +118,7 @@
     proton-ge-nix = {
       inputs = {
         flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks-nix";
         nixpkgs.follows = "nixpkgs";
       };
       url = "github:Daaboulex/proton-ge-nix";

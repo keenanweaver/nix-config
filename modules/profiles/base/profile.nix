@@ -43,7 +43,7 @@
           ];
         };
         home-manager.sharedModules = [ self.modules.homeManager.profile-base ];
-        programs.iotop.enable = true;
+        #programs.iotop.enable = true;
         services = {
           earlyoom = {
             enable = true;
