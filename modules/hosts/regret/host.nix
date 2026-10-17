@@ -7,26 +7,7 @@
 
         pi4
       ];
-      networking.hostName = "regret";
       system.stateVersion = "26.05";
-      /*
-        virtualisation.quadlet.containers.mister-retroarch-save-sync = {
-             autoStart = true;
-             containerConfig = {
-               autoUpdate = "registry";
-               environments = {
-                 RETROARCH_CORES = "FCEUmm, Snes9x, Gambatte, mGBA, Genesis Plus GX, Beetle PSX HW, Mupen64Plus-Next";
-                 TZ = config.time.timeZone;
-               };
-               image = "ghcr.io/juaniwck/mister-retroarch-save-sync:latest";
-               volumes = [
-                 "/mnt/retroarch:/retroarch"
-                 "/mnt/mister/saves:/mister/saves"
-               ];
-             };
-             serviceConfig.Restart = "unless-stopped";
-           };
-      */
     };
     system = "aarch64-linux";
   };

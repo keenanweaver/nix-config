@@ -1,6 +1,6 @@
-{ self, ... }:
+{ config, ... }:
 let
-  mono = self.lib.fonts.monospace;
+  inherit (config.theme) mono-font mono-size;
 in
 {
   flake.modules.homeManager.profile-desktop.programs.wezterm = {
@@ -11,20 +11,20 @@ in
       local act = wezterm.action
 
       -- Appearance
-      config.font_size = ${toString mono.size}
+      config.font_size = ${toString mono-size}
       config.window_background_opacity = 0.7
       config.color_scheme = "Catppuccin Mocha"
 
       -- Font configuration
       config.font = wezterm.font_with_fallback {
-        '${mono.family}',
+        '${mono-font}',
       }
       config.font_rules = {
         {
           intensity = 'Bold',
           italic = true,
           font = wezterm.font {
-            family = '${mono.family}',
+            family = '${mono-font}',
             weight = 'Bold',
             style = 'Italic',
           },

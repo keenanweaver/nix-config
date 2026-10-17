@@ -1,6 +1,11 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  config,
+  ...
+}:
 let
-  inherit (self.lib.site) nas;
+  inherit (config.site) nas;
 in
 {
   flake.modules = {

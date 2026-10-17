@@ -1,6 +1,11 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  config,
+  ...
+}:
 let
-  inherit (self.lib.site) network;
+  inherit (config.site) network;
 in
 {
   flake.modules = {
@@ -25,6 +30,7 @@ in
         assertions = self.lib.mkFactAssertions config [ "lanInterface" ];
         # https://tarow.github.io/nix-podman-stacks/docs/getting-started.html#%E2%9A%99%EF%B8%8F-prerequisites
         boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 0;
+        hardware.facter.detected.dhcp.enable = false;
         home-manager.sharedModules = [ self.modules.homeManager.profile-server ];
         networking = {
           defaultGateway = {
@@ -38,6 +44,7 @@ in
             }
           ];
           nameservers = [ network.gateway ];
+          useDHCP = false;
         };
         users.users.${config.my.user} = {
           autoSubUidGidRange = true;

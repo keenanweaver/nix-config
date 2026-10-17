@@ -6,12 +6,6 @@
 - Klassy application style makes Dolphin selection text unreadable with Catppuccin theme, use Breeze for now.
 - Tailscale while connected to exit node opnsense breaks P2P games like Street Fighter 6 private lobbies.
 
-## Hacks
-
-These are hacks/temporary workarounds that should be reverted once upstream/other sources add them.
-
-- [KDE slowness hack](../modules/desktop-environments/kde/kde.nix)
-
 ## Flake
 
 - Consider tagging commits as releases

@@ -1,27 +1,20 @@
 { self, ... }:
 {
-  configurations.nixos.nixos-htpc.module =
-    { config, ... }:
-    {
-      imports = with self.modules.nixos; [
-        self.diskoConfigurations.nixos-htpc
+  configurations.nixos.nixos-htpc.module = {
+    imports = with self.modules.nixos; [
+      self.diskoConfigurations.nixos-htpc
 
-        profile-desktop
-        profile-kde
-        profile-gaming
+      profile-desktop
+      profile-kde
+      profile-gaming
 
-        amd
-        coolercontrol
-        secure-boot
+      amd
+      coolercontrol
+      secure-boot
 
-        obs
-      ];
-      boot.loader.timeout = 0;
-      networking.hostName = "nixos-htpc";
-      system.stateVersion = "26.05";
-      systemd.tmpfiles.rules = [
-        "d /mnt/Games 0755 ${config.my.user} users - -"
-        "L+ ${config.users.users.${config.my.user}.home}/Games - - - - /mnt/Games"
-      ];
-    };
+      obs
+    ];
+    boot.loader.timeout = 0;
+    system.stateVersion = "26.05";
+  };
 }

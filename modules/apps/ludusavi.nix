@@ -1,4 +1,7 @@
-{ self, ... }:
+{ config, ... }:
+let
+  inherit (config) site;
+in
 {
   flake.modules.homeManager.profile-gaming =
     {
@@ -77,7 +80,7 @@
           (lib.getExe config.programs.rclone.package)
           "copy"
           cfg.settings.backup.path
-          "${self.lib.site.nas.mountRoot}/Games/Saves/ludusavi/${osConfig.networking.hostName}"
+          "${site.nas.mountRoot}/Games/Saves/ludusavi/${osConfig.networking.hostName}"
         ])
         "${lib.getExe pkgs.libnotify} 'Ludusavi' 'Backup completed' -i com.mtkennerly.ludusavi -a 'Ludusavi'"
       ];

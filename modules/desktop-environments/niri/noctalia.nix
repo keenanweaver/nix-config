@@ -4,6 +4,9 @@
   config,
   ...
 }:
+let
+  inherit (config) site theme;
+in
 {
   caches.noctalia = {
     key = "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=";
@@ -41,7 +44,7 @@
             calendar.enabled = true;
             control_center.calendar.show_week_numbers = true;
             dock.enabled = false;
-            location = self.lib.site.location // {
+            location = site.location // {
               auto_locate = false;
             };
             nightlight = {
@@ -57,7 +60,7 @@
               source = "builtin";
             };
             wallpaper = {
-              default.path = self.lib.theme.wallpaper;
+              default.path = theme.wallpaper;
               enabled = true;
               fill_mode = "crop";
             };

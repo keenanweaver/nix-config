@@ -1,6 +1,6 @@
-{ self, inputs, ... }:
+{ inputs, config, ... }:
 let
-  mono = self.lib.fonts.monospace;
+  inherit (config.theme) mono-font mono-size;
 in
 {
   flake.modules = {
@@ -63,7 +63,7 @@ in
                 "direnv.restart.automatic" = true;
                 "editor.bracketPairColorization.enabled" = true;
                 "editor.cursorBlinking" = "smooth";
-                "editor.fontFamily" = "'${mono.family}', 'monospace', monospace";
+                "editor.fontFamily" = "'${mono-font}', 'monospace', monospace";
                 "editor.fontLigatures" = true;
                 "editor.fontSize" = 18;
                 "editor.formatOnSave" = false;
@@ -106,8 +106,8 @@ in
                 "search.exclude" = nixExcludes;
                 "security.workspace.trust.enabled" = false;
                 "telemetry.telemetryLevel" = "off";
-                "terminal.integrated.fontFamily" = mono.family;
-                "terminal.integrated.fontSize" = mono.size;
+                "terminal.integrated.fontFamily" = mono-font;
+                "terminal.integrated.fontSize" = mono-size;
                 "terminal.integrated.fontWeight" = "normal";
                 "terminal.integrated.minimumContrastRatio" = 1;
                 "terminal.integrated.scrollback" = 10000;

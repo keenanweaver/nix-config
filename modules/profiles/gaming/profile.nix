@@ -17,6 +17,9 @@
           SDL_VIDEODRIVER = "wayland,x11"; # SDL2
           SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3
           WAYLANDDRV_PRIMARY_MONITOR = osConfig.host.primaryMonitor; # https://reddit.com/r/linux_gaming/comments/1louxm2/fix_for_wine_wayland_using_wrong_monitor/
+        }
+        // lib.optionalAttrs (osConfig.host.wineCpuTopology != "") {
+          WINE_CPU_TOPOLOGY = osConfig.host.wineCpuTopology;
         };
         xdg.desktopEntries = import ./_desktop-entries.nix {
           inherit
@@ -45,10 +48,7 @@
           "primaryMonitor"
         ];
         boot = {
-          kernel.sysctl = {
-            "vm.max_map_count" = 2147483642;
-            "vm.mmap_min_addr" = 0; # SheepShaver
-          };
+          kernel.sysctl."vm.max_map_count" = 2147483642;
           kernelParams = [
             "gpu_sched.sched_policy=0" # https://gitlab.freedesktop.org/drm/amd/-/issues/2516#note_2119750
             "tsc=reliable"
@@ -73,14 +73,14 @@
         security.pam.loginLimits = [
           # RPCS3
           {
-            domain = "*";
+            domain = config.my.user;
             item = "memlock";
             type = "hard";
             value = "unlimited";
           }
           # RPCS3
           {
-            domain = "*";
+            domain = config.my.user;
             item = "memlock";
             type = "soft";
             value = "unlimited";
@@ -114,10 +114,15 @@
             };
           };
         };
+        systemd.tmpfiles.rules = [
+          "d /mnt/Games 0755 ${config.my.user} users - -"
+          "L+ ${config.users.users.${config.my.user}.home}/Games - - - - /mnt/Games"
+        ];
       };
   };
   flake-file.inputs = {
     just-one-more-repo.url = "github:ProverbialPennance/just-one-more-repo";
+    nix-gaming-edge.url = "github:powerofthe69/nix-gaming-edge";
     umu = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";

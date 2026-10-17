@@ -23,14 +23,9 @@
         environment = {
           etc.motd.text =
             let
-              nixpkgsDate = lib.removeSuffix "\n" (
-                builtins.readFile (
-                  pkgs.runCommand "nixpkgs-date" { } ''
-                    TZDIR=${pkgs.tzdata}/share/zoneinfo TZ=${config.time.timeZone} \
-                      date -d @${toString inputs.nixpkgs.lastModified} +'%Y-%m-%d %H:%M:%S %Z' > "$out"
-                  ''
-                )
-              );
+              d = inputs.nixpkgs.lastModifiedDate;
+              nixpkgsDate = "${part 0 4}-${part 4 2}-${part 6 2} ${part 8 2}:${part 10 2}:${part 12 2} UTC";
+              part = start: len: lib.substring start len d;
             in
             ''
               NixOS release: ${config.system.nixos.release}
@@ -43,7 +38,6 @@
           ];
         };
         home-manager.sharedModules = [ self.modules.homeManager.profile-base ];
-        #programs.iotop.enable = true;
         services = {
           earlyoom = {
             enable = true;
@@ -51,10 +45,7 @@
           };
           journald.settings.Journal.SystemMaxUse = "50M";
         };
-        systemd.settings.Manager = {
-          DefaultTimeoutStartSec = "15s";
-          DefaultTimeoutStopSec = "10s";
-        };
+        systemd.settings.Manager.DefaultTimeoutStopSec = "10s";
         time.timeZone = "America/Chicago";
         users.motdFile = "/etc/motd";
       };

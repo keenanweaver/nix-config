@@ -166,8 +166,6 @@
     };
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     nonfree = {
       url = "github:keenanweaver/nix-nonfree";
@@ -201,7 +199,6 @@
         treefmt-nix.follows = "treefmt-nix";
       };
     };
-    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs = {

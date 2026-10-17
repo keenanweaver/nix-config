@@ -143,8 +143,7 @@
           global.excludes = [
             ".envrc"
             "*facter.json"
-            "*keenan.yaml"
-            "*nixos.yaml"
+            "assets/secrets/*"
             "*.sops.yaml"
             "flake.lock"
             "result"

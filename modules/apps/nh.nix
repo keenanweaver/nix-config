@@ -1,6 +1,6 @@
-{ self, ... }:
+{ config, ... }:
 let
-  inherit (self.lib.site) nas;
+  inherit (config.site) nas;
 in
 {
   flake.modules.homeManager.profile-base.programs.nh = {

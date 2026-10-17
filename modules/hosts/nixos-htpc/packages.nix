@@ -1,4 +1,12 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  config,
+  ...
+}:
+let
+  inherit (config) roms;
+in
 {
   configurations.nixos.nixos-htpc.module =
     {
@@ -50,7 +58,7 @@
         ];
       };
       system.extraDependencies =
-        with self.lib.roms;
+        with roms;
         self.lib.pinRoms pkgs [
           banjo
           mm

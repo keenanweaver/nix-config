@@ -6,6 +6,11 @@ keys:
   - &regret age1v9e2jkf77uf7tv5gmjymf2uea4hsys9ervmc7d0wyjn5fu3wr59sfjx89f
   - &remorse age1mpwsnd5z9akcjwp0n2zdk565rt5r9ajhpm39drfvw4cfh6a6sstq5eehev
 
+# Each host can decrypt only the files it needs:
+#   nixos.yaml   - every host
+#   desktop.yaml - hosts importing profile-desktop
+#   <host>.yaml  - that host only (its default sopsFile)
+#   keenan.yaml  - the user's age key (home-manager on desktop hosts)
 creation_rules:
   - path_regex: assets/secrets/nixos\.yaml$
     key_groups:
@@ -15,6 +20,32 @@ creation_rules:
           - *nixos-htpc
           - *nixos-laptop
           - *regret
+          - *remorse
+
+  - path_regex: assets/secrets/desktop\.yaml$
+    key_groups:
+      - age:
+          - *keenan_age
+          - *nixos-desktop
+          - *nixos-htpc
+          - *nixos-laptop
+
+  - path_regex: assets/secrets/nixos-laptop\.yaml$
+    key_groups:
+      - age:
+          - *keenan_age
+          - *nixos-laptop
+
+  - path_regex: assets/secrets/regret\.yaml$
+    key_groups:
+      - age:
+          - *keenan_age
+          - *regret
+
+  - path_regex: assets/secrets/remorse\.yaml$
+    key_groups:
+      - age:
+          - *keenan_age
           - *remorse
 
   - path_regex: assets/secrets/keenan\.yaml$

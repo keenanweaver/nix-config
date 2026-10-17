@@ -44,26 +44,6 @@
                 ACTION!="remove", SUBSYSTEM=="usb", ATTR{idProduct}=="0091", ATTR{idVendor}=="2f24", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
               '';
             })
-            /*
-              (writeTextFile {
-                         destination = "/etc/udev/rules.d/70-gamesir.rules";
-                         name = "70-gamesir.rules";
-                         text = ''
-                           # GameSir Cyclone 2 Wireless Controller; USB
-                           ## Nintendo Switch
-                           ACTION!="remove", SUBSYSTEM=="usb", ATTR{idProduct}=="2009", ATTR{idVendor}=="057e", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-                           ## D-input/Sony
-                           ACTION!="remove", SUBSYSTEM=="usb", ATTR{idProduct}=="09cc", ATTR{idVendor}=="054c", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-                           ## X-input/XBOX
-                           ACTION!="remove", SUBSYSTEM=="usb", ATTR{idProduct}=="1053", ATTR{idVendor}=="3537", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-                           # GameSir Cyclone 2 Wireless Controller; 2.4GHz
-                           ## X-input/XBOX
-                           ACTION!="remove", SUBSYSTEM=="usb", ATTR{idProduct}=="100b", ATTR{idVendor}=="3537", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-                           # GameSir Cyclone 2 Wireless Controller; Bluetooth
-                           ACTION!="remove", SUBSYSTEM=="input", ATTR{idProduct}=="8100", ATTR{idVendor}=="054c", ENV{ID_INPUT_JOYSTICK}="1", TAG+="uaccess"
-                         '';
-                       })
-            */
             # 8BitDo Firmware Updater https://gist.github.com/archeYR/d687de5e484ce7b45d6a94415a04f3dc
             (writeTextFile {
               destination = "/etc/udev/rules.d/70-8bitdo.rules";

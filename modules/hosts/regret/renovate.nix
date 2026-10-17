@@ -25,11 +25,11 @@
 
           ${self.lib.mkNtfyNotify {
             token = "$ntfy_token";
-            topicUrl = "http://${self.lib.site.network.hosts.regret}/renovate";
+            url = "http://127.0.0.1/renovate";
           }}
 
           commits=$(curl -fsS \
-            --header "Authorization: token $codeberg_token" \
+            --header @<(printf 'Authorization: token %s\n' "$codeberg_token") \
             "https://codeberg.org/api/v1/repos/Keenan/nix-config/commits?sha=dendritic&limit=50")
 
           current_sha=$(printf '%s' "$commits" | jq -r '.[0].sha')

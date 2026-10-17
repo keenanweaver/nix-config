@@ -24,11 +24,12 @@ in
       }) config.flake.nixosConfigurations
     );
     nixosConfigurations = mapAttrs (
-      _name:
+      name:
       { module, system }:
       nixosSystem {
         modules = [
           {
+            networking.hostName = name;
             nixpkgs.hostPlatform = system;
             system.configurationRevision = self.rev or self.dirtyRev or null;
           }

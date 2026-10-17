@@ -8,7 +8,6 @@
 
         pi4
       ];
-      networking.hostName = "remorse";
       system.stateVersion = "26.05";
     };
     system = "aarch64-linux";

@@ -1,4 +1,7 @@
-{ self, ... }:
+{ self, config, ... }:
+let
+  inherit (config) site;
+in
 {
   configurations.nixos.remorse.module =
     { config, ... }:
@@ -6,12 +9,12 @@
       home-manager.users.${config.my.user} =
         {
           lib,
-          config,
           pkgs,
+          osConfig,
           ...
         }:
         let
-          downloadDirectory = "${self.lib.site.nas.paths.thiefFanMissions}/Thievery Customs";
+          downloadDirectory = "${site.nas.paths.thiefFanMissions}/Thievery Customs";
           # Fan Mission Pack Generator game ids: Thief 1, Thief 2, Thief 3.
           games = [
             "14"
@@ -20,8 +23,10 @@
           ];
           ntfyHelpers = self.lib.mkNtfyNotify {
             click = true;
-            token = "$(cat ${lib.escapeShellArg config.sops.secrets."ntfy/ntfybot_token".path})";
-            topicUrl = "http://${self.lib.site.network.hosts.regret}/downloaders";
+            token = "$(<${lib.escapeShellArg osConfig.sops.secrets."ntfy/ntfybot_token".path})";
+            url = "https://${site.services.ntfy}.$(<${
+              lib.escapeShellArg osConfig.sops.secrets."tailscale/tailnet_dns".path
+            })/downloaders";
           };
           thievery-customs-sync = pkgs.writeShellApplication {
             excludeShellChecks = [ "SC2329" ];
@@ -173,7 +178,6 @@
         in
         {
           home.packages = [ thievery-customs-sync ];
-          sops.secrets."ntfy/ntfybot_token" = { };
           systemd.user = {
             services.thievery-customs-sync = {
               Service = {
@@ -195,5 +199,6 @@
             };
           };
         };
+      sops.secrets."ntfy/ntfybot_token".owner = config.my.user;
     };
 }

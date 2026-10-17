@@ -1,4 +1,7 @@
-{ self, inputs, ... }:
+{ inputs, config, ... }:
+let
+  inherit (config) theme;
+in
 {
   flake.modules.homeManager.zen-browser =
     {
@@ -155,8 +158,8 @@
               betterfox.enable = true;
               catppuccin = {
                 enable = true;
-                accent = self.lib.theme.accent-upper;
-                flavor = self.lib.theme.flavor-upper;
+                accent = theme.accent-upper;
+                flavor = theme.flavor-upper;
               };
             };
             search = {

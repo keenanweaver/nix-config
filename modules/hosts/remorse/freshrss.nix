@@ -5,7 +5,7 @@
       adminUser = config.my.user;
     in
     {
-      home-manager.users.${adminUser} = { config, pkgs, ... }: {
+      home-manager.users.${adminUser} = { pkgs, ... }: {
         nps.stacks.freshrss = {
           enable = true;
           adminProvisioning = {
@@ -19,10 +19,6 @@
         services.podman.containers.freshrss = {
           homepage.settings.href = "https://remorse.{{HOMEPAGE_VAR_TAILNET_DNS}}:8443";
           volumeMap.opml = "${../../../assets/hosts/remorse/freshrss-feeds.opml}:/import/feeds.opml:ro";
-        };
-        sops.secrets = {
-          "freshrss/admin_api_password" = { };
-          "freshrss/admin_password" = { };
         };
         systemd.user = {
           services.freshrss-import-feeds = {
@@ -51,5 +47,9 @@
         target = "http://127.0.0.1:80";
       };
       networking.firewall.interfaces.${config.host.lanInterface}.allowedTCPPorts = [ 80 ];
+      sops.secrets = {
+        "freshrss/admin_api_password".owner = adminUser;
+        "freshrss/admin_password".owner = adminUser;
+      };
     };
 }

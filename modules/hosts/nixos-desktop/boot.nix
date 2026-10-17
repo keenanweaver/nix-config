@@ -5,13 +5,13 @@
       boot = {
         blacklistedKernelModules = [ "snd_hda_intel" ];
         kernel.sysctl = {
+          "vm.mmap_min_addr" = 0;
           "vm.swappiness" = lib.mkForce 1;
           "vm.watermark_boost_factor" = 0;
           "vm.watermark_scale_factor" = 125;
         };
         kernelParams = [
           "amdgpu.audio=0"
-          #"amd_3d_vcache.x3d_mode=cache" # AMD V-Cache https://wiki.cachyos.org/configuration/general_system_tweaks/#amd-3d-v-cache-optimizer
         ];
         loader.limine = {
           extraEntries =

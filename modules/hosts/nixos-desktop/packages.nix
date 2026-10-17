@@ -1,6 +1,12 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  config,
+  ...
+}:
 let
-  inherit (self.lib.site) nas;
+  inherit (config) roms;
+  inherit (config.site) nas;
 in
 {
   configurations.nixos.nixos-desktop.module =
@@ -114,7 +120,6 @@ in
             krita
             lazyjournal
             lgogdownloader
-            #limo
             local.openxcom-extended
             local.relive
             local.rsdkv3
@@ -143,7 +148,6 @@ in
             openttd
             opentyrian
             openxray
-            oversteer
             parsec-bin
             patool
             perfect_dark
@@ -162,7 +166,6 @@ in
             rigel-engine
             ringracers
             rssguard
-            sc-controller
             scummvm
             sd # sed
             sdlpop
@@ -207,7 +210,7 @@ in
         };
       programs.k3b.enable = true;
       system.extraDependencies =
-        with self.lib.roms;
+        with roms;
         self.lib.pinRoms pkgs [
           banjo
           lego-island

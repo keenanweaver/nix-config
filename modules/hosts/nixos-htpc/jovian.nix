@@ -12,6 +12,8 @@
         inputs.nyx.vendored.jovian.nixosModules.default
       ];
       home-manager.users.${config.my.user}.home.file = {
+        # https://github.com/Jovian-Experiments/Jovian-NixOS/issues/460#issuecomment-3439375088
+        ".local/share/Steam/.cef-enable-remote-debugging".text = "";
         "Desktop/Reboot-to-UEFI.desktop".source =
           (pkgs.makeDesktopItem {
             desktopName = "Reboot to UEFI";
@@ -61,17 +63,6 @@
         displayManager.plasma-login-manager.enable = false; # Conflicts with Jovian
         pulseaudio.enable = lib.mkForce false;
         scx.enable = lib.mkForce false; # Conflicts with scx-loader
-      };
-      # Create Steam CEF debugging file if it doesn't exist for Decky Loader.
-      # https://github.com/Jovian-Experiments/Jovian-NixOS/issues/460#issuecomment-3439375088
-      systemd.services.steam-cef-debug = {
-        description = "Create Steam CEF debugging file";
-        wantedBy = [ "multi-user.target" ];
-        serviceConfig = {
-          ExecStart = "${lib.getExe pkgs.bash} -c 'mkdir -p ~/.steam/steam && [ ! -f ~/.steam/steam/.cef-enable-remote-debugging ] && touch ~/.steam/steam/.cef-enable-remote-debugging || true'";
-          Type = "oneshot";
-          User = config.jovian.steam.user;
-        };
       };
     };
 }

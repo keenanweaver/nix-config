@@ -1,4 +1,7 @@
-{ self, ... }:
+{ self, config, ... }:
+let
+  inherit (config) site;
+in
 {
   configurations.nixos.remorse.module =
     { config, ... }:
@@ -6,8 +9,8 @@
       home-manager.users.${config.my.user} =
         {
           lib,
-          config,
           pkgs,
+          osConfig,
           ...
         }:
         let
@@ -40,8 +43,10 @@
           '';
           ntfyHelpers = self.lib.mkNtfyNotify {
             click = true;
-            token = "$(cat ${lib.escapeShellArg config.sops.secrets."ntfy/ntfybot_token".path})";
-            topicUrl = "http://${self.lib.site.network.hosts.regret}/downloaders";
+            token = "$(<${lib.escapeShellArg osConfig.sops.secrets."ntfy/ntfybot_token".path})";
+            url = "https://${site.services.ntfy}.$(<${
+              lib.escapeShellArg osConfig.sops.secrets."tailscale/tailnet_dns".path
+            })/downloaders";
           };
           rtsl-sync = pkgs.writeShellApplication {
             excludeShellChecks = [ "SC2329" ];
@@ -181,7 +186,7 @@
               fi
             '';
           };
-          rtslDirectory = "${self.lib.site.nas.paths.halfLife}/RunThinkShootLive";
+          rtslDirectory = "${site.nas.paths.halfLife}/RunThinkShootLive";
           wgetArgs = [
             "--timestamping"
             "--no-directories"
@@ -194,7 +199,6 @@
         in
         {
           home.packages = [ rtsl-sync ];
-          sops.secrets."ntfy/ntfybot_token" = { };
           systemd.user = {
             services.rtsl-sync = {
               Service = {
@@ -216,5 +220,6 @@
             };
           };
         };
+      sops.secrets."ntfy/ntfybot_token".owner = config.my.user;
     };
 }

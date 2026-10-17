@@ -1,4 +1,7 @@
-{ self, ... }:
+{ self, config, ... }:
+let
+  inherit (config) site;
+in
 {
   configurations.nixos.remorse.module =
     { config, ... }:
@@ -135,7 +138,7 @@
             echo "removed $count orphaned file(s) across $affected_count game director(y/ies)"
           '';
           gogBlacklistFile = ../../../assets/hosts/remorse/gog-blacklist.txt;
-          gogDirectory = self.lib.site.nas.paths.gogBackups;
+          gogDirectory = site.nas.paths.gogBackups;
           gogIgnorelistFile = pkgs.writeText "gog-ignorelist.txt" ''
             R /serials(_[^/]*)?\.txt$
             R /changelog_[^/]*\.html$
@@ -234,8 +237,10 @@
           newGamesSkipFile = "${config.xdg.stateHome}/gog-new-games/no-files";
           ntfyHelpers = self.lib.mkNtfyNotify {
             click = true;
-            token = "$(cat ${lib.escapeShellArg config.sops.secrets."ntfy/ntfybot_token".path})";
-            topicUrl = "http://${self.lib.site.network.hosts.regret}/downloaders";
+            token = "$(<${lib.escapeShellArg osConfig.sops.secrets."ntfy/ntfybot_token".path})";
+            url = "https://${site.services.ntfy}.$(<${
+              lib.escapeShellArg osConfig.sops.secrets."tailscale/tailnet_dns".path
+            })/downloaders";
           };
           orphanDirectoryFractionThreshold = 75;
           orphanMaxFiles = 300;
@@ -247,7 +252,6 @@
             gog-remove-orphans
             pkgs.lgogdownloader
           ];
-          sops.secrets."ntfy/ntfybot_token" = { };
           systemd.user = {
             services = {
               gog-full-download =
@@ -323,5 +327,6 @@
             "lgogdownloader/ignorelist.txt".source = gogIgnorelistFile;
           };
         };
+      sops.secrets."ntfy/ntfybot_token".owner = config.my.user;
     };
 }

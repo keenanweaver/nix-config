@@ -63,7 +63,6 @@
                       env = {
                         MANGOHUD_CONFIG = "read_cfg,fps_limit=0";
                         PROTON_DXVK_LOWLATENCY = true;
-                        #PROTON_ENABLE_WAYLAND = false; # Workshop
                       };
                       name = "Reflex Arena";
                     };

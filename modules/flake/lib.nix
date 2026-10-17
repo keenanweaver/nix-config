@@ -1,10 +1,43 @@
 { lib, ... }:
+let
+  mkDataOption =
+    description:
+    lib.mkOption {
+      inherit description;
+      default = { };
+      type = lib.types.lazyAttrsOf lib.types.raw;
+    };
+in
 {
   config.flake.lib = {
     mkCacheSettings = caches: {
       extra-substituters = map (cache: cache.url) caches;
       extra-trusted-public-keys = map (cache: cache.key) caches;
     };
+    mkNtfyNotify =
+      {
+        token,
+        url,
+        click ? false,
+      }:
+      let
+        headers = [
+          "Title: $title"
+          "Tags: $tags"
+          "Priority: $priority"
+        ]
+        ++ lib.optional click "Click: ${url}";
+      in
+      ''
+        ntfy_notify() {
+          local title="$1" message="$2" tags="$3" priority="''${4:-default}"
+          curl -fsS \
+            --header @<(printf 'Authorization: Bearer %s\n' "${token}") \
+            ${lib.concatMapStrings (header: ''--header "${header}" '') headers}\
+            --data "$message" \
+            "${url}" >/dev/null || true
+        }
+      '';
     packageListText =
       pkgs: packages:
       builtins.concatStringsSep "\n" (
@@ -63,5 +96,8 @@
       description = "Helper functions shared across modules.";
       type = lib.types.lazyAttrsOf lib.types.raw;
     };
+    roms = mkDataOption "Game ROM dumps";
+    site = mkDataOption "Facts";
+    theme = mkDataOption "Look and feel";
   };
 }

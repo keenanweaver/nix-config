@@ -1,6 +1,7 @@
-{ self, config, ... }:
+{ config, ... }:
 let
-  inherit (self.lib.site.network) sshPort;
+  inherit (config.site) nas network;
+  inherit (network) sshPort;
   nixosHosts = builtins.attrNames config.configurations.nixos;
 in
 {
@@ -8,40 +9,10 @@ in
     homeManager.profile-base =
       {
         lib,
-        config,
         pkgs,
+        osConfig,
         ...
       }:
-      let
-        mkHostBlock =
-          {
-            name,
-            port ? null,
-            user ? null,
-          }:
-          ''
-            Host ${name}-ts
-              HostName ${name}.${tailnetDns}
-          ''
-          + lib.optionalString (user != null) "  User ${user}\n"
-          + lib.optionalString (port != null) "  Port ${toString port}\n";
-        tailnetDns = config.sops.placeholder."tailscale/tailnet_dns";
-        tailscaleHosts = [
-          {
-            name = "mister";
-            user = "root";
-          }
-          {
-            name = "crusader";
-            user = "root";
-          }
-          { name = "opnsense"; }
-        ]
-        ++ map (name: {
-          inherit name;
-          port = sshPort;
-        }) nixosHosts;
-      in
       {
         home.packages = with pkgs; [
           lazyssh
@@ -50,7 +21,7 @@ in
         programs.ssh = {
           enable = true;
           enableDefaultConfig = false;
-          includes = [ config.sops.templates."ssh-tailscale.conf".path ];
+          includes = [ osConfig.sops.templates."ssh-tailscale.conf".path ];
           settings = {
             "*".addKeysToAgent = "yes";
             bazzite = {
@@ -84,7 +55,7 @@ in
               User = "keenanweaver";
             };
             unraid = {
-              HostName = "crusader";
+              HostName = nas.host;
               Port = sshPort;
               User = "root";
             };
@@ -95,16 +66,41 @@ in
           });
         };
         services.ssh-agent.enable = true;
-        sops = {
-          secrets."tailscale/tailnet_dns" = { };
-          templates."ssh-tailscale.conf".content = lib.concatMapStrings mkHostBlock tailscaleHosts;
-        };
       };
     nixos.profile-base =
-      { config, ... }:
+      { lib, config, ... }:
+      let
+        mkHostBlock =
+          {
+            name,
+            port ? null,
+            user ? null,
+          }:
+          ''
+            Host ${name}-ts
+              HostName ${name}.${config.sops.placeholder."tailscale/tailnet_dns"}
+          ''
+          + lib.optionalString (user != null) "  User ${user}\n"
+          + lib.optionalString (port != null) "  Port ${toString port}\n";
+        tailscaleHosts = [
+          {
+            name = "mister";
+            user = "root";
+          }
+          {
+            name = nas.host;
+            user = "root";
+          }
+          { name = "opnsense"; }
+        ]
+        ++ map (name: {
+          inherit name;
+          port = sshPort;
+        }) nixosHosts;
+      in
       {
         networking.firewall = {
-          extraInputRules = "ip saddr ${self.lib.site.network.lanSubnet} tcp dport ${toString sshPort} accept";
+          extraInputRules = "ip saddr ${network.lanSubnet} tcp dport ${toString sshPort} accept";
           interfaces.tailscale0.allowedTCPPorts = [ sshPort ];
         };
         services.openssh = {
@@ -122,6 +118,16 @@ in
             KbdInteractiveAuthentication = false;
             PasswordAuthentication = false;
             PermitRootLogin = "no";
+          };
+        };
+        sops = {
+          secrets."tailscale/tailnet_dns" = {
+            owner = config.my.user;
+            sopsFile = ../../assets/secrets/nixos.yaml;
+          };
+          templates."ssh-tailscale.conf" = {
+            content = lib.concatMapStrings mkHostBlock tailscaleHosts;
+            owner = config.my.user;
           };
         };
       };

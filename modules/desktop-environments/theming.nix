@@ -1,6 +1,11 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  config,
+  ...
+}:
 let
-  inherit (self.lib.theme)
+  inherit (config.theme)
     GTK-THEME
     accent-lower
     accent-upper
@@ -231,7 +236,6 @@ in
               workspace = {
                 # Global theme
                 # plasma-apply-lookandfeel --list
-                #lookAndFeel = "Catppuccin-${flavor-upper}-${accent-upper}";
                 # Colors
                 # plasma-apply-colorscheme --list-schemes
                 colorScheme = "Catppuccin${flavor-upper}${accent-upper}";

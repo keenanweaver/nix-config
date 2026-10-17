@@ -1,6 +1,6 @@
-{ self, ... }:
+{ config, ... }:
 let
-  inherit (self.lib.site) nas;
+  inherit (config.site) nas;
 in
 {
   flake.modules.nixos =
@@ -9,7 +9,6 @@ in
         { lib, pkgs, ... }:
         {
           environment.systemPackages = with pkgs; [
-            cifs-utils
             nfs-utils
           ];
           fileSystems = builtins.listToAttrs (

@@ -1,6 +1,6 @@
-{ self, ... }:
+{ config, ... }:
 let
-  inherit (self.lib.site.network) lanSubnet;
+  inherit (config.site.network) lanSubnet;
   range = {
     from = 1714;
     to = 1764;

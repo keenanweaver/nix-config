@@ -1,4 +1,7 @@
-{ self, ... }:
+{ config, ... }:
+let
+  inherit (config) theme;
+in
 {
   flake.modules.nixos.profile-desktop =
     { pkgs, ... }:
@@ -15,11 +18,11 @@
           allowBitmaps = false;
           defaultFonts = {
             monospace = [
-              self.lib.fonts.monospace.family
+              theme.mono-font
               "Liberation Mono"
             ];
             sansSerif = [
-              self.lib.theme.sans-font
+              theme.sans-font
               "Liberation Sans"
             ];
             serif = [

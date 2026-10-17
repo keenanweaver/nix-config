@@ -17,6 +17,9 @@
           showNotifications = false;
           timelineColor = palette.overlay1.hex;
           useSystemTextColor = false;
+        }
+        // lib.optionalAttrs (hmConfig.programs.nixdatifier.githubTokenFile != null) {
+          inherit (hmConfig.programs.nixdatifier) githubTokenFile;
         };
         name = "org.muddyblack.nixosGenerationExplorer";
       };
@@ -28,16 +31,13 @@
         ...
       }:
       {
-        home.packages = [
-          (inputs.nixdatifier.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
-            postInstall = (old.postInstall or "") + ''
-              wrapProgram "$plasmoid/contents/tools/sh/release-notes" \
-                --run 'export GITHUB_TOKEN="$(cat ${
-                  osConfig.sops.secrets."users/${config.home.username}/github_pat".path
-                } 2>/dev/null)"'
-            '';
-          }))
-        ];
+        imports = [ inputs.nixdatifier.homeManagerModules.default ];
+        programs.nixdatifier = {
+          enable = true;
+          package = inputs.nixdatifier.packages.${pkgs.stdenv.hostPlatform.system}.default;
+          autostart = false;
+          githubTokenFile = osConfig.sops.secrets."users/${config.home.username}/github_pat".path;
+        };
       };
   };
   flake-file.inputs.nixdatifier = {

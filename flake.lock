@@ -1431,38 +1431,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-master": {
-      "locked": {
-        "lastModified": 1792185659,
-        "narHash": "sha256-U+6VaaMwAp9DS2ovKsRWZBg7Tr/+JNZruU6ggiTzGHE=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "492d73671d0e225e8298caed9517325e67455b50",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-unstable": {
-      "locked": {
-        "lastModified": 1792116957,
-        "narHash": "sha256-EjZqHKObBfIOeHZnMRVV87HB3pPq/WBkmRJWyFxmZu8=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "f20cd90e28fe0403873f473b29e42662cd86e8c4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1791966044,
@@ -1739,21 +1707,6 @@
         "type": "github"
       }
     },
-    "pkgs-by-name-for-flake-parts": {
-      "locked": {
-        "lastModified": 1789628227,
-        "narHash": "sha256-PC+g00FlwHgA/MyejBAEtQLRnrZLiA/Eo7i0rEkZ7bE=",
-        "owner": "drupol",
-        "repo": "pkgs-by-name-for-flake-parts",
-        "rev": "da796090e8b34326a4aaf0c173df514f135b3907",
-        "type": "github"
-      },
-      "original": {
-        "owner": "drupol",
-        "repo": "pkgs-by-name-for-flake-parts",
-        "type": "github"
-      }
-    },
     "plasma-manager": {
       "inputs": {
         "home-manager": [
@@ -1921,8 +1874,6 @@
         "nixos-mocha-kde-splash": "nixos-mocha-kde-splash",
         "nixos-raspberrypi": "nixos-raspberrypi",
         "nixpkgs": "nixpkgs_6",
-        "nixpkgs-master": "nixpkgs-master",
-        "nixpkgs-unstable": "nixpkgs-unstable",
         "noctalia": "noctalia",
         "nonfree": "nonfree",
         "nur": "nur",
@@ -1930,7 +1881,6 @@
         "nyx": "nyx",
         "openmw-nix": "openmw-nix",
         "pedantix": "pedantix",
-        "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
         "plasma-manager": "plasma-manager",
         "preservation": "preservation",
         "proton-cachyos-nix": "proton-cachyos-nix",

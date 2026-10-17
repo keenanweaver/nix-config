@@ -1,4 +1,8 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  ...
+}:
 {
   flake.modules = {
     homeManager.profile-desktop = {
@@ -19,19 +23,14 @@
     };
     nixos.profile-desktop =
       {
-        lib,
-        config,
         pkgs,
         ...
       }:
       {
         imports = with self.modules.nixos; [
-          inputs.ucodenix.nixosModules.default
-
           profile-base
           btrfs
         ];
-        boot.kernelParams = lib.mkIf config.services.ucodenix.enable [ "microcode.amd_sha_check=off" ];
         console = {
           font = "ter-v28b";
           packages = with pkgs; [
@@ -78,7 +77,6 @@
             };
             settings.dynamic_tuning = true;
           };
-          ucodenix.enable = true;
         };
         xdg.mime =
           let
@@ -95,9 +93,5 @@
             };
           };
       };
-  };
-  flake-file.inputs = {
-    nix-gaming-edge.url = "github:powerofthe69/nix-gaming-edge";
-    ucodenix.url = "github:e-tho/ucodenix";
   };
 }

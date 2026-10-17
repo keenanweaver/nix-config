@@ -1,6 +1,6 @@
-{ self, ... }:
+{ self, config, ... }:
 let
-  inherit (self.lib.site) nas;
+  inherit (config.site) nas;
 in
 {
   flake.modules = {
@@ -16,10 +16,7 @@ in
               Context.filesystems = [
                 "xdg-run/discord-ipc-*"
               ];
-              Environment = {
-                #PIPEWIRE_NODE = "Game";
-                PULSE_SINK = "Game";
-              };
+              Environment.PULSE_SINK = "Game";
             };
             "info.cemu.Cemu".Context.filesystems = [
               "${config.home.homeDirectory}/Games/cemu"

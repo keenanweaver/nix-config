@@ -21,7 +21,8 @@ fix:
 pre:
     nix run .#write-flake
     git add flake.nix flake.lock
-    git add -N .
+    # new files are invisible to the flake until git tracks them
+    git add -N modules pkgs assets
 
 hooks:
     nix develop -c pre-commit run --all-files
@@ -51,17 +52,15 @@ switch: pre
     nh os switch . -H {{ host }}
 
 # ══ 7) update inputs, then boot / switch ════════════════════
-update:
-    nix run .#write-flake
+update: pre
     nix flake update
-    git add flake.nix flake.lock
+    git add flake.lock
     nix flake check --log-format internal-json -v |& nom --json
 
-update-boot: && boot
-    just update
+# dependencies run once per invocation, so `pre` is not repeated
+update-boot: update boot
 
-update-switch: && switch
-    just update
+update-switch: update switch
 
 # ══ 8) maintenance ═══════════════════════════════════════════
 clean:
@@ -89,13 +88,20 @@ update-pkg name version="stable":
     git add pkgs/{{ name }}
 
 # ══ Git ══════════════════════════════════════════════════════
+# Push the current branch to both remotes
 [positional-arguments]
 [script('bash')]
 push *args:
     set -euo pipefail
     b=$(git symbolic-ref --short HEAD)
-    git push origin "$b:$b" --force-with-lease --force-if-includes "$@"
-    git push tangled "$b:$b" --force-with-lease --force-if-includes --no-verify "$@"
+    git push origin "$b:$b" "$@"
+    git push tangled "$b:$b" --no-verify "$@"
+
+# Push after rewriting history
+[positional-arguments]
+[script('bash')]
+push-force *args:
+    just push --force-with-lease --force-if-includes "$@"
 
 # ══ Secrets ═════════════════════════════════════════════════
 sops-edit file:
@@ -171,4 +177,5 @@ clean-keys:
 # Update a deployed (remote) host — distinct from local `update-switch`
 deploy-update host target:
     mkdir -p {{ pins }}
-    NIX_SSHOPTS="-p 6777" nh os boot . -H {{ host }} --target-host {{ target }} -o {{ pins }}/{{ host }}
+    NIX_SSHOPTS="-p $(nix eval --raw .#nixosConfigurations.{{ host }}.config.services.openssh.ports --apply 'ports: toString (builtins.head ports)')" \
+      nh os boot . -H {{ host }} --target-host {{ target }} -o {{ pins }}/{{ host }}

@@ -8,10 +8,10 @@
       profile-kde
       profile-niri
 
+      amd
       secure-boot
     ];
     boot.loader.limine.style.interface.resolution = "1920x1080";
-    networking.hostName = "nixos-laptop";
     system.stateVersion = "26.05";
   };
 }

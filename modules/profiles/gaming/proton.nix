@@ -35,7 +35,9 @@
                   lib.escapeShellArg osConfig.sops.secrets."users/${config.home.username}/github_pat".path
                 }
                 if [ -r "$token_file" ]; then
-                  dconf write /com/vysp3r/ProtonPlus/State/github-api-key "'$(tr -d '[:space:]' <"$token_file")'"
+                  trap 'dconf reset /com/vysp3r/ProtonPlus/State/github-api-key' EXIT
+                  printf "[/]\ngithub-api-key='%s'\n" "$(tr -d '[:space:]' <"$token_file")" |
+                    dconf load /com/vysp3r/ProtonPlus/State/
                 fi
                 installed="$(protonplus list steam-system 2>/dev/null || true)"
                 ${lib.concatStringsSep "\n" (

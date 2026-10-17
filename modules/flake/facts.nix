@@ -44,6 +44,10 @@
             kscreen output name of the primary display, e.g. "DP-1". Used for
             HDR/VRR/WCG queries and Sunshine mode switching.
           '';
+          wineCpuTopology = mkStrFact ''
+            Wine's WINE_CPU_TOPOLOGY ("<count>:<cpu,cpu,...>"), e.g. to keep games on the
+            V-Cache CCD. Empty leaves it unset.
+          '';
           ztAdapter = mkStrFact ''
             ZeroTier interface name for the joined network, e.g. "zt6ntckupu".
           '';
