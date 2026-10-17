@@ -1,6 +1,11 @@
 {
   flake.modules.homeManager.profile-gaming =
-    { lib, pkgs, ... }:
+    {
+      lib,
+      config,
+      pkgs,
+      ...
+    }:
     let
       launch = pkgs.writeShellApplication {
         name = "nuked-sc55-launch";
@@ -25,16 +30,21 @@
         })
         pkgs.local.nuked-sc55
       ];
-      xdg.desktopEntries.nuked-sc55 = {
-        categories = [
-          "Audio"
-          "AudioVideo"
+      xdg = {
+        autostart.entries = [
+          "${config.home.path}/share/applications/nuked-sc55.desktop"
         ];
-        comment = "Roland SC-55 MIDI emulator";
-        exec = lib.getExe launch;
-        icon = "pianoteq";
-        name = "Nuked SC-55";
-        terminal = false;
+        desktopEntries.nuked-sc55 = {
+          categories = [
+            "Audio"
+            "AudioVideo"
+          ];
+          comment = "Roland SC-55 MIDI emulator";
+          exec = lib.getExe launch;
+          icon = "pianoteq";
+          name = "Nuked SC-55";
+          terminal = false;
+        };
       };
     };
 }

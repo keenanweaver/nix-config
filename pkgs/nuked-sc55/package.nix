@@ -36,6 +36,13 @@ stdenv.mkDerivation (finalAttrs: {
   __structuredAttrs = true;
   strictDeps = true;
 
+  patches = [
+    # The emulated DAC idles at a DC offset instead of digital silence, which
+    # keeps real DACs from muting, so CPU/USB noise buzzes through. Filter it
+    # out so idle output is exact zeros.
+    ./remove-dc-offset.patch
+  ];
+
   nativeBuildInputs = [
     cmake
     ninja

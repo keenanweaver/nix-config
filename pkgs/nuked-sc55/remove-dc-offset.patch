@@ -1,0 +1,94 @@
+--- a/src/standard/instance.h
++++ b/src/standard/instance.h
+@@ -87,6 +87,9 @@
+
+     mcu_sample_callback PickSampleCallback(AudioOutputKind kind) const;
+
++    // Removes the DC offset the emulated DAC idles at; see instance.cpp.
++    AudioFrame<int32_t> RemoveDC(const AudioFrame<int32_t>& in);
++
+     template <typename SampleT>
+     static void RunInstanceSDL(Instance& self);
+
+@@ -123,6 +126,10 @@
+
+     float m_gain = 1.0f;
+
++    // DC blocker state (previous input/output, left and right).
++    double m_dc_x[2] = {0.0, 0.0};
++    double m_dc_y[2] = {0.0, 0.0};
++
+ #if NUKED_ENABLE_ASIO
+     // ASIO uses an SDL_AudioStream because it needs resampling to a more conventional frequency, but putting data into
+     // the stream one frame at a time is *slow* so we buffer audio in `sample_buffer` and add it all at once.
+--- a/src/standard/instance.cpp
++++ b/src/standard/instance.cpp
+@@ -18,6 +18,7 @@
+ #include "instance.h"
+
+ #include <bit>
++#include <cmath>
+
+ #include "audio_sdl.h"
+ #include "output_asio.h"
+@@ -114,6 +115,42 @@
+     Prepare<SampleT>();
+ }
+
++// The emulated DAC idles at a constant DC offset instead of digital silence.
++// A DAC fed a constant non-zero signal never engages its zero-detect mute, so
++// USB/CPU noise becomes audible whenever the emulator is running. This 1-pole
++// high-pass (~2 Hz at 64 kHz) removes the offset; residuals smaller than one
++// 16-bit step are snapped to exact zero so idle output is true silence.
++AudioFrame<int32_t> Instance::RemoveDC(const AudioFrame<int32_t>& in)
++{
++    constexpr double R     = 0.9998;
++    constexpr double LSB16 = 32768.0; // one 16-bit step in the emulator's int32 domain
++
++    const double x[2] = {(double)in.left, (double)in.right};
++    int32_t      out[2];
++
++    for (int ch = 0; ch < 2; ++ch)
++    {
++        double y = x[ch] - m_dc_x[ch] + R * m_dc_y[ch];
++        if (std::fabs(y) < 1e-6)
++        {
++            y = 0.0; // avoid decaying into denormals
++        }
++        m_dc_x[ch] = x[ch];
++        m_dc_y[ch] = y;
++
++        if (std::fabs(y) < LSB16)
++        {
++            out[ch] = 0;
++        }
++        else
++        {
++            out[ch] = (int32_t)std::fmax(std::fmin(y, (double)INT32_MAX), (double)INT32_MIN);
++        }
++    }
++
++    return AudioFrame<int32_t>{.left = out[0], .right = out[1]};
++}
++
+ #if NUKED_ENABLE_ASIO
+ void Instance::RunInstanceASIO(Instance& self)
+ {
+@@ -141,7 +178,7 @@
+     Instance& inst = *(Instance*)userdata;
+
+     AudioFrame<SampleT>* out = (AudioFrame<SampleT>*)inst.m_chunk_first;
+-    Normalize(in, *out);
++    Normalize(inst.RemoveDC(in), *out);
+
+     if constexpr (ApplyGain)
+     {
+@@ -184,7 +221,7 @@
+     Instance& fe = *(Instance*)userdata;
+
+     AudioFrame<SampleT>* out = (AudioFrame<SampleT>*)fe.m_chunk_first;
+-    Normalize(in, *out);
++    Normalize(fe.RemoveDC(in), *out);
+
+     if constexpr (ApplyGain)
+     {
