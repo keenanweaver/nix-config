@@ -138,6 +138,7 @@ in
           doomrunner
           doomseeker
           dsda-doom
+          helion
           inputs.nur-packages-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.cherry-doom
           inputs.nur-packages-bandithedoge.legacyPackages.${stdenv.hostPlatform.system}.nyan-doom
           nugget-doom

@@ -14,10 +14,9 @@
         "pciDev"
       ];
       chaotic.mesa-git.extraPackages = lib.mkIf config.chaotic.mesa-git.enable [
-        (pkgs.runCommand "moonshine-wsi-layer" { } ''
-          install -Dm644 \
-            ${config.services.moonshine.package}/share/vulkan/implicit_layer.d/VkLayer_moonshine_wsi.json \
-            $out/share/vulkan/implicit_layer.d/VkLayer_moonshine_wsi.json
+        (pkgs.runCommand "ferriscope-wsi-layer" { } ''
+          install -Dm644 -t $out/share/vulkan/implicit_layer.d \
+            ${config.services.moonshine.package}/share/vulkan/implicit_layer.d/VkLayer_FERRISCOPE_wsi.*.json
         '')
       ];
       networking.firewall.interfaces =
