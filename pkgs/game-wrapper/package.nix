@@ -32,10 +32,16 @@ pkgs.writeShellApplication {
       exit 64  # EX_USAGE
     fi
 
+    # Already wrapped further up (e.g. Steam's launch shell plus old launch options)
+    if [[ -n "''${GAME_WRAPPER_ACTIVE:-}" ]]; then
+      exec "$@"
+    fi
+
     spec="''${GAME_WRAPPER:-1}"
     if [[ "$spec" == 0 || "$spec" == passthrough ]]; then
       exec "$@"
     fi
+    export GAME_WRAPPER_ACTIVE=1
 
     gl=zink
     mangohud=auto

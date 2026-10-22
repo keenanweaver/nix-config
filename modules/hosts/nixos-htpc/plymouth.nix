@@ -6,5 +6,6 @@
         theme = "steamos";
         themePackages = [ pkgs.local.plymouth-theme-steamos ];
       };
+      services.nixos-plymouth.enable = false;
     };
 }

@@ -51,7 +51,6 @@
         };
         wifi.macAddress = "stable";
       };
-      services.avahi.publish.enable = false;
       sops = {
         secrets = {
           "wireless/Vagabond_USER" = { };

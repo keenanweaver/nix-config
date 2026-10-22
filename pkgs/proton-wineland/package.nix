@@ -8,14 +8,14 @@
 }:
 let
   hashes = {
-    x86_64 = "sha256-6rjeus3kJh09YAclQWi/qW9AnBrtNbMjG1buVLK7aFw=";
-    x86_64_v3 = "sha256-Pr+EJYsY0G0n0VJ/ISR0Vad5ar/NRqy6D4yLcmhIgx0=";
-    x86_64_wow64 = "sha256-wi7LWQ7kMNTEfj0KP4RLOiHa1y5pf9Fv8AcL3w5DHVI=";
+    x86_64 = "sha256-N8QXrlYzohttm34xPfCVYNWL6DElmiuXhLcyrod4Y0I=";
+    x86_64_v3 = "sha256-aXvFiekYQKXAc4APACY7XA1vup+aGB1Gj73nb+1JbzA=";
+    x86_64_wow64 = "sha256-/W/kYN8WmFv8oH9xLI7h7cFXM8ooqlWqvGfuYdyEQB8=";
   };
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "proton-wineland";
-  version = "wineland-11.0-20261015";
+  version = "wineland-11.0-20261022";
 
   src = fetchurl {
     url = "https://github.com/nanomatters/proton-salkim/releases/download/${finalAttrs.version}/proton-${finalAttrs.version}-${variant}.tar.xz";
@@ -55,7 +55,17 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     set -euo pipefail
 
     repo="https://api.github.com/repos/nanomatters/proton-salkim/releases"
-    tag="$(curl -sL "$repo" | jq -r 'map(select(.tag_name | test("^(cachyos-)?wineland-"))) | .[0].tag_name')"
+    token="''${GITHUB_TOKEN:-$(gh auth token 2>/dev/null || true)}"
+    auth=()
+    if [ -n "$token" ]; then
+      auth=(-H "Authorization: Bearer $token")
+    fi
+    releases="$(curl -sL "''${auth[@]}" "$repo")"
+    if ! jq -e 'type == "array"' <<< "$releases" > /dev/null; then
+      echo "GitHub API: $(jq -r '.message // .' <<< "$releases")" >&2
+      exit 1
+    fi
+    tag="$(jq -r 'map(select(.tag_name | test("^(cachyos-)?wineland-"))) | .[0].tag_name' <<< "$releases")"
     if [ -z "$tag" ] || [ "$tag" = "null" ]; then
       echo "failed to resolve latest (cachyos-)wineland-* release tag" >&2
       exit 1

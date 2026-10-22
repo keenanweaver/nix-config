@@ -112,7 +112,7 @@ in
               Locked = true;
               OfflineApps = true;
               Sessions = true;
-              SiteSettings = true;
+              SiteSettings = false;
             };
           };
         profiles.default =
@@ -358,6 +358,7 @@ in
               "middlemouse.paste" = false;
               "mod.ivaon.urlbar.hide_results" = 0; # No Top Sites
               "mousewheel.min_line_scroll_amount" = 10;
+              "permissions.default.desktop-notification" = 0; # Ask
               "psu.tab_title_fixes.font_size" = "13px"; # Tab title fixes
               "psu.tab_title_fixes.pending_opacity" = "0.55";
               "services.sync.engine.workspaces" = true;

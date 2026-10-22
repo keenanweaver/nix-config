@@ -13,12 +13,12 @@ in
         };
         services = {
           avahi = {
-            enable = true;
             nssmdns4 = true;
-            publish = {
+            settings.publish = {
               enable = lib.mkDefault true;
-              addresses = true;
-              workstation = true;
+              disable-publishing = false;
+              publish-addresses = true;
+              publish-workstation = true;
             };
           };
           resolved = {

@@ -164,7 +164,22 @@
       url = "github:michaelwheatland/nixos-mocha-kde-splash";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-plymouth = {
+      url = "github:iltgg/nixos_plymouth";
+      inputs = {
+        nixos-branding.inputs = {
+          flake-compat.follows = "flake-compat";
+          pre-commit-hooks.follows = "git-hooks-nix";
+          treefmt-nix.follows = "treefmt-nix";
+        };
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
     nixos-raspberrypi.url = "github:nvmd/nixos-raspberrypi/main";
+    nixos-steam = {
+      url = "github:parzivale/nixos-steam";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     nonfree = {
@@ -228,13 +243,6 @@
       url = "github:Whovian9369/rom-properties-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    s4rchiso-plymouth-theme = {
-      url = "github:SergioRibera/s4rchiso-plymouth-theme";
-      inputs = {
-        flake-utils.follows = "flake-utils";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
     simracing-hwdb = {
       url = "github:JacKeTUs/simracing-hwdb";
       flake = false;
@@ -250,14 +258,6 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    steam-config-nix = {
-      url = "github:different-name/steam-config-nix";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "flake-utils/systems";
-      };
     };
     streamcontroller-nix = {
       url = "github:Daaboulex/streamcontroller-nix";

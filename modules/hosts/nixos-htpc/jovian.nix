@@ -59,6 +59,13 @@
         "pnpm-9.15.9" # Decky Loader
       ];
       preservation.preserveAt."/persist".directories = [ config.jovian.decky-loader.stateDir ];
+      programs.steam = {
+        package =
+          lib.mkForce
+            (import "${inputs.nixos-steam}/modules/client.nix" { inherit config lib pkgs; })
+            .config.content.programs.steam.package;
+        client.package = pkgs.jovianPackages.steam;
+      };
       services = {
         displayManager.plasma-login-manager.enable = false; # Conflicts with Jovian
         pulseaudio.enable = lib.mkForce false;

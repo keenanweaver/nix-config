@@ -1,8 +1,9 @@
 { inputs, ... }:
 {
   flake.modules.nixos.profile-desktop =
-    { lib, pkgs, ... }:
+    { lib, ... }:
     {
+      imports = [ inputs.nixos-plymouth.nixosModules.default ];
       boot = {
         consoleLogLevel = 0;
         initrd.verbose = false;
@@ -14,19 +15,19 @@
           "udev.log_level=3"
           "vt.global_cursor_default=0"
         ];
-        plymouth = {
-          enable = true;
-          theme = lib.mkDefault "mac-style";
-          themePackages = [ pkgs.mac-style-plymouth ];
-        };
+        plymouth.enable = true;
       };
-      nixpkgs.overlays = [ inputs.s4rchiso-plymouth-theme.overlays.default ];
+      services.nixos-plymouth.enable = lib.mkDefault true;
     };
-  flake-file.inputs.s4rchiso-plymouth-theme = {
+  flake-file.inputs.nixos-plymouth = {
     inputs = {
-      flake-utils.follows = "flake-utils";
+      nixos-branding.inputs = {
+        flake-compat.follows = "flake-compat";
+        pre-commit-hooks.follows = "git-hooks-nix";
+        treefmt-nix.follows = "treefmt-nix";
+      };
       nixpkgs.follows = "nixpkgs";
     };
-    url = "github:SergioRibera/s4rchiso-plymouth-theme";
+    url = "github:iltgg/nixos_plymouth";
   };
 }
