@@ -1,9 +1,16 @@
 { inputs, ... }:
 {
   flake.modules.nixos.profile-base =
-    { ... }:
+    { lib, ... }:
     {
       imports = [ inputs.nix-mineral.nixosModules.nix-mineral ];
+      boot = {
+        consoleLogLevel = lib.mkDefault 0;
+        kernelParams = [
+          "quiet"
+          "udev.log_level=3"
+        ];
+      };
       nix-mineral = {
         enable = true;
         filesystems.normal = {
@@ -42,6 +49,7 @@
           "performance"
         ];
         settings = {
+          debug.quiet-boot = false; # TODO: Revert when fixed
           kernel.iommu-passthrough = false;
           misc.nix-wheel = true;
           network.random-mac = false;

@@ -27,7 +27,6 @@
       boot = {
         consoleLogLevel = 7;
         growPartition = true;
-        initrd.verbose = true;
         kernelPackages = nixos-raspberrypi.packages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_rpi4;
         supportedFilesystems.zfs = false;
         zswap.enable = false;

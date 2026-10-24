@@ -2,7 +2,7 @@
 {
   flake.modules.homeManager.profile-workstation =
     {
-      lib,
+      #lib,
       pkgs,
       ...
     }:
@@ -17,10 +17,10 @@
             theme = "dark";
           };
         };
-        mcp = {
-          enable = true;
-          servers.nix.command = lib.getExe pkgs.mcp-nixos;
-        };
+        #mcp = {
+        #  enable = true;
+        #  servers.nix.command = lib.getExe pkgs.mcp-nixos;
+        #};
       };
     };
   flake-file.inputs.llm-agents-nix = {

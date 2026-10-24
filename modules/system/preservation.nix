@@ -50,5 +50,5 @@
         tmpfiles.rules = [ "d /nix/build 0755 root root -" ];
       };
     };
-  flake-file.inputs.preservation.url = "github:nix-community/preservation";
+  flake-file.inputs.preservation.url = "github:mjm/preservation/push-knrxkotwwtyr";
 }

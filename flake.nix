@@ -123,7 +123,7 @@
         nixpkgs-stable.follows = "nixpkgs";
       };
     };
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nix-gaming-edge.url = "github:powerofthe69/nix-gaming-edge";
     nix-index-database = {
@@ -221,7 +221,7 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    preservation.url = "github:nix-community/preservation";
+    preservation.url = "github:mjm/preservation/push-knrxkotwwtyr";
     proton-cachyos-nix = {
       url = "github:Daaboulex/proton-cachyos-nix";
       inputs = {

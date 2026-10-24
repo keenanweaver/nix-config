@@ -6,7 +6,6 @@
       imports = [ inputs.nixos-plymouth.nixosModules.default ];
       boot = {
         consoleLogLevel = 0;
-        initrd.verbose = false;
         kernelParams = [
           "loglevel=0"
           "quiet"
