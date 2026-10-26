@@ -180,7 +180,8 @@
       url = "github:parzivale/nixos-steam";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
+    nixpkgs-lib.follows = "nixpkgs";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     nonfree = {
       url = "github:keenanweaver/nix-nonfree";
@@ -221,7 +222,7 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    preservation.url = "github:mjm/preservation/push-knrxkotwwtyr";
+    preservation.url = "github:nix-community/preservation";
     proton-cachyos-nix = {
       url = "github:Daaboulex/proton-cachyos-nix";
       inputs = {
@@ -276,6 +277,14 @@
     umu = {
       url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    umu-proton-nix = {
+      url = "github:Daaboulex/umu-proton-nix";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks-nix";
+        nixpkgs.follows = "nixpkgs";
+      };
     };
     volt-gui-nix = {
       url = "github:keygenesis/volt-gui-nix";

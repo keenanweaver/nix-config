@@ -14,6 +14,7 @@
           proton-cachyos
           proton-ge
           local.proton-wineland
+          umu-proton
         ];
       in
       {
@@ -105,6 +106,7 @@
         nixpkgs.overlays = lib.mkAfter [
           inputs.proton-cachyos-nix.overlays.default
           inputs.proton-ge-nix.overlays.default
+          inputs.umu-proton-nix.overlays.default
         ];
       };
   };
@@ -124,6 +126,14 @@
         nixpkgs.follows = "nixpkgs";
       };
       url = "github:Daaboulex/proton-ge-nix";
+    };
+    umu-proton-nix = {
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        git-hooks.follows = "git-hooks-nix";
+        nixpkgs.follows = "nixpkgs";
+      };
+      url = "github:Daaboulex/umu-proton-nix";
     };
   };
 }
