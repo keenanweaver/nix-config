@@ -5,9 +5,7 @@
     { lib, config, ... }:
     let
       inherit (config.host) ztAdapter ztConcurrency;
-      networks = [
-        "363c67c55a4294ae" # Vagabond Gaming Network
-      ];
+      networksFile = config.sops.secrets."zerotier/networks".path;
     in
     {
       assertions = self.lib.mkFactAssertions config [ "ztAdapter" ];
@@ -31,14 +29,25 @@
       ];
       services.zerotierone = {
         enable = true;
-        joinNetworks = networks;
         localConf = {
           concurrency = ztConcurrency;
           cpuPinningEnabled = true;
           multicoreEnabled = true;
         };
       };
-      # Fix long boot time
-      systemd.services."network-addresses-${ztAdapter}".wantedBy = lib.mkForce [ ];
+      sops.secrets."zerotier/networks" = {
+        restartUnits = [ "zerotierone.service" ];
+        sopsFile = ../../assets/secrets/desktop.yaml;
+      };
+      systemd.services = {
+        # Fix long boot time
+        "network-addresses-${ztAdapter}".wantedBy = lib.mkForce [ ];
+        # joinNetworks needs the IDs at eval time, so join from the secret at runtime
+        zerotierone.preStart = lib.mkAfter ''
+          while read -r id || [ -n "$id" ]; do
+            [ -n "$id" ] && touch "/var/lib/zerotier-one/networks.d/$id.conf"
+          done < ${networksFile}
+        '';
+      };
     };
 }

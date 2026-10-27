@@ -7,20 +7,24 @@
         games =
           let
             compatTool = config.programs.steam.client.defaultCompatTool;
+            reflex = {
+              LOW_LATENCY_LAYER = "1";
+              LOW_LATENCY_LAYER_REFLEX = "1";
+            };
           in
           {
             # Ready Or Not
             "1144200" = {
               inherit compatTool;
-              environment.PROTON_USE_OPTISCALER = true;
+              environment = reflex // {
+                PROTON_USE_OPTISCALER = true;
+              };
             };
-            # Teardown
-            "1167630" = { inherit compatTool; };
             # Street Fighter 6
             "1364780" = { inherit compatTool; };
             # Hitman: World of Assassination
             "1659040" = {
-              environment.PROTON_VKD3D_LOWLATENCY = true;
+              environment = reflex;
               launchOptions = "%command% -skip_launcher";
             };
             # Sven Co-op
@@ -28,16 +32,10 @@
             # STRAFTAT
             "2386720" = {
               inherit compatTool;
-              environment = {
-                MANGOHUD_CONFIG = "read_cfg,fps_limit=0";
-                PROTON_DXVK_LOWLATENCY = true;
-              };
+              environment.MANGOHUD_CONFIG = "read_cfg,fps_limit=0";
             };
             # Reflex Arena
-            "328070".environment = {
-              MANGOHUD_CONFIG = "read_cfg,fps_limit=0";
-              PROTON_DXVK_LOWLATENCY = true;
-            };
+            "328070".environment.MANGOHUD_CONFIG = "read_cfg,fps_limit=0";
           };
         libraryFolders = [
           "/mnt/Games/SteamLibrary"

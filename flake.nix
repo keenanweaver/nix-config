@@ -278,14 +278,6 @@
       url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    umu-proton-nix = {
-      url = "github:Daaboulex/umu-proton-nix";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        git-hooks.follows = "git-hooks-nix";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
     volt-gui-nix = {
       url = "github:keygenesis/volt-gui-nix";
       inputs.nixpkgs.follows = "nixpkgs";

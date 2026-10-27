@@ -14,12 +14,10 @@
           proton-cachyos
           proton-ge
           local.proton-wineland
-          umu-proton
         ];
       in
       {
         home.packages = with pkgs; [ protonplus ];
-        programs.lutris.protonPackages = with pkgs; [ local.proton-wineland ];
         systemd.user =
           let
             install-runners = pkgs.writeShellApplication {
@@ -27,7 +25,6 @@
               runtimeInputs = with pkgs; [
                 coreutils
                 dconf
-                gnugrep
                 libnotify
                 protonplus
               ];
@@ -40,28 +37,36 @@
                   printf "[/]\ngithub-api-key='%s'\n" "$(tr -d '[:space:]' <"$token_file")" |
                     dconf load /com/vysp3r/ProtonPlus/State/
                 fi
+
+                notify() {
+                  notify-send --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus --urgency="$1" ProtonPlus "$2"
+                }
+
                 installed="$(protonplus list steam-system 2>/dev/null || true)"
-                ${lib.concatStringsSep "\n" (
-                  lib.mapAttrsToList (name: slug: ''
-                    if grep -qF ${lib.escapeShellArg name} <<< "$installed"; then
-                      echo "checking for updates: ${name}"
-                      update_output="$(protonplus update steam-system ${lib.escapeShellArg slug} 2>&1)" || true
-                      echo "$update_output"
-                      if grep -qF "Successfully updated" <<< "$update_output"; then
-                        notify-send --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus 'ProtonPlus' 'Updated ${name}'
-                      elif grep -qF "Failed to update" <<< "$update_output"; then
-                        notify-send --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus --urgency=critical 'ProtonPlus' 'Failed to update ${name}'
-                      fi
+
+                sync_runner() {
+                  local name=$1 slug=$2 output
+                  if [[ $installed == *"$name"* ]]; then
+                    echo "checking for updates: $name"
+                    output="$(protonplus update steam-system "$slug" 2>&1)" || true
+                    echo "$output"
+                    case $output in
+                      *"Successfully updated"*) notify normal "Updated $name" ;;
+                      *"Failed to update"*) notify critical "Failed to update $name" ;;
+                    esac
+                  else
+                    echo "installing missing runner: $name ($slug)"
+                    if protonplus install steam-system "$slug" latest; then
+                      notify normal "Installed $name"
                     else
-                      echo "installing missing runner: ${name} (${slug})"
-                      if protonplus install steam-system ${lib.escapeShellArg slug} latest; then
-                        notify-send --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus 'ProtonPlus' 'Installed ${name}'
-                      else
-                        notify-send --app-name=ProtonPlus --icon=com.vysp3r.ProtonPlus --urgency=critical 'ProtonPlus' 'Failed to install ${name}'
-                      fi
+                      notify critical "Failed to install $name"
                     fi
-                  '') runners
-                )}
+                  fi
+                }
+
+                ${lib.concatMapAttrsStringSep "\n" (
+                  name: slug: "sync_runner ${lib.escapeShellArg name} ${lib.escapeShellArg slug}"
+                ) runners}
               '';
             };
             runners = {
@@ -106,7 +111,6 @@
         nixpkgs.overlays = lib.mkAfter [
           inputs.proton-cachyos-nix.overlays.default
           inputs.proton-ge-nix.overlays.default
-          inputs.umu-proton-nix.overlays.default
         ];
       };
   };
@@ -126,14 +130,6 @@
         nixpkgs.follows = "nixpkgs";
       };
       url = "github:Daaboulex/proton-ge-nix";
-    };
-    umu-proton-nix = {
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        git-hooks.follows = "git-hooks-nix";
-        nixpkgs.follows = "nixpkgs";
-      };
-      url = "github:Daaboulex/umu-proton-nix";
     };
   };
 }

@@ -8,42 +8,7 @@
           enable = true;
           support32Bit = true;
         };
-        extraConfig = {
-          pipewire."11-virtual-devices" =
-            let
-              mkLoopbackModule = name: {
-                args = {
-                  "audio.position" = [
-                    "FL"
-                    "FR"
-                  ];
-                  "capture.props" = {
-                    "media.class" = "Audio/Sink";
-                    "node.description" = "${name} [virtual]";
-                    "node.name" = name;
-                  };
-                  "playback.props" = {
-                    "node.name" = "${name}.output";
-                    "node.passive" = true;
-                    "target.object" = "@DEFAULT_SINK@";
-                  };
-                };
-                name = "libpipewire-module-loopback";
-              };
-              virtualDevices = [
-                "Browser"
-                "Game"
-                "Live"
-                "MIDI"
-                "Music"
-                "Voice"
-              ];
-            in
-            {
-              "context.modules" = map mkLoopbackModule virtualDevices;
-            };
-          pipewire-pulse."10-resample-quality"."stream.properties"."resample.quality" = 10;
-        };
+        extraConfig.pipewire-pulse."10-resample-quality"."stream.properties"."resample.quality" = 10;
         jack.enable = true;
         pulse.enable = true;
         wireplumber.extraConfig = {
@@ -70,8 +35,41 @@
         };
       };
     };
-    profile-gaming.services.pipewire.wireplumber.extraConfig."51-disable-dualsense-audio"."monitor.alsa.rules" =
-      [
+    profile-gaming.services.pipewire = {
+      extraConfig.pipewire."11-virtual-devices" =
+        let
+          mkLoopbackModule = name: {
+            args = {
+              "audio.position" = [
+                "FL"
+                "FR"
+              ];
+              "capture.props" = {
+                "media.class" = "Audio/Sink";
+                "node.description" = "${name} [virtual]";
+                "node.name" = name;
+              };
+              "playback.props" = {
+                "node.name" = "${name}.output";
+                "node.passive" = true;
+                "target.object" = "@DEFAULT_SINK@";
+              };
+            };
+            name = "libpipewire-module-loopback";
+          };
+          virtualDevices = [
+            "Browser"
+            "Game"
+            "Live"
+            "MIDI"
+            "Music"
+            "Voice"
+          ];
+        in
+        {
+          "context.modules" = map mkLoopbackModule virtualDevices;
+        };
+      wireplumber.extraConfig."51-disable-dualsense-audio"."monitor.alsa.rules" = [
         {
           actions.update-props."node.disabled" = true;
           matches = [
@@ -79,5 +77,6 @@
           ];
         }
       ];
+    };
   };
 }
