@@ -14,7 +14,6 @@ in
     {
       home-manager.users.${config.my.user} =
         {
-          lib,
           pkgs,
           ...
         }:
@@ -192,15 +191,7 @@ in
           ];
           programs = {
             plasma.hotkeys.commands.gsr-save-replay = {
-              command = lib.getExe (
-                pkgs.writeShellApplication {
-                  name = "gsr-save-replay";
-                  runtimeInputs = [ pkgs.killall ];
-                  text = ''
-                    killall -SIGUSR1 gpu-screen-recorder
-                  '';
-                }
-              );
+              command = "gsr-ui-cli replay-save";
               comment = "Save GPU Screen Recorder replay";
               key = "Meta+Alt+]";
               name = "Save GSR Replay";

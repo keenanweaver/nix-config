@@ -16,13 +16,13 @@
 
 stdenv.mkDerivation {
   pname = "relive";
-  version = "appveyor_4227-unstable-2026-09-01";
+  version = "appveyor_4227-unstable-2026-10-26";
 
   src = fetchFromGitHub {
     owner = "AliveTeam";
     repo = "alive_reversing";
-    rev = "3be8967b71b29e6e61009d291bd64dce39abf7ac";
-    hash = "sha256-SZwy3whmnvqe6yXUSN2wcPmKeUVfuNg++Fx685aXf/U=";
+    rev = "fe6f54c4b349f344fccd1bc0bf0839ee58db7e34";
+    hash = "sha256-3RtvDVfzvzYuiFh4ywBQ6E/S74FL22tQ1vrhu9fhM+4=";
     fetchSubmodules = true;
   };
 

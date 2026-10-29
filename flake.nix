@@ -181,6 +181,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
+    nixpkgs-gsr = {
+      url = "github:keenanweaver/nixpkgs/gpu-screen-recorder-modernize";
+      flake = false;
+    };
     nixpkgs-lib.follows = "nixpkgs";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     nonfree = {
