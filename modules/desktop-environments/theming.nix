@@ -205,7 +205,7 @@ in
               };
             };
             plasma = {
-              configFile.kdeglobals.KDE.widgetStyle = "Breeze";
+              configFile.kdeglobals.KDE.widgetStyle = "Darkly";
               fonts = {
                 fixedWidth = {
                   family = mono-font;
@@ -268,20 +268,41 @@ in
             };
           };
           xdg = {
-            configFile."klassy/klassyrc".text = ''
-              [Global]
-              LookAndFeelSet=Catppuccin-${flavor-upper}-${accent-upper}
+            configFile = {
+              darklyrc.text = ''
+                [Common]
+                OutlineCloseButton=true
+                ShadowSize=ShadowMedium
 
-              [Style]
-              MenuOpacity=70
+                [Style]
+                DolphinSidebarOpacity=80
+                MenuItemDrawStrongFocus=false
+                MenuOpacity=70
+                TabDrawHighlight=true
+                TabUseBrighterCloseIcon=true
+                ToolBarOpacity=80
+                UnifiedTabBarKonsole=true
+                renderThinSeperatorBetweenTheScrollBar=true
 
-              [Windeco]
-              AnimationsSpeedRelativeSystem=8
+                [Windeco]
+                DrawBackgroundGradient=true
+                TitleAlignment=AlignCenter
+              '';
+              "klassy/klassyrc".text = ''
+                [Global]
+                LookAndFeelSet=Catppuccin-${flavor-upper}-${accent-upper}
 
-              [SystemIconGeneration]
-              KlassyDarkIconThemeInherits=Papirus-Dark
-              KlassyIconThemeInherits=Papirus
-            '';
+                [Style]
+                MenuOpacity=70
+
+                [Windeco]
+                AnimationsSpeedRelativeSystem=8
+
+                [SystemIconGeneration]
+                KlassyDarkIconThemeInherits=Papirus-Dark
+                KlassyIconThemeInherits=Papirus
+              '';
+            };
             dataFile = {
               "konsole/catppuccin-${flavor-lower}-transparent.colorscheme".text =
                 builtins.readFile ../../assets/theming/catppuccin-${flavor-lower}-transparent.colorscheme;
