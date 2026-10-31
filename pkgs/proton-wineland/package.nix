@@ -44,6 +44,12 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   preFixup = ''
     substituteInPlace "$steamcompattool/compatibilitytool.vdf" \
       --replace-fail "proton-${finalAttrs.version}-${variant}" "${steamDisplayName}"
+
+    # https://github.com/NixOS/nixpkgs/pull/581490, keyed on wine.inf: Wineland never changes its prefix version
+    substituteInPlace "$steamcompattool/proton" \
+      --replace-fail "            self.upgrade_pfx(old_ver)" "$(cat ${./reapply-wine-inf.py})"
+    substituteInPlace "$steamcompattool/proton" \
+      --replace-fail "@wineInfSha256@" "$(sha256sum "$steamcompattool/files/share/wine/wine.inf" | cut -d' ' -f1)"
   '';
 
   dontBuild = true;
