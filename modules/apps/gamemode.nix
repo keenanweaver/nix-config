@@ -49,8 +49,8 @@
                   text = ''
                     scxctl stop
 
-                    notify-send -t 3000 -u low "GameMode" \
-                      "GameMode stopped${lib.optionalString plasma "<br>Enabling Night Light"}" \
+                    notify-send -t 3000 -u low "" \
+                      "${lib.optionalString plasma "Enabling Night Light<br>Disabling scx_cake"}" \
                       -i ${icon} -a "GameMode"
                   ''
                   + lib.optionalString plasma ''
@@ -79,8 +79,8 @@
                       scxctl start --sched scx_cake --mode gaming
                     fi
 
-                    notify-send -t 3000 -u low "GameMode" \
-                      "GameMode started${lib.optionalString plasma "<br>Disabling Night Light"}<br>Enabling scx_cake" \
+                    notify-send -t 3000 -u low "" \
+                      "${lib.optionalString plasma "Disabling Night Light"}<br>Enabling scx_cake" \
                       -i ${icon} -a "GameMode"
                   ''
                   + lib.optionalString plasma ''

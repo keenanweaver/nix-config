@@ -135,7 +135,10 @@
             };
             mangohud-os = pkgs.writeShellApplication {
               name = "mangohud-os";
-              runtimeInputs = with pkgs; [ ripgrep ];
+              runtimeInputs = with pkgs; [
+                coreutils
+                ripgrep
+              ];
               text = ''
                 (rg -Nw PRETTY_NAME /run/host/etc/os-release 2>/dev/null \
                   || rg -Nw PRETTY_NAME /run/current-system/etc/os-release 2>/dev/null \
@@ -161,7 +164,10 @@
             };
             mangohud-runtime = pkgs.writeShellApplication {
               name = "mangohud-runtime";
-              runtimeInputs = with pkgs; [ ripgrep ];
+              runtimeInputs = with pkgs; [
+                coreutils
+                ripgrep
+              ];
               text = ''
                 if [ -n "''${CONTAINER_ID:-}" ]; then
                   echo "[Distrobox] ''${CONTAINER_ID}"

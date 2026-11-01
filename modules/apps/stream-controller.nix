@@ -120,7 +120,7 @@
                   {
                     comment = "Run PKill to kill .exe processes";
                     id = "com_core447_OSPlugin::RunCommand";
-                    settings.command = "pkill -9 -f '\\.(exe|EXE)$' 2>/dev/null; killall -9 -r '.*\\.(exe|EXE)$' 2>/dev/null; true";
+                    settings.command = "${lib.getExe' pkgs.procps "pkill"} -9 -f '\\.(exe|EXE)$' 2>/dev/null; ${lib.getExe' pkgs.killall "killall"} -9 -r '.*\\.(exe|EXE)$' 2>/dev/null; true";
                   }
                 ];
                 label = {

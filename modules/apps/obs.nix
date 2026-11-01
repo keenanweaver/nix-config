@@ -5,6 +5,8 @@
       homeManager = {
         obs =
           {
+            lib,
+            config,
             pkgs,
             osConfig,
             ...
@@ -28,7 +30,7 @@
                   "Recorder"
                 ];
                 comment = "Free and Open Source Streaming/Recording Software";
-                exec = "env GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb obs --disable-shutdown-check";
+                exec = "env GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb ${lib.getExe config.programs.obs-studio.finalPackage} --disable-shutdown-check";
                 icon = "com.obsproject.Studio";
                 name = "OBS Studio [${osConfig.my.user}]";
                 startupNotify = true;

@@ -36,16 +36,6 @@
         };
       };
       systemd = {
-        services.systemd-machine-id-commit = {
-          serviceConfig.ExecStart = [
-            ""
-            "systemd-machine-id-setup --commit --root /persist"
-          ];
-          unitConfig.ConditionPathIsMountPoint = [
-            ""
-            "/persist/etc/machine-id"
-          ];
-        };
         suppressedSystemUnits = [ "systemd-machine-id-commit.service" ];
         tmpfiles.rules = [ "d /nix/build 0755 root root -" ];
       };

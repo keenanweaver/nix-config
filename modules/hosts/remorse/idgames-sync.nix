@@ -18,7 +18,9 @@ in
             excludeShellChecks = [ "SC2329" ];
             name = "idgames-sync";
             runtimeInputs = with pkgs; [
+              coreutils
               curl
+              gnugrep
               wget
             ];
             text = ''

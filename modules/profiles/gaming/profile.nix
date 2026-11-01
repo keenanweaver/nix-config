@@ -11,7 +11,7 @@
       }:
       {
         home.sessionVariables = {
-          DXVK_HDR = true;
+          DXVK_HDR = "1";
           # https://reddit.com/r/linux_gaming/comments/1mg8vtl/low_latency_gaming_guide/
           SDL_VIDEODRIVER = "wayland,x11"; # SDL2
           SDL_VIDEO_DRIVER = "wayland,x11"; # SDL3

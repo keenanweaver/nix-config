@@ -49,7 +49,6 @@
           "performance"
         ];
         settings = {
-          debug.quiet-boot = false; # TODO: Revert when fixed
           kernel.iommu-passthrough = false;
           misc.nix-wheel = true;
           network.random-mac = false;
