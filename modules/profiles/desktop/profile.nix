@@ -1,14 +1,24 @@
 {
   self,
   inputs,
+  config,
   ...
 }:
+let
+  inherit (config.site) nas;
+in
 {
   flake.modules = {
     homeManager.profile-desktop = {
       imports = with self.modules.homeManager; [
         zen-browser
       ];
+      home.shellAliases = {
+        lgog = "lgogdownloader --download --exclude l,p --platform=w --directory ${nas.paths.gogBackups}";
+        npr = "nixpkgs-review pr --print-result";
+        psr = "plasmashell --replace & disown";
+        repw = "systemctl --user restart pipewire{,-pulse} wireplumber && gsr-ui-cli toggle-replay && gsr-ui-cli toggle-replay";
+      };
       xdg = {
         autostart.enable = true;
         userDirs = {
@@ -29,7 +39,6 @@
       {
         imports = with self.modules.nixos; [
           profile-base
-          btrfs
         ];
         console = {
           font = "ter-v28b";
@@ -67,6 +76,10 @@
           ydotool.enable = true;
         };
         services = {
+          btrfs.autoScrub = {
+            enable = true;
+            interval = "weekly";
+          };
           fwupd.enable = true;
           tuned = {
             enable = true;

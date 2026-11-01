@@ -1,24 +1,29 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.profile-gaming =
-    { pkgs, ... }:
-    {
-      home.packages =
-        with pkgs;
-        [
-          faugus-launcher
-          local.game-wrapper
-          local.portproton
-          openspeedrun
-          umu-launcher
-          vermouth
-          winetricks
-        ]
-        ++ [
-          inputs.nur-packages-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.winegui
-          inputs.rom-properties-nix-flake.packages.${pkgs.stdenv.hostPlatform.system}.rp_kde6
-        ];
-    };
+  flake.modules = {
+    homeManager.profile-gaming =
+      { pkgs, ... }:
+      {
+        home.packages =
+          with pkgs;
+          [
+            faugus-launcher
+            local.game-wrapper
+            local.portproton
+            openspeedrun
+            umu-launcher
+            vermouth
+            winetricks
+          ]
+          ++ [
+            inputs.nur-packages-bandithedoge.legacyPackages.${pkgs.stdenv.hostPlatform.system}.winegui
+            inputs.rom-properties-nix-flake.packages.${pkgs.stdenv.hostPlatform.system}.rp_kde6
+            inputs.volt-gui-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
+          ];
+        programs.lutris.enable = true;
+      };
+    nixos.profile-gaming.services.lact.enable = true;
+  };
   flake-file.inputs = {
     nur-packages-bandithedoge = {
       inputs.flake-parts.follows = "flake-parts";
@@ -27,6 +32,10 @@
     rom-properties-nix-flake = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:Whovian9369/rom-properties-nix-flake";
+    };
+    volt-gui-nix = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:keygenesis/volt-gui-nix";
     };
   };
 }

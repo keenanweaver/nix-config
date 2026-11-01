@@ -412,6 +412,7 @@ in
               workspace = {
                 clickItemTo = "select";
                 enableMiddleClickPaste = false;
+                splashScreen.theme = "nixos-mocha-kde-splash";
                 tooltipDelay = 300;
               };
             };
@@ -450,6 +451,7 @@ in
                 filelight
                 haruna
                 icoutils
+                inputs.nixos-mocha-kde-splash.packages.${pkgs.stdenv.hostPlatform.system}.default
                 kaccounts-providers
                 kcalc
                 kde-gtk-config
@@ -545,6 +547,10 @@ in
     laminix = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:jackboykin/laminix";
+    };
+    nixos-mocha-kde-splash = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:michaelwheatland/nixos-mocha-kde-splash";
     };
     plasma-manager = {
       inputs = {

@@ -91,27 +91,33 @@
         }
       ];
     };
-    nixos.niri =
-      {
-        lib,
-        config,
-        pkgs,
-        ...
-      }:
-      {
-        imports = [
-          inputs.niri-flake.nixosModules.niri
-        ];
-        home-manager.sharedModules = [ self.modules.homeManager.niri ];
-        nixpkgs.overlays = [ inputs.niri-flake.overlays.niri ];
-        programs.niri = {
-          enable = true;
-          package = pkgs.niri;
+    nixos = {
+      niri =
+        {
+          lib,
+          config,
+          pkgs,
+          ...
+        }:
+        {
+          imports = [
+            inputs.niri-flake.nixosModules.niri
+          ];
+          home-manager.sharedModules = [ self.modules.homeManager.niri ];
+          nixpkgs.overlays = [ inputs.niri-flake.overlays.niri ];
+          programs.niri = {
+            enable = true;
+            package = pkgs.niri;
+          };
+          services.gnome.gnome-keyring.enable = lib.mkIf config.services.desktopManager.plasma6.enable (
+            lib.mkForce false
+          );
         };
-        services.gnome.gnome-keyring.enable = lib.mkIf config.services.desktopManager.plasma6.enable (
-          lib.mkForce false
-        );
-      };
+      profile-niri.imports = with self.modules.nixos; [
+        niri
+        noctalia
+      ];
+    };
   };
   flake-file.inputs.niri-flake = {
     inputs = {
