@@ -2,7 +2,12 @@
 {
   flake.modules = {
     homeManager.coolercontrol =
-      { pkgs, ... }:
+      {
+        config,
+        pkgs,
+        osConfig,
+        ...
+      }:
       {
         imports = [ inputs.coolercontrol-nix.homeModules.default ];
         programs.coolercontrol = {
@@ -17,6 +22,12 @@
             startup_delay = 2;
             thinkpad_full_speed = false;
           };
+        };
+        sops.secrets."coolercontrol/${osConfig.networking.hostName}_token".path =
+          "${config.xdg.configHome}/coolerctl/token";
+        systemd.user.services.coolercontrol-apply.Unit = {
+          After = [ "sops-nix.service" ];
+          Wants = [ "sops-nix.service" ];
         };
         xdg.autostart.entries = [
           "${pkgs.coolercontrol.coolercontrol-gui}/share/applications/org.coolercontrol.CoolerControl.desktop"
