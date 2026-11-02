@@ -20,7 +20,7 @@
             inputs.rom-properties-nix-flake.packages.${pkgs.stdenv.hostPlatform.system}.rp_kde6
             inputs.volt-gui-nix.packages.${pkgs.stdenv.hostPlatform.system}.default
           ];
-        programs.lutris.enable = true;
+        #programs.lutris.enable = true;
       };
     nixos.profile-gaming.services.lact.enable = true;
   };

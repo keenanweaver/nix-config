@@ -24,8 +24,6 @@
         programs.nix-ld.libraries =
           with pkgs;
           (steam-run.args.multiPkgs pkgs)
-          ++ (heroic.args.multiPkgs pkgs)
-          ++ (lutris.args.multiPkgs pkgs)
           ++ [
             # Graphics / windowing
             libglvnd
