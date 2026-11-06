@@ -8,14 +8,14 @@
 }:
 let
   hashes = {
-    x86_64 = "sha256-IqrosgJ9qEhVgd33cJ+ahHh4ML2ybcFlfSXyGdPd/SM=";
-    x86_64_v3 = "sha256-TDWbLdgOf6hVVfulyJq+nm4+VI/mp1FR4z8CAQq4+mM=";
-    x86_64_wow64 = "sha256-FuZ9v/0YYzL3K9/DJpPhCCTeujqCi9g6ccQI8yLU3x4=";
+    x86_64 = "sha256-82+QRxqCIw/UE2DcQ7d/KL36Nqx7OENPKRtkSQVynxA=";
+    x86_64_v3 = "sha256-bIy0vL/TwhvQm7Hv3kLOrtlp6on7REt/rglv629KUq8=";
+    x86_64_wow64 = "sha256-LXqWJ3JghBdGEPKkg7QIFsLX8g8FAOz9yE5roVTHsZ0=";
   };
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "proton-wineland";
-  version = "wineland-11.0-20261024";
+  version = "wineland-11.0-20261103";
 
   src = fetchurl {
     url = "https://github.com/nanomatters/proton-salkim/releases/download/${finalAttrs.version}/proton-${finalAttrs.version}-${variant}.tar.xz";
