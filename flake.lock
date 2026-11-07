@@ -1088,11 +1088,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1794020353,
-        "narHash": "sha256-vnqEdOx1k3FocG+dpTbOECeYXNHF51zb1gOG/COhyTk=",
+        "lastModified": 1794052848,
+        "narHash": "sha256-LmJcnLza3yRjfMUZcziIZbp0y87VgU//dsiekAqQvvM=",
         "owner": "powerofthe69",
         "repo": "nix-gaming-edge",
-        "rev": "532c234c2c8e78100d01dbdbf77fb69daaf968f8",
+        "rev": "7c66ab0e31850a2797aae608bceb133739bed552",
         "type": "github"
       },
       "original": {
@@ -1578,11 +1578,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1793726008,
-        "narHash": "sha256-jQp1wKvbwWdLBASTXkSi/VYmDJ5AbBi1WvcMt9HWJC8=",
+        "lastModified": 1793876309,
+        "narHash": "sha256-Wojg9lIH/hDH91iDVH2/EPw8oDSpxjxhXONbU1yf4Zg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "1d060086d60cb76a40cf37109f979d88a5bd6396",
+        "rev": "f9a75f41be3a74eab55d3a7679d34ad6cc0da977",
         "type": "github"
       },
       "original": {
@@ -1668,11 +1668,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1794001445,
-        "narHash": "sha256-/IVroB77K+lb91RoFcQT1AmB7+6+UzX4fBdUwZU1x8s=",
+        "lastModified": 1794048047,
+        "narHash": "sha256-NGV+voRSJluZHlOpCAM/KrLlLjNOwEJ5bWLNz/Cgtqg=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "aa73518bbd87e19350373aafcc2b950c5ca2a5c2",
+        "rev": "876f7a56f20164d18a093ded9ab9160f108ad795",
         "type": "github"
       },
       "original": {
@@ -1708,11 +1708,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794045449,
-        "narHash": "sha256-RVVP2co4LZRXtWQVa/pVM+v6tkg7mHfMcpQEmjQzt8o=",
+        "lastModified": 1794053830,
+        "narHash": "sha256-acuCeka2/UEJYo7BHX0/RdDKiDRH88o/plMeBMyQK24=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "fcfbaceedf198c8ea64e8da0e3ea1848eb6d697d",
+        "rev": "c752566bdbaea83c54ad3159e12a8a768c296f0c",
         "type": "github"
       },
       "original": {
@@ -1751,11 +1751,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1793976113,
-        "narHash": "sha256-7rNFUW/bYS/f8VLvykvkH2I9W8HnNQti2LDYrY7O08w=",
+        "lastModified": 1794043983,
+        "narHash": "sha256-QyBTtw55XM1kSJbgb+AOr3Dj3PloHJ3DayXOuQaGwpo=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "e47c2b41686d87d20700a70c3042bf0289e84cdb",
+        "rev": "de6de8e3ff4373d7718507baa79eb15c1ddcfb60",
         "type": "github"
       },
       "original": {

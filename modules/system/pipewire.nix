@@ -9,7 +9,6 @@
           support32Bit = true;
         };
         extraConfig.pipewire-pulse."10-resample-quality"."stream.properties"."resample.quality" = 10;
-        jack.enable = true;
         pulse.enable = true;
         wireplumber.extraConfig = {
           # Static/crackling fix https://wiki.archlinux.org/title/PipeWire#Noticeable_audio_delay_or_audible_pop/crack_when_starting_playback
