@@ -1392,23 +1392,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-gsr": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1794150530,
-        "narHash": "sha256-7ArYJxEdrRzAKXS2ziAeK5THfsQjawTbfLrGKMk0y64=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "74b89c527c44b19c7396d7686412dab882c7aee7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "74b89c527c44b19c7396d7686412dab882c7aee7",
-        "type": "github"
-      }
-    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1793504054,
@@ -1541,6 +1524,81 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
+    "nixpkgs-patch-amethyst-mod-manager-bump": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-gVJTKMOcKl8XukGPI7qumwsEyxRApYRTslX+RKV7y2U=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/compare/faaab5b83d240c3359b9ac92ce6dbd017ba64014...6243396467aff62c9df8d29907b4f92058c094a4.diff"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/compare/faaab5b83d240c3359b9ac92ce6dbd017ba64014...6243396467aff62c9df8d29907b4f92058c094a4.diff"
+      }
+    },
+    "nixpkgs-patch-gpu-screen-recorder-modernize": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-Xg8UXQfEwBUZ6+5cMsqefqj6szla0GOVDxnUJ0qmSLU=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/compare/9a3c97c772303c3987767e448ddd928294bdaf11...74b89c527c44b19c7396d7686412dab882c7aee7.diff"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/compare/9a3c97c772303c3987767e448ddd928294bdaf11...74b89c527c44b19c7396d7686412dab882c7aee7.diff"
+      }
+    },
+    "nixpkgs-patch-heroic-modernize": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-SP4Z2Alj71wVe2ECb0Z4HPSxDQvf6i/D430Gjip2QOI=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/584805.diff"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/584805.diff"
+      }
+    },
+    "nixpkgs-patch-openxcom-extended-init": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-Dexr0CCv73Ijb/X4+nPTVvBeQDTuI8ErWyPuVxHsy4k=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/575042.diff"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/575042.diff"
+      }
+    },
+    "nixpkgs-patch-topgrade-system-aws-lc": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-PSpIk3U6rU9PISq/yeRqCmmHfgUPdk9DunoGs3Ihvu4=",
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/585019.diff"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/NixOS/nixpkgs/pull/585019.diff"
+      }
+    },
+    "nixpkgs-patcher": {
+      "locked": {
+        "lastModified": 1793529490,
+        "narHash": "sha256-AfocpOlYMgrEgE9j0OumoQGe1Uwke4k7vtzfffUl+tE=",
+        "owner": "gepbird",
+        "repo": "nixpkgs-patcher",
+        "rev": "e5f4b45fb4f0fc81dae025c173648cccbefca569",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gepbird",
+        "repo": "nixpkgs-patcher",
         "type": "github"
       }
     },
@@ -1986,10 +2044,15 @@
         "nixos-raspberrypi": "nixos-raspberrypi",
         "nixos-steam": "nixos-steam",
         "nixpkgs": "nixpkgs_6",
-        "nixpkgs-gsr": "nixpkgs-gsr",
         "nixpkgs-lib": [
           "nixpkgs"
         ],
+        "nixpkgs-patch-amethyst-mod-manager-bump": "nixpkgs-patch-amethyst-mod-manager-bump",
+        "nixpkgs-patch-gpu-screen-recorder-modernize": "nixpkgs-patch-gpu-screen-recorder-modernize",
+        "nixpkgs-patch-heroic-modernize": "nixpkgs-patch-heroic-modernize",
+        "nixpkgs-patch-openxcom-extended-init": "nixpkgs-patch-openxcom-extended-init",
+        "nixpkgs-patch-topgrade-system-aws-lc": "nixpkgs-patch-topgrade-system-aws-lc",
+        "nixpkgs-patcher": "nixpkgs-patcher",
         "noctalia": "noctalia",
         "nonfree": "nonfree",
         "nur": "nur",
