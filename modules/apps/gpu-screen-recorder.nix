@@ -10,7 +10,7 @@
     in
     {
       imports = [ "${inputs.nixpkgs-gsr}/nixos/modules/programs/gpu-screen-recorder.nix" ];
-      # Testing https://github.com/keenanweaver/nixpkgs/tree/gpu-screen-recorder-modernize
+      # Until https://github.com/NixOS/nixpkgs/pull/580322 reaches nixos-unstable
       disabledModules = [ "programs/gpu-screen-recorder.nix" ];
       programs.gpu-screen-recorder = {
         enable = true;
@@ -25,6 +25,6 @@
     };
   flake-file.inputs.nixpkgs-gsr = {
     flake = false;
-    url = "github:keenanweaver/nixpkgs/gpu-screen-recorder-modernize";
+    url = "github:NixOS/nixpkgs/74b89c527c44b19c7396d7686412dab882c7aee7";
   };
 }

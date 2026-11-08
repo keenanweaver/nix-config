@@ -182,7 +182,7 @@
     };
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
     nixpkgs-gsr = {
-      url = "github:keenanweaver/nixpkgs/gpu-screen-recorder-modernize";
+      url = "github:NixOS/nixpkgs/74b89c527c44b19c7396d7686412dab882c7aee7";
       flake = false;
     };
     nixpkgs-lib.follows = "nixpkgs";
