@@ -7,7 +7,7 @@
   <body>
     <outline text="Games">
       <outline text="GOG.com" type="rss" xmlUrl="https://www.gog.com/frontpage/rss" htmlUrl="https://www.gog.com/frontpage/rss" description="The latest news for GOG.com"/>
-      <outline text="The Digital Antiquarian" type="rss" xmlUrl="https://www.filfre.net/feed/" htmlUrl="https://www.filfre.net/" description="A history of computer entertainment and digital culture by Jimmy Maher"/>
+      <outline text="Read Only Memo" type="rss" xmlUrl="https://readonlymemo.com/rss" htmlUrl="https://readonlymemo.com/" description="A twice-monthly digest on all things emulation"/>
       <outline text="Thrilling Tales of Old Video Games" type="rss" xmlUrl="https://www.thrillingtalesofoldvideogames.com/?format=rss" htmlUrl="https://www.thrillingtalesofoldvideogames.com/"/>
     </outline>
     <outline text="NixOS">

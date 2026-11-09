@@ -17,7 +17,7 @@
           ];
           programs.steam = {
             enable = true;
-            extraCompatPackages = with pkgs; [ luxtorpeda ];
+            extraCompatPackages = with pkgs; [ luxtorpeda-bin ];
             localNetworkGameTransfers.openFirewall = true;
             protontricks.enable = true;
             remotePlay.openFirewall = true;
