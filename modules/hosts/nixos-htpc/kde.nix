@@ -27,7 +27,7 @@
             widgets = [
               {
                 kickerdash.icon = builtins.path {
-                  path = ../../../assets/theming/nix-logo-mocha-lavender-red.png;
+                  path = ../../../assets/theming/nix-logo-mocha-lavender-sky.png;
                 };
               }
               {
