@@ -56,6 +56,7 @@ in
           lazygit = {
             enable = true;
             settings = {
+              git.overrideGpg = true;
               gui.mouseEvents = false;
               promptToReturnFromSubprocess = false;
             };

@@ -7,10 +7,11 @@
         home.packages =
           with pkgs;
           [
+            amethyst-mod-manager
             faugus-launcher
             local.game-wrapper
-            local.portproton
             openspeedrun
+            portprotonqt
             quiver-launcher
             umu-launcher
             vermouth

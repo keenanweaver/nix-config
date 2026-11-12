@@ -119,7 +119,7 @@ in
             krita
             lazyjournal
             lgogdownloader
-            local.openxcom-extended
+            local.crusader-no-remorse-decomp
             local.relive
             local.rsdkv3
             local.sonic3air
@@ -146,6 +146,7 @@ in
             openrct2
             openttd
             opentyrian
+            openxcom-extended
             openxray
             parsec-bin
             patool

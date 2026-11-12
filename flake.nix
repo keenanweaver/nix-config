@@ -182,14 +182,6 @@
     };
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
     nixpkgs-lib.follows = "nixpkgs";
-    nixpkgs-patch-amethyst-mod-manager-bump = {
-      url = "https://github.com/NixOS/nixpkgs/compare/faaab5b83d240c3359b9ac92ce6dbd017ba64014...6243396467aff62c9df8d29907b4f92058c094a4.diff";
-      flake = false;
-    };
-    nixpkgs-patch-gpu-screen-recorder-modernize = {
-      url = "https://github.com/NixOS/nixpkgs/compare/9a3c97c772303c3987767e448ddd928294bdaf11...74b89c527c44b19c7396d7686412dab882c7aee7.diff";
-      flake = false;
-    };
     nixpkgs-patch-heroic-modernize = {
       url = "https://github.com/NixOS/nixpkgs/pull/584805.diff";
       flake = false;
@@ -200,10 +192,6 @@
     };
     nixpkgs-patch-openxcom-extended-init = {
       url = "https://github.com/NixOS/nixpkgs/pull/575042.diff";
-      flake = false;
-    };
-    nixpkgs-patch-topgrade-system-aws-lc = {
-      url = "https://github.com/NixOS/nixpkgs/pull/585019.diff";
       flake = false;
     };
     nixpkgs-patcher.url = "github:gepbird/nixpkgs-patcher";
