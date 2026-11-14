@@ -21,9 +21,6 @@ in
             "info.cemu.Cemu".Context.filesystems = [
               "${config.home.homeDirectory}/Games/cemu"
             ];
-            "info.exult.exult".Context.filesystems = [
-              "${config.home.homeDirectory}/Music/soundfonts:ro"
-            ];
             "io.github.strikerx3.ymir".Context.filesystems = [
               "!/mnt"
               "${nas.mountRoot}/Games/Rom/CHD/Sega Saturn"
@@ -67,7 +64,6 @@ in
             "dev.ares.ares"
             "info.beyondallreason.bar"
             "info.cemu.Cemu"
-            "info.exult.exult"
             {
               appId = "io.github.hedge_dev.unleashedrecomp";
               bundle = "file://${config.home.homeDirectory}/Games/io.github.hedge_dev.unleashedrecomp.flatpak";
