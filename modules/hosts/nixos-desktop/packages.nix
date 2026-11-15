@@ -79,6 +79,7 @@ in
             dxx-rebirth
             ecwolf
             etlegacy
+            exult
             fheroes2
             filezilla
             flawz

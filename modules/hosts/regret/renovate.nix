@@ -28,7 +28,7 @@
             url = "http://127.0.0.1/renovate";
           }}
 
-          commits=$(curl -fsS \
+          commits=$(curl -fsS --retry 3 --retry-all-errors \
             --header @<(printf 'Authorization: token %s\n' "$codeberg_token") \
             "https://codeberg.org/api/v1/repos/Keenan/nix-config/commits?sha=dendritic&limit=50")
 
@@ -124,7 +124,7 @@
       };
       systemd.services = {
         renovate.serviceConfig = {
-          ExecStartPost = [ (lib.getExe renovateNotifyMerged) ];
+          ExecStopPost = [ "-${lib.getExe renovateNotifyMerged}" ];
           LoadCredential = [ "SECRET-NTFY_TOKEN:${ntfyTokenFile}" ];
           TimeoutStartSec = "10m";
         };

@@ -76,6 +76,35 @@
         };
         forbid-new-submodules.enable = true;
         nixf-diagnose.enable = true;
+        nixpkgs-patches = {
+          enable = true;
+          before = [ "flake-file" ];
+          entry = lib.getExe (
+            pkgs.writeShellApplication {
+              name = "hook-nixpkgs-patches";
+              runtimeInputs = [
+                pkgs.gnupatch
+                pkgs.jq
+              ];
+              text = ''
+                command -v nix >/dev/null || exit 0
+                archive=$(nix flake archive --dry-run --json)
+                nixpkgs=$(jq -r '.inputs.nixpkgs.path' <<<"$archive")
+                failed=0
+                while IFS=$'\t' read -r name path; do
+                  if ! patch -p1 -d "$nixpkgs" --dry-run -s -f <"$path" >/dev/null 2>&1; then
+                    echo "$name no longer applies to nixpkgs (merged upstream?)" >&2
+                    failed=1
+                  fi
+                done < <(jq -r '.inputs | to_entries[] | select(.key | test("^nixpkgs-patch-")) | "\(.key)\t\(.value.path)"' <<<"$archive")
+                exit "$failed"
+              '';
+            }
+          );
+          files = "\\.(nix|lock)$";
+          name = "nixpkgs-patches";
+          pass_filenames = false;
+        };
         no-commit-to-branch = {
           enable = true;
           settings.branch = [ "main" ];

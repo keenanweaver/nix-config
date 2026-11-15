@@ -186,14 +186,6 @@
       url = "https://github.com/NixOS/nixpkgs/pull/584805.diff";
       flake = false;
     };
-    nixpkgs-patch-luxtorpeda-bin = {
-      url = "https://github.com/NixOS/nixpkgs/pull/585753.diff";
-      flake = false;
-    };
-    nixpkgs-patch-openxcom-extended-init = {
-      url = "https://github.com/NixOS/nixpkgs/pull/575042.diff";
-      flake = false;
-    };
     nixpkgs-patcher.url = "github:gepbird/nixpkgs-patcher";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     nonfree = {

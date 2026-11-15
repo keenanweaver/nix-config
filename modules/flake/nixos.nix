@@ -36,7 +36,10 @@ in
             }
             module
           ];
-          nixpkgsPatcher.inputs = inputs;
+          nixpkgsPatcher = {
+            inherit inputs;
+            enableTroubleshootingShell = false;
+          };
         }
       ) config.configurations.nixos;
     };
