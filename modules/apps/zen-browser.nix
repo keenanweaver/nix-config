@@ -472,6 +472,31 @@ in
                 --zen-main-browser-background: #1e1e2e !important;
               }
             '';
+            userContent = ''
+              @import "catppuccin/userContent.css";
+
+              @-moz-document domain("github.com") {
+                :root {
+                  --fontStack-monospace: "${theme.mono-font}", monospace !important;
+                }
+
+                .react-code-text,
+                .react-code-lines,
+                .react-line-number,
+                #read-only-cursor-text-area,
+                .blob-code-inner,
+                .blob-num,
+                .diff-text-inner {
+                  font-family: var(--fontStack-monospace) !important;
+                  font-size: ${toString theme.mono-size}px !important;
+                }
+
+                .markdown-body pre,
+                .markdown-body code {
+                  font-family: var(--fontStack-monospace) !important;
+                }
+              }
+            '';
           };
         setAsDefaultBrowser = true;
       };
