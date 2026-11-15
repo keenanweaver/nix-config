@@ -15,12 +15,11 @@
             primaryMonitor
             ;
         in
-        lib.optionalAttrs osConfig.services.desktopManager.plasma6.enable {
-          "Games/toggle-hdr.sh".source =
-            with pkgs;
-            lib.getExe (writeShellApplication {
+        lib.mkIf osConfig.services.desktopManager.plasma6.enable {
+          "Games/toggle-hdr.sh".source = lib.getExe (
+            pkgs.writeShellApplication {
               name = "toggle-hdr";
-              runtimeInputs = [
+              runtimeInputs = with pkgs; [
                 kdePackages.libkscreen
                 jq
               ];
@@ -35,12 +34,12 @@
                   kscreen-doctor "output.${primaryMonitor}.wcg.enable"
                 fi
               '';
-            });
-          "Games/toggle-vrr.sh".source =
-            with pkgs;
-            lib.getExe (writeShellApplication {
+            }
+          );
+          "Games/toggle-vrr.sh".source = lib.getExe (
+            pkgs.writeShellApplication {
               name = "toggle-vrr";
-              runtimeInputs = [
+              runtimeInputs = with pkgs; [
                 kdePackages.libkscreen
                 jq
               ];
@@ -52,7 +51,8 @@
                   kscreen-doctor "output.${primaryMonitor}.vrrpolicy.never"
                 fi
               '';
-            });
+            }
+          );
         };
       xdg.configFile = {
         "dosbox/mt32-roms".source = "${inputs.nonfree}/Music/roland/mt32";

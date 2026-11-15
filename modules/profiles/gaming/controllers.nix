@@ -19,13 +19,7 @@
           xpadneo.enable = true;
         };
         services.udev = {
-          extraHwdb =
-            with builtins;
-            concatStringsSep "\n" (
-              map readFile [
-                "${inputs.simracing-hwdb}/090-logitech.hwdb"
-              ]
-            );
+          extraHwdb = builtins.readFile "${inputs.simracing-hwdb}/090-logitech.hwdb";
           packages = with pkgs; [
             game-devices-udev-rules
             oversteer

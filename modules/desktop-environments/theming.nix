@@ -159,7 +159,7 @@ in
                 recursive = true;
                 source = ../../assets/theming/gtk-3.0;
               };
-              "gtk-4.0/gtk.css".text = builtins.readFile ../../assets/theming/gtk-4.0/gtk.css;
+              "gtk-4.0/gtk.css".source = ../../assets/theming/gtk-4.0/gtk.css;
               "powershell/Microsoft.PowerShell_profile.ps1".text = ''
                 Import-Module Catppuccin
                 $Flavor = $Catppuccin['${flavor-upper}']
@@ -305,8 +305,8 @@ in
               '';
             };
             dataFile = {
-              "konsole/catppuccin-${flavor-lower}-transparent.colorscheme".text =
-                builtins.readFile ../../assets/theming/catppuccin-${flavor-lower}-transparent.colorscheme;
+              "konsole/catppuccin-${flavor-lower}-transparent.colorscheme".source =
+                ../../assets/theming/catppuccin-${flavor-lower}-transparent.colorscheme;
               "konsole/catppuccin-${flavor-lower}.colorscheme".source =
                 "${inputs.catppuccin-konsole}/themes/catppuccin-${flavor-lower}.colorscheme";
             };
@@ -385,16 +385,15 @@ in
   theme =
     let
       accent-lower = "lavender";
-      capitalize = s: lib.toUpper (lib.substring 0 1 s) + lib.substring 1 (-1) s;
       flavor-accent = "${flavor-lower}-${accent-lower}";
       flavor-lower = "mocha";
     in
     {
       inherit accent-lower flavor-accent flavor-lower;
       GTK-THEME = "Breeze-Dark";
-      accent-upper = capitalize accent-lower;
+      accent-upper = lib.toSentenceCase accent-lower;
       cursor-theme = "catppuccin-${flavor-accent}-cursors";
-      flavor-upper = capitalize flavor-lower;
+      flavor-upper = lib.toSentenceCase flavor-lower;
       icon-theme = "Papirus-Dark";
       mono-font = "Maple Mono Normal NF";
       mono-size = 14;

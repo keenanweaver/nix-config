@@ -36,16 +36,14 @@
               end = lib.getExe (
                 pkgs.writeShellApplication {
                   name = "gamemode-end";
-                  runtimeInputs =
-                    with pkgs;
-                    [
-                      libnotify
-                      scx-loader
-                    ]
-                    ++ lib.optionals plasma [
-                      kdePackages.libkscreen
-                      kdePackages.qttools
-                    ];
+                  runtimeInputs = [
+                    pkgs.libnotify
+                    pkgs.scx-loader
+                  ]
+                  ++ lib.optionals plasma [
+                    pkgs.kdePackages.libkscreen
+                    pkgs.kdePackages.qttools
+                  ];
                   text = ''
                     scxctl stop
 
@@ -64,16 +62,14 @@
               start = lib.getExe (
                 pkgs.writeShellApplication {
                   name = "gamemode-start";
-                  runtimeInputs =
-                    with pkgs;
-                    [
-                      libnotify
-                      scx-loader
-                    ]
-                    ++ lib.optionals plasma [
-                      kdePackages.libkscreen
-                      kdePackages.qttools
-                    ];
+                  runtimeInputs = [
+                    pkgs.libnotify
+                    pkgs.scx-loader
+                  ]
+                  ++ lib.optionals plasma [
+                    pkgs.kdePackages.libkscreen
+                    pkgs.kdePackages.qttools
+                  ];
                   text = ''
                     if [[ "$(scxctl get 2>/dev/null)" != *"Cake in LowLatency"* ]]; then
                       scxctl start --sched scx_cake --mode gaming

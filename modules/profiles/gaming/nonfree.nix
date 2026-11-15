@@ -7,24 +7,14 @@
       # Copy dotfiles recursively in home
       home.file =
         let
-          listFilesRecursive =
-            dir: acc:
-            lib.flatten (
-              lib.mapAttrsToList (
-                k: v: if v == "regular" then "${acc}${k}" else listFilesRecursive dir "${acc}${k}/"
-              ) (builtins.readDir "${dir}/${acc}")
-            );
-
-          toHomeFiles =
-            dir:
-            builtins.listToAttrs (
-              map (x: {
-                name = x;
-                value.source = "${dir}/${x}";
-              }) (listFilesRecursive dir "")
-            );
+          dir = "${inputs.nonfree}";
         in
-        toHomeFiles "${inputs.nonfree}";
+        lib.genAttrs' (lib.filesystem.listFilesRecursive dir) (
+          p:
+          lib.nameValuePair (builtins.unsafeDiscardStringContext (lib.removePrefix "${dir}/" p)) {
+            source = p;
+          }
+        );
     };
   flake-file.inputs.nonfree = {
     flake = false;

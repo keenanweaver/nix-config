@@ -28,9 +28,8 @@ in
                   recursive = true;
                   source = "${inputs.kwin-effects-kinetic}";
                 };
-                "kxmlgui5/dolphin/dolphinui.rc".text = builtins.readFile ../../../assets/dolphinui.rc;
-                "user-places.xbel".text =
-                  builtins.readFile ../../../assets/hosts/${osConfig.networking.hostName}/user-places.xbel;
+                "kxmlgui5/dolphin/dolphinui.rc".source = ../../../assets/dolphinui.rc;
+                "user-places.xbel".source = ../../../assets/hosts/${osConfig.networking.hostName}/user-places.xbel;
               };
             };
           };
@@ -432,13 +431,19 @@ in
             plasma6.excludePackages = with pkgs.kdePackages; [ elisa ];
             sessionVariables.GDK_DEBUG = "portals"; # KDE filepicker
             systemPackages =
-              with pkgs;
-              with pkgs.kdePackages;
-              [
+              (with pkgs; [
+                ffmpegthumbnailer
+                haruna
+                icoutils
+                inputs.nixos-mocha-kde-splash.packages.${stdenv.hostPlatform.system}.default
+                kdotool
+                qt6.qtwebengine
+              ])
+              ++ (with pkgs.kdePackages; [
                 (
                   inputs.kwin-effects-better-blur-dx.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs
                     (old: {
-                      buildInputs = old.buildInputs ++ [ kdePackages.kdecoration ];
+                      buildInputs = old.buildInputs ++ [ kdecoration ];
                     })
                 )
                 (spectacle.override {
@@ -447,18 +452,13 @@ in
                 # https://github.com/shvedes/awesome-kde
                 arianna
                 breeze
-                ffmpegthumbnailer
                 filelight
-                haruna
-                icoutils
-                inputs.nixos-mocha-kde-splash.packages.${pkgs.stdenv.hostPlatform.system}.default
                 kaccounts-providers
                 kcalc
                 kde-gtk-config
                 kdenetwork-filesharing
                 kdesu
                 kdialog
-                kdotool
                 kfind
                 kget
                 kio-fuse
@@ -472,12 +472,11 @@ in
                 markdownpart
                 packagekit-qt # Discover store
                 plasma-browser-integration
-                qt6.qtwebengine
                 qtimageformats
                 qtsvg # https://github.com/NixOS/nixpkgs/issues/325225
                 svgpart
                 syntax-highlighting
-              ];
+              ]);
           };
           home-manager.sharedModules = [ self.modules.homeManager.kde ];
           programs = {

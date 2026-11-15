@@ -11,11 +11,21 @@ in
           environment.systemPackages = with pkgs; [
             nfs-utils
           ];
-          fileSystems = builtins.listToAttrs (
-            map
-              (mount: {
-                name = "${nas.mountRoot}/${mount}";
-                value = {
+          fileSystems =
+            lib.genAttrs'
+              [
+                "Backup"
+                "Downloads"
+                "Games"
+                "Life"
+                "Media"
+                "Miscellaneous"
+                "Photos"
+                "Projects"
+              ]
+              (
+                mount:
+                lib.nameValuePair "${nas.mountRoot}/${mount}" {
                   device = "${nas.host}:/mnt/user/${mount}";
                   fsType = "nfs";
                   options = [
@@ -29,19 +39,8 @@ in
                     "x-systemd.idle-timeout=60"
                     "x-systemd.mount-timeout=10s"
                   ];
-                };
-              })
-              [
-                "Backup"
-                "Downloads"
-                "Games"
-                "Life"
-                "Media"
-                "Miscellaneous"
-                "Photos"
-                "Projects"
-              ]
-          );
+                }
+              );
           services.rpcbind.enable = lib.mkForce false;
           systemd.services.force-umount-nfs = {
             wantedBy = [ "multi-user.target" ];

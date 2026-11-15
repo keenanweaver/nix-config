@@ -26,9 +26,7 @@
             screen = 0;
             widgets = [
               {
-                kickerdash.icon = builtins.path {
-                  path = ../../../assets/theming/nix-logo-mocha-lavender-sky.png;
-                };
+                kickerdash.icon = "${../../../assets/theming/nix-logo-mocha-lavender-sky.png}";
               }
               {
                 iconTasks = {

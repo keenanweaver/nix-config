@@ -22,9 +22,8 @@
       { pkgs, ... }:
       {
         programs.nix-ld.libraries =
-          with pkgs;
-          (steam-run.args.multiPkgs pkgs)
-          ++ [
+          pkgs.steam-run.args.multiPkgs pkgs
+          ++ (with pkgs; [
             # Graphics / windowing
             libglvnd
             mesa
@@ -62,7 +61,7 @@
             expat
             libdrm
             udev
-          ];
+          ]);
       };
   };
 }

@@ -47,9 +47,7 @@
               {
                 kickoff =
                   let
-                    start-icon = builtins.path {
-                      path = ../../../assets/theming/nix-logo-mocha-lavender-sky.png;
-                    };
+                    start-icon = "${../../../assets/theming/nix-logo-mocha-lavender-sky.png}";
                   in
                   {
                     applicationsDisplayMode = "list";
