@@ -1,7 +1,7 @@
 # shellcheck shell=bash
 if [ $# -lt 1 ]; then
-  echo "Usage: cryptenroll <device> [extra systemd-cryptenroll args...]" >&2
-  exit 1
+	echo "Usage: cryptenroll <device> [extra systemd-cryptenroll args...]" >&2
+	exit 1
 fi
 
 device="$1"
