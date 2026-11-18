@@ -123,10 +123,22 @@
         "renovate/nonfree_host_rules" = { };
       };
       systemd.services = {
-        renovate.serviceConfig = {
-          ExecStopPost = [ "-${lib.getExe renovateNotifyMerged}" ];
-          LoadCredential = [ "SECRET-NTFY_TOKEN:${ntfyTokenFile}" ];
-          TimeoutStartSec = "10m";
+        renovate = {
+          onSuccess = [ "renovate-notify-merged.service" ];
+          serviceConfig.TimeoutStartSec = "10m";
+        };
+        renovate-notify-merged = {
+          description = "Notify about renovate commits merged into dendritic";
+          serviceConfig = self.lib.systemdSandbox // {
+            DynamicUser = true;
+            ExecStart = lib.getExe renovateNotifyMerged;
+            LoadCredential = [
+              "SECRET-NTFY_TOKEN:${ntfyTokenFile}"
+              "SECRET-RENOVATE_TOKEN:${config.sops.secrets."renovate/codeberg_bot_pat".path}"
+            ];
+            StateDirectory = "renovate-notify-merged";
+            Type = "oneshot";
+          };
         };
         renovate-watch-nixos-unstable = {
           description = "Trigger renovate when nixpkgs nixos-unstable advances";

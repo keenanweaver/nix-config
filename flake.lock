@@ -412,24 +412,6 @@
         "type": "github"
       }
     },
-    "flake-parts_10": {
-      "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib_9"
-      },
-      "locked": {
-        "lastModified": 1793576659,
-        "narHash": "sha256-V1h85lUaJBQoHFrB2vpXZOE0Ju1MYSnIpsehoVZYlDo=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "ea2630b7470978622c7689a1ff75d2b389175399",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
     "flake-parts_2": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib_2"
@@ -543,24 +525,6 @@
     "flake-parts_8": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib_7"
-      },
-      "locked": {
-        "lastModified": 1793576659,
-        "narHash": "sha256-V1h85lUaJBQoHFrB2vpXZOE0Ju1MYSnIpsehoVZYlDo=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "ea2630b7470978622c7689a1ff75d2b389175399",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
-    "flake-parts_9": {
-      "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib_8"
       },
       "locked": {
         "lastModified": 1793576659,
@@ -1515,36 +1479,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-lib_8": {
-      "locked": {
-        "lastModified": 1793504054,
-        "narHash": "sha256-ThkfL3D/FhCiZFc9+3BtxwuMmpuK+/bGtXCSo1+yVew=",
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "rev": "7851ba61fd862b277cb6a9cef37394bc18bb94e4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "type": "github"
-      }
-    },
-    "nixpkgs-lib_9": {
-      "locked": {
-        "lastModified": 1793504054,
-        "narHash": "sha256-ThkfL3D/FhCiZFc9+3BtxwuMmpuK+/bGtXCSo1+yVew=",
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "rev": "7851ba61fd862b277cb6a9cef37394bc18bb94e4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "type": "github"
-      }
-    },
     "nixpkgs-patch-heroic-modernize": {
       "flake": false,
       "locked": {
@@ -1883,60 +1817,6 @@
         "type": "github"
       }
     },
-    "proton-cachyos-nix": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "git-hooks": [
-          "git-hooks-nix"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "std": "std_4"
-      },
-      "locked": {
-        "lastModified": 1794968774,
-        "narHash": "sha256-Iy+lG9nQFvnXst1XrKSm7rq4msWLQijugnPUWCTZn+0=",
-        "owner": "Daaboulex",
-        "repo": "proton-cachyos-nix",
-        "rev": "8a3db6a9c6acf4e40dbc31054fce0d1c833d49d2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Daaboulex",
-        "repo": "proton-cachyos-nix",
-        "type": "github"
-      }
-    },
-    "proton-ge-nix": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "git-hooks": [
-          "git-hooks-nix"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "std": "std_5"
-      },
-      "locked": {
-        "lastModified": 1794968795,
-        "narHash": "sha256-f0wIsPnRUjK+KPxRKJPcUTbJu1fXLnFO/EK8c8/n9Kc=",
-        "owner": "Daaboulex",
-        "repo": "proton-ge-nix",
-        "rev": "e9469335a840989a78940ce91c4a97851cf00152",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Daaboulex",
-        "repo": "proton-ge-nix",
-        "type": "github"
-      }
-    },
     "quadlet-nix": {
       "locked": {
         "lastModified": 1793557434,
@@ -2044,8 +1924,6 @@
         "pedantix": "pedantix",
         "plasma-manager": "plasma-manager",
         "preservation": "preservation",
-        "proton-cachyos-nix": "proton-cachyos-nix",
-        "proton-ge-nix": "proton-ge-nix",
         "quadlet-nix": "quadlet-nix",
         "rewaita": "rewaita",
         "rom-properties-nix-flake": "rom-properties-nix-flake",
@@ -2294,11 +2172,11 @@
       "inputs": {
         "flake-parts": "flake-parts_6",
         "git-hooks": [
-          "proton-cachyos-nix",
+          "streamcontroller-nix",
           "git-hooks"
         ],
         "nixpkgs": [
-          "proton-cachyos-nix",
+          "streamcontroller-nix",
           "nixpkgs"
         ]
       },
@@ -2321,11 +2199,11 @@
       "inputs": {
         "flake-parts": "flake-parts_7",
         "git-hooks": [
-          "proton-ge-nix",
+          "wine-cachyos-nix",
           "git-hooks"
         ],
         "nixpkgs": [
-          "proton-ge-nix",
+          "wine-cachyos-nix",
           "nixpkgs"
         ]
       },
@@ -2347,60 +2225,6 @@
     "std_6": {
       "inputs": {
         "flake-parts": "flake-parts_8",
-        "git-hooks": [
-          "streamcontroller-nix",
-          "git-hooks"
-        ],
-        "nixpkgs": [
-          "streamcontroller-nix",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1794944248,
-        "narHash": "sha256-3ynjrzwlz6GlqxNCg86EkbCGjmB2839C+4yQ4Cv6MC8=",
-        "owner": "Daaboulex",
-        "repo": "nix-packaging-standard",
-        "rev": "66b972606ed6d24f9b371d9dbd052a6eaad7c62f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Daaboulex",
-        "ref": "release",
-        "repo": "nix-packaging-standard",
-        "type": "github"
-      }
-    },
-    "std_7": {
-      "inputs": {
-        "flake-parts": "flake-parts_9",
-        "git-hooks": [
-          "wine-cachyos-nix",
-          "git-hooks"
-        ],
-        "nixpkgs": [
-          "wine-cachyos-nix",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1794944248,
-        "narHash": "sha256-3ynjrzwlz6GlqxNCg86EkbCGjmB2839C+4yQ4Cv6MC8=",
-        "owner": "Daaboulex",
-        "repo": "nix-packaging-standard",
-        "rev": "66b972606ed6d24f9b371d9dbd052a6eaad7c62f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Daaboulex",
-        "ref": "release",
-        "repo": "nix-packaging-standard",
-        "type": "github"
-      }
-    },
-    "std_8": {
-      "inputs": {
-        "flake-parts": "flake-parts_10",
         "git-hooks": [
           "yeetmouse-nix",
           "git-hooks"
@@ -2439,7 +2263,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "std": "std_6"
+        "std": "std_4"
       },
       "locked": {
         "lastModified": 1794968953,
@@ -2710,7 +2534,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "std": "std_7"
+        "std": "std_5"
       },
       "locked": {
         "lastModified": 1794969065,
@@ -2770,7 +2594,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "std": "std_8",
+        "std": "std_6",
         "yeetmouse-src": "yeetmouse-src"
       },
       "locked": {

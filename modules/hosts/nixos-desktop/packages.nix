@@ -173,7 +173,7 @@ in
             shadps4-qtlauncher
             sm64ex
             srb2
-            streamrip
+            #streamrip
             systemctl-tui
             termscp
             tochd

@@ -228,22 +228,6 @@
       };
     };
     preservation.url = "github:nix-community/preservation";
-    proton-cachyos-nix = {
-      url = "github:Daaboulex/proton-cachyos-nix";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        git-hooks.follows = "git-hooks-nix";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-    proton-ge-nix = {
-      url = "github:Daaboulex/proton-ge-nix";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        git-hooks.follows = "git-hooks-nix";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
     rewaita = {
       url = "github:SwordPuffin/Rewaita";
