@@ -50,6 +50,7 @@
             gameEnvironment = {
               PIPEWIRE_NODE = "Game";
               PROTON_ENABLE_WAYLAND = true;
+              PROTON_UPSCALER_UPGRADE = "1";
               PULSE_SINK = "Game";
             };
             games."993090".beta = "lsfg-vk"; # Lossless Scaling

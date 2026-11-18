@@ -11,7 +11,9 @@
       steamCompatTools = with pkgs; [
         proton-cachyos-bin
         proton-ge-bin
-        proton-wineland-bin
+        (proton-wineland-bin.overrideAttrs {
+          userSettings.PROTON_UPSCALER_UPGRADE = "1";
+        })
       ];
     in
     {
