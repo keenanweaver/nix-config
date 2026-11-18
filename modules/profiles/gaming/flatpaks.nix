@@ -5,7 +5,25 @@ in
 {
   flake.modules = {
     homeManager.flatpak-games =
-      { config, ... }:
+      { config, pkgs, ... }:
+      let
+        mkBundle =
+          {
+            appId,
+            hash,
+            url,
+          }:
+          {
+            inherit appId;
+            bundle = "file://${
+              pkgs.fetchzip {
+                inherit hash url;
+                stripRoot = false;
+              }
+            }/${appId}.flatpak";
+            sha256 = hash;
+          };
+      in
       {
         services.flatpak = {
           overrides = {
@@ -64,11 +82,16 @@ in
             "dev.ares.ares"
             "info.beyondallreason.bar"
             "info.cemu.Cemu"
-            {
+            (mkBundle {
               appId = "io.github.hedge_dev.unleashedrecomp";
-              bundle = "file://${config.home.homeDirectory}/Games/io.github.hedge_dev.unleashedrecomp.flatpak";
-              sha256 = "13wca95yngfwl1y0c05y0b2w7aa8k3nkhvk46wsrxjvw3shb35im";
-            }
+              hash = "sha256-a8dx9ro515SFHb8l49eDkbXfNuiRGxMuAPaNgwnLHrs=";
+              url = "https://github.com/hedge-dev/UnleashedRecomp/releases/download/v1.0.3/UnleashedRecomp-Flatpak.zip";
+            })
+            (mkBundle {
+              appId = "io.github.sonicnext_dev.marathonrecomp";
+              hash = "sha256-1nRlVTX/d9JyBFfT7fdBTdpfbSYonESVF+Ft28MGpPc=";
+              url = "https://github.com/sonicnext-dev/MarathonRecomp/releases/download/v1.0.0/MarathonRecomp-Flatpak-x86_64.zip";
+            })
             "io.github.randovania.Randovania"
             "io.github.strikerx3.ymir"
             "net.fsuae.FS-UAE"

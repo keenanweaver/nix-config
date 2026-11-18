@@ -208,7 +208,7 @@
       inputs.home-manager.follows = "home-manager";
     };
     openmw-nix = {
-      url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
+      url = "git+https://codeberg.org/Keenan/openmw-nix.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pedantix = {
@@ -245,6 +245,10 @@
       };
     };
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
+    rewaita = {
+      url = "github:SwordPuffin/Rewaita";
+      flake = false;
+    };
     rom-properties-nix-flake = {
       url = "github:Whovian9369/rom-properties-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";

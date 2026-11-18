@@ -69,6 +69,6 @@
     };
   flake-file.inputs.openmw-nix = {
     inputs.nixpkgs.follows = "nixpkgs";
-    url = "git+https://codeberg.org/PopeRigby/openmw-nix.git";
+    url = "git+https://codeberg.org/Keenan/openmw-nix.git";
   };
 }

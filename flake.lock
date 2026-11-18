@@ -1809,11 +1809,11 @@
         "rev": "a4cfde3104295bfd59c400b2d6ab45bdb44c4f10",
         "revCount": 167,
         "type": "git",
-        "url": "https://codeberg.org/PopeRigby/openmw-nix.git"
+        "url": "https://codeberg.org/Keenan/openmw-nix.git"
       },
       "original": {
         "type": "git",
-        "url": "https://codeberg.org/PopeRigby/openmw-nix.git"
+        "url": "https://codeberg.org/Keenan/openmw-nix.git"
       }
     },
     "pedantix": {
@@ -1952,6 +1952,22 @@
         "type": "github"
       }
     },
+    "rewaita": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1794619630,
+        "narHash": "sha256-pUfr3O1P5IFqliQ7JyIjDZEnKclak5r25PiQ96vuuJ8=",
+        "owner": "SwordPuffin",
+        "repo": "Rewaita",
+        "rev": "f6c48236f46e2515c80014921d4f3e2b6c0535ca",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SwordPuffin",
+        "repo": "Rewaita",
+        "type": "github"
+      }
+    },
     "rom-properties-nix-flake": {
       "inputs": {
         "nixpkgs": [
@@ -2031,6 +2047,7 @@
         "proton-cachyos-nix": "proton-cachyos-nix",
         "proton-ge-nix": "proton-ge-nix",
         "quadlet-nix": "quadlet-nix",
+        "rewaita": "rewaita",
         "rom-properties-nix-flake": "rom-properties-nix-flake",
         "simracing-hwdb": "simracing-hwdb",
         "slippi-nix": "slippi-nix",

@@ -39,6 +39,29 @@ in
         }:
         let
           inherit (config.catppuccin) sources;
+          palette = (lib.importJSON "${sources.palette}/palette.json").${flavor-lower}.colors;
+          resolveVar =
+            v:
+            let
+              m = builtins.match "var\\(--([a-z0-9-]+)\\)" v;
+            in
+            if m == null then v else resolveVar rewaitaVars.${lib.head m};
+          rewaitaColors = lib.mapAttrs (_: resolveVar) rewaitaVars // {
+            accent-color = palette.${accent-lower}.hex;
+            accent-fg-color = resolveVar rewaitaVars.window-bg-color;
+            border-color = "transparent";
+          };
+          rewaitaTheme = lib.readFile "${rewaitaThemes}/dark/${lib.head (lib.filter (lib.hasPrefix "Catppuccin ${flavor-upper} ") (lib.attrNames (builtins.readDir "${rewaitaThemes}/dark")))}";
+          rewaitaThemes = "${inputs.rewaita}/src/themes";
+          rewaitaVars = lib.listToAttrs (
+            lib.concatMap (
+              line:
+              let
+                m = builtins.match " *--([a-z0-9-]+): *([^;]+);.*" line;
+              in
+              lib.optional (m != null) (lib.nameValuePair (lib.elemAt m 0) (lib.elemAt m 1))
+            ) (lib.splitString "\n" rewaitaTheme)
+          );
         in
         {
           imports = [ inputs.catppuccin.homeModules.catppuccin ];
@@ -155,11 +178,14 @@ in
                 recursive = true;
                 source = ../../assets/theming/Kvantum;
               };
-              "gtk-3.0" = {
-                recursive = true;
-                source = ../../assets/theming/gtk-3.0;
-              };
-              "gtk-4.0/gtk.css".source = ../../assets/theming/gtk-4.0/gtk.css;
+              "gtk-3.0/gtk.css".text = lib.replaceStrings (map (n: "@${n}") (
+                lib.attrNames rewaitaColors
+              )) (lib.attrValues rewaitaColors) (lib.readFile "${rewaitaThemes}/gtk3-template/gtk.css");
+              "gtk-4.0/gtk.css".text = ''
+                ${rewaitaTheme}
+                @define-color accent_bg_color ${rewaitaColors.accent-color};
+                @define-color accent_fg_color ${rewaitaColors.accent-fg-color};
+              '';
               "powershell/Microsoft.PowerShell_profile.ps1".text = ''
                 Import-Module Catppuccin
                 $Flavor = $Catppuccin['${flavor-upper}']
@@ -421,6 +447,10 @@ in
     catppuccin-powershell = {
       flake = false;
       url = "github:catppuccin/powershell";
+    };
+    rewaita = {
+      flake = false;
+      url = "github:SwordPuffin/Rewaita";
     };
   };
 }
