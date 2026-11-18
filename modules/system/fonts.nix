@@ -34,10 +34,12 @@ in
             subpixel.rgba = "rgb";
           };
           packages = with pkgs; [
+            geist-font
             inter
             liberation_ttf
             maple-mono.Normal-NF
             material-design-icons
+            nerd-fonts.geist-mono
             source-han-sans
             wqy_zenhei
           ];

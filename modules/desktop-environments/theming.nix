@@ -421,9 +421,9 @@ in
       cursor-theme = "catppuccin-${flavor-accent}-cursors";
       flavor-upper = lib.toSentenceCase flavor-lower;
       icon-theme = "Papirus-Dark";
-      mono-font = "Maple Mono Normal NF";
+      mono-font = "GeistMono Nerd Font";
       mono-size = 14;
-      sans-font = "Inter";
+      sans-font = "Geist";
       wallpaper = "${../../assets/theming/wallpapers/puffy-stars.jpg}";
       wallpaper-secondary = "${../../assets/theming/wallpapers/dark-waves.jpg}";
     };
