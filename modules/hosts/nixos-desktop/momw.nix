@@ -10,27 +10,47 @@
           pkgs,
           ...
         }:
+        let
+          inherit (pkgs) openmw;
+          omw = inputs.openmw-nix.packages.${pkgs.stdenv.hostPlatform.system};
+        in
         {
-          home.packages = with pkgs; [
-            (writeShellApplication {
-              name = "momw-update";
-              runtimeEnv.MODLIST = "i-heart-vanilla-directors-cut";
-              runtimeInputs = [
-                inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.momw-configurator
-                inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-validator
-                inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.umo
-                tes3cmd
-              ];
-              text = ''
-                umo sync "$MODLIST"
-                umo install "$MODLIST"
-                momw-configurator config "$MODLIST" --run-navmeshtool --run-validator
-                umo vacuum
-              '';
-            })
-            inputs.openmw-nix.packages.${stdenv.hostPlatform.system}.openmw-validator
-            openmw
-          ];
+          home = {
+            file.".config/openmw/momw-configurator.toml".source =
+              (pkgs.formats.toml { }).generate "momw-configurator.toml"
+                {
+                  FilePaths = {
+                    DeltaPluginExe = lib.getExe omw.delta-plugin;
+                    GoCoverifyExe = lib.getExe omw.gocoverify;
+                    IniImporterExe = lib.getExe' openmw "openmw-iniimporter";
+                    LumenaireExe = lib.getExe omw.lumenaire;
+                    ModBaseDir = "${config.home.homeDirectory}/Games/openmw";
+                    MorrowindDataFiles = "${config.home.homeDirectory}/Games/morrowind/Data Files";
+                    MorrowindDotIniPath = "${config.home.homeDirectory}/Games/morrowind/Morrowind.ini";
+                    NavmeshtoolExe = lib.getExe' openmw "openmw-navmeshtool";
+                    OpenmwExe = lib.getExe' openmw "openmw";
+                    ValidatorExe = lib.getExe omw.openmw-validator;
+                  };
+                };
+            packages = [
+              (pkgs.writeShellApplication {
+                name = "momw-update";
+                runtimeEnv.MODLIST = "i-heart-vanilla-directors-cut";
+                runtimeInputs = [
+                  omw.momw-tools-pack
+                  openmw
+                ];
+                text = ''
+                  umo sync "$MODLIST"
+                  umo install "$MODLIST"
+                  momw-configurator config "$MODLIST" --run-navmeshtool --run-validator
+                  umo vacuum
+                '';
+              })
+              omw.momw-tools-pack
+              openmw
+            ];
+          };
           sops = {
             secrets.nexus_pat = { };
             templates."umomwd-config.json" =
@@ -53,7 +73,7 @@
               };
           };
           xdg.desktopEntries.umo = {
-            exec = "${lib.getExe' inputs.openmw-nix.packages.${pkgs.stdenv.hostPlatform.system}.umo "umo"} %u";
+            exec = "${lib.getExe omw.umo} %u";
             icon = "umo";
             mimeType = [
               "x-scheme-handler/momw"
@@ -69,6 +89,6 @@
     };
   flake-file.inputs.openmw-nix = {
     inputs.nixpkgs.follows = "nixpkgs";
-    url = "git+https://codeberg.org/Keenan/openmw-nix.git";
+    url = "https://codeberg.org/Keenan/openmw-nix/archive/modernize-packages.tar.gz";
   };
 }

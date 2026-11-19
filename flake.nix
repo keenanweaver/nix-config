@@ -208,7 +208,7 @@
       inputs.home-manager.follows = "home-manager";
     };
     openmw-nix = {
-      url = "git+https://codeberg.org/Keenan/openmw-nix.git";
+      url = "https://codeberg.org/Keenan/openmw-nix/archive/modernize-packages.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pedantix = {

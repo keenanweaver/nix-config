@@ -261,28 +261,6 @@
         "type": "github"
       }
     },
-    "fenix": {
-      "inputs": {
-        "nixpkgs": [
-          "openmw-nix",
-          "nixpkgs"
-        ],
-        "rust-analyzer-src": "rust-analyzer-src"
-      },
-      "locked": {
-        "lastModified": 1781086641,
-        "narHash": "sha256-2oBncBeL671Tf6TnYqk36ebkfPHNYPKwz5at8NcrpvI=",
-        "owner": "nix-community",
-        "repo": "fenix",
-        "rev": "640606300f74b4891bfa1a51f5756450f9fdc7f1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "fenix",
-        "type": "github"
-      }
-    },
     "ferriscope": {
       "flake": false,
       "locked": {
@@ -953,22 +931,6 @@
         "type": "github"
       }
     },
-    "mygui": {
-      "locked": {
-        "lastModified": 1716480759,
-        "narHash": "sha256-GuvNI8u2Dmu0FRTVzg/rQyV9BXFqyP3c65YVgI0Kiqk=",
-        "owner": "Tofixrs",
-        "repo": "nixpkgs",
-        "rev": "8e80bc70b31e86a0c32dd41ba436b79e783255fa",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Tofixrs",
-        "ref": "mygui",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "niri-flake": {
       "inputs": {
         "niri-stable": "niri-stable",
@@ -1630,11 +1592,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1795014749,
-        "narHash": "sha256-lmiOdxu2x/jRspKzRoz16rrBnn6sOxSAjGkcnSkEWD4=",
+        "lastModified": 1795044204,
+        "narHash": "sha256-xJokWg3xB3Qte6yB0SsgYgc4Y/aYJxGKFR3iMyIAZww=",
         "owner": "noctalia-dev",
         "repo": "noctalia",
-        "rev": "bf887d5b8867e952f24351759dc3e9b74f130316",
+        "rev": "2edb46da9cd2acaba9c89e0033b8d00ad1cfc0a7",
         "type": "github"
       },
       "original": {
@@ -1670,11 +1632,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795038408,
-        "narHash": "sha256-zPhd4ovztaPjiNxshmJryghSVFHpE74qhV6lh1+DErw=",
+        "lastModified": 1795045875,
+        "narHash": "sha256-VPSixzHge4mFxd3sO29JWsPrw/txKSHAv/IPodpIweE=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "05a2e6caf5355e674f4030b306fcb0972e3e3308",
+        "rev": "85d2518576a3beb48c9b390875a90a49b2088319",
         "type": "github"
       },
       "original": {
@@ -1729,25 +1691,21 @@
     },
     "openmw-nix": {
       "inputs": {
-        "fenix": "fenix",
-        "mygui": "mygui",
         "nixpkgs": [
           "nixpkgs"
         ],
         "snowfall-lib": "snowfall-lib"
       },
       "locked": {
-        "lastModified": 1783359342,
-        "narHash": "sha256-RBUB61J9kWN3jNUF+OWpgogJbbe7Q2e3JMHR+MBeH4Q=",
-        "ref": "refs/heads/main",
-        "rev": "a4cfde3104295bfd59c400b2d6ab45bdb44c4f10",
-        "revCount": 167,
-        "type": "git",
-        "url": "https://codeberg.org/Keenan/openmw-nix.git"
+        "lastModified": 1795047593,
+        "narHash": "sha256-KMbk7mOQ/6MJMz4RwhoJviNFlMAle2cp5R4EPQ1oTYk=",
+        "rev": "fc49a008bc72640b91a30a62a3968f4cd560a4dd",
+        "type": "tarball",
+        "url": "https://codeberg.org/api/v1/repos/Keenan/openmw-nix/archive/fc49a008bc72640b91a30a62a3968f4cd560a4dd.tar.gz"
       },
       "original": {
-        "type": "git",
-        "url": "https://codeberg.org/Keenan/openmw-nix.git"
+        "type": "tarball",
+        "url": "https://codeberg.org/Keenan/openmw-nix/archive/modernize-packages.tar.gz"
       }
     },
     "pedantix": {
@@ -1939,23 +1897,6 @@
         "wine-cachyos-nix": "wine-cachyos-nix",
         "yeetmouse-nix": "yeetmouse-nix",
         "zen-browser": "zen-browser"
-      }
-    },
-    "rust-analyzer-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1781005730,
-        "narHash": "sha256-3Bn47a+Vs2/ltQfTU2ApWqy5kYNmF+RaTEJs0A/H2pA=",
-        "owner": "rust-lang",
-        "repo": "rust-analyzer",
-        "rev": "587ce15e272b94d4f0a69d695e3718a02c24667e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rust-lang",
-        "ref": "nightly",
-        "repo": "rust-analyzer",
-        "type": "github"
       }
     },
     "search": {
@@ -2638,11 +2579,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795027328,
-        "narHash": "sha256-DvvX0uD32Ter2hXZK6NX57Nv8M4+rhtBMmX2CwfEiKI=",
+        "lastModified": 1795043840,
+        "narHash": "sha256-xOaDTlUys2BZk0P0stG4a6DxW94iA5gJdFCTPAuKzgk=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "c849db176860749126b485d0fe178db55668c4d7",
+        "rev": "1a7722e7e35d960a17d2f5dd085631f032a77336",
         "type": "github"
       },
       "original": {
