@@ -89,6 +89,6 @@
     };
   flake-file.inputs.openmw-nix = {
     inputs.nixpkgs.follows = "nixpkgs";
-    url = "https://codeberg.org/Keenan/openmw-nix/archive/modernize-packages.tar.gz";
+    url = "git+https://codeberg.org/Keenan/openmw-nix.git?ref=modernize-packages";
   };
 }
