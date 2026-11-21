@@ -1,15 +1,13 @@
 { inputs, ... }:
 {
   flake.modules.nixos.profile-base =
-    { lib, ... }:
+    { lib, config, ... }:
     {
       imports = [ inputs.nix-mineral.nixosModules.nix-mineral ];
       boot = {
         consoleLogLevel = lib.mkDefault 0;
-        kernelParams = [
-          "quiet"
-          "udev.log_level=3"
-        ];
+        # nix-mineral's "3 3 3 3" would override consoleLogLevel after boot
+        kernel.sysctl."kernel.printk" = "${toString config.boot.consoleLogLevel} 4 1 7";
       };
       nix-mineral = {
         enable = true;

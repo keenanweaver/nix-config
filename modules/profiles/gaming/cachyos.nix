@@ -1,24 +1,25 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.profile-gaming =
-    { lib, ... }:
-    {
-      imports = [
-        inputs.cachyos-settings-nix.nixosModules.default
-        inputs.wine-cachyos-nix.nixosModules.default
-      ];
-      boot.kernel.sysctl = {
-        "kernel.split_lock_mitigate" = 0;
-        "net.ipv4.tcp_fin_timeout" = 5;
-        "vm.page-cluster" = lib.mkForce 0;
-      };
-      cachyos.settings = {
-        enable = true;
-        zram.enable = false;
-      };
-      nixpkgs.overlays = [ inputs.wine-cachyos-nix.overlays.default ];
-      programs.wine-cachyos.enable = true;
+  flake.modules.nixos.profile-gaming = _: {
+    imports = [
+      inputs.cachyos-settings-nix.nixosModules.default
+      inputs.wine-cachyos-nix.nixosModules.default
+    ];
+    boot.kernel.sysctl = {
+      "kernel.split_lock_mitigate" = 0;
+      "net.ipv4.tcp_fin_timeout" = 5;
     };
+    cachyos.settings = {
+      enable = true;
+      coredump.enable = true;
+      sysctl.enable = true;
+      thp.enable = true;
+      watchdogBlacklist.enable = true;
+      zram.enable = false;
+    };
+    nixpkgs.overlays = [ inputs.wine-cachyos-nix.overlays.default ];
+    programs.wine-cachyos.enable = true;
+  };
   flake-file.inputs = {
     cachyos-settings-nix = {
       inputs = {

@@ -182,10 +182,6 @@
     };
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst";
     nixpkgs-lib.follows = "nixpkgs";
-    nixpkgs-patch-heroic-modernize = {
-      url = "https://github.com/NixOS/nixpkgs/pull/584805.diff";
-      flake = false;
-    };
     nixpkgs-patcher.url = "github:gepbird/nixpkgs-patcher";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     nonfree = {
@@ -208,7 +204,7 @@
       inputs.home-manager.follows = "home-manager";
     };
     openmw-nix = {
-      url = "git+https://codeberg.org/Keenan/openmw-nix.git?ref=modernize-packages";
+      url = "git+https://codeberg.org/Keenan/openmw-nix.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pedantix = {

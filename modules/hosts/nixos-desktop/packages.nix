@@ -103,7 +103,6 @@ in
             innoextract
             inputs.aaru-nix-flake.packages.${system}.default
             inputs.just-one-more-repo.packages.${system}.r2modman
-            inputs.nur-packages-bandithedoge.legacyPackages.${system}.sheepshaver-bin
             isd
             isle-portable
             jazz2

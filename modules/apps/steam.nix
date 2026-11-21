@@ -48,6 +48,7 @@
               notificationsShowIngame = false;
             };
             gameEnvironment = {
+              MESA_SHADER_CACHE_MAX_SIZE = "16G"; # Steam sets 5G
               PIPEWIRE_NODE = "Game";
               PROTON_ENABLE_WAYLAND = true;
               PROTON_UPSCALER_UPGRADE = "1";

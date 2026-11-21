@@ -61,14 +61,14 @@
           ];
         };
         home-manager.sharedModules = [ self.modules.homeManager.profile-base ];
-        services = {
-          earlyoom = {
-            enable = true;
-            freeMemThreshold = 5;
+        services.journald.settings.Journal.SystemMaxUse = "50M";
+        systemd = {
+          oomd = {
+            enableSystemSlice = true;
+            enableUserSlices = true;
           };
-          journald.settings.Journal.SystemMaxUse = "50M";
+          settings.Manager.DefaultTimeoutStopSec = "10s";
         };
-        systemd.settings.Manager.DefaultTimeoutStopSec = "10s";
         time.timeZone = "America/Chicago";
         users = {
           defaultUserShell = pkgs.zsh;

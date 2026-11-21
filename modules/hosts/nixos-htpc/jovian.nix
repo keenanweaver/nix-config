@@ -11,6 +11,13 @@
       imports = [
         inputs.nyx.vendored.jovian.nixosModules.default
       ];
+      # Jovian's defaults minus amd_iommu=off, which defeats nix-mineral's IOMMU hardening
+      boot.kernelParams = [
+        "amdgpu.lockup_timeout=5000,10000,10000,5000"
+        "audit=0"
+        "log_buf_len=4M"
+        "ttm.pages_min=2097152"
+      ];
       home-manager.users.${config.my.user}.home.file = {
         # https://github.com/Jovian-Experiments/Jovian-NixOS/issues/460#issuecomment-3439375088
         ".local/share/Steam/.cef-enable-remote-debugging".text = "";
@@ -52,6 +59,8 @@
           user = config.my.user;
         };
         steamos = {
+          enableDefaultCmdlineConfig = false;
+          enableEarlyOOM = false; # Using systemd-oomd
           enableZram = false; # Conflicts with zswap
         };
       };

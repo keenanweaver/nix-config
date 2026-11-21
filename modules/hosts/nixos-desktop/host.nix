@@ -4,7 +4,12 @@ let
 in
 {
   configurations.nixos.nixos-desktop.module =
-    { config, pkgs, ... }:
+    {
+      lib,
+      config,
+      pkgs,
+      ...
+    }:
     {
       imports = with self.modules.nixos; [
         self.diskoConfigurations.nixos-desktop
@@ -61,7 +66,7 @@ in
         lanInterface = "enp10s0";
         pciDev = "0000:03:00.0";
         primaryMonitor = "DP-1";
-        wineCpuTopology = "15:1,2,3,4,5,6,7,16,17,18,19,20,21,22,23";
+        wineCpuTopology = "14:1,2,3,4,5,6,7,17,18,19,20,21,22,23";
         ztAdapter = "zt6ntckupu";
         ztConcurrency = 16;
       };
@@ -72,11 +77,22 @@ in
           raspberrypi
         ]
       );
+      # Drop the costliest hardening flags for gaming performance
+      nix-mineral.settings.kernel = {
+        amd-iommu-force-isolation = false;
+        iommu-passthrough = lib.mkForce true;
+        strict-iommu = false;
+        sysrq = "none";
+        zero-alloc = false;
+      };
       # Skip core 0, testing https://kish1n.io/posts/is-core-0-sabotaging-your-performance/
-      programs.gamemode.settings.cpu.pin_cores = "1-7,16-23";
+      programs.gamemode.settings.cpu.pin_cores = "1-7,17-23";
       system.stateVersion = "26.05";
-      systemd.tmpfiles.rules = [
-        "d /mnt/Games2 0755 ${config.my.user} users - -"
-      ];
+      systemd = {
+        services.irqbalance.environment.IRQBALANCE_BANNED_CPULIST = "1-7,17-23";
+        tmpfiles.rules = [
+          "d /mnt/Games2 0755 ${config.my.user} users - -"
+        ];
+      };
     };
 }

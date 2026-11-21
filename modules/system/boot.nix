@@ -5,18 +5,13 @@
     {
       imports = [ inputs.nixos-plymouth.nixosModules.default ];
       boot = {
-        consoleLogLevel = 0;
         kernel.sysctl = {
           "kernel.nmi_watchdog" = lib.mkDefault 0;
           "kernel.soft_watchdog" = 0;
         };
         kernelParams = [
-          "loglevel=0"
           "nowatchdog"
-          "quiet"
-          "splash"
           "systemd.show_status=auto"
-          "udev.log_level=3"
           "vt.global_cursor_default=0"
         ];
         loader = {

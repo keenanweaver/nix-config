@@ -23,10 +23,7 @@
         boot = {
           extraModulePackages = with config.boot.kernelPackages; [ zenergy ];
           kernelModules = [ "zenergy" ];
-          kernelParams = [
-            "amd_pstate=active" # https://wiki.archlinux.org/title/CPU_frequency_scaling#Autonomous_frequency_scaling
-            "microcode.amd_sha_check=off"
-          ];
+          kernelParams = [ "microcode.amd_sha_check=off" ];
         };
         hardware.amdgpu = {
           #initrd.enable = true;
